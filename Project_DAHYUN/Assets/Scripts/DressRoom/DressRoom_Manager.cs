@@ -4,106 +4,255 @@ using UnityEngine.UI;
 
 public class DressRoom_Manager : MonoBehaviour {
     //#DEFINES
-    public const int MAX_OPTIONS = 3;
+    public const int MAX_ARMOR_SETS = 0;
+    public const int MAX_WEAPON_SETS = 0;
     //
-    Sprite[] spriteSheet;
-    int currentHeadID = 0, currentTorsoID = 0, currentArmsID = 0, currentLegsID = 0, currentWeaponID = 0;
-    Image mannequin;
+    public string spriteSheetName_weapon, spriteSheetName_arms, spriteSheetName_legs, spriteSheetName_torso, spriteSheetName_head;
+    Sprite[][] spriteSheets;
+    Sprite[] spriteSheet_weapon, spriteSheet_arms, spriteSheet_legs, spriteSheet_torso, spriteSheet_head;
+    int currentHeadID = 0, currentTorsoID = 0, currentArmsID = 0, currentLegsID = 0, currentWeaponID = 0, currentColorID = 0;
+    GameObject mannequin;
+
     // Use this for initialization
     void Start()
     {
-        mannequin = GameObject.Find("Mannequin").GetComponent<Image>();
-        spriteSheet = Resources.LoadAll<Sprite>("insertimagenamehere");
+        mannequin = GameObject.Find("Player_Mannequin");
+
+        spriteSheet_weapon = Resources.LoadAll<Sprite>("Spritesheet_Weapon_" + spriteSheetName_weapon);
+        spriteSheet_arms = Resources.LoadAll<Sprite>("Spritesheet_Arms_" + spriteSheetName_arms);
+        spriteSheet_legs = Resources.LoadAll<Sprite>("Spritesheet_Legs_" + spriteSheetName_legs);
+        spriteSheet_torso = Resources.LoadAll<Sprite>("Spritesheet_Torso_" + spriteSheetName_torso);
+        spriteSheet_head = Resources.LoadAll<Sprite>("Spritesheet_Head_" + spriteSheetName_head);
     }
 
-    public void ChangeHead(int dir)
+    public void ChangeWeapon(int dir)
     {
-        if (currentHeadID < MAX_OPTIONS)
-            currentHeadID += dir;
-        else if (currentHeadID < 0)
-            currentHeadID = MAX_OPTIONS;
-        else
-            currentHeadID = 0;
+        currentWeaponID += dir;
 
-        foreach (Sprite S in spriteSheet)
+        if (currentWeaponID > MAX_WEAPON_SETS)
+            currentWeaponID = 0;
+
+        if (currentWeaponID < 0)
+            currentWeaponID = MAX_WEAPON_SETS;
+
+        LoadNewSprite(currentWeaponID, 0);
+
+        foreach (Sprite S in spriteSheet_weapon)
         {
-            if (S.name.Equals("myimagenamehere" + currentHeadID + currentTorsoID + currentArmsID + currentLegsID + currentWeaponID))
+            if (S.name.Equals("Spritesheet_Weapon_" + spriteSheetName_weapon + "_" + currentWeaponID))
             {
-                mannequin.sprite = S;
-            }
-        }
-    }
-
-    public void ChangeTorso(int dir)
-    {
-        if (currentTorsoID < MAX_OPTIONS)
-            currentTorsoID += dir;
-        else if (currentTorsoID < 0)
-            currentTorsoID = MAX_OPTIONS;
-        else
-            currentTorsoID = 0;
-
-        foreach (Sprite S in spriteSheet)
-        {
-            if (S.name.Equals("myimagenamehere" + currentHeadID + currentTorsoID + currentArmsID + currentLegsID + currentWeaponID))
-            {
-                mannequin.sprite = S;
+                mannequin.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = S;
             }
         }
     }
 
     public void ChangeArms(int dir)
     {
-        if (currentArmsID < MAX_OPTIONS)
-            currentArmsID += dir;
-        else if (currentArmsID < 0)
-            currentArmsID = MAX_OPTIONS;
-        else
+        currentArmsID += dir;
+
+        if (currentArmsID > MAX_ARMOR_SETS)
             currentArmsID = 0;
 
+        if (currentArmsID < 0)
+            currentArmsID = MAX_ARMOR_SETS;
 
-        foreach (Sprite S in spriteSheet)
+        LoadNewSprite(currentArmsID, 1);
+
+        spriteSheet_weapon = Resources.LoadAll<Sprite>("Spritesheet_Weapon_" + spriteSheetName_weapon);
+
+        foreach (Sprite S in spriteSheet_arms)
         {
-            if (S.name.Equals("myimagenamehere" + currentHeadID + currentTorsoID + currentArmsID + currentLegsID + currentWeaponID))
+            if (S.name.Equals("Spritesheet_Arms_" + spriteSheetName_arms + "_" + currentColorID))
             {
-                mannequin.sprite = S;
+                mannequin.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+                break;
             }
         }
     }
 
     public void ChangeLegs(int dir)
     {
-        if (currentLegsID < MAX_OPTIONS)
-            currentLegsID += dir;
-        else if (currentLegsID < 0)
-            currentLegsID = MAX_OPTIONS;
-        else
+        currentLegsID += dir;
+
+        if (currentLegsID > MAX_ARMOR_SETS)
             currentLegsID = 0;
 
-        foreach (Sprite S in spriteSheet)
+        if (currentLegsID < 0)
+            currentLegsID = MAX_ARMOR_SETS;
+
+        LoadNewSprite(currentLegsID, 2);
+
+        foreach (Sprite S in spriteSheet_legs)
         {
-            if (S.name.Equals("myimagenamehere" + currentHeadID + currentTorsoID + currentArmsID + currentLegsID + currentWeaponID))
+            if (S.name.Equals("Spritesheet_Legs_" + spriteSheetName_legs + "_" + currentColorID))
             {
-                mannequin.sprite = S;
+                mannequin.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = S;
             }
         }
     }
 
-    public void ChangeWeapon(int dir)
+    public void ChangeTorso(int dir)
     {
-        if (currentWeaponID < MAX_OPTIONS)
-            currentWeaponID += dir;
-        else if (currentWeaponID < 0)
-            currentWeaponID = MAX_OPTIONS;
-        else
-            currentWeaponID = 0;
+        currentTorsoID += dir;
 
-        foreach (Sprite S in spriteSheet)
+        if (currentTorsoID > MAX_ARMOR_SETS)
+            currentTorsoID = 0;
+
+        if (currentTorsoID < 0)
+            currentTorsoID = MAX_ARMOR_SETS;
+
+        LoadNewSprite(currentTorsoID, 3);
+
+        foreach (Sprite S in spriteSheet_torso)
         {
-            if (S.name.Equals("myimagenamehere" + currentHeadID + currentTorsoID + currentArmsID + currentLegsID + currentWeaponID))
+            if (S.name.Equals("Spritesheet_Torso_" + spriteSheetName_torso + "_" + currentColorID))
             {
-                mannequin.sprite = S;
+                mannequin.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite = S;
             }
+        }
+    }
+
+    public void ChangeHead(int dir)
+    {
+        currentHeadID += dir;
+
+        if (currentHeadID > MAX_ARMOR_SETS)
+            currentHeadID = 0; 
+
+        if (currentHeadID < 0)
+            currentHeadID = MAX_ARMOR_SETS;
+
+        LoadNewSprite(currentHeadID, 4);
+
+        foreach (Sprite S in spriteSheet_head)
+        {
+            if (S.name.Equals("Spritesheet_Head_" + spriteSheetName_head + "_" + currentColorID))
+            {
+                mannequin.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+            }
+        }
+    }
+
+    public void ChangeColor(int color)
+    {
+        foreach (Sprite S in spriteSheet_weapon)
+        {
+            if (S.name.Equals("Spritesheet_Weapon_" + spriteSheetName_weapon + "_" + color))
+            {
+                mannequin.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+            }
+        }
+
+        foreach (Sprite S in spriteSheet_arms)
+        {
+            if (S.name.Equals("Spritesheet_Arms_" + spriteSheetName_head + "_" + color))
+            {
+                mannequin.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+            }
+        }
+
+        foreach (Sprite S in spriteSheet_legs)
+        {
+            if (S.name.Equals("Spritesheet_Legs_" + spriteSheetName_legs + "_" + color))
+            {
+                mannequin.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+            }
+        }
+
+        spriteSheet_torso = Resources.LoadAll<Sprite>("Spritesheet_Torso_" + spriteSheetName_torso);
+
+        foreach (Sprite S in spriteSheet_torso)
+        {
+            if (S.name.Equals("Spritesheet_Torso_" + spriteSheetName_torso + "_" + color))
+            {
+                mannequin.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+            }
+        }
+
+        foreach (Sprite S in spriteSheet_head)
+        {
+            if (S.name.Equals("Spritesheet_Head_" + spriteSheetName_head + "_" + color))
+            {
+                mannequin.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = S;
+            }
+        }
+    }
+
+    /////////
+    void LoadNewSprite(int setNumber, int bodyPart)
+    {
+        switch(bodyPart)
+        {
+            // weapon
+            case 0:
+                switch (setNumber)
+                {
+                    case 0:
+                        spriteSheetName_weapon = "Static_HonorGuard";
+                        spriteSheet_weapon = Resources.LoadAll<Sprite>("Spritesheet_Weapon_" + spriteSheetName_weapon);
+                        break;
+                    default:
+                        spriteSheetName_weapon = "HonorGuard";
+                        spriteSheet_weapon = Resources.LoadAll<Sprite>("Spritesheet_Weapon_" + spriteSheetName_weapon);
+                        break;
+                }
+            break;
+            // arms
+            case 1:
+                switch (setNumber)
+                {
+                    case 0:
+                        spriteSheetName_arms = "Static_HonorGuard";
+                        spriteSheet_arms = Resources.LoadAll<Sprite>("Spritesheet_Arms_" + spriteSheetName_arms);
+                        break;
+                    default:
+                        spriteSheetName_arms = "Static_HonorGuard";
+                        spriteSheet_arms = Resources.LoadAll<Sprite>("Spritesheet_Arms_" + spriteSheetName_arms);
+                        break;
+                }
+                break;
+            // legs
+            case 2:
+                switch (setNumber)
+                {
+                    case 0:
+                        spriteSheetName_legs = "Static_HonorGuard";
+                        spriteSheet_legs = Resources.LoadAll<Sprite>("Spritesheet_Legs_" + spriteSheetName_legs);
+                        break;
+                    default:
+                        spriteSheetName_legs = "Static_HonorGuard";
+                        spriteSheet_legs = Resources.LoadAll<Sprite>("Spritesheet_Legs_" + spriteSheetName_legs);
+                        break;
+                }
+                break;
+            // torso
+            case 3:
+                switch (setNumber)
+                {
+                    case 0:
+                        spriteSheetName_torso = "Static_HonorGuard";
+                        spriteSheet_torso = Resources.LoadAll<Sprite>("Spritesheet_Torso_" + spriteSheetName_torso);
+                        break;
+                    default:
+                        spriteSheetName_torso = "Static_HonorGuard";
+                        spriteSheet_torso = Resources.LoadAll<Sprite>("Spritesheet_Torso_" + spriteSheetName_torso);
+                        break;
+                }
+                break;
+            // head
+            case 4:
+                switch (setNumber)
+                {
+                    case 0:
+                        spriteSheetName_head = "Static_HonorGuard";
+                        spriteSheet_head = Resources.LoadAll<Sprite>("Spritesheet_Head_" + spriteSheetName_head);
+                        break;
+                    default:
+                        spriteSheetName_head = "Static_HonorGuard";
+                        spriteSheet_head = Resources.LoadAll<Sprite>("Spritesheet_Head_" + spriteSheetName_head);
+                        break;
+                }
+                break;
         }
     }
 }
