@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DressRoom.unity
+- path: Assets/Scenes/TurnCombat_Test.unity
   isLoaded: 1
   isActive: 1

@@ -67,11 +67,13 @@
     <Compile Include="Assets\Scripts\BackgroundPropSpawner.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\BombPickup.cs" />
+    <Compile Include="Assets\Scripts\CameraController_TurnCombat.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\DressRoom\DressRoom_Manager.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
+    <Compile Include="Assets\Scripts\GameManagers\GameController.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\HealthPickup.cs" />
     <Compile Include="Assets\Scripts\LayBombs.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="Assets\Scripts\ScoreShadow.cs" />
     <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\Ability.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

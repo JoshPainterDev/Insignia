@@ -1,0 +1,73 @@
+Combat system design:
+
+Player turn:
+
+Fight
+Item
+Retreat
+
+
+Fight:
+
+stance
+Abilities
+Cancel 
+
+
+Item:
+
+consumables that can be used in combat from a bag list
+Maintain stance unless otherwise instructed by an item 
+
+
+Stance change:
+
+- Offensive
+- Defensive
+- Balance
+
+
+Offensive: 
+
+switch into, opponent in balanced: using the difference in speed between you and you're opponent, randomly decide if you can land a swift strike.
+ 
+Swift strike: this is essentially a free quick attack. Your opponent takes some damage if the roll goes in your favor
+Enables offensive abilities for use next turn
+
+Switch into opponent who is attacking: players make speed rolls. If both players succeed they both deal small damage, if both fail nothing happens. 
+If one succeeds they land swift strike.
+
+
+Defensive:
+
+switch into when opponent attacks: perform a defensive roll against the attackers attack to determine a block or parry 
+
+Blocks are the default case, where attacks deal no damage, and abilities are reduced in damage. 
+
+Parry negates an attack and deals damage to the attacker
+
+
+Balanced: 
+
+switch into when opponent defends: guard break your opponent opening them up for a critical strike
+
+Critical strike is based on lethality stat and causes bonus damage
+
+Switching into an opponents defense allows you to feint your attack, breaking their guard. This is guaranteed when your opponent switches into or remains in defensive state.
+
+
+Abilities: 
+
+- Types: Reckless, Precise, Deceptive, Tactical
+
+- Offensive: favors reckless and deceptive type moves for the most part.
+primary option for dealing damage.
+
+- Defensive: favors precise and tactical type moves.
+secondary option for dealing damage. 
+focus in buffing, healing, and avoiding damage.
+
+- Balanced: favors deceptive and tactical type moves.
+secondary means of dealing damage.
+strong counter moves and channels.
+not the fastest means of victory, but certainly effective.
