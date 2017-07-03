@@ -7,9 +7,11 @@ public class DressRoom_Manager : MonoBehaviour {
     public const int MAX_ARMOR_SETS = 0;
     public const int MAX_WEAPON_SETS = 0;
     //
-    public string spriteSheetName_weapon, spriteSheetName_arms, spriteSheetName_legs, spriteSheetName_torso, spriteSheetName_head;
+    public string spriteSheetName_weapon, spriteSheetName_arms, spriteSheetName_legs, spriteSheetName_torso, spriteSheetName_head,
+        spriteSheetName_hands, spriteSheetName_shoes, spriteSheetName_back;
     Sprite[][] spriteSheets;
-    Sprite[] spriteSheet_weapon, spriteSheet_arms, spriteSheet_legs, spriteSheet_torso, spriteSheet_head;
+    Sprite[] spriteSheet_weapon, spriteSheet_arms, spriteSheet_legs, spriteSheet_torso, spriteSheet_head, spriteSheet_hands, 
+        spriteSheet_shoes, spriteSheet_back;
     int currentHeadID = 0, currentTorsoID = 0, currentArmsID = 0, currentLegsID = 0, currentWeaponID = 0, currentColorID = 0;
     GameObject mannequin;
 
@@ -23,11 +25,19 @@ public class DressRoom_Manager : MonoBehaviour {
         spriteSheet_legs = Resources.LoadAll<Sprite>("Spritesheet_Legs_" + spriteSheetName_legs);
         spriteSheet_torso = Resources.LoadAll<Sprite>("Spritesheet_Torso_" + spriteSheetName_torso);
         spriteSheet_head = Resources.LoadAll<Sprite>("Spritesheet_Head_" + spriteSheetName_head);
+        spriteSheet_hands = Resources.LoadAll<Sprite>("Spritesheet_Hands_" + spriteSheetName_hands);
+        spriteSheet_shoes = Resources.LoadAll<Sprite>("Spritesheet_Shoes_" + spriteSheetName_shoes);
+        spriteSheet_back = Resources.LoadAll<Sprite>("Spritesheet_Back_" + spriteSheetName_back);
     }
 
-    public void ChangeWeapon(int dir)
+    public void UpdateAnimationState(int newState, int frameNum)
     {
-        currentWeaponID += dir;
+        ChangeWeapon(newState, frameNum);
+    }
+
+    public void ChangeWeapon(int newState, int frameNum = 0)
+    {
+        //currentWeaponID += dir;
 
         if (currentWeaponID > MAX_WEAPON_SETS)
             currentWeaponID = 0;
@@ -45,6 +55,7 @@ public class DressRoom_Manager : MonoBehaviour {
             }
         }
     }
+
 
     public void ChangeArms(int dir)
     {
