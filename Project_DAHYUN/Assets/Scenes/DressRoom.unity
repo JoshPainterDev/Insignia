@@ -752,7 +752,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 209706809}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
@@ -3127,6 +3127,9 @@ MonoBehaviour:
   spriteSheetName_legs: Static_Default
   spriteSheetName_torso: Static_Default
   spriteSheetName_head: Static_Default
+  spriteSheetName_hands: 
+  spriteSheetName_shoes: 
+  spriteSheetName_back: 
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0

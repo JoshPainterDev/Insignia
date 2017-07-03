@@ -112,6 +112,7 @@
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\Ability.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\EnemyMannequinController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

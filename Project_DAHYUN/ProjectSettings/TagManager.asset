@@ -22,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - boms
+  - VisualEffects
   - Player
   - Enemies
   - Pickups
@@ -50,33 +50,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
-    uniqueID: 149272721
+  - name: Background
+    uniqueID: 1535931219
+    locked: 0
+  - name: FX_Behind
+    uniqueID: 1360087119
+    locked: 0
+  - name: Enemy
+    uniqueID: 3330134273
+    locked: 0
+  - name: Player
+    uniqueID: 2017545623
+    locked: 0
+  - name: FX_Infront
+    uniqueID: 2380999345
     locked: 0
   - name: Foreground
     uniqueID: 1024582385
     locked: 0
-  - name: Weapon
-    uniqueID: 2511236001
-    locked: 0
-  - name: Arms
-    uniqueID: 3273906509
-    locked: 0
-  - name: Legs
-    uniqueID: 3993482367
-    locked: 0
-  - name: Torso
-    uniqueID: 2227531247
-    locked: 0
-  - name: Head
-    uniqueID: 3330134273
-    locked: 0
-  - name: Default
-    uniqueID: 3363470833
-    locked: 0
-  - name: Background
-    uniqueID: 1535931219
-    locked: 0
-  - name: Player
-    uniqueID: 2017545623
+  - name: UI
+    uniqueID: 149272721
     locked: 0
