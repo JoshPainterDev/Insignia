@@ -4,13 +4,23 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour {
 
-    enum State { MainMenu, Fight, Items, Abilities, Stances, Back };
+    enum State { MainMenu, Items, Abilities, Back, Done };
+
+    public GameObject playerMannequin;
+    private Vector3 initPlayerPos;
 
     //MAIN BUTTON VARIABLES
     public GameObject topButton, leftButton, rightButton, backButton;
-    public Color fight_C, retreat_C, items_C, stance_C, abilities_C, back_C;
+    public Color strike_C, items_C, abilities_C, back_C;
 
     private State currentState = State.MainMenu;
+
+    //COMBAT VARIABLES
+
+
+    //STRIKE VARIABLES
+    public float strikeAnimDuration = 3.5f;
+    public float strikePosX = 320f;
 
     //ABILITY VARIABLES
     public Vector2 ab1_pos, ab2_pos, ab3_pos, ab4_pos;
@@ -22,54 +32,21 @@ public class CombatManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //1. Load in player and enemy
-        //2. Display buttons: FIGHT, ITEMS, RETREAT
+        initPlayerPos = playerMannequin.transform.position;
+        //2. Display buttons: STRIKE, ITEMS, ABILITIES
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
-
 
     IEnumerator ShowStartingButtons()
     {
         HideMainButtons();
-        //yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2);
         ShowMainButtons();
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
         yield return new WaitForSeconds(0.1f);
         ShowMainButtons();
-    }
-
-    IEnumerator ShowFightOptions()
-    {
-        DisableMainButtons();
-        DisableBackButton();
-        HideButton("top");
-        yield return new WaitForSeconds(0.1f);
-        ShowButton("top");
-        yield return new WaitForSeconds(0.1f);
-        HideButton("top");
-        yield return new WaitForSeconds(0.1f);
-        ShowButton("top");
-        yield return new WaitForSeconds(0.1f);
-        HideMainButtons();
-
-        topButton.GetComponentInChildren<Text>().text = "STANCE";
-        topButton.GetComponent<Image>().color = stance_C;
-        leftButton.GetComponentInChildren<Text>().text = "BACK";
-        leftButton.GetComponent<Image>().color = back_C;
-        rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
-        rightButton.GetComponent<Image>().color = abilities_C;
-
-        yield return new WaitForSeconds(0.5f);
-
-        ShowMainButtons();
-        EnableMainButtons();
-        EnableBackButton();
     }
 
     IEnumerator ShowMainMenuOptions()
@@ -79,45 +56,17 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         HideMainButtons();
 
-        topButton.GetComponentInChildren<Text>().text = "FIGHT";
-        topButton.GetComponent<Image>().color = fight_C;
-        leftButton.GetComponentInChildren<Text>().text = "RETREAT";
-        leftButton.GetComponent<Image>().color = retreat_C;
-        rightButton.GetComponentInChildren<Text>().text = "ITEMS";
-        rightButton.GetComponent<Image>().color = items_C;
-
-        yield return new WaitForSeconds(0.5f);
-
-        ShowMainButtons();
-        EnableMainButtons();
-    }
-
-    IEnumerator ShowStancesOptions()
-    {
-        DisableMainButtons();
-        DisableBackButton();
-        HideButton("top");
-        yield return new WaitForSeconds(0.1f);
-        ShowButton("top");
-        yield return new WaitForSeconds(0.1f);
-        HideButton("top");
-        yield return new WaitForSeconds(0.1f);
-        ShowButton("top");
-        yield return new WaitForSeconds(0.1f);
-        HideMainButtons();
-
-        topButton.GetComponentInChildren<Text>().text = "ATTACK";
-        topButton.GetComponent<Image>().color = stance_C;
-        leftButton.GetComponentInChildren<Text>().text = "REACT";
-        leftButton.GetComponent<Image>().color = back_C;
-        rightButton.GetComponentInChildren<Text>().text = "DEFEND";
+        topButton.GetComponentInChildren<Text>().text = "STRIKE";
+        topButton.GetComponent<Image>().color = strike_C;
+        leftButton.GetComponentInChildren<Text>().text = "ITEMS";
+        leftButton.GetComponent<Image>().color = items_C;
+        rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
         rightButton.GetComponent<Image>().color = abilities_C;
 
         yield return new WaitForSeconds(0.5f);
 
         ShowMainButtons();
         EnableMainButtons();
-        EnableBackButton();
     }
 
     IEnumerator ShowBackOptions()
@@ -133,11 +82,11 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
 
-        topButton.GetComponentInChildren<Text>().text = "FIGHT";
-        topButton.GetComponent<Image>().color = stance_C;
-        leftButton.GetComponentInChildren<Text>().text = "RETREAT";
+        topButton.GetComponentInChildren<Text>().text = "STRIKE";
+        topButton.GetComponent<Image>().color = strike_C;
+        leftButton.GetComponentInChildren<Text>().text = "ITEMS";
         leftButton.GetComponent<Image>().color = back_C;
-        rightButton.GetComponentInChildren<Text>().text = "ITEMS";
+        rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
         rightButton.GetComponent<Image>().color = abilities_C;
 
         yield return new WaitForSeconds(0.5f);
@@ -145,6 +94,49 @@ public class CombatManager : MonoBehaviour {
         ShowMainButtons();
         EnableMainButtons();
     }
+
+    // Combat Functions
+    ////////////////////////////////////////////
+    IEnumerator UseStrike()
+    {
+        DisableMainButtons();
+        HideButton("top");
+        yield return new WaitForSeconds(0.1f);
+        ShowButton("top");
+        yield return new WaitForSeconds(0.1f);
+        HideButton("top");
+        yield return new WaitForSeconds(0.1f);
+        ShowButton("top");
+        yield return new WaitForSeconds(0.1f);
+        HideMainButtons();
+        yield return new WaitForSeconds(0.25f);
+        AnimatePlayerStrike();
+        yield return new WaitForSeconds(0.25f);
+    }
+
+    void DealDamage()
+    {
+        int rand = Random.Range(0, 100);
+        int accuracy = 75;
+
+        // accuracy check the attack
+        if(accuracy > rand)
+        {
+            // check for special attack modifier
+            if()
+            {
+
+            }
+        }
+    }
+
+    void AnimatePlayerStrike()
+    {
+        Vector3 newPos = new Vector3(strikePosX, initPlayerPos.y, 0);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, newPos, strikeAnimDuration * .5f);
+        
+    }
+
 
     /// Helper Functions
     /// ////////////////////////////////////////
@@ -154,15 +146,32 @@ public class CombatManager : MonoBehaviour {
         switch(currentState)
         {
             case State.MainMenu:
-                currentState = State.Fight;
-                StartCoroutine(ShowFightOptions());
+                currentState = State.Done;
+                StartCoroutine(UseStrike());
                 break;
-            case State.Fight:
-                currentState = State.Stances;
-                StartCoroutine(ShowStancesOptions());
-                break;
-            case State.Stances:
+        }
+    }
+
+    public void RightSelected()
+    {
+        switch (currentState)
+        {
+            case State.MainMenu:
+                currentState = State.Abilities;
                 SpawnAbilityButtons();
+                break;
+        }
+    }
+
+    public void LeftSelected()
+    {
+        switch (currentState)
+        {
+            case State.MainMenu:
+                currentState = State.Items;
+                DisableMainButtons();
+                EnableBackButton();
+                SpawnItemsUI();
                 break;
         }
     }
@@ -171,14 +180,14 @@ public class CombatManager : MonoBehaviour {
     {
         switch (currentState)
         {
-            case State.Fight:
+            case State.Abilities:
                 currentState = State.MainMenu;
                 StartCoroutine(ShowMainMenuOptions());
                 DisableBackButton();
                 break;
-            case State.Stances:
-                currentState = State.Fight;
-                StartCoroutine(ShowFightOptions());
+            case State.Items:
+                currentState = State.MainMenu;
+                StartCoroutine(ShowMainMenuOptions());
                 break;
         }
     }
@@ -283,5 +292,10 @@ public class CombatManager : MonoBehaviour {
         abilityButton4 = Instantiate(abilityButtonPrefab, ab4_pos, Quaternion.identity) as GameObject;
 
         //ability1 = GameController.controller.playersa
+    }
+
+    void SpawnItemsUI()
+    {
+        
     }
 }
