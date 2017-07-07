@@ -16,11 +16,12 @@ public class CombatManager : MonoBehaviour {
     private State currentState = State.MainMenu;
 
     //COMBAT VARIABLES
-
+    SpecialCase currSpecialCase = SpecialCase.None;
 
     //STRIKE VARIABLES
     public float strikeAnimDuration = 3.5f;
     public float strikePosX = 320f;
+    public string strikeMod;
 
     //ABILITY VARIABLES
     public Vector2 ab1_pos, ab2_pos, ab3_pos, ab4_pos;
@@ -33,9 +34,37 @@ public class CombatManager : MonoBehaviour {
     void Start () {
         //1. Load in player and enemy
         initPlayerPos = playerMannequin.transform.position;
+        strikeMod = GameController.controller.strikeModifier;
+        ability1 = GameController.controller.playerAbility1;
+        ability2 = GameController.controller.playerAbility2;
+        ability3 = GameController.controller.playerAbility3;
+        ability4 = GameController.controller.playerAbility4;
+
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
+    }
+
+    public void StrikeSelected(int selectedOption = 0)
+    {
+            this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod);
+    }
+
+    public void AbilitySelected(int selectedOption = 0)
+    {
+        if (selectedOption == 1)
+            this.GetComponent<AbilityManager_C>().AbilityUsed(ability1);
+        if (selectedOption == 2)
+            this.GetComponent<AbilityManager_C>().AbilityUsed(ability2);
+        if (selectedOption == 3)
+            this.GetComponent<AbilityManager_C>().AbilityUsed(ability3);
+        if (selectedOption == 4)
+            this.GetComponent<AbilityManager_C>().AbilityUsed(ability4);
+    }
+
+    public void ItemSelected(int itemNum = 0)
+    {
+        this.GetComponent<ItemsManager_C>().ItemUsed(itemNum);
     }
 
     IEnumerator ShowStartingButtons()
@@ -123,9 +152,13 @@ public class CombatManager : MonoBehaviour {
         if(accuracy > rand)
         {
             // check for special attack modifier
-            if()
+            if(currSpecialCase == SpecialCase.None)
             {
 
+            }
+            else
+            {
+                ResolveSpecialCase();
             }
         }
     }
@@ -137,6 +170,10 @@ public class CombatManager : MonoBehaviour {
         
     }
 
+    void ResolveSpecialCase()
+    {
+
+    }
 
     /// Helper Functions
     /// ////////////////////////////////////////
@@ -290,8 +327,11 @@ public class CombatManager : MonoBehaviour {
         abilityButton2 = Instantiate(abilityButtonPrefab, ab2_pos, Quaternion.identity) as GameObject;
         abilityButton3 = Instantiate(abilityButtonPrefab, ab3_pos, Quaternion.identity) as GameObject;
         abilityButton4 = Instantiate(abilityButtonPrefab, ab4_pos, Quaternion.identity) as GameObject;
-
-        //ability1 = GameController.controller.playersa
+         
+        abilityButton1.GetComponentInChildren<Text>().text = ability1.Name;
+        abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
+        abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
+        abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
     }
 
     void SpawnItemsUI()

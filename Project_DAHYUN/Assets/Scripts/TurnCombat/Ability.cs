@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+public enum SpecialCase { Illusion, None };
+public enum AbilityType { Physical, Magical, Utility, None };
+
 public class Ability{
+    public int Accuracy = 100;
+    public int AttackBoost = 0;
+    public int DefenseBoost = 0;
+    public int AttBoostDuration = 3;
+    public int DefBoostDuration = 3;
+    public int ticks = 1;
 
-    public enum AbilityType {Physical, Magical, Tactical, None};
-    public enum BuffTypes {Attack_Up1, Attack_Up2, Attack_Up3, None};
-
-    public static string Name = "";
-    public static AbilityType Type = AbilityType.None;
-    public static BuffTypes Buff = BuffTypes.None;
-    public static int Damage = 0;
-    public static bool SpecialCase = false;
-    public static bool Buffs = false;
-    public static string Description = "";
+    public string Name = "";
+    public AbilityType Type = AbilityType.None;
+    public int baseDamage = 0;
+    public SpecialCase specialCase = SpecialCase.None;
+    public bool Buffs = false;
+    public string Description = "";
 }
