@@ -13,6 +13,8 @@ public class ItemsManager_C : MonoBehaviour {
     {
         string itemName = GameController.controller.playerInventory[itemUsed];
 
+        print(GameController.controller.playerInventoryQuantity[itemUsed]);
+
         switch(itemName)
         {
             case "Void Balls":
@@ -21,5 +23,8 @@ public class ItemsManager_C : MonoBehaviour {
             default:
                 break;
         }
+
+        // decrement item that was used
+        GameController.controller.RemoveItemFromInventory(itemName);
     }
 }

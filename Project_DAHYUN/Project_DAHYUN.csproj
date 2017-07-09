@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\Ability.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\AbilityButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\AbilityManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyMannequinController.cs" />

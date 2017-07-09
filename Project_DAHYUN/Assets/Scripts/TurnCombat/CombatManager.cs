@@ -6,6 +6,7 @@ public class CombatManager : MonoBehaviour {
 
     enum State { MainMenu, Items, Abilities, Back, Done };
 
+    public Canvas canvas;
     public GameObject playerMannequin;
     private Vector3 initPlayerPos;
 
@@ -39,6 +40,8 @@ public class CombatManager : MonoBehaviour {
         ability2 = GameController.controller.playerAbility2;
         ability3 = GameController.controller.playerAbility3;
         ability4 = GameController.controller.playerAbility4;
+
+        SpawnItemsUI();
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         StartCoroutine(ShowStartingButtons());
@@ -336,6 +339,24 @@ public class CombatManager : MonoBehaviour {
 
     void SpawnItemsUI()
     {
-        
+        GameController.controller.playerInventory = new string[3];
+        GameController.controller.playerInventoryQuantity = new int[3];
+
+        GameController.controller.playerInventory[0] = "fuckFace";
+        GameController.controller.playerInventory[1] = "Premium Quality Dildo";
+        GameController.controller.playerInventory[2] = "a shoe";
+
+        GameController.controller.playerInventoryQuantity[0] = 1;
+        GameController.controller.playerInventoryQuantity[1] = 69;
+        GameController.controller.playerInventoryQuantity[2] = 1;
+
+        for (int buttonNum = 0; buttonNum < GameController.controller.playerInventory.Length; ++buttonNum)
+        {
+            Vector2 newpos = new Vector2(200 * buttonNum, 0);
+            GameObject testB = Instantiate(abilityButtonPrefab, newpos, Quaternion.identity) as GameObject;
+            testB.transform.SetParent(canvas.transform);
+            testB.name = "ItemButton" + buttonNum + "_" + GameController.controller.playerInventory[buttonNum];
+            testB.GetComponentInChildren<Text>().text = GameController.controller.playerInventory[buttonNum];
+        }
     }
 }

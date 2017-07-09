@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
     public Ability playerAbility4;
     public string strikeModifier = "none";
     public string[] playerInventory;
+    public int[] playerInventoryQuantity;
 
     // Use this for initialization
     void Awake () {
@@ -73,6 +74,90 @@ public class GameController : MonoBehaviour {
             File.Delete(Application.persistentDataPath + "/playerInfo.dat");
         }
     }
+
+    public void AddItemToInventory(string itemName, int quantity = 1)
+    {
+        int index = InventoryContainsItem(itemName);
+
+        if (index != -1)
+        {
+            playerInventoryQuantity[index] += quantity;
+        }
+        else
+        {
+            // increase inventory size
+            string[] temp = new string[playerInventory.Length + 1];
+            playerInventory.CopyTo(temp, 0);
+            playerInventory = temp;
+            playerInventoryQuantity[index] += quantity;
+
+            // increase inventory quantity size
+            int[] temp2 = new int[playerInventoryQuantity.Length + 1];
+            playerInventoryQuantity.CopyTo(temp2, 0);
+            playerInventoryQuantity = temp2;
+            playerInventoryQuantity[playerInventoryQuantity.Length - 1] = quantity;
+        }
+    }
+
+    public void RemoveItemFromInventory(string itemName, int quantity = 1, bool removeAll = false)
+    {
+        int index = InventoryContainsItem(itemName);
+
+        if (index != -1)
+        {
+            if(removeAll)
+            {
+                playerInventoryQuantity[index] = 0;
+            }
+            else
+            {
+                playerInventoryQuantity[index] -= quantity;
+
+                if(playerInventoryQuantity[index] <= 0)
+                {
+                    // decrease inventory size
+                    string[] tempArr1 = new string[playerInventory.Length - 1];
+                    // copy initial portion of array
+                    for(int j = 0; j < index; ++j)
+                        tempArr1[j] = playerInventory[j];
+                    // copy over remaining portion of the array -1
+                    for (int i = index; i < tempArr1.Length; ++i)
+                        tempArr1[i] = playerInventory[i + 1];
+
+                    playerInventory = tempArr1;
+
+                    // decrease inventory quantity size
+                    int[] tempArr2 = new int[playerInventoryQuantity.Length - 1];
+                    // copy first portion of the inventory
+                    for (int j = 0; j < index; ++j)
+                        tempArr2[j] = playerInventoryQuantity[j];
+                    // copy over the remaining portion
+                    for (int i = index; i < tempArr2.Length; ++i)
+                        tempArr2[i] = playerInventoryQuantity[i + 1];
+
+                    playerInventoryQuantity = tempArr2;
+                }
+            }
+        }
+        else
+            return;
+    }
+
+    // Returns the index of the item in the invetory where it was located
+    // returns -1 is it failed to find the item
+    public int InventoryContainsItem(string itemName)
+    {
+        int j = 0;
+
+        foreach(string i in playerInventory)
+        {
+            if(i == itemName)
+                return j;
+            ++j;
+        }
+
+        return -1;
+    }
 }
 
 [Serializable]
@@ -85,4 +170,5 @@ class PlayerData
     public string StrikeMod;
     public string PlayerClass;
     public string[] InventoryList;
+    public int[] InventoryQuantities;
 }
