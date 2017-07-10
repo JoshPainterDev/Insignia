@@ -11,6 +11,15 @@ public class AbilityManager_C : MonoBehaviour {
 
     public void AbilityUsed(Ability ability)
     {
+        //Ability abilityUsed = AbilityTools.tools.LookUpAbility(ability.Name);
 
+        switch(ability.Name)
+        {
+            case "Shadow Strike":
+                print("kill em dead wit dat gud shit"); 
+                break;
+            default:
+                break;
+        }
     }
 }

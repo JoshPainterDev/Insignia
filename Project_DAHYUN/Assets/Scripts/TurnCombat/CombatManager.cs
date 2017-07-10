@@ -27,12 +27,18 @@ public class CombatManager : MonoBehaviour {
     //ABILITY VARIABLES
     public Vector2 ab1_pos, ab2_pos, ab3_pos, ab4_pos;
     public GameObject abilityButtonPrefab;
-    GameObject abilityButton1, abilityButton2, abilityButton3, abilityButton4;
+    public GameObject abilityButton1, abilityButton2, abilityButton3, abilityButton4;
     public Ability ability1, ability2, ability3, ability4;
 
 
     // Use this for initialization
     void Start () {
+        //0. pretend the player has save data for ability sake
+        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Shadow Strike");
+        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Stranglehold");
+        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+        GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
+
         //1. Load in player and enemy
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
@@ -41,9 +47,13 @@ public class CombatManager : MonoBehaviour {
         ability3 = GameController.controller.playerAbility3;
         ability4 = GameController.controller.playerAbility4;
 
-        SpawnItemsUI();
+        abilityButton1.GetComponentInChildren<Text>().text = ability1.Name;
+        abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
+        abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
+        abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
+        HideAbilityButtons();
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
     }
@@ -198,7 +208,7 @@ public class CombatManager : MonoBehaviour {
         {
             case State.MainMenu:
                 currentState = State.Abilities;
-                SpawnAbilityButtons();
+                ShowAbilityButtons();
                 break;
         }
     }
@@ -324,17 +334,40 @@ public class CombatManager : MonoBehaviour {
         backButton.GetComponentInChildren<Text>().enabled = false;
     }
 
-    void SpawnAbilityButtons()
+    void ShowAbilityButtons()
     {
-        abilityButton1 = Instantiate(abilityButtonPrefab, ab1_pos, Quaternion.identity) as GameObject;
-        abilityButton2 = Instantiate(abilityButtonPrefab, ab2_pos, Quaternion.identity) as GameObject;
-        abilityButton3 = Instantiate(abilityButtonPrefab, ab3_pos, Quaternion.identity) as GameObject;
-        abilityButton4 = Instantiate(abilityButtonPrefab, ab4_pos, Quaternion.identity) as GameObject;
-         
-        abilityButton1.GetComponentInChildren<Text>().text = ability1.Name;
-        abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
-        abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
-        abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
+        abilityButton1.GetComponent<Image>().enabled = true;
+        abilityButton2.GetComponent<Image>().enabled = true;
+        abilityButton3.GetComponent<Image>().enabled = true;
+        abilityButton4.GetComponent<Image>().enabled = true;
+
+        abilityButton1.GetComponent<Button>().enabled = true;
+        abilityButton2.GetComponent<Button>().enabled = true;
+        abilityButton3.GetComponent<Button>().enabled = true;
+        abilityButton4.GetComponent<Button>().enabled = true;
+
+        abilityButton1.GetComponentInChildren<Text>().enabled = true;
+        abilityButton2.GetComponentInChildren<Text>().enabled = true;
+        abilityButton3.GetComponentInChildren<Text>().enabled = true;
+        abilityButton4.GetComponentInChildren<Text>().enabled = true;
+    }
+
+    void HideAbilityButtons()
+    {
+        abilityButton1.GetComponent<Image>().enabled = false;
+        abilityButton2.GetComponent<Image>().enabled = false;
+        abilityButton3.GetComponent<Image>().enabled = false;
+        abilityButton4.GetComponent<Image>().enabled = false;
+
+        abilityButton1.GetComponent<Button>().enabled = false;
+        abilityButton2.GetComponent<Button>().enabled = false;
+        abilityButton3.GetComponent<Button>().enabled = false;
+        abilityButton4.GetComponent<Button>().enabled = false;
+
+        abilityButton1.GetComponentInChildren<Text>().enabled = false;
+        abilityButton2.GetComponentInChildren<Text>().enabled = false;
+        abilityButton3.GetComponentInChildren<Text>().enabled = false;
+        abilityButton4.GetComponentInChildren<Text>().enabled = false;
     }
 
     void SpawnItemsUI()

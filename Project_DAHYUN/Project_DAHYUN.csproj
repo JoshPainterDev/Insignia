@@ -113,10 +113,11 @@
     <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\Ability.cs" />
-    <Compile Include="Assets\Scripts\TurnCombat\AbilityButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\AbilityManager_C.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\AbilityToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyMannequinController.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\ItemButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemsManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
   </ItemGroup>

@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 20043804}
   - component: {fileID: 20043806}
   - component: {fileID: 20043805}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Ability1_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,8 +140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 89.99999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &20043805
 MonoBehaviour:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 20043803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 265550322}
   - component: {fileID: 265550324}
   - component: {fileID: 265550323}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Ability2_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0000019073486, y: 0}
+  m_SizeDelta: {x: 90, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265550323
 MonoBehaviour:
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 265550321}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 318035080}
   - component: {fileID: 318035079}
   - component: {fileID: 318035078}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: TLA3_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -146, y: -186.2}
-  m_SizeDelta: {x: 130, y: 50}
+  m_SizeDelta: {x: 140, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318035078
 MonoBehaviour:
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318035076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 571995567}
   - component: {fileID: 571995569}
   - component: {fileID: 571995568}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Ability4_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,8 +659,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0000019073486, y: 0}
+  m_SizeDelta: {x: 90, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571995568
 MonoBehaviour:
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 571995566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -856,6 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651132269}
   - component: {fileID: 651132268}
+  - component: {fileID: 651132270}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -890,6 +891,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651132270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 651132267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fba593f60408c54f918b3652e40de97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  STRONG_DAMAGE: 55
+  MEDIUM_DAMAGE: 35
+  WEAK_DAMAGE: 15
+  STRONG_HEAL: 45
+  MEDIUM_HEAL: 25
+  WEAK_HEAL: 10
 --- !u!1 &666657974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1034,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 666774116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: RightSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &666774116
@@ -1550,7 +1579,7 @@ GameObject:
   - component: {fileID: 948076334}
   - component: {fileID: 948076336}
   - component: {fileID: 948076335}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Ability3_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1572,8 +1601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 89.99999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948076335
 MonoBehaviour:
@@ -1581,7 +1610,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948076333}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -1929,7 +1958,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1114969290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: LeftSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1114969290
@@ -2209,7 +2249,7 @@ GameObject:
   - component: {fileID: 1430210201}
   - component: {fileID: 1430210200}
   - component: {fileID: 1430210199}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: TLA2_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2233,7 +2273,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 142.9, y: -82.7}
-  m_SizeDelta: {x: 130, y: 50}
+  m_SizeDelta: {x: 140, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1430210199
 MonoBehaviour:
@@ -2293,7 +2333,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430210197}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -2369,6 +2409,10 @@ MonoBehaviour:
   ab4_pos: {x: 84, y: -214}
   abilityButtonPrefab: {fileID: 1495750904240436, guid: 25f193db9c472394c9af8ac49b2eb9da,
     type: 2}
+  abilityButton1: {fileID: 1685643257}
+  abilityButton2: {fileID: 1430210197}
+  abilityButton3: {fileID: 318035076}
+  abilityButton4: {fileID: 1811298326}
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0
@@ -2488,7 +2532,7 @@ GameObject:
   - component: {fileID: 1685643261}
   - component: {fileID: 1685643260}
   - component: {fileID: 1685643259}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: TLA1_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2512,7 +2556,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -146, y: -82.7}
-  m_SizeDelta: {x: 130, y: 50}
+  m_SizeDelta: {x: 140, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685643259
 MonoBehaviour:
@@ -2572,7 +2616,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1685643257}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -2808,7 +2852,7 @@ GameObject:
   - component: {fileID: 1811298330}
   - component: {fileID: 1811298329}
   - component: {fileID: 1811298328}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: TLA4_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2832,7 +2876,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 142.90002, y: -186.2}
-  m_SizeDelta: {x: 130, y: 50}
+  m_SizeDelta: {x: 140, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1811298328
 MonoBehaviour:
@@ -2892,7 +2936,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1811298326}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
