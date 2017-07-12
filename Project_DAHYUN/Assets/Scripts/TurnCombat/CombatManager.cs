@@ -29,6 +29,10 @@ public class CombatManager : MonoBehaviour {
     public GameObject abilityButtonPrefab;
     public GameObject abilityButton1, abilityButton2, abilityButton3, abilityButton4;
     public Ability ability1, ability2, ability3, ability4;
+    public Color abilityTextColor;
+    public Color abilitySelectColor;
+    private Color origClr1, origClr2, origClr3, origClr4;
+    private Vector3 origPos1, origPos2, origPos3, origPos4;
 
 
     // Use this for initialization
@@ -52,7 +56,18 @@ public class CombatManager : MonoBehaviour {
         abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
         abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
 
+        origClr1 = abilityButton1.GetComponent<Image>().color;
+        origClr2 = abilityButton2.GetComponent<Image>().color;
+        origClr3 = abilityButton3.GetComponent<Image>().color;
+        origClr4 = abilityButton4.GetComponent<Image>().color;
+
+        origPos1 = abilityButton1.transform.position;
+        origPos2 = abilityButton2.transform.position;
+        origPos3 = abilityButton3.transform.position;
+        origPos4 = abilityButton4.transform.position;
+
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
+        DisableAbilityButtons();
         HideAbilityButtons();
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
@@ -60,19 +75,28 @@ public class CombatManager : MonoBehaviour {
 
     public void StrikeSelected(int selectedOption = 0)
     {
-            this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod);
+        this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod);
     }
 
     public void AbilitySelected(int selectedOption = 0)
     {
-        if (selectedOption == 1)
-            this.GetComponent<AbilityManager_C>().AbilityUsed(ability1);
-        if (selectedOption == 2)
-            this.GetComponent<AbilityManager_C>().AbilityUsed(ability2);
-        if (selectedOption == 3)
-            this.GetComponent<AbilityManager_C>().AbilityUsed(ability3);
-        if (selectedOption == 4)
-            this.GetComponent<AbilityManager_C>().AbilityUsed(ability4);
+        this.GetComponent<CombatAudio>().playUIAbilitySelect();
+
+        switch(selectedOption)
+        {
+            case 1:
+                StartCoroutine(AbilitySelectAnim(abilityButton1, ability1));
+                break;
+            case 2:
+                StartCoroutine(AbilitySelectAnim(abilityButton2, ability2));
+                break;
+            case 3:
+                StartCoroutine(AbilitySelectAnim(abilityButton3, ability3));
+                break;
+            case 4:
+                StartCoroutine(AbilitySelectAnim(abilityButton4, ability4));
+                break;
+        }
     }
 
     public void ItemSelected(int itemNum = 0)
@@ -137,6 +161,41 @@ public class CombatManager : MonoBehaviour {
         EnableMainButtons();
     }
 
+    IEnumerator AbilitySelectAnim(GameObject button, Ability abilityUsed)
+    {
+        DisableAbilityButtons();
+
+        button.GetComponent<Image>().color = abilitySelectColor;
+
+        yield return new WaitForSeconds(0.15f);
+        HideAbilityButtons();
+        ShowButton(button.name);
+        Vector3 centerPos = new Vector3(225, -55, 1);
+        Vector3 ascend = new Vector3(225, 100, 1);
+        Color seethrough = new Color(abilitySelectColor.r, abilitySelectColor.g, abilitySelectColor.b, 0f);
+
+        button.GetComponent<LerpScript>().LerpToPos(button.transform.position, centerPos, 8f);
+        yield return new WaitForSeconds(0.75f);
+        button.GetComponent<LerpScript>().LerpToPos(centerPos, ascend, 1.5f);
+        button.GetComponent<LerpScript>().LerpToColor(abilitySelectColor, seethrough, 5f);
+        Transform child = button.transform.GetChild(0);
+        child.gameObject.GetComponent<LerpScript>().LerpToColor(abilityTextColor, Color.clear, 5f);
+
+        yield return new WaitForSeconds(1f);
+        HideButton(button.name);
+        button.GetComponent<Image>().color = origClr1;
+        button.GetComponentInChildren<Text>().color = abilityTextColor;
+
+        this.GetComponent<AbilityManager_C>().AbilityUsed(abilityUsed);
+        button.GetComponent<Image>().color = origClr1;
+
+        // delay full animation duration
+        yield return new WaitForSeconds(5f);
+
+        ShowMainButtons();
+        EnableMainButtons();
+    }
+
     // Combat Functions
     ////////////////////////////////////////////
     IEnumerator UseStrike()
@@ -193,7 +252,9 @@ public class CombatManager : MonoBehaviour {
 
     public void TopSelected()
     {
-        switch(currentState)
+        this.GetComponent<CombatAudio>().playUISelect();
+
+        switch (currentState)
         {
             case State.MainMenu:
                 currentState = State.Done;
@@ -204,17 +265,25 @@ public class CombatManager : MonoBehaviour {
 
     public void RightSelected()
     {
+        this.GetComponent<CombatAudio>().playUISelect();
+
         switch (currentState)
         {
             case State.MainMenu:
                 currentState = State.Abilities;
+                HideMainButtons();
+                DisableMainButtons();
+                EnableBackButton();
                 ShowAbilityButtons();
+                EnableAbilityButtons();
                 break;
         }
     }
 
     public void LeftSelected()
     {
+        this.GetComponent<CombatAudio>().playUISelect();
+
         switch (currentState)
         {
             case State.MainMenu:
@@ -228,10 +297,14 @@ public class CombatManager : MonoBehaviour {
 
     public void BackSelected()
     {
+        this.GetComponent<CombatAudio>().playUIBack();
+
         switch (currentState)
         {
             case State.Abilities:
                 currentState = State.MainMenu;
+                DisableAbilityButtons();
+                HideAbilityButtons();
                 StartCoroutine(ShowMainMenuOptions());
                 DisableBackButton();
                 break;
@@ -280,6 +353,22 @@ public class CombatManager : MonoBehaviour {
                 rightButton.GetComponent<Image>().enabled = false;
                 rightButton.GetComponentInChildren<Text>().enabled = true;
                 break;
+            case "TLA1_Button":
+                abilityButton1.GetComponent<Image>().enabled = false;
+                abilityButton1.GetComponentInChildren<Text>().enabled = false;
+                break;
+            case "TLA2_Button":
+                abilityButton2.GetComponent<Image>().enabled = false;
+                abilityButton2.GetComponentInChildren<Text>().enabled = false;
+                break;
+            case "TLA3_Button":
+                abilityButton3.GetComponent<Image>().enabled = false;
+                abilityButton3.GetComponentInChildren<Text>().enabled = false;
+                break;
+            case "TLA4_Button":
+                abilityButton4.GetComponent<Image>().enabled = false;
+                abilityButton4.GetComponentInChildren<Text>().enabled = false;
+                break;
             default:
                 break;
         }
@@ -300,6 +389,22 @@ public class CombatManager : MonoBehaviour {
             case "right":
                 rightButton.GetComponent<Image>().enabled = true;
                 rightButton.GetComponentInChildren<Text>().enabled = true;
+                break;
+            case "TLA1_Button":
+                abilityButton1.GetComponent<Image>().enabled = true;
+                abilityButton1.GetComponentInChildren<Text>().enabled = true;
+                break;
+            case "TLA2_Button":
+                abilityButton2.GetComponent<Image>().enabled = true;
+                abilityButton2.GetComponentInChildren<Text>().enabled = true;
+                break;
+            case "TLA3_Button":
+                abilityButton3.GetComponent<Image>().enabled = true;
+                abilityButton3.GetComponentInChildren<Text>().enabled = true;
+                break;
+            case "TLA4_Button":
+                abilityButton4.GetComponent<Image>().enabled = true;
+                abilityButton4.GetComponentInChildren<Text>().enabled = true;
                 break;
             default:
                 break;
@@ -334,17 +439,28 @@ public class CombatManager : MonoBehaviour {
         backButton.GetComponentInChildren<Text>().enabled = false;
     }
 
+    void EnableAbilityButtons()
+    {
+        abilityButton1.GetComponent<Button>().enabled = true;
+        abilityButton2.GetComponent<Button>().enabled = true;
+        abilityButton3.GetComponent<Button>().enabled = true;
+        abilityButton4.GetComponent<Button>().enabled = true;
+    }
+
+    void DisableAbilityButtons()
+    {
+        abilityButton1.GetComponent<Button>().enabled = false;
+        abilityButton2.GetComponent<Button>().enabled = false;
+        abilityButton3.GetComponent<Button>().enabled = false;
+        abilityButton4.GetComponent<Button>().enabled = false;
+    }
+
     void ShowAbilityButtons()
     {
         abilityButton1.GetComponent<Image>().enabled = true;
         abilityButton2.GetComponent<Image>().enabled = true;
         abilityButton3.GetComponent<Image>().enabled = true;
         abilityButton4.GetComponent<Image>().enabled = true;
-
-        abilityButton1.GetComponent<Button>().enabled = true;
-        abilityButton2.GetComponent<Button>().enabled = true;
-        abilityButton3.GetComponent<Button>().enabled = true;
-        abilityButton4.GetComponent<Button>().enabled = true;
 
         abilityButton1.GetComponentInChildren<Text>().enabled = true;
         abilityButton2.GetComponentInChildren<Text>().enabled = true;
@@ -358,11 +474,6 @@ public class CombatManager : MonoBehaviour {
         abilityButton2.GetComponent<Image>().enabled = false;
         abilityButton3.GetComponent<Image>().enabled = false;
         abilityButton4.GetComponent<Image>().enabled = false;
-
-        abilityButton1.GetComponent<Button>().enabled = false;
-        abilityButton2.GetComponent<Button>().enabled = false;
-        abilityButton3.GetComponent<Button>().enabled = false;
-        abilityButton4.GetComponent<Button>().enabled = false;
 
         abilityButton1.GetComponentInChildren<Text>().enabled = false;
         abilityButton2.GetComponentInChildren<Text>().enabled = false;
