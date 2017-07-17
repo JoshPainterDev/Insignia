@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public enum SpecialCase { Illusion, Linger_S, Linger_L, Blind, Execute, None };
+public enum SpecialCase { Illusion, Linger_S, Linger_L, Blind, Execute, Outrage, Ablaze, None };
 public enum AbilityType { Physical, Magical, Utility, None };
 
 public class Ability{
@@ -14,7 +14,7 @@ public class Ability{
     public int DefBoostDuration = 3;
     public int Ticks = 1;
     public int HealAmount = 0;
-
+    public int AblazeChance = 0;
     public string Name = "";
     public AbilityType Type = AbilityType.None;
     public int BaseDamage = 0;

@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour {
     public string strikeModifier = "none";
     public string[] playerInventory;
     public int[] playerInventoryQuantity;
+    public int playerAttack;
+    public int playerDefense;
+    public int playerProwess;
 
     // Use this for initialization
     void Awake () {
@@ -41,6 +44,9 @@ public class GameController : MonoBehaviour {
         data.ability3 = playerAbility3;
         data.ability4 = playerAbility4;
         data.StrikeMod = strikeModifier;
+        data.attack = playerAttack;
+        data.defense = playerDefense;
+        data.prowess = playerProwess;
 
         data.InventoryList = playerInventory;
 
@@ -171,4 +177,7 @@ class PlayerData
     public string PlayerClass;
     public string[] InventoryList;
     public int[] InventoryQuantities;
+    public int attack;
+    public int defense;
+    public int prowess;
 }

@@ -59,6 +59,9 @@ TagManager:
   - name: Enemy
     uniqueID: 3330134273
     locked: 0
+  - name: FX_Middle
+    uniqueID: 1684097227
+    locked: 0
   - name: Player
     uniqueID: 2017545623
     locked: 0

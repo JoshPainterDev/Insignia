@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class AbilityManager_C : MonoBehaviour {
 
+    private CombatManager combatManager;
     public GameObject playerMannequin;
 
+    public GameObject outrage_FX;
+    public GameObject solarFlare_FX;
     public GameObject illusion_FX;
-    public Vector3 playerPos;
 
+    private Vector3 initPlayerPos;
+    private Ability ability;
     private SpecialCase playerSpecialCase = SpecialCase.None;
     private SpecialCase enemySpecialCase = SpecialCase.None;
 
     // Use this for initialization
     void Start ()
     {
-        playerPos = playerMannequin.transform.position;
+        initPlayerPos = playerMannequin.transform.position;
+        combatManager = this.GetComponent<CombatManager>();
     }
 
     //PLAYER TURN SEQUENCE
@@ -29,21 +34,65 @@ public class AbilityManager_C : MonoBehaviour {
     //8. end turn
 
 
-    public void AbilityUsed(Ability ability)
+    public void AbilityUsed(Ability abilityUsed)
     {
+        ability = abilityUsed;
+
         playerSpecialCase = ability.specialCase;
 
-        switch(ability.Name)
+        StartCoroutine(AnimateAbility(ability.Name));
+
+        switch (ability.Name)
         {
             case "Shadow Strike":
-                //GameObject effectClone = (GameObject)Instantiate(spawnEffect, playerPos, transform.rotation);
                 break;
             case "Illusion":
-                print("oooo spooopy");
-                GameObject effectClone = (GameObject)Instantiate(illusion_FX, playerPos, transform.rotation);
+                
                 break;
             default:
                 break;
         }
+    }
+
+    IEnumerator AnimateAbility(string abilityName)
+    {
+        GameObject effectClone;
+        Vector3 spawnPos = Vector3.zero;
+        switch (abilityName)
+        {
+            case "Outrage":
+                spawnPos = initPlayerPos + new Vector3(0, 80, 0);
+                effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
+                yield return new WaitForSeconds(0.25f);
+                combatManager.currSpecialCase = SpecialCase.Outrage;
+                combatManager.DamageEnemy_Ability(ability);
+                yield return new WaitForSeconds(1);
+                break;
+            case "Illusion":
+                spawnPos = initPlayerPos + new Vector3(0, 60, 0);
+                effectClone = (GameObject)Instantiate(illusion_FX, spawnPos, transform.rotation);
+                combatManager.currSpecialCase = SpecialCase.Illusion;
+                yield return new WaitForSeconds(0.85f);
+                break;
+            case "Solar Flare":
+                spawnPos = initPlayerPos + new Vector3(0, 0, 0);
+                effectClone = (GameObject)Instantiate(solarFlare_FX, spawnPos, transform.rotation);
+                effectClone.transform.parent = playerMannequin.transform;
+                yield return new WaitForSeconds(0.25f);
+                combatManager.currSpecialCase = SpecialCase.Outrage;
+                combatManager.DamageEnemy_Ability(ability);
+                yield return new WaitForSeconds(0.85f);
+                break;
+            default:
+                break;
+        }
+
+        if(ability.Type != AbilityType.Utility)
+        {
+            this.GetComponent<CombatManager>().DamageEnemy_Ability(ability);
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        this.GetComponent<CombatManager>().EndPlayerTurn();
     }
 }

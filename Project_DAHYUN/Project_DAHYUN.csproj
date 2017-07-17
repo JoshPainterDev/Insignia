@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\TurnCombat\AbilityToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyMannequinController.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\HealthScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemsManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />

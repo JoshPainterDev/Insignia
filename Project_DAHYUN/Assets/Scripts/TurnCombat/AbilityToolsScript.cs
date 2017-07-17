@@ -13,6 +13,10 @@ public class AbilityToolsScript : MonoBehaviour {
     public int MEDIUM_HEAL = 25;
     public int WEAK_HEAL = 10;
 
+    public int STRONG_ABLAZE = 75;
+    public int MEDIUM_ABLAZE = 50;
+    public int WEAK_ABLAZE = 20;
+
     // Use this for initialization
     void Awake()
     {
@@ -67,14 +71,15 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.Magical;
                 break;
             case "Solar Flare":
-                ability.Accuracy = 100;
-                ability.BaseDamage = WEAK_DAMAGE;
+                ability.Accuracy = 75;
+                ability.BaseDamage = STRONG_DAMAGE;
                 ability.Buffs = false;
-                ability.Description = "Causes the target's next attack to miss.";
+                ability.Description = "A strong, focused, fire blast. Has a Strong chance of setting the opponent Ablaze.";
                 ability.Name = name;
-                ability.specialCase = SpecialCase.Blind;
+                ability.specialCase = SpecialCase.Ablaze;
                 ability.Ticks = 1;
-                ability.Type = AbilityType.Utility;
+                ability.AblazeChance = STRONG_ABLAZE;
+                ability.Type = AbilityType.Magical;
                 break;
             case "Rage":
                 ability.Accuracy = 100;
@@ -89,6 +94,15 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
+                break;
+            case "Outrage":
+                ability.Accuracy = 100;
+                ability.BaseDamage = WEAK_DAMAGE;
+                ability.Description = "Explode in a fiery rage. Consumes your attack boost to deal more damage.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.Outrage;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Magical;
                 break;
             default:
                 break;

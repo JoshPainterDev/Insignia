@@ -17,12 +17,28 @@ public class CombatManager : MonoBehaviour {
     private State currentState = State.MainMenu;
 
     //COMBAT VARIABLES
-    SpecialCase currSpecialCase = SpecialCase.None;
+    public SpecialCase currSpecialCase = SpecialCase.None;
+    public GameObject playerHealthBar;
+    public GameObject playerHealthCase;
+
+    private int playerHealth;
+    private int playerMaxHealth = 100;
+    private int playerAttackBoost = 0;
+    private int playerDefenseBoost = 0;
+    private int playerSpeedBoost = 0;
+
+    // ENEMY COMBAT VARIABLES
+    public GameObject enemyHealthBar;
+    private int enemyHealth;
+    private int enemyMaxHealth = 100;
+    private int enemyAttackBoost = 0;
+    private int enemyDefenseBoost = 0;
+    private int enemySpeedBoost = 0;
 
     //STRIKE VARIABLES
     public float strikeAnimDuration = 3.5f;
     public float strikePosX = 320f;
-    public string strikeMod;
+    public string strikeMod = "none";
 
     //ABILITY VARIABLES
     public Vector2 ab1_pos, ab2_pos, ab3_pos, ab4_pos;
@@ -31,19 +47,21 @@ public class CombatManager : MonoBehaviour {
     public Ability ability1, ability2, ability3, ability4;
     public Color abilityTextColor;
     public Color abilitySelectColor;
-    private Color origClr1, origClr2, origClr3, origClr4;
-    private Vector3 origPos1, origPos2, origPos3, origPos4;
 
 
     // Use this for initialization
     void Start () {
         //0. pretend the player has save data for ability sake
         GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Shadow Strike");
-        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Stranglehold");
-        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
+        GameController.controller.strikeModifier = "Shadow Strike";
+        GameController.controller.playerAttack = 50;
 
         //1. Load in player and enemy
+        playerHealth = playerMaxHealth;
+
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
         ability1 = GameController.controller.playerAbility1;
@@ -55,16 +73,6 @@ public class CombatManager : MonoBehaviour {
         abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
         abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
         abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
-
-        origClr1 = abilityButton1.GetComponent<Image>().color;
-        origClr2 = abilityButton2.GetComponent<Image>().color;
-        origClr3 = abilityButton3.GetComponent<Image>().color;
-        origClr4 = abilityButton4.GetComponent<Image>().color;
-
-        origPos1 = abilityButton1.transform.position;
-        origPos2 = abilityButton2.transform.position;
-        origPos3 = abilityButton3.transform.position;
-        origPos4 = abilityButton4.transform.position;
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         DisableAbilityButtons();
@@ -102,6 +110,17 @@ public class CombatManager : MonoBehaviour {
     public void ItemSelected(int itemNum = 0)
     {
         this.GetComponent<ItemsManager_C>().ItemUsed(itemNum);
+    }
+
+    public void EndPlayerTurn()
+    {
+        currentState = State.MainMenu;
+        DisableAbilityButtons();
+        HideAbilityButtons();
+        DisableBackButton();
+        EnableMainButtons();
+        ShowHealthBars();
+        StartCoroutine(ShowStartingButtons());
     }
 
     IEnumerator ShowStartingButtons()
@@ -163,7 +182,11 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator AbilitySelectAnim(GameObject button, Ability abilityUsed)
     {
+        Vector3 origPos = button.transform.position;
+        Color origColor = button.GetComponent<Image>().color;
+
         DisableAbilityButtons();
+        HideHealthBars();
 
         button.GetComponent<Image>().color = abilitySelectColor;
 
@@ -183,17 +206,11 @@ public class CombatManager : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
         HideButton(button.name);
-        button.GetComponent<Image>().color = origClr1;
         button.GetComponentInChildren<Text>().color = abilityTextColor;
+        button.GetComponent<Image>().color = origColor;
+        button.transform.position = origPos;
 
         this.GetComponent<AbilityManager_C>().AbilityUsed(abilityUsed);
-        button.GetComponent<Image>().color = origClr1;
-
-        // delay full animation duration
-        yield return new WaitForSeconds(5f);
-
-        ShowMainButtons();
-        EnableMainButtons();
     }
 
     // Combat Functions
@@ -201,6 +218,7 @@ public class CombatManager : MonoBehaviour {
     IEnumerator UseStrike()
     {
         DisableMainButtons();
+        HideHealthBars();
         HideButton("top");
         yield return new WaitForSeconds(0.1f);
         ShowButton("top");
@@ -211,20 +229,99 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
         yield return new WaitForSeconds(0.25f);
-        AnimatePlayerStrike();
-        yield return new WaitForSeconds(0.25f);
+        this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod);
     }
 
-    void DealDamage()
+    // DAMAGE AN ENEMY WITH STRIKE ONLY!
+    public void DamageEnemy_Strike()
+    {
+        int rand = Random.Range(0, 100);
+        int randDamageBuffer = Random.Range(0, 9);
+        int accuracy = 95;
+        float attBoostMod = 1;
+        float damageDealt = 0;
+        int attack = GameController.controller.playerAttack;
+        int defense = GameController.controller.playerDefense;
+        int prowess = GameController.controller.playerProwess;
+
+        // accuracy check the attack
+        if (accuracy > rand)
+        {
+            //handle attack boost modifier
+            switch (playerAttackBoost)
+            {
+                case 1:
+                    attBoostMod = 1.5f;
+                    break;
+                case 2:
+                    attBoostMod = 2f;
+                    break;
+                case 3:
+                    attBoostMod = 2.5f;
+                    break;
+                default:
+                    break;
+            }
+
+            // check for special attack modifier
+            if (currSpecialCase == SpecialCase.None)
+            {
+                damageDealt = (attack * attack) + (randDamageBuffer);
+                playerHealth -= (int)damageDealt;
+            }
+            else
+            {
+                ResolveSpecialCase();
+            }
+        }
+    }
+
+    // DAMAGE AN ENEMY WITH AN ABILITY ONLY!
+    public void DamageEnemy_Ability(Ability abilityUsed)
+    {
+        if(abilityUsed.Type == AbilityType.Physical)
+        {
+            int rand = Random.Range(0, 100);
+            int accuracy = 75;
+
+            // accuracy check the attack
+            if (accuracy > rand)
+            {
+                // check for special attack modifier
+                if (currSpecialCase == SpecialCase.None)
+                {
+
+                }
+                else
+                {
+                    ResolveSpecialCase();
+                }
+            }
+        }
+        else
+        {
+            //kms
+        }
+    }
+
+    public void DamagePlayer()
+    {
+        //idk yet lol
+    }
+
+    // DAMAGE ENEMY WITH AN ITEM ONLY!
+    public void DamageEnemy_Item(string itemUsed)
     {
         int rand = Random.Range(0, 100);
         int accuracy = 75;
 
+
+
         // accuracy check the attack
-        if(accuracy > rand)
+        if (accuracy > rand)
         {
             // check for special attack modifier
-            if(currSpecialCase == SpecialCase.None)
+            if (currSpecialCase == SpecialCase.None)
             {
 
             }
@@ -235,11 +332,9 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    void AnimatePlayerStrike()
+    public void HealPlayer()
     {
-        Vector3 newPos = new Vector3(strikePosX, initPlayerPos.y, 0);
-        playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, newPos, strikeAnimDuration * .5f);
-        
+
     }
 
     void ResolveSpecialCase()
@@ -274,6 +369,7 @@ public class CombatManager : MonoBehaviour {
                 HideMainButtons();
                 DisableMainButtons();
                 EnableBackButton();
+                HideHealthBars();
                 ShowAbilityButtons();
                 EnableAbilityButtons();
                 break;
@@ -479,6 +575,37 @@ public class CombatManager : MonoBehaviour {
         abilityButton2.GetComponentInChildren<Text>().enabled = false;
         abilityButton3.GetComponentInChildren<Text>().enabled = false;
         abilityButton4.GetComponentInChildren<Text>().enabled = false;
+    }
+
+    void HideHealthBars()
+    {
+        playerHealthBar.GetComponent<Image>().enabled = false;
+
+        foreach(Image img in playerHealthBar.GetComponentsInChildren<Image>())
+        {
+            img.enabled = false;
+        }
+
+        enemyHealthBar.GetComponent<Image>().enabled = false;
+        foreach (Image img in enemyHealthBar.GetComponentsInChildren<Image>())
+        {
+            img.enabled = false;
+        }
+    }
+
+    void ShowHealthBars()
+    {
+        playerHealthBar.GetComponent<Image>().enabled = true;
+        foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
+        {
+            img.enabled = true;
+        }
+
+        enemyHealthBar.GetComponent<Image>().enabled = true;
+        foreach (Image img in enemyHealthBar.GetComponentsInChildren<Image>())
+        {
+            img.enabled = true;
+        }
     }
 
     void SpawnItemsUI()

@@ -36,6 +36,6 @@ public class CombatAudio : MonoBehaviour {
 
     public void stopAllAudio()
     {
-
+        audioSource.Stop();
     }
 }

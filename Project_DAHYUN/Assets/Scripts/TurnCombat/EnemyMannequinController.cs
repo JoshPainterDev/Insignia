@@ -24,7 +24,7 @@ public class EnemyMannequinController : MonoBehaviour {
     {
         HideEnemy();
         SpawnEffect();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         ShowEnemy();
     }
 
