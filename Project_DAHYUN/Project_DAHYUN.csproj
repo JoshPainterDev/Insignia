@@ -121,6 +121,8 @@
     <Compile Include="Assets\Scripts\TurnCombat\HealthScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemsManager_C.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\LimitBreak.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\LimitBreakManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

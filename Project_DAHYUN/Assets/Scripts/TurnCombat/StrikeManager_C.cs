@@ -10,6 +10,7 @@ public class StrikeManager_C : MonoBehaviour {
     private Vector2 strikeOffset = new Vector2(0f , 0f);
     private string strikeModifier;
     private GameObject effectClone;
+    private int origEnemyHealth;
 
     //ASSETS
     public GameObject shadowStrike_FX;
@@ -21,11 +22,12 @@ public class StrikeManager_C : MonoBehaviour {
         initPlayerPos = playerMannequin.transform.position;
 	}
 	
-    public void StrikeUsed(string strikeMod)
+    public void StrikeUsed(string strikeMod, int originalEnemyHP)
     {
         strikeModifier = strikeMod;
+        origEnemyHealth = originalEnemyHP;
 
-        if(strikeModifier == "none")
+        if (strikeModifier == "none")
         {
 
         }
@@ -84,6 +86,7 @@ public class StrikeManager_C : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(0.5f);
-        this.GetComponent<CombatManager>().EndPlayerTurn();
+
+        this.GetComponent<CombatManager>().EndPlayerTurn(true, origEnemyHealth);
     }
 }

@@ -12,11 +12,14 @@ public class GameController : MonoBehaviour {
     public Ability playerAbility3;
     public Ability playerAbility4;
     public string strikeModifier = "none";
+    public LimitBreakName limitBreakModifier = LimitBreakName.none;
+    public int limitBreakTracker;
     public string[] playerInventory;
     public int[] playerInventoryQuantity;
     public int playerAttack;
     public int playerDefense;
     public int playerProwess;
+    public int playerSpeed;
 
     // Use this for initialization
     void Awake () {
@@ -44,9 +47,12 @@ public class GameController : MonoBehaviour {
         data.ability3 = playerAbility3;
         data.ability4 = playerAbility4;
         data.StrikeMod = strikeModifier;
+        data.limitBreakMod = limitBreakModifier;
+        data.limitBreakTrack = limitBreakTracker;
         data.attack = playerAttack;
         data.defense = playerDefense;
         data.prowess = playerProwess;
+        data.speed = playerSpeed;
 
         data.InventoryList = playerInventory;
 
@@ -69,6 +75,8 @@ public class GameController : MonoBehaviour {
             playerAbility3 = data.ability3;
             playerAbility4 = data.ability4;
             strikeModifier = data.StrikeMod;
+            limitBreakModifier = data.limitBreakMod;
+            limitBreakTracker = data.limitBreakTrack;
             playerInventory = data.InventoryList;
         }
     }
@@ -175,9 +183,12 @@ class PlayerData
     public Ability ability4;
     public string StrikeMod;
     public string PlayerClass;
+    public LimitBreakName limitBreakMod;
+    public int limitBreakTrack;
     public string[] InventoryList;
     public int[] InventoryQuantities;
     public int attack;
     public int defense;
     public int prowess;
+    public int speed;
 }

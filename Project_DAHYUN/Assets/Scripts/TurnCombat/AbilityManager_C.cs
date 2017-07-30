@@ -16,6 +16,8 @@ public class AbilityManager_C : MonoBehaviour {
     private SpecialCase playerSpecialCase = SpecialCase.None;
     private SpecialCase enemySpecialCase = SpecialCase.None;
 
+    private int origEnemyHP;
+
     // Use this for initialization
     void Start ()
     {
@@ -34,10 +36,10 @@ public class AbilityManager_C : MonoBehaviour {
     //8. end turn
 
 
-    public void AbilityUsed(Ability abilityUsed)
+    public void AbilityUsed(Ability abilityUsed, int enemyHP)
     {
         ability = abilityUsed;
-
+        origEnemyHP = enemyHP;
         playerSpecialCase = ability.specialCase;
 
         StartCoroutine(AnimateAbility(ability.Name));
@@ -93,6 +95,12 @@ public class AbilityManager_C : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(0.25f);
-        this.GetComponent<CombatManager>().EndPlayerTurn();
+
+        // if the ability does damage, make sure to animate the damage
+        if(ability.BaseDamage != 0)
+            this.GetComponent<CombatManager>().EndPlayerTurn(true, origEnemyHP);
+        else
+            this.GetComponent<CombatManager>().EndPlayerTurn(false);
+
     }
 }

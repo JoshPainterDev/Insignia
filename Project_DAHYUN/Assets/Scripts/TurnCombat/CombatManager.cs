@@ -4,6 +4,9 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour {
 
+    // DEFINES
+    public float LIMIT_BREAK_THRESH = 0.2f;
+
     enum State { MainMenu, Items, Abilities, Back, Done };
 
     public Canvas canvas;
@@ -21,16 +24,26 @@ public class CombatManager : MonoBehaviour {
     public GameObject playerHealthBar;
     public GameObject playerHealthCase;
 
-    private int playerHealth;
-    private int playerMaxHealth = 100;
+    private int playerHealth = 0;
+    private int playerMaxHealth = 1000;
     private int playerAttackBoost = 0;
     private int playerDefenseBoost = 0;
     private int playerSpeedBoost = 0;
 
+    // LIMIT BREAK VARIABLES
+    [HideInInspector]
+    public bool canLimitBreak = false;
+    [HideInInspector]
+    public LimitBreak playerLimitBreak;
+    public LimitBreak enemyLimitBreak;
+
     // ENEMY COMBAT VARIABLES
     public GameObject enemyHealthBar;
-    private int enemyHealth;
-    private int enemyMaxHealth = 100;
+    private int enemyHealth = 0;
+    private int enemyMaxHealth = 1000;
+    private int enemyAttack = 0;
+    private int enemyDefense = 0;
+    private int enemySpeed = 0;
     private int enemyAttackBoost = 0;
     private int enemyDefenseBoost = 0;
     private int enemySpeedBoost = 0;
@@ -39,6 +52,7 @@ public class CombatManager : MonoBehaviour {
     public float strikeAnimDuration = 3.5f;
     public float strikePosX = 320f;
     public string strikeMod = "none";
+    private float strikeExecutePercent = 0.20f;
 
     //ABILITY VARIABLES
     public Vector2 ab1_pos, ab2_pos, ab3_pos, ab4_pos;
@@ -57,13 +71,21 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Shadow Strike";
-        GameController.controller.playerAttack = 50;
+        GameController.controller.playerAttack = 10;
+        GameController.controller.playerDefense = 10;
+        GameController.controller.playerProwess = 10;
+        GameController.controller.playerSpeed = 1;
 
         //1. Load in player and enemy
         playerHealth = playerMaxHealth;
+        enemyHealth = enemyMaxHealth;
+
+        if (GameController.controller.limitBreakTracker == 0)
+            canLimitBreak = true;
 
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
+        strikeExecutePercent = .2f + (GameController.controller.playerProwess - enemyDefense);
         ability1 = GameController.controller.playerAbility1;
         ability2 = GameController.controller.playerAbility2;
         ability3 = GameController.controller.playerAbility3;
@@ -79,11 +101,6 @@ public class CombatManager : MonoBehaviour {
         HideAbilityButtons();
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
-    }
-
-    public void StrikeSelected(int selectedOption = 0)
-    {
-        this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod);
     }
 
     public void AbilitySelected(int selectedOption = 0)
@@ -112,14 +129,58 @@ public class CombatManager : MonoBehaviour {
         this.GetComponent<ItemsManager_C>().ItemUsed(itemNum);
     }
 
-    public void EndPlayerTurn()
+    public void EndPlayerTurn(bool damageDealt, int originalHP = 0)
     {
         currentState = State.MainMenu;
         DisableAbilityButtons();
         HideAbilityButtons();
         DisableBackButton();
         EnableMainButtons();
+        StartCoroutine(CheckForDamage(damageDealt, false, originalHP));
+    }
+
+    public void EndEnemyTurn(bool damageDealt, int originalHP)
+    {
+        currentState = State.MainMenu;
+        DisableAbilityButtons();
+        HideAbilityButtons();
+        DisableBackButton();
+        EnableMainButtons();
+
+        StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
+    }
+
+    IEnumerator CheckForDamage(bool damage, bool player, int origHP)
+    {
         ShowHealthBars();
+        yield return new WaitForSeconds(0.5f);
+
+        if (damage)
+        {
+            if(player)
+            {
+                float var1 = (float)(origHP / playerMaxHealth);
+                float var2 = (float)(playerHealth / playerMaxHealth);
+                playerHealthBar.GetComponent<HealthScript>().Hurt();
+                yield return new WaitForSeconds(0.25f);
+                print("lerpOrig: " + var1 + "   Lerp2: " + var2);
+                playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+            }
+            else
+            {
+                float var1 = ((float)origHP / (float)enemyMaxHealth);
+                float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
+                enemyHealthBar.GetComponent<HealthScript>().Hurt();
+                yield return new WaitForSeconds(0.25f);
+                print("lerpOrig: " + var1 + "   Lerp2: " + var2);
+                enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+            }
+        }
+        else
+        {
+
+        }
+
         StartCoroutine(ShowStartingButtons());
     }
 
@@ -138,7 +199,7 @@ public class CombatManager : MonoBehaviour {
     {
         DisableBackButton();
         DisableMainButtons();
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         HideMainButtons();
 
         topButton.GetComponentInChildren<Text>().text = "STRIKE";
@@ -193,8 +254,8 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.15f);
         HideAbilityButtons();
         ShowButton(button.name);
-        Vector3 centerPos = new Vector3(225, -55, 1);
-        Vector3 ascend = new Vector3(225, 100, 1);
+        Vector3 centerPos = new Vector3(650, 250, 1);
+        Vector3 ascend = new Vector3(650, 800, 1);
         Color seethrough = new Color(abilitySelectColor.r, abilitySelectColor.g, abilitySelectColor.b, 0f);
 
         button.GetComponent<LerpScript>().LerpToPos(button.transform.position, centerPos, 8f);
@@ -210,11 +271,46 @@ public class CombatManager : MonoBehaviour {
         button.GetComponent<Image>().color = origColor;
         button.transform.position = origPos;
 
-        this.GetComponent<AbilityManager_C>().AbilityUsed(abilityUsed);
+        this.GetComponent<AbilityManager_C>().AbilityUsed(abilityUsed, enemyHealth);
     }
 
     // Combat Functions
     ////////////////////////////////////////////
+    public void CharacterDamaged(int damageVal, bool EnemyDamaged)
+    {
+        
+
+        if(EnemyDamaged)
+        {
+            enemyHealth -= damageVal;
+
+            // check if the enemy was defeated
+            if(enemyHealth <= 0)
+            {
+                enemyHealth = 0;
+
+                //enemy defeated
+                if(GameController.controller.limitBreakTracker > 0)
+                {
+                    --GameController.controller.limitBreakTracker;
+                }
+            }
+        }
+        else
+        {
+            playerHealth -= damageVal;
+
+            // check if the player has triggered a Limit Break
+            if(canLimitBreak && ((float)playerHealth / (float)playerMaxHealth) <= LIMIT_BREAK_THRESH)
+            {
+                canLimitBreak = false;
+                playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
+                GameController.controller.limitBreakTracker = playerLimitBreak.coolDown;
+                this.GetComponent<LimitBreakManager_C>().UseLimitBreak(playerLimitBreak);
+            }
+        }
+    }
+
     IEnumerator UseStrike()
     {
         DisableMainButtons();
@@ -229,7 +325,7 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
         yield return new WaitForSeconds(0.25f);
-        this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod);
+        this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
     }
 
     // DAMAGE AN ENEMY WITH STRIKE ONLY!
@@ -247,6 +343,14 @@ public class CombatManager : MonoBehaviour {
         // accuracy check the attack
         if (accuracy > rand)
         {
+            print("enemy percent health: " + (enemyHealth / enemyMaxHealth));
+            print("execute percent: " + strikeExecutePercent);
+            // check if the player can press the enemy
+            if ((enemyHealth / enemyMaxHealth) <= strikeExecutePercent)
+            {
+                //StartCoroutine(); //FIX THIS
+            }
+
             //handle attack boost modifier
             switch (playerAttackBoost)
             {
@@ -254,20 +358,29 @@ public class CombatManager : MonoBehaviour {
                     attBoostMod = 1.5f;
                     break;
                 case 2:
-                    attBoostMod = 2f;
+                    attBoostMod = 2;
                     break;
                 case 3:
                     attBoostMod = 2.5f;
                     break;
                 default:
+                    attBoostMod = 1;
                     break;
             }
+
+            damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
+            
+            damageDealt -= (enemyDefense) * (enemyDefense * enemyDefenseBoost);
+
+            CharacterDamaged((int)damageDealt, true);
+
+            print("damage: " + damageDealt);
+            print("enemy is now at: " + enemyHealth);
 
             // check for special attack modifier
             if (currSpecialCase == SpecialCase.None)
             {
-                damageDealt = (attack * attack) + (randDamageBuffer);
-                playerHealth -= (int)damageDealt;
+
             }
             else
             {
@@ -279,14 +392,46 @@ public class CombatManager : MonoBehaviour {
     // DAMAGE AN ENEMY WITH AN ABILITY ONLY!
     public void DamageEnemy_Ability(Ability abilityUsed)
     {
-        if(abilityUsed.Type == AbilityType.Physical)
-        {
-            int rand = Random.Range(0, 100);
-            int accuracy = 75;
+        int rand = Random.Range(0, 100);
+        int randDamageBuffer = Random.Range(0, 9);
+        int accuracy = abilityUsed.Accuracy;
+        float attBoostMod = 1;
+        float damageDealt = 0;
+        int attack = GameController.controller.playerAttack;
+        int defense = GameController.controller.playerDefense;
+        int prowess = GameController.controller.playerProwess;
 
+        if (abilityUsed.Type == AbilityType.Physical)
+        {
+            print("Accuracy Val: " + accuracy + " rand: " + rand);
             // accuracy check the attack
             if (accuracy > rand)
             {
+                //handle attack boost modifier
+                switch (playerAttackBoost)
+                {
+                    case 1:
+                        attBoostMod = 1.5f;
+                        break;
+                    case 2:
+                        attBoostMod = 2;
+                        break;
+                    case 3:
+                        attBoostMod = 2.5f;
+                        break;
+                    default:
+                        attBoostMod = 1;
+                        break;
+                }
+
+                damageDealt = ((attack + randDamageBuffer) * abilityUsed.BaseDamage) * attBoostMod;
+
+                damageDealt -= (enemyDefense * (enemyDefenseBoost * enemyDefenseBoost));
+
+                enemyHealth -= (int)damageDealt;
+                print("damage: " + damageDealt);
+                print("enemy HP: " + enemyHealth);
+
                 // check for special attack modifier
                 if (currSpecialCase == SpecialCase.None)
                 {
@@ -300,7 +445,45 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
-            //kms
+            print(accuracy + " rand: " + rand);
+            // accuracy check the attack
+            if (accuracy > rand)
+            {
+                //handle attack boost modifier
+                switch (playerAttackBoost)
+                {
+                    case 1:
+                        attBoostMod = 1.5f;
+                        break;
+                    case 2:
+                        attBoostMod = 2;
+                        break;
+                    case 3:
+                        attBoostMod = 2.5f;
+                        break;
+                    default:
+                        attBoostMod = 1;
+                        break;
+                }
+
+                damageDealt = ((attack * abilityUsed.BaseDamage) + (randDamageBuffer)) * attBoostMod;
+
+                damageDealt -= (enemyDefense * (enemyDefenseBoost));
+
+                enemyHealth -= (int)damageDealt;
+                print("damage: " + damageDealt);
+                print("enemy HP: " + enemyHealth);
+
+                // check for special attack modifier
+                if (currSpecialCase == SpecialCase.None)
+                {
+
+                }
+                else
+                {
+                    ResolveSpecialCase();
+                }
+            }
         }
     }
 
@@ -369,7 +552,6 @@ public class CombatManager : MonoBehaviour {
                 HideMainButtons();
                 DisableMainButtons();
                 EnableBackButton();
-                HideHealthBars();
                 ShowAbilityButtons();
                 EnableAbilityButtons();
                 break;
