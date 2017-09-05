@@ -119,7 +119,7 @@ public class MainMenuManager : MonoBehaviour {
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
         //SceneManager.LoadScene("AdventureSelect_Scene");
-        SceneManager.LoadScene("TurnCombat_Scene");
+        SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
     IEnumerator LoadCraftingScreen()

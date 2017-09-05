@@ -20,6 +20,18 @@ public class AdventureSelect_Manager : MonoBehaviour
 		
 	}
 
+    public void SelectAdventure(int adventureNum)
+    {
+        switch(adventureNum)
+        {
+            case 1:
+                break;
+            default:
+                StartCoroutine(LoadCombatScreen());
+                break;
+        }
+    }
+
     public void GoBack()
     {
         StartCoroutine(GoToMainMenu());
@@ -33,6 +45,16 @@ public class AdventureSelect_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("MainMenu_Scene");
+    }
+
+    IEnumerator LoadCombatScreen()
+    {
+        //camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 1f);
+        yield return new WaitForSeconds(0.25f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        //SceneManager.LoadScene("AdventureSelect_Scene");
+        SceneManager.LoadScene("TurnCombat_Scene");
     }
 
     public void DisableButtons()
