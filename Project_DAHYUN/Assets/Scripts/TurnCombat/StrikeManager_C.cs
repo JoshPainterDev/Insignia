@@ -61,13 +61,14 @@ public class StrikeManager_C : MonoBehaviour {
         switch (strikeModifier)
         {
             case "Shadow Strike":
-                pos1 = new Vector3(initPlayerPos.x + 275, initPlayerPos.y + 15, 0);
+                pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .05f);
                 yield return new WaitForSeconds(0.1f);
                 effectClone.GetComponent<Animator>().enabled = true;
                 effectClone.GetComponent<SpriteRenderer>().enabled = true;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();
-                yield return new WaitForSeconds(0.8f);
+                playerMannequin.GetComponent<PlayerCombatAnimator>().ChangeToAnimation("attack01");
+                yield return new WaitForSeconds(0.7f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
                 break;
             case "Serated Strike":
@@ -75,6 +76,7 @@ public class StrikeManager_C : MonoBehaviour {
                 pos2 = new Vector3(150, initPlayerPos.y, 0);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
                 yield return new WaitForSeconds(0.25f);
+                playerMannequin.GetComponent<PlayerCombatAnimator>().ChangeToAnimation("attack01");
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, pos2, strikeAnimDuration / .25f);
                 yield return new WaitForSeconds(0.25f);
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();

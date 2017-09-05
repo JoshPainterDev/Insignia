@@ -7,17 +7,22 @@ public class LerpScript : MonoBehaviour {
 
     private bool lerping = false;
     private bool lerpingPosition = false;
+    private bool lerpingScale = false;
     private bool lerpingColor = false;
     private float t_P = 0f;
+    private float t_S = 0f;
     private float t_C = 0f;
     Vector3 initPos;
     Vector3 finalPos;
+    Vector3 initScale;
+    Vector3 finalScale;
     Color initColor = Color.white;
     Color finalColor = Color.white;
     private float rate = 1f;
 
     public void LerpToPos(Vector3 startPos, Vector3 endPos, float speed = 1f)
     {
+        t_P = 0f;
         initPos = startPos;
         finalPos = endPos;
         rate = speed;
@@ -25,8 +30,19 @@ public class LerpScript : MonoBehaviour {
         lerpingPosition = true;
     }
 
+    public void LerpToScale(Vector3 startScale, Vector3 endScale, float speed = 1f)
+    {
+        t_S = 0f;
+        initScale = startScale;
+        finalScale = endScale;
+        rate = speed;
+        lerping = true;
+        lerpingScale = true;
+    }
+
     public void LerpToColor(Color startColor, Color endColor, float speed = 1f)
     {
+        t_C = 0f;
         initColor = startColor;
         finalColor = endColor;
         rate = speed;
@@ -53,7 +69,21 @@ public class LerpScript : MonoBehaviour {
                 }
             }
 
-            if(lerpingColor)
+            if (lerpingScale)
+            {
+                t_S += Time.deltaTime * rate;
+
+                Vector3 scale = Vector3.Lerp(initScale, finalScale, t_S);
+                transform.localScale = scale;
+
+                if (t_S > 1)
+                {
+                    t_S = 0;
+                    lerpingScale = false;
+                }
+            }
+
+            if (lerpingColor)
             {
                 t_C += Time.deltaTime * rate;
 
@@ -73,7 +103,7 @@ public class LerpScript : MonoBehaviour {
                 }
             }
 
-            if (!lerpingPosition && !lerpingColor)
+            if (!lerpingPosition && !lerpingScale && !lerpingColor)
             {
                 lerping = false;
             }

@@ -16,10 +16,15 @@ public class GameController : MonoBehaviour {
     public int limitBreakTracker;
     public string[] playerInventory;
     public int[] playerInventoryQuantity;
+    public bool [,] playerEquipmentList;
+    public int[] playerEquippedIDs;
+    public int difficultyScale;
+    public int playerLevel;
     public int playerAttack;
     public int playerDefense;
     public int playerProwess;
     public int playerSpeed;
+    public float[] playerColorPreference;
 
     // Use this for initialization
     void Awake () {
@@ -28,6 +33,7 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             controller = this;
+            playerEquippedIDs = new int[16];
         }
         else if(controller != this)
         {
@@ -42,6 +48,8 @@ public class GameController : MonoBehaviour {
 
         PlayerData data = new PlayerData();
 
+        data.Level = playerLevel;
+        data.difficulty = difficultyScale;
         data.ability1 = playerAbility1;
         data.ability2 = playerAbility2;
         data.ability3 = playerAbility3;
@@ -53,7 +61,9 @@ public class GameController : MonoBehaviour {
         data.defense = playerDefense;
         data.prowess = playerProwess;
         data.speed = playerSpeed;
+        data.PlayerColor = playerColorPreference;
 
+        data.EquippedIDs = playerEquippedIDs;
         data.InventoryList = playerInventory;
 
         bf.Serialize(playerInfoFile, data);
@@ -70,6 +80,8 @@ public class GameController : MonoBehaviour {
             file.Close();
 
             // set variables here
+            playerLevel = data.Level;
+            difficultyScale = data.difficulty;
             playerAbility1 = data.ability1;
             playerAbility2 = data.ability2;
             playerAbility3 = data.ability3;
@@ -78,6 +90,9 @@ public class GameController : MonoBehaviour {
             limitBreakModifier = data.limitBreakMod;
             limitBreakTracker = data.limitBreakTrack;
             playerInventory = data.InventoryList;
+            playerColorPreference = data.PlayerColor;
+            playerEquipmentList = data.EquipmentList;
+            playerEquippedIDs = data.EquippedIDs;
         }
     }
 
@@ -177,18 +192,17 @@ public class GameController : MonoBehaviour {
 [Serializable]
 class PlayerData
 {
-    public Ability ability1;
-    public Ability ability2;
-    public Ability ability3;
-    public Ability ability4;
+    public Ability ability1, ability2, ability3, ability4;
     public string StrikeMod;
     public string PlayerClass;
+    public int Level;
+    public int difficulty;
     public LimitBreakName limitBreakMod;
     public int limitBreakTrack;
-    public string[] InventoryList;
-    public int[] InventoryQuantities;
-    public int attack;
-    public int defense;
-    public int prowess;
-    public int speed;
+    public string [] InventoryList;
+    public int [] InventoryQuantities;
+    public bool [,] EquipmentList;
+    public int attack, defense, prowess, speed;
+    public int [] EquippedIDs; // [0,1] = head, [2,3] = torso, [4,5] = legs, [6,7] = back, [8,9] = gloves, [10,11] = shoes, [12,13] = weapon, [14,15] = aura
+    public float[] PlayerColor;
 }

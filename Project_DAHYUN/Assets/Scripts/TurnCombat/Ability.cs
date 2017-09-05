@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public enum SpecialCase { Illusion, Linger_S, Linger_L, Blind, Execute, Outrage, Ablaze, None };
+public enum SpecialCase { Illusion, Linger_S, Linger_L, Blind, Execute, Outrage, Ablaze, ShadowClone, None };
 public enum AbilityType { Physical, Magical, Utility, None };
 
 public class Ability{

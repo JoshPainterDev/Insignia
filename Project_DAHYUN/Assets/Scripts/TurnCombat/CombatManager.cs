@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour {
 
     public Canvas canvas;
     public GameObject playerMannequin;
+    public GameObject enemyMannequin;
     private Vector3 initPlayerPos;
 
     //MAIN BUTTON VARIABLES
@@ -22,13 +23,16 @@ public class CombatManager : MonoBehaviour {
     //COMBAT VARIABLES
     public SpecialCase currSpecialCase = SpecialCase.None;
     public GameObject playerHealthBar;
-    public GameObject playerHealthCase;
 
     private int playerHealth = 0;
-    private int playerMaxHealth = 1000;
-    private int playerAttackBoost = 0;
-    private int playerDefenseBoost = 0;
-    private int playerSpeedBoost = 0;
+    [HideInInspector]
+    public int playerMaxHealth = 1000;
+    [HideInInspector]
+    public int playerAttackBoost = 0;
+    [HideInInspector]
+    public int playerDefenseBoost = 0;
+    [HideInInspector]
+    public int playerSpeedBoost = 0;
 
     // LIMIT BREAK VARIABLES
     [HideInInspector]
@@ -38,15 +42,17 @@ public class CombatManager : MonoBehaviour {
     public LimitBreak enemyLimitBreak;
 
     // ENEMY COMBAT VARIABLES
+    public EnemyInfo enemyInfo;
     public GameObject enemyHealthBar;
     private int enemyHealth = 0;
-    private int enemyMaxHealth = 1000;
-    private int enemyAttack = 0;
-    private int enemyDefense = 0;
-    private int enemySpeed = 0;
-    private int enemyAttackBoost = 0;
-    private int enemyDefenseBoost = 0;
-    private int enemySpeedBoost = 0;
+    [HideInInspector]
+    public int enemyMaxHealth = 1000;
+    [HideInInspector]
+    public int enemyAttackBoost = 0;
+    [HideInInspector]
+    public int enemyDefenseBoost = 0;
+    [HideInInspector]
+    public int enemySpeedBoost = 0;
 
     //STRIKE VARIABLES
     public float strikeAnimDuration = 3.5f;
@@ -64,17 +70,27 @@ public class CombatManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         //0. pretend the player has save data for ability sake
+        GameController.controller.playerLevel = 5;
         GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Shadow Strike");
         GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Shadow Strike";
-        GameController.controller.playerAttack = 10;
+        GameController.controller.playerAttack = 15;
         GameController.controller.playerDefense = 10;
-        GameController.controller.playerProwess = 10;
+        GameController.controller.playerProwess = 12;
         GameController.controller.playerSpeed = 1;
+
+        /// remove this plox///
+        enemyInfo = new EnemyInfo();
+        enemyInfo.ability_1 = "Solar Flare";
+        enemyInfo.ability_2 = "Shadow Clone";
+        enemyInfo.ability_3 = "";
+        enemyInfo.ability_4 = "";
+        /// 
 
         //1. Load in player and enemy
         playerHealth = playerMaxHealth;
@@ -85,7 +101,7 @@ public class CombatManager : MonoBehaviour {
 
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
-        strikeExecutePercent = .2f + (GameController.controller.playerProwess - enemyDefense);
+        strikeExecutePercent = .2f + (((GameController.controller.playerProwess - enemyInfo.enemyDefense) + 0.01f) / GameController.controller.playerProwess);
         ability1 = GameController.controller.playerAbility1;
         ability2 = GameController.controller.playerAbility2;
         ability3 = GameController.controller.playerAbility3;
@@ -101,6 +117,8 @@ public class CombatManager : MonoBehaviour {
         HideAbilityButtons();
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
+
+        LoadCharacter();
     }
 
     public void AbilitySelected(int selectedOption = 0)
@@ -124,29 +142,23 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void ItemSelected(int itemNum = 0)
-    {
-        this.GetComponent<ItemsManager_C>().ItemUsed(itemNum);
-    }
-
     public void EndPlayerTurn(bool damageDealt, int originalHP = 0)
     {
         currentState = State.MainMenu;
         DisableAbilityButtons();
         HideAbilityButtons();
         DisableBackButton();
-        EnableMainButtons();
+        HideMainButtons();
+        //EnableMainButtons();  // only here for testing
         StartCoroutine(CheckForDamage(damageDealt, false, originalHP));
     }
 
-    public void EndEnemyTurn(bool damageDealt, int originalHP)
+    public void EndEnemyTurn(bool damageDealt, int originalHP = 0)
     {
         currentState = State.MainMenu;
         DisableAbilityButtons();
         HideAbilityButtons();
         DisableBackButton();
-        EnableMainButtons();
-
         StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
     }
 
@@ -163,8 +175,13 @@ public class CombatManager : MonoBehaviour {
                 float var2 = (float)(playerHealth / playerMaxHealth);
                 playerHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
-                print("lerpOrig: " + var1 + "   Lerp2: " + var2);
                 playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+                currentState = State.MainMenu;
+                DisableAbilityButtons();
+                HideAbilityButtons();
+                DisableBackButton();
+                ShowMainButtons();
+                EnableMainButtons();
             }
             else
             {
@@ -172,16 +189,47 @@ public class CombatManager : MonoBehaviour {
                 float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
                 enemyHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
-                print("lerpOrig: " + var1 + "   Lerp2: " + var2);
                 enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+                StartCoroutine(StartEnemyTurn());
             }
         }
         else
         {
-
+            if(player)
+            {
+                currentState = State.MainMenu;
+                DisableAbilityButtons();
+                HideAbilityButtons();
+                DisableBackButton();
+                ShowMainButtons();
+                EnableMainButtons();
+            }
+            else
+            {
+                StartCoroutine(StartEnemyTurn());
+            }
         }
+    }
 
-        StartCoroutine(ShowStartingButtons());
+    public void EndEnemyStruggle(bool damageDealt, int originalHP)
+    {
+        currentState = State.MainMenu;
+        DisableAbilityButtons();
+        HideAbilityButtons();
+        DisableBackButton();
+        EnableMainButtons();
+
+        StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
+    }
+
+    //EndEnemyTurn
+
+    IEnumerator StartEnemyTurn()
+    {
+        HideMainButtons();
+        DisableMainButtons();
+        yield return new WaitForSeconds(2);
+        this.GetComponent<EnemyCombatScript>().BeginEnemyTurn();
     }
 
     IEnumerator ShowStartingButtons()
@@ -278,8 +326,6 @@ public class CombatManager : MonoBehaviour {
     ////////////////////////////////////////////
     public void CharacterDamaged(int damageVal, bool EnemyDamaged)
     {
-        
-
         if(EnemyDamaged)
         {
             enemyHealth -= damageVal;
@@ -325,8 +371,33 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
         yield return new WaitForSeconds(0.25f);
-        this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+
+        if(!EvaluateExecution())
+            this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+        else
+        {
+            HideHealthBars();
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player();
+        }
+            
     }
+
+    bool EvaluateExecution()
+    {
+        print("enemy percent health: " + ((float)enemyHealth / (float)enemyMaxHealth));
+        print("execute percent: " + strikeExecutePercent);
+
+        // check if the player can press the enemy
+        if (((float)enemyHealth / (float)enemyMaxHealth) <= strikeExecutePercent)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Player DAMAGE FUNCTIONS
 
     // DAMAGE AN ENEMY WITH STRIKE ONLY!
     public void DamageEnemy_Strike()
@@ -343,14 +414,6 @@ public class CombatManager : MonoBehaviour {
         // accuracy check the attack
         if (accuracy > rand)
         {
-            print("enemy percent health: " + (enemyHealth / enemyMaxHealth));
-            print("execute percent: " + strikeExecutePercent);
-            // check if the player can press the enemy
-            if ((enemyHealth / enemyMaxHealth) <= strikeExecutePercent)
-            {
-                //StartCoroutine(); //FIX THIS
-            }
-
             //handle attack boost modifier
             switch (playerAttackBoost)
             {
@@ -370,7 +433,7 @@ public class CombatManager : MonoBehaviour {
 
             damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
             
-            damageDealt -= (enemyDefense) * (enemyDefense * enemyDefenseBoost);
+            damageDealt -= (enemyInfo.enemyDefense) * (enemyInfo.enemyDefense * enemyDefenseBoost);
 
             CharacterDamaged((int)damageDealt, true);
 
@@ -387,6 +450,8 @@ public class CombatManager : MonoBehaviour {
                 ResolveSpecialCase();
             }
         }
+        else
+            print("fuck we missed...");
     }
 
     // DAMAGE AN ENEMY WITH AN ABILITY ONLY!
@@ -403,7 +468,6 @@ public class CombatManager : MonoBehaviour {
 
         if (abilityUsed.Type == AbilityType.Physical)
         {
-            print("Accuracy Val: " + accuracy + " rand: " + rand);
             // accuracy check the attack
             if (accuracy > rand)
             {
@@ -426,7 +490,7 @@ public class CombatManager : MonoBehaviour {
 
                 damageDealt = ((attack + randDamageBuffer) * abilityUsed.BaseDamage) * attBoostMod;
 
-                damageDealt -= (enemyDefense * (enemyDefenseBoost * enemyDefenseBoost));
+                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost));
 
                 enemyHealth -= (int)damageDealt;
                 print("damage: " + damageDealt);
@@ -445,7 +509,6 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
-            print(accuracy + " rand: " + rand);
             // accuracy check the attack
             if (accuracy > rand)
             {
@@ -468,11 +531,10 @@ public class CombatManager : MonoBehaviour {
 
                 damageDealt = ((attack * abilityUsed.BaseDamage) + (randDamageBuffer)) * attBoostMod;
 
-                damageDealt -= (enemyDefense * (enemyDefenseBoost));
+                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost));
 
                 enemyHealth -= (int)damageDealt;
-                print("damage: " + damageDealt);
-                print("enemy HP: " + enemyHealth);
+
 
                 // check for special attack modifier
                 if (currSpecialCase == SpecialCase.None)
@@ -487,22 +549,52 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void DamagePlayer()
-    {
-        //idk yet lol
-    }
-
-    // DAMAGE ENEMY WITH AN ITEM ONLY!
-    public void DamageEnemy_Item(string itemUsed)
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// ENEMY DAMAGE FUNCTIONS
+    /// 
+        // DAMAGE AN ENEMY WITH STRIKE ONLY!
+    public void DamagePlayer_Strike()
     {
         int rand = Random.Range(0, 100);
-        int accuracy = 75;
+        int randDamageBuffer = Random.Range(0, 9);
+        int accuracy = 95;
+        float attBoostMod = 1;
+        float damageDealt = 0;
+        int attack = enemyInfo.enemyAttack;
+        int defense = enemyInfo.enemyDefense;
+        int prowess = enemyInfo.enemyProwess;
 
-
+        print("ENEMY STRIKE!");
 
         // accuracy check the attack
         if (accuracy > rand)
         {
+            //handle attack boost modifier
+            switch (playerAttackBoost)
+            {
+                case 1:
+                    attBoostMod = 1.5f;
+                    break;
+                case 2:
+                    attBoostMod = 2;
+                    break;
+                case 3:
+                    attBoostMod = 2.5f;
+                    break;
+                default:
+                    attBoostMod = 1;
+                    break;
+            }
+
+            damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
+
+            damageDealt -= (GameController.controller.playerDefense) * (GameController.controller.playerDefense * playerDefenseBoost);
+
+            CharacterDamaged((int)damageDealt, false);
+
+            print("damage: " + damageDealt);
+            print("player is now at: " + playerHealth);
+
             // check for special attack modifier
             if (currSpecialCase == SpecialCase.None)
             {
@@ -512,6 +604,125 @@ public class CombatManager : MonoBehaviour {
             {
                 ResolveSpecialCase();
             }
+        }
+        else
+            print("fuck we missed...");
+    }
+
+    public void DamagePlayer_Ability(Ability abilityUsed)
+    {
+        int rand = Random.Range(0, 100);
+        int randDamageBuffer = Random.Range(0, 9);
+        int accuracy = abilityUsed.Accuracy;
+        float attBoostMod = 1;
+        float damageDealt = 0;
+        int attack = enemyInfo.enemyAttack;
+        int defense = enemyInfo.enemyDefense;
+        int prowess = enemyInfo.enemyProwess;
+
+        print("ENEMY ABILITY!");
+
+        if (abilityUsed.Type == AbilityType.Physical)
+        {
+            // accuracy check the attack
+            if (accuracy > rand)
+            {
+                //handle attack boost modifier
+                switch (enemyAttackBoost)
+                {
+                    case 1:
+                        attBoostMod = 1.5f;
+                        break;
+                    case 2:
+                        attBoostMod = 2;
+                        break;
+                    case 3:
+                        attBoostMod = 2.5f;
+                        break;
+                    default:
+                        attBoostMod = 1;
+                        break;
+                }
+
+                damageDealt = ((attack + randDamageBuffer) * abilityUsed.BaseDamage) * attBoostMod;
+
+                damageDealt -= (GameController.controller.playerDefense * (playerDefenseBoost * playerDefenseBoost));
+
+                playerHealth -= (int)damageDealt;
+                print("damage: " + damageDealt);
+                print("player HP: " + playerHealth);
+
+                // check for special attack modifier
+                if (currSpecialCase == SpecialCase.None)
+                {
+
+                }
+                else
+                {
+                    ResolveSpecialCase();
+                }
+            }
+        }
+        else
+        {
+            // accuracy check the attack
+            if (accuracy > rand)
+            {
+                //handle attack boost modifier
+                switch (playerAttackBoost)
+                {
+                    case 1:
+                        attBoostMod = 1.5f;
+                        break;
+                    case 2:
+                        attBoostMod = 2;
+                        break;
+                    case 3:
+                        attBoostMod = 2.5f;
+                        break;
+                    default:
+                        attBoostMod = 1;
+                        break;
+                }
+
+                damageDealt = ((attack * abilityUsed.BaseDamage) + (randDamageBuffer)) * attBoostMod;
+
+                damageDealt -= (GameController.controller.playerDefense * (playerDefenseBoost));
+
+                playerHealth -= (int)damageDealt;
+
+
+                // check for special attack modifier
+                if (currSpecialCase == SpecialCase.None)
+                {
+
+                }
+                else
+                {
+                    ResolveSpecialCase();
+                }
+            }
+        }
+    }
+
+    /// END OF DAMAGE FUNCTIONS
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void StruggleFailed(bool playerFailed)
+    {
+        int originalHP;
+
+        if (playerFailed)
+        {
+            originalHP = enemyHealth;
+            enemyHealth -= (int)((float)enemyHealth * 0.35f);
+            EndPlayerTurn(true, originalHP);
+        }
+        else
+        {
+            originalHP = playerHealth;
+            playerHealth -= (int)((float)playerHealth * 0.35f);
+            EndEnemyStruggle(true, originalHP);
         }
     }
 
@@ -811,5 +1022,64 @@ public class CombatManager : MonoBehaviour {
             testB.name = "ItemButton" + buttonNum + "_" + GameController.controller.playerInventory[buttonNum];
             testB.GetComponentInChildren<Text>().text = GameController.controller.playerInventory[buttonNum];
         }
+    }
+
+    public void LoadCharacter()
+    {
+        //head
+        EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
+        playerMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //torso
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[2], GameController.controller.playerEquippedIDs[3]);
+        playerMannequin.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+
+        string newStr = info.imgSourceName;
+        string match = "Torso";
+        string replace = "Arms";
+        int mSize = 0;
+        int tracker = 0;
+        //Alters the form of the string to include the Arms animator with the Torso
+        foreach (char c in info.imgSourceName)
+        {
+            if (c == match[mSize])
+            {
+                ++mSize;
+
+                if (mSize == 5)
+                {
+                    newStr = newStr.Remove(tracker - 4, mSize);
+                    newStr = newStr.Insert(tracker - 4, replace);
+                    mSize = 0;
+                    --tracker;
+                }
+            }
+            else
+                mSize = 0;
+
+            ++tracker;
+        }
+
+        //sleeve
+        playerMannequin.transform.GetChild(7).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(newStr, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //legs
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[4], GameController.controller.playerEquippedIDs[5]);
+        playerMannequin.transform.GetChild(2).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //back
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[6], GameController.controller.playerEquippedIDs[7]);
+        playerMannequin.transform.GetChild(3).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //gloves
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[8], GameController.controller.playerEquippedIDs[9]);
+        playerMannequin.transform.GetChild(4).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //shoes
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[10], GameController.controller.playerEquippedIDs[11]);
+        playerMannequin.transform.GetChild(5).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //weapon
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[12], GameController.controller.playerEquippedIDs[13]);
+        playerMannequin.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+    }
+
+    public int getPlayerHealth()
+    {
+        return playerHealth;
     }
 }

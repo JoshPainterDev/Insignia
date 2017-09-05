@@ -84,6 +84,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AdventureSelect_Manager.cs" />
+    <Compile Include="Assets\Character_Menu_Manager.cs" />
+    <Compile Include="Assets\ClosePopUp.cs" />
+    <Compile Include="Assets\EnemyAbilityManager_C.cs" />
+    <Compile Include="Assets\EnemyInfo.cs" />
+    <Compile Include="Assets\FadeScript.cs" />
+    <Compile Include="Assets\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\BackgroundPropSpawner.cs" />
@@ -94,8 +101,11 @@
     <Compile Include="Assets\Scripts\Crafting Scripts\CraftingManager.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\DressRoom\DressRoom_Manager.cs" />
+    <Compile Include="Assets\Scripts\DressRoom\EquipmentInfo.cs" />
+    <Compile Include="Assets\Scripts\DressRoom\EquipmentInfoManager.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
+    <Compile Include="Assets\Scripts\GameManagers\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameManagers\GameController.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\HealthPickup.cs" />
@@ -117,13 +127,18 @@
     <Compile Include="Assets\Scripts\TurnCombat\AbilityManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\AbilityToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\EnemyCombatScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyMannequinController.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\EquipmentButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\HealthScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemButtonScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\ItemsManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\LimitBreak.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\LimitBreakManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\StruggleManager_C.cs" />
+    <Compile Include="Assets\StatDescriptionScript.cs" />
+    <Compile Include="Assets\animStateScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

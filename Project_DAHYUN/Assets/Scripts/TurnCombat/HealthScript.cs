@@ -76,7 +76,7 @@ public class HealthScript : MonoBehaviour
     {
         healthBar.GetComponent<Image>().fillAmount = 0;
         yield return new WaitForSeconds(1.5f);
-        LerpHealth(0, 100);
+        LerpHealth(0, 1);
     }
 
     IEnumerator HurtAnim()

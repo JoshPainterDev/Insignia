@@ -104,7 +104,22 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
                 break;
+            case "Shadow Clone":
+                ability.Accuracy = 100;
+                ability.BaseDamage = 0;
+                ability.Description = "Summon 2 servents of shadow to fight by your side.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.ShadowClone;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Magical;
+                break;
             default:
+                ability.Accuracy = 0;
+                ability.Description = "";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.None;
                 break;
         }
 
