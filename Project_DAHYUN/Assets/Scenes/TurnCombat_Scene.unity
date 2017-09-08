@@ -1641,7 +1641,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666657974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -98, y: 138, z: 0}
+  m_LocalPosition: {x: -25, y: 138, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 826206098}
@@ -2911,7 +2911,7 @@ GameObject:
   - component: {fileID: 1021199902}
   - component: {fileID: 1021199901}
   m_Layer: 5
-  m_Name: ItemText
+  m_Name: RetreatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2967,7 +2967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'ITEMS
+  m_Text: 'RETREAT
 
 '
 --- !u!222 &1021199902
@@ -2988,7 +2988,7 @@ GameObject:
   - component: {fileID: 1114969290}
   - component: {fileID: 1114969289}
   m_Layer: 5
-  m_Name: Left_Button
+  m_Name: Retreat_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3011,7 +3011,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 35}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114969289
 MonoBehaviour:
@@ -3053,7 +3053,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1616549425}
-        m_MethodName: LeftSelected
+        m_MethodName: RetreatSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3964,11 +3964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002afdecef55489408c5524fd9597074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strikePosition: {x: -98, y: 138, z: 0}
-  cooldownA1: 0
-  cooldownA2: 0
-  cooldownA3: 0
-  cooldownA4: 0
+  enemyMannequinn: {fileID: 666657974}
+  strikePosition: {x: -350, y: 138, z: 0}
 --- !u!114 &1616549435
 MonoBehaviour:
   m_ObjectHideFlags: 0

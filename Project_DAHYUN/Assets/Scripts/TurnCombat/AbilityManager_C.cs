@@ -49,7 +49,6 @@ public class AbilityManager_C : MonoBehaviour {
             case "Shadow Strike":
                 break;
             case "Illusion":
-                
                 break;
             default:
                 break;

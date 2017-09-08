@@ -7,7 +7,7 @@ public class CombatManager : MonoBehaviour {
     // DEFINES
     public float LIMIT_BREAK_THRESH = 0.2f;
 
-    enum State { MainMenu, Items, Abilities, Back, Done };
+    enum State { MainMenu, Retreat, Abilities, Back, Done };
 
     public Canvas canvas;
     public GameObject playerMannequin;
@@ -79,9 +79,9 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Shadow Strike";
-        GameController.controller.playerAttack = 15;
-        GameController.controller.playerDefense = 10;
-        GameController.controller.playerProwess = 12;
+        GameController.controller.playerAttack = 5;
+        GameController.controller.playerDefense = 5;
+        GameController.controller.playerProwess = 5;
         GameController.controller.playerSpeed = 1;
 
         /// remove this plox///
@@ -90,6 +90,9 @@ public class CombatManager : MonoBehaviour {
         enemyInfo.ability_2 = "Shadow Clone";
         enemyInfo.ability_3 = "";
         enemyInfo.ability_4 = "";
+        enemyInfo.enemyAttack = 5;
+        enemyInfo.enemyDefense = 5;
+        enemyInfo.enemySpeed = 1;
         /// 
 
         //1. Load in player and enemy
@@ -101,7 +104,7 @@ public class CombatManager : MonoBehaviour {
 
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
-        strikeExecutePercent = .2f + (((GameController.controller.playerProwess - enemyInfo.enemyDefense) + 0.01f) / GameController.controller.playerProwess);
+        strikeExecutePercent = .15f + (((GameController.controller.playerProwess - enemyInfo.enemyDefense) + 0.01f) / GameController.controller.playerProwess);
         ability1 = GameController.controller.playerAbility1;
         ability2 = GameController.controller.playerAbility2;
         ability3 = GameController.controller.playerAbility3;
@@ -171,8 +174,9 @@ public class CombatManager : MonoBehaviour {
         {
             if(player)
             {
-                float var1 = (float)(origHP / playerMaxHealth);
-                float var2 = (float)(playerHealth / playerMaxHealth);
+                print("player was hit");
+                float var1 = ((float)origHP / (float)playerMaxHealth);
+                float var2 = ((float)playerHealth / (float)playerMaxHealth);
                 playerHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
                 playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
@@ -185,6 +189,7 @@ public class CombatManager : MonoBehaviour {
             }
             else
             {
+                print("enemy was hit");
                 float var1 = ((float)origHP / (float)enemyMaxHealth);
                 float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
                 enemyHealthBar.GetComponent<HealthScript>().Hurt();
@@ -302,8 +307,8 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.15f);
         HideAbilityButtons();
         ShowButton(button.name);
-        Vector3 centerPos = new Vector3(650, 250, 1);
-        Vector3 ascend = new Vector3(650, 800, 1);
+        Vector3 centerPos = new Vector3(450, 200, 1);
+        Vector3 ascend = new Vector3(450, 800, 1);
         Color seethrough = new Color(abilitySelectColor.r, abilitySelectColor.g, abilitySelectColor.b, 0f);
 
         button.GetComponent<LerpScript>().LerpToPos(button.transform.position, centerPos, 8f);
@@ -565,6 +570,7 @@ public class CombatManager : MonoBehaviour {
         int prowess = enemyInfo.enemyProwess;
 
         print("ENEMY STRIKE!");
+        print("ENEMY DEFENSE: " + enemyInfo.enemyDefense);
 
         // accuracy check the attack
         if (accuracy > rand)
@@ -620,7 +626,7 @@ public class CombatManager : MonoBehaviour {
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
 
-        print("ENEMY ABILITY!");
+        print("ENEMY DEFENSE: " + enemyInfo.enemyDefense);
 
         if (abilityUsed.Type == AbilityType.Physical)
         {
@@ -769,14 +775,14 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void LeftSelected()
+    public void RetreatSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
 
         switch (currentState)
         {
             case State.MainMenu:
-                currentState = State.Items;
+                currentState = State.Retreat;
                 DisableMainButtons();
                 EnableBackButton();
                 SpawnItemsUI();
@@ -797,7 +803,7 @@ public class CombatManager : MonoBehaviour {
                 StartCoroutine(ShowMainMenuOptions());
                 DisableBackButton();
                 break;
-            case State.Items:
+            case State.Retreat:
                 currentState = State.MainMenu;
                 StartCoroutine(ShowMainMenuOptions());
                 break;

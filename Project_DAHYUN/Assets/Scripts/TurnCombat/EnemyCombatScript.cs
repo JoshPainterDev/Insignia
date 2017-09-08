@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCombatScript : MonoBehaviour {
 
     private CombatManager combatManager;
+    public GameObject enemyMannequinn;
 
     [HideInInspector]
     private Vector3 origPosition;
@@ -18,11 +19,13 @@ public class EnemyCombatScript : MonoBehaviour {
     Ability ability1, ability2, ability3, ability4;
     private int cooldownA1, cooldownA2, cooldownA3, cooldownA4;
 
+    private int originalPlayerHP;
+
     // Use this for initialization
     void Start ()
     {
         combatManager = this.GetComponent<CombatManager>();
-        origPosition = transform.position;
+        origPosition = enemyMannequinn.transform.position;
 
         GameController.controller.difficultyScale = 1;
         difficulty = GameController.controller.difficultyScale;
@@ -35,6 +38,8 @@ public class EnemyCombatScript : MonoBehaviour {
         ability2 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_2);
         ability3 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_3);
         ability4 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_4);
+
+        originalPlayerHP = combatManager.getPlayerHealth();
 
         switch (difficulty)
         {
@@ -55,7 +60,7 @@ public class EnemyCombatScript : MonoBehaviour {
         print("Easy AI:");
         //first evaluate random chance to strike
         //regardless of abilities
-        int chanceToStrike = Random.Range(0, 10);
+        int chanceToStrike = Random.Range(0, 100);
 
         if(chanceToStrike > 35)
         {
@@ -109,8 +114,11 @@ public class EnemyCombatScript : MonoBehaviour {
 
     IEnumerator EnemyStrike()
     {
-        this.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 2f);
-        yield return new WaitForSeconds(0.1f);
-        this.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 2f);
+        enemyMannequinn.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 2f);
+        yield return new WaitForSeconds(1f);
+        combatManager.DamagePlayer_Strike();
+        enemyMannequinn.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 2.5f);
+        yield return new WaitForSeconds(0.25f);
+        combatManager.EndEnemyTurn(true, originalPlayerHP);
     }
 }
