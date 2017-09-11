@@ -25,6 +25,9 @@ public class GameController : MonoBehaviour {
     public int playerProwess;
     public int playerSpeed;
     public float[] playerColorPreference;
+    public int levelsCompleted;
+    public int stagesCompleted;
+    public EnemyEncounter currentEncounter;
 
     // Use this for initialization
     void Awake () {
@@ -65,6 +68,8 @@ public class GameController : MonoBehaviour {
 
         data.EquippedIDs = playerEquippedIDs;
         data.InventoryList = playerInventory;
+        data.LevelsCompleted = levelsCompleted;
+        data.StagesCompleted = stagesCompleted;
 
         bf.Serialize(playerInfoFile, data);
         playerInfoFile.Close();
@@ -93,6 +98,8 @@ public class GameController : MonoBehaviour {
             playerColorPreference = data.PlayerColor;
             playerEquipmentList = data.EquipmentList;
             playerEquippedIDs = data.EquippedIDs;
+            levelsCompleted = data.LevelsCompleted;
+            stagesCompleted = data.StagesCompleted;
         }
     }
 
@@ -205,4 +212,6 @@ class PlayerData
     public int attack, defense, prowess, speed;
     public int [] EquippedIDs; // [0,1] = head, [2,3] = torso, [4,5] = legs, [6,7] = back, [8,9] = gloves, [10,11] = shoes, [12,13] = weapon, [14,15] = aura
     public float[] PlayerColor;
+    public int LevelsCompleted;
+    public int StagesCompleted;
 }

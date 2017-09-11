@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyInfo
 {
     public int enemyLevel;
-    public int enemyMaxHealth;
+    public int enemyMaxHealthBase;
     public int enemyAttack;
     public int enemyDefense;
     public int enemySpeed;

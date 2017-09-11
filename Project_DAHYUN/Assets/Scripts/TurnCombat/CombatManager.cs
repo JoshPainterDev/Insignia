@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour {
     public GameObject playerMannequin;
     public GameObject enemyMannequin;
     private Vector3 initPlayerPos;
+    public EnemyEncounter encounter;
 
     //MAIN BUTTON VARIABLES
     public GameObject topButton, leftButton, rightButton, backButton;
@@ -26,7 +27,7 @@ public class CombatManager : MonoBehaviour {
 
     private int playerHealth = 0;
     [HideInInspector]
-    public int playerMaxHealth = 1000;
+    public int playerMaxHealth = 600;
     [HideInInspector]
     public int playerAttackBoost = 0;
     [HideInInspector]
@@ -72,30 +73,40 @@ public class CombatManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        encounter = GameController.controller.currentEncounter;
+
+        if(encounter == null)
+        {
+            encounter = new EnemyEncounter();
+        }
+
         //0. pretend the player has save data for ability sake
-        GameController.controller.playerLevel = 5;
+        GameController.controller.playerLevel = 10;
         GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Shadow Strike");
         GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Shadow Strike";
-        GameController.controller.playerAttack = 5;
-        GameController.controller.playerDefense = 5;
-        GameController.controller.playerProwess = 5;
+        GameController.controller.playerAttack = 26;
+        GameController.controller.playerDefense = 16;
+        GameController.controller.playerProwess = 1;
         GameController.controller.playerSpeed = 1;
 
-        /// remove this plox///
-        enemyInfo = new EnemyInfo();
+        enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]); //start with the initial enemy lookup
+        enemyInfo.enemyLevel = 10;
         enemyInfo.ability_1 = "Solar Flare";
         enemyInfo.ability_2 = "Shadow Clone";
         enemyInfo.ability_3 = "";
         enemyInfo.ability_4 = "";
-        enemyInfo.enemyAttack = 5;
-        enemyInfo.enemyDefense = 5;
-        enemyInfo.enemySpeed = 1;
+
+        enemyInfo.enemyAttack = 16;
+        enemyInfo.enemyDefense = 16;
+        enemyInfo.enemySpeed = 2;
         /// 
 
         //1. Load in player and enemy
+        playerMaxHealth = 600;
+        enemyMaxHealth = 1000;
         playerHealth = playerMaxHealth;
         enemyHealth = enemyMaxHealth;
 
@@ -114,6 +125,8 @@ public class CombatManager : MonoBehaviour {
         abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
         abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
         abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
+
+        LoadCharacterLevels();
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         DisableAbilityButtons();
@@ -409,7 +422,7 @@ public class CombatManager : MonoBehaviour {
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = 95;
+        int accuracy = (10 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost))) + 60;
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
@@ -442,7 +455,7 @@ public class CombatManager : MonoBehaviour {
 
             CharacterDamaged((int)damageDealt, true);
 
-            print("damage: " + damageDealt);
+            print("PLAYER DAMAGE: " + damageDealt);
             print("enemy is now at: " + enemyHealth);
 
             // check for special attack modifier
@@ -562,7 +575,7 @@ public class CombatManager : MonoBehaviour {
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = 95;
+        int accuracy = (5 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost))) + 60;
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
@@ -598,7 +611,7 @@ public class CombatManager : MonoBehaviour {
 
             CharacterDamaged((int)damageDealt, false);
 
-            print("damage: " + damageDealt);
+            print("ENEMY DAMAGE: " + damageDealt);
             print("player is now at: " + playerHealth);
 
             // check for special attack modifier
@@ -1028,6 +1041,12 @@ public class CombatManager : MonoBehaviour {
             testB.name = "ItemButton" + buttonNum + "_" + GameController.controller.playerInventory[buttonNum];
             testB.GetComponentInChildren<Text>().text = GameController.controller.playerInventory[buttonNum];
         }
+    }
+
+    public void LoadCharacterLevels()
+    {
+        playerHealthBar.transform.GetChild(2).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
+        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().text = "Lv " + enemyInfo.enemyLevel;
     }
 
     public void LoadCharacter()

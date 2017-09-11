@@ -16,20 +16,93 @@ public class AdventureSelect_Manager : MonoBehaviour
     public GameObject BackButton;
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+        GameController.controller.levelsCompleted = 0;
+        GameController.controller.stagesCompleted = 0;
+    }
 
     public void SelectAdventure(int adventureNum)
     {
+        if (adventureNum > (GameController.controller.stagesCompleted + 1))
+        {
+            // play a "you havnt unlocked this level" sound
+            GameController.controller.GetComponent<MenuUIAudio>().playNope();
+            return;
+        }
+
         switch(adventureNum)
         {
             case 1:
+                StartCoroutine(LoadEncounter(1, GameController.controller.levelsCompleted));
+                break;
+            case 2:
+                StartCoroutine(LoadEncounter(2, GameController.controller.levelsCompleted));
+                break;
+            case 3:
+                StartCoroutine(LoadEncounter(3, GameController.controller.levelsCompleted));
                 break;
             default:
                 StartCoroutine(LoadCombatScreen());
                 break;
         }
+    }
+
+    IEnumerator LoadEncounter(int stageToLoad, int levelsCompleted)
+    {
+        EnemyEncounter encounter = new EnemyEncounter();
+        encounter.enemyNames = new string[10]; //max number of enemies
+        encounter.bossFight = new bool[10]; //max number of enemies in one encounter
+
+        print("Loading Stage " + stageToLoad + " Level: " + (levelsCompleted + 1));
+
+        switch (stageToLoad)
+        {
+            case 1: // 5 total stages, last stage is a small boss fight
+                if(levelsCompleted == 0)
+                {
+                    //load first stage
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "fiddle dicks Assassin";
+                    encounter.bossFight[0] = false;
+                }
+                else if(levelsCompleted == 1)
+                {
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.bossFight[0] = false;
+                }
+                else if (levelsCompleted == 2)
+                {
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.bossFight[0] = false;
+                }
+                else if (levelsCompleted == 3)
+                {
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.bossFight[0] = false;
+                }
+                else if (levelsCompleted == 4)
+                {
+                    // boss fight
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.bossFight[0] = true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        GameController.controller.currentEncounter = encounter;
+
+        //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
+        yield return new WaitForSeconds(0.25f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("TurnCombat_Scene");
     }
 
     public void GoBack()

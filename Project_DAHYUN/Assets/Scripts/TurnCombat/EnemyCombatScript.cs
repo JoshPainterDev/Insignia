@@ -62,7 +62,7 @@ public class EnemyCombatScript : MonoBehaviour {
         //regardless of abilities
         int chanceToStrike = Random.Range(0, 100);
 
-        if(chanceToStrike > 35)
+        if(chanceToStrike > 0)
         {
             print("Strike selected...");
             StartCoroutine(EnemyStrike());
