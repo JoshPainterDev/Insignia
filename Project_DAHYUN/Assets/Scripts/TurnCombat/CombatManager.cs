@@ -82,7 +82,7 @@ public class CombatManager : MonoBehaviour {
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 10;
-        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Shadow Strike");
+        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
         GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");

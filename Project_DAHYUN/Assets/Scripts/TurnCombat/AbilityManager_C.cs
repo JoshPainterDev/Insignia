@@ -6,12 +6,15 @@ public class AbilityManager_C : MonoBehaviour {
 
     private CombatManager combatManager;
     public GameObject playerMannequin;
+    public GameObject enemyMannequin;
 
     public GameObject outrage_FX;
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
+    public GameObject finalCut_FX;
 
     private Vector3 initPlayerPos;
+    private Vector3 initEnemyPos;
     private Ability ability;
     private SpecialCase playerSpecialCase = SpecialCase.None;
     private SpecialCase enemySpecialCase = SpecialCase.None;
@@ -22,6 +25,7 @@ public class AbilityManager_C : MonoBehaviour {
     void Start ()
     {
         initPlayerPos = playerMannequin.transform.position;
+        initEnemyPos = enemyMannequin.transform.position;
         combatManager = this.GetComponent<CombatManager>();
     }
 
@@ -76,12 +80,38 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(-100, 0, 0), 3);
+                yield return new WaitForSeconds(0.35f);
                 spawnPos = initPlayerPos + new Vector3(0, 0, 0);
                 effectClone = (GameObject)Instantiate(solarFlare_FX, spawnPos, transform.rotation);
                 effectClone.transform.parent = playerMannequin.transform;
+                effectClone.GetComponent<SpriteRenderer>().flipX = true;
+                yield return new WaitForSeconds(0.75f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300,0,0), 5);
                 yield return new WaitForSeconds(0.25f);
-                combatManager.currSpecialCase = SpecialCase.Outrage;
                 combatManager.DamageEnemy_Ability(ability);
+                yield return new WaitForSeconds(0.7f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
+                yield return new WaitForSeconds(0.85f);
+                break;
+            case "Final Cut":
+                foreach (LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
+                {
+                    script.LerpToColor(Color.white, Color.clear, 5);
+                }
+                yield return new WaitForSeconds(0.5f);
+                spawnPos = initPlayerPos + new Vector3(0, 0, 0);
+                effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
+                effectClone.transform.position = enemyMannequin.transform.position - new Vector3(300,0,0);
+                effectClone.GetComponent<SpriteRenderer>().flipX = true;
+                yield return new WaitForSeconds(0.25f);
+                combatManager.DamageEnemy_Ability(ability);
+                yield return new WaitForSeconds(1f);
+                foreach(LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
+                {
+                    script.LerpToColor(Color.clear, Color.white, 5);
+                }
+                yield return new WaitForSeconds(0.25f);
                 yield return new WaitForSeconds(0.85f);
                 break;
             default:

@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 209706812}
   - component: {fileID: 209706811}
   - component: {fileID: 209706813}
+  - component: {fileID: 209706814}
   m_Layer: 9
   m_Name: Weapon
   m_TagString: Player
@@ -614,6 +615,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &209706814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 209706809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &218470749
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +637,7 @@ GameObject:
   - component: {fileID: 218470753}
   - component: {fileID: 218470752}
   - component: {fileID: 218470751}
+  - component: {fileID: 218470754}
   m_Layer: 9
   m_Name: Body_Arms
   m_TagString: Player
@@ -714,6 +727,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 218470749}
+--- !u!114 &218470754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 218470749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &265550321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1093,7 @@ GameObject:
   - component: {fileID: 399323653}
   - component: {fileID: 399323652}
   - component: {fileID: 399323654}
+  - component: {fileID: 399323655}
   m_Layer: 9
   m_Name: Body_Head
   m_TagString: Player
@@ -1158,6 +1183,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &399323655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 399323650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &524059995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1286,7 @@ GameObject:
   - component: {fileID: 529070608}
   - component: {fileID: 529070607}
   - component: {fileID: 529070606}
+  - component: {fileID: 529070609}
   m_Layer: 9
   m_Name: Aura
   m_TagString: Player
@@ -1339,6 +1376,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 529070604}
+--- !u!114 &529070609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529070604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &571995566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2185,7 @@ GameObject:
   - component: {fileID: 724229078}
   - component: {fileID: 724229077}
   - component: {fileID: 724229076}
+  - component: {fileID: 724229079}
   m_Layer: 9
   m_Name: Body_Hands
   m_TagString: Player
@@ -2226,6 +2275,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 724229074}
+--- !u!114 &724229079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 724229074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &820781935
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,6 +2297,7 @@ GameObject:
   - component: {fileID: 820781938}
   - component: {fileID: 820781937}
   - component: {fileID: 820781939}
+  - component: {fileID: 820781940}
   m_Layer: 9
   m_Name: Shoes
   m_TagString: Player
@@ -2326,6 +2387,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &820781940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820781935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &826206097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2410,7 @@ GameObject:
   - component: {fileID: 826206100}
   - component: {fileID: 826206099}
   - component: {fileID: 826206102}
+  - component: {fileID: 826206103}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -2438,6 +2511,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &826206103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826206097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &827138399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,6 +2533,7 @@ GameObject:
   - component: {fileID: 827138402}
   - component: {fileID: 827138401}
   - component: {fileID: 827138403}
+  - component: {fileID: 827138404}
   m_Layer: 9
   m_Name: Torso
   m_TagString: Player
@@ -2538,6 +2623,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &827138404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827138399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &859826635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +2960,7 @@ GameObject:
   - component: {fileID: 974891815}
   - component: {fileID: 974891814}
   - component: {fileID: 974891816}
+  - component: {fileID: 974891817}
   m_Layer: 9
   m_Name: Back
   m_TagString: Player
@@ -2953,6 +3050,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &974891817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 974891812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &981985160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,6 +3072,7 @@ GameObject:
   - component: {fileID: 981985164}
   - component: {fileID: 981985163}
   - component: {fileID: 981985162}
+  - component: {fileID: 981985165}
   m_Layer: 9
   m_Name: Body_Torso
   m_TagString: Player
@@ -3053,6 +3162,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 981985160}
+--- !u!114 &981985165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981985160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1013507639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,6 +3184,7 @@ GameObject:
   - component: {fileID: 1013507642}
   - component: {fileID: 1013507641}
   - component: {fileID: 1013507643}
+  - component: {fileID: 1013507644}
   m_Layer: 9
   m_Name: Head
   m_TagString: Player
@@ -3153,6 +3274,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1013507644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1013507639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1021199899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,6 +3775,7 @@ GameObject:
   - component: {fileID: 1404064364}
   - component: {fileID: 1404064363}
   - component: {fileID: 1404064365}
+  - component: {fileID: 1404064366}
   m_Layer: 9
   m_Name: Gloves
   m_TagString: Player
@@ -3732,6 +3865,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1404064366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1404064361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1419865488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,10 +4253,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMannequin: {fileID: 119668991}
+  enemyMannequin: {fileID: 666657974}
   outrage_FX: {fileID: 1862190314031148, guid: adfdd95e327b2d14fbb061cb391d2373, type: 2}
   solarFlare_FX: {fileID: 1862190314031148, guid: a99e0ddf06d49314d8917d2632c0a566,
     type: 2}
   illusion_FX: {fileID: 1862190314031148, guid: fb89edad07c49fc478eff5decc304d6c,
+    type: 2}
+  finalCut_FX: {fileID: 1862190314031148, guid: e7a40193cf8683c469f6500d1fcb67c2,
     type: 2}
 --- !u!114 &1616549428
 MonoBehaviour:
@@ -5162,6 +5309,7 @@ GameObject:
   - component: {fileID: 1970203755}
   - component: {fileID: 1970203754}
   - component: {fileID: 1970203756}
+  - component: {fileID: 1970203757}
   m_Layer: 9
   m_Name: Legs
   m_TagString: Player
@@ -5251,6 +5399,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1970203757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1970203752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2002638523
 GameObject:
   m_ObjectHideFlags: 0
@@ -5262,6 +5421,7 @@ GameObject:
   - component: {fileID: 2002638526}
   - component: {fileID: 2002638525}
   - component: {fileID: 2002638527}
+  - component: {fileID: 2002638528}
   m_Layer: 9
   m_Name: Arms
   m_TagString: Player
@@ -5351,6 +5511,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2002638528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002638523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2019607571
 GameObject:
   m_ObjectHideFlags: 0
@@ -5361,6 +5532,7 @@ GameObject:
   - component: {fileID: 2019607572}
   - component: {fileID: 2019607575}
   - component: {fileID: 2019607574}
+  - component: {fileID: 2019607573}
   m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
@@ -5386,6 +5558,17 @@ RectTransform:
   m_AnchoredPosition: {x: -22.65, y: 2.16}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2019607573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019607571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &2019607574
 SpriteRenderer:
   m_ObjectHideFlags: 0
