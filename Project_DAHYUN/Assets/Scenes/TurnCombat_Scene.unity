@@ -4459,6 +4459,9 @@ MonoBehaviour:
     type: 2}
   illusion_FX: {fileID: 1862190314031148, guid: fb89edad07c49fc478eff5decc304d6c,
     type: 2}
+  reap_FX: {fileID: 1862190314031148, guid: 174da5dcd23798841bf4e0ff61e00394, type: 2}
+  finalCut_FX: {fileID: 1862190314031148, guid: e7a40193cf8683c469f6500d1fcb67c2,
+    type: 2}
 --- !u!114 &1616549436
 MonoBehaviour:
   m_ObjectHideFlags: 0

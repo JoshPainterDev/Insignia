@@ -104,7 +104,7 @@ public class AbilityManager_C : MonoBehaviour {
                 effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
                 effectClone.transform.position = enemyMannequin.transform.position - new Vector3(300,0,0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.35f);
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(1f);
                 foreach(LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())

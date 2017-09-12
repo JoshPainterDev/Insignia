@@ -58,8 +58,6 @@ public class PlayerCombatAnimator : MonoBehaviour {
         {
             if(i < 7)
             {
-                //print("Loading ID: " + (i * 2) + ", " + (i * 2 + 1));
-                //print("ID values: " +GameController.controller.playerEquippedIDs[i * 2] + ", " + GameController.controller.playerEquippedIDs[i * 2 + 1]);
                 LoadPlayerEquipment(GameController.controller.playerEquippedIDs[i * 2], GameController.controller.playerEquippedIDs[(i * 2 + 1)]);
             }
 
@@ -68,21 +66,6 @@ public class PlayerCombatAnimator : MonoBehaviour {
             ++i;
         }
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		if(Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            ChangeToAnimation("attack01");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            ChangeToAnimation("idle");
-        }
-
-    }
 
     public void ChangeToAnimation(string animName)
     {
@@ -213,11 +196,7 @@ public class PlayerCombatAnimator : MonoBehaviour {
 
         foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
         {
-            child.enabled = false;
-            child.enabled = true;
-            child.speed = 1;
             child.SetInteger("AnimState", 0);
-
             //if (counter == 8)
             //{
             //    child.Play(bodyHeadIdle, 0, 0.01f);

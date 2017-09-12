@@ -95,9 +95,9 @@ public class CombatManager : MonoBehaviour {
         enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]); //start with the initial enemy lookup
         enemyInfo.enemyLevel = 10;
         enemyInfo.ability_1 = "Solar Flare";
-        enemyInfo.ability_2 = "Shadow Clone";
-        enemyInfo.ability_3 = "";
-        enemyInfo.ability_4 = "";
+        enemyInfo.ability_2 = "Outrage";
+        enemyInfo.ability_3 = "Reap";
+        enemyInfo.ability_4 = "Final Cut";
 
         enemyInfo.enemyAttack = 16;
         enemyInfo.enemyDefense = 16;
@@ -320,8 +320,8 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.15f);
         HideAbilityButtons();
         ShowButton(button.name);
-        Vector3 centerPos = new Vector3(450, 200, 1);
-        Vector3 ascend = new Vector3(450, 800, 1);
+        Vector3 centerPos = new Vector3(640, 250, 1);
+        Vector3 ascend = new Vector3(640, 800, 1);
         Color seethrough = new Color(abilitySelectColor.r, abilitySelectColor.g, abilitySelectColor.b, 0f);
 
         button.GetComponent<LerpScript>().LerpToPos(button.transform.position, centerPos, 8f);

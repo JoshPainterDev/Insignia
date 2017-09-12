@@ -35,6 +35,8 @@ public class Character_Menu_Manager : MonoBehaviour {
     private string bodyArmsIdle = "Player_BodyArms_DefaultWhite_Idle";
     private string bodyGlovesIdle = "Player_BodyArms_DefaultWhite_Idle";
 
+    private bool refreshing = false;
+
     EquipmentInfo info;
 
     // Use this for initialization
@@ -260,14 +262,14 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         int counter = 0;
 
-        foreach(Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
             child.enabled = false;
-            child.enabled = true;
-            child.speed = 1;
-            child.SetInteger("AnimState", 0);
+        }
 
-            //print(counter);
+            foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 5);
 
             //if(counter == 8)
             //{
@@ -288,6 +290,26 @@ public class Character_Menu_Manager : MonoBehaviour {
 
             ++counter;
         }
+
+        StartCoroutine(Refresh());
+    }
+
+    IEnumerator Refresh()
+    {
+        refreshing = true;
+        yield return new WaitForSeconds(0.5f);
+
+        //foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        //{
+        //    child.SetInteger("AnimState", 0);
+        //}
+
+        foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
+        {
+            child.enabled = true;
+        }
+
+        refreshing = false;
     }
 
     //*4 items per row*
