@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CombatManager : MonoBehaviour {
@@ -41,6 +42,7 @@ public class CombatManager : MonoBehaviour {
     [HideInInspector]
     public LimitBreak playerLimitBreak;
     public LimitBreak enemyLimitBreak;
+    public bool enemyCanLB;
 
     // ENEMY COMBAT VARIABLES
     public EnemyInfo enemyInfo;
@@ -69,6 +71,19 @@ public class CombatManager : MonoBehaviour {
     public Color abilityTextColor;
     public Color abilitySelectColor;
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            int origHealth = enemyHealth;
+            enemyHealth = (int)(enemyMaxHealth * 0.25f);
+
+            float var1 = ((float)origHealth / (float)enemyMaxHealth);
+            float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
+            enemyHealthBar.GetComponent<HealthScript>().Hurt();
+            enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+        }
+    }
 
     // Use this for initialization
     void Start ()
@@ -81,27 +96,28 @@ public class CombatManager : MonoBehaviour {
         }
 
         //0. pretend the player has save data for ability sake
-        GameController.controller.playerLevel = 10;
+        GameController.controller.playerLevel = 1;
         GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
         GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Shadow Strike";
-        GameController.controller.playerAttack = 26;
-        GameController.controller.playerDefense = 16;
+        GameController.controller.playerAttack = 5;
+        GameController.controller.playerDefense = 5;
         GameController.controller.playerProwess = 1;
         GameController.controller.playerSpeed = 1;
 
         enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]); //start with the initial enemy lookup
-        enemyInfo.enemyLevel = 10;
+        enemyInfo.enemyLevel = 1;
         enemyInfo.ability_1 = "Solar Flare";
         enemyInfo.ability_2 = "Outrage";
         enemyInfo.ability_3 = "Reap";
         enemyInfo.ability_4 = "Final Cut";
+        enemyInfo.canLimitBreak = false;
 
         enemyInfo.enemyAttack = 16;
         enemyInfo.enemyDefense = 16;
-        enemyInfo.enemySpeed = 2;
+        enemyInfo.enemySpeed = 1;
         /// 
 
         //1. Load in player and enemy
@@ -109,6 +125,7 @@ public class CombatManager : MonoBehaviour {
         enemyMaxHealth = 1000;
         playerHealth = playerMaxHealth;
         enemyHealth = enemyMaxHealth;
+        enemyCanLB = enemyInfo.canLimitBreak;
 
         if (GameController.controller.limitBreakTracker == 0)
             canLimitBreak = true;
@@ -165,7 +182,6 @@ public class CombatManager : MonoBehaviour {
         HideAbilityButtons();
         DisableBackButton();
         HideMainButtons();
-        //EnableMainButtons();  // only here for testing
         StartCoroutine(CheckForDamage(damageDealt, false, originalHP));
     }
 
@@ -187,28 +203,43 @@ public class CombatManager : MonoBehaviour {
         {
             if(player)
             {
-                print("player was hit");
                 float var1 = ((float)origHP / (float)playerMaxHealth);
                 float var2 = ((float)playerHealth / (float)playerMaxHealth);
                 playerHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
                 playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                currentState = State.MainMenu;
-                DisableAbilityButtons();
-                HideAbilityButtons();
-                DisableBackButton();
-                ShowMainButtons();
-                EnableMainButtons();
+
+                if(CheckForDeath(false))
+                {
+                    StartCoroutine(PlayPlayerDeathAnim());
+                }
+                else
+                {
+                    currentState = State.MainMenu;
+                    DisableAbilityButtons();
+                    HideAbilityButtons();
+                    DisableBackButton();
+                    ShowMainButtons();
+                    EnableMainButtons();
+                }
             }
-            else
+            else //if (enemy)
             {
-                print("enemy was hit");
                 float var1 = ((float)origHP / (float)enemyMaxHealth);
                 float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
                 enemyHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
                 enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                StartCoroutine(StartEnemyTurn());
+
+                if (CheckForDeath(true))
+                {
+                    StartCoroutine(PlayEnemyDeathAnim());
+                }
+                else
+                {
+                    StartCoroutine(StartEnemyTurn());
+                }
+                
             }
         }
         else
@@ -342,28 +373,28 @@ public class CombatManager : MonoBehaviour {
 
     // Combat Functions
     ////////////////////////////////////////////
-    public void CharacterDamaged(int damageVal, bool EnemyDamaged)
+    public bool CheckForDeath(bool EnemyCheck)
     {
-        if(EnemyDamaged)
+        if(EnemyCheck)
         {
-            enemyHealth -= damageVal;
-
             // check if the enemy was defeated
             if(enemyHealth <= 0)
             {
-                enemyHealth = 0;
-
-                //enemy defeated
-                if(GameController.controller.limitBreakTracker > 0)
+                if(enemyCanLB)
                 {
-                    --GameController.controller.limitBreakTracker;
+                    //limit break voodoo
+                    enemyHealth = (int)(enemyMaxHealth * 0.25f);
+                }
+                else //enemy is now dead
+                {
+                    enemyHealth = 0;
+                    StartCoroutine(PlayEnemyDeathAnim());
+                    return true;
                 }
             }
         }
         else
         {
-            playerHealth -= damageVal;
-
             // check if the player has triggered a Limit Break
             if(canLimitBreak && ((float)playerHealth / (float)playerMaxHealth) <= LIMIT_BREAK_THRESH)
             {
@@ -372,7 +403,18 @@ public class CombatManager : MonoBehaviour {
                 GameController.controller.limitBreakTracker = playerLimitBreak.coolDown;
                 this.GetComponent<LimitBreakManager_C>().UseLimitBreak(playerLimitBreak);
             }
+            else 
+            {
+                if(playerHealth <= 0) //player died
+                {
+                    playerHealth = 0;
+                    StartCoroutine(PlayPlayerDeathAnim());
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 
     IEnumerator UseStrike()
@@ -422,12 +464,14 @@ public class CombatManager : MonoBehaviour {
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = (10 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost))) + 60;
+        int accuracy = 70 + (10 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
+
+        print("ACCURACY: " + accuracy);
 
         // accuracy check the attack
         if (accuracy > rand)
@@ -453,7 +497,7 @@ public class CombatManager : MonoBehaviour {
             
             damageDealt -= (enemyInfo.enemyDefense) * (enemyInfo.enemyDefense * enemyDefenseBoost);
 
-            CharacterDamaged((int)damageDealt, true);
+            enemyHealth -= (int)damageDealt;
 
             print("PLAYER DAMAGE: " + damageDealt);
             print("enemy is now at: " + enemyHealth);
@@ -511,6 +555,7 @@ public class CombatManager : MonoBehaviour {
                 damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost));
 
                 enemyHealth -= (int)damageDealt;
+
                 print("damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
 
@@ -553,7 +598,6 @@ public class CombatManager : MonoBehaviour {
 
                 enemyHealth -= (int)damageDealt;
 
-
                 // check for special attack modifier
                 if (currSpecialCase == SpecialCase.None)
                 {
@@ -570,20 +614,17 @@ public class CombatManager : MonoBehaviour {
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// ENEMY DAMAGE FUNCTIONS
     /// 
-        // DAMAGE AN ENEMY WITH STRIKE ONLY!
+        // DAMAGE PLAYER WITH STRIKE ONLY!
     public void DamagePlayer_Strike()
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = (5 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost))) + 60;
+        int accuracy = 70 + (5 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost)));
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
-
-        print("ENEMY STRIKE!");
-        print("ENEMY DEFENSE: " + enemyInfo.enemyDefense);
 
         // accuracy check the attack
         if (accuracy > rand)
@@ -609,7 +650,7 @@ public class CombatManager : MonoBehaviour {
 
             damageDealt -= (GameController.controller.playerDefense) * (GameController.controller.playerDefense * playerDefenseBoost);
 
-            CharacterDamaged((int)damageDealt, false);
+            playerHealth -= (int)damageDealt;
 
             print("ENEMY DAMAGE: " + damageDealt);
             print("player is now at: " + playerHealth);
@@ -639,8 +680,6 @@ public class CombatManager : MonoBehaviour {
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
 
-        print("ENEMY DEFENSE: " + enemyInfo.enemyDefense);
-
         if (abilityUsed.Type == AbilityType.Physical)
         {
             // accuracy check the attack
@@ -668,6 +707,7 @@ public class CombatManager : MonoBehaviour {
                 damageDealt -= (GameController.controller.playerDefense * (playerDefenseBoost * playerDefenseBoost));
 
                 playerHealth -= (int)damageDealt;
+
                 print("damage: " + damageDealt);
                 print("player HP: " + playerHealth);
 
@@ -758,7 +798,55 @@ public class CombatManager : MonoBehaviour {
     /// Helper Functions
     /// ////////////////////////////////////////
 
-    public void TopSelected()
+    IEnumerator PlayEnemyDeathAnim()
+    {
+        yield return new WaitForSeconds(1.5f);
+        this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
+        yield return new WaitForSeconds(0.5f);
+        foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.color = Color.clear;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.color = Color.white;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.color = Color.clear;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.color = Color.white;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (LerpScript lerp in enemyMannequin.GetComponentsInChildren<LerpScript>())
+        {
+            lerp.LerpToColor(Color.white, Color.clear, 1.5f);
+        }
+
+        yield return new WaitForSeconds(2f);
+        //SceneManager.LoadScene("AdventureSelect_Scene");
+    }
+
+    IEnumerator PlayPlayerDeathAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //SceneManager.LoadScene("AdventureSelect_Scene");
+    }
+
+        public void TopSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
 
@@ -992,13 +1080,14 @@ public class CombatManager : MonoBehaviour {
     void HideHealthBars()
     {
         playerHealthBar.GetComponent<Image>().enabled = false;
-
-        foreach(Image img in playerHealthBar.GetComponentsInChildren<Image>())
+        playerHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = false;
+        foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = false;
         }
 
         enemyHealthBar.GetComponent<Image>().enabled = false;
+        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = false;
         foreach (Image img in enemyHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = false;
@@ -1008,12 +1097,14 @@ public class CombatManager : MonoBehaviour {
     void ShowHealthBars()
     {
         playerHealthBar.GetComponent<Image>().enabled = true;
+        playerHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = true;
         foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = true;
         }
 
         enemyHealthBar.GetComponent<Image>().enabled = true;
+        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = true;
         foreach (Image img in enemyHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = true;

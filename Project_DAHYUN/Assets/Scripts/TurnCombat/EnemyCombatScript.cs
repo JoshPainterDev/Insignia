@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyCombatScript : MonoBehaviour {
 
     private CombatManager combatManager;
-    public GameObject enemyMannequinn;
+    public GameObject enemyMannequin;
 
     [HideInInspector]
     private Vector3 origPosition;
@@ -25,7 +25,7 @@ public class EnemyCombatScript : MonoBehaviour {
     void Start ()
     {
         combatManager = this.GetComponent<CombatManager>();
-        origPosition = enemyMannequinn.transform.position;
+        origPosition = enemyMannequin.transform.position;
 
         GameController.controller.difficultyScale = 1;
         difficulty = GameController.controller.difficultyScale;
@@ -60,7 +60,7 @@ public class EnemyCombatScript : MonoBehaviour {
         print("Easy AI:");
         //first evaluate random chance to strike
         //regardless of abilities
-        int chanceToStrike = Random.Range(0, 100);
+        int chanceToStrike = Random.Range(100, 100);
 
         if(chanceToStrike > 35)
         {
@@ -114,11 +114,19 @@ public class EnemyCombatScript : MonoBehaviour {
 
     IEnumerator EnemyStrike()
     {
-        enemyMannequinn.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 2f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 2f);
         yield return new WaitForSeconds(1f);
         combatManager.DamagePlayer_Strike();
-        enemyMannequinn.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 2.5f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 2.5f);
         yield return new WaitForSeconds(0.25f);
         combatManager.EndEnemyTurn(true, originalPlayerHP);
+    }
+
+    public void PlayDeathAnim()
+    {
+        foreach(Animator child in enemyMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 2);
+        }
     }
 }

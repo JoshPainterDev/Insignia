@@ -1941,7 +1941,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666657974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25, y: 138, z: 0}
+  m_LocalPosition: {x: -75, y: 138, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 826206098}
@@ -4208,6 +4208,7 @@ MonoBehaviour:
   playerDefenseBoost: 0
   playerSpeedBoost: 0
   canLimitBreak: 1
+  enemyCanLB: 0
   enemyHealthBar: {fileID: 96530580}
   enemyMaxHealth: 1000
   enemyAttackBoost: 0
@@ -4439,7 +4440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002afdecef55489408c5524fd9597074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMannequinn: {fileID: 666657974}
+  enemyMannequin: {fileID: 666657974}
   strikePosition: {x: -350, y: 138, z: 0}
 --- !u!114 &1616549435
 MonoBehaviour:

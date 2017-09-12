@@ -10,6 +10,7 @@ public class EnemyInfo
     public int enemyDefense;
     public int enemySpeed;
     public int enemyProwess;
+    public bool canLimitBreak;
 
     public string ability_1, ability_2, ability_3, ability_4;
 
