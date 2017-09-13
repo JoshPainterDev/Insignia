@@ -132,9 +132,7 @@ public class Character_Menu_Manager : MonoBehaviour {
             GameController.controller.playerEquippedIDs[1] = j;
 
             if (!info.hideUnderLayer)
-            {
                 playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
-            }
             else
                 playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -261,52 +259,38 @@ public class Character_Menu_Manager : MonoBehaviour {
     public void RefreshAnimations()
     {
         int counter = 0;
+        bool[] previousState = new bool[16];
 
         foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
+            previousState[counter] = child.enabled;
             child.enabled = false;
-        }
-
-            foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 5);
-
-            //if(counter == 8)
-            //{
-            //    child.Play(bodyHeadIdle, 0, 0.01f);
-            //}
-            //else if(counter == 9)
-            //{
-            //    child.Play(bodyTorsoIdle, 0, 0.01f);
-            //}
-            //else if (counter == 10)
-            //{
-            //    child.Play(bodyArmsIdle, 0, 0.01f);
-            //}
-            //else if (counter == 11)
-            //{
-            //    child.Play(bodyHeadIdle, 0, 0.01f);
-            //}
-
             ++counter;
         }
 
-        StartCoroutine(Refresh());
+        counter = 0;
+
+        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 5);
+            ++counter;
+        }
+
+        StartCoroutine(Refresh(previousState));
     }
 
-    IEnumerator Refresh()
+    IEnumerator Refresh(bool[] previousState)
     {
-        refreshing = true;
-        yield return new WaitForSeconds(0.5f);
+        int counter = 0;
 
-        //foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        //{
-        //    child.SetInteger("AnimState", 0);
-        //}
+        refreshing = true;
+
+        yield return new WaitForSeconds(0.5f);
 
         foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
-            child.enabled = true;
+            child.enabled = previousState[counter];
+            ++counter;
         }
 
         refreshing = false;

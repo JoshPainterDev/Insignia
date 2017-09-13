@@ -25,32 +25,6 @@ public class PlayerCombatAnimator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        //GameController.controller.playerEquippedIDs = new int[25];
-
-        //GameController.controller.playerEquippedIDs[0] = 0;
-        //GameController.controller.playerEquippedIDs[1] = 2;
-
-        //GameController.controller.playerEquippedIDs[2] = 4;
-        //GameController.controller.playerEquippedIDs[3] = 2;
-
-        //GameController.controller.playerEquippedIDs[4] = 8;
-        //GameController.controller.playerEquippedIDs[5] = 2;
-
-        //GameController.controller.playerEquippedIDs[6] = 12;
-        //GameController.controller.playerEquippedIDs[7] = 2;
-
-        //GameController.controller.playerEquippedIDs[8] = 16;
-        //GameController.controller.playerEquippedIDs[9] = 2;
-
-        //GameController.controller.playerEquippedIDs[10] = 20;
-        //GameController.controller.playerEquippedIDs[11] = 2;
-
-        //GameController.controller.playerEquippedIDs[12] = 24;
-        //GameController.controller.playerEquippedIDs[13] = 2;
-
-        //GameController.controller.playerEquippedIDs[14] = 28;
-        //GameController.controller.playerEquippedIDs[15] = 2;
-
         childAnimators = new Animator[13];
         currentAnimation = "idle";
         int i = 0;
