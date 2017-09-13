@@ -18,7 +18,7 @@ public class CombatManager : MonoBehaviour {
 
     //MAIN BUTTON VARIABLES
     public GameObject topButton, leftButton, rightButton, backButton;
-    public Color strike_C, items_C, abilities_C, back_C;
+    public Color strike_C, retreat_C, abilities_C, back_C;
 
     private State currentState = State.MainMenu;
 
@@ -147,6 +147,7 @@ public class CombatManager : MonoBehaviour {
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         DisableAbilityButtons();
+        DisableBackButton();
         HideAbilityButtons();
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
@@ -301,8 +302,8 @@ public class CombatManager : MonoBehaviour {
 
         topButton.GetComponentInChildren<Text>().text = "STRIKE";
         topButton.GetComponent<Image>().color = strike_C;
-        leftButton.GetComponentInChildren<Text>().text = "ITEMS";
-        leftButton.GetComponent<Image>().color = items_C;
+        leftButton.GetComponentInChildren<Text>().text = "RETREAT";
+        leftButton.GetComponent<Image>().color = retreat_C;
         rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
         rightButton.GetComponent<Image>().color = abilities_C;
 
