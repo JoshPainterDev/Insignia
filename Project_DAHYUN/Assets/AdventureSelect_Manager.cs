@@ -12,8 +12,11 @@ public class AdventureSelect_Manager : MonoBehaviour
     public GameObject camera;
     public GameObject blackSq;
     public Vector3 mmCameraPos;
+    public GameObject selectPrefab;
 
     public GameObject BackButton;
+
+    public Vector3 adventureCameraPos;
 
     // Use this for initialization
     void Start ()
@@ -99,6 +102,22 @@ public class AdventureSelect_Manager : MonoBehaviour
         GameController.controller.currentEncounter = encounter;
 
         //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
+        Destroy(selectPrefab);
+        Destroy(BackButton);
+        yield return new WaitForSeconds(0.25f);
+        foreach(Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 5); //emote? idk?
+        }
+        yield return new WaitForSeconds(1.5f);
+        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 2); //walk? 
+        }
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(500, 0, 0), 0.5f);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 0.5f);
+        yield return new WaitForSeconds(1f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
@@ -122,11 +141,14 @@ public class AdventureSelect_Manager : MonoBehaviour
 
     IEnumerator LoadCombatScreen()
     {
-        //camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 1f);
+        Destroy(BackButton);
+        Destroy(selectPrefab);
         yield return new WaitForSeconds(0.25f);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, new Vector3(100,-63,0),2);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 1f);
+        yield return new WaitForSeconds(3.5f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
-        //SceneManager.LoadScene("AdventureSelect_Scene");
         SceneManager.LoadScene("TurnCombat_Scene");
     }
 

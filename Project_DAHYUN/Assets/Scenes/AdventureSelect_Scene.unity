@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119668992}
   - component: {fileID: 119668994}
+  - component: {fileID: 119668993}
   m_Layer: 5
   m_Name: Player_Mannequin
   m_TagString: Untagged
@@ -154,6 +155,17 @@ RectTransform:
   m_AnchoredPosition: {x: 19.5, y: -63}
   m_SizeDelta: {x: 8.5, y: 13.9}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &119668993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119668991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &119668994
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2308,7 +2320,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  BackButton: {fileID: 0}
+  BackButton: {fileID: 1447408310}
   AbilitiesButton: {fileID: 0}
   PersonaButton: {fileID: 0}
 --- !u!4 &1616549426
@@ -2340,7 +2352,9 @@ MonoBehaviour:
   camera: {fileID: 1243540803}
   blackSq: {fileID: 538142076}
   mmCameraPos: {x: 175, y: -92, z: -10}
+  selectPrefab: {fileID: 2135960358}
   BackButton: {fileID: 1447408310}
+  adventureCameraPos: {x: 285, y: -92, z: -10}
 --- !u!1 &1619637139
 GameObject:
   m_ObjectHideFlags: 0
