@@ -42,7 +42,6 @@ public class Character_Menu_Manager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
         //TEMPORARY SHIT BEFORE I GET SAVING WORKING//
         GameController.controller.playerColorPreference = new float[4];
         GameController.controller.playerColorPreference[0] = 1f;
@@ -51,7 +50,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.playerColorPreference[3] = 0.75f;
         GameController.controller.playerAttack = 5;
         //******************************************//
-
         //unlockedEquipment = GameController.controller.playerEquipmentList;
         for (int i = 0; i < 30; ++i)
         {

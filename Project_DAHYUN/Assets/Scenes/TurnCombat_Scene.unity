@@ -234,7 +234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 204, y: 70.49997}
+  m_AnchoredPosition: {x: 250, y: 70.49997}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96530582
@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 107353939}
   - component: {fileID: 107353942}
   - component: {fileID: 107353941}
+  - component: {fileID: 107353940}
   m_Layer: 5
   m_Name: Tally
   m_TagString: Untagged
@@ -346,6 +347,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 39.8, y: 39.1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &107353940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 107353938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &107353941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -648, y: 138}
+  m_AnchoredPosition: {x: -650, y: 138}
   m_SizeDelta: {x: 8.5, y: 13.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119668993
@@ -1607,7 +1619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -177.5, y: 70.5}
+  m_AnchoredPosition: {x: -250, y: 70.5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597438598
@@ -1977,7 +1989,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666657974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -75, y: 138, z: 0}
+  m_LocalPosition: {x: -55, y: 138, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 826206098}
@@ -3741,11 +3753,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -477.3
+      value: -469
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 191
+      value: 179
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3789,7 +3801,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: orthographic size
-      value: 150
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_NormalizedViewPortRect.width
@@ -4401,7 +4413,6 @@ MonoBehaviour:
   blackSq: {fileID: 711003507}
   currSpecialCase: 5
   playerHealthBar: {fileID: 597438596}
-  playerMaxHealth: 1000
   playerAttackBoost: 0
   playerDefenseBoost: 0
   playerSpeedBoost: 0
@@ -4427,6 +4438,8 @@ MonoBehaviour:
   abilityButton4: {fileID: 1811298326}
   abilityTextColor: {r: 1, g: 1, b: 1, a: 1}
   abilitySelectColor: {r: 0.58823526, g: 0.0865052, b: 0.0865052, a: 1}
+  enemiesRemaining: 0
+  enemyCounter: {fileID: 524059995}
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0
@@ -5062,7 +5075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -84}
+  m_AnchoredPosition: {x: 20, y: -140}
   m_SizeDelta: {x: 190, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1709865733

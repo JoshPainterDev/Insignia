@@ -66,7 +66,7 @@ public class AdventureSelect_Manager : MonoBehaviour
                 {
                     //load first stage
                     encounter.totalEnemies = 3;
-                    encounter.enemyNames[0] = "fiddle dicks Assassin";
+                    encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
                     encounter.enemyNames[1] = "bubber duck";
                     encounter.bossFight[1] = false;

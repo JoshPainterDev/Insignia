@@ -29,7 +29,7 @@ public class CombatManager : MonoBehaviour {
     private int playerLevel;
     private int playerHealth = 0;
     [HideInInspector]
-    public int playerMaxHealth = 600;
+    private int playerMaxHealth = 100;
     [HideInInspector]
     public int playerAttackBoost = 0;
     [HideInInspector]
@@ -43,6 +43,7 @@ public class CombatManager : MonoBehaviour {
     [HideInInspector]
     public LimitBreak playerLimitBreak;
     public LimitBreak enemyLimitBreak;
+    [HideInInspector]
     public bool enemyCanLB;
 
     // ENEMY COMBAT VARIABLES
@@ -50,7 +51,7 @@ public class CombatManager : MonoBehaviour {
     public GameObject enemyHealthBar;
     private int enemyHealth = 0;
     [HideInInspector]
-    public int enemyMaxHealth = 1000;
+    public int enemyMaxHealth = 100;
     [HideInInspector]
     public int enemyAttackBoost = 0;
     [HideInInspector]
@@ -73,7 +74,9 @@ public class CombatManager : MonoBehaviour {
     public Color abilitySelectColor;
 
     //ENCOUNTER VARIABLES
+    [HideInInspector]
     public int enemiesRemaining;
+    public GameObject enemyCounter;
 
     public void Update()
     {
@@ -126,33 +129,22 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerProwess = 1;
         GameController.controller.playerSpeed = 1;
 
-        enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]); //start with the initial enemy lookup
-        enemyInfo.enemyLevel = 1;
-        enemyInfo.ability_1 = "Solar Flare";
-        enemyInfo.ability_2 = "Outrage";
-        enemyInfo.ability_3 = "Reap";
-        enemyInfo.ability_4 = "Final Cut";
-        enemyInfo.canLimitBreak = false;
-
-        enemyInfo.enemyAttack = 16;
-        enemyInfo.enemyDefense = 16;
-        enemyInfo.enemySpeed = 1;
-        /// 
-
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
         playerMaxHealth = (playerMaxHealth * playerLevel) + (9 * GameController.controller.playerDefense);
-        enemyMaxHealth = (enemyInfo.enemyMaxHealthBase * enemyInfo.enemyLevel) + (9 * enemyInfo.enemyDefense);
         playerHealth = playerMaxHealth;
-        enemyHealth = enemyMaxHealth;
-        enemyCanLB = enemyInfo.canLimitBreak;
 
+        ResetEnemyValues();
+
+        
         //if (GameController.controller.limitBreakTracker == 0)
         //    canLimitBreak = true;
 
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
         strikeExecutePercent = .15f + (((GameController.controller.playerProwess - enemyInfo.enemyDefense) + 0.01f) / GameController.controller.playerProwess);
+        if (strikeExecutePercent <= 0)
+            strikeExecutePercent = .15f;
         ability1 = GameController.controller.playerAbility1;
         ability2 = GameController.controller.playerAbility2;
         ability3 = GameController.controller.playerAbility3;
@@ -365,6 +357,8 @@ public class CombatManager : MonoBehaviour {
         Color origColor = button.GetComponent<Image>().color;
 
         DisableAbilityButtons();
+        DisableBackButton();
+        HideButton("Back_Button");
         HideHealthBars();
 
         button.GetComponent<Image>().color = abilitySelectColor;
@@ -412,7 +406,7 @@ public class CombatManager : MonoBehaviour {
                 {
                     enemyHealth = 0;
                     --enemiesRemaining;
-                    StartCoroutine(PlayEnemyDeathAnim());
+                    enemyCounter.GetComponent<enemyCounterScript>().EnemyDied();
                     return true;
                 }
             }
@@ -469,7 +463,6 @@ public class CombatManager : MonoBehaviour {
 
     bool EvaluateExecution()
     {
-        print("enemy percent health: " + ((float)enemyHealth / (float)enemyMaxHealth));
         print("execute percent: " + strikeExecutePercent);
 
         // check if the player can press the enemy
@@ -865,7 +858,6 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(2f);
 
         CheckForMoreEnemies();
-        //SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
     private void CheckForMoreEnemies()
@@ -889,12 +881,57 @@ public class CombatManager : MonoBehaviour {
         SceneManager.LoadScene(encounter.returnOnSuccessScene);
     }
 
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Enemy loading
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator LoadNextEnemy()
     {
+        
         yield return new WaitForSeconds(1.5f);
         EnemyInfo info = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
-        print(info.enemyName);
+        info.enemyImageSource = "Animations\\LimitBreaks\\Hellion\\Player_LimitBreak_Hellion_AnimController";
+        enemyMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(info.enemyImageSource);
+        foreach(SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.enabled = true;
+            sprite.color = Color.white;
+            sprite.flipX = false;
+        }
+        yield return new WaitForSeconds(1f);
+
+        ResetEnemyValues();
+
+        yield return new WaitForSeconds(1.5f);
+
+        if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
+            EndEnemyTurn(false, enemyHealth);
+        else
+            EndPlayerTurn(false, playerHealth);
+
+        enemyHealthBar.GetComponent<HealthScript>().LerpHealth(0, 1);
     }
+
+    public void ResetEnemyValues()
+    {
+        if (enemyInfo == null)
+            enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]); //start with the initial enemy lookup
+        else
+            enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
+
+        enemyCanLB = enemyInfo.canLimitBreak;
+        enemySpeedBoost = 0;
+        enemyAttackBoost = 0;
+        enemyDefenseBoost = 0;
+
+        enemyMaxHealth = (enemyInfo.enemyMaxHealthBase * enemyInfo.enemyLevel) + (9 * enemyInfo.enemyDefense);
+        enemyHealth = enemyMaxHealth;
+        enemyCanLB = enemyInfo.canLimitBreak;
+    }
+
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Enemy loading
+    /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     IEnumerator PlayPlayerDeathAnim()
     {

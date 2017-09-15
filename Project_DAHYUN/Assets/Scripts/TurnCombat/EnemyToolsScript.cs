@@ -25,17 +25,43 @@ public class EnemyToolsScript : MonoBehaviour {
         switch (name)
         {
             case "Shadow Assassin":
-                enemyInfo.enemyLevel = 10;
-                enemyInfo.ability_1 = "Solar Flare";
+                enemyInfo.enemyLevel = 1;
+                enemyInfo.ability_1 = "Outrage";
                 enemyInfo.ability_2 = "Shadow Clone";
-                enemyInfo.ability_3 = "";
-                enemyInfo.ability_4 = "";
+                enemyInfo.ability_3 = "Reap";
+                enemyInfo.ability_4 = "Final Cut";
 
                 enemyInfo.enemyName = "Shadow Assassin";
-                enemyInfo.enemyAttack = 16;
-                enemyInfo.enemyDefense = 16;
+                enemyInfo.enemyAttack = 5;
+                enemyInfo.enemyDefense = 2;
                 enemyInfo.enemySpeed = 2;
+                enemyInfo.enemyMaxHealthBase = 60;
+                break;
+            case "bubber duck":
+                enemyInfo.enemyLevel = 1;
+                enemyInfo.ability_1 = "Solar Flare";
+                enemyInfo.ability_2 = "Reap";
+                enemyInfo.ability_3 = "Final Cut";
+                enemyInfo.ability_4 = "";
+
+                enemyInfo.enemyName = "bubber duck";
+                enemyInfo.enemyAttack = 3;
+                enemyInfo.enemyDefense = 4;
+                enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 80;
+                break;
+            case "that weird guy in the corner of the room":
+                enemyInfo.enemyLevel = 1;
+                enemyInfo.ability_1 = "Solar Flare";
+                enemyInfo.ability_2 = "Shadow Clone";
+                enemyInfo.ability_3 = "Final Cut";
+                enemyInfo.ability_4 = "Reap";
+
+                enemyInfo.enemyName = "that weird guy in the corner of the room";
+                enemyInfo.enemyAttack = 3;
+                enemyInfo.enemyDefense = 3;
+                enemyInfo.enemySpeed = 1;
+                enemyInfo.enemyMaxHealthBase = 110;
                 break;
             default:
                 break;
