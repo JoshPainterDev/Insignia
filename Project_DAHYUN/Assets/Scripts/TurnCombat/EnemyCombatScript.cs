@@ -76,25 +76,37 @@ public class EnemyCombatScript : MonoBehaviour {
             {
                 case 0:
                     if((ability1.Name != "") && (cooldownA1 == 0))
+                    {
+                        combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability1, combatManager.getPlayerHealth());
+                    }
                     else
                         StartCoroutine(EnemyStrike());
                     break;
                 case 1:
                     if ((ability2.Name != "") && (cooldownA2 == 0))
+                    {
+                        combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability2, combatManager.getPlayerHealth());
+                    }
                     else
                         StartCoroutine(EnemyStrike());
                     break;
                 case 2:
                     if ((ability3.Name != "") && (cooldownA3 == 0))
+                    {
+                        combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability3, combatManager.getPlayerHealth());
+                    }
                     else
                         StartCoroutine(EnemyStrike());
                     break;
                 case 3:
                     if ((ability4.Name != "") && (cooldownA4 == 0))
+                    {
+                        combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability4, combatManager.getPlayerHealth());
+                    }
                     else
                         StartCoroutine(EnemyStrike());
                     break;
@@ -114,6 +126,7 @@ public class EnemyCombatScript : MonoBehaviour {
 
     IEnumerator EnemyStrike()
     {
+        combatManager.HideHealthBars();
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 2f);
         yield return new WaitForSeconds(1f);
         combatManager.DamagePlayer_Strike();

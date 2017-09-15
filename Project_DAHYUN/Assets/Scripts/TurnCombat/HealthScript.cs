@@ -42,6 +42,11 @@ public class HealthScript : MonoBehaviour
         StartCoroutine(HurtAnim());
     }
 
+    public void Death()
+    {
+        StartCoroutine(DeathAnim());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -106,15 +111,28 @@ public class HealthScript : MonoBehaviour
         {
             sprite.color = origColor;
         }
+    }
 
-        yield return new WaitForSeconds(0.1f);
+    IEnumerator DeathAnim()
+    {
+        this.GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 1);
 
-        //character.GetComponent<LerpScript>().LerpToColor(origColor, fadeColor);
-        //yield return new WaitForSeconds(0.1f);
-        //character.GetComponent<LerpScript>().LerpToColor(fadeColor, origColor);
-        //yield return new WaitForSeconds(0.1f);
-        //character.GetComponent<LerpScript>().LerpToColor(origColor, fadeColor);
-        //yield return new WaitForSeconds(0.1f);
-        //character.GetComponent<LerpScript>().LerpToColor(fadeColor, origColor);
+        foreach (LerpScript lerp in this.GetComponentsInChildren<LerpScript>())
+        {
+            lerp.LerpToColor(Color.white, Color.clear, 1);
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        this.GetComponent<Image>().color = Color.white;
+        this.GetComponent<Image>().enabled = false;
+
+        foreach (Image sprite in this.GetComponentsInChildren<Image>())
+        {
+            sprite.enabled = false;
+            sprite.color = Color.white;
+        }
+
+        this.transform.GetChild(2).GetComponent<Text>().enabled = false;
     }
 }

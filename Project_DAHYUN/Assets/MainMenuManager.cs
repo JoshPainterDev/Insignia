@@ -53,9 +53,17 @@ public class MainMenuManager : MonoBehaviour {
         //head
         EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         playerMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+            playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
+
         //torso
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[2], GameController.controller.playerEquippedIDs[3]);
         playerMannequin.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+        {
+            playerMannequin.transform.GetChild(9).GetComponent<SpriteRenderer>().enabled = true;
+            playerMannequin.transform.GetChild(11).GetComponent<SpriteRenderer>().enabled = true;
+        }
 
         string newStr = info.imgSourceName;
         string match = "Torso";
@@ -95,6 +103,8 @@ public class MainMenuManager : MonoBehaviour {
         //gloves
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[8], GameController.controller.playerEquippedIDs[9]);
         playerMannequin.transform.GetChild(4).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+            playerMannequin.transform.GetChild(10).GetComponent<SpriteRenderer>().enabled = true;
         //shoes
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[10], GameController.controller.playerEquippedIDs[11]);
         playerMannequin.transform.GetChild(5).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;

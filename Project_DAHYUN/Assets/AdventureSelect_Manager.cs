@@ -65,9 +65,13 @@ public class AdventureSelect_Manager : MonoBehaviour
                 if(levelsCompleted == 0)
                 {
                     //load first stage
-                    encounter.totalEnemies = 1;
+                    encounter.totalEnemies = 3;
                     encounter.enemyNames[0] = "fiddle dicks Assassin";
                     encounter.bossFight[0] = false;
+                    encounter.enemyNames[1] = "bubber duck";
+                    encounter.bossFight[1] = false;
+                    encounter.enemyNames[2] = "that weird guy in the corner of the room";
+                    encounter.bossFight[2] = false;
                 }
                 else if(levelsCompleted == 1)
                 {

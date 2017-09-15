@@ -31,6 +31,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_3 = "";
                 enemyInfo.ability_4 = "";
 
+                enemyInfo.enemyName = "Shadow Assassin";
                 enemyInfo.enemyAttack = 16;
                 enemyInfo.enemyDefense = 16;
                 enemyInfo.enemySpeed = 2;

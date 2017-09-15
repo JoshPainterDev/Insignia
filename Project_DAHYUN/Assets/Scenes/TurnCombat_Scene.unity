@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 96530583}
   - component: {fileID: 96530582}
   - component: {fileID: 96530585}
+  - component: {fileID: 96530586}
   m_Layer: 5
   m_Name: EnemyHP
   m_TagString: Untagged
@@ -299,6 +300,17 @@ MonoBehaviour:
   greenBar: {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
   yellowBar: {fileID: 21300000, guid: 93ea1a1d268476047a8a0649cd5a9acf, type: 3}
   redBar: {fileID: 21300000, guid: e867a5b5daaac5946bed1a6d5c0ba65d, type: 3}
+--- !u!114 &96530586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 96530580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &107353938
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 39.8, y: 39.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107353941
@@ -377,6 +389,7 @@ GameObject:
   - component: {fileID: 113134920}
   - component: {fileID: 113134922}
   - component: {fileID: 113134921}
+  - component: {fileID: 113134923}
   m_Layer: 5
   m_Name: EnemyHealthBar
   m_TagString: Untagged
@@ -435,6 +448,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 113134919}
+--- !u!114 &113134923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 113134919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &119668991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -27.5, y: 0.32998657}
+  m_AnchoredPosition: {x: -27.5, y: -6}
   m_SizeDelta: {x: 39.799988, y: 39.100006}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &524059997
@@ -1557,6 +1581,7 @@ GameObject:
   - component: {fileID: 597438599}
   - component: {fileID: 597438598}
   - component: {fileID: 597438601}
+  - component: {fileID: 597438602}
   m_Layer: 5
   m_Name: PlayerHP
   m_TagString: Untagged
@@ -1648,6 +1673,17 @@ MonoBehaviour:
   greenBar: {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
   yellowBar: {fileID: 21300000, guid: 93ea1a1d268476047a8a0649cd5a9acf, type: 3}
   redBar: {fileID: 21300000, guid: e867a5b5daaac5946bed1a6d5c0ba65d, type: 3}
+--- !u!114 &597438602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 597438596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &605055169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,6 +2152,7 @@ GameObject:
   - component: {fileID: 678526347}
   - component: {fileID: 678526349}
   - component: {fileID: 678526348}
+  - component: {fileID: 678526350}
   m_Layer: 5
   m_Name: EnemyHealthCase
   m_TagString: Untagged
@@ -2174,6 +2211,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 678526346}
+--- !u!114 &678526350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 678526346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &711003506
 Prefab:
   m_ObjectHideFlags: 0
@@ -2293,6 +2341,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &711003507 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1112125458341768, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+    type: 2}
+  m_PrefabInternal: {fileID: 711003506}
 --- !u!1 &724229074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,6 +4059,7 @@ GameObject:
   - component: {fileID: 1419865489}
   - component: {fileID: 1419865491}
   - component: {fileID: 1419865490}
+  - component: {fileID: 1419865492}
   m_Layer: 5
   m_Name: PlayerLevel
   m_TagString: Untagged
@@ -4070,6 +4124,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1419865488}
+--- !u!114 &1419865492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419865488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1430210197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,6 +4279,7 @@ GameObject:
   - component: {fileID: 1488682822}
   - component: {fileID: 1488682824}
   - component: {fileID: 1488682823}
+  - component: {fileID: 1488682825}
   m_Layer: 5
   m_Name: PlayerHealthCase
   m_TagString: Untagged
@@ -4272,6 +4338,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1488682821}
+--- !u!114 &1488682825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1488682821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1616549424
 GameObject:
   m_ObjectHideFlags: 0
@@ -4321,6 +4398,7 @@ MonoBehaviour:
   retreat_C: {r: 0.45098042, g: 0.5019608, b: 0.6, a: 1}
   abilities_C: {r: 0.18014708, g: 0.58747464, b: 0.875, a: 1}
   back_C: {r: 0.7205882, g: 0.7205882, b: 0.7205882, a: 1}
+  blackSq: {fileID: 711003507}
   currSpecialCase: 5
   playerHealthBar: {fileID: 597438596}
   playerMaxHealth: 1000
@@ -4984,7 +5062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -18.6}
+  m_AnchoredPosition: {x: 20, y: -84}
   m_SizeDelta: {x: 190, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1709865733
@@ -5082,6 +5160,7 @@ GameObject:
   - component: {fileID: 1789068147}
   - component: {fileID: 1789068149}
   - component: {fileID: 1789068148}
+  - component: {fileID: 1789068150}
   m_Layer: 5
   m_Name: EnemyLevel
   m_TagString: Untagged
@@ -5146,6 +5225,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1789068146}
+--- !u!114 &1789068150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1789068146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1811298326
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,6 +5459,7 @@ GameObject:
   - component: {fileID: 1959496090}
   - component: {fileID: 1959496092}
   - component: {fileID: 1959496091}
+  - component: {fileID: 1959496093}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -5427,6 +5518,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1959496089}
+--- !u!114 &1959496093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1959496089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1970203752
 GameObject:
   m_ObjectHideFlags: 0

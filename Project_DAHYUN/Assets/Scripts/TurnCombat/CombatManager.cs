@@ -19,13 +19,14 @@ public class CombatManager : MonoBehaviour {
     //MAIN BUTTON VARIABLES
     public GameObject topButton, leftButton, rightButton, backButton;
     public Color strike_C, retreat_C, abilities_C, back_C;
-
+    public GameObject blackSq;
     private State currentState = State.MainMenu;
 
     //COMBAT VARIABLES
     public SpecialCase currSpecialCase = SpecialCase.None;
     public GameObject playerHealthBar;
 
+    private int playerLevel;
     private int playerHealth = 0;
     [HideInInspector]
     public int playerMaxHealth = 600;
@@ -71,6 +72,9 @@ public class CombatManager : MonoBehaviour {
     public Color abilityTextColor;
     public Color abilitySelectColor;
 
+    //ENCOUNTER VARIABLES
+    public int enemiesRemaining;
+
     public void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha9))
@@ -83,6 +87,17 @@ public class CombatManager : MonoBehaviour {
             enemyHealthBar.GetComponent<HealthScript>().Hurt();
             enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            int origHealth = playerHealth;
+            playerHealth = (int)(playerMaxHealth * 0.01f);
+
+            float var1 = ((float)origHealth / (float)playerMaxHealth);
+            float var2 = ((float)playerHealth / (float)playerMaxHealth);
+            playerHealthBar.GetComponent<HealthScript>().Hurt();
+            playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+        }
     }
 
     // Use this for initialization
@@ -94,6 +109,10 @@ public class CombatManager : MonoBehaviour {
         {
             encounter = new EnemyEncounter();
         }
+
+        encounter.totalEnemies = 3;
+        enemiesRemaining = encounter.totalEnemies;
+        encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
@@ -121,14 +140,15 @@ public class CombatManager : MonoBehaviour {
         /// 
 
         //1. Load in player and enemy
-        playerMaxHealth = 600;
-        enemyMaxHealth = 1000;
+        playerLevel = GameController.controller.playerLevel;
+        playerMaxHealth = (playerMaxHealth * playerLevel) + (9 * GameController.controller.playerDefense);
+        enemyMaxHealth = (enemyInfo.enemyMaxHealthBase * enemyInfo.enemyLevel) + (9 * enemyInfo.enemyDefense);
         playerHealth = playerMaxHealth;
         enemyHealth = enemyMaxHealth;
         enemyCanLB = enemyInfo.canLimitBreak;
 
-        if (GameController.controller.limitBreakTracker == 0)
-            canLimitBreak = true;
+        //if (GameController.controller.limitBreakTracker == 0)
+        //    canLimitBreak = true;
 
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
@@ -376,6 +396,8 @@ public class CombatManager : MonoBehaviour {
     ////////////////////////////////////////////
     public bool CheckForDeath(bool EnemyCheck)
     {
+        canLimitBreak = false;
+
         if(EnemyCheck)
         {
             // check if the enemy was defeated
@@ -389,6 +411,7 @@ public class CombatManager : MonoBehaviour {
                 else //enemy is now dead
                 {
                     enemyHealth = 0;
+                    --enemiesRemaining;
                     StartCoroutine(PlayEnemyDeathAnim());
                     return true;
                 }
@@ -399,6 +422,7 @@ public class CombatManager : MonoBehaviour {
             // check if the player has triggered a Limit Break
             if(canLimitBreak && ((float)playerHealth / (float)playerMaxHealth) <= LIMIT_BREAK_THRESH)
             {
+                print("THIS IS IMPOSSIBLE?!?!?!");
                 canLimitBreak = false;
                 playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
                 GameController.controller.limitBreakTracker = playerLimitBreak.coolDown;
@@ -802,6 +826,7 @@ public class CombatManager : MonoBehaviour {
     IEnumerator PlayEnemyDeathAnim()
     {
         yield return new WaitForSeconds(1.5f);
+        this.enemyHealthBar.GetComponent<HealthScript>().Death();
         this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
         yield return new WaitForSeconds(0.5f);
         foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
@@ -838,13 +863,47 @@ public class CombatManager : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(2f);
+
+        CheckForMoreEnemies();
         //SceneManager.LoadScene("AdventureSelect_Scene");
+    }
+
+    private void CheckForMoreEnemies()
+    {
+        if(enemiesRemaining > 0)
+        {
+            StartCoroutine(LoadNextEnemy());
+        }
+        else // player won! go back
+        {
+            StartCoroutine(LoadSuccessScene());
+        }
+    }
+
+    IEnumerator LoadSuccessScene()
+    {
+        // this could get complicated depending on where I'm supposed to return to
+        // store the return level in the game controller
+        blackSq.GetComponent<FadeScript>().FadeIn();
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(encounter.returnOnSuccessScene);
+    }
+
+    IEnumerator LoadNextEnemy()
+    {
+        yield return new WaitForSeconds(1.5f);
+        EnemyInfo info = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
+        print(info.enemyName);
     }
 
     IEnumerator PlayPlayerDeathAnim()
     {
-        yield return new WaitForSeconds(0.5f);
-        //SceneManager.LoadScene("AdventureSelect_Scene");
+        yield return new WaitForSeconds(1.5f);
+        this.playerHealthBar.GetComponent<HealthScript>().Death();
+        yield return new WaitForSeconds(3.5f);
+        blackSq.GetComponent<FadeScript>().FadeIn();
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
         public void TopSelected()
@@ -1078,7 +1137,7 @@ public class CombatManager : MonoBehaviour {
         abilityButton4.GetComponentInChildren<Text>().enabled = false;
     }
 
-    void HideHealthBars()
+    public void HideHealthBars()
     {
         playerHealthBar.GetComponent<Image>().enabled = false;
         playerHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = false;
@@ -1146,10 +1205,17 @@ public class CombatManager : MonoBehaviour {
         //head
         EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         playerMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+            playerMannequin.transform.GetChild(9).GetComponent<SpriteRenderer>().enabled = true;
         //torso
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[2], GameController.controller.playerEquippedIDs[3]);
         playerMannequin.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-
+        if (!info.hideUnderLayer)
+        {
+            playerMannequin.transform.GetChild(10).GetComponent<SpriteRenderer>().enabled = true;
+            playerMannequin.transform.GetChild(12).GetComponent<SpriteRenderer>().enabled = true;
+        }
+            
         string newStr = info.imgSourceName;
         string match = "Torso";
         string replace = "Arms";
@@ -1187,6 +1253,8 @@ public class CombatManager : MonoBehaviour {
         //gloves
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[8], GameController.controller.playerEquippedIDs[9]);
         playerMannequin.transform.GetChild(4).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+            playerMannequin.transform.GetChild(11).GetComponent<SpriteRenderer>().enabled = true;
         //shoes
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[10], GameController.controller.playerEquippedIDs[11]);
         playerMannequin.transform.GetChild(5).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;

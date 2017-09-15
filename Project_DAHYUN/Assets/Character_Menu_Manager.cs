@@ -42,6 +42,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
         //TEMPORARY SHIT BEFORE I GET SAVING WORKING//
         GameController.controller.playerColorPreference = new float[4];
         GameController.controller.playerColorPreference[0] = 1f;
@@ -107,7 +108,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     public void LoadPersona()
     {
         float[] colorPref = GameController.controller.playerColorPreference;
-        PersonaButton.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(colorPref[0], colorPref[1], colorPref[2], colorPref[3]);
+        //PersonaButton.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(colorPref[0], colorPref[1], colorPref[2], colorPref[3]);
     }
 
     public void LoadSelectedImage(int i, int j)
@@ -307,10 +308,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
         {
@@ -345,10 +346,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
         {
@@ -383,10 +384,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
         {
@@ -421,10 +422,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
         {
@@ -459,10 +460,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
         {
@@ -497,10 +498,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
         {
@@ -535,10 +536,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
 
         // outer loop should match the key above
         for (int i = 0; i < 4; ++i)
@@ -572,10 +573,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = Vector3.zero;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
         //get the iner most grid child to reference later
-        GameObject grid = equipmentSelectPopUp.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 2; ++i)
         {
@@ -685,7 +686,8 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public IEnumerator GoToMainMenu()
     {
-        DisableButtons();
+        DisableMainButtons();
+        DisableEquipmentButtons();
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, mmCameraPos, 1f);
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
@@ -693,12 +695,25 @@ public class Character_Menu_Manager : MonoBehaviour {
         SceneManager.LoadScene("MainMenu_Scene");
     }
 
-    public void DisableButtons()
+    public void HideMainButtons()
+    {
+        BackButton.GetComponent<Image>().enabled = false;
+        BackButton.GetComponentInChildren<Image>().enabled = false;
+        AbilitiesButton.GetComponent<Image>().enabled = false;
+        AbilitiesButton.GetComponentInChildren<Text>().enabled = false;
+        PersonaButton.GetComponent<Image>().enabled = false; ;
+        PersonaButton.GetComponentInChildren<Text>().enabled = false;
+    }
+
+    public void DisableMainButtons()
     {
         BackButton.GetComponent<Button>().enabled = false;
         AbilitiesButton.GetComponent<Button>().enabled = false;
         PersonaButton.GetComponent<Button>().enabled = false; ;
+    }
 
+    public void DisableEquipmentButtons()
+    {
         foreach (GameObject buttton in equipmentOptions)
         {
             buttton.GetComponent<Button>().enabled = false;
