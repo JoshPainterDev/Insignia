@@ -109,15 +109,9 @@ public class AdventureSelect_Manager : MonoBehaviour
         Destroy(selectPrefab);
         Destroy(BackButton);
         yield return new WaitForSeconds(0.25f);
-        foreach(Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 5); //emote? idk?
-        }
+        this.GetComponent<Character_Menu_Manager>().PlayAttackAnim();
         yield return new WaitForSeconds(1.5f);
-        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 2); //walk? 
-        }
+        this.GetComponent<Character_Menu_Manager>().PlayWalkAnim();
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(500, 0, 0), 0.5f);
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 0.5f);
         yield return new WaitForSeconds(1f);

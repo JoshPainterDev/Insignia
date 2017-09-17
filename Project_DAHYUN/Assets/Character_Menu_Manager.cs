@@ -73,6 +73,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         unlockedEquipment[20, 2] = true;
         unlockedEquipment[24, 0] = true;
         unlockedEquipment[24, 2] = true;
+        unlockedEquipment[24, 3] = true;
         unlockedEquipment[28, 0] = true;
         unlockedEquipment[28, 2] = true;
 
@@ -88,6 +89,36 @@ public class Character_Menu_Manager : MonoBehaviour {
         LoadCharacter();
         UpdateStats();
         LoadPersona();
+    }
+
+    public void PlayIdleAnim()
+    {
+        playerMannequin.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 0);
+        }
+    }
+
+    public void PlayAttackAnim()
+    {
+        playerMannequin.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 5);
+        }
+    }
+
+    public void PlayWalkAnim()
+    {
+        playerMannequin.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -7;
+
+        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 1);
+        }
     }
 
     public void UpdateStats()

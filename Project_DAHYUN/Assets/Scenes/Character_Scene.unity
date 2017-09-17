@@ -1693,7 +1693,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -2890,7 +2890,6 @@ GameObject:
   - component: {fileID: 889873490}
   - component: {fileID: 889873489}
   - component: {fileID: 889873488}
-  - component: {fileID: 889873492}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2991,23 +2990,6 @@ RectTransform:
   m_AnchoredPosition: {x: 225.8, y: -92.4}
   m_SizeDelta: {x: 599.5, y: 254}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &889873492
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 889873487}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f69849606af9ed4e8da3ba5cdbbcbcf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &904224864
 GameObject:
   m_ObjectHideFlags: 0
@@ -5121,7 +5103,7 @@ MonoBehaviour:
   canvas: {fileID: 889873487}
   camera: {fileID: 1317330911}
   blackSq: {fileID: 1814897235}
-  mmCameraPos: {x: 225, y: -50, z: -10}
+  mmCameraPos: {x: 225, y: -120, z: -10}
   lockedIcon: {fileID: 21300000, guid: 1948d311e7f0ccb4d8b2e8433cb74af2, type: 3}
   equipmentOptions:
   - {fileID: 1909334239}
@@ -6752,6 +6734,7 @@ GameObject:
   - component: {fileID: 2037268561}
   - component: {fileID: 2037268563}
   - component: {fileID: 2037268562}
+  - component: {fileID: 2037268564}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -6824,6 +6807,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2037268560}
+--- !u!95 &2037268564
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2037268560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eba702192aaaf804793f2955d80bb44e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2039932107
 GameObject:
   m_ObjectHideFlags: 0

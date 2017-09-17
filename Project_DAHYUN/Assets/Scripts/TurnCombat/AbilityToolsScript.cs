@@ -36,7 +36,7 @@ public class AbilityToolsScript : MonoBehaviour {
 
         switch (name)
         {
-            case "Shadow Strike":
+            case "Final Cut":
                 ability.Accuracy = 100;
                 ability.BaseDamage = MEDIUM_DAMAGE;
                 ability.Buffs = false;

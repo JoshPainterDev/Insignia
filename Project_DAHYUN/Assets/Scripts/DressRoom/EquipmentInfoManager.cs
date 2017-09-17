@@ -1010,13 +1010,13 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixWeapon + "\\Slayer_Sword\\Player_Weapon_SlayerSword_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "idklol sword";
+                            equipInfo.Name = "Doom Blade";
                             equipInfo.AttackStat = 69;
                             equipInfo.DefenseStat = 69;
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            //equipInfo.imgSourceName = prefixWeapon + "//Slayer_Sword//Player_Weapon_SlayerSword_Idle01";
+                            equipInfo.imgSourceName = prefixWeapon + "\\Doom_Sword\\Player_Weapon_DoomBlade_AnimController";
                             break;
                     }
                     break;
