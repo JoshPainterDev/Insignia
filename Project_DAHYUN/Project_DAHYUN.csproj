@@ -146,8 +146,8 @@
     <Compile Include="Assets\enemyCounterScript.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\2D_FX\READ_ME.txt" />
     <None Include="Assets\GhostSprites2D\README.txt" />
+    <None Include="Assets\Sprites\2D_FX\READ_ME.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
