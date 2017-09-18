@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 119668992}
   - component: {fileID: 119668994}
   - component: {fileID: 119668993}
+  - component: {fileID: 119668995}
   m_Layer: 5
   m_Name: Player_Mannequin
   m_TagString: Untagged
@@ -172,6 +173,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 119668991}
+--- !u!114 &119668995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119668991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061eeca7d18a26f47b17cb47accbfb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &143227850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,7 +2632,7 @@ Prefab:
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}

@@ -85,12 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AdventureSelect_Manager.cs" />
+    <Compile Include="Assets\AnimationController.cs" />
     <Compile Include="Assets\ButtonAnimatorScript.cs" />
     <Compile Include="Assets\Character_Menu_Manager.cs" />
     <Compile Include="Assets\ClosePopUp.cs" />
     <Compile Include="Assets\EnemyAbilityManager_C.cs" />
     <Compile Include="Assets\EnemyEncounter.cs" />
     <Compile Include="Assets\EnemyInfo.cs" />
+    <Compile Include="Assets\Exposition_Manager.cs" />
     <Compile Include="Assets\FadeScript.cs" />
     <Compile Include="Assets\GhostSprites2D\Scripts\GhostSprites\GhostSprites.cs" />
     <Compile Include="Assets\MainMenuManager.cs" />

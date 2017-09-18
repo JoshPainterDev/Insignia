@@ -91,36 +91,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         LoadPersona();
     }
 
-    public void PlayIdleAnim()
-    {
-        playerMannequin.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
-
-        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 0);
-        }
-    }
-
-    public void PlayAttackAnim()
-    {
-        playerMannequin.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
-
-        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 5);
-        }
-    }
-
-    public void PlayWalkAnim()
-    {
-        playerMannequin.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -7;
-
-        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 1);
-        }
-    }
-
     public void UpdateStats()
     {
         //int atk = GameController.controller.playerAttack + info.AttackStat;

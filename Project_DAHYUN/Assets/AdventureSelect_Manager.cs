@@ -29,7 +29,8 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            StartCoroutine(LoadEncounter(1, GameController.controller.levelsCompleted));
+            SpecifyEncounter(0,0);
+            SceneManager.LoadScene("TurnCombat_Scene");
         }
     }
 
@@ -61,18 +62,39 @@ public class AdventureSelect_Manager : MonoBehaviour
 
     IEnumerator LoadEncounter(int stageToLoad, int levelsCompleted)
     {
+        SpecifyEncounter(stageToLoad, levelsCompleted);
+
+        //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
+        Destroy(selectPrefab);
+        Destroy(BackButton);
+        yield return new WaitForSeconds(0.25f);
+        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        yield return new WaitForSeconds(1.5f);
+        playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(500, 0, 0), 0.5f);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 0.5f);
+        yield return new WaitForSeconds(1f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(0.25f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Exposition_Scene");
+    }
+
+    void SpecifyEncounter(int stageToLoad, int levelsCompleted)
+    {
         EnemyEncounter encounter = new EnemyEncounter();
         encounter.enemyNames = new string[10]; //max number of enemies
         encounter.bossFight = new bool[10]; //max number of enemies in one encounter
 
-        print("Loading Stage " + stageToLoad + " Level: " + (levelsCompleted + 1));
-
         switch (stageToLoad)
         {
             case 1: // 5 total stages, last stage is a small boss fight
-                if(levelsCompleted == 0)
+                if (levelsCompleted == 0)
                 {
+                    encounter.encounterNumber = 1;
                     //load first stage
+                    encounter.backgroundName = "\\Environments\\Forest02";
                     encounter.totalEnemies = 3;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
@@ -81,26 +103,31 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.enemyNames[2] = "that weird guy in the corner of the room";
                     encounter.bossFight[2] = false;
                 }
-                else if(levelsCompleted == 1)
+                else if (levelsCompleted == 1)
                 {
+                    encounter.encounterNumber = 2;
+                    encounter.backgroundName = "\\Environments\\Forest01";
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
                 }
                 else if (levelsCompleted == 2)
                 {
+                    encounter.encounterNumber = 3;
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
                 }
                 else if (levelsCompleted == 3)
                 {
+                    encounter.encounterNumber = 4;
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
                 }
                 else if (levelsCompleted == 4)
                 {
+                    encounter.encounterNumber = 5;
                     // boss fight
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
@@ -112,22 +139,6 @@ public class AdventureSelect_Manager : MonoBehaviour
         }
 
         GameController.controller.currentEncounter = encounter;
-
-        //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
-        Destroy(selectPrefab);
-        Destroy(BackButton);
-        yield return new WaitForSeconds(0.25f);
-        this.GetComponent<Character_Menu_Manager>().PlayAttackAnim();
-        yield return new WaitForSeconds(1.5f);
-        this.GetComponent<Character_Menu_Manager>().PlayWalkAnim();
-        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(500, 0, 0), 0.5f);
-        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 0.5f);
-        yield return new WaitForSeconds(1f);
-        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
-        yield return new WaitForSeconds(0.25f);
-        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("TurnCombat_Scene");
     }
 
     public void GoBack()
