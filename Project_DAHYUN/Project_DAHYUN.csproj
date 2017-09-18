@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AdventureSelect_Manager.cs" />
+    <Compile Include="Assets\ButtonAnimatorScript.cs" />
     <Compile Include="Assets\Character_Menu_Manager.cs" />
     <Compile Include="Assets\ClosePopUp.cs" />
     <Compile Include="Assets\EnemyAbilityManager_C.cs" />

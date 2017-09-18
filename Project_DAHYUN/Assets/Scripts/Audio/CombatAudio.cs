@@ -14,6 +14,8 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip strugglePress04;
     public AudioClip strugglePress05;
     public AudioClip strugglePress06;
+    public AudioClip shadowVanish;
+    public AudioClip finalCut;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -23,6 +25,16 @@ public class CombatAudio : MonoBehaviour {
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void playShadowVanish()
+    {
+        audioSource.PlayOneShot(shadowVanish, LOW_VOLUME);
+    }
+
+    public void playFinalCut()
+    {
+        audioSource.PlayOneShot(finalCut, HIGH_VOLUME);
     }
 
     public void playUISelect()

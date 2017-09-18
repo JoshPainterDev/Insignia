@@ -13,6 +13,15 @@ public class AbilityManager_C : MonoBehaviour {
     public GameObject illusion_FX;
     public GameObject finalCut_FX;
 
+    public GameObject smoke01_FX;
+    public GameObject smoke02_FX;
+    public GameObject smoke03_FX;
+
+    public GameObject blood01_FX;
+    public GameObject blood02_FX;
+    public GameObject blood03_FX;
+    public GameObject blood04_FX;
+
     private Vector3 initPlayerPos;
     private Vector3 initEnemyPos;
     private Ability ability;
@@ -95,17 +104,27 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Final Cut":
+                combatManager.GetComponent<CombatAudio>().playShadowVanish();
+                GameObject effectClone2 = (GameObject)Instantiate(smoke02_FX, initPlayerPos, transform.rotation);
+                effectClone2.GetComponent<SpriteRenderer>().color = Color.black;
+                effectClone2.transform.position -= new Vector3(0, 30, 0);
+                GameObject effectClone3 = (GameObject)Instantiate(smoke03_FX, initPlayerPos, transform.rotation);
+                effectClone3.GetComponent<SpriteRenderer>().color = Color.black;
+                effectClone3.transform.position += new Vector3(0, 30, 0);
                 foreach (LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
                 {
                     script.LerpToColor(Color.white, Color.clear, 5);
                 }
                 yield return new WaitForSeconds(0.5f);
-                spawnPos = initPlayerPos + new Vector3(0, 0, 0);
+                combatManager.GetComponent<CombatAudio>().playFinalCut();
+                spawnPos = initPlayerPos + new Vector3(50, 20, 0);
                 effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
                 effectClone.transform.position = enemyMannequin.transform.position - new Vector3(300,0,0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
-                yield return new WaitForSeconds(1.35f);
-                foreach(LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
+                yield return new WaitForSeconds(1.25f);
+                GameObject effectClone4 = (GameObject)Instantiate(blood04_FX, new Vector3(-320,145,0), transform.rotation);
+                yield return new WaitForSeconds(0.5f);
+                foreach (LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
                 {
                     script.LerpToColor(Color.clear, Color.white, 5);
                 }

@@ -25,6 +25,14 @@ public class AdventureSelect_Manager : MonoBehaviour
         GameController.controller.stagesCompleted = 0;
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            StartCoroutine(LoadEncounter(1, GameController.controller.levelsCompleted));
+        }
+    }
+
     public void SelectAdventure(int adventureNum)
     {
         if (adventureNum > (GameController.controller.stagesCompleted + 1))
