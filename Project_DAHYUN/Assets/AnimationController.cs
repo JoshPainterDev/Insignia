@@ -32,7 +32,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayWalkAnim()
     {
-        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -7;
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -5;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
         {

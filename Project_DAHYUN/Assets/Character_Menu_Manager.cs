@@ -272,7 +272,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
         {
-            child.SetInteger("AnimState", 5);
+            child.SetInteger("AnimState", 0);
             ++counter;
         }
 
@@ -285,7 +285,15 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         refreshing = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.15f);
+
+        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 1);
+            ++counter;
+        }
+
+        counter = 0;
 
         foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
