@@ -7,6 +7,7 @@ using System.IO;
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
+    public string characterName = "Steve Lee";
     public Ability playerAbility1;
     public Ability playerAbility2;
     public Ability playerAbility3;
@@ -51,6 +52,7 @@ public class GameController : MonoBehaviour {
 
         PlayerData data = new PlayerData();
 
+        data.charName = characterName;
         data.Level = playerLevel;
         data.difficulty = difficultyScale;
         data.ability1 = playerAbility1;
@@ -199,6 +201,7 @@ public class GameController : MonoBehaviour {
 [Serializable]
 class PlayerData
 {
+    public string charName;
     public Ability ability1, ability2, ability3, ability4;
     public string StrikeMod;
     public string PlayerClass;

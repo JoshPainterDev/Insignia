@@ -10,6 +10,14 @@ public class AnimationController : MonoBehaviour
 		
 	}
 
+    public void FlipFlop()
+    {
+        foreach (SpriteRenderer sprite in this.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.flipX = !sprite.flipX;
+        }
+    }
+
     public void PlayIdleAnim()
     {
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;

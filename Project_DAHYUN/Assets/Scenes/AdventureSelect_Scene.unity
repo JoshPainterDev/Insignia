@@ -2632,7 +2632,7 @@ Prefab:
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
@@ -3365,6 +3365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Steve Lee
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0

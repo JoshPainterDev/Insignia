@@ -12,7 +12,13 @@ public class Exposition_Manager : MonoBehaviour
     public GameObject camera;
     public GameObject blackSq;
     public GameObject background;
+    public GameObject dialoguePanel;
 
+    private Vector3 panelUpPos;
+    private Vector3 panelDownPos;
+    private Color panelOrigColor;
+
+    string playerName;
     EnemyEncounter encounter;
     Vector3 playerInitPos;
     Vector3 origCameraPos;
@@ -23,6 +29,17 @@ public class Exposition_Manager : MonoBehaviour
         encounter = GameController.controller.currentEncounter;
         origCameraPos = camera.transform.position;
         playerInitPos = playerMannequin.transform.position;
+        playerName = GameController.controller.characterName;
+        panelDownPos = dialoguePanel.transform.position;
+        panelUpPos = panelDownPos + new Vector3(0, 100, 0);
+        panelOrigColor = dialoguePanel.GetComponent<Image>().color;
+        dialoguePanel.GetComponent<Image>().color = Color.clear;
+
+        if (encounter == null)
+        {
+            encounter = new EnemyEncounter();
+            encounter.encounterNumber = 1;  
+        }
 
         BeginCutscene(encounter.encounterNumber);
     }
@@ -31,6 +48,7 @@ public class Exposition_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
+            SceneManager.LoadScene("TurnCombat_Scene");
         }
     }
 
@@ -52,6 +70,12 @@ public class Exposition_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
         yield return new WaitForSeconds(1f);
+        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+        yield return new WaitForSeconds(1f);
+        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+        yield return new WaitForSeconds(0.75f);
+        StartCoroutine(NewDialogue(1,1));
+        yield return new WaitForSeconds(5f);
         StartCoroutine(LoadCombatScene());
     }
 
@@ -123,5 +147,44 @@ public class Exposition_Manager : MonoBehaviour
         //weapon
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[12], GameController.controller.playerEquippedIDs[13]);
         playerMannequin.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+    }
+
+    IEnumerator NewDialogue(int cutscene, int instance)
+    {
+        int totalLines = 0;
+        bool usesPlayer = false;
+        string[] speaker = new string[20];
+        bool[] leftspeaker = new bool[20];
+        string[] script = new string[20];
+
+        dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelDownPos, panelUpPos, 2f);
+        dialoguePanel.GetComponent<LerpScript>().LerpToColor(Color.clear, panelOrigColor, 2f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        switch (cutscene)
+        {
+            case 1:
+                switch(instance)
+                {
+                    case 1:
+                        usesPlayer = true;
+
+                        speaker[0] = playerName;
+                        leftspeaker[0] = true;
+                        script[0] = "(Huh?)";
+
+                        totalLines = 1;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, script, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
+        }
+    }
+
+    public void EndDialogue()
+    {
+        dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 2f);
+        dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
     }
 }
