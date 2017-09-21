@@ -26,3 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exposition_Scene.unity
     guid: e36b544efb809254b85d99be50eabad0
+  - enabled: 1
+    path: Assets/Scenes/CombatReward_Scene.unity
+    guid: db360cd209c0f7a4292a1fff099519b7

@@ -164,6 +164,8 @@ public class CombatManager : MonoBehaviour {
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
 
+        print("WTF IS GOING ON?!");
+
         LoadCharacter();
     }
 
@@ -405,6 +407,8 @@ public class CombatManager : MonoBehaviour {
                 else //enemy is now dead
                 {
                     enemyHealth = 0;
+                    RewardToolsScript.tools.AddEXP(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
+                    print("Oh jeez Rick, " + (encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]) + " is dead...");
                     --enemiesRemaining;
                     enemyCounter.GetComponent<enemyCounterScript>().EnemyDied();
                     return true;
@@ -866,8 +870,9 @@ public class CombatManager : MonoBehaviour {
         {
             StartCoroutine(LoadNextEnemy());
         }
-        else // player won! go back
+        else // player won! go back YOU WIN!
         {
+            RewardToolsScript.tools.StoreReward(encounter.reward);
             StartCoroutine(LoadSuccessScene());
         }
     }
@@ -878,7 +883,7 @@ public class CombatManager : MonoBehaviour {
         // store the return level in the game controller
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(encounter.returnOnSuccessScene);
+        SceneManager.LoadScene("CombatReward_Scene");
     }
 
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

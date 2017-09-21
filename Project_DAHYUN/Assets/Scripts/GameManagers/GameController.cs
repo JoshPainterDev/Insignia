@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
     public int[] playerEquippedIDs;
     public int difficultyScale;
     public int playerLevel;
+    public int playerEXP;
     public int playerAttack;
     public int playerDefense;
     public int playerProwess;
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour {
     public int levelsCompleted;
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
+    public Reward rewardEarned;
 
     // Use this for initialization
     void Awake () {
@@ -54,6 +56,7 @@ public class GameController : MonoBehaviour {
 
         data.charName = characterName;
         data.Level = playerLevel;
+        data.PlayerExperience = playerEXP;
         data.difficulty = difficultyScale;
         data.ability1 = playerAbility1;
         data.ability2 = playerAbility2;
@@ -88,6 +91,7 @@ public class GameController : MonoBehaviour {
 
             // set variables here
             playerLevel = data.Level;
+            playerEXP = data.PlayerExperience;
             difficultyScale = data.difficulty;
             playerAbility1 = data.ability1;
             playerAbility2 = data.ability2;
@@ -206,6 +210,7 @@ class PlayerData
     public string StrikeMod;
     public string PlayerClass;
     public int Level;
+    public int PlayerExperience;
     public int difficulty;
     public LimitBreakName limitBreakMod;
     public int limitBreakTrack;

@@ -10,4 +10,5 @@ public class EnemyEncounter
     public bool[] bossFight;
     public string returnOnSuccessScene;
     public string backgroundName;
+    public Reward reward;
 }

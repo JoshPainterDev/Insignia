@@ -93,10 +93,12 @@
     <Compile Include="Assets\EnemyAbilityManager_C.cs" />
     <Compile Include="Assets\EnemyEncounter.cs" />
     <Compile Include="Assets\EnemyInfo.cs" />
+    <Compile Include="Assets\ExperienceScript.cs" />
     <Compile Include="Assets\Exposition_Manager.cs" />
     <Compile Include="Assets\FadeScript.cs" />
     <Compile Include="Assets\GhostSprites2D\Scripts\GhostSprites\GhostSprites.cs" />
     <Compile Include="Assets\MainMenuManager.cs" />
+    <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
     <Compile Include="Assets\Scripts\Audio\MenuUIAudio.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Assets\Scripts\TurnCombat\ItemsManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\LimitBreak.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\LimitBreakManager_C.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\RewardToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StruggleManager_C.cs" />
     <Compile Include="Assets\StatDescriptionScript.cs" />

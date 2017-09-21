@@ -2632,7 +2632,7 @@ Prefab:
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
@@ -3219,6 +3219,7 @@ GameObject:
   - component: {fileID: 2029248997}
   - component: {fileID: 2029248996}
   - component: {fileID: 2029248995}
+  - component: {fileID: 2029249001}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3374,6 +3375,7 @@ MonoBehaviour:
   playerEquippedIDs: 
   difficultyScale: 0
   playerLevel: 0
+  playerEXP: 0
   playerAttack: 0
   playerDefense: 0
   playerProwess: 0
@@ -3394,6 +3396,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029249001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029248994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a69622ac1078048871dd69e24e5b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2032562587
 GameObject:
   m_ObjectHideFlags: 0

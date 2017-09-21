@@ -5,6 +5,10 @@ using UnityEngine;
 public class EnemyToolsScript : MonoBehaviour {
     public static EnemyToolsScript tools;
 
+    public int TRASH_EXP = 15;
+    public int MODERATE_EXP = 50;
+    public int THICC_EXP = 100;
+
     // Use this for initialization
     void Awake()
     {
@@ -26,6 +30,7 @@ public class EnemyToolsScript : MonoBehaviour {
         {
             case "Shadow Assassin":
                 enemyInfo.enemyLevel = 1;
+                enemyInfo.expReward = MODERATE_EXP;
                 enemyInfo.ability_1 = "Outrage";
                 enemyInfo.ability_2 = "Shadow Clone";
                 enemyInfo.ability_3 = "Reap";
@@ -39,6 +44,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 break;
             case "bubber duck":
                 enemyInfo.enemyLevel = 1;
+                enemyInfo.expReward = TRASH_EXP;
                 enemyInfo.ability_1 = "Solar Flare";
                 enemyInfo.ability_2 = "Reap";
                 enemyInfo.ability_3 = "Final Cut";
@@ -52,6 +58,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 break;
             case "that weird guy in the corner of the room":
                 enemyInfo.enemyLevel = 1;
+                enemyInfo.expReward = THICC_EXP;
                 enemyInfo.ability_1 = "Solar Flare";
                 enemyInfo.ability_2 = "Shadow Clone";
                 enemyInfo.ability_3 = "Final Cut";

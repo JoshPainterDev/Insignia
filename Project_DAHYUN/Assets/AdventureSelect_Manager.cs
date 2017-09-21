@@ -102,6 +102,10 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.bossFight[1] = false;
                     encounter.enemyNames[2] = "that weird guy in the corner of the room";
                     encounter.bossFight[2] = false;
+
+                    Reward newReward = new Reward();
+                    newReward.experience = 2500;
+                    encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 1)
                 {
@@ -110,6 +114,10 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
+
+                    Reward newReward = new Reward();
+                    newReward.experience = 2500;
+                    encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 2)
                 {
@@ -117,6 +125,10 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
+
+                    Reward newReward = new Reward();
+                    newReward.experience = 2500;
+                    encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 3)
                 {
@@ -124,6 +136,10 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
+
+                    Reward newReward = new Reward();
+                    newReward.experience = 2500;
+                    encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 4)
                 {
@@ -132,6 +148,10 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = true;
+
+                    Reward newReward = new Reward();
+                    newReward.experience = 2500;
+                    encounter.reward = newReward;
                 }
                 break;
             default:
