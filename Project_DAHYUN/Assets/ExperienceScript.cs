@@ -82,12 +82,13 @@ public class ExperienceScript : MonoBehaviour {
 
                 if(ding)
                 {
-                    //play a sound effect here
+                    //player leveled up
+                    ++GameController.controller.playerLevel;
                     StartCoroutine(LevelUpAnim());
                     ding = false;
                 }
-
-                rewardManager.GetComponent<RewardManager_C>().ExperienceIsDone();
+                else
+                    rewardManager.GetComponent<RewardManager_C>().ExperienceIsDone();
             }
         }
     }
@@ -150,24 +151,23 @@ public class ExperienceScript : MonoBehaviour {
 
     IEnumerator LevelUpAnim()
     {
-        this.GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 1);
+        requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
+                             + (GameController.controller.playerLevel * 15);
 
-        foreach (LerpScript lerp in this.GetComponentsInChildren<LerpScript>())
-        {
-            lerp.LerpToColor(Color.white, Color.clear, 1);
-        }
+        float newPercent = GameController.controller.playerEXP / requiredEXP;
+
+        GameController.controller.GetComponent<MenuUIAudio>().playLevelUp();
+
+        playerLevel.GetComponent<Text>().text = GameController.controller.playerLevel.ToString();
+
+        expBar.GetComponent<Image>().fillAmount = 0;
+
+        yield return new WaitForSeconds(1.25f);
+
+        LerpEXP(0, newPercent);
 
         yield return new WaitForSeconds(3f);
 
-        this.GetComponent<Image>().color = Color.white;
-        this.GetComponent<Image>().enabled = false;
-
-        foreach (Image sprite in this.GetComponentsInChildren<Image>())
-        {
-            sprite.enabled = false;
-            sprite.color = Color.white;
-        }
-
-        this.transform.GetChild(2).GetComponent<Text>().enabled = false;
+        rewardManager.GetComponent<RewardManager_C>().ExperienceIsDone();
     }
 }

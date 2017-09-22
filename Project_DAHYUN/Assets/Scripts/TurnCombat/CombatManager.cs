@@ -164,8 +164,6 @@ public class CombatManager : MonoBehaviour {
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
 
-        print("WTF IS GOING ON?!");
-
         LoadCharacter();
     }
 

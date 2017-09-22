@@ -2263,6 +2263,7 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: 311ec0e3ddc71474eb5f91f03161f401, type: 3}
   nope: {fileID: 8300000, guid: 45dd760e7266b434688409fe32085836, type: 3}
   back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
+  levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
