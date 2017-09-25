@@ -362,12 +362,29 @@ public class CombatManager : MonoBehaviour {
         HideHealthBars();
 
         button.GetComponent<Image>().color = abilitySelectColor;
+        Vector3 centerPos = Vector3.zero;
+        if (button.name == "TLA1_Button")
+        {
+            centerPos = button.transform.position + new Vector3(146, 0, 0);
+        }
+        else if(button.name == "TLA2_Button")
+        {
+            centerPos = button.transform.position - new Vector3(143, 0, 0);
+        }
+        else if (button.name == "TLA3_Button")
+        {
+            centerPos = button.transform.position + new Vector3(146, 0, 0);
+        }
+        else if (button.name == "TLA4_Button")
+        {
+            centerPos = button.transform.position - new Vector3(143, 0, 0);
+        }
+
+        Vector3 ascend = centerPos + new Vector3(0, 600, 0);
 
         yield return new WaitForSeconds(0.15f);
         HideAbilityButtons();
         ShowButton(button.name);
-        Vector3 centerPos = new Vector3(640, 250, 1);
-        Vector3 ascend = new Vector3(640, 800, 1);
         Color seethrough = new Color(abilitySelectColor.r, abilitySelectColor.g, abilitySelectColor.b, 0f);
 
         button.GetComponent<LerpScript>().LerpToPos(button.transform.position, centerPos, 8f);
