@@ -95,13 +95,9 @@ public class AdventureSelect_Manager : MonoBehaviour
                     encounter.encounterNumber = 1;
                     //load first stage
                     encounter.backgroundName = "\\Environments\\Forest02";
-                    encounter.totalEnemies = 3;
-                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Shadow Assassin";;
                     encounter.bossFight[0] = false;
-                    encounter.enemyNames[1] = "bubber duck";
-                    encounter.bossFight[1] = false;
-                    encounter.enemyNames[2] = "that weird guy in the corner of the room";
-                    encounter.bossFight[2] = false;
 
                     Reward newReward = new Reward();
                     newReward.experience = 2500;

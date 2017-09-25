@@ -113,7 +113,6 @@ public class CombatManager : MonoBehaviour {
             encounter = new EnemyEncounter();
         }
 
-        encounter.totalEnemies = 3;
         enemiesRemaining = encounter.totalEnemies;
         encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
@@ -123,7 +122,7 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
-        GameController.controller.strikeModifier = "Shadow Strike";
+        GameController.controller.strikeModifier = "Serated Strike";
         GameController.controller.playerAttack = 5;
         GameController.controller.playerDefense = 5;
         GameController.controller.playerProwess = 1;
@@ -365,19 +364,19 @@ public class CombatManager : MonoBehaviour {
         Vector3 centerPos = Vector3.zero;
         if (button.name == "TLA1_Button")
         {
-            centerPos = button.transform.position + new Vector3(146, 0, 0);
+            centerPos = button.transform.position + new Vector3(300, 0, 0);
         }
-        else if(button.name == "TLA2_Button")
+        else if (button.name == "TLA2_Button")
         {
-            centerPos = button.transform.position - new Vector3(143, 0, 0);
+            centerPos = button.transform.position - new Vector3(300, 0, 0);
         }
         else if (button.name == "TLA3_Button")
         {
-            centerPos = button.transform.position + new Vector3(146, 0, 0);
+            centerPos = button.transform.position + new Vector3(300, 0, 0);
         }
         else if (button.name == "TLA4_Button")
         {
-            centerPos = button.transform.position - new Vector3(143, 0, 0);
+            centerPos = button.transform.position - new Vector3(300, 0, 0);
         }
 
         Vector3 ascend = centerPos + new Vector3(0, 600, 0);
@@ -550,7 +549,9 @@ public class CombatManager : MonoBehaviour {
             }
         }
         else
-            print("fuck we missed...");
+        {
+            print("whoops we missed...");
+        }
     }
 
     // DAMAGE AN ENEMY WITH AN ABILITY ONLY!
@@ -703,7 +704,7 @@ public class CombatManager : MonoBehaviour {
             }
         }
         else
-            print("fuck we missed...");
+            print("whoops we missed...");
     }
 
     public void DamagePlayer_Ability(Ability abilityUsed)
@@ -881,6 +882,7 @@ public class CombatManager : MonoBehaviour {
 
     private void CheckForMoreEnemies()
     {
+        print("enemies remaining: " + enemiesRemaining);
         if(enemiesRemaining > 0)
         {
             StartCoroutine(LoadNextEnemy());

@@ -158,7 +158,7 @@ public class ExperienceScript : MonoBehaviour {
 
         GameController.controller.GetComponent<MenuUIAudio>().playLevelUp();
 
-        playerLevel.GetComponent<Text>().text = GameController.controller.playerLevel.ToString();
+        playerLevel.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel.ToString();
 
         expBar.GetComponent<Image>().fillAmount = 0;
 

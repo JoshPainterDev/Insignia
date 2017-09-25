@@ -67,7 +67,7 @@ public class Exposition_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeOut();
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(300,0,0), 1);
         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1.25f);
         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
         yield return new WaitForSeconds(1f);
         playerMannequin.GetComponent<AnimationController>().FlipFlop();

@@ -72,8 +72,8 @@ public class StrikeManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
                 break;
             case "Serated Strike":
-                pos1 = new Vector3(15, initPlayerPos.y, 0);
-                pos2 = new Vector3(150, initPlayerPos.y, 0);
+                pos1 = new Vector3(initPlayerPos.x - 150, initPlayerPos.y, 0);
+                pos2 = new Vector3(pos1.x + 300, initPlayerPos.y, 0);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
                 yield return new WaitForSeconds(0.25f);
                 playerMannequin.GetComponent<PlayerCombatAnimator>().ChangeToAnimation("attack01");

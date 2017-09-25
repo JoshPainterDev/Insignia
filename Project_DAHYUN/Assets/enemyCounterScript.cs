@@ -20,6 +20,7 @@ public class enemyCounterScript : MonoBehaviour {
 
         original = this.transform.GetChild(0).transform.gameObject;
         Vector3 origin = original.transform.position;
+        tallies[0] = original;
 
         for (int i = 1; i < totalEnemies; ++i)
         {
