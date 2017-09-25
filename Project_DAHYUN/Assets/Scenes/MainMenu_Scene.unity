@@ -303,9 +303,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8d919770b040f448923d7c9f6c3e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSelect01: {fileID: 8300000, guid: 311ec0e3ddc71474eb5f91f03161f401, type: 3}
-  nope: {fileID: 8300000, guid: 45dd760e7266b434688409fe32085836, type: 3}
-  back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
+  buttonSelect01: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
+  nope: {fileID: 8300000, guid: 9de752cd0c7642d4b845e9605748bde2, type: 3}
+  back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
+  levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
+  buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -431,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Steve Lee
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -439,6 +442,7 @@ MonoBehaviour:
   playerEquippedIDs: 
   difficultyScale: 0
   playerLevel: 0
+  playerEXP: 0
   playerAttack: 0
   playerDefense: 0
   playerProwess: 0
@@ -470,6 +474,7 @@ GameObject:
   - component: {fileID: 313029561}
   - component: {fileID: 313029560}
   - component: {fileID: 313029559}
+  - component: {fileID: 313029562}
   m_Layer: 5
   m_Name: Adventure_Button
   m_TagString: Untagged
@@ -546,6 +551,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 313029562}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &313029560
@@ -581,6 +597,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 313029557}
+--- !u!114 &313029562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313029557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 1, b: 1, a: 1}
+  scaler: 1.2
 --- !u!1 &432519543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1730,7 @@ GameObject:
   - component: {fileID: 1383272121}
   - component: {fileID: 1383272120}
   - component: {fileID: 1383272119}
+  - component: {fileID: 1383272122}
   m_Layer: 5
   m_Name: Crafting_Button
   m_TagString: Untagged
@@ -1777,6 +1807,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1383272122}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1383272120
@@ -1812,6 +1853,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1383272117}
+--- !u!114 &1383272122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383272117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 1, b: 1, a: 1}
+  scaler: 1.2
 --- !u!1 &1411268615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,6 +2053,7 @@ GameObject:
   - component: {fileID: 1614656727}
   - component: {fileID: 1614656726}
   - component: {fileID: 1614656725}
+  - component: {fileID: 1614656728}
   m_Layer: 5
   m_Name: Character_Button
   m_TagString: Untagged
@@ -2075,6 +2130,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1614656728}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1614656726
@@ -2110,6 +2176,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1614656723}
+--- !u!114 &1614656728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614656723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 1, b: 1, a: 1}
+  scaler: 1.2
 --- !u!1 &1616549424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2513,7 @@ GameObject:
   - component: {fileID: 1788243651}
   - component: {fileID: 1788243650}
   - component: {fileID: 1788243654}
+  - component: {fileID: 1788243655}
   m_Layer: 5
   m_Name: Settings_Button
   m_TagString: Untagged
@@ -2487,6 +2567,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1788243655}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2556,6 +2647,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1788243655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788243649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 1, b: 1, a: 1}
+  scaler: 1.2
 --- !u!1 &1970203752
 GameObject:
   m_ObjectHideFlags: 0

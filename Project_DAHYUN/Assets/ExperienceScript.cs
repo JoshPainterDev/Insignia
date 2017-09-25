@@ -27,6 +27,7 @@ public class ExperienceScript : MonoBehaviour {
                                      + (GameController.controller.playerLevel * 15);
 
         origColor = character.GetComponentInChildren<SpriteRenderer>().color;
+        playerLevel.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
         StartCoroutine(BarBlinkAnim());
     }
 

@@ -9,6 +9,7 @@ public class MenuUIAudio : MonoBehaviour
     public AudioClip nope;
     public AudioClip back;
     public AudioClip levelUp;
+    public AudioClip buttonClick;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -18,6 +19,11 @@ public class MenuUIAudio : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void playButtonClick()
+    {
+        audioSource.PlayOneShot(buttonClick, MEDIUM_VOLUME);
     }
 
     public void playLevelUp()

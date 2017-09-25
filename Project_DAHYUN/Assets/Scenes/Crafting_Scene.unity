@@ -294,6 +294,8 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: 311ec0e3ddc71474eb5f91f03161f401, type: 3}
   nope: {fileID: 8300000, guid: 45dd760e7266b434688409fe32085836, type: 3}
   back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
+  levelUp: {fileID: 0}
+  buttonClick: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -419,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Steve Lee
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -427,6 +430,7 @@ MonoBehaviour:
   playerEquippedIDs: 
   difficultyScale: 0
   playerLevel: 0
+  playerEXP: 0
   playerAttack: 0
   playerDefense: 0
   playerProwess: 0
@@ -1636,6 +1640,7 @@ GameObject:
   - component: {fileID: 1209613618}
   - component: {fileID: 1209613617}
   - component: {fileID: 1209613616}
+  - component: {fileID: 1209613619}
   m_Layer: 5
   m_Name: Back_Button
   m_TagString: Untagged
@@ -1712,6 +1717,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1209613619}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1209613617
@@ -1747,6 +1763,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1209613614}
+--- !u!114 &1209613619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209613614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 1, b: 1, a: 1}
+  scaler: 1.2
 --- !u!1001 &1243540802
 Prefab:
   m_ObjectHideFlags: 0

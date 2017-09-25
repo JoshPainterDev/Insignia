@@ -1713,6 +1713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experienceHandle: {fileID: 1125771735}
+  blackSq: {fileID: 1774354134}
 --- !u!1 &1619637139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,6 +2000,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1774354134 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1112125458341768, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+    type: 2}
+  m_PrefabInternal: {fileID: 538142075}
 --- !u!1 &1970203752
 GameObject:
   m_ObjectHideFlags: 0

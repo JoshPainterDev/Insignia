@@ -6,6 +6,7 @@ using UnityEngine;
 public class RewardManager_C : MonoBehaviour
 {
     public GameObject experienceHandle;
+    public GameObject blackSq;
     private Reward reward;
 
 	// Use this for initialization
@@ -23,8 +24,10 @@ public class RewardManager_C : MonoBehaviour
 
     IEnumerator GetTheGoods()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         RewardToolsScript.tools.ClearReward();
+        blackSq.GetComponent<FadeScript>().FadeIn();
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
     }
 }

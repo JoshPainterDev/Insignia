@@ -64,6 +64,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         SpecifyEncounter(stageToLoad, levelsCompleted);
 
+        yield return new WaitForSeconds(0.35f);
         //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
         Destroy(selectPrefab);
         Destroy(BackButton);
