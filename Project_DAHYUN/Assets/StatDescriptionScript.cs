@@ -21,10 +21,10 @@ public class StatDescriptionScript : MonoBehaviour {
                 this.GetComponent<Text>().text = "Defense grants you more health and reduces incoming damage.";
                 break;
             case 2:
-                this.GetComponent<Text>().text = "Prowess increases your chance of Executing foes when you Strike. It also increases damage on some Abilities.";
+                this.GetComponent<Text>().text = "Prowess increases your chance of Executing foes when you Strike.";
                 break;
             case 3:
-                this.GetComponent<Text>().text = "Speed increases your chance of attacking first and makes you harder to hit. It also increases damage on some Abilities.";
+                this.GetComponent<Text>().text = "Speed increases your chance of attacking first and makes you harder to hit.";
                 break;
         }
     }

@@ -13,6 +13,7 @@ public class EquipmentInfoManager : MonoBehaviour{
     private const string prefixGloves = "Animations\\Equipment\\Gloves";
     private const string prefixShoes = "Animations\\Equipment\\Shoes";
     private const string prefixWeapon = "Animations\\Equipment\\Weapons";
+    private const string prefixAura = "Animations\\Equipment\\Aura";
 
     void Awake()
     {
@@ -1134,7 +1135,7 @@ public class EquipmentInfoManager : MonoBehaviour{
             }
         }
         // AURA //
-        else if (i > 30)
+        else if (i > 27)
         {
             switch (i)
             {
@@ -1143,12 +1144,12 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Aura";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Back;
-                            equipInfo.imgSourceName = prefixWeapon + "//Test_Sword//Player_Weapon_TestSword_AnimController";
+                            equipInfo.AttackStat = 0;
+                            equipInfo.DefenseStat = 0;
+                            equipInfo.ProwessStat = 0;
+                            equipInfo.SpeedStat = 0;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.none;
+                            equipInfo.imgSourceName = prefixAura + "None";
                             break;
                         case 1:
                             equipInfo.Name = "Fire Sword";
@@ -1157,25 +1158,25 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            equipInfo.imgSourceName = prefixWeapon + "//Fire_Sword//Player_Weapon_FireSword_AnimController";
+                            equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
                             break;
                         case 2:
-                            equipInfo.Name = "Slayer Sword";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            equipInfo.imgSourceName = prefixWeapon + "//Slayer_Sword//Player_Weapon_SlayerSword_AnimController";
+                            equipInfo.Name = "Blaze Aura";
+                            equipInfo.AttackStat = 0;
+                            equipInfo.DefenseStat = 0;
+                            equipInfo.ProwessStat = 0;
+                            equipInfo.SpeedStat = 0;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.none;
+                            equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "idklol sword";
+                            equipInfo.Name = "idklol aura";
                             equipInfo.AttackStat = 69;
                             equipInfo.DefenseStat = 69;
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            //equipInfo.imgSourceName = prefixWeapon + "//Slayer_Sword//Player_Weapon_SlayerSword_Idle01";
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.none;
+                            equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
                             break;
                     }
                     break;

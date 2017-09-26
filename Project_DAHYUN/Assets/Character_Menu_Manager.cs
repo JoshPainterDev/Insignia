@@ -49,6 +49,18 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.playerColorPreference[2] = 0f;
         GameController.controller.playerColorPreference[3] = 0.75f;
         GameController.controller.playerAttack = 5;
+
+        //0. pretend the player has save data for ability sake
+        GameController.controller.playerLevel = 1;
+        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
+        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
+        GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
+        GameController.controller.strikeModifier = "Serrated Strike";
+        GameController.controller.playerAttack = 5;
+        GameController.controller.playerDefense = 5;
+        GameController.controller.playerProwess = 1;
+        GameController.controller.playerSpeed = 1;
         //******************************************//
         //unlockedEquipment = GameController.controller.playerEquipmentList;
         for (int i = 0; i < 30; ++i)
@@ -59,23 +71,42 @@ public class Character_Menu_Manager : MonoBehaviour {
             }
         }
 
+        //load in defaults for now : FIX THIS SHIT L8R
         unlockedEquipment[0, 0] = true;
         unlockedEquipment[0, 2] = true;
+        GameController.controller.playerEquippedIDs[0] = 0;
+        GameController.controller.playerEquippedIDs[1] = 0;
+        
         unlockedEquipment[4, 0] = true;
         unlockedEquipment[4, 2] = true;
+        GameController.controller.playerEquippedIDs[2] = 4;
+        GameController.controller.playerEquippedIDs[3] = 0;
         unlockedEquipment[8, 0] = true;
         unlockedEquipment[8, 2] = true;
+        GameController.controller.playerEquippedIDs[4] = 8;
+        GameController.controller.playerEquippedIDs[5] = 0;
         unlockedEquipment[12, 0] = true;
         unlockedEquipment[12, 2] = true;
+        GameController.controller.playerEquippedIDs[6] = 12;
+        GameController.controller.playerEquippedIDs[7] = 0;
         unlockedEquipment[16, 0] = true;
         unlockedEquipment[16, 2] = true;
+        GameController.controller.playerEquippedIDs[8] = 16;
+        GameController.controller.playerEquippedIDs[9] = 0;
         unlockedEquipment[20, 0] = true;
         unlockedEquipment[20, 2] = true;
+        GameController.controller.playerEquippedIDs[10] = 20;
+        GameController.controller.playerEquippedIDs[11] = 0;
         unlockedEquipment[24, 0] = true;
         unlockedEquipment[24, 2] = true;
         unlockedEquipment[24, 3] = true;
+        GameController.controller.playerEquippedIDs[12] = 24;
+        GameController.controller.playerEquippedIDs[13] = 0;
         unlockedEquipment[28, 0] = true;
         unlockedEquipment[28, 2] = true;
+        GameController.controller.playerEquippedIDs[14] = 28;
+        GameController.controller.playerEquippedIDs[15] = 0;
+
 
         spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Head");
         spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Torso");
@@ -93,15 +124,15 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void UpdateStats()
     {
-        //int atk = GameController.controller.playerAttack + info.AttackStat;
-        //int def = GameController.controller.playerDefense + info.DefenseStat;
-        //int prw = GameController.controller.playerProwess + info.ProwessStat;
-        //int spd = GameController.controller.playerSpeed + info.SpeedStat;
+        int atk = GameController.controller.playerAttack + info.AttackStat;
+        int def = GameController.controller.playerDefense + info.DefenseStat;
+        int prw = GameController.controller.playerProwess + info.ProwessStat;
+        int spd = GameController.controller.playerSpeed + info.SpeedStat;
 
-        //statText[0].GetComponent<Text>().text = atk.ToString();
-        //statText[1].GetComponent<Text>().text = def.ToString();
-        //statText[2].GetComponent<Text>().text = prw.ToString();
-        //statText[3].GetComponent<Text>().text = spd.ToString();
+        statText[0].GetComponent<Text>().text = atk.ToString();
+        statText[1].GetComponent<Text>().text = def.ToString();
+        statText[2].GetComponent<Text>().text = prw.ToString();
+        statText[3].GetComponent<Text>().text = spd.ToString();
     }
 
     public void LoadPersona()
@@ -245,11 +276,12 @@ public class Character_Menu_Manager : MonoBehaviour {
         //aura
         else if (indexI < 30)
         {
-            //menuButton = GameObject.Find("Aura_Button");
-            //menuButton.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+            menuButton = GameObject.Find("Aura_Button");
+            menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Aura[sheetIndex];
+            playerMannequin.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
 
-            //GameController.controller.playerEquippedIDs[14] = i;
-            //GameController.controller.playerEquippedIDs[15] = j;
+            GameController.controller.playerEquippedIDs[14] = i;
+            GameController.controller.playerEquippedIDs[15] = j;
         }
 
 
@@ -272,7 +304,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
         {
-            child.SetInteger("AnimState", 0);
+            child.SetInteger("AnimState", 5);
             ++counter;
         }
 
@@ -289,7 +321,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
         {
-            child.SetInteger("AnimState", 1);
+            child.SetInteger("AnimState", 0);
             ++counter;
         }
 
@@ -572,6 +604,8 @@ public class Character_Menu_Manager : MonoBehaviour {
                 }
             }
         }
+
+        UpdateStats();
     }
     // AURA UNLOCKS
     // [28][0]... [28][3]
@@ -619,7 +653,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     public void LoadCharacter()
     {
         //head
-        EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         playerMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         //torso
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[2], GameController.controller.playerEquippedIDs[3]);
@@ -668,6 +702,9 @@ public class Character_Menu_Manager : MonoBehaviour {
         //weapon
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[12], GameController.controller.playerEquippedIDs[13]);
         playerMannequin.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //aura
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
+        playerMannequin.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
     }
 
     public void ShowEquipmentOptions()
