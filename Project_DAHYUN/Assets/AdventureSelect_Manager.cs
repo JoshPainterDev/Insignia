@@ -23,6 +23,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         GameController.controller.levelsCompleted = 0;
         GameController.controller.stagesCompleted = 0;
+        LoadCharacter();
     }
 
     public void Update()
@@ -196,9 +197,17 @@ public class AdventureSelect_Manager : MonoBehaviour
         //head
         EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         playerMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+            playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
+
         //torso
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[2], GameController.controller.playerEquippedIDs[3]);
         playerMannequin.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+        {
+            playerMannequin.transform.GetChild(9).GetComponent<SpriteRenderer>().enabled = true;
+            playerMannequin.transform.GetChild(11).GetComponent<SpriteRenderer>().enabled = true;
+        }
 
         string newStr = info.imgSourceName;
         string match = "Torso";
@@ -237,11 +246,16 @@ public class AdventureSelect_Manager : MonoBehaviour
         //gloves
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[8], GameController.controller.playerEquippedIDs[9]);
         playerMannequin.transform.GetChild(4).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        if (!info.hideUnderLayer)
+            playerMannequin.transform.GetChild(10).GetComponent<SpriteRenderer>().enabled = true;
         //shoes
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[10], GameController.controller.playerEquippedIDs[11]);
         playerMannequin.transform.GetChild(5).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         //weapon
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[12], GameController.controller.playerEquippedIDs[13]);
         playerMannequin.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //Aura
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
+        playerMannequin.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
     }
 }

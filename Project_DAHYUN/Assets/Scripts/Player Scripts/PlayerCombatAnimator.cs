@@ -25,15 +25,15 @@ public class PlayerCombatAnimator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        childAnimators = new Animator[13];
+        childAnimators = new Animator[14];
         currentAnimation = "idle";
         int i = 0;
 		foreach(Animator child in this.GetComponentsInChildren<Animator>())
         {
             if(i < 7)
-            {
                 LoadPlayerEquipment(GameController.controller.playerEquippedIDs[i * 2], GameController.controller.playerEquippedIDs[(i * 2 + 1)]);
-            }
+            else if(i == 12)
+                LoadPlayerEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
 
             child.SetInteger("AnimState", idle_AS);
             childAnimators[i] = child;
@@ -159,6 +159,7 @@ public class PlayerCombatAnimator : MonoBehaviour {
         //aura
         else if (i < 30)
         {
+            playerMannequin.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         }
 
         RefreshAnimations();
@@ -171,22 +172,6 @@ public class PlayerCombatAnimator : MonoBehaviour {
         foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
         {
             child.SetInteger("AnimState", 0);
-            //if (counter == 8)
-            //{
-            //    child.Play(bodyHeadIdle, 0, 0.01f);
-            //}
-            //else if (counter == 9)
-            //{
-            //    child.Play(bodyTorsoIdle, 0, 0.01f);
-            //}
-            //else if (counter == 10)
-            //{
-            //    child.Play(bodyArmsIdle, 0, 0.01f);
-            //}
-            //else if (counter == 11)
-            //{
-            //    child.Play(bodyHeadIdle, 0, 0.01f);
-            //}
 
             ++counter;
         }

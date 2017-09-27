@@ -148,7 +148,9 @@
     <Compile Include="Assets\Scripts\TurnCombat\RewardToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StruggleManager_C.cs" />
+    <Compile Include="Assets\SkipButtonScript.cs" />
     <Compile Include="Assets\StatDescriptionScript.cs" />
+    <Compile Include="Assets\TimeController.cs" />
     <Compile Include="Assets\animStateScript.cs" />
     <Compile Include="Assets\enemyCounterScript.cs" />
   </ItemGroup>

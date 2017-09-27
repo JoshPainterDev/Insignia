@@ -382,8 +382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 136.99988, y: -60.16}
-  m_SizeDelta: {x: 126, y: 360.67}
+  m_AnchoredPosition: {x: 180, y: -60.16}
+  m_SizeDelta: {x: 440, y: 361}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96289242
 MonoBehaviour:
@@ -1307,7 +1307,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300004, guid: df22399627dcdbb47b677e5402c78716, type: 3}
+  m_Sprite: {fileID: 21300008, guid: df22399627dcdbb47b677e5402c78716, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1421,8 +1421,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 136.99991, y: -60.16}
-  m_SizeDelta: {x: 126, y: 360.67}
+  m_AnchoredPosition: {x: 180, y: -60.16}
+  m_SizeDelta: {x: 440, y: 360.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324730222
 MonoBehaviour:
@@ -2804,8 +2804,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 137.00006, y: -60.16}
-  m_SizeDelta: {x: 126, y: 360.67}
+  m_AnchoredPosition: {x: 180, y: -60.16}
+  m_SizeDelta: {x: 440, y: 360.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843588540
 MonoBehaviour:
@@ -3312,6 +3312,7 @@ GameObject:
   - component: {fileID: 944876047}
   - component: {fileID: 944876046}
   - component: {fileID: 944876045}
+  - component: {fileID: 944876051}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3490,6 +3491,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &944876051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944876044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5199243a02457a4e87bb2bcad906ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &955043137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5392,6 +5404,7 @@ MonoBehaviour:
   playerMannequin: {fileID: 119668991}
   equipmentSelectPopUpPrefab: {fileID: 1436204678186462, guid: 224ca9bdc807f3c4dab1c5dd91ad2dcb,
     type: 2}
+  playerLv_TextObj: {fileID: 1759579004}
   canvas: {fileID: 889873487}
   camera: {fileID: 1317330911}
   blackSq: {fileID: 1814897235}
@@ -6283,8 +6296,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 137.00006, y: -60.16}
-  m_SizeDelta: {x: 126, y: 360.67}
+  m_AnchoredPosition: {x: 180, y: -60.16}
+  m_SizeDelta: {x: 440, y: 360.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905213855
 MonoBehaviour:

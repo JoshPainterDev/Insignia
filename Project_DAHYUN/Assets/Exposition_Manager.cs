@@ -187,4 +187,19 @@ public class Exposition_Manager : MonoBehaviour
         dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
     }
+
+    public void SkipCutscene()
+    {
+        GameController.controller.GetComponent<TimeController>().LerpTimeScale(1, 0.1f, 3);
+        dialoguePanel.GetComponent<Image>().enabled = false;
+        dialoguePanel.GetComponentInChildren<Text>().enabled = false;
+        blackSq.GetComponent<FadeScript>().FadeIn(10f);
+        Invoke("LoadNextLv", 0.25f);
+    }
+
+    public void LoadNextLv()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("TurnCombat_Scene");
+    }
 }

@@ -26,11 +26,20 @@ public class GameController : MonoBehaviour {
     public int playerDefense;
     public int playerProwess;
     public int playerSpeed;
+    public int playerBaseAtk;
+    public int playerBaseDef;
+    public int playerBasePrw;
+    public int playerBaseSpd;
     public float[] playerColorPreference;
     public int levelsCompleted;
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
     public Reward rewardEarned;
+
+    private int atk = 0;
+    private int def = 0;
+    private int spd = 0;
+    private int prw = 0;
 
     // Use this for initialization
     void Awake () {
@@ -114,6 +123,22 @@ public class GameController : MonoBehaviour {
         if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {
             File.Delete(Application.persistentDataPath + "/playerInfo.dat");
+        }
+    }
+
+    public void UpdateEquipmentStats(string stat)
+    {
+        
+        def = GameController.controller.playerDefense;
+        prw = GameController.controller.playerProwess;
+        spd = GameController.controller.playerSpeed;
+
+        switch (stat)
+        {
+            case "atk":
+                atk = GameController.controller.playerAttack;
+
+                break;
         }
     }
 

@@ -87,7 +87,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
                 yield return new WaitForSeconds(0.85f);
                 break;
-                break;
             case "Reap":
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, enemyMannequinn.transform.position + new Vector3(100, 0, 0), 3);
                 yield return new WaitForSeconds(0.25f);
