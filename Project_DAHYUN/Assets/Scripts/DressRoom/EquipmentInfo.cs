@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentInfo{
-    public enum EquipmentType { Head, Torso, Legs, Back, Gloves, Shoes, Sword, Claws, Bow, none};
+    public enum EquipmentType { Head, Torso, Legs, Back, Gloves, Shoes, Sword, Claws, Bow, Aura, none};
 
     public enum EquipmentAnimation{ Sword, Claws, Bow, none};
     

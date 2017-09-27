@@ -74,7 +74,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.playerColorPreference[1] = 0f;
         GameController.controller.playerColorPreference[2] = 0f;
         GameController.controller.playerColorPreference[3] = 0.75f;
-        GameController.controller.playerAttack = 5;
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
@@ -172,6 +171,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         }
         statText[3].GetComponent<Text>().text = statTotal.ToString();
         GameController.controller.playerSpeed = statTotal;
+
+        print("player prow boyo: " + GameController.controller.playerProwess);
     }
 
     public void LoadPersona()

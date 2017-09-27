@@ -123,10 +123,10 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Serated Strike";
-        GameController.controller.playerAttack = 5;
-        GameController.controller.playerDefense = 5;
-        GameController.controller.playerProwess = 1;
-        GameController.controller.playerSpeed = 1;
+        //GameController.controller.playerAttack = 5;
+        //GameController.controller.playerDefense = 5;
+        //GameController.controller.playerProwess = 1;
+        //GameController.controller.playerSpeed = 1;
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
@@ -142,8 +142,10 @@ public class CombatManager : MonoBehaviour {
         initPlayerPos = playerMannequin.transform.position;
         strikeMod = GameController.controller.strikeModifier;
         strikeExecutePercent = .15f + (((GameController.controller.playerProwess - enemyInfo.enemyDefense) + 0.01f) / GameController.controller.playerProwess);
-        if (strikeExecutePercent <= 0)
+        if (strikeExecutePercent < 0.15f)
             strikeExecutePercent = .15f;
+        print("player prow: " + GameController.controller.playerProwess);
+        print("enemy defe: " + enemyInfo.enemyDefense);
         ability1 = GameController.controller.playerAbility1;
         ability2 = GameController.controller.playerAbility2;
         ability3 = GameController.controller.playerAbility3;
@@ -162,8 +164,6 @@ public class CombatManager : MonoBehaviour {
         HideAbilityButtons();
         StartCoroutine(ShowStartingButtons());
         DisableBackButton();
-
-        //playerMannequin.GetComponent<AnimationController>().LoadCharacter();
     }
 
     public void AbilitySelected(int selectedOption = 0)
@@ -318,7 +318,7 @@ public class CombatManager : MonoBehaviour {
         rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
         rightButton.GetComponent<Image>().color = abilities_C;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         ShowMainButtons();
         EnableMainButtons();
@@ -485,9 +485,7 @@ public class CombatManager : MonoBehaviour {
 
         // check if the player can press the enemy
         if (((float)enemyHealth / (float)enemyMaxHealth) <= strikeExecutePercent)
-        {
             return true;
-        }
 
         return false;
     }

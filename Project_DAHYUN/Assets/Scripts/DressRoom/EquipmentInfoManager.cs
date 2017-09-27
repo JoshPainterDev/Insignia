@@ -42,10 +42,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 5;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
                             equipInfo.imgSourceName = prefixHead + "\\Test_Suit\\Player_Head_TestHelm_AnimController";
                             break;
@@ -59,10 +59,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Mask";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 5;
+                            equipInfo.DefenseStat = 3;
+                            equipInfo.ProwessStat = 3;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
                             equipInfo.imgSourceName = prefixHead + "\\Slayer_Outfit\\Player_Head_SlayerHead_AnimController";
                             equipInfo.hideUnderLayer = false;
@@ -200,10 +200,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Chest";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 2;
+                            equipInfo.DefenseStat = 5;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
                             equipInfo.imgSourceName = prefixTorso + "\\Test_Suit\\Player_Torso_TestTorso_AnimController";
                             break;
@@ -217,10 +217,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Chest";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 3;
+                            equipInfo.DefenseStat = 5;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
                             equipInfo.imgSourceName = prefixTorso + "\\Slayer_Outfit\\Player_Torso_SlayerTorso_AnimController";
                             break;
@@ -357,10 +357,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Legs";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Legs;
                             equipInfo.imgSourceName = prefixLegs + "\\Test_Suit\\Player_Legs_TestLegs_AnimController";
                             break;
@@ -374,10 +374,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Legs";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 2;
+                            equipInfo.DefenseStat = 3;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Legs;
                             equipInfo.imgSourceName = prefixLegs + "\\Slayer_Outfit\\Player_Legs_SlayerLegs_AnimController";
                             break;
@@ -514,10 +514,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Back";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 0;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Back;
                             equipInfo.imgSourceName = prefixBack + "\\Test_Suit\\Player_Back_TestCape_AnimController";
                             break;
@@ -531,10 +531,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Cape";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 0;
+                            equipInfo.ProwessStat = 2;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Back;
                             equipInfo.imgSourceName = prefixBack + "\\Slayer_Outfit\\Player_Back_SlayerCape_AnimController";
                             break;
@@ -671,10 +671,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Gloves";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 0;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Gloves;
                             equipInfo.imgSourceName = prefixGloves + "\\Test_Suit\\Player_Gloves_TestGloves_AnimController";
                             break;
@@ -688,10 +688,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Gloves";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 2;
+                            equipInfo.DefenseStat = 2;
+                            equipInfo.ProwessStat = 1;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Gloves;
                             equipInfo.imgSourceName = prefixGloves + "\\Slayer_Outfit\\Player_Gloves_SlayerGloves_AnimController";
                             break;
@@ -828,10 +828,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Shoes";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 0;
+                            equipInfo.SpeedStat = 2;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Shoes;
                             equipInfo.imgSourceName = prefixShoes + "\\Test_Suit\\Player_Shoes_TestShoes_AnimController";
                             break;
@@ -845,10 +845,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Greaves";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 2;
+                            equipInfo.ProwessStat = 2;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Shoes;
                             equipInfo.imgSourceName = prefixShoes + "\\Slayer_Outfit\\Player_Shoes_SlayerShoes_AnimController";
                             break;
@@ -985,10 +985,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Test Sword";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 5;
+                            equipInfo.DefenseStat = 3;
+                            equipInfo.ProwessStat = 2;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
                             equipInfo.imgSourceName = prefixWeapon + "\\Test_Sword\\Player_Weapon_TestSword_AnimController";
                             break;
@@ -1003,19 +1003,19 @@ public class EquipmentInfoManager : MonoBehaviour{
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Sword";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 7;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 3;
+                            equipInfo.SpeedStat = 3;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
                             equipInfo.imgSourceName = prefixWeapon + "\\Slayer_Sword\\Player_Weapon_SlayerSword_AnimController";
                             break;
                         case 3:
                             equipInfo.Name = "Doom Blade";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.AttackStat = 6;
+                            equipInfo.DefenseStat = 3;
+                            equipInfo.ProwessStat = 2;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
                             equipInfo.imgSourceName = prefixWeapon + "\\Doom_Sword\\Player_Weapon_DoomBlade_AnimController";
                             break;
@@ -1148,7 +1148,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.DefenseStat = 0;
                             equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 0;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.none;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
                             equipInfo.imgSourceName = prefixAura + "None";
                             break;
                         case 1:
@@ -1157,16 +1157,16 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.DefenseStat = 69;
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
                             equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
                             break;
                         case 2:
                             equipInfo.Name = "Blaze Aura";
-                            equipInfo.AttackStat = 0;
+                            equipInfo.AttackStat = 3;
                             equipInfo.DefenseStat = 0;
                             equipInfo.ProwessStat = 0;
-                            equipInfo.SpeedStat = 0;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.none;
+                            equipInfo.SpeedStat = 3;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
                             equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
                             break;
                         case 3:
@@ -1175,7 +1175,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.DefenseStat = 69;
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.none;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
                             equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
                             break;
                     }

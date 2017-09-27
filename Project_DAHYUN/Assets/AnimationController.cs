@@ -6,7 +6,6 @@ public class AnimationController : MonoBehaviour
 {
     public void Start()
     {
-
         LoadCharacter();
     }
 
@@ -93,7 +92,6 @@ public class AnimationController : MonoBehaviour
 
         //sleeve
         this.transform.GetChild(7).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(newStr, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-
         //legs
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[4], GameController.controller.playerEquippedIDs[5]);
         this.transform.GetChild(2).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
