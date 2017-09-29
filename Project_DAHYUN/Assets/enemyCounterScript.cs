@@ -26,7 +26,7 @@ public class enemyCounterScript : MonoBehaviour {
             Vector2 newPos = Vector3.zero;
             tallies[i] = Instantiate(original, newPos, Quaternion.identity);
             newPos = origin + new Vector3(i * 15, 0, 0);
-            tallies[i].transform.parent = this.transform;
+            tallies[i].transform.SetParent(this.transform);
             tallies[i].transform.position = newPos;
             tallies[i].transform.localScale = Vector3.one;
         }

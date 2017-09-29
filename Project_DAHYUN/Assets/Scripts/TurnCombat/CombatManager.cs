@@ -15,6 +15,7 @@ public class CombatManager : MonoBehaviour {
     public GameObject enemyMannequin;
     private Vector3 initPlayerPos;
     public EnemyEncounter encounter;
+    private GameObject enemyPrfb;
 
     //MAIN BUTTON VARIABLES
     public GameObject topButton, leftButton, rightButton, backButton;
@@ -906,12 +907,17 @@ public class CombatManager : MonoBehaviour {
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator LoadNextEnemy()
     {
-        
+        Destroy(enemyPrfb);
         yield return new WaitForSeconds(1.5f);
         EnemyInfo info = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
-        info.enemyImageSource = "Animations\\LimitBreaks\\Hellion\\Player_LimitBreak_Hellion_AnimController";
-        enemyMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(info.enemyImageSource);
-        foreach(SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
+        //Remove/Fix this latter for animation controllers rather than still sprites
+        enemyMannequin.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(info.enemyImageSource);
+        enemyPrfb = Instantiate(enemyInfo.enemyPrefab, enemyMannequin.transform.position, Quaternion.identity) as GameObject;
+        enemyPrfb.transform.SetParent(enemyMannequin.transform);
+
+        print(enemyPrfb.name);
+
+        foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
             sprite.enabled = true;
             sprite.color = Color.white;

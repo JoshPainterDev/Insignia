@@ -3313,6 +3313,7 @@ GameObject:
   - component: {fileID: 944876046}
   - component: {fileID: 944876045}
   - component: {fileID: 944876051}
+  - component: {fileID: 944876052}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3475,6 +3476,10 @@ MonoBehaviour:
   playerDefense: 0
   playerProwess: 0
   playerSpeed: 0
+  playerBaseAtk: 0
+  playerBaseDef: 0
+  playerBasePrw: 0
+  playerBaseSpd: 0
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
@@ -3502,6 +3507,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5199243a02457a4e87bb2bcad906ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &944876052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944876044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d292131bd9bde3499dc4bc79b54dd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TRASH_EXP: 15
+  MODERATE_EXP: 50
+  THICC_EXP: 100
+  ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
+    type: 2}
+  Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
+    type: 2}
+  DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
+    type: 2}
 --- !u!1 &955043137
 GameObject:
   m_ObjectHideFlags: 0
