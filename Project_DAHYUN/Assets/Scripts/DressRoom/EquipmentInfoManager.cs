@@ -993,13 +993,13 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixWeapon + "\\Test_Sword\\Player_Weapon_TestSword_AnimController";
                             break;
                         case 1:
-                            equipInfo.Name = "Fire Sword";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.Name = "Dark Mors";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 7;
+                            equipInfo.ProwessStat = 7;
+                            equipInfo.SpeedStat = 3;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            equipInfo.imgSourceName = prefixWeapon + "\\Fire_Sword\\Player_Weapon_FireSword_AnimController";
+                            equipInfo.imgSourceName = prefixWeapon + "\\DarkMors_Sword\\Player_Weapon_DarkMors_AnimController";
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Sword";

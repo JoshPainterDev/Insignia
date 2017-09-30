@@ -117,6 +117,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         unlockedEquipment[20, 2] = true;
 
         unlockedEquipment[24, 0] = true;
+        unlockedEquipment[24, 1] = true;
         unlockedEquipment[24, 2] = true;
         unlockedEquipment[24, 3] = true;
 

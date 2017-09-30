@@ -33,6 +33,24 @@ public class ButtonAnimatorScript : MonoBehaviour
         StartCoroutine(AnimateClick());
     }
 
+    public void ShowButton()
+    {
+        this.GetComponent<Image>().enabled = true;
+        foreach(Text child in this.GetComponentsInChildren<Text>())
+        {
+            child.enabled = true;
+        }
+    }
+
+    public void HideButton()
+    {
+        this.GetComponent<Image>().enabled = false;
+        foreach (Text child in this.GetComponentsInChildren<Text>())
+        {
+            child.enabled = false;
+        }
+    }
+
     IEnumerator AnimateClick()
     {
         t_S = 0f;

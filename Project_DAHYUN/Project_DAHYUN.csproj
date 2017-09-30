@@ -84,10 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AccountInfo.cs" />
     <Compile Include="Assets\AdventureSelect_Manager.cs" />
     <Compile Include="Assets\AnimationController.cs" />
     <Compile Include="Assets\ButtonAnimatorScript.cs" />
     <Compile Include="Assets\Character_Menu_Manager.cs" />
+    <Compile Include="Assets\Character_Select_Manager.cs" />
     <Compile Include="Assets\ClosePopUp.cs" />
     <Compile Include="Assets\Dialogue_Manager_C.cs" />
     <Compile Include="Assets\EnemyAbilityManager_C.cs" />
