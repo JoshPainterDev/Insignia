@@ -29,3 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CombatReward_Scene.unity
     guid: db360cd209c0f7a4292a1fff099519b7
+  - enabled: 1
+    path: Assets/Scenes/NewCharacter_Scene.unity
+    guid: 5f131d35614d50f4abe603e5325ab789
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelect_Scene.unity
+    guid: bc1e5bdbf1f18534bbeee950ffb54818

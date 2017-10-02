@@ -7,7 +7,9 @@ using System.IO;
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
-    public string characterName = "Steve Lee";
+    public string[] charNames;
+    public int numChars;
+    public string characterName = "";
     public Ability playerAbility1;
     public Ability playerAbility2;
     public Ability playerAbility3;
@@ -36,10 +38,10 @@ public class GameController : MonoBehaviour {
     public EnemyEncounter currentEncounter;
     public Reward rewardEarned;
 
-    private int atk = 0;
-    private int def = 0;
-    private int spd = 0;
-    private int prw = 0;
+    //private int atk = 0;
+    //private int def = 0;
+    //private int spd = 0;
+    //private int prw = 0;
 
     // Use this for initialization
     void Awake () {
@@ -49,6 +51,7 @@ public class GameController : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             controller = this;
             playerEquippedIDs = new int[16];
+            charNames = new string[6];
         }
         else if(controller != this)
         {
@@ -56,10 +59,37 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-    public void Save()
+    /*ONLY FOR SAVING ACCOUNT INFORMATION*/
+    public void SaveCharacters()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream playerInfoFile = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+        FileStream accountInfoFile = File.Open(Application.persistentDataPath + "/accountInfo.dat", FileMode.Open);
+
+        AccountData data = new AccountData();
+
+        data.characterNames = charNames;
+
+        bf.Serialize(accountInfoFile, data);
+        accountInfoFile.Close();
+    }
+
+    public void LoadCharacters()
+    {
+        if (File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/accountInfo.dat", FileMode.Open);
+            AccountData data = (AccountData)bf.Deserialize(file);
+            file.Close();
+        }
+    }
+
+    /*FOR LOADING PLAYER SPECIFIC DATA*/
+
+    public void Save(string saveName)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream playerInfoFile = File.Open(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat", FileMode.Open);
 
         PlayerData data = new PlayerData();
 
@@ -80,6 +110,7 @@ public class GameController : MonoBehaviour {
         data.speed = playerSpeed;
         data.PlayerColor = playerColorPreference;
 
+        data.EquipmentList = playerEquipmentList;
         data.EquippedIDs = playerEquippedIDs;
         data.InventoryList = playerInventory;
         data.LevelsCompleted = levelsCompleted;
@@ -89,9 +120,9 @@ public class GameController : MonoBehaviour {
         playerInfoFile.Close();
     }
 
-    public void Load()
+    public void Load(string saveName)
     {
-        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        if(File.Exists(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
@@ -109,8 +140,9 @@ public class GameController : MonoBehaviour {
             strikeModifier = data.StrikeMod;
             limitBreakModifier = data.limitBreakMod;
             limitBreakTracker = data.limitBreakTrack;
-            playerInventory = data.InventoryList;
             playerColorPreference = data.PlayerColor;
+
+            playerInventory = data.InventoryList;
             playerEquipmentList = data.EquipmentList;
             playerEquippedIDs = data.EquippedIDs;
             levelsCompleted = data.LevelsCompleted;
@@ -118,27 +150,11 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void Delete()
+    public void Delete(string saveName)
     {
-        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        if(File.Exists(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat"))
         {
-            File.Delete(Application.persistentDataPath + "/playerInfo.dat");
-        }
-    }
-
-    public void UpdateEquipmentStats(string stat)
-    {
-        
-        def = GameController.controller.playerDefense;
-        prw = GameController.controller.playerProwess;
-        spd = GameController.controller.playerSpeed;
-
-        switch (stat)
-        {
-            case "atk":
-                atk = GameController.controller.playerAttack;
-
-                break;
+            File.Delete(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat");
         }
     }
 
@@ -247,4 +263,11 @@ class PlayerData
     public float[] PlayerColor;
     public int LevelsCompleted;
     public int StagesCompleted;
+}
+
+[Serializable]
+class AccountData
+{
+    public string[] characterNames;
+    public int numberOfCharacters = 0;
 }
