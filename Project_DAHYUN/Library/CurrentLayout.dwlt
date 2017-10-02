@@ -176,8 +176,8 @@ MonoBehaviour:
     y: 0
     width: 284
     height: 543
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -201,8 +201,8 @@ MonoBehaviour:
     y: 0
     width: 1177
     height: 543
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -255,8 +255,8 @@ MonoBehaviour:
     y: 0
     width: 459
     height: 947
-  m_MinSize: {x: 277, y: 71}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -323,23 +323,23 @@ MonoBehaviour:
     height: 522
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9a29feff4629feff2629feff
-    m_LastClickedID: -120538
-    m_ExpandedIDs: a061fbff9cb7fbffa01cfcff1e29feff3e29feff4a29feff5629feff6429feff7a29feff7e29feff9029feff9229feff882bfeffa231feff14deffff60f7ffffe2fbffff000000004c4b00009e4b0000304d000082500000525300008e530000fa530000
+    m_SelectedIDs: 48460000
+    m_LastClickedID: 0
+    m_ExpandedIDs: e2fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: CreationMenuManager
-      m_OriginalName: CreationMenuManager
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 21464
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -692,19 +692,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/Characters
+    - Assets/Resources/Animations/NPCs
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Characters
+  - Assets/Resources/Animations/NPCs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: J:\ProjectDAHYUN\Project_DAHYUN
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 130}
-    m_SelectedIDs: ba260000
-    m_LastClickedID: 9914
-    m_ExpandedIDs: 000000005825000078270000fe27000048290000962a0000982a0000fe2b00002c2d00004a2d0000982d0000a02f0000f22f00009a300000fe3000003032000098330000ca340000b2360000ca370000743800005c390000c8390000063a0000ec3a0000783b0000d23f0000324900003449000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 706}
+    m_SelectedIDs: 3c2f0000
+    m_LastClickedID: 12092
+    m_ExpandedIDs: 000000005c2500007c270000022800004c2900009a2a00009c2a0000022c0000302d00004e2d00009c2d0000a42f0000f62f00009e30000002310000343200009c330000d4340000bc360000d43700007e38000066390000d2390000123a0000f83a0000843b0000de3f0000324600003446000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -732,7 +732,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005825000078270000fe27000048290000962a0000982a0000fe2b00002c2d00004a2d0000982d0000a02f0000f22f00009a300000fe3000003032000098330000ca340000b2360000ca370000743800005c390000c8390000063a0000ec3a0000783b0000d23f00003249000034490000
+    m_ExpandedIDs: 000000005c2500007c270000022800004c2900009a2a00009c2a0000022c0000302d00004e2d00009c2d0000a42f0000f62f00009e30000002310000343200009c330000d4340000bc360000d43700007e38000066390000d2390000123a0000f83a0000843b0000de3f00003246000034460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -763,18 +763,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 62220000cc210000d02100006c24000084240000fe210000dc26000070250000f026000006cd0000f02b00001a3000003a3400007226000012480000284c00000434000072530000000000004c5d000052f3f6ff
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: AccountInfo
-      m_OriginalName: AccountInfo
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 19810
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
