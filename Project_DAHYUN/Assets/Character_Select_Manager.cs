@@ -10,7 +10,6 @@ public class Character_Select_Manager : MonoBehaviour
     public GameObject characterMannequin;
     public GameObject blackSq;
 
-    private AccountData accountData;
     private int selectedChar = 0;
 
     private void Awake()
@@ -21,18 +20,8 @@ public class Character_Select_Manager : MonoBehaviour
             GameController.controller.LoadCharacters();
         }
         else
-            GameController.controller.charNames[0] = "Skip";
-
-        //REMOVE THIS LATER
-
-
-        RefreshAccountData(); 
-    }
-
-    private void RefreshAccountData()
-    {
-        accountData.characterNames = GameController.controller.charNames;
-        accountData.numberOfCharacters = GameController.controller.numChars;
+        {
+        }
     }
 
     // Use this for initialization
@@ -40,12 +29,29 @@ public class Character_Select_Manager : MonoBehaviour
     {
         LoadDefaultCharacter();
         HideDeleteCheck();
-	}
+        //RefreshAccountData();
+    }
 
     public void CreateCharacter()
     {
-        blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
-        SceneManager.LoadScene("NewCharacter_Scene");
+        print(selectedChar);
+        if (checkForExistingChars(selectedChar))
+        {
+            blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
+            SceneManager.LoadScene("NewCharacter_Scene");
+        }
+    }
+
+    public bool checkForExistingChars(int charNum)
+    {
+        if (charNum == 0)
+            return false;
+        
+        if(GameController.controller.charNames[charNum] == null)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void CheckForDelete()
@@ -54,7 +60,11 @@ public class Character_Select_Manager : MonoBehaviour
         foreach (Image child in checkForDeletePanel.GetComponentsInChildren<Image>())
         {
             child.enabled = true;
-            child.gameObject.GetComponent<Text>().enabled = true;
+        }
+
+        foreach (Text child in checkForDeletePanel.GetComponentsInChildren<Text>())
+        {
+            child.GetComponent<Text>().enabled = true;
         }
 
         foreach (Text child in checkForDeletePanel.GetComponentsInChildren<Text>())
@@ -69,7 +79,11 @@ public class Character_Select_Manager : MonoBehaviour
         foreach (Image child in checkForDeletePanel.GetComponentsInChildren<Image>())
         {
             child.enabled = false;
-            child.gameObject.GetComponent<Text>().enabled = false;
+        }
+
+        foreach (Text child in checkForDeletePanel.GetComponentsInChildren<Text>())
+        {
+            child.GetComponent<Text>().enabled = false;
         }
 
         foreach (Text child in checkForDeletePanel.GetComponentsInChildren<Text>())
@@ -114,7 +128,7 @@ public class Character_Select_Manager : MonoBehaviour
     public void CharacterSelected(int charNum)
     {
         selectedChar = charNum;
-        if(charNum > accountData.numberOfCharacters)
+        if(charNum > GameController.controller.numChars)
             LoadDefaultCharacter();
         else
             LoadCharacterPreview(selectedChar);
@@ -122,7 +136,7 @@ public class Character_Select_Manager : MonoBehaviour
 
     public void LoadCharacterPreview(int charNum)
     {
-        GameController.controller.Load(accountData.characterNames[charNum]);
+        GameController.controller.Load(GameController.controller.charNames[charNum]);
 
         for (int i = 8; i < 12; ++i)
         {

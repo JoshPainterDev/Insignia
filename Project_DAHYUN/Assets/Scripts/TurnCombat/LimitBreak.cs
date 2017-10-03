@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public enum LimitBreakName { Hellion_Form, Blood_Rage, Shadows_Embrace, Overdrive, Ascenion, Solaris_Invictus, none };
 
+[System.Serializable]
 public class LimitBreak
 { 
     public LimitBreakName name = LimitBreakName.none;

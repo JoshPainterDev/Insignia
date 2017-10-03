@@ -52,6 +52,27 @@ public class GameController : MonoBehaviour {
             controller = this;
             playerEquippedIDs = new int[16];
             charNames = new string[6];
+
+            if(File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
+            {
+                //var sr = File.OpenWrite(Application.persistentDataPath + "/accountInfo.dat");
+                //print("wel wel wl"); 
+                //File.WriteAllText(Application.persistentDataPath + "/accountInfo.dat", "hi hello!");
+                //sr.Close();
+                LoadCharacters();
+            }
+            else
+            {
+                print("no file existed");
+                var filename = "accountInfo.dat";
+                var sr = File.CreateText(Application.persistentDataPath + "/accountInfo.dat");
+                this.charNames[0] = "Skip";
+                this.numChars = 0;
+                sr.WriteLine ("This is my file.");
+                sr.Close();
+                //sr.WriteLine("I can write ints {0} or floats {1}, and so on.",1, 4.2);
+                SaveCharacters();
+            }
         }
         else if(controller != this)
         {
@@ -63,25 +84,33 @@ public class GameController : MonoBehaviour {
     public void SaveCharacters()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream accountInfoFile = File.Open(Application.persistentDataPath + "/accountInfo.dat", FileMode.Open);
+        FileStream accountInfoFile = File.Create(Application.persistentDataPath + "/accountInfo.dat");
 
         AccountData data = new AccountData();
 
         data.characterNames = charNames;
+        data.numberOfCharacters = numChars;
 
         bf.Serialize(accountInfoFile, data);
         accountInfoFile.Close();
+
+        print("Saved character list");
     }
 
-    public void LoadCharacters()
+    public bool LoadCharacters()
     {
         if (File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/accountInfo.dat", FileMode.Open);
             AccountData data = (AccountData)bf.Deserialize(file);
+            charNames = data.characterNames;
+            numChars = data.numberOfCharacters;
             file.Close();
+            return true;
         }
+
+        return false;
     }
 
     /*FOR LOADING PLAYER SPECIFIC DATA*/
@@ -89,7 +118,7 @@ public class GameController : MonoBehaviour {
     public void Save(string saveName)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream playerInfoFile = File.Open(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat", FileMode.Open);
+        FileStream playerInfoFile = File.Create(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat");
 
         PlayerData data = new PlayerData();
 

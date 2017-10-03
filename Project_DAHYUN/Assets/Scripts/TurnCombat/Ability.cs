@@ -3,8 +3,10 @@ using System.Collections;
 
 
 public enum SpecialCase { Illusion, Linger_S, Linger_L, Blind, Execute, Outrage, Ablaze, ShadowClone, None };
+[System.Serializable]
 public enum AbilityType { Physical, Magical, Utility, None };
 
+[System.Serializable]
 public class Ability{
     public int Accuracy = 100;
     public int Cooldown = 3;
