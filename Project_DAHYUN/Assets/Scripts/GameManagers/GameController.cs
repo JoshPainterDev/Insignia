@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour {
     public EnemyEncounter currentEncounter;
     public Reward rewardEarned;
 
+    public int CharacterSlot;
+
     //private int atk = 0;
     //private int def = 0;
     //private int spd = 0;
@@ -154,7 +156,7 @@ public class GameController : MonoBehaviour {
         if(File.Exists(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo_" + saveName + ".dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
 

@@ -2168,7 +2168,7 @@ Prefab:
     - target: {fileID: 224987644787726936, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224900872333405120, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
@@ -2188,7 +2188,7 @@ Prefab:
     - target: {fileID: 224900872333405120, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -125
       objectReference: {fileID: 0}
     - target: {fileID: 224286864417078548, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
@@ -2208,12 +2208,12 @@ Prefab:
     - target: {fileID: 224286864417078548, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 224913400364073570, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1718752504138836, guid: a7c2e588bd24aed4eb37611ce29da965, type: 2}
       propertyPath: m_Name
@@ -2665,6 +2665,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  CharacterSlot: 0
 --- !u!4 &944876050
 Transform:
   m_ObjectHideFlags: 0

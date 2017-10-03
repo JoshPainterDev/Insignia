@@ -37,6 +37,7 @@ public class Character_Select_Manager : MonoBehaviour
         print(selectedChar);
         if (checkForExistingChars(selectedChar))
         {
+            GameController.controller.CharacterSlot = selectedChar;
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
             SceneManager.LoadScene("NewCharacter_Scene");
         }
@@ -46,9 +47,10 @@ public class Character_Select_Manager : MonoBehaviour
     {
         if (charNum == 0)
             return false;
-        
+
         if(GameController.controller.charNames[charNum] == null)
         {
+            print(charNum + " exists");
             return true;
         }
         return false;
@@ -128,6 +130,7 @@ public class Character_Select_Manager : MonoBehaviour
     public void CharacterSelected(int charNum)
     {
         selectedChar = charNum;
+        print(GameController.controller.numChars);
         if(charNum > GameController.controller.numChars)
             LoadDefaultCharacter();
         else
@@ -137,6 +140,8 @@ public class Character_Select_Manager : MonoBehaviour
     public void LoadCharacterPreview(int charNum)
     {
         GameController.controller.Load(GameController.controller.charNames[charNum]);
+
+        print(GameController.controller.charNames[charNum]);
 
         for (int i = 8; i < 12; ++i)
         {
