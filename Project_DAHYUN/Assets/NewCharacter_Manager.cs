@@ -8,11 +8,23 @@ using UnityEngine;
 public class NewCharacter_Manager : MonoBehaviour {
 
     public GameObject textField;
+    public GameObject blackSq;
 
 	// Use this for initialization
 	void Start () {
 		
 	}
+
+    public void CancelCharacter()
+    {
+        blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
+        Invoke("LoadCharSelect", 0.5f);
+    }
+
+    private void LoadCharSelect()
+    {
+        SceneManager.LoadScene("CharacterSelect_Scene");
+    }
 
     public void FinalizeCharacter()
     {

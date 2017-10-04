@@ -917,11 +917,11 @@ RectTransform:
   m_Father: {fileID: 889873491}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -514.9, y: -7.7}
-  m_SizeDelta: {x: 73.9, y: 40}
-  m_Pivot: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10.699951, y: -7.7}
+  m_SizeDelta: {x: 73.900024, y: 40}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &257095925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,8 +961,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: GoBack
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: CancelCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3703,6 +3703,11 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1155806678 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1112125458341768, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+    type: 2}
+  m_PrefabInternal: {fileID: 538142075}
 --- !u!1 &1171204919
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,6 +5207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 1263696184}
+  blackSq: {fileID: 1155806678}
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0

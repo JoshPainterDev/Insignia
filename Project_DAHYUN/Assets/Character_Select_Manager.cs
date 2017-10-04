@@ -8,6 +8,7 @@ public class Character_Select_Manager : MonoBehaviour
 {
     public GameObject checkForDeletePanel;
     public GameObject characterMannequin;
+    public GameObject gridThing;
     public GameObject blackSq;
 
     private int selectedChar = 0;
@@ -29,7 +30,15 @@ public class Character_Select_Manager : MonoBehaviour
     {
         LoadDefaultCharacter();
         HideDeleteCheck();
-        //RefreshAccountData();
+        RefreshCharacterList();
+    }
+
+    public void RefreshCharacterList()
+    {
+        for (int i = 0; i < this.transform.childCount; ++i)
+        {
+            this.transform.GetChild(i).GetChild(0).GetComponentInChildren<Text>().text = GameController.controller.charNames[i + 1];
+        }
     }
 
     public void CreateCharacter()
@@ -58,6 +67,13 @@ public class Character_Select_Manager : MonoBehaviour
 
     public void CheckForDelete()
     {
+        print(GameController.controller.charNames[selectedChar]);
+        if (GameController.controller.charNames[selectedChar] == null)
+        {
+            GameController.controller.GetComponent<MenuUIAudio>().playNope();
+            return;
+        }
+
         checkForDeletePanel.GetComponent<Image>().enabled = true;
         foreach (Image child in checkForDeletePanel.GetComponentsInChildren<Image>())
         {
