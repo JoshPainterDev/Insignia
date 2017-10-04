@@ -25,7 +25,6 @@ public class ButtonAnimatorScript : MonoBehaviour
         audioManager = GameController.controller.GetComponent<MenuUIAudio>();
         origScale = this.transform.localScale;
         origPos = this.transform.position;
-        origColor = this.GetComponent<Image>().color;
 	}
 
     public void AnimateButtonClick()
@@ -50,16 +49,6 @@ public class ButtonAnimatorScript : MonoBehaviour
         {
             child.enabled = false;
         }
-    }
-
-    public void ChangeColor()
-    {
-        this.GetComponent<Image>().color = newColor;
-    }
-
-    public void RevertColor()
-    {
-        this.GetComponent<Image>().color = origColor;
     }
 
     IEnumerator AnimateClick()

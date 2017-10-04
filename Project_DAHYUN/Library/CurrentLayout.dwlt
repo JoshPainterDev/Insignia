@@ -226,19 +226,11 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-<<<<<<< Updated upstream
     y: 365
     width: 1006
     height: 270
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
-=======
-    y: 544
-    width: 1369
-    height: 403
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
->>>>>>> Stashed changes
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
@@ -330,17 +322,10 @@ MonoBehaviour:
     width: 295
     height: 344
   m_TreeViewState:
-<<<<<<< Updated upstream
     scrollPos: {x: 0, y: 25}
     m_SelectedIDs: 4c79ffff
     m_LastClickedID: -34484
     m_ExpandedIDs: 4479ffff4c79ffff5679ffff5a79ffff6079ffff6879ffff2eacffffa2b5ffff00000000c26c00006c6d000002800000
-=======
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 7cf8ffff80f8ffffc6f8ffffc8f8ffffd0f8ffffe2fbfffff4ffffff000000009c470000
->>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -395,15 +380,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-<<<<<<< Updated upstream
     m_Target: {x: 231.92224, y: -91.61646, z: 1.5}
     speed: 2
     m_Value: {x: 231.92224, y: -91.61646, z: 1.5}
-=======
-    m_Target: {x: 253.32745, y: -58.526146, z: 1.5}
-    speed: 2
-    m_Value: {x: 253.32745, y: -58.526146, z: 1.5}
->>>>>>> Stashed changes
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -703,11 +682,7 @@ MonoBehaviour:
     width: 971
     height: 249
   m_SearchFilter:
-<<<<<<< Updated upstream
     m_NameFilter: charac
-=======
-    m_NameFilter: combat
->>>>>>> Stashed changes
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -717,34 +692,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-<<<<<<< Updated upstream
     - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
   - Assets
-=======
-    - Assets/Resources/IconSpritesheets
-  m_ViewMode: 1
-  m_StartGridSize: 16
-  m_LastFolders:
-  - Assets/Resources/IconSpritesheets
->>>>>>> Stashed changes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Joshx\OneDrive\Documents\ProjectDAHYUN\Project_DAHYUN
   m_IsLocked: 0
   m_FolderTreeState:
-<<<<<<< Updated upstream
     scrollPos: {x: 0, y: 111}
     m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: 000000002c58000088590000c8590000945a0000545b0000565b00001c5c0000d65c0000e85c00001e5d0000765e0000a45e0000fe5e0000465f000000600000d46000008a610000b062000052630000b2630000446400008a640000ae640000426500009c6500003e680000d66a0000d86a000000ca9a3bffffff7f
-=======
-    scrollPos: {x: 0, y: 867}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 00000000602500008027000006280000502900009e2a0000a02a0000082c0000362d0000542d0000a22d0000ac2f0000fe2f0000a63000000631000046320000ae330000e6340000d0360000ec3700009a38000086390000f2390000323a0000183b0000a43b000002400000ea460000ec46000000ca9a3bffffff7f
->>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -772,11 +732,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-<<<<<<< Updated upstream
     m_ExpandedIDs: 000000002c58000088590000c8590000945a0000545b0000565b00001c5c0000d65c0000e85c00001e5d0000765e0000a45e0000fe5e0000465f000000600000d46000008a610000b062000052630000b2630000446400008a640000ae640000426500009c6500003e680000d66a0000d86a0000
-=======
-    m_ExpandedIDs: 00000000602500008027000006280000502900009e2a0000a02a0000082c0000362d0000542d0000a22d0000ac2f0000fe2f0000a63000000631000046320000ae330000e6340000d0360000ec3700009a38000086390000f2390000323a0000183b0000a43b000002400000ea460000ec460000
->>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -801,17 +757,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-<<<<<<< Updated upstream
     m_SelectedInstanceIDs: 96640000
     m_LastClickedInstanceID: 25750
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 62220000cc210000d02100006c24000084240000fe210000dc26000070250000f026000006cd0000f02b00001a3000003a3400007226000012480000284c00000434000072530000000000004c5d000052f3f6ff
-=======
-    m_SelectedInstanceIDs: 94060000
-    m_LastClickedInstanceID: 1684
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 62220000cc210000d02100006c24000084240000fe210000dc26000070250000f026000006cd0000f02b00001a3000003a3400007226000012480000284c00000434000072530000000000004c5d000052f3f6ff46270000
->>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

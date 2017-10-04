@@ -4,14 +4,12 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-[Serializable]
-public enum PlayerClass {Knight, none};
-
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
+    public string[] charNames;
+    public int numChars;
     public string characterName = "";
-    public float[] playerSkinColor;
     public Ability playerAbility1;
     public Ability playerAbility2;
     public Ability playerAbility3;
@@ -40,10 +38,7 @@ public class GameController : MonoBehaviour {
     public EnemyEncounter currentEncounter;
     public Reward rewardEarned;
 
-    public string[] charNames;
-    public int numChars;
     public int CharacterSlot;
-    public PlayerClass[] charClasses = new PlayerClass[6];
 
     //private int atk = 0;
     //private int def = 0;
@@ -57,17 +52,10 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             controller = this;
-            playerSkinColor = new float[3];
-            playerColorPreference = new float[3];
             playerEquippedIDs = new int[16];
             charNames = new string[6];
-            charClasses = new PlayerClass[6];
-            for(int i = 0; i < 6; ++i)
-                charClasses[i] = PlayerClass.none;
 
-            print("class 1: " + charClasses[1]);
-
-            if (File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
+            if(File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
             {
                 //var sr = File.OpenWrite(Application.persistentDataPath + "/accountInfo.dat");
                 //print("wel wel wl"); 
@@ -78,10 +66,10 @@ public class GameController : MonoBehaviour {
             else
             {
                 print("no file existed");
+                var filename = "accountInfo.dat";
                 var sr = File.CreateText(Application.persistentDataPath + "/accountInfo.dat");
-                charNames[0] = "Skip";
-                numChars = 0;
-                charClasses[0] = PlayerClass.none;
+                this.charNames[0] = "Skip";
+                this.numChars = 0;
                 sr.WriteLine ("This is my file.");
                 sr.Close();
                 //sr.WriteLine("I can write ints {0} or floats {1}, and so on.",1, 4.2);
@@ -104,7 +92,6 @@ public class GameController : MonoBehaviour {
 
         data.characterNames = charNames;
         data.numberOfCharacters = numChars;
-        data.characterClasses = charClasses;
 
         bf.Serialize(accountInfoFile, data);
         accountInfoFile.Close();
@@ -121,7 +108,6 @@ public class GameController : MonoBehaviour {
             AccountData data = (AccountData)bf.Deserialize(file);
             charNames = data.characterNames;
             numChars = data.numberOfCharacters;
-            charClasses = data.characterClasses;
             file.Close();
             return true;
         }
@@ -139,7 +125,6 @@ public class GameController : MonoBehaviour {
         PlayerData data = new PlayerData();
 
         data.charName = characterName;
-        data.PlayerSkinColor = playerSkinColor;
         data.Level = playerLevel;
         data.PlayerExperience = playerEXP;
         data.difficulty = difficultyScale;
@@ -293,9 +278,9 @@ public class GameController : MonoBehaviour {
 class PlayerData
 {
     public string charName;
-    public float[] PlayerSkinColor;
     public Ability ability1, ability2, ability3, ability4;
     public string StrikeMod;
+    public string PlayerClass;
     public int Level;
     public int PlayerExperience;
     public int difficulty;
@@ -315,6 +300,5 @@ class PlayerData
 class AccountData
 {
     public string[] characterNames;
-    public PlayerClass[] characterClasses;
     public int numberOfCharacters = 0;
 }
