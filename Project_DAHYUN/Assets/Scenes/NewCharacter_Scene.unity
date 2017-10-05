@@ -469,7 +469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9, y: -21.7}
+  m_AnchoredPosition: {x: -57.2, y: -21.7}
   m_SizeDelta: {x: 8.5, y: 13.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119668993
@@ -1085,7 +1085,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300008, guid: df22399627dcdbb47b677e5402c78716, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1948d311e7f0ccb4d8b2e8433cb74af2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 1, g: 1, b: 1, a: 1}
+  newColor: {r: 1, g: 0.76551723, b: 0, a: 1}
   scaler: 1.2
 --- !u!114 &637724835
 MonoBehaviour:
@@ -2012,19 +2012,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowAuraEquipment
-        m_Mode: 1
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: ChangeClass
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 637724834}
         m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 637724834}
+        m_MethodName: ChangeColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2867,8 +2878,8 @@ RectTransform:
   m_Children:
   - {fileID: 119668992}
   - {fileID: 625751232}
-  - {fileID: 1517703115}
   - {fileID: 1730947759}
+  - {fileID: 1517703115}
   - {fileID: 637724833}
   - {fileID: 1171204920}
   - {fileID: 1205824061}
@@ -3170,9 +3181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNames: []
-  numChars: 0
   characterName: Steve Lee
+  playerSkinColor: []
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -3261,7 +3271,10 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  charNames: []
+  numChars: 0
   CharacterSlot: 0
+  charClasses: 000000000000000000000000000000000000000000000000
 --- !u!4 &944876050
 Transform:
   m_ObjectHideFlags: 0
@@ -3757,7 +3770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 1, g: 1, b: 1, a: 1}
+  newColor: {r: 1, g: 0.76551723, b: 0, a: 1}
   scaler: 1.2
 --- !u!114 &1171204922
 MonoBehaviour:
@@ -3798,19 +3811,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowWeaponEquipment
-        m_Mode: 1
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: ChangeClass
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1171204921}
         m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1171204921}
+        m_MethodName: ChangeColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4063,7 +4087,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300026, guid: df22399627dcdbb47b677e5402c78716, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1948d311e7f0ccb4d8b2e8433cb74af2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4622,7 +4646,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7f1904e4e886ada488d265360867eab0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1948d311e7f0ccb4d8b2e8433cb74af2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4989,7 +5013,7 @@ RectTransform:
   m_Children:
   - {fileID: 269323403}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -5035,19 +5059,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowAuraEquipment
-        m_Mode: 1
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: ChangeClass
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1517703119}
         m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1517703119}
+        m_MethodName: ChangeColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5103,7 +5138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 1, g: 1, b: 1, a: 1}
+  newColor: {r: 1, g: 0.76551723, b: 0, a: 1}
   scaler: 1.2
 --- !u!1 &1541987772
 GameObject:
@@ -5206,6 +5241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f298d4dd582654f9674831d1c03acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMannequin: {fileID: 119668991}
+  class1: {fileID: 1730947758}
+  class2: {fileID: 1517703114}
+  class3: {fileID: 637724832}
+  class4: {fileID: 1171204919}
+  classIcon: {fileID: 1205824060}
   textField: {fileID: 1263696184}
   blackSq: {fileID: 1155806678}
 --- !u!4 &1616549426
@@ -5635,7 +5676,7 @@ RectTransform:
   m_Children:
   - {fileID: 272505119}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -5681,9 +5722,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowWeaponEquipment
-        m_Mode: 1
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: ChangeClass
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5694,6 +5735,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1730947763}
         m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1730947763}
+        m_MethodName: ChangeColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5749,7 +5801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 1, g: 1, b: 1, a: 1}
+  newColor: {r: 1, g: 0.76551723, b: 0, a: 1}
   scaler: 1.2
 --- !u!1 &1899857623
 GameObject:

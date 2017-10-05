@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Character_Select_Manager : MonoBehaviour
 {
+    public GameObject playerMannequin;
     public GameObject checkForDeletePanel;
     public GameObject characterMannequin;
     public GameObject gridThing;
@@ -156,16 +157,25 @@ public class Character_Select_Manager : MonoBehaviour
     public void LoadCharacterPreview(int charNum)
     {
         GameController.controller.Load(GameController.controller.charNames[charNum]);
+        playerMannequin.GetComponent<AnimationController>().LoadCharacter();
 
         print(GameController.controller.charNames[charNum]);
 
         for (int i = 8; i < 12; ++i)
         {
             characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
-            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = getPlayerColor();
+            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = getSkinColor();
         }
         
         characterMannequin.GetComponent<AnimationController>().LoadCharacter();
+    }
+
+    public Color getSkinColor()
+    {
+        Color player_C = new Color(GameController.controller.playerSkinColor[0],
+            GameController.controller.playerSkinColor[1],
+            GameController.controller.playerSkinColor[2]);
+        return player_C;
     }
 
     public Color getPlayerColor()

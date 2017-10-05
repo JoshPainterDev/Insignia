@@ -2173,7 +2173,7 @@ Prefab:
     - target: {fileID: 224987644787726936, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224900872333405120, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
@@ -2193,7 +2193,7 @@ Prefab:
     - target: {fileID: 224900872333405120, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224286864417078548, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
@@ -2213,12 +2213,12 @@ Prefab:
     - target: {fileID: 224286864417078548, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224913400364073570, guid: a7c2e588bd24aed4eb37611ce29da965,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1718752504138836, guid: a7c2e588bd24aed4eb37611ce29da965, type: 2}
       propertyPath: m_Name
@@ -2579,9 +2579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNames: []
-  numChars: 0
   characterName: Steve Lee
+  playerSkinColor: []
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -2670,7 +2669,10 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  charNames: []
+  numChars: 0
   CharacterSlot: 0
+  charClasses: 
 --- !u!4 &944876050
 Transform:
   m_ObjectHideFlags: 0
@@ -3511,6 +3513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d615b68494822a145a56e33fe6c6ae52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMannequin: {fileID: 119668991}
   checkForDeletePanel: {fileID: 23738101}
   characterMannequin: {fileID: 119668991}
   gridThing: {fileID: 94701713}

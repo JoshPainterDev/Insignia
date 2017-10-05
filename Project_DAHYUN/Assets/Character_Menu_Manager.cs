@@ -99,7 +99,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         //load in defaults for now : FIX THIS SHIT L8R
         unlockedEquipment[0, 0] = true;
         unlockedEquipment[0, 2] = true;
-
         
         unlockedEquipment[4, 0] = true;
         unlockedEquipment[4, 2] = true;
