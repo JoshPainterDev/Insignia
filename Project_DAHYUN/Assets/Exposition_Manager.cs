@@ -29,7 +29,7 @@ public class Exposition_Manager : MonoBehaviour
         encounter = GameController.controller.currentEncounter;
         origCameraPos = camera.transform.position;
         playerInitPos = playerMannequin.transform.position;
-        playerName = GameController.controller.characterName;
+        playerName = GameController.controller.playerName;
         panelDownPos = dialoguePanel.transform.position;
         panelUpPos = panelDownPos + new Vector3(0, 100, 0);
         panelOrigColor = dialoguePanel.GetComponent<Image>().color;

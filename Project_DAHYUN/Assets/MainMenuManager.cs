@@ -19,6 +19,11 @@ public class MainMenuManager : MonoBehaviour {
     public Vector3 adventureCameraPos;
     public Vector3 craftingCameraPos;
 
+    public void Start()
+    {
+        playerMannequin.GetComponent<AnimationController>().LoadCharacter();
+    }
+
     public void ButtonPressed(int buttonNumber)
     {
         DisableButtons();

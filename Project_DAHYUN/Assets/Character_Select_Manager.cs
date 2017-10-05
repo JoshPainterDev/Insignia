@@ -8,11 +8,15 @@ public class Character_Select_Manager : MonoBehaviour
 {
     public GameObject playerMannequin;
     public GameObject checkForDeletePanel;
-    public GameObject characterMannequin;
     public GameObject charSelectPrefab;
     public GameObject gridThing;
     public GameObject blackSq;
     public GameObject deleteButton;
+    public GameObject playButton;
+    public GameObject nameplate;
+
+    public Color oldButtonColor;
+    public Color newButtonColor;
 
     const int MAX_CHARACTERS = 6;
 
@@ -34,6 +38,34 @@ public class Character_Select_Manager : MonoBehaviour
         LoadDefaultCharacter();
         HideDeleteCheck();
         RefreshCharacterList();
+
+        if(GameController.controller.charNames[0] != null && GameController.controller.charNames[0] != "")
+        {
+            selectedChar = 1;
+            LoadCharacterPreview(selectedChar);
+        }
+    }
+
+    public void Play()
+    {
+        string character = GameController.controller.charNames[selectedChar];
+
+        if (character == null || character == "")
+        {
+            GameController.controller.GetComponent<MenuUIAudio>().playNope();
+            return;
+        }
+        else
+        {
+            playButton.GetComponent<Button>().enabled = false;
+            blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
+            Invoke("LoadMainMenu", 1);
+        }
+    }
+
+    private void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu_Scene");
     }
 
     public void RefreshCharacterList()
@@ -55,11 +87,8 @@ public class Character_Select_Manager : MonoBehaviour
 
     public void CreateCharacter()
     {
-        //print("number of existing characters: " + GameController.controller.numChars);
-
         if (GameController.controller.numChars < MAX_CHARACTERS)
         {
-            GameController.controller.CharacterSlot = selectedChar;
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
             SceneManager.LoadScene("NewCharacter_Scene");
         }
@@ -123,36 +152,46 @@ public class Character_Select_Manager : MonoBehaviour
             GameController.controller.charClasses[selectedChar] = PlayerClass.none;
             --GameController.controller.numChars;
             GameController.controller.SaveCharacters();
-            //foreach (string item in GameController.controller.charNames)
-            //{
-            //    print("character: " + item);
-            //}
         }
 
         HideDeleteCheck();
         HideDelete();
         RefreshCharacterList();
+
+        if (GameController.controller.charNames[0] != null && GameController.controller.charNames[0] != "")
+        {
+            selectedChar = 1;
+            LoadCharacterPreview(selectedChar);
+        }
+        else
+            LoadDefaultCharacter();
     }
 
     public void LoadDefaultCharacter()
     {
         for(int i = 0; i < 8; ++i)
         {
-            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
         }
 
-        characterMannequin.transform.GetChild(12).GetComponent<SpriteRenderer>().enabled = false;
+        playerMannequin.transform.GetChild(12).GetComponent<SpriteRenderer>().enabled = false;
+        nameplate.GetComponent<Text>().text = "";
 
         for (int i = 8; i < 12; ++i)
         {
-            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
-            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.white;
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
     public void CharacterSelected(int charNum)
     {
         selectedChar = charNum;
+
+        for(int i = 0; i < gridThing.transform.childCount; ++i)
+            gridThing.transform.GetChild(i).GetChild(0).GetComponent<Image>().color = oldButtonColor;
+
+        gridThing.transform.GetChild(selectedChar - 1).GetChild(0).GetComponent<Image>().color = newButtonColor;
 
         if (charNum > GameController.controller.numChars)
         {
@@ -169,31 +208,26 @@ public class Character_Select_Manager : MonoBehaviour
     public void LoadCharacterPreview(int charNum)
     {
         GameController.controller.Load(GameController.controller.charNames[charNum]);
+        Color skinColor = GameController.controller.getPlayerSkinColor();
+
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
+        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
 
-        for (int i = 8; i < 12; ++i)
+        for (int i = 1; i < 9; ++i)
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+
+        playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
+
+        for (int i = 9; i < 12; ++i)
         {
-            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
-            characterMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = getSkinColor();
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = skinColor;
         }
-        
-        characterMannequin.GetComponent<AnimationController>().LoadCharacter();
-    }
 
-    public Color getSkinColor()
-    {
-        Color player_C = new Color(GameController.controller.playerSkinColor[0],
-            GameController.controller.playerSkinColor[1],
-            GameController.controller.playerSkinColor[2]);
-        return player_C;
-    }
-
-    public Color getPlayerColor()
-    {
-        Color player_C = new Color(GameController.controller.playerColorPreference[0], 
-            GameController.controller.playerColorPreference[1], 
-            GameController.controller.playerColorPreference[2]);
-        return player_C;
+        int playerLv = GameController.controller.playerLevel;
+        PlayerClass playerClass = GameController.controller.charClasses[selectedChar];
+        playButton.transform.GetChild(1).GetComponent<Text>().text = "Lv " + playerLv + " " + playerClass;
+        nameplate.GetComponent<Text>().text = GameController.controller.charNames[selectedChar];
     }
 
     public void ShowDelete()

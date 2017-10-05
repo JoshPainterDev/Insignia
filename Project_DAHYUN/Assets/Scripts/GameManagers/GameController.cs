@@ -10,7 +10,7 @@ public enum PlayerClass {Knight, none};
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
-    public string characterName = "";
+    public string playerName = "";
     public float[] playerSkinColor;
     public Ability playerAbility1;
     public Ability playerAbility2;
@@ -42,7 +42,6 @@ public class GameController : MonoBehaviour {
 
     public string[] charNames;
     public int numChars;
-    public int CharacterSlot;
     public PlayerClass[] charClasses = new PlayerClass[6];
 
     //private int atk = 0;
@@ -57,8 +56,8 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             controller = this;
-            playerSkinColor = new float[3];
-            playerColorPreference = new float[3];
+            playerSkinColor = new float[4];
+            playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
             charNames = new string[6];
             charClasses = new PlayerClass[6];
@@ -134,7 +133,7 @@ public class GameController : MonoBehaviour {
 
         PlayerData data = new PlayerData();
 
-        data.charName = characterName;
+        data.PlayerName = playerName;
         data.PlayerSkinColor = playerSkinColor;
         data.Level = playerLevel;
         data.PlayerExperience = playerEXP;
@@ -283,12 +282,24 @@ public class GameController : MonoBehaviour {
 
         return -1;
     }
+
+    public Color getPlayerSkinColor()
+    {
+        Color player_C = new Color(playerSkinColor[0], playerSkinColor[1], playerSkinColor[2], playerSkinColor[3]);
+        return player_C;
+    }
+
+    public Color getPlayerColorPreference()
+    {
+        Color player_C = new Color(playerColorPreference[0], playerColorPreference[1], playerColorPreference[2], playerColorPreference[3]);
+        return player_C;
+    }
 }
 
 [Serializable]
 class PlayerData
 {
-    public string charName;
+    public string PlayerName;
     public float[] PlayerSkinColor;
     public Ability ability1, ability2, ability3, ability4;
     public string StrikeMod;

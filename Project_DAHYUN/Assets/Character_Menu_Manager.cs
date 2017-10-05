@@ -45,25 +45,25 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     EquipmentInfo info;
 
-    private void Awake()
-    {
-        GameController.controller.playerEquippedIDs[0] = 0;
-        GameController.controller.playerEquippedIDs[1] = 0;
-        GameController.controller.playerEquippedIDs[2] = 4;
-        GameController.controller.playerEquippedIDs[3] = 0;
-        GameController.controller.playerEquippedIDs[4] = 8;
-        GameController.controller.playerEquippedIDs[5] = 0;
-        GameController.controller.playerEquippedIDs[6] = 12;
-        GameController.controller.playerEquippedIDs[7] = 0;
-        GameController.controller.playerEquippedIDs[8] = 16;
-        GameController.controller.playerEquippedIDs[9] = 0;
-        GameController.controller.playerEquippedIDs[10] = 20;
-        GameController.controller.playerEquippedIDs[11] = 0;
-        GameController.controller.playerEquippedIDs[12] = 24;
-        GameController.controller.playerEquippedIDs[13] = 0;
-        GameController.controller.playerEquippedIDs[14] = 28;
-        GameController.controller.playerEquippedIDs[15] = 0;
-    }
+    //private void Awake()
+    //{
+    //    GameController.controller.playerEquippedIDs[0] = 0;
+    //    GameController.controller.playerEquippedIDs[1] = 0;
+    //    GameController.controller.playerEquippedIDs[2] = 4;
+    //    GameController.controller.playerEquippedIDs[3] = 0;
+    //    GameController.controller.playerEquippedIDs[4] = 8;
+    //    GameController.controller.playerEquippedIDs[5] = 0;
+    //    GameController.controller.playerEquippedIDs[6] = 12;
+    //    GameController.controller.playerEquippedIDs[7] = 0;
+    //    GameController.controller.playerEquippedIDs[8] = 16;
+    //    GameController.controller.playerEquippedIDs[9] = 0;
+    //    GameController.controller.playerEquippedIDs[10] = 20;
+    //    GameController.controller.playerEquippedIDs[11] = 0;
+    //    GameController.controller.playerEquippedIDs[12] = 24;
+    //    GameController.controller.playerEquippedIDs[13] = 0;
+    //    GameController.controller.playerEquippedIDs[14] = 28;
+    //    GameController.controller.playerEquippedIDs[15] = 0;
+    //}
 
     // Use this for initialization
     void Start()
@@ -87,6 +87,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.playerBasePrw = 1;
         GameController.controller.playerBaseSpd = 1;
         //******************************************//
+
         //unlockedEquipment = GameController.controller.playerEquipmentList;
         for (int i = 0; i < 30; ++i)
         {
@@ -178,7 +179,14 @@ public class Character_Menu_Manager : MonoBehaviour {
     public void LoadPersona()
     {
         float[] colorPref = GameController.controller.playerColorPreference;
-        //PersonaButton.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(colorPref[0], colorPref[1], colorPref[2], colorPref[3]);
+        Color playerSkin = GameController.controller.getPlayerSkinColor();
+
+        for (int i = 8; i < 12; ++i)
+        {
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = playerSkin;
+        }
+
+        PersonaButton.transform.GetChild(2).GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void LoadSelectedImage(int i, int j)
@@ -756,6 +764,9 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         DisableMainButtons();
         DisableEquipmentButtons();
+
+        GameController.controller.Save(GameController.controller.playerName);
+
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, mmCameraPos, 1f);
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);

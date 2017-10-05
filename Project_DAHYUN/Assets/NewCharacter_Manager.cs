@@ -37,7 +37,7 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             for(int i = 0; i < 16; ++i)
             {
-                //print(i % 2);
+                print(i % 2);
                 if (i%2 == 0)
                 {
                     GameController.controller.playerEquippedIDs[i] = i * 2;
@@ -46,7 +46,10 @@ public class NewCharacter_Manager : MonoBehaviour {
                     GameController.controller.playerEquippedIDs[i] = 0;
             }
 
-            GameController.controller.characterName = charName;
+            GameController.controller.playerEquippedIDs[12] = 24;
+            GameController.controller.playerEquippedIDs[13] = 1;
+
+            GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
             GameController.controller.playerAbility1 = null;
             GameController.controller.playerAbility2 = null;
