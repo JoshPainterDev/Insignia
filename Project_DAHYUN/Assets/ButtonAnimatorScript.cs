@@ -30,7 +30,6 @@ public class ButtonAnimatorScript : MonoBehaviour
 
     public void AnimateButtonClick()
     {
-        audioManager.playButtonClick();
         StartCoroutine(AnimateClick());
     }
 

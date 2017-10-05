@@ -9,10 +9,15 @@ public class Character_Select_Manager : MonoBehaviour
     public GameObject playerMannequin;
     public GameObject checkForDeletePanel;
     public GameObject characterMannequin;
+    public GameObject charSelectPrefab;
     public GameObject gridThing;
     public GameObject blackSq;
+    public GameObject deleteButton;
+
+    const int MAX_CHARACTERS = 6;
 
     private int selectedChar = 0;
+    private int charToDelete = 0;
 
     private void Awake()
     {
@@ -20,9 +25,6 @@ public class Character_Select_Manager : MonoBehaviour
         if (GameController.controller.numChars != 0)
         {
             GameController.controller.LoadCharacters();
-        }
-        else
-        {
         }
     }
 
@@ -36,16 +38,26 @@ public class Character_Select_Manager : MonoBehaviour
 
     public void RefreshCharacterList()
     {
-        for (int i = 0; i < this.transform.childCount; ++i)
+        for (int i = 0; i < charSelectPrefab.transform.childCount; ++i)
         {
-            this.transform.GetChild(i).GetChild(0).GetComponentInChildren<Text>().text = GameController.controller.charNames[i + 1];
+            string comp = GameController.controller.charNames[i + 1];
+            if (comp == null || comp == "")
+            {
+                gridThing.transform.GetChild(i).GetChild(0).GetComponentInChildren<Text>().text = "Empty Slot";
+            }
+            else
+            {
+                print(GameController.controller.charNames[i + 1]);
+                gridThing.transform.GetChild(i).GetChild(0).GetComponentInChildren<Text>().text = GameController.controller.charNames[i + 1];
+            }
         }
     }
 
     public void CreateCharacter()
     {
-        print(selectedChar);
-        if (checkForExistingChars(selectedChar))
+        //print("number of existing characters: " + GameController.controller.numChars);
+
+        if (GameController.controller.numChars < MAX_CHARACTERS)
         {
             GameController.controller.CharacterSlot = selectedChar;
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
@@ -53,21 +65,10 @@ public class Character_Select_Manager : MonoBehaviour
         }
     }
 
-    public bool checkForExistingChars(int charNum)
-    {
-        if (charNum == 0)
-            return false;
-
-        if(GameController.controller.charNames[charNum] == null)
-        {
-            print(charNum + " exists");
-            return true;
-        }
-        return false;
-    }
-
     public void CheckForDelete()
     {
+        charToDelete = selectedChar;
+
         print(GameController.controller.charNames[selectedChar]);
         if (GameController.controller.charNames[selectedChar] == null)
         {
@@ -83,13 +84,15 @@ public class Character_Select_Manager : MonoBehaviour
 
         foreach (Text child in checkForDeletePanel.GetComponentsInChildren<Text>())
         {
-            child.GetComponent<Text>().enabled = true;
+            child.enabled = true;
         }
 
         foreach (Text child in checkForDeletePanel.GetComponentsInChildren<Text>())
         {
             child.enabled = true;
         }
+
+        checkForDeletePanel.transform.GetChild(1).GetComponent<Text>().text = "Delete " + GameController.controller.charNames[charToDelete] + "?";
     }
 
     public void HideDeleteCheck()
@@ -113,19 +116,22 @@ public class Character_Select_Manager : MonoBehaviour
 
     public void DeleteCharacter()
     {
-        //selectedChar
-        switch(selectedChar)
+        if(charToDelete != 0 && charToDelete <= MAX_CHARACTERS)
         {
-            case 1:
-                print("poof, hes gone");
-                break;
-            case 2:
-                print("poof, hes gone");
-                break;
-            case 3:
-                print("poof, hes gone");
-                break;
+            GameController.controller.Delete(GameController.controller.charNames[charToDelete]);
+            GameController.controller.charNames[selectedChar] = null;
+            GameController.controller.charClasses[selectedChar] = PlayerClass.none;
+            --GameController.controller.numChars;
+            GameController.controller.SaveCharacters();
+            //foreach (string item in GameController.controller.charNames)
+            //{
+            //    print("character: " + item);
+            //}
         }
+
+        HideDeleteCheck();
+        HideDelete();
+        RefreshCharacterList();
     }
 
     public void LoadDefaultCharacter()
@@ -147,19 +153,23 @@ public class Character_Select_Manager : MonoBehaviour
     public void CharacterSelected(int charNum)
     {
         selectedChar = charNum;
-        print(GameController.controller.numChars);
-        if(charNum > GameController.controller.numChars)
+
+        if (charNum > GameController.controller.numChars)
+        {
+            HideDelete();
             LoadDefaultCharacter();
+        }
         else
+        {
+            ShowDelete();
             LoadCharacterPreview(selectedChar);
+        }
     }
 
     public void LoadCharacterPreview(int charNum)
     {
         GameController.controller.Load(GameController.controller.charNames[charNum]);
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
-
-        print(GameController.controller.charNames[charNum]);
 
         for (int i = 8; i < 12; ++i)
         {
@@ -184,5 +194,16 @@ public class Character_Select_Manager : MonoBehaviour
             GameController.controller.playerColorPreference[1], 
             GameController.controller.playerColorPreference[2]);
         return player_C;
+    }
+
+    public void ShowDelete()
+    {
+        GameController.controller.GetComponent<MenuUIAudio>().playButtonClick();
+        deleteButton.GetComponent<ButtonAnimatorScript>().ShowButton();
+    }
+
+    public void HideDelete()
+    {
+        deleteButton.GetComponent<ButtonAnimatorScript>().HideButton();
     }
 }

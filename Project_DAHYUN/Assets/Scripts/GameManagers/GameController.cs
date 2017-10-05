@@ -65,8 +65,6 @@ public class GameController : MonoBehaviour {
             for(int i = 0; i < 6; ++i)
                 charClasses[i] = PlayerClass.none;
 
-            print("class 1: " + charClasses[1]);
-
             if (File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
             {
                 //var sr = File.OpenWrite(Application.persistentDataPath + "/accountInfo.dat");
@@ -108,8 +106,6 @@ public class GameController : MonoBehaviour {
 
         bf.Serialize(accountInfoFile, data);
         accountInfoFile.Close();
-
-        print("Saved character list");
     }
 
     public bool LoadCharacters()

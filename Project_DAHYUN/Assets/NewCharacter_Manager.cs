@@ -31,11 +31,13 @@ public class NewCharacter_Manager : MonoBehaviour {
         string charName = textField.GetComponent<InputField>().text;
         charName = Regex.Replace(charName, @"[^a-zA-Z0-9 ]", "");
 
-        if(charName != "")
+        if(nameChecksOut(charName))
         {
+            GameController.controller.GetComponent<MenuUIAudio>().playButtonClick();
+
             for(int i = 0; i < 16; ++i)
             {
-                print(i % 2);
+                //print(i % 2);
                 if (i%2 == 0)
                 {
                     GameController.controller.playerEquippedIDs[i] = i * 2;
@@ -69,12 +71,14 @@ public class NewCharacter_Manager : MonoBehaviour {
         }
         else
         {
+            GameController.controller.GetComponent<MenuUIAudio>().playNope();
             print("Bad Name! only chars and numbers!");
         }
     }
 
     public void CancelCharacter()
     {
+        GameController.controller.GetComponent<MenuUIAudio>().playBack();
         blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
         Invoke("LoadCharSelect", 0.5f);
     }
@@ -82,6 +86,19 @@ public class NewCharacter_Manager : MonoBehaviour {
     private void LoadCharSelect()
     {
         SceneManager.LoadScene("CharacterSelect_Scene");
+    }
+
+    private bool nameChecksOut(string charName)
+    {
+        if (charName == "")
+            return false;
+        foreach(string character in GameController.controller.charNames)
+        {
+            if(character == charName)
+                return false;
+        }
+
+        return true;
     }
 
     public void ChangeClass(int classNum)
