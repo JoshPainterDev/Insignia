@@ -213,12 +213,12 @@ public class Character_Select_Manager : MonoBehaviour
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
         playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
 
-        for (int i = 1; i < 9; ++i)
+        for (int i = 0; i < 8; ++i)
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
 
-        playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
+        //playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
 
-        for (int i = 9; i < 12; ++i)
+        for (int i = 8; i < 12; ++i)
         {
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = skinColor;

@@ -171,6 +171,7 @@ public class GameController : MonoBehaviour {
             file.Close();
 
             // set variables here
+            playerName = data.PlayerName;
             playerLevel = data.Level;
             playerEXP = data.PlayerExperience;
             difficultyScale = data.difficulty;

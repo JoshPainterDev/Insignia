@@ -766,7 +766,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         DisableEquipmentButtons();
 
         GameController.controller.Save(GameController.controller.playerName);
-
+        print("saving char: " + GameController.controller.playerName);
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, mmCameraPos, 1f);
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
