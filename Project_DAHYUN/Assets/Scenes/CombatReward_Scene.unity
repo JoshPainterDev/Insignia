@@ -534,7 +534,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -589,6 +589,11 @@ Prefab:
     - target: {fileID: 1112125458341768, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114315015676046356, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
@@ -984,8 +989,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 119668992}
-  - {fileID: 2024994486}
   - {fileID: 1125771736}
+  - {fileID: 2024994486}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.18800001}
@@ -1269,7 +1274,7 @@ RectTransform:
   - {fileID: 442386564}
   - {fileID: 1436702295}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1678,6 +1683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experienceHandle: {fileID: 1125771735}
   blackSq: {fileID: 1774354134}
+  playerMannequin: {fileID: 0}
 --- !u!1 &1619637139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,7 +2367,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Steve Lee
+  playerName: 
+  playerSkinColor: []
+  playerAbility1:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility2:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility3:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility4:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -2382,6 +2457,9 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  charNames: []
+  numChars: 0
+  charClasses: 000000000000000000000000000000000000000000000000
 --- !u!4 &2029249000
 Transform:
   m_ObjectHideFlags: 0
