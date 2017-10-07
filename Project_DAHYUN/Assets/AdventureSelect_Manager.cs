@@ -30,7 +30,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            SpecifyEncounter(0,0);
+            SpecifyEncounter(1,0);
             SceneManager.LoadScene("TurnCombat_Scene");
         }
     }

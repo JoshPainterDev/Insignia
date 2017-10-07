@@ -284,10 +284,26 @@ public class GameController : MonoBehaviour {
         return -1;
     }
 
+    public void setPlayerSkinColor(Color newColor)
+    {
+        playerSkinColor[0] = newColor.r;
+        playerSkinColor[1] = newColor.g;
+        playerSkinColor[2] = newColor.b;
+        playerSkinColor[3] = newColor.a;
+    }
+
     public Color getPlayerSkinColor()
     {
         Color player_C = new Color(playerSkinColor[0], playerSkinColor[1], playerSkinColor[2], playerSkinColor[3]);
         return player_C;
+    }
+
+    public void setPlayerColorPreference(Color newColor)
+    {
+        playerColorPreference[0] = newColor.r;
+        playerColorPreference[1] = newColor.g;
+        playerColorPreference[2] = newColor.b;
+        playerColorPreference[3] = newColor.a;
     }
 
     public Color getPlayerColorPreference()

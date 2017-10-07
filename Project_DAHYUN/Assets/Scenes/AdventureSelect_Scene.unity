@@ -3475,7 +3475,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Steve Lee
+  playerName: 
+  playerSkinColor: []
+  playerAbility1:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility2:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility3:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility4:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -3496,6 +3565,9 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  charNames: []
+  numChars: 0
+  charClasses: 000000000000000000000000000000000000000000000000
 --- !u!4 &2029249000
 Transform:
   m_ObjectHideFlags: 0

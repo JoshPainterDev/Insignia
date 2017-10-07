@@ -41,10 +41,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 1;
-                            equipInfo.DefenseStat = 5;
-                            equipInfo.ProwessStat = 1;
+                            equipInfo.Name = "Squire's Helmet";
+                            equipInfo.AttackStat = 0;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
                             equipInfo.imgSourceName = prefixHead + "\\Test_Suit\\Player_Head_TestHelm_AnimController";
@@ -199,10 +199,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Chest";
-                            equipInfo.AttackStat = 2;
-                            equipInfo.DefenseStat = 5;
-                            equipInfo.ProwessStat = 1;
+                            equipInfo.Name = "Squire's Chestplate";
+                            equipInfo.AttackStat = 0;
+                            equipInfo.DefenseStat = 1;
+                            equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
                             equipInfo.imgSourceName = prefixTorso + "\\Test_Suit\\Player_Torso_TestTorso_AnimController";
@@ -356,10 +356,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Legs";
-                            equipInfo.AttackStat = 1;
+                            equipInfo.Name = "Squire's Leg Guards";
+                            equipInfo.AttackStat = 0;
                             equipInfo.DefenseStat = 1;
-                            equipInfo.ProwessStat = 1;
+                            equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Legs;
                             equipInfo.imgSourceName = prefixLegs + "\\Test_Suit\\Player_Legs_TestLegs_AnimController";
@@ -513,11 +513,11 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Back";
+                            equipInfo.Name = "Squire's Banner";
                             equipInfo.AttackStat = 0;
                             equipInfo.DefenseStat = 1;
-                            equipInfo.ProwessStat = 1;
-                            equipInfo.SpeedStat = 1;
+                            equipInfo.ProwessStat = 0;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Back;
                             equipInfo.imgSourceName = prefixBack + "\\Test_Suit\\Player_Back_TestCape_AnimController";
                             break;
@@ -670,7 +670,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Gloves";
+                            equipInfo.Name = "Squire's Gloves";
                             equipInfo.AttackStat = 1;
                             equipInfo.DefenseStat = 1;
                             equipInfo.ProwessStat = 0;
@@ -827,11 +827,11 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Shoes";
-                            equipInfo.AttackStat = 1;
+                            equipInfo.Name = "Squire's Boots";
+                            equipInfo.AttackStat = 0;
                             equipInfo.DefenseStat = 1;
                             equipInfo.ProwessStat = 0;
-                            equipInfo.SpeedStat = 2;
+                            equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Shoes;
                             equipInfo.imgSourceName = prefixShoes + "\\Test_Suit\\Player_Shoes_TestShoes_AnimController";
                             break;
@@ -984,9 +984,9 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Sword";
+                            equipInfo.Name = "Squire's Sword";
                             equipInfo.AttackStat = 5;
-                            equipInfo.DefenseStat = 3;
+                            equipInfo.DefenseStat = 0;
                             equipInfo.ProwessStat = 2;
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;

@@ -14,11 +14,6 @@ public class EnemyMannequinController : MonoBehaviour {
     {
         StartCoroutine(StartingSpawnSequence());
     }
-	
-	// Update is called once per frame
-	//void Update () {
-		
-	//}
 
     IEnumerator StartingSpawnSequence()
     {

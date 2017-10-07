@@ -296,6 +296,7 @@ MonoBehaviour:
   healthBar: {fileID: 113134919}
   character: {fileID: 666657974}
   fadeColor: {r: 1, g: 1, b: 1, a: 0.322}
+  playerHealth: 0
   rate: 1
   greenBar: {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
   yellowBar: {fileID: 21300000, guid: 93ea1a1d268476047a8a0649cd5a9acf, type: 3}
@@ -1228,52 +1229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &450714161
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 138
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-      propertyPath: m_Name
-      value: Enemy_Mannequin
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &524059995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,8 +1421,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 572159634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -477.1, y: 227, z: 0}
-  m_LocalScale: {x: 70, y: 70, z: 1.74}
+  m_LocalPosition: {x: -477.1, y: 236, z: 0}
+  m_LocalScale: {x: 75, y: 75, z: 1.74}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -1613,6 +1568,7 @@ MonoBehaviour:
   healthBar: {fileID: 1959496089}
   character: {fileID: 119668991}
   fadeColor: {r: 1, g: 1, b: 1, a: 0.322}
+  playerHealth: 1
   rate: 1
   greenBar: {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
   yellowBar: {fileID: 21300000, guid: 93ea1a1d268476047a8a0649cd5a9acf, type: 3}
@@ -1736,7 +1692,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Steve Lee
+  playerName: 
+  playerSkinColor: []
+  playerAbility1:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility2:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility3:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility4:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -1757,6 +1782,9 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  charNames: []
+  numChars: 0
+  charClasses: 000000000000000000000000000000000000000000000000
 --- !u!4 &651132269
 Transform:
   m_ObjectHideFlags: 0
@@ -1942,11 +1970,85 @@ MonoBehaviour:
     type: 2}
   DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
     type: 2}
---- !u!1 &666657974 stripped
+--- !u!1 &666657974
 GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
-  m_PrefabInternal: {fileID: 450714161}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 666657979}
+  - component: {fileID: 666657978}
+  - component: {fileID: 666657977}
+  - component: {fileID: 666657976}
+  - component: {fileID: 666657975}
+  m_Layer: 10
+  m_Name: Enemy_Mannequin
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &666657975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114864307898983338, guid: 0fb79b3741cb1074b9d64585018a18fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 666657974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c99803e5f785c41aaccac10f0df4ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &666657976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114998929621886634, guid: 0fb79b3741cb1074b9d64585018a18fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 666657974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &666657977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114158597340598984, guid: 0fb79b3741cb1074b9d64585018a18fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 666657974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e3f3bdd6ab35c41931fcf479c28d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEffect: {fileID: 1862190314031148, guid: 4946ac1f908fe724682e1c0b24d6bc7a,
+    type: 2}
+--- !u!222 &666657978
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222087363703057696, guid: 0fb79b3741cb1074b9d64585018a18fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 666657974}
+--- !u!4 &666657979
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 666657974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55, y: 138, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &666774113
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,8 +4409,23 @@ MonoBehaviour:
   playerDefenseBoost: 0
   playerSpeedBoost: 0
   canLimitBreak: 1
+  playerLimitBreak:
+    name: 6
+    coolDown: 0
+    attackBoost: 0
+    defenseBoost: 0
+    prowessBoost: 0
+    speedBoost: 0
+    description: 
+  enemyLimitBreak:
+    name: 6
+    coolDown: 0
+    attackBoost: 0
+    defenseBoost: 0
+    prowessBoost: 0
+    speedBoost: 0
+    description: 
   enemyCanLB: 0
-  enemyInfo: {fileID: 0}
   enemyHealthBar: {fileID: 96530580}
   enemyMaxHealth: 1000
   enemyAttackBoost: 0
@@ -4327,6 +4444,74 @@ MonoBehaviour:
   abilityButton2: {fileID: 1430210197}
   abilityButton3: {fileID: 318035076}
   abilityButton4: {fileID: 1811298326}
+  ability1:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  ability2:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  ability3:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
+  ability4:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 8
+    Buffs: 0
+    Heals: 0
+    Description: 
   abilityTextColor: {r: 1, g: 1, b: 1, a: 1}
   abilitySelectColor: {r: 0.58823526, g: 0.0865052, b: 0.0865052, a: 1}
   enemiesRemaining: 0
@@ -4553,7 +4738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMannequin: {fileID: 666657974}
   strikePosition: {x: -350, y: 138, z: 0}
-  enemyInfo: {fileID: 0}
 --- !u!114 &1616549435
 MonoBehaviour:
   m_ObjectHideFlags: 0

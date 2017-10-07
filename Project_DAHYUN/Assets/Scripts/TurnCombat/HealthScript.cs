@@ -8,6 +8,7 @@ public class HealthScript : MonoBehaviour
     public GameObject healthBar;
     public GameObject character;
     public Color fadeColor;
+    public bool playerHealth = false;
 
     private Color origColor;
 
@@ -25,7 +26,6 @@ public class HealthScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        origColor = character.GetComponentInChildren<SpriteRenderer>().color;
         StartCoroutine(StartingAnim());
     }
 
@@ -80,36 +80,73 @@ public class HealthScript : MonoBehaviour
     IEnumerator StartingAnim()
     {
         healthBar.GetComponent<Image>().fillAmount = 0;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
+        if (playerHealth)
+            origColor = character.GetComponentInChildren<SpriteRenderer>().color;
+        else
+            origColor = character.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().color;
+        yield return new WaitForSeconds(1f);
         LerpHealth(0, 1);
     }
 
     IEnumerator HurtAnim()
     {
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+        if(playerHealth)
         {
-            sprite.color = fadeColor;
+            foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = fadeColor;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = origColor;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = fadeColor;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = origColor;
+            }
         }
-
-        yield return new WaitForSeconds(0.1f);
-
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+        else
         {
-            sprite.color = origColor;
-        }
+            print("waddup: " + origColor);
+            foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = fadeColor;
+            }
 
-        yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);
 
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.color = fadeColor;
-        }
+            foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = origColor;
+            }
 
-        yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);
 
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.color = origColor;
+            foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = fadeColor;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = origColor;
+            }
         }
     }
 

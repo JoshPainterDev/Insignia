@@ -37,7 +37,6 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             for(int i = 0; i < 16; ++i)
             {
-                print(i % 2);
                 if (i%2 == 0)
                 {
                     GameController.controller.playerEquippedIDs[i] = i * 2;
@@ -56,12 +55,13 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.playerAbility3 = null;
             GameController.controller.playerAbility4 = null;
             GameController.controller.strikeModifier = "none";
+            GameController.controller.limitBreakModifier = LimitBreakName.none;
+            GameController.controller.limitBreakTracker = -1;
 
-            GameController.controller.playerSkinColor[0] = 1;
-            GameController.controller.playerSkinColor[1] = 0;
-            GameController.controller.playerSkinColor[2] = 0;
+            SetInitialStats(currentClass);
 
-            print("Saving: " + charName);
+            GameController.controller.setPlayerColorPreference(Color.yellow);
+            GameController.controller.setPlayerSkinColor(Color.white);
             GameController.controller.Save(charName);
 
             ++GameController.controller.numChars;
@@ -76,6 +76,27 @@ public class NewCharacter_Manager : MonoBehaviour {
         {
             GameController.controller.GetComponent<MenuUIAudio>().playNope();
             print("Bad Name! only chars and numbers!");
+        }
+    }
+
+    private void SetInitialStats(PlayerClass classToUse)
+    {
+        switch(classToUse)
+        {
+            case PlayerClass.Knight:
+                GameController.controller.playerBaseAtk = 5;
+                GameController.controller.playerBaseDef = 3;
+                GameController.controller.playerBasePrw = 1;
+                GameController.controller.playerBaseSpd = 1;
+
+                GameController.controller.playerAttack = 5 + 5 + 1;
+                GameController.controller.playerDefense = 3 + 6;
+                GameController.controller.playerProwess = 1 + 2;
+                GameController.controller.playerSpeed = 1;
+                print("stats set");
+                break;
+            default:
+                break;
         }
     }
 

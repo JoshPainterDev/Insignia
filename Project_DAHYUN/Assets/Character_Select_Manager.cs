@@ -35,22 +35,23 @@ public class Character_Select_Manager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        LoadDefaultCharacter();
         HideDeleteCheck();
         RefreshCharacterList();
 
-        if(GameController.controller.charNames[0] != null && GameController.controller.charNames[0] != "")
+        if (GameController.controller.numChars != 0)
         {
             selectedChar = 1;
             LoadCharacterPreview(selectedChar);
         }
+        else
+            LoadDefaultCharacter();
     }
 
     public void Play()
     {
         string character = GameController.controller.charNames[selectedChar];
 
-        if (character == null || character == "")
+        if (GameController.controller.numChars == 0 || character == null || character == "")
         {
             GameController.controller.GetComponent<MenuUIAudio>().playNope();
             return;
@@ -158,7 +159,7 @@ public class Character_Select_Manager : MonoBehaviour
         HideDelete();
         RefreshCharacterList();
 
-        if (GameController.controller.charNames[0] != null && GameController.controller.charNames[0] != "")
+        if (GameController.controller.numChars > 0)
         {
             selectedChar = 1;
             LoadCharacterPreview(selectedChar);
@@ -176,6 +177,7 @@ public class Character_Select_Manager : MonoBehaviour
 
         playerMannequin.transform.GetChild(12).GetComponent<SpriteRenderer>().enabled = false;
         nameplate.GetComponent<Text>().text = "";
+        playButton.transform.GetChild(1).GetComponent<Text>().text = "";
 
         for (int i = 8; i < 12; ++i)
         {
@@ -216,8 +218,6 @@ public class Character_Select_Manager : MonoBehaviour
         for (int i = 0; i < 8; ++i)
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
 
-        //playerMannequin.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
-
         for (int i = 8; i < 12; ++i)
         {
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
@@ -228,6 +228,7 @@ public class Character_Select_Manager : MonoBehaviour
         PlayerClass playerClass = GameController.controller.charClasses[selectedChar];
         playButton.transform.GetChild(1).GetComponent<Text>().text = "Lv " + playerLv + " " + playerClass;
         nameplate.GetComponent<Text>().text = GameController.controller.charNames[selectedChar];
+        nameplate.GetComponent<Text>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void ShowDelete()
