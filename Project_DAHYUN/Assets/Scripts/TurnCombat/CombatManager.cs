@@ -117,6 +117,10 @@ public class CombatManager : MonoBehaviour {
         enemiesRemaining = encounter.totalEnemies;
         encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
+        //REMOVE THIS LATER
+        print(GameController.controller.charNames[1]);
+        GameController.controller.Load(GameController.controller.charNames[1]);
+
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
         GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
@@ -124,10 +128,6 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
         GameController.controller.strikeModifier = "Serated Strike";
-        //GameController.controller.playerAttack = 5;
-        //GameController.controller.playerDefense = 5;
-        //GameController.controller.playerProwess = 1;
-        //GameController.controller.playerSpeed = 1;
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
@@ -256,7 +256,6 @@ public class CombatManager : MonoBehaviour {
                 {
                     StartCoroutine(StartEnemyTurn());
                 }
-                
             }
         }
         else
@@ -475,7 +474,10 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
 
         if(!EvaluateExecution())
+        {
+            print(strikeMod);
             this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+        } 
         else
         {
             HideHealthBars();
@@ -489,7 +491,7 @@ public class CombatManager : MonoBehaviour {
         print("execute percent: " + strikeExecutePercent);
         int attack = GameController.controller.playerAttack;
         int prowess = GameController.controller.playerProwess;
-        float attBoostMod = 0;
+        float attBoostMod = 1;
 
         switch(playerAttackBoost)
         {
@@ -502,16 +504,20 @@ public class CombatManager : MonoBehaviour {
             case 3:
                 attBoostMod = 2.5f;
                 break;
+            default:
+                attBoostMod = 1;
+                break;
         }
 
         strikeExecutePercent = .15f + (((GameController.controller.playerProwess - (enemyInfo.enemyDefense / 2)) + 0.01f) / GameController.controller.playerProwess);
+
         if (strikeExecutePercent < 0.15f)
             strikeExecutePercent = .15f;
 
         float damageDealt = (attack * attack) * attBoostMod;
         float percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
         float percentDealt = damageDealt / (float)enemyMaxHealth;
-        print("damage Dealt: " + damageDealt);
+        print("damage dealt: " + damageDealt);
         print("percent left: " + percentRemaining);
         print("percent damage: " + percentDealt);
         // check if the player can press the enemy
@@ -696,7 +702,6 @@ public class CombatManager : MonoBehaviour {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
         int accuracy = 70 + (3 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost)));
-        print(accuracy);
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;

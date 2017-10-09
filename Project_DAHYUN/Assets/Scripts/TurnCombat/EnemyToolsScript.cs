@@ -46,7 +46,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyName = "Shadow Assassin";
                 enemyInfo.enemyAttack = 5;
                 enemyInfo.enemyDefense = 2;
-                enemyInfo.enemySpeed = 2;
+                enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 60;
                 break;
             case "Skitter":

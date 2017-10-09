@@ -27,11 +27,7 @@ public class StrikeManager_C : MonoBehaviour {
         strikeModifier = strikeMod;
         origEnemyHealth = originalEnemyHP;
 
-        if (strikeModifier == "none")
-        {
-
-        }
-        else if(strikeModifier == "Shadow Strike")
+        if(strikeModifier == "Shadow Strike")
         {
             Vector2 FXoffset = new Vector2(0, 20);
             Vector3 spawnPos = new Vector3(initPlayerPos.x + FXoffset.x, initPlayerPos.y + FXoffset.y, 0);
@@ -51,6 +47,11 @@ public class StrikeManager_C : MonoBehaviour {
             //animate player mannequin
             StartCoroutine(AnimatePlayerStrike());
         }
+        else
+        {
+            //animate player mannequin
+            StartCoroutine(AnimatePlayerStrike());
+        }
     }
 
     IEnumerator AnimatePlayerStrike()
@@ -67,7 +68,7 @@ public class StrikeManager_C : MonoBehaviour {
                 effectClone.GetComponent<Animator>().enabled = true;
                 effectClone.GetComponent<SpriteRenderer>().enabled = true;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();
-                playerMannequin.GetComponent<PlayerCombatAnimator>().ChangeToAnimation("attack01");
+                playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 yield return new WaitForSeconds(0.7f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
                 break;
@@ -76,7 +77,7 @@ public class StrikeManager_C : MonoBehaviour {
                 pos2 = new Vector3(pos1.x + 300, initPlayerPos.y, 0);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
                 yield return new WaitForSeconds(0.25f);
-                playerMannequin.GetComponent<PlayerCombatAnimator>().ChangeToAnimation("attack01");
+                playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, pos2, strikeAnimDuration / .25f);
                 yield return new WaitForSeconds(0.25f);
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();
@@ -84,6 +85,14 @@ public class StrikeManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos2, initPlayerPos, strikeAnimDuration / .25f);
                 break;
             default:
+                pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
+                yield return new WaitForSeconds(0.25f);
+                playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                yield return new WaitForSeconds(0.5f);
+                this.GetComponent<CombatManager>().DamageEnemy_Strike();
+                yield return new WaitForSeconds(0.25f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
                 break;
         }
 

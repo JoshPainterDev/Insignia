@@ -121,7 +121,6 @@ public class HealthScript : MonoBehaviour
         }
         else
         {
-            print("waddup: " + origColor);
             foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
             {
                 sprite.color = fadeColor;

@@ -48,7 +48,8 @@ public class StruggleManager_C : MonoBehaviour {
     bool playerInitiated = true;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         combatController = this.GetComponent<CombatManager>();
         playerOrig = player.transform.position;
         enemyOrig = enemy.transform.position;
@@ -238,12 +239,17 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_L.GetComponent<Image>().color = origColor;
         struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
         struggleButton_R.GetComponent<Image>().color = origColor;
-
+        yield return new WaitForSeconds(0.5f);
+        player.GetComponent<AnimationController>().PlayAttackAnim();
+        yield return new WaitForSeconds(0.25f);
+        this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
+        yield return new WaitForSeconds(0.75f);
+        camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
+        yield return new WaitForSeconds(0.75f);
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
-        
-        yield return new WaitForSeconds(0.2f);
-        camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
+        this.GetComponent<CombatManager>().DamageEnemy_Strike();
+        this.GetComponent<CombatManager>().EndPlayerTurn(true);
     }
 
     IEnumerator ExecutePlayer()

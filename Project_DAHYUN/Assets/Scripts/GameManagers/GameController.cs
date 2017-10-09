@@ -183,6 +183,10 @@ public class GameController : MonoBehaviour {
             limitBreakModifier = data.limitBreakMod;
             limitBreakTracker = data.limitBreakTrack;
             playerColorPreference = data.PlayerColor;
+            playerAttack = data.attack;
+            playerDefense = data.defense;
+            playerProwess = data.prowess;
+            playerSpeed = data.speed;
 
             playerInventory = data.InventoryList;
             playerEquipmentList = data.EquipmentList;
