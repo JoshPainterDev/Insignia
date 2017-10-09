@@ -7,6 +7,7 @@ public class HealthScript : MonoBehaviour
 {
     public GameObject healthBar;
     public GameObject character;
+    public GameObject combatManager;
     public Color fadeColor;
     public bool playerHealth = false;
 
@@ -77,6 +78,11 @@ public class HealthScript : MonoBehaviour
         }
     }
 
+    public void StartAnim()
+    {
+        StartCoroutine(StartingAnim());
+    }
+
     IEnumerator StartingAnim()
     {
         healthBar.GetComponent<Image>().fillAmount = 0;
@@ -85,7 +91,7 @@ public class HealthScript : MonoBehaviour
             origColor = character.GetComponentInChildren<SpriteRenderer>().color;
         else
             origColor = character.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().color;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.15f);
         LerpHealth(0, 1);
     }
 

@@ -247,9 +247,12 @@ public class StruggleManager_C : MonoBehaviour {
         camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         yield return new WaitForSeconds(0.75f);
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
+        //yield return new WaitForSeconds(0.5f);
+        this.GetComponent<CombatManager>().ExecuteEnemy_Strike();
+        this.GetComponent<CombatManager>().EndPlayerTurn(true, combatController.GetComponent<CombatManager>().getEnemyHealth());
+        enemy.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.25f);
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
-        this.GetComponent<CombatManager>().DamageEnemy_Strike();
-        this.GetComponent<CombatManager>().EndPlayerTurn(true);
     }
 
     IEnumerator ExecutePlayer()
