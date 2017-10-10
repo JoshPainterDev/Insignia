@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class CombatAudio : MonoBehaviour {
 
+    public AudioClip combatLoop;
     public AudioClip select_UI;
     public AudioClip abilitySelect_UI;
     public AudioClip back_UI;
@@ -22,7 +23,7 @@ public class CombatAudio : MonoBehaviour {
     public float MEDIUM_VOLUME = 0.7f;
     public float LOW_VOLUME = 0.50f;
 
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
@@ -34,7 +35,7 @@ public class CombatAudio : MonoBehaviour {
 
     public void playFinalCut()
     {
-        audioSource.PlayOneShot(finalCut, HIGH_VOLUME);
+        audioSource.PlayOneShot(finalCut, MEDIUM_VOLUME);
     }
 
     public void playUISelect()

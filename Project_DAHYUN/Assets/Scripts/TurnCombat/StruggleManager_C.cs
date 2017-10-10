@@ -64,10 +64,6 @@ public class StruggleManager_C : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        //if(Input.GetKeyDown(KeyCode.Alpha0))
-        //{
-        //    BeginStruggle_Player();
-        //}
 
 		if(struggling_Player || struggling_Enemy)
         {
@@ -242,17 +238,16 @@ public class StruggleManager_C : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<AnimationController>().PlayAttackAnim();
         yield return new WaitForSeconds(0.25f);
-        this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
-        yield return new WaitForSeconds(0.75f);
+        //this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
+        //play execution anim
+        //yield return new WaitForSeconds(0.75f);
+        this.GetComponent<CombatManager>().ExecuteEnemy_Strike();
         camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         yield return new WaitForSeconds(0.75f);
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
-        //yield return new WaitForSeconds(0.5f);
-        this.GetComponent<CombatManager>().ExecuteEnemy_Strike();
-        this.GetComponent<CombatManager>().EndPlayerTurn(true, combatController.GetComponent<CombatManager>().getEnemyHealth());
-        enemy.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        yield return new WaitForSeconds(0.25f);
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
+        //yield return new WaitForSeconds(0.5f);
+        enemy.GetComponent<LerpScript>().LerpToColor(origColor, Color.clear, 1.5f);
     }
 
     IEnumerator ExecutePlayer()

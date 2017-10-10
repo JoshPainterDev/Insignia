@@ -42,15 +42,17 @@ public class enemyCounterScript : MonoBehaviour {
     {
         int removalNum = remainingEnemies - 1;
         yield return new WaitForSeconds(3f);
-        tallies[removalNum].GetComponent<Image>().enabled = false;
-        yield return new WaitForSeconds(0.1f);
-        tallies[removalNum].GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        tallies[removalNum].GetComponent<Image>().enabled = false;
-        yield return new WaitForSeconds(0.1f);
-        tallies[removalNum].GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(0.1f);
+        //tallies[removalNum].GetComponent<Image>().enabled = false;
+        //yield return new WaitForSeconds(0.1f);
+        //tallies[removalNum].GetComponent<Image>().enabled = true;
+        //yield return new WaitForSeconds(0.1f);
+        //tallies[removalNum].GetComponent<Image>().enabled = false;
+        //yield return new WaitForSeconds(0.1f);
+        //tallies[removalNum].GetComponent<Image>().enabled = true;
+        //yield return new WaitForSeconds(0.1f);
         tallies[removalNum].GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 3);
+        tallies[removalNum].GetComponent<LerpScript>().LerpToPos(tallies[removalNum].transform.position, tallies[removalNum].transform.position + new Vector3(0,20,0), 3);
+        GameController.controller.GetComponent<MenuUIAudio>().PlaySwordSound();
         yield return new WaitForSeconds(1f);
         Destroy(tallies[remainingEnemies - 1]);
         --remainingEnemies;

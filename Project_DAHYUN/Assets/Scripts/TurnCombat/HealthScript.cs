@@ -175,6 +175,10 @@ public class HealthScript : MonoBehaviour
             sprite.color = Color.white;
         }
 
-        this.transform.GetChild(2).GetComponent<Text>().enabled = false;
+        foreach (Text text in this.GetComponentsInChildren<Text>())
+        {
+            text.enabled = false;
+            //text.color = Color.white;
+        }
     }
 }

@@ -22,6 +22,7 @@ public class CombatManager : MonoBehaviour {
     public Color strike_C, retreat_C, abilities_C, back_C;
     public GameObject blackSq;
     private State currentState = State.MainMenu;
+    public GameObject Music_Manager;
 
     //COMBAT VARIABLES
     public SpecialCase currSpecialCase = SpecialCase.None;
@@ -160,15 +161,17 @@ public class CombatManager : MonoBehaviour {
         DisableBackButton();
         HideAbilityButtons();
         DisableBackButton();
-
+        //3. Load in initial enemy
         enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]);
-
         LoadCharacterLevels(enemyInfo);
 
         if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
             StartCoroutine(ShowStartingButtons());
 
         StartCoroutine(LoadNextEnemy());
+
+        //4. Play music
+        Music_Manager.GetComponent<Music_Controller>().playCombatLoop();
     }
 
     public void AbilitySelected(int selectedOption = 0)
@@ -594,10 +597,10 @@ public class CombatManager : MonoBehaviour {
 
     public void ExecuteEnemy_Strike()
     {
+        int origHP = enemyHealth;
         //spawn effects or something idk
-        print("RKO out of nowhere!");
-        enemyHealthBar.GetComponent<HealthScript>().LerpHealth(enemyHealth, 0);
         enemyHealth = 0;
+        EndPlayerTurn(true, origHP);
     }
 
     // DAMAGE AN ENEMY WITH AN ABILITY ONLY!
@@ -993,7 +996,7 @@ public class CombatManager : MonoBehaviour {
 
             yield return new WaitForSeconds(0.65f);
 
-            print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
+            //print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
 
             if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
                 EndEnemyTurn(false, enemyHealth);
@@ -1292,34 +1295,43 @@ public class CombatManager : MonoBehaviour {
     public void HideHealthBars()
     {
         playerHealthBar.GetComponent<Image>().enabled = false;
-        playerHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = false;
+        playerHealthBar.transform.GetChild(3).GetComponent<Text>().enabled = false;
         foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = false;
         }
 
         enemyHealthBar.GetComponent<Image>().enabled = false;
-        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = false;
         foreach (Image img in enemyHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = false;
+        }
+
+        foreach (Text text in enemyHealthBar.GetComponentsInChildren<Text>())
+        {
+            text.enabled = false;
         }
     }
 
     void ShowHealthBars()
     {
         playerHealthBar.GetComponent<Image>().enabled = true;
-        playerHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = true;
+        playerHealthBar.transform.GetChild(2).GetComponent<Image>().enabled = true;
+        playerHealthBar.transform.GetChild(3).GetComponent<Text>().enabled = true;
         foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = true;
         }
 
         enemyHealthBar.GetComponent<Image>().enabled = true;
-        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = true;
         foreach (Image img in enemyHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = true;
+        }
+
+        foreach (Text text in enemyHealthBar.GetComponentsInChildren<Text>())
+        {
+            text.enabled = true;
         }
     }
 
@@ -1328,8 +1340,8 @@ public class CombatManager : MonoBehaviour {
         GameController.controller.playerInventory = new string[3];
         GameController.controller.playerInventoryQuantity = new int[3];
 
-        GameController.controller.playerInventory[0] = "fuckFace";
-        GameController.controller.playerInventory[1] = "Premium Quality Dildo";
+        GameController.controller.playerInventory[0] = "woa";
+        GameController.controller.playerInventory[1] = "Premium Quality cheese";
         GameController.controller.playerInventory[2] = "a shoe";
 
         GameController.controller.playerInventoryQuantity[0] = 1;
@@ -1348,10 +1360,14 @@ public class CombatManager : MonoBehaviour {
 
     public void LoadCharacterLevels(EnemyInfo enemyInfo)
     {
-        playerHealthBar.transform.GetChild(2).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
-        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().text = "Lv " + enemyInfo.enemyLevel;
-        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().enabled = true;
-        enemyHealthBar.transform.GetChild(2).GetComponent<Text>().color = Color.white;
+        playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
+        enemyHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + enemyInfo.enemyLevel;
+        enemyHealthBar.transform.GetChild(3).GetComponent<Text>().enabled = true;
+        enemyHealthBar.transform.GetChild(3).GetComponent<Text>().color = Color.white;
+
+        enemyHealthBar.transform.GetChild(4).GetComponent<Text>().text = enemyInfo.enemyName;
+        enemyHealthBar.transform.GetChild(4).GetComponent<Text>().enabled = true;
+        enemyHealthBar.transform.GetChild(4).GetComponent<Text>().color = Color.white;
     }
 
     public int getPlayerHealth()

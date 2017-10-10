@@ -2242,6 +2242,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 0}
+  swordSwing01: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5

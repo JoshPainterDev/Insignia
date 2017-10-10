@@ -101,6 +101,7 @@
     <Compile Include="Assets\FadeScript.cs" />
     <Compile Include="Assets\GhostSprites2D\Scripts\GhostSprites\GhostSprites.cs" />
     <Compile Include="Assets\MainMenuManager.cs" />
+    <Compile Include="Assets\Music_Controller.cs" />
     <Compile Include="Assets\NewCharacter_Manager.cs" />
     <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
