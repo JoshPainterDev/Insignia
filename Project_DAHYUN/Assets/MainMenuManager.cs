@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour {
     public GameObject adventureButton;
     public GameObject craftingButton;
     public GameObject settingsButton;
+    public GameObject charSelectButton;
 
     public GameObject camera;
     public GameObject blackSq;
@@ -42,8 +43,12 @@ public class MainMenuManager : MonoBehaviour {
             case 4: // Settings
                 StartCoroutine(LoadSettingsScreen());
                 break;
+            case 5: // Character Select 
+                StartCoroutine(LoadCharSelectScene());
+                break;
         }
     }
+
 
     IEnumerator LoadCharacterScreen()
     {
@@ -60,7 +65,6 @@ public class MainMenuManager : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
-        //SceneManager.LoadScene("AdventureSelect_Scene");
         SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
@@ -78,11 +82,20 @@ public class MainMenuManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
     }
 
+    IEnumerator LoadCharSelectScene()
+    {
+        yield return new WaitForSeconds(0.25f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("CharacterSelect_Scene");
+    }
+
     public void DisableButtons()
     {
         characterButton.GetComponent<Button>().enabled = false;
         adventureButton.GetComponent<Button>().enabled = false;
         craftingButton.GetComponent<Button>().enabled = false;
         settingsButton.GetComponent<Button>().enabled = false;
+        charSelectButton.GetComponent<Button>().enabled = false;
     }
 }

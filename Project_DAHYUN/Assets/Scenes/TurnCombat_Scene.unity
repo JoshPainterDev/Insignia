@@ -236,7 +236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 105.1}
+  m_AnchoredPosition: {x: 295, y: 130}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96530582
@@ -1510,7 +1510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 105.10004}
+  m_AnchoredPosition: {x: -250, y: 130}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597438598
@@ -2147,7 +2147,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666657974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55, y: 138, z: 0}
+  m_LocalPosition: {x: -60, y: 138, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2480,7 +2480,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -3932,7 +3932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 179
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3976,7 +3976,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: orthographic size
-      value: 165
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_NormalizedViewPortRect.width
@@ -4762,11 +4762,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMannequin: {fileID: 119668991}
+  enemyMannequin: {fileID: 666657974}
   strikeAnimDuration: 2
+  standardStrikeHit_FX: {fileID: 1876573840352192, guid: f0383814a4e8b3b43912bb289ed00e72,
+    type: 2}
   shadowStrike_FX: {fileID: 1862190314031148, guid: 1d7b14b8fd5d03c4db5cf79df4440aa4,
     type: 2}
   seratedStrike_FX: {fileID: 1862190314031148, guid: b3ea50e27d080094a8e29bcfa685e6bf,
     type: 2}
+  blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
+  blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
+  blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
+  blood04_FX: {fileID: 1862190314031148, guid: d499bc62574a7364ba27c2e4cc79ebd7, type: 2}
 --- !u!114 &1616549430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4901,11 +4908,17 @@ MonoBehaviour:
   struggleButton_R: {fileID: 289257003}
   struggle_Counter: {fileID: 1663483274}
   camera: {fileID: 2079907811}
+  effectClone: {fileID: 0}
   readySize: 1
   pressedSize: 0.5
   origColor: {r: 1, g: 1, b: 0, a: 1}
   pressedColor: {r: 1, g: 0.59999996, b: 0, a: 1}
   goal: 10
+  hitEffect: {fileID: 1862190314031148, guid: aa0ca6461d3324d47b3e63d892f30a4d, type: 2}
+  blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
+  blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
+  blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
+  blood04_FX: {fileID: 1862190314031148, guid: d499bc62574a7364ba27c2e4cc79ebd7, type: 2}
   HARD_MODE_FAIL: 1
   NORMAL_MODE_FAIL: 3
   EASY_MODE_FAIL: 4
@@ -5536,9 +5549,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatLoop: {fileID: 8300000, guid: 2d935bab044a449468b6c3d4bbfd63ac, type: 3}
+  expositionConfrontation: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
+  BACKGROUND_VOLUME: 0.25
+  rate: 1
 --- !u!82 &1797351039
 AudioSource:
   m_ObjectHideFlags: 0

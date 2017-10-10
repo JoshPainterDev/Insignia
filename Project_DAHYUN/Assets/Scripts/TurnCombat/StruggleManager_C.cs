@@ -13,9 +13,16 @@ public class StruggleManager_C : MonoBehaviour {
     public GameObject struggleButton_R;
     public GameObject struggle_Counter;
     public GameObject camera;
+    public GameObject effectClone;
     public float readySize, pressedSize;
     public Color origColor, pressedColor;
     public float goal = 50f;
+
+    public GameObject hitEffect;
+    public GameObject blood01_FX;
+    public GameObject blood02_FX;
+    public GameObject blood03_FX;
+    public GameObject blood04_FX;
 
     [HideInInspector]
     public int HARD_MODE_FAIL = 1;
@@ -36,6 +43,8 @@ public class StruggleManager_C : MonoBehaviour {
     private Vector3 enemyMin = new Vector3(18, 138, 0);
     private Vector3 enemyStrugglePos = new Vector3(-208, 138, 0);
 
+    private Vector3 effectPos;
+
     private int strugglePressCounter = 0;
     bool struggling_Player = false;
     bool struggling_Enemy = false;
@@ -53,6 +62,7 @@ public class StruggleManager_C : MonoBehaviour {
         combatController = this.GetComponent<CombatManager>();
         playerOrig = player.transform.position;
         enemyOrig = enemy.transform.position;
+        effectPos = enemy.transform.GetChild(0).transform.GetChild(0).transform.position;
         disableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = false;
         currentMode = EASY_MODE_FAIL;
@@ -237,6 +247,8 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.GetComponent<Image>().color = origColor;
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<AnimationController>().PlayAttackAnim();
+        Vector3 spawnPos = new Vector3(player.transform.position.x + 80, player.transform.position.y, 0);
+        effectClone = (GameObject)Instantiate(hitEffect, spawnPos, transform.rotation);
         yield return new WaitForSeconds(0.25f);
         //this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
         //play execution anim

@@ -5,22 +5,33 @@ using UnityEngine;
 public class StrikeManager_C : MonoBehaviour {
 
     public GameObject playerMannequin;
+    public GameObject enemyMannequin;
     public float strikeAnimDuration;
     private Vector3 initPlayerPos;
+    private Vector3 initEnemyPos;
+    private Vector3 bloodPos;
     private Vector2 strikeOffset = new Vector2(0f , 0f);
     private string strikeModifier;
     private GameObject effectClone;
+    private GameObject bloodClone;
     private int origEnemyHealth;
 
     //ASSETS
+    public GameObject standardStrikeHit_FX;
     public GameObject shadowStrike_FX;
     public GameObject seratedStrike_FX;
+    public GameObject blood01_FX;
+    public GameObject blood02_FX;
+    public GameObject blood03_FX;
+    public GameObject blood04_FX;
 
     // Use this for initialization
     void Start ()
     {
         initPlayerPos = playerMannequin.transform.position;
-	}
+        initEnemyPos = enemyMannequin.transform.GetChild(0).transform.GetChild(0).transform.position;
+        print("enemy position: " + initEnemyPos);
+    }
 	
     public void StrikeUsed(string strikeMod, int originalEnemyHP)
     {
@@ -69,7 +80,11 @@ public class StrikeManager_C : MonoBehaviour {
                 effectClone.GetComponent<SpriteRenderer>().enabled = true;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(0.2f);
+                generateRandomBlood();
+                bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                bloodClone.transform.position = bloodPos;
+                yield return new WaitForSeconds(0.5f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
                 break;
             case "Serrated Strike":
@@ -80,6 +95,9 @@ public class StrikeManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, pos2, strikeAnimDuration / .25f);
                 yield return new WaitForSeconds(0.25f);
+                generateRandomBlood();
+                bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                bloodClone.transform.position = bloodPos;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();
                 yield return new WaitForSeconds(0.25f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos2, initPlayerPos, strikeAnimDuration / .25f);
@@ -89,7 +107,12 @@ public class StrikeManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
                 yield return new WaitForSeconds(0.25f);
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(0.5f);
+                generateRandomBlood();
+                bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                bloodClone.transform.position = bloodPos;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike();
                 yield return new WaitForSeconds(0.25f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
@@ -99,5 +122,26 @@ public class StrikeManager_C : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         this.GetComponent<CombatManager>().EndPlayerTurn(true, origEnemyHealth);
+    }
+
+    private void generateRandomBlood()
+    {
+        int rand = Random.Range(1, 4);
+
+        switch (rand)
+        {
+            case 1:
+                bloodClone = (GameObject)Instantiate(blood01_FX, Vector3.zero, transform.rotation);
+                break;
+            case 2:
+                bloodClone = (GameObject)Instantiate(blood02_FX, Vector3.zero, transform.rotation);
+                break;
+            case 3:
+                bloodClone = (GameObject)Instantiate(blood03_FX, Vector3.zero, transform.rotation);
+                break;
+            case 4:
+                bloodClone = (GameObject)Instantiate(blood04_FX, Vector3.zero, transform.rotation);
+                break;
+        }
     }
 }
