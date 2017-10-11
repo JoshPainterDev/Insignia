@@ -9,6 +9,15 @@ public class AnimationController : MonoBehaviour
         LoadCharacter();
     }
 
+    public void SetPlaySpeed(float newSpeed = 1)
+    {
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.speed = newSpeed;
+            print(child.speed);
+        }
+    }
+
     public void FlipFlop()
     {
         foreach (SpriteRenderer sprite in this.GetComponentsInChildren<SpriteRenderer>())

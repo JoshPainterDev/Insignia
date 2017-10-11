@@ -27,6 +27,15 @@ public class FadeScript : MonoBehaviour {
         t_C = 0;
     }
 
+    public void FadeColored(Color startColor, Color endColor, float speed = 1.0f)
+    {
+        initColor = startColor;
+        finalColor = endColor;
+        rate = speed;
+        lerpingColor = true;
+        t_C = 0;
+    }
+
     public void FadeIn(float speed = 1.0f)
     {
         initColor = this.GetComponent<Image>().color;

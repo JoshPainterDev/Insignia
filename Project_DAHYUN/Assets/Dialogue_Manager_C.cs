@@ -33,7 +33,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         for (int i = 0; i < totalLines; ++i)
         {
             if (i > 0)
-                waitTime += (script[i - 1].Length * 0.09f);
+                waitTime += (script[i - 1].Length * 0.09f) + 1f;
             else
                 waitTime = 1;
             // the previous waittime + length of typing + a reading buffer
