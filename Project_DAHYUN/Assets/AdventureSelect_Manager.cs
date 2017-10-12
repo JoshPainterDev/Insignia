@@ -80,7 +80,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Exposition_Scene");
+        SceneManager.LoadScene("Exposition_Scene01");
     }
 
     void SpecifyEncounter(int stageToLoad, int levelsCompleted)

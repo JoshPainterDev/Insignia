@@ -14,7 +14,6 @@ public class AnimationController : MonoBehaviour
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
         {
             child.speed = newSpeed;
-            print(child.speed);
         }
     }
 

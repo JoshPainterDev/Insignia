@@ -13,6 +13,12 @@ public class Exposition_Manager : MonoBehaviour
     public GameObject blackSq;
     public GameObject background;
     public GameObject dialoguePanel;
+    public GameObject sfxManager;
+
+    public GameObject speaker01;
+    public GameObject speaker02;
+    public GameObject speaker03;
+    public GameObject speaker04;
 
     private Vector3 panelUpPos;
     private Vector3 panelDownPos;
@@ -106,24 +112,35 @@ public class Exposition_Manager : MonoBehaviour
         nextLevel = "TurnCombat_Scene";
         //////////////////
         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 0.15f);
-        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(500, 0, 0), 0.25f);
+        sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(400, 0, 0), 0.25f);
         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
         playerMannequin.GetComponent<AnimationController>().SetPlaySpeed(0.5f);
         yield return new WaitForSeconds(3f);
+        sfxManager.GetComponent<SoundFXManager_C>().stopAllMusic();
         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
         yield return new WaitForSeconds(1f);
         //play death anim here?
         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.25f);
+        sfxManager.GetComponent<SoundFXManager_C>().playSnowCollapse();
+        yield return new WaitForSeconds(2f);
         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 1f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
         yield return new WaitForSeconds(3f);
         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 0.25f);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
+        sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
+        yield return new WaitForSeconds(2f);
+        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(45, 0, 0), 1f);
+        yield return new WaitForSeconds(1f);
+        sfxManager.GetComponent<SoundFXManager_C>().stopAllMusic();
         StartCoroutine(NewDialogue(1, 1));
         yield return new WaitForSeconds(7f);
         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 0.5f);
+        sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1,0,0.7f,true);
+        yield return new WaitForSeconds(2f);
         LoadNextLv();
     }
 
@@ -156,7 +173,7 @@ public class Exposition_Manager : MonoBehaviour
                         script[1] = "Over here...";
 
                         totalLines = 2;
-                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, script, leftspeaker, script, usesPlayer);
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
                 break;
