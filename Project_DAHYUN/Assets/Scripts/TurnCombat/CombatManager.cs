@@ -10,6 +10,7 @@ public class CombatManager : MonoBehaviour {
 
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
+    public bool hasTutorial = false;
     public Canvas canvas;
     public GameObject playerMannequin;
     public GameObject enemyMannequin;
@@ -168,7 +169,10 @@ public class CombatManager : MonoBehaviour {
         if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
             StartCoroutine(ShowStartingButtons());
 
-        StartCoroutine(LoadNextEnemy());
+        if(!hasTutorial)
+        {
+            StartCoroutine(LoadNextEnemy());
+        }
 
         //4. Play music
         Music_Manager.GetComponent<Music_Controller>().playCombatLoop();

@@ -1585,7 +1585,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -6
-  m_Sprite: {fileID: 21300000, guid: 083e377603e04c549bd5bc450423f106, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1593,7 +1593,7 @@ SpriteRenderer:
   m_Size: {x: 4.01, y: 2.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
 --- !u!222 &1230049395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2737,7 +2737,7 @@ Prefab:
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
@@ -3350,6 +3350,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
   levelUp: {fileID: 0}
   buttonClick: {fileID: 0}
+  swordSwing01: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5

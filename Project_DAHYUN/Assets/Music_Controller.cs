@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Music_Controller : MonoBehaviour
 {
+    public bool FadeOnStart = false;
+
     public AudioClip combatLoop;
     public AudioClip expositionConfrontation;
 
@@ -23,6 +25,12 @@ public class Music_Controller : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if(FadeOnStart)
+        {
+            float endVolume = audioSource.volume;
+            FadeVolume(0, endVolume, 0.25f);
+        }
     }
 
     public void playCombatLoop()
