@@ -175,6 +175,7 @@ public class CombatManager : MonoBehaviour {
         }
 
         //4. Play music
+        //
         Music_Manager.GetComponent<Music_Controller>().playCombatLoop();
     }
 

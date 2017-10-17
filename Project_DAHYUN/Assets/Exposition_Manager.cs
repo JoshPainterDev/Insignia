@@ -154,10 +154,10 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Jes";
+                        speaker[0] = "Jess";
                         leftspeaker[0] = false;
                         script[0] = "Signs of hypothermia, stab wounds, 2 broken ribs, and yet...";
-                        speaker[1] = "Jes";
+                        speaker[1] = "Jess";
                         leftspeaker[1] = false;
                         script[1] = "Even the commander didn't want to waste-";
 
@@ -165,10 +165,10 @@ public class Exposition_Manager : MonoBehaviour
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 2:
-                        speaker[0] = "Jes";
+                        speaker[0] = "Jess";
                         leftspeaker[0] = false;
                         script[0] = "Hmm...";
-                        speaker[1] = "Jes";
+                        speaker[1] = "Jess";
                         leftspeaker[1] = false;
                         script[1] = "Well isn't this peculiar...";
 
@@ -199,7 +199,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[0] = false;
                         script[0] = "Once you feel up to it, Jes will test your physical condition.";
 
-                        speaker[1] = "Jes";
+                        speaker[1] = "Jess";
                         leftspeaker[1] = true;
                         script[1] = "Actually, Steve should be here any moment to assist in the evaluation.";
 
@@ -207,7 +207,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[2] = false;
                         script[2] = "Grand! I'll want a report on your findings of what we discussed.";
 
-                        speaker[3] = "Jes";
+                        speaker[3] = "Jess";
                         leftspeaker[3] = true;
                         script[3] = "Yes sir!";
 
@@ -252,7 +252,7 @@ public class Exposition_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
         yield return new WaitForSeconds(1f);
         StartCoroutine(NewDialogue(4, 1));
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(16f);
         LoadCombatScene(nextLevel);
     }
 
