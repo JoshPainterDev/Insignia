@@ -2506,6 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67508c19e2e5f454e93b868bf4fec9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNumber: 4
   playerMannequin: {fileID: 119668991}
   canvas: {fileID: 889873487}
   camera: {fileID: 1243540803}

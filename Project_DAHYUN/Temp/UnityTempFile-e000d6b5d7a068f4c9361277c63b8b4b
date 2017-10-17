@@ -1,0 +1,171 @@
+-debug
+-target:library
+-nowarn:0169
+-langversion:4
+-out:Temp/Assembly-CSharp.dll
+-unsafe
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll"
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_5_6_3
+-define:UNITY_5_6
+-define:UNITY_5
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_GENERICS
+-define:ENABLE_PVR_GI
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_RUNTIME_NAVMESH_BUILDING
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_UNET
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:ENABLE_NATIVE_ARRAY
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:PLATFORM_SUPPORTS_MONO
+-define:INCLUDE_PUBNUB
+-define:ENABLE_PLAYMODE_TESTS_RUNNER
+-define:ENABLE_SCRIPTING_NEW_CSHARP_COMPILER
+-define:ENABLE_VIDEO
+-define:UNITY_ANDROID
+-define:ENABLE_SUBSTANCE
+-define:UNITY_ANDROID_API
+-define:ENABLE_EGL
+-define:ENABLE_NETWORK
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:PLATFORM_SUPPORTS_ADS_ID
+-define:UNITY_CAN_SHOW_SPLASH_SCREEN
+-define:ENABLE_VR
+-define:ENABLE_UNITYADS_RUNTIME
+-define:UNITY_UNITYADS_API
+-define:ENABLE_MONO
+-define:NET_2_0_SUBSET
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+-define:ENABLE_NATIVE_ARRAY_CHECKS
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
+-define:UNITY_HAS_GOOGLEVR
+Assets/AbilitySelect_Manager.cs
+Assets/AccountInfo.cs
+Assets/AdventureSelect_Manager.cs
+Assets/AnimationController.cs
+Assets/ButtonAnimatorScript.cs
+Assets/Character_Menu_Manager.cs
+Assets/Character_Select_Manager.cs
+Assets/ClosePopUp.cs
+Assets/Dialogue_Manager_C.cs
+Assets/EnemyAbilityManager_C.cs
+Assets/EnemyEncounter.cs
+Assets/EnemyInfo.cs
+Assets/ExperienceScript.cs
+Assets/Exposition_Manager.cs
+Assets/FadeScript.cs
+Assets/GhostSprites2D/Scripts/GhostSprites/GhostSprites.cs
+Assets/MainMenuManager.cs
+Assets/Music_Controller.cs
+Assets/NewCharacter_Manager.cs
+Assets/RewardManager_C.cs
+Assets/Scripts/Audio/CombatAudio.cs
+Assets/Scripts/Audio/MenuUIAudio.cs
+Assets/Scripts/BackgroundParallax.cs
+Assets/Scripts/BackgroundPropSpawner.cs
+Assets/Scripts/Bomb.cs
+Assets/Scripts/BombPickup.cs
+Assets/Scripts/CameraController_TurnCombat.cs
+Assets/Scripts/CameraFollow.cs
+"Assets/Scripts/Crafting Scripts/CraftingManager.cs"
+Assets/Scripts/Destroyer.cs
+Assets/Scripts/DressRoom/DressRoom_Manager.cs
+Assets/Scripts/DressRoom/EquipmentInfo.cs
+Assets/Scripts/DressRoom/EquipmentInfoManager.cs
+Assets/Scripts/Enemy.cs
+Assets/Scripts/FollowPlayer.cs
+Assets/Scripts/GameManagers/CameraController.cs
+Assets/Scripts/GameManagers/GameController.cs
+Assets/Scripts/Gun.cs
+Assets/Scripts/HealthPickup.cs
+Assets/Scripts/LayBombs.cs
+Assets/Scripts/LerpScript.cs
+Assets/Scripts/Pauser.cs
+Assets/Scripts/PickupSpawner.cs
+"Assets/Scripts/Player Scripts/PlayerCombatAnimator.cs"
+"Assets/Scripts/Player Scripts/PlayerControl.cs"
+"Assets/Scripts/Player Scripts/PlayerHealth.cs"
+Assets/Scripts/PlayerController.cs
+Assets/Scripts/Remover.cs
+Assets/Scripts/Rocket.cs
+Assets/Scripts/Score.cs
+Assets/Scripts/ScoreShadow.cs
+Assets/Scripts/SetParticleSortingLayer.cs
+Assets/Scripts/Spawner.cs
+Assets/Scripts/TurnCombat/Ability.cs
+Assets/Scripts/TurnCombat/AbilityManager_C.cs
+Assets/Scripts/TurnCombat/AbilityToolsScript.cs
+Assets/Scripts/TurnCombat/CombatManager.cs
+Assets/Scripts/TurnCombat/EnemyCombatScript.cs
+Assets/Scripts/TurnCombat/EnemyMannequinController.cs
+Assets/Scripts/TurnCombat/EnemyToolsScript.cs
+Assets/Scripts/TurnCombat/EquipmentButtonScript.cs
+Assets/Scripts/TurnCombat/HealthScript.cs
+Assets/Scripts/TurnCombat/ItemButtonScript.cs
+Assets/Scripts/TurnCombat/ItemsManager_C.cs
+Assets/Scripts/TurnCombat/LimitBreak.cs
+Assets/Scripts/TurnCombat/LimitBreakManager_C.cs
+Assets/Scripts/TurnCombat/RewardToolsScript.cs
+Assets/Scripts/TurnCombat/StrikeManager_C.cs
+Assets/Scripts/TurnCombat/StruggleManager_C.cs
+Assets/SkipButtonScript.cs
+Assets/SoundFXManager_C.cs
+Assets/StatDescriptionScript.cs
+Assets/TimeController.cs
+Assets/TutorialManager_C.cs
+Assets/animStateScript.cs
+Assets/enemyCounterScript.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\UnityScript.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\UnityScript.Lang.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\Boo.Lang.dll"
+-sdk:unity

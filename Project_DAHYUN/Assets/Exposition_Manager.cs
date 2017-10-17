@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Exposition_Manager : MonoBehaviour
 {
+    public int sceneNumber;
     public GameObject playerMannequin;
 
     public GameObject canvas;
@@ -61,9 +62,18 @@ public class Exposition_Manager : MonoBehaviour
 
     public void BeginCutscene(int encounterNum)
     {
-        switch(encounterNum)
+        switch(sceneNumber)
         {
             case 1:
+                StartCoroutine(Cutscene1());
+                break;
+            case 2:
+                StartCoroutine(Cutscene2());
+                break;
+            case 3:
+                StartCoroutine(Cutscene3());
+                break;
+            case 4:
                 StartCoroutine(Cutscene4());
                 break;
         }

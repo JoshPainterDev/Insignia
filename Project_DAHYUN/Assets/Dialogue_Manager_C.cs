@@ -136,7 +136,6 @@ public class Dialogue_Manager_C : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1.5f);
-            print("ending dialogue");
             expositionManager.EndDialogue();
         }   
     }
