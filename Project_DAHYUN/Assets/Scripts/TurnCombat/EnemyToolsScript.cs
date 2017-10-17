@@ -9,7 +9,8 @@ public class EnemyToolsScript : MonoBehaviour {
     public int MODERATE_EXP = 50;
     public int THICC_EXP = 100;
 
-    
+
+    public GameObject Steve_Prefab;
     public GameObject ShadowAssassin_Prefab;
     public GameObject Skitter_Prefab;
     public GameObject DragonLord_Prefab;
@@ -33,6 +34,21 @@ public class EnemyToolsScript : MonoBehaviour {
 
         switch (name)
         {
+            case "Steve":
+                enemyInfo.enemyPrefab = ShadowAssassin_Prefab;
+                enemyInfo.enemyLevel = 1;
+                enemyInfo.expReward = MODERATE_EXP;
+                enemyInfo.ability_1 = "Outrage";
+                enemyInfo.ability_2 = "Shadow Clone";
+                enemyInfo.ability_3 = "Reap";
+                enemyInfo.ability_4 = "Final Cut";
+
+                enemyInfo.enemyName = "Shadow Assassin";
+                enemyInfo.enemyAttack = 5;
+                enemyInfo.enemyDefense = 2;
+                enemyInfo.enemySpeed = 1;
+                enemyInfo.enemyMaxHealthBase = 60;
+                break;
             case "Shadow Assassin":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\zed_idle01";
                 enemyInfo.enemyPrefab = ShadowAssassin_Prefab;

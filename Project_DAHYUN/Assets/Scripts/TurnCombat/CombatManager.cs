@@ -173,10 +173,14 @@ public class CombatManager : MonoBehaviour {
         {
             StartCoroutine(LoadNextEnemy());
         }
+        else
+        {
+            this.GetComponent<TutorialManager_C>().BeginTutorial();
+        }
 
         //4. Play music
         //
-        Music_Manager.GetComponent<Music_Controller>().playCombatLoop();
+        //Music_Manager.GetComponent<Music_Controller>().playCombatLoop();
     }
 
     public void AbilitySelected(int selectedOption = 0)
