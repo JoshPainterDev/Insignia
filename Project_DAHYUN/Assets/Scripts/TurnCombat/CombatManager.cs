@@ -173,10 +173,6 @@ public class CombatManager : MonoBehaviour {
         {
             StartCoroutine(LoadNextEnemy());
         }
-        else
-        {
-            this.GetComponent<TutorialManager_C>().BeginTutorial();
-        }
 
         //4. Play music
         //
@@ -1135,7 +1131,7 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    void HideMainButtons()
+    public void HideMainButtons()
     {
         topButton.GetComponent<Image>().enabled = false;
         leftButton.GetComponent<Image>().enabled = false;
@@ -1146,7 +1142,7 @@ public class CombatManager : MonoBehaviour {
         rightButton.GetComponentInChildren<Text>().enabled = false;
     }
 
-    void ShowMainButtons()
+    public void ShowMainButtons()
     {
         topButton.GetComponent<Image>().enabled = true;
         leftButton.GetComponent<Image>().enabled = true;
@@ -1231,35 +1227,35 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    void EnableMainButtons()
+    public void EnableMainButtons()
     {
         topButton.GetComponentInChildren<Button>().enabled = true;
         leftButton.GetComponentInChildren<Button>().enabled = true;
         rightButton.GetComponentInChildren<Button>().enabled = true;
     }
 
-    void DisableMainButtons()
+    public void DisableMainButtons()
     {
         topButton.GetComponentInChildren<Button>().enabled = false;
         leftButton.GetComponentInChildren<Button>().enabled = false;
         rightButton.GetComponentInChildren<Button>().enabled = false;
     }
 
-    void EnableBackButton()
+    public void EnableBackButton()
     {
         backButton.GetComponent<Image>().enabled = true;
         backButton.GetComponent<Button>().enabled = true;
         backButton.GetComponentInChildren<Text>().enabled = true;
     }
 
-    void DisableBackButton()
+    public void DisableBackButton()
     {
         backButton.GetComponent<Image>().enabled = false;
         backButton.GetComponent<Button>().enabled = false;
         backButton.GetComponentInChildren<Text>().enabled = false;
     }
 
-    void EnableAbilityButtons()
+    public void EnableAbilityButtons()
     {
         abilityButton1.GetComponent<Button>().enabled = true;
         abilityButton2.GetComponent<Button>().enabled = true;
@@ -1267,7 +1263,7 @@ public class CombatManager : MonoBehaviour {
         abilityButton4.GetComponent<Button>().enabled = true;
     }
 
-    void DisableAbilityButtons()
+    public void DisableAbilityButtons()
     {
         abilityButton1.GetComponent<Button>().enabled = false;
         abilityButton2.GetComponent<Button>().enabled = false;
@@ -1275,7 +1271,7 @@ public class CombatManager : MonoBehaviour {
         abilityButton4.GetComponent<Button>().enabled = false;
     }
 
-    void ShowAbilityButtons()
+    public void ShowAbilityButtons()
     {
         abilityButton1.GetComponent<Image>().enabled = true;
         abilityButton2.GetComponent<Image>().enabled = true;
@@ -1288,7 +1284,7 @@ public class CombatManager : MonoBehaviour {
         abilityButton4.GetComponentInChildren<Text>().enabled = true;
     }
 
-    void HideAbilityButtons()
+    public void HideAbilityButtons()
     {
         abilityButton1.GetComponent<Image>().enabled = false;
         abilityButton2.GetComponent<Image>().enabled = false;
@@ -1322,7 +1318,7 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    void ShowHealthBars()
+    public void ShowHealthBars()
     {
         playerHealthBar.GetComponent<Image>().enabled = true;
         playerHealthBar.transform.GetChild(2).GetComponent<Image>().enabled = true;
