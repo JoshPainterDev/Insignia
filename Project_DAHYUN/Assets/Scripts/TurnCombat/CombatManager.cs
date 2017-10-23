@@ -120,16 +120,15 @@ public class CombatManager : MonoBehaviour {
         encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
         //REMOVE THIS LATER
-        print(GameController.controller.charNames[1]);
         GameController.controller.Load(GameController.controller.charNames[1]);
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
-        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
-        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
-        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
-        GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
-        GameController.controller.strikeModifier = "Serated Strike";
+        //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
+        //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+        //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
+        //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
+        //GameController.controller.strikeModifier = "Serated Strike";
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
@@ -140,23 +139,25 @@ public class CombatManager : MonoBehaviour {
         print("Player max HP: " + playerHealth);
 
         if(!hasTutorial)
+        {
             ResetEnemyValues();
+            strikeMod = GameController.controller.strikeModifier;
 
-        if (GameController.controller.limitBreakTracker == 0)
-            canLimitBreak = true;
+            ability1 = GameController.controller.playerAbility1;
+            ability2 = GameController.controller.playerAbility2;
+            ability3 = GameController.controller.playerAbility3;
+            ability4 = GameController.controller.playerAbility4;
+
+            abilityButton1.GetComponentInChildren<Text>().text = ability1.Name;
+            abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
+            abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
+            abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
+
+            if (GameController.controller.limitBreakTracker == 0)
+                canLimitBreak = true;
+        }
 
         initPlayerPos = playerMannequin.transform.position;
-        strikeMod = GameController.controller.strikeModifier;
-
-        ability1 = GameController.controller.playerAbility1;
-        ability2 = GameController.controller.playerAbility2;
-        ability3 = GameController.controller.playerAbility3;
-        ability4 = GameController.controller.playerAbility4;
-
-        abilityButton1.GetComponentInChildren<Text>().text = ability1.Name;
-        abilityButton2.GetComponentInChildren<Text>().text = ability2.Name;
-        abilityButton3.GetComponentInChildren<Text>().text = ability3.Name;
-        abilityButton4.GetComponentInChildren<Text>().text = ability4.Name;
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         DisableAbilityButtons();
@@ -620,6 +621,9 @@ public class CombatManager : MonoBehaviour {
         int attack = GameController.controller.playerAttack;
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
+
+        if (hasTutorial)
+            return;
 
         if (abilityUsed.Type == AbilityType.Physical)
         {

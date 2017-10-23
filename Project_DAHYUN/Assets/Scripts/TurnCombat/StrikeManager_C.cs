@@ -64,8 +64,7 @@ public class StrikeManager_C : MonoBehaviour {
             StartCoroutine(AnimatePlayerStrike());
         }
         else if(strikeModifier == "Tutorial Strike")
-        {
-            print("yup");
+        {   
             StartCoroutine(TutorialStrike());
         }
         else
