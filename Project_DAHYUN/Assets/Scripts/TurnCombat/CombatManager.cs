@@ -139,7 +139,8 @@ public class CombatManager : MonoBehaviour {
         playerHealth = playerMaxHealth;
         print("Player max HP: " + playerHealth);
 
-        ResetEnemyValues();
+        if(!hasTutorial)
+            ResetEnemyValues();
 
         if (GameController.controller.limitBreakTracker == 0)
             canLimitBreak = true;
@@ -162,15 +163,15 @@ public class CombatManager : MonoBehaviour {
         DisableBackButton();
         HideAbilityButtons();
         DisableBackButton();
-        //3. Load in initial enemy
-        enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]);
-        LoadCharacterLevels(enemyInfo);
-
-        if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
-            StartCoroutine(ShowStartingButtons());
-
-        if(!hasTutorial)
+        if (!hasTutorial)
         {
+            //3. Load in initial enemy
+            enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]);
+            LoadCharacterLevels(enemyInfo);
+
+            if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
+                StartCoroutine(ShowStartingButtons());
+
             StartCoroutine(LoadNextEnemy());
         }
 
@@ -1007,7 +1008,6 @@ public class CombatManager : MonoBehaviour {
                 EndEnemyTurn(false, enemyHealth);
             else
                 EndPlayerTurn(false, playerHealth);
-
             enemyHealthBar.GetComponent<HealthScript>().StartAnim();
             LoadCharacterLevels(enemyInfo);
         }

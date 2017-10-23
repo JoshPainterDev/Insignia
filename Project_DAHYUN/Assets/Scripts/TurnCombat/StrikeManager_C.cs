@@ -38,7 +38,12 @@ public class StrikeManager_C : MonoBehaviour {
         strikeModifier = strikeMod;
         origEnemyHealth = originalEnemyHP;
 
-        if(strikeModifier == "Shadow Strike")
+        if(strikeModifier == "")
+        {
+            //animate player mannequin
+            StartCoroutine(AnimatePlayerStrike());
+        }
+        else if (strikeModifier == "Shadow Strike")
         {
             Vector2 FXoffset = new Vector2(0, 20);
             Vector3 spawnPos = new Vector3(initPlayerPos.x + FXoffset.x, initPlayerPos.y + FXoffset.y, 0);
@@ -58,11 +63,17 @@ public class StrikeManager_C : MonoBehaviour {
             //animate player mannequin
             StartCoroutine(AnimatePlayerStrike());
         }
+        else if(strikeModifier == "Tutorial Strike")
+        {
+            print("yup");
+            StartCoroutine(TutorialStrike());
+        }
         else
         {
             //animate player mannequin
             StartCoroutine(AnimatePlayerStrike());
         }
+
     }
 
     IEnumerator AnimatePlayerStrike()
@@ -122,6 +133,22 @@ public class StrikeManager_C : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         this.GetComponent<CombatManager>().EndPlayerTurn(true, origEnemyHealth);
+    }
+
+    IEnumerator TutorialStrike()
+    {
+        Vector3 pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
+        yield return new WaitForSeconds(0.25f);
+        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+        effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        generateRandomBlood();
+        bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+        bloodClone.transform.position = bloodPos;
+        yield return new WaitForSeconds(0.25f);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
     }
 
     private void generateRandomBlood()

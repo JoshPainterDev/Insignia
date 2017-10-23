@@ -55,6 +55,7 @@ public class StruggleManager_C : MonoBehaviour {
     int failCounter = 0;
     int failScale = 30;
     bool playerInitiated = true;
+    int enemyLevel = 1;
 
     // Use this for initialization
     void Start ()
@@ -67,14 +68,16 @@ public class StruggleManager_C : MonoBehaviour {
         struggle_Counter.GetComponent<Text>().enabled = false;
         currentMode = EASY_MODE_FAIL;
 
+        if(combatController.enemyInfo != null)
+            enemyLevel = combatController.enemyInfo.enemyLevel;
+
         failScale += GameController.controller.playerProwess * 2;
-        goal -= (GameController.controller.playerLevel - combatController.enemyInfo.enemyLevel) * combatController.playerAttackBoost;
+        goal -= (GameController.controller.playerLevel - enemyLevel) * combatController.playerAttackBoost;
     } 
 	
 	// Update is called once per frame
 	void Update ()
     {
-
 		if(struggling_Player || struggling_Enemy)
         {
             ++frameTracker;
