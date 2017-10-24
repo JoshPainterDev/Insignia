@@ -9,6 +9,7 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip select_UI;
     public AudioClip abilitySelect_UI;
     public AudioClip back_UI;
+    public AudioClip nope_UI;
     public AudioClip strugglePress01;
     public AudioClip strugglePress02;
     public AudioClip strugglePress03;
@@ -51,6 +52,11 @@ public class CombatAudio : MonoBehaviour {
     public void playUIBack()
     {
         audioSource.PlayOneShot(back_UI, MEDIUM_VOLUME);
+    }
+
+    public void playUINope()
+    {
+        audioSource.PlayOneShot(nope_UI, MEDIUM_VOLUME);
     }
 
     public void playRandomStrugglePress()

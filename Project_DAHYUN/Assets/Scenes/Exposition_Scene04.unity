@@ -680,7 +680,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -778,7 +778,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 889873491}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1537,9 +1537,9 @@ RectTransform:
   - {fileID: 119668992}
   - {fileID: 177538892}
   - {fileID: 742373448}
-  - {fileID: 2024994486}
   - {fileID: 2085123215}
   - {fileID: 617437405}
+  - {fileID: 2024994486}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.18800001}
@@ -3434,6 +3434,7 @@ MonoBehaviour:
   TRASH_EXP: 15
   MODERATE_EXP: 50
   THICC_EXP: 100
+  Steve_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -3668,7 +3669,7 @@ RectTransform:
   - {fileID: 1500741109}
   - {fileID: 1354402598}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

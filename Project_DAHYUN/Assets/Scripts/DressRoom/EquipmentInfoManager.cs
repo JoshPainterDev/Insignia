@@ -46,6 +46,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.DefenseStat = 1;
                             equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 0;
+                            equipInfo.hideUnderLayer = false;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
                             equipInfo.imgSourceName = prefixHead + "\\Novice_Armor\\Player_Head_NoviceHelm_AnimController";
                             break;
@@ -207,6 +208,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
                             equipInfo.imgSourceName = prefixTorso + "\\Novice_Armor\\Player_Torso_NoviceTorso_AnimController";
+                            print("found Chest");
                             break;
                         case 1:
                             equipInfo.Name = "Test Helmet";

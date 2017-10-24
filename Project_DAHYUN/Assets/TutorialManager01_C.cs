@@ -88,6 +88,7 @@ public class TutorialManager01_C : MonoBehaviour
 
     IEnumerator FakeAbility()
     {
+        yield return new WaitForSeconds(2f);
         textBox = panel03.transform.GetChild(0).gameObject;
         this.GetComponent<AbilityManager_C>().UseTutorialAbility();
         yield return new WaitForSeconds(1.5f);
@@ -156,7 +157,7 @@ public class TutorialManager01_C : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Steve.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(color1, color2);
         yield return new WaitForSeconds(0.5f);
-        enemyHealth.transform.GetChild(4).GetComponent<Text>().text = "???";
+        enemyHealth.transform.GetChild(4).GetComponent<Text>().text = "Not Steve";
         Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         slade.GetComponent<SpriteRenderer>().enabled = true;
         slade.GetComponent<LerpScript>().LerpToColor(color2, color3);

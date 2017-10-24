@@ -2402,9 +2402,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The Forest
-
-'
+  m_Text: Fort Hammerfell
 --- !u!222 &1565315451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2782,7 +2780,7 @@ Prefab:
     - target: {fileID: 114132575520289502, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_Text
-      value: Kingdom of Light
+      value: The Forest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc63f3cea52417d4d98d06cd911a2498, type: 2}
@@ -3618,6 +3616,7 @@ MonoBehaviour:
   TRASH_EXP: 15
   MODERATE_EXP: 50
   THICC_EXP: 100
+  Steve_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -3885,9 +3884,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Firelands
-
-'
+  m_Text: Kingdom of Light
 --- !u!222 &2071960986
 CanvasRenderer:
   m_ObjectHideFlags: 0

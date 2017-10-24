@@ -25,14 +25,14 @@ public class NewCharacter_Manager : MonoBehaviour {
         if (GameController.controller.charClasses.Length == 0)
             GameController.controller.charClasses = new PlayerClass[6];
 
-        UseDefaultArmor(0);
+        UseDefaultArmor(1);
 	}
 
     void UseDefaultArmor(int classNum)
     {
         switch(classNum)
         {
-            case 0:
+            case 1:
                 for (int i = 0; i < 16; ++i)
                 {
                     if (i % 2 == 0)
@@ -82,7 +82,7 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.SaveCharacters();//DONT FORGET TO SAVE :3
 
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
-            Invoke("LoadCharSelect", 0.5f);
+            Invoke("LoadTutorial", 0.5f);
         }
         else
         {
@@ -122,6 +122,11 @@ public class NewCharacter_Manager : MonoBehaviour {
     private void LoadCharSelect()
     {
         SceneManager.LoadScene("CharacterSelect_Scene");
+    }
+
+    private void LoadTutorial()
+    {
+        SceneManager.LoadScene("Exposition_Scene04");
     }
 
     private bool nameChecksOut(string charName)
@@ -173,90 +178,4 @@ public class NewCharacter_Manager : MonoBehaviour {
 
         UseDefaultArmor(classNum);
     }
-
-//    public void LoadMannequin(int classNum)
-//    {
-//        int it = 0;
-
-//        switch(classNum)
-//        {
-//            case 1: // Knight Class
-//                EquipmentInfo info;
-
-//                foreach(Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-//                {
-//                    info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(it*4, 0);
-
-//                    if(it > 7)
-//                    {
-//                        break;
-//                    }
-
-//                    child.runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-//                }
-
-//                info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(4, 0);
-//                string imageName = info.imgSourceName;
-//                string newStr = imageName;
-//                string match = "Torso";
-//                string replace = "Arms";
-//                int mSize = 0;
-//                int tracker = 0;
-//                //Alters the form of the string to include the Arms animator with the Torso
-//                foreach (char c in imageName)
-//                {
-//                    if (c == match[mSize])
-//                    {
-//                        ++mSize;
-
-//                        if (mSize == 5)
-//                        {
-//                            newStr = newStr.Remove(tracker - 4, mSize);
-//                            newStr = newStr.Insert(tracker - 4, replace);
-//                            mSize = 0;
-//                            --tracker;
-//                        }
-//                    }
-//                    else
-//                        mSize = 0;
-
-//                    ++tracker;
-//                }
-
-//                playerMannequin.transform.GetChild(7).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(newStr, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-//                playerMannequin.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-
-//                it = 0;
-
-//                foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
-//                {
-//                    if (it > 8 || it == 0)
-//                    {
-//                        ++it;
-//                        continue;
-//                    }
-
-//                    child.enabled = true;
-//                    ++it;
-//                }
-
-//                break;
-
-//            default:
-//                foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
-//                {
-//                    if (it > 7 || it < 12)
-//                    {
-//                        ++it;
-//                        continue;
-//                    }
-
-//                    child.enabled = false;
-//                    ++it;
-//                }
-//                break;
-//        }
-
-//        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
-//    }
 }

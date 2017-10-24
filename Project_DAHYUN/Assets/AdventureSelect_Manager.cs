@@ -15,8 +15,9 @@ public class AdventureSelect_Manager : MonoBehaviour
     public GameObject selectPrefab;
 
     public GameObject BackButton;
-
     public Vector3 adventureCameraPos;
+
+    private string levelToLoad;
 
     // Use this for initialization
     void Start ()
@@ -47,13 +48,16 @@ public class AdventureSelect_Manager : MonoBehaviour
         switch(adventureNum)
         {
             case 1:
-                StartCoroutine(LoadEncounter(1, GameController.controller.levelsCompleted));
+                levelToLoad = "Exposition_Scene05";
+                StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
                 break;
             case 2:
-                StartCoroutine(LoadEncounter(2, GameController.controller.levelsCompleted));
+                levelToLoad = "Exposition_Scene01";
+                StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
                 break;
             case 3:
-                StartCoroutine(LoadEncounter(3, GameController.controller.levelsCompleted));
+                levelToLoad = "Exposition_Scene01";
+                StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
                 break;
             default:
                 StartCoroutine(LoadCombatScreen());
@@ -80,7 +84,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Exposition_Scene01");
+        SceneManager.LoadScene(levelToLoad);
     }
 
     void SpecifyEncounter(int stageToLoad, int levelsCompleted)
