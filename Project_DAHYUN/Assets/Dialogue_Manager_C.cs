@@ -110,7 +110,7 @@ public class Dialogue_Manager_C : MonoBehaviour
 
         for (int i = 0; i < line.Length; ++i)
         {
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
             //typewriter effect
             dialogueBox.GetComponent<Text>().text = dialogueBox.GetComponent<Text>().text + line[i].ToString();
         }

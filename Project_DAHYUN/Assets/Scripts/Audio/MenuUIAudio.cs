@@ -22,6 +22,11 @@ public class MenuUIAudio : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void playSoundClip(AudioClip sound, float volume = 0.5f)
+    {
+        audioSource.PlayOneShot(sound, volume);
+    }
+
     public void PlaySwordSound()
     {
         audioSource.PlayOneShot(swordSwing01, MEDIUM_VOLUME);

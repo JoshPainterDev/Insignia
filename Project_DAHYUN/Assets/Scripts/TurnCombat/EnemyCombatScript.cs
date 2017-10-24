@@ -6,15 +6,23 @@ public class EnemyCombatScript : MonoBehaviour {
 
     private CombatManager combatManager;
     public GameObject enemyMannequin;
+    public GameObject playerMannequin;
 
     [HideInInspector]
     private Vector3 origPosition;
-    public Vector3 strikePosition;
+    private Vector3 playerOrigPos;
+    private Vector3 strikePosition;
 
     [HideInInspector]
     private int difficulty;
 
     public EnemyInfo enemyInfo;
+
+    public GameObject blood01_FX;
+    public GameObject blood02_FX;
+    public GameObject blood03_FX;
+    public GameObject blood04_FX;
+    private GameObject bloodClone;
     [HideInInspector]
     Ability ability1, ability2, ability3, ability4;
     private int cooldownA1, cooldownA2, cooldownA3, cooldownA4;
@@ -26,6 +34,8 @@ public class EnemyCombatScript : MonoBehaviour {
     {
         combatManager = this.GetComponent<CombatManager>();
         origPosition = enemyMannequin.transform.position;
+        playerOrigPos = playerMannequin.transform.position;
+        strikePosition = origPosition - new Vector3(250,0,0);
 
         GameController.controller.difficultyScale = 1;
         difficulty = GameController.controller.difficultyScale;
@@ -127,12 +137,31 @@ public class EnemyCombatScript : MonoBehaviour {
     IEnumerator EnemyStrike()
     {
         combatManager.HideHealthBars();
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 2f);
-        yield return new WaitForSeconds(1f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
+        yield return new WaitForSeconds(0.7f);
         combatManager.DamagePlayer_Strike();
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 2.5f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
         yield return new WaitForSeconds(0.25f);
         combatManager.EndEnemyTurn(true, originalPlayerHP);
+    }
+
+    public void UseFakeStrike()
+    {
+        StartCoroutine(FakeEnemyStrike());
+    }
+
+    IEnumerator FakeEnemyStrike()
+    {
+        combatManager.HideHealthBars();
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
+        yield return new WaitForSeconds(0.7f);
+        generateRandomBlood();
+        Vector3 bloodPos = new Vector3(playerOrigPos.x, playerOrigPos.y, 0);
+        bloodClone.transform.position = bloodPos;
+        yield return new WaitForSeconds(0.15f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
+        yield return new WaitForSeconds(1f);
+        combatManager.ShowHealthBars();
     }
 
     public void PlayDeathAnim()
@@ -140,6 +169,27 @@ public class EnemyCombatScript : MonoBehaviour {
         foreach(Animator child in enemyMannequin.GetComponentsInChildren<Animator>())
         {
             child.SetInteger("AnimState", 2);
+        }
+    }
+
+    private void generateRandomBlood()
+    {
+        int rand = Random.Range(1, 4);
+
+        switch (rand)
+        {
+            case 1:
+                bloodClone = (GameObject)Instantiate(blood01_FX, Vector3.zero, transform.rotation);
+                break;
+            case 2:
+                bloodClone = (GameObject)Instantiate(blood02_FX, Vector3.zero, transform.rotation);
+                break;
+            case 3:
+                bloodClone = (GameObject)Instantiate(blood03_FX, Vector3.zero, transform.rotation);
+                break;
+            case 4:
+                bloodClone = (GameObject)Instantiate(blood04_FX, Vector3.zero, transform.rotation);
+                break;
         }
     }
 }

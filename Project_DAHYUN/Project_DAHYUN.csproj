@@ -160,7 +160,7 @@
     <Compile Include="Assets\TimeController.cs" />
     <Compile Include="Assets\TutorialManager01_C.cs" />
     <Compile Include="Assets\TutorialManager02_C.cs" />
-    <Compile Include="Assets\TutorialManager03_C.cs" />
+    <Compile Include="Assets\TutorialManagerMM_C.cs" />
     <Compile Include="Assets\animStateScript.cs" />
     <Compile Include="Assets\enemyCounterScript.cs" />
   </ItemGroup>

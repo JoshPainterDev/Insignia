@@ -12,65 +12,87 @@ public class TutorialManager02_C : MonoBehaviour
 
     public GameObject gameCamera;
     public GameObject blackSq;
+    public GameObject enemyMannequinn;
+    public GameObject Steve;
+    public GameObject shroudParticles;
+    public GameObject playerHealth;
+    public GameObject enemyHealth;
+    public GameObject reap_FX;
 
     private GameObject textBox;
-    private MainMenuManager menuManager;
+    private CombatManager combatController;
     private int tutorialState = 0;
     private int inputNumber = 0;
     private bool inputEnabled = true;
     // Use this for initialization
     void Start()
     {
-        menuManager = this.GetComponent<MainMenuManager>();
+        combatController = this.GetComponent<CombatManager>();
     }
 
-    public void InputDetected()
+    public void StrikeUsed()
     {
         if (!inputEnabled)
             return;
 
+        inputEnabled = false;
         ++tutorialState;
 
-        switch(tutorialState)
+        if(tutorialState < 3)
         {
-            case 1:
-                FirstInput();
-                break;
-            case 2:
-                SecondInput();
-                break;
+            combatController.DisableMainButtons();
+            combatController.HideMainButtons();
+            StartCoroutine(FakeStrike());
+        }
+        else if (tutorialState == 3)
+        {
+            combatController.DisableMainButtons();
+            combatController.HideMainButtons();
+            //StartCoroutine(execute());
         }
     }
 
-    public void FirstInput()
+    IEnumerator FakeStrike()
     {
-        Destroy(panel01);
-        LoadPanel02();
-    }
+        this.GetComponent<StrikeManager_C>().StrikeUsed("Tutorial Strike", 100);
+        yield return new WaitForSeconds(1);
+        if(tutorialState == 1)
+        {
+            enemyHealth.GetComponent<HealthScript>().LerpHealth(1, 0.55f);
+            yield return new WaitForSeconds(2);
+            StartCoroutine(EnemyStrike());
+        }
+        else if(tutorialState == 2)
+        {
+            enemyHealth.GetComponent<HealthScript>().LerpHealth(0.55f, 0.15f);
+            yield return new WaitForSeconds(2);
+            StartCoroutine(EnemyStrike());
+        }
+        else
+        {
 
-    public void SecondInput()
-    {
-        Destroy(panel02);
-        LoadPanel03();
-    }
-
-    public void ThirdInput()
-    {
-        Destroy(panel03);
-    }
-
-    public void LoadPanel02()
-    {
-        panel02.GetComponent<Image>().enabled = true;
-        panel02.transform.GetChild(0).GetComponent<Text>().enabled = true;
-        panel02.transform.GetChild(1).GetComponent<Text>().enabled = true;
+        }
 
     }
 
-    public void LoadPanel03()
+    IEnumerator EnemyStrike()
     {
-        panel03.GetComponent<Image>().enabled = true;
-        panel03.transform.GetChild(0).GetComponent<Text>().enabled = true;
-        panel03.transform.GetChild(1).GetComponent<Text>().enabled = true;
+        this.GetComponent<EnemyCombatScript>().UseFakeStrike();
+        yield return new WaitForSeconds(2);
+        if (tutorialState == 1)
+            playerHealth.GetComponent<HealthScript>().LerpHealth(1, 0.75f);
+        else
+            playerHealth.GetComponent<HealthScript>().LerpHealth(0.75f, 0.5f);
+        yield return new WaitForSeconds(1);
+        combatController.ShowMainButtons();
+        combatController.EnableMainButtons();
+        yield return new WaitForSeconds(0.25f);
+        inputEnabled = true;
+
+        if(tutorialState == 2)
+        {
+            panel01.GetComponent<Image>().enabled = true;
+            panel01.transform.GetChild(0).GetComponent<Text>().enabled = true;
+        }
     }
 }

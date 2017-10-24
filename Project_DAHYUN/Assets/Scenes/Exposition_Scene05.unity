@@ -1725,7 +1725,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4418611324275204, guid: 5f771b2c224ebdf4eb8e14bf21255db5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 413.4
+      value: 407
       objectReference: {fileID: 0}
     - target: {fileID: 4418611324275204, guid: 5f771b2c224ebdf4eb8e14bf21255db5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1755,51 +1755,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224324618672949368, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -26.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 5f771b2c224ebdf4eb8e14bf21255db5, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4418611324275204, guid: 5f771b2c224ebdf4eb8e14bf21255db5, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.5955882
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.5955882
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.5955882
-      objectReference: {fileID: 0}
-    - target: {fileID: 95972033087310086, guid: 5f771b2c224ebdf4eb8e14bf21255db5,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114158597340598984, guid: 5f771b2c224ebdf4eb8e14bf21255db5, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f771b2c224ebdf4eb8e14bf21255db5, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1013507639

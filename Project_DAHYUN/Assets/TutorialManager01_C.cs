@@ -176,7 +176,7 @@ public class TutorialManager01_C : MonoBehaviour
         textBox.GetComponent<Text>().enabled = true;
         panel03.GetComponent<Image>().enabled = true;
 
-        string line = "Don't resist...";
+        string line = "You're com'n with me- Nova!";
         for (int i = 0; i < line.Length; ++i)
         {
             yield return new WaitForSeconds(0.01f);
@@ -184,7 +184,7 @@ public class TutorialManager01_C : MonoBehaviour
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
         yield return new WaitForSeconds(3f);
-        line = "It will only make things.. messier!";
+        line = "Don't squirm! Or things are gonna get messy...";
         textBox.GetComponent<Text>().text = "";
         for (int i = 0; i < line.Length; ++i)
         {
@@ -192,7 +192,7 @@ public class TutorialManager01_C : MonoBehaviour
             //typewriter effect
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         textBox.GetComponent<Text>().enabled = false;
         panel03.GetComponent<Image>().enabled = false;
         StartCoroutine(knockOutPlayer());

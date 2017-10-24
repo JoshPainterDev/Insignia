@@ -291,7 +291,7 @@ public class Exposition_Manager : MonoBehaviour
         speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100,0,0));
         yield return new WaitForSeconds(3f);
         StartCoroutine(NewDialogue(5, 2));
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(300, 0, 0));
         yield return new WaitForSeconds(1f);
         sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();

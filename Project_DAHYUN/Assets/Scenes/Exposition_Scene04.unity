@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 229, y: -50.8}
+  m_AnchoredPosition: {x: 311.7, y: -57.8}
   m_SizeDelta: {x: 8.5, y: 13.9}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &119668993
@@ -1793,6 +1793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snowCollapse_FX: {fileID: 8300000, guid: b1165f8de36c5a142a38761b641a2fa4, type: 3}
   snowSteps_FX: {fileID: 8300000, guid: c2272e566f6bdfe4081e641e64f85fd9, type: 3}
+  skitterScreech_FX: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -3729,11 +3730,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 614
+      value: 757
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3785,6 +3786,15 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4599385326125762, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114716086083447098, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6e2aff721afcaab4aa3d047a5b27c49e, type: 2}
   m_IsPrefabParent: 0
