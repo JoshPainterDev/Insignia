@@ -55,6 +55,7 @@ public class StruggleManager_C : MonoBehaviour {
     int failCounter = 0;
     int failScale = 30;
     bool playerInitiated = true;
+    bool playerCanFail = true;
     int enemyLevel = 1;
 
     // Use this for initialization
@@ -111,6 +112,7 @@ public class StruggleManager_C : MonoBehaviour {
                     struggling_Enemy = false;
                     StartCoroutine(StruggleFailed());
                 }
+
             }
 
             if (frameTracker > 45)
@@ -134,8 +136,11 @@ public class StruggleManager_C : MonoBehaviour {
 
                 if (checkFailCounter(currentMode) || (strugglePressCounter < 0))
                 {
-                    struggling_Player = false;
-                    StartCoroutine(StruggleFailed());
+                    if(playerCanFail)
+                    {
+                        struggling_Player = false;
+                        StartCoroutine(StruggleFailed());
+                    }
                 }
             }
             else
@@ -197,8 +202,9 @@ public class StruggleManager_C : MonoBehaviour {
     }
 
     //IGNITE THE SPARK
-    public void BeginStruggle_Player()
+    public void BeginStruggle_Player(bool canFail = true)
     {
+        playerCanFail = canFail;
         StartCoroutine(AlignCharacters(true));
     }
 
@@ -263,6 +269,9 @@ public class StruggleManager_C : MonoBehaviour {
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
         //yield return new WaitForSeconds(0.5f);
         enemy.GetComponent<LerpScript>().LerpToColor(origColor, Color.clear, 1.5f);
+
+        if(!playerCanFail)
+            this.GetComponent<TutorialManager02_C>().StruggleFinished();
     }
 
     IEnumerator ExecutePlayer()

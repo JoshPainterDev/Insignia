@@ -124,6 +124,7 @@ public class CombatManager : MonoBehaviour {
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
+        playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
         //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
         //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
         //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
@@ -1305,6 +1306,7 @@ public class CombatManager : MonoBehaviour {
     {
         playerHealthBar.GetComponent<Image>().enabled = false;
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().enabled = false;
+        playerHealthBar.transform.GetChild(4).GetComponent<Text>().enabled = false;
         foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = false;
@@ -1327,6 +1329,7 @@ public class CombatManager : MonoBehaviour {
         playerHealthBar.GetComponent<Image>().enabled = true;
         playerHealthBar.transform.GetChild(2).GetComponent<Image>().enabled = true;
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().enabled = true;
+        playerHealthBar.transform.GetChild(4).GetComponent<Text>().enabled = true;
         foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
         {
             img.enabled = true;

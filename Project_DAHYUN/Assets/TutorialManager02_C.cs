@@ -48,7 +48,8 @@ public class TutorialManager02_C : MonoBehaviour
         {
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
-            //StartCoroutine(execute());
+            Destroy(panel01);
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(false);
         }
     }
 
@@ -68,11 +69,6 @@ public class TutorialManager02_C : MonoBehaviour
             yield return new WaitForSeconds(2);
             StartCoroutine(EnemyStrike());
         }
-        else
-        {
-
-        }
-
     }
 
     IEnumerator EnemyStrike()
@@ -94,5 +90,17 @@ public class TutorialManager02_C : MonoBehaviour
             panel01.GetComponent<Image>().enabled = true;
             panel01.transform.GetChild(0).GetComponent<Text>().enabled = true;
         }
+    }
+
+    public void StruggleFinished()
+    {
+        StartCoroutine(LoadExposition());
+    }
+
+    IEnumerator LoadExposition()
+    {
+        blackSq.GetComponent<FadeScript>().FadeIn();
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("MainMenu_Scene");
     }
 }

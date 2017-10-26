@@ -7,6 +7,7 @@ public class EnemyMannequinController : MonoBehaviour {
 
     public GameObject spawnEffect;
     public AudioClip spawnSound;
+    public float spawnSoundVolume = 0.5f;
     private bool visible = true;
 
 
@@ -22,7 +23,7 @@ public class EnemyMannequinController : MonoBehaviour {
         SpawnEffect();
         yield return new WaitForSeconds(1);
         ShowEnemy();
-        GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(spawnSound, 0.1f);
+        GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(spawnSound, spawnSoundVolume);
     }
 
     void SpawnEffect()
