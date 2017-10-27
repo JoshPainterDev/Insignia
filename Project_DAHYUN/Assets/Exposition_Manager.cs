@@ -79,11 +79,16 @@ public class Exposition_Manager : MonoBehaviour
             case 5:
                 StartCoroutine(Cutscene5());
                 break;
+            case 6:
+                StartCoroutine(Cutscene6());
+                break;
         }
     }
 
-    public IEnumerator LoadCombatScene(string combatScene)
+    public IEnumerator LoadCombatScene(int level, int encounterNum)
     {
+        GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(level, encounterNum);
+        print(GameController.controller.currentEncounter.backgroundName);
         yield return new WaitForSeconds(1.15f);
         blackSq.GetComponent<FadeScript>().FadeIn(10f);
         yield return new WaitForSeconds(0.15f);
@@ -95,7 +100,7 @@ public class Exposition_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         blackSq.GetComponent<FadeScript>().FadeIn(10f);
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(combatScene);
+        SceneManager.LoadScene("TurnCombat_Scene");
     }
 
     public void EndDialogue()
@@ -106,6 +111,9 @@ public class Exposition_Manager : MonoBehaviour
 
     public void SkipCutscene()
     {
+        if (nextLevel == "TurnCombat_Scene")
+            return;
+
         GameController.controller.GetComponent<TimeController>().LerpTimeScale(1, 0.1f, 3);
         dialoguePanel.GetComponent<Image>().enabled = false;
         dialoguePanel.GetComponentInChildren<Text>().enabled = false;
@@ -274,7 +282,40 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                 }
                 break;
+            case 6:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Not Steve";
+                        leftspeaker[0] = false;
+                        script[0] = "So there's a bit of fight left in you.";
+                        speaker[1] = "Not Steve";
+                        leftspeaker[1] = false;
+                        script[1] = "No matter. Seize this vermin!";
+
+                        totalLines = 2;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
         }
+    }
+
+    IEnumerator Cutscene6()
+    {
+        // Set next Level //
+        nextLevel = "TurnCombat_Scene";
+
+        //////////////////
+        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(NewDialogue(6, 1));
+        yield return new WaitForSeconds(10f);
+        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(50, 0, 0), 2);
+        yield return new WaitForSeconds(0.5f);
+        speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(LoadCombatScene(1,0));
     }
 
     IEnumerator Cutscene5()
@@ -296,7 +337,7 @@ public class Exposition_Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
         yield return new WaitForSeconds(5.5f);
-        StartCoroutine(LoadCombatScene(nextLevel));
+        LoadNextLv();
     }
 
     IEnumerator Cutscene4()
@@ -309,7 +350,7 @@ public class Exposition_Manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StartCoroutine(NewDialogue(4, 1));
         yield return new WaitForSeconds(25f);
-        StartCoroutine(LoadCombatScene(nextLevel));
+        LoadNextLv();
     }
 
     IEnumerator Cutscene3()

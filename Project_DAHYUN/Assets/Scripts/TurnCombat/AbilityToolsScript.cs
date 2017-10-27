@@ -36,6 +36,15 @@ public class AbilityToolsScript : MonoBehaviour {
 
         switch (name)
         {
+            case "none":
+                ability.Accuracy = 0;
+                ability.BaseDamage = 0;
+                ability.Description = "-";
+                ability.Name = "-";
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.None;
+                break;
             case "Final Cut":
                 ability.Accuracy = 100;
                 ability.BaseDamage = MEDIUM_DAMAGE;

@@ -31,7 +31,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            SpecifyEncounter(1,0);
+            GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(0, 1);
             SceneManager.LoadScene("TurnCombat_Scene");
         }
     }
@@ -67,7 +67,7 @@ public class AdventureSelect_Manager : MonoBehaviour
 
     IEnumerator LoadEncounter(int stageToLoad, int levelsCompleted)
     {
-        SpecifyEncounter(stageToLoad, levelsCompleted);
+        GameController.controller.currentEncounter =  EncounterToolsScript.tools.SpecifyEncounter(stageToLoad, levelsCompleted);
 
         yield return new WaitForSeconds(0.35f);
         //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
@@ -85,86 +85,6 @@ public class AdventureSelect_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(levelToLoad);
-    }
-
-    void SpecifyEncounter(int stageToLoad, int levelsCompleted)
-    {
-        EnemyEncounter encounter = new EnemyEncounter();
-        encounter.enemyNames = new string[10]; //max number of enemies
-        encounter.bossFight = new bool[10]; //max number of enemies in one encounter
-
-        switch (stageToLoad)
-        {
-            case 1: // 5 total stages, last stage is a small boss fight
-                if (levelsCompleted == 0)
-                {
-                    encounter.encounterNumber = 1;
-                    //load first stage
-                    encounter.backgroundName = "\\Environments\\Forest02";
-                    encounter.totalEnemies = 3;
-                    encounter.enemyNames[0] = "Shadow Assassin";;
-                    encounter.bossFight[0] = false;
-                    encounter.enemyNames[1] = "Skitter"; ;
-                    encounter.bossFight[1] = false;
-                    encounter.enemyNames[2] = "Dragon Lord"; ;
-                    encounter.bossFight[2] = true;
-
-                    Reward newReward = new Reward();
-                    newReward.experience = 2500;
-                    encounter.reward = newReward;
-                }
-                else if (levelsCompleted == 1)
-                {
-                    encounter.encounterNumber = 2;
-                    encounter.backgroundName = "\\Environments\\Forest01";
-                    encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
-                    encounter.bossFight[0] = false;
-
-                    Reward newReward = new Reward();
-                    newReward.experience = 2500;
-                    encounter.reward = newReward;
-                }
-                else if (levelsCompleted == 2)
-                {
-                    encounter.encounterNumber = 3;
-                    encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
-                    encounter.bossFight[0] = false;
-
-                    Reward newReward = new Reward();
-                    newReward.experience = 2500;
-                    encounter.reward = newReward;
-                }
-                else if (levelsCompleted == 3)
-                {
-                    encounter.encounterNumber = 4;
-                    encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
-                    encounter.bossFight[0] = false;
-
-                    Reward newReward = new Reward();
-                    newReward.experience = 2500;
-                    encounter.reward = newReward;
-                }
-                else if (levelsCompleted == 4)
-                {
-                    encounter.encounterNumber = 5;
-                    // boss fight
-                    encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
-                    encounter.bossFight[0] = true;
-
-                    Reward newReward = new Reward();
-                    newReward.experience = 2500;
-                    encounter.reward = newReward;
-                }
-                break;
-            default:
-                break;
-        }
-
-        GameController.controller.currentEncounter = encounter;
     }
 
     public void GoBack()

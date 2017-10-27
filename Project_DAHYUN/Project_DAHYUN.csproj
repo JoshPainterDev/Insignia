@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\TurnCombat\AbilityManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\AbilityToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\CombatManager.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\EncounterToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyCombatScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyMannequinController.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\EnemyToolsScript.cs" />

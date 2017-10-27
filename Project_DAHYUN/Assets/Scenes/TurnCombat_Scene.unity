@@ -2232,6 +2232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEffect: {fileID: 1862190314031148, guid: 4946ac1f908fe724682e1c0b24d6bc7a,
     type: 2}
+  spawnSound: {fileID: 0}
+  spawnSoundVolume: 0.5
 --- !u!222 &666657978
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5036,7 +5038,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMannequin: {fileID: 666657974}
-  strikePosition: {x: -350, y: 138, z: 0}
+  playerMannequin: {fileID: 119668991}
+  blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
+  blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
+  blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
+  blood04_FX: {fileID: 1862190314031148, guid: d499bc62574a7364ba27c2e4cc79ebd7, type: 2}
 --- !u!114 &1616549435
 MonoBehaviour:
   m_ObjectHideFlags: 0

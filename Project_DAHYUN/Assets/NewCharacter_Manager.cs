@@ -62,10 +62,10 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
-            GameController.controller.playerAbility1 = null;
-            GameController.controller.playerAbility2 = null;
-            GameController.controller.playerAbility3 = null;
-            GameController.controller.playerAbility4 = null;
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("none");
+            GameController.controller.playerAbility2 = new Ability();
+            GameController.controller.playerAbility3 = new Ability();
+            GameController.controller.playerAbility4 = new Ability();
             GameController.controller.strikeModifier = "none";
             GameController.controller.limitBreakModifier = LimitBreakName.none;
             GameController.controller.limitBreakTracker = -1;
@@ -126,7 +126,7 @@ public class NewCharacter_Manager : MonoBehaviour {
 
     private void LoadTutorial()
     {
-        SceneManager.LoadScene("Exposition_Scene04");
+        SceneManager.LoadScene("Exposition_Scene06");
     }
 
     private bool nameChecksOut(string charName)

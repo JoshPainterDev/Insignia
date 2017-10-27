@@ -66,10 +66,6 @@ public class GameController : MonoBehaviour {
 
             if (File.Exists(Application.persistentDataPath + "/accountInfo.dat"))
             {
-                //var sr = File.OpenWrite(Application.persistentDataPath + "/accountInfo.dat");
-                //print("wel wel wl"); 
-                //File.WriteAllText(Application.persistentDataPath + "/accountInfo.dat", "hi hello!");
-                //sr.Close();
                 LoadCharacters();
             }
             else
@@ -79,9 +75,8 @@ public class GameController : MonoBehaviour {
                 charNames[0] = "Skip";
                 numChars = 0;
                 charClasses[0] = PlayerClass.none;
-                sr.WriteLine ("This is my file.");
-                sr.Close();
-                //sr.WriteLine("I can write ints {0} or floats {1}, and so on.",1, 4.2);
+                //sr.WriteLine ("This is my file.");
+                //sr.Close();
                 SaveCharacters();
             }
         }

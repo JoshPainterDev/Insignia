@@ -113,14 +113,17 @@ public class CombatManager : MonoBehaviour {
 
         if(encounter == null)
         {
+            
             encounter = new EnemyEncounter();
         }
 
+        
         enemiesRemaining = encounter.totalEnemies;
         encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
         //REMOVE THIS LATER
         GameController.controller.Load(GameController.controller.charNames[1]);
+        print("ability1: " + GameController.controller.playerAbility1);
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
@@ -983,10 +986,12 @@ public class CombatManager : MonoBehaviour {
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     IEnumerator LoadNextEnemy()
     {
-        Destroy(enemyPrfb);
+        if(enemyPrfb)
+            Destroy(enemyPrfb);
         enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
         enemyPrfb = Instantiate(enemyInfo.enemyPrefab, enemyMannequin.transform.position, Quaternion.identity) as GameObject;
         enemyPrfb.transform.SetParent(enemyMannequin.transform);
+        enemyPrfb.transform.localScale = Vector3.one;
 
         if(enemiesRemaining != encounter.totalEnemies)
         {

@@ -57,8 +57,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919287724249914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -179.81453, y: 170.64383, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224324618672949368}
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ Animator:
   m_GameObject: {fileID: 1180717903234244}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8ed881cf78a99804d8bf7b716103611c, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEffect: {fileID: 1862190314031148, guid: 4946ac1f908fe724682e1c0b24d6bc7a,
     type: 2}
-  spawnSound: {fileID: 0}
+  spawnSound: {fileID: 8300000, guid: 851e21dc1a030ed4ca91264d03f0fe6d, type: 3}
+  spawnSoundVolume: 0.5
 --- !u!114 &114241195412467186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,6 +208,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.26, y: 0.11}
+  m_AnchoredPosition: {x: -20.4, y: 5.8}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

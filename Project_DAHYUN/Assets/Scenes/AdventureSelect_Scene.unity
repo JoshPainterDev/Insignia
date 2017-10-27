@@ -2735,7 +2735,7 @@ Prefab:
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
@@ -3325,6 +3325,7 @@ GameObject:
   - component: {fileID: 2029249001}
   - component: {fileID: 2029249002}
   - component: {fileID: 2029249003}
+  - component: {fileID: 2029249004}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3623,6 +3624,17 @@ MonoBehaviour:
     type: 2}
   DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
     type: 2}
+--- !u!114 &2029249004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029248994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75da49298c3192344a1903b4b4537f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2032562587
 GameObject:
   m_ObjectHideFlags: 0
