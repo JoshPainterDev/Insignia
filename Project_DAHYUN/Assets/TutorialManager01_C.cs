@@ -176,7 +176,7 @@ public class TutorialManager01_C : MonoBehaviour
         textBox.GetComponent<Text>().enabled = true;
         panel03.GetComponent<Image>().enabled = true;
 
-        string line = "You're com'n with me- Nova!";
+        string line = "...";
         for (int i = 0; i < line.Length; ++i)
         {
             yield return new WaitForSeconds(0.01f);
@@ -184,7 +184,7 @@ public class TutorialManager01_C : MonoBehaviour
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
         yield return new WaitForSeconds(3f);
-        line = "Don't squirm! Or things are gonna get messy...";
+        line = "Don't squirm, it will only make things... messy.";
         textBox.GetComponent<Text>().text = "";
         for (int i = 0; i < line.Length; ++i)
         {
@@ -200,6 +200,10 @@ public class TutorialManager01_C : MonoBehaviour
 
     IEnumerator knockOutPlayer()
     {
+        GameObject slade = Steve.transform.GetChild(1).gameObject;
+        slade.GetComponent<Animator>().SetInteger("AnimState", 1);
+        GameController.controller.GetComponent<MenuUIAudio>().PlaySwordSound();
+        yield return new WaitForSeconds(2f);
         Vector3 initEnemyPos = enemyMannequinn.transform.position;
         enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, enemyMannequinn.transform.position + new Vector3(100, 0, 0), 3);
         yield return new WaitForSeconds(0.25f);

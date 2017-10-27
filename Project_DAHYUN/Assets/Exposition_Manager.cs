@@ -261,10 +261,10 @@ public class Exposition_Manager : MonoBehaviour
                         script[1] = "Why is our time wasted on this lackie?";
                         speaker[2] = "???";
                         leftspeaker[2] = false;
-                        script[2] = "Do not question my judgement.";
+                        script[2] = "Do you question my judgement?";
                         speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "All will be made clear soon enough... ";
+                        script[3] = "All will be made clear to you soon enough... ";
 
                         totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
