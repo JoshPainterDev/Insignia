@@ -75,6 +75,7 @@ public class CombatManager : MonoBehaviour {
     public bool enemyVulernable = false;
     [HideInInspector]
     public bool enemyBlinded = false;
+    private Color enemyOrigColor;
 
     //STRIKE VARIABLES
     public float strikeAnimDuration = 3.5f;
@@ -160,7 +161,7 @@ public class CombatManager : MonoBehaviour {
             GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Strike");
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
-            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Mirage");
+            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
             GameController.controller.strikeModifier = "Serated Strike";
 
             ResetEnemyValues();
@@ -318,7 +319,6 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator StartEnemyTurn()
     {
-        print("Enemy Stunned: " + enemyStunned);
         if (enemyStunned)
         {
             enemyStunned = false;
@@ -515,9 +515,13 @@ public class CombatManager : MonoBehaviour {
         HideMainButtons();
         yield return new WaitForSeconds(0.25f);
 
-        if(!EvaluateExecution())
+        int exectueVar = EvaluateExecution();
+        if (exectueVar != 1)
         {
-            this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+            if (exectueVar == 0)
+                this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+            else
+                StruggleFailed(true);
         } 
         else
         {
@@ -527,7 +531,7 @@ public class CombatManager : MonoBehaviour {
             
     }
 
-    bool EvaluateExecution()
+    int EvaluateExecution(int overrideDamage = 0)
     {
         int attack = GameController.controller.playerAttack;
         int prowess = GameController.controller.playerProwess;
@@ -549,15 +553,46 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        strikeExecutePercent = .15f + (((GameController.controller.playerProwess - (enemyInfo.enemyDefense / 2)) + 0.01f) / GameController.controller.playerProwess);
+        float damageDealt = 0;
+        float percentRemaining = 0;
+        float percentDealt = 0;
 
-        if (strikeExecutePercent < 0.15f)
-            strikeExecutePercent = .15f;
+        if (overrideDamage != 0)
+        {
+            strikeExecutePercent = .15f + (((GameController.controller.playerProwess - (enemyInfo.enemyDefense / 2)) + 0.01f) / GameController.controller.playerProwess);
+            if (strikeExecutePercent < 0.15f)
+                strikeExecutePercent = .15f;
+            percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
+            percentDealt = overrideDamage / (float)enemyMaxHealth;
 
-        float damageDealt = (attack * attack) * attBoostMod;
-        float percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
-        float percentDealt = damageDealt / (float)enemyMaxHealth;
-        print("percent left: " + percentRemaining);
+            print("strikeExecutePercent: " + strikeExecutePercent);
+            print("percentRemaining: " + percentRemaining);
+
+            if(percentDealt > percentRemaining)
+            {
+                if (percentRemaining > strikeExecutePercent)
+                    return 2;
+            }
+        }
+        else //Do the normal execution calculation
+        {
+            strikeExecutePercent = .15f + (((GameController.controller.playerProwess - (enemyInfo.enemyDefense / 2)) + 0.01f) / GameController.controller.playerProwess);
+            if (strikeExecutePercent < 0.15f)
+                strikeExecutePercent = .15f;
+
+            damageDealt = (attack * attack) * attBoostMod;
+            percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
+            percentDealt = damageDealt / (float)enemyMaxHealth;
+
+            print("strikeExecutePercent: " + strikeExecutePercent);
+            print("percentRemaining: " + percentRemaining);
+            if (percentDealt > percentRemaining)
+            {
+                if (percentRemaining > strikeExecutePercent)
+                    return 2;
+            }
+        }
+
         print("percent damage: " + percentDealt);
 
         if(enemyVulernable)
@@ -569,9 +604,9 @@ public class CombatManager : MonoBehaviour {
 
         // check if the player can press the enemy
         if (percentDealt >= percentRemaining)
-            return true;
+            return 1;
 
-        return false;
+        return 0;
     }
 
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -941,17 +976,75 @@ public class CombatManager : MonoBehaviour {
         {
             case SpecialCase.Ablaze:
                 break;
-            case SpecialCase.Blind://
+            case SpecialCase.Blind://done (not tested)
                 if (playerTurn)
                     enemyBlinded = true;
                 else
                     playerBlinded = true;
                 break;
-            case SpecialCase.Execute:
+            case SpecialCase.Execute://
+                print("pProwess: " + (GameController.controller.playerProwess));
+                int executeDamage = ((GameController.controller.playerProwess) * AbilityToolsScript.tools.LookUpAbility("Final Cut").SpecialValue);
+                print("executeDamage: " + executeDamage);
+
+                if(EvaluateExecution(executeDamage) == 1)
+                {
+                    ExecuteEnemy_Strike();
+                }
                 break;
-            case SpecialCase.Mirage: //
+            case SpecialCase.Deceive: //
                 break;
-            case SpecialCase.Outrage:
+            case SpecialCase.Outrage://done
+                int outrageDmg;
+                float boost = 0;
+                int baseDamage = AbilityToolsScript.tools.LookUpAbility("Outrage").BaseDamage;
+
+                if (playerTurn)
+                {
+                    baseDamage *= playerAttackBoost;
+                    switch (playerAttackBoost)
+                    {
+                        case 0:
+                            boost = 1.0f;
+                            break;
+                        case 1:
+                            boost = 1.25f;
+                            break;
+                        case 2:
+                            boost = 1.75f;
+                            break;
+                        case 3:
+                            boost = 2.15f;
+                            break;
+                    }
+
+                    print("playerLevel: " + playerLevel);
+                    print("playerAttackBoost: " + playerAttackBoost);
+                    outrageDmg =  (int)Mathf.Pow((playerLevel), boost) + baseDamage;
+                    print("Outrage Damage: " + outrageDmg);
+                    enemyHealth -= outrageDmg;
+                }
+                else
+                {
+                    baseDamage *= enemyAttackBoost;
+                    switch (enemyAttackBoost)
+                    {
+                        case 0:
+                            boost = 1.0f;
+                            break;
+                        case 1:
+                            boost = 1.25f;
+                            break;
+                        case 2:
+                            boost = 1.75f;
+                            break;
+                        case 3:
+                            boost = 2.15f;
+                            break;
+                    }
+                    outrageDmg = (int)Mathf.Pow((enemyInfo.enemyLevel), boost) + baseDamage;
+                    playerHealth -= outrageDmg;
+                }
                 break;
             case SpecialCase.ShadowClone:
                 break;
@@ -991,7 +1084,7 @@ public class CombatManager : MonoBehaviour {
 
         foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
-            sprite.color = Color.white;
+            sprite.color = enemyOrigColor;
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -1005,14 +1098,14 @@ public class CombatManager : MonoBehaviour {
 
         foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
         {
-            sprite.color = Color.white;
+            sprite.color = enemyOrigColor;
         }
 
         yield return new WaitForSeconds(0.1f);
 
         foreach (LerpScript lerp in enemyMannequin.GetComponentsInChildren<LerpScript>())
         {
-            lerp.LerpToColor(Color.white, Color.clear, 1.5f);
+            lerp.LerpToColor(enemyOrigColor, Color.clear, 1.5f);
         }
 
         yield return new WaitForSeconds(2f);
@@ -1054,61 +1147,68 @@ public class CombatManager : MonoBehaviour {
         enemyPrfb = Instantiate(enemyInfo.enemyPrefab, enemyMannequin.transform.position, Quaternion.identity) as GameObject;
         enemyPrfb.transform.SetParent(enemyMannequin.transform);
         enemyPrfb.transform.localScale = Vector3.one;
+        enemyOrigColor = enemyPrfb.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+        enemyHealthBar.GetComponent<HealthScript>().setColors(enemyOrigColor);
+        currSpecialCase = SpecialCase.None;
 
-        if(enemiesRemaining != encounter.totalEnemies)
+        if (enemiesRemaining != encounter.totalEnemies)
         {
-            foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-            {
-                sprite.enabled = false;
-            }
-
-            yield return new WaitForSeconds(1f);
-
-            foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-            {
-                sprite.enabled = true;
-            }
-            yield return new WaitForSeconds(0.5f);
-
-            ResetEnemyValues();
-
-            yield return new WaitForSeconds(0.65f);
-
-            //print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
-
             if(!initialEnemy)
             {
+                foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sprite.enabled = false;
+                }
+
+                yield return new WaitForSeconds(1f);
+
+                foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sprite.enabled = true;
+                }
+                yield return new WaitForSeconds(0.5f);
+
+                ResetEnemyValues();
+
+                yield return new WaitForSeconds(0.65f);
+
+                //print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
                 if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
                     StartCoroutine(StartPlayerTurn());
                 else
                     StartCoroutine(StartEnemyTurn());
-                enemyHealthBar.GetComponent<HealthScript>().StartAnim();
-                LoadCharacterLevels(enemyInfo);
             }
+            print("got here fam");
+            enemyHealthBar.GetComponent<HealthScript>().StartAnim();
+            LoadCharacterLevels(enemyInfo);
         }
         else
         {
-            foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-                sprite.enabled = false;
-
-            yield return new WaitForSeconds(0.25f);
-
-            foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-                sprite.enabled = true;
-
-            yield return new WaitForSeconds(1f);
-
-            ResetEnemyValues();
-
-            yield return new WaitForSeconds(1.5f);
-
             if(!initialEnemy)
             {
+                foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
+                    sprite.enabled = false;
+
+                yield return new WaitForSeconds(0.25f);
+
+                foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
+                    sprite.enabled = true;
+
+                yield return new WaitForSeconds(1f);
+
+                ResetEnemyValues();
+
+                yield return new WaitForSeconds(1.5f);
+
                 if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
                     StartCoroutine(StartPlayerTurn());
                 else
                     StartCoroutine(StartEnemyTurn());
             }
+
+            print("got here fam");
+            enemyHealthBar.GetComponent<HealthScript>().StartAnim();
+            LoadCharacterLevels(enemyInfo);
         }
     }
 

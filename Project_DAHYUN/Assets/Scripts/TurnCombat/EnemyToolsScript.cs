@@ -109,9 +109,9 @@ public class EnemyToolsScript : MonoBehaviour {
 
                 enemyInfo.enemyName = "Dummy";
                 enemyInfo.enemyAttack = 0;
-                enemyInfo.enemyDefense = 200;
+                enemyInfo.enemyDefense = 2;
                 enemyInfo.enemySpeed = 1;
-                enemyInfo.enemyMaxHealthBase = 99999;
+                enemyInfo.enemyMaxHealthBase = 19;
                 break;
             default:
                 break;

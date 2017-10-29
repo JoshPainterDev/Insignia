@@ -102,10 +102,10 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 combatManager.DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
-            case "Mirage":
+            case "Deceive":
                 spawnPos = initEnemyPos - new Vector3(0, 60, 0);
                 effectClone = (GameObject)Instantiate(illusion_FX, spawnPos, transform.rotation);
-                //combatManager.currSpecialCase = SpecialCase.Mirage;
+                combatManager.currSpecialCase = SpecialCase.Deceive;
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":

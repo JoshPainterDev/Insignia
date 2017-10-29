@@ -27,22 +27,23 @@ public class StruggleManager_C : MonoBehaviour {
     [HideInInspector]
     public int HARD_MODE_FAIL = 1;
     [HideInInspector]
-    public int NORMAL_MODE_FAIL = 3;
+    public int NORMAL_MODE_FAIL = 2;
     [HideInInspector]
-    public int EASY_MODE_FAIL = 4;
+    public int EASY_MODE_FAIL = 3;
     private int currentMode;
 
     //player vars
     private Vector3 playerOrig;
     private Vector3 playerMax = new Vector3(-293, 138, 0);
     private Vector3 playerMin = new Vector3(-765, 138, 0);
-    private Vector3 playerStrugglePos = new Vector3(-518, 138, 0);
+    private Vector3 playerStrugglePos = new Vector3(-540, 138, 0);
     //enemy vars
     private Vector3 enemyOrig;
-    private Vector3 enemyMax = new Vector3(-468, 138, 0);
-    private Vector3 enemyMin = new Vector3(18, 138, 0);
-    private Vector3 enemyStrugglePos = new Vector3(-208, 138, 0);
+    private Vector3 enemyMax = new Vector3(-468, 160, 0);
+    private Vector3 enemyMin = new Vector3(18, 160, 0);
+    private Vector3 enemyStrugglePos = new Vector3(-335, 160, 0);
 
+    private Vector3 origCameraPos;
     private Vector3 effectPos;
 
     private int strugglePressCounter = 0;
@@ -58,12 +59,14 @@ public class StruggleManager_C : MonoBehaviour {
     bool playerCanFail = true;
     int enemyLevel = 1;
 
+
     // Use this for initialization
     void Start ()
     {
         combatController = this.GetComponent<CombatManager>();
         playerOrig = player.transform.position;
         enemyOrig = enemy.transform.position;
+        origCameraPos = camera.transform.position;
         effectPos = enemy.transform.GetChild(0).transform.GetChild(0).transform.position;
         disableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = false;
@@ -72,7 +75,7 @@ public class StruggleManager_C : MonoBehaviour {
         if(combatController.enemyInfo != null)
             enemyLevel = combatController.enemyInfo.enemyLevel;
 
-        failScale += GameController.controller.playerProwess * 2;
+        failScale += GameController.controller.playerProwess;
         goal -= (GameController.controller.playerLevel - enemyLevel) * combatController.playerAttackBoost;
     } 
 	
@@ -219,6 +222,7 @@ public class StruggleManager_C : MonoBehaviour {
         player.GetComponent<LerpScript>().LerpToPos(playerOrig, playerStrugglePos, 3);
         enemy.GetComponent<LerpScript>().LerpToPos(enemyOrig, enemyStrugglePos, 3);
         camera.GetComponent<CameraController>().LerpCameraSize(150, 100, 2);
+        camera.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos + new Vector3(10,-5,0), 2);
         yield return new WaitForSeconds(0.5f);
         enableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = true;

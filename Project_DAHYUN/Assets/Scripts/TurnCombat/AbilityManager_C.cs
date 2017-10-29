@@ -84,7 +84,7 @@ public class AbilityManager_C : MonoBehaviour {
                 float chance = (50f + GameController.controller.playerAttack - combatManager.enemyInfo.enemyDefense);
                 chance = Mathf.Clamp(chance, 50f, 100f);
                 effectClone = (GameObject)Instantiate(lightningBlue_FX, initPlayerPos + new Vector3(0,10,0), transform.rotation);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.85f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos + new Vector3(300, 0, 0), 3);
                 yield return new WaitForSeconds(0.15f);
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
@@ -111,6 +111,8 @@ public class AbilityManager_C : MonoBehaviour {
                     combatManager.currSpecialCase = SpecialCase.StunFoe;
                     effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initEnemyPos + new Vector3(0, 20, 0), transform.rotation);
                 }
+                else
+                    combatManager.currSpecialCase = SpecialCase.None;
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
                 yield return new WaitForSeconds(1);
                 break;
@@ -118,14 +120,14 @@ public class AbilityManager_C : MonoBehaviour {
                 spawnPos = initPlayerPos + new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(0.25f);
-                //combatManager.currSpecialCase = SpecialCase.Outrage;
+                combatManager.currSpecialCase = SpecialCase.Outrage;
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
-            case "Mirage":
+            case "Deceive":
                 spawnPos = initPlayerPos + new Vector3(0, 60, 0);
                 effectClone = (GameObject)Instantiate(illusion_FX, spawnPos, transform.rotation);
-                combatManager.currSpecialCase = SpecialCase.Mirage;
+                combatManager.currSpecialCase = SpecialCase.Deceive;
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":
@@ -144,6 +146,7 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Final Cut":
+                combatManager.currSpecialCase = SpecialCase.Execute;
                 combatManager.GetComponent<CombatAudio>().playShadowVanish();
                 GameObject effectClone2 = (GameObject)Instantiate(smoke02_FX, initPlayerPos, transform.rotation);
                 effectClone2.GetComponent<SpriteRenderer>().color = Color.black;
@@ -155,9 +158,9 @@ public class AbilityManager_C : MonoBehaviour {
                     script.LerpToColor(Color.white, Color.clear, 5);
                 yield return new WaitForSeconds(0.5f);
                 combatManager.GetComponent<CombatAudio>().playFinalCut();
-                spawnPos = initPlayerPos + new Vector3(50, 20, 0);
+                spawnPos = initPlayerPos + new Vector3(200, 20, 0);
                 effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
-                effectClone.transform.position = enemyMannequin.transform.position - new Vector3(300,0,0);
+                effectClone.transform.position = enemyMannequin.transform.position - new Vector3(60,0,0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
                 yield return new WaitForSeconds(1.25f);
                 GameObject effectClone4 = (GameObject)Instantiate(blood04_FX, new Vector3(-320,145,0), transform.rotation);

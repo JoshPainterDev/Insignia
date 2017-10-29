@@ -28,6 +28,7 @@ public class HealthScript : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartingAnim());
+        Invoke("getColors", 2);
     }
 
     public void LerpHealth(float startPercent, float endPercent, float speed = 1f)
@@ -36,6 +37,19 @@ public class HealthScript : MonoBehaviour
         final = endPercent * 100f;
         rate = speed;
         lerping = true;
+    }
+
+    private void getColors()
+    {
+        if (playerHealth)
+            origColor = character.GetComponentInChildren<SpriteRenderer>().color;
+        else
+            origColor = character.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().color;
+    }
+
+    public void setColors(Color color)
+    {
+        origColor = color;
     }
 
     public void Hurt()
@@ -86,14 +100,25 @@ public class HealthScript : MonoBehaviour
     IEnumerator StartingAnim()
     {
         healthBar.GetComponent<Image>().fillAmount = 0;
-        yield return new WaitForSeconds(0.5f);
-        if (playerHealth)
-            origColor = character.GetComponentInChildren<SpriteRenderer>().color;
-        else
-            origColor = character.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().color;
-        yield return new WaitForSeconds(0.15f);
+        this.GetComponent<Image>().color = Color.white;
+        this.GetComponent<Image>().enabled = true;
+
+        foreach (Image sprite in this.GetComponentsInChildren<Image>())
+        {
+            sprite.enabled = true;
+            sprite.color = Color.white;
+        }
+
+        foreach (Text text in this.GetComponentsInChildren<Text>())
+        {
+            text.enabled = true;
+            //text.color = Color.white;
+        }
+        yield return new WaitForSeconds(0.25f);
         LerpHealth(0, 1);
     }
+
+
 
     IEnumerator HurtAnim()
     {

@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public enum SpecialCase { StunFoe, StunSelf, Blind, VulnerableSelf, Execute, Outrage, Ablaze, Mirage, ShadowClone, None };
+public enum SpecialCase { StunFoe, StunSelf, Blind, VulnerableSelf, Execute, Outrage, Ablaze, Deceive, ShadowClone, None };
 [System.Serializable]
 public enum AbilityType { Physical, Magical, Utility, None };
 
@@ -21,6 +21,7 @@ public class Ability{
     public AbilityType Type = AbilityType.None;
     public int BaseDamage = 0;
     public SpecialCase specialCase = SpecialCase.None;
+    public int SpecialValue = 0;
     public bool Buffs = false;
     public bool Heals = false;
     public string Description = "";

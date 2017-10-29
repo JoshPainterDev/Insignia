@@ -47,21 +47,21 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case "Final Cut":
                 ability.Accuracy = 100;
-                ability.BaseDamage = MEDIUM_DAMAGE;
+                ability.BaseDamage = 0;
                 ability.Buffs = false;
                 ability.Description = "Strike from the shadows to deliver a fatal blow.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.Execute;
-                ability.Ticks = 1;
+                ability.SpecialValue = 7;
                 ability.Type = AbilityType.Physical;
                 break;
-            case "Mirage":
+            case "Deceive":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 0;
                 ability.Buffs = false;
                 ability.Description = "If attacked this turn, dodge the attack and Press your opponent.";
                 ability.Name = name;
-                ability.specialCase = SpecialCase.Mirage;
+                ability.specialCase = SpecialCase.Deceive;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
                 break;
@@ -102,7 +102,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case "Outrage":
                 ability.Accuracy = 100;
-                ability.BaseDamage = WEAK_DAMAGE;
+                ability.BaseDamage = 10;
                 ability.Description = "Explode in a fiery rage. Consumes your attack boost to deal more damage.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.Outrage;

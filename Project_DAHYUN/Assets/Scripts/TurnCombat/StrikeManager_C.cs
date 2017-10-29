@@ -30,7 +30,6 @@ public class StrikeManager_C : MonoBehaviour {
     {
         initPlayerPos = playerMannequin.transform.position;
         initEnemyPos = enemyMannequin.transform.GetChild(0).transform.GetChild(0).transform.position;
-        print("enemy position: " + initEnemyPos);
     }
 	
     public void StrikeUsed(string strikeMod, int originalEnemyHP)

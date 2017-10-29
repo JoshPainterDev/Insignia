@@ -1910,6 +1910,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -1927,6 +1928,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -1944,6 +1946,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -1961,6 +1964,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -2187,7 +2191,6 @@ GameObject:
   m_Component:
   - component: {fileID: 666657979}
   - component: {fileID: 666657978}
-  - component: {fileID: 666657977}
   - component: {fileID: 666657976}
   - component: {fileID: 666657975}
   m_Layer: 10
@@ -2221,22 +2224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &666657977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114158597340598984, guid: 0fb79b3741cb1074b9d64585018a18fb,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 666657974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e3f3bdd6ab35c41931fcf479c28d0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnEffect: {fileID: 1862190314031148, guid: 4946ac1f908fe724682e1c0b24d6bc7a,
-    type: 2}
-  spawnSound: {fileID: 0}
-  spawnSoundVolume: 0.5
 --- !u!222 &666657978
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4755,6 +4742,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -4772,6 +4760,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -4789,6 +4778,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -4806,6 +4796,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
