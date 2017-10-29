@@ -55,30 +55,26 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 1;
                 ability.Type = AbilityType.Physical;
                 break;
-            case "Illusion":
+            case "Mirage":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 0;
-                ability.Buffs = true;
-                ability.AttackBoost = 2;
-                ability.AttBoostDuration = 3;
-                ability.Heals = true;
-                ability.HealAmount = WEAK_HEAL;
+                ability.Buffs = false;
                 ability.Description = "If attacked this turn, dodge the attack and Press your opponent.";
                 ability.Name = name;
-                ability.specialCase = SpecialCase.Illusion;
-                ability.Ticks = 1;
-                ability.Type = AbilityType.Magical;
+                ability.specialCase = SpecialCase.Mirage;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Utility;
                 break;
-            case "Stranglehold":
-                ability.Accuracy = 100;
-                ability.BaseDamage = WEAK_DAMAGE;
-                ability.Buffs = false;
-                ability.Description = "Reach out and strangle your foe from the shadows. Lingers for 5 turns.";
-                ability.Name = name;
-                ability.specialCase = SpecialCase.Linger_L;
-                ability.Ticks = 1;
-                ability.Type = AbilityType.Magical;
-                break;
+            //case "Stranglehold":
+            //    ability.Accuracy = 100;
+            //    ability.BaseDamage = WEAK_DAMAGE;
+            //    ability.Buffs = false;
+            //    ability.Description = "Reach out and strangle your foe from the shadows. Lingers for 5 turns.";
+            //    ability.Name = name;
+            //    ability.specialCase = SpecialCase.Linger_L;
+            //    ability.Ticks = 1;
+            //    ability.Type = AbilityType.Magical;
+            //    break;
             case "Solar Flare":
                 ability.Accuracy = 75;
                 ability.BaseDamage = STRONG_DAMAGE;
@@ -119,6 +115,17 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Description = "Summon 2 servents of shadow to fight by your side.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.ShadowClone;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Magical;
+                break;
+            case "Thunder Strike":
+                ability.Accuracy = 100;
+                ability.BaseDamage = MEDIUM_DAMAGE;
+                ability.Cooldown = 3;
+                ability.Buffs = false;
+                ability.Description = "A lightning imbued strike. Has a chance to stun your foe.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.StunFoe;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
                 break;

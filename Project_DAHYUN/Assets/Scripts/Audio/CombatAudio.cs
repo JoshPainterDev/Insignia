@@ -16,6 +16,7 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip strugglePress04;
     public AudioClip strugglePress05;
     public AudioClip strugglePress06;
+    public AudioClip stunned_SFX;
     public AudioClip shadowVanish;
     public AudioClip finalCut;
     AudioSource audioSource;
@@ -28,6 +29,17 @@ public class CombatAudio : MonoBehaviour {
     {
         audioSource = GetComponent<AudioSource>();
     }
+
+    public void playSoundEffect(AudioClip soundClip, float volume = 0.5f)
+    {
+        audioSource.PlayOneShot(soundClip, volume);
+    }
+
+    public void playStunnedSFX()
+    {
+        audioSource.PlayOneShot(stunned_SFX, LOW_VOLUME);
+    }
+
 
     public void playShadowVanish()
     {

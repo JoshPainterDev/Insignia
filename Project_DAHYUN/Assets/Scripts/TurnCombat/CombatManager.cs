@@ -7,6 +7,8 @@ public class CombatManager : MonoBehaviour {
 
     // DEFINES
     public float LIMIT_BREAK_THRESH = 0.2f;
+    public float VULNERABLE_REDUCTION = 0.2f;
+    public float BLINDED_REDUCTION = 66.6f;
 
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
@@ -39,6 +41,12 @@ public class CombatManager : MonoBehaviour {
     public int playerDefenseBoost = 0;
     [HideInInspector]
     public int playerSpeedBoost = 0;
+    [HideInInspector]
+    public bool playerStunned = false;
+    [HideInInspector]
+    public bool playerVulernable = false;
+    [HideInInspector]
+    public bool playerBlinded = false;
 
     // LIMIT BREAK VARIABLES
     [HideInInspector]
@@ -61,6 +69,12 @@ public class CombatManager : MonoBehaviour {
     public int enemyDefenseBoost = 0;
     [HideInInspector]
     public int enemySpeedBoost = 0;
+    [HideInInspector]
+    public bool enemyStunned = false;
+    [HideInInspector]
+    public bool enemyVulernable = false;
+    [HideInInspector]
+    public bool enemyBlinded = false;
 
     //STRIKE VARIABLES
     public float strikeAnimDuration = 3.5f;
@@ -113,26 +127,25 @@ public class CombatManager : MonoBehaviour {
 
         if(encounter == null)
         {
-            
             encounter = new EnemyEncounter();
+            encounter.enemyNames = new string[3];
+            encounter.totalEnemies = 3;
+            encounter.enemyNames[0] = "Dummy";
+            encounter.enemyNames[1] = "Skitter";
+            encounter.enemyNames[2] = "Shadow Assassin";
+            encounter.encounterNumber = -1;
         }
+            
 
-        
         enemiesRemaining = encounter.totalEnemies;
         encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
         //REMOVE THIS LATER
         GameController.controller.Load(GameController.controller.charNames[1]);
-        print("ability1: " + GameController.controller.playerAbility1);
 
         //0. pretend the player has save data for ability sake
         GameController.controller.playerLevel = 1;
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
-        //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
-        //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
-        //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
-        //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
-        //GameController.controller.strikeModifier = "Serated Strike";
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
@@ -144,8 +157,14 @@ public class CombatManager : MonoBehaviour {
 
         if(!hasTutorial)
         {
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Strike");
+            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
+            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Mirage");
+            GameController.controller.strikeModifier = "Serated Strike";
+
             ResetEnemyValues();
-            strikeMod = GameController.controller.strikeModifier;
+            //strikeMod = GameController.controller.strikeModifier;
 
             ability1 = GameController.controller.playerAbility1;
             ability2 = GameController.controller.playerAbility2;
@@ -168,21 +187,17 @@ public class CombatManager : MonoBehaviour {
         DisableBackButton();
         HideAbilityButtons();
         DisableBackButton();
+
         if (!hasTutorial)
         {
             //3. Load in initial enemy
-            enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]);
+            //enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]);
+            StartCoroutine(LoadNextEnemy(true));
             LoadCharacterLevels(enemyInfo);
 
             if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
-                StartCoroutine(ShowStartingButtons());
-
-            StartCoroutine(LoadNextEnemy());
+                StartCoroutine(ShowStartingButtons());    
         }
-
-        //4. Play music
-        //
-        //Music_Manager.GetComponent<Music_Controller>().playCombatLoop();
     }
 
     public void AbilitySelected(int selectedOption = 0)
@@ -208,20 +223,13 @@ public class CombatManager : MonoBehaviour {
 
     public void EndPlayerTurn(bool damageDealt, int originalHP = 0)
     {
-        currentState = State.MainMenu;
-        DisableAbilityButtons();
-        HideAbilityButtons();
-        DisableBackButton();
-        HideMainButtons();
+        print("PLAYER TURN IS OVER");
         StartCoroutine(CheckForDamage(damageDealt, false, originalHP));
     }
 
     public void EndEnemyTurn(bool damageDealt, int originalHP = 0)
     {
-        currentState = State.MainMenu;
-        DisableAbilityButtons();
-        HideAbilityButtons();
-        DisableBackButton();
+        print("ENEMY TURN IS OVER");
         StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
     }
 
@@ -230,9 +238,19 @@ public class CombatManager : MonoBehaviour {
         ShowHealthBars();
         yield return new WaitForSeconds(0.5f);
 
+        print("damage: " + damage);
+
+        if(player)
+            print("CHECKING DAMAGE AGAINST PLAYER");
+        else
+            print("CHECKING DAMAGE AGAINST ENEMY");
+
+        if (currSpecialCase != SpecialCase.None)
+            ResolveSpecialCase(true);
+
         if (damage)
         {
-            if(player)
+            if(player)//is being attacked
             {
                 float var1 = ((float)origHP / (float)playerMaxHealth);
                 float var2 = ((float)playerHealth / (float)playerMaxHealth);
@@ -241,20 +259,11 @@ public class CombatManager : MonoBehaviour {
                 playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
 
                 if(CheckForDeath(false))
-                {
                     StartCoroutine(PlayPlayerDeathAnim());
-                }
                 else
-                {
-                    currentState = State.MainMenu;
-                    DisableAbilityButtons();
-                    HideAbilityButtons();
-                    DisableBackButton();
-                    ShowMainButtons();
-                    EnableMainButtons();
-                }
+                    StartCoroutine(StartPlayerTurn());
             }
-            else //if (enemy)
+            else //if enemy is being attacked
             {
                 float var1 = ((float)origHP / (float)enemyMaxHealth);
                 float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
@@ -263,30 +272,17 @@ public class CombatManager : MonoBehaviour {
                 enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
 
                 if (CheckForDeath(true))
-                {
                     StartCoroutine(PlayEnemyDeathAnim());
-                }
                 else
-                {
                     StartCoroutine(StartEnemyTurn());
-                }
             }
         }
         else
         {
-            if(player)
-            {
-                currentState = State.MainMenu;
-                DisableAbilityButtons();
-                HideAbilityButtons();
-                DisableBackButton();
-                ShowMainButtons();
-                EnableMainButtons();
-            }
-            else
-            {
+            if (player)//is being attacked
+                StartCoroutine(StartPlayerTurn());
+            else//enemy is being attacked
                 StartCoroutine(StartEnemyTurn());
-            }
         }
     }
 
@@ -296,23 +292,52 @@ public class CombatManager : MonoBehaviour {
         DisableAbilityButtons();
         HideAbilityButtons();
         DisableBackButton();
-        EnableMainButtons();
+        //enable main buttons?
 
         StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
     }
 
-    //EndEnemyTurn
+    IEnumerator StartPlayerTurn()
+    {
+        print("Player Stunned: " + playerStunned);
+        if (playerStunned)
+        {
+            currentState = State.Done;
+            playerStunned = false;
+            this.GetComponent<AbilityManager_C>().PlayStunAnim(true);
+            currSpecialCase = SpecialCase.None;
+            yield return new WaitForSeconds(2);
+            StartCoroutine(StartEnemyTurn());
+        }
+        else
+        {
+            currentState = State.MainMenu;
+            StartCoroutine(ShowMainMenuOptions());
+        }
+    }
 
     IEnumerator StartEnemyTurn()
     {
-        HideMainButtons();
-        DisableMainButtons();
-        yield return new WaitForSeconds(2);
-        this.GetComponent<EnemyCombatScript>().BeginEnemyTurn();
+        print("Enemy Stunned: " + enemyStunned);
+        if (enemyStunned)
+        {
+            enemyStunned = false;
+            this.GetComponent<AbilityManager_C>().PlayStunAnim(false);
+            currSpecialCase = SpecialCase.None;
+            StartCoroutine(StartPlayerTurn());
+        }
+        else
+        {
+            HideMainButtons();
+            DisableMainButtons();
+            yield return new WaitForSeconds(2);
+            this.GetComponent<EnemyCombatScript>().BeginEnemyTurn();
+        }
     }
 
     IEnumerator ShowStartingButtons()
     {
+        DisableMainButtons();
         HideMainButtons();
         yield return new WaitForSeconds(2);
         ShowMainButtons();
@@ -320,23 +345,26 @@ public class CombatManager : MonoBehaviour {
         HideMainButtons();
         yield return new WaitForSeconds(0.1f);
         ShowMainButtons();
+        EnableMainButtons();
     }
 
     IEnumerator ShowMainMenuOptions()
     {
+        currentState = State.MainMenu;
+        DisableAbilityButtons();
         DisableBackButton();
         DisableMainButtons();
-        yield return new WaitForSeconds(0.1f);
+        HideAbilityButtons();
         HideMainButtons();
 
-        topButton.GetComponentInChildren<Text>().text = "STRIKE";
-        topButton.GetComponent<Image>().color = strike_C;
-        leftButton.GetComponentInChildren<Text>().text = "RETREAT";
-        leftButton.GetComponent<Image>().color = retreat_C;
-        rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
-        rightButton.GetComponent<Image>().color = abilities_C;
+        //topButton.GetComponentInChildren<Text>().text = "STRIKE";
+        //topButton.GetComponent<Image>().color = strike_C;
+        //leftButton.GetComponentInChildren<Text>().text = "";
+        //leftButton.GetComponent<Image>().color = retreat_C;
+        //rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
+        //rightButton.GetComponent<Image>().color = abilities_C;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
 
         ShowMainButtons();
         EnableMainButtons();
@@ -489,7 +517,6 @@ public class CombatManager : MonoBehaviour {
 
         if(!EvaluateExecution())
         {
-            print(strikeMod);
             this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
         } 
         else
@@ -502,7 +529,6 @@ public class CombatManager : MonoBehaviour {
 
     bool EvaluateExecution()
     {
-        print("execute percent: " + strikeExecutePercent);
         int attack = GameController.controller.playerAttack;
         int prowess = GameController.controller.playerProwess;
         float attBoostMod = 1;
@@ -531,9 +557,16 @@ public class CombatManager : MonoBehaviour {
         float damageDealt = (attack * attack) * attBoostMod;
         float percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
         float percentDealt = damageDealt / (float)enemyMaxHealth;
-        print("damage dealt: " + damageDealt);
         print("percent left: " + percentRemaining);
         print("percent damage: " + percentDealt);
+
+        if(enemyVulernable)
+        {
+            percentRemaining -= VULNERABLE_REDUCTION;
+            print("vulnerable execution percent: " + percentRemaining);
+            enemyVulernable = false;
+        }
+
         // check if the player can press the enemy
         if (percentDealt >= percentRemaining)
             return true;
@@ -547,14 +580,21 @@ public class CombatManager : MonoBehaviour {
     // DAMAGE AN ENEMY WITH STRIKE ONLY!
     public void DamageEnemy_Strike()
     {
-        int rand = Random.Range(0, 100);
+        int rand = Random.Range(0, 99);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = 70 + (5 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
+        float accuracy = 70 + (5 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
+
+        if(playerBlinded)
+        {
+            playerBlinded = false;
+            accuracy -= BLINDED_REDUCTION;
+            currSpecialCase = SpecialCase.None;
+        }
 
         print("ACCURACY: " + accuracy);
 
@@ -591,14 +631,8 @@ public class CombatManager : MonoBehaviour {
             print("enemy is now at: " + enemyHealth);
 
             // check for special attack modifier
-            if (currSpecialCase == SpecialCase.None)
-            {
-
-            }
-            else
-            {
-                ResolveSpecialCase();
-            }
+            if (currSpecialCase != SpecialCase.None)
+                ResolveSpecialCase(true);
         }
         else
         {
@@ -619,7 +653,7 @@ public class CombatManager : MonoBehaviour {
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = abilityUsed.Accuracy;
+        float accuracy = abilityUsed.Accuracy;
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
@@ -628,6 +662,13 @@ public class CombatManager : MonoBehaviour {
 
         if (hasTutorial)
             return;
+
+        if (playerBlinded)
+        {
+            playerBlinded = false;
+            accuracy -= BLINDED_REDUCTION;
+            currSpecialCase = SpecialCase.None;
+        }
 
         if (abilityUsed.Type == AbilityType.Physical)
         {
@@ -662,16 +703,10 @@ public class CombatManager : MonoBehaviour {
 
                 print("damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
-
+                print(currSpecialCase);
                 // check for special attack modifier
-                if (currSpecialCase == SpecialCase.None)
-                {
-
-                }
-                else
-                {
-                    ResolveSpecialCase();
-                }
+                if (currSpecialCase != SpecialCase.None)
+                    ResolveSpecialCase(true);
             }
         }
         else
@@ -704,16 +739,10 @@ public class CombatManager : MonoBehaviour {
                     damageDealt = 1;
 
                 enemyHealth -= (int)damageDealt;
-
+                print(currSpecialCase);
                 // check for special attack modifier
-                if (currSpecialCase == SpecialCase.None)
-                {
-
-                }
-                else
-                {
-                    ResolveSpecialCase();
-                }
+                if (currSpecialCase != SpecialCase.None)
+                    ResolveSpecialCase(true);
             }
         }
     }
@@ -726,12 +755,21 @@ public class CombatManager : MonoBehaviour {
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = 70 + (3 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost)));
+        float accuracy = 70 + (3 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost)));
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
+
+        print("ENEMY STRIKE INCOMING!");
+
+        if (enemyBlinded)
+        {
+            enemyBlinded = false;
+            accuracy -= BLINDED_REDUCTION;
+            currSpecialCase = SpecialCase.None;
+        }
 
         // accuracy check the attack
         if (accuracy > rand)
@@ -766,14 +804,8 @@ public class CombatManager : MonoBehaviour {
             print("player is now at: " + playerHealth);
 
             // check for special attack modifier
-            if (currSpecialCase == SpecialCase.None)
-            {
-
-            }
-            else
-            {
-                ResolveSpecialCase();
-            }
+            if (currSpecialCase != SpecialCase.None)
+                ResolveSpecialCase(false);
         }
         else
             print("whoops we missed...");
@@ -783,12 +815,19 @@ public class CombatManager : MonoBehaviour {
     {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        int accuracy = abilityUsed.Accuracy;
+        float accuracy = abilityUsed.Accuracy;
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
+
+        if (enemyBlinded)
+        {
+            enemyBlinded = false;
+            accuracy -= BLINDED_REDUCTION;
+            currSpecialCase = SpecialCase.None;
+        }
 
         if (abilityUsed.Type == AbilityType.Physical)
         {
@@ -825,14 +864,8 @@ public class CombatManager : MonoBehaviour {
                 print("player HP: " + playerHealth);
 
                 // check for special attack modifier
-                if (currSpecialCase == SpecialCase.None)
-                {
-
-                }
-                else
-                {
-                    ResolveSpecialCase();
-                }
+                if (currSpecialCase != SpecialCase.None)
+                    ResolveSpecialCase(false);
             }
         }
         else
@@ -868,14 +901,8 @@ public class CombatManager : MonoBehaviour {
 
 
                 // check for special attack modifier
-                if (currSpecialCase == SpecialCase.None)
-                {
-
-                }
-                else
-                {
-                    ResolveSpecialCase();
-                }
+                if (currSpecialCase != SpecialCase.None)
+                    ResolveSpecialCase(false);
             }
         }
     }
@@ -906,9 +933,44 @@ public class CombatManager : MonoBehaviour {
 
     }
 
-    void ResolveSpecialCase()
+    void ResolveSpecialCase(bool playerTurn)
     {
+        print("Current SC: " + currSpecialCase + ", " + playerTurn);
 
+        switch(currSpecialCase)
+        {
+            case SpecialCase.Ablaze:
+                break;
+            case SpecialCase.Blind://
+                if (playerTurn)
+                    enemyBlinded = true;
+                else
+                    playerBlinded = true;
+                break;
+            case SpecialCase.Execute:
+                break;
+            case SpecialCase.Mirage: //
+                break;
+            case SpecialCase.Outrage:
+                break;
+            case SpecialCase.ShadowClone:
+                break;
+            case SpecialCase.StunFoe://done
+                if (playerTurn)
+                {
+                    enemyStunned = true;
+                    print("Stunning enemy, " + enemyStunned);
+                }
+                else
+                    playerStunned = true;
+                break;
+            case SpecialCase.StunSelf://done
+                if (playerTurn)
+                    playerStunned = true;
+                else
+                    enemyStunned = true;
+                break;
+        }
     }
 
     /// Helper Functions
@@ -984,7 +1046,7 @@ public class CombatManager : MonoBehaviour {
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Enemy loading
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    IEnumerator LoadNextEnemy()
+    IEnumerator LoadNextEnemy(bool initialEnemy = false)
     {
         if(enemyPrfb)
             Destroy(enemyPrfb);
@@ -1014,12 +1076,15 @@ public class CombatManager : MonoBehaviour {
 
             //print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
 
-            if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
-                EndEnemyTurn(false, enemyHealth);
-            else
-                EndPlayerTurn(false, playerHealth);
-            enemyHealthBar.GetComponent<HealthScript>().StartAnim();
-            LoadCharacterLevels(enemyInfo);
+            if(!initialEnemy)
+            {
+                if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
+                    StartCoroutine(StartPlayerTurn());
+                else
+                    StartCoroutine(StartEnemyTurn());
+                enemyHealthBar.GetComponent<HealthScript>().StartAnim();
+                LoadCharacterLevels(enemyInfo);
+            }
         }
         else
         {
@@ -1037,10 +1102,13 @@ public class CombatManager : MonoBehaviour {
 
             yield return new WaitForSeconds(1.5f);
 
-            if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
-                EndEnemyTurn(false, enemyHealth);
-            else
-                EndPlayerTurn(false, playerHealth);
+            if(!initialEnemy)
+            {
+                if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
+                    StartCoroutine(StartPlayerTurn());
+                else
+                    StartCoroutine(StartEnemyTurn());
+            }
         }
     }
 
@@ -1128,14 +1196,9 @@ public class CombatManager : MonoBehaviour {
         switch (currentState)
         {
             case State.Abilities:
-                currentState = State.MainMenu;
-                DisableAbilityButtons();
-                HideAbilityButtons();
                 StartCoroutine(ShowMainMenuOptions());
-                DisableBackButton();
                 break;
             case State.Retreat:
-                currentState = State.MainMenu;
                 StartCoroutine(ShowMainMenuOptions());
                 break;
         }

@@ -8,6 +8,12 @@ public class EnemyAbilityManager_C : MonoBehaviour
     public GameObject enemyMannequinn;
     public GameObject playerMannequin;
 
+    public GameObject lightningBlue_FX;
+    public GameObject lightningYellow_FX;
+    public GameObject lightningStatic_FX;
+    public GameObject lightningYellowBurst_FX;
+    public GameObject lightningBigBurst_FX;
+
     public GameObject outrage_FX;
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
@@ -17,8 +23,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
     private Vector3 initEnemyPos;
     private Vector3 initPlayerPos;
     private Ability ability;
-    private SpecialCase playerSpecialCase = SpecialCase.None;
-    private SpecialCase enemySpecialCase = SpecialCase.None;
 
     private int origPlayerHP;
 
@@ -45,7 +49,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
     {
         ability = abilityUsed;
         origPlayerHP = playerHP;
-        playerSpecialCase = ability.specialCase;
 
         StartCoroutine(AnimateAbility(ability.Name));
     }
@@ -56,19 +59,53 @@ public class EnemyAbilityManager_C : MonoBehaviour
         Vector3 spawnPos = Vector3.zero;
         switch (abilityName)
         {
+            case "Thunder Strike":
+                int dieRoll = Random.Range(0, 99);
+                float chance = (50f + (combatManager.enemyInfo.enemyAttack - GameController.controller.playerDefense));
+                chance = Mathf.Clamp(chance, 50f, 100f);
+                effectClone = (GameObject)Instantiate(lightningBlue_FX, initEnemyPos + new Vector3(0, 10, 0), transform.rotation);
+                yield return new WaitForSeconds(0.5f);
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(300, 0, 0), 3);
+                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.5f);
+                effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 2);
+                yield return new WaitForSeconds(0.75f);
+                if (chance > dieRoll)
+                    combatManager.currSpecialCase = SpecialCase.StunFoe;
+                break;
+            case "Guard Break":
+                dieRoll = Random.Range(0, 99);
+                chance = (75f + (combatManager.enemyInfo.enemyProwess - GameController.controller.playerDefense));
+                chance = Mathf.Clamp(chance, 75f, 100f);
+                combatManager.playerVulernable = true;
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(-40, 0, 0), 2);
+                yield return new WaitForSeconds(0.2f);
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(350, 0, 0), 3);
+                yield return new WaitForSeconds(0.65f);
+                print("chance: " + chance);
+                print("roll: " + dieRoll);
+                if (chance > dieRoll)
+                {
+                    combatManager.currSpecialCase = SpecialCase.StunFoe;
+                    effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
+                }
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
+                yield return new WaitForSeconds(1);
+                break;
             case "Outrage":
                 spawnPos = initEnemyPos - new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, initEnemyPos - new Vector3(250,-50,0), transform.rotation);
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
                 yield return new WaitForSeconds(0.25f);
-                combatManager.currSpecialCase = SpecialCase.Outrage;
+                //combatManager.currSpecialCase = SpecialCase.Outrage;
                 combatManager.DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
-            case "Illusion":
+            case "Mirage":
                 spawnPos = initEnemyPos - new Vector3(0, 60, 0);
                 effectClone = (GameObject)Instantiate(illusion_FX, spawnPos, transform.rotation);
-                combatManager.currSpecialCase = SpecialCase.Illusion;
+                //combatManager.currSpecialCase = SpecialCase.Mirage;
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":

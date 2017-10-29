@@ -8,6 +8,12 @@ public class AbilityManager_C : MonoBehaviour {
     public GameObject playerMannequin;
     public GameObject enemyMannequin;
 
+    public GameObject lightningBlue_FX;
+    public GameObject lightningYellow_FX;
+    public GameObject lightningStatic_FX;
+    public GameObject lightningYellowBurst_FX;
+    public GameObject lightningBigBurst_FX;
+
     public GameObject outrage_FX;
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
@@ -25,8 +31,6 @@ public class AbilityManager_C : MonoBehaviour {
     private Vector3 initPlayerPos;
     private Vector3 initEnemyPos;
     private Ability ability;
-    private SpecialCase playerSpecialCase = SpecialCase.None;
-    private SpecialCase enemySpecialCase = SpecialCase.None;
 
     private int origEnemyHP;
 
@@ -53,7 +57,7 @@ public class AbilityManager_C : MonoBehaviour {
     {
         ability = abilityUsed;
         origEnemyHP = enemyHP;
-        playerSpecialCase = ability.specialCase;
+        combatManager.currSpecialCase = SpecialCase.None;
 
         StartCoroutine(AnimateAbility(ability.Name));
 
@@ -72,20 +76,56 @@ public class AbilityManager_C : MonoBehaviour {
     {
         GameObject effectClone;
         Vector3 spawnPos = Vector3.zero;
+
         switch (abilityName)
         {
+            case "Thunder Strike":
+                int dieRoll = Random.Range(0, 99);
+                float chance = (50f + GameController.controller.playerAttack - combatManager.enemyInfo.enemyDefense);
+                chance = Mathf.Clamp(chance, 50f, 100f);
+                effectClone = (GameObject)Instantiate(lightningBlue_FX, initPlayerPos + new Vector3(0,10,0), transform.rotation);
+                yield return new WaitForSeconds(0.5f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos + new Vector3(300, 0, 0), 3);
+                yield return new WaitForSeconds(0.15f);
+                playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                yield return new WaitForSeconds(0.5f);
+                effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initEnemyPos + new Vector3(0, 20, 0), transform.rotation);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 2);
+                yield return new WaitForSeconds(0.75f);
+                if (chance > dieRoll)
+                    combatManager.currSpecialCase = SpecialCase.StunFoe;
+                break;
+            case "Guard Break":
+                dieRoll = Random.Range(0, 99);
+                chance = (75f + GameController.controller.playerProwess - combatManager.enemyInfo.enemyDefense);
+                chance = Mathf.Clamp(chance, 75f, 100f);
+                combatManager.enemyVulernable = true;
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(-40, 0, 0), 2);
+                yield return new WaitForSeconds(0.2f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(350, 0, 0), 3);
+                yield return new WaitForSeconds(0.65f);
+                print("chance: " + chance);
+                print("roll: " + dieRoll);
+                if (chance > dieRoll)
+                {
+                    combatManager.currSpecialCase = SpecialCase.StunFoe;
+                    effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initEnemyPos + new Vector3(0, 20, 0), transform.rotation);
+                }
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
+                yield return new WaitForSeconds(1);
+                break;
             case "Outrage":
                 spawnPos = initPlayerPos + new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(0.25f);
-                combatManager.currSpecialCase = SpecialCase.Outrage;
+                //combatManager.currSpecialCase = SpecialCase.Outrage;
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
-            case "Illusion":
+            case "Mirage":
                 spawnPos = initPlayerPos + new Vector3(0, 60, 0);
                 effectClone = (GameObject)Instantiate(illusion_FX, spawnPos, transform.rotation);
-                combatManager.currSpecialCase = SpecialCase.Illusion;
+                combatManager.currSpecialCase = SpecialCase.Mirage;
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":
@@ -145,6 +185,54 @@ public class AbilityManager_C : MonoBehaviour {
         else
             this.GetComponent<CombatManager>().EndPlayerTurn(false);
 
+    }
+
+    public void PlayStunAnim(bool playerStunned)
+    {
+        if (playerStunned)
+            StartCoroutine(PlayerStunnedAnim());
+        else
+            StartCoroutine(EnemyStunnedAnim());
+    }
+
+    IEnumerator PlayerStunnedAnim()
+    {
+        Vector3 eOffset01 = new Vector3(15, 30, 0);
+        Vector3 eOffset02 = new Vector3(-20, 0, 0);
+        Vector3 eOffset03 = new Vector3(30, -15, 0);
+        Vector3 offset = new Vector3(25, 0, 0);
+        this.GetComponent<CombatAudio>().playStunnedSFX();
+        GameObject electricity = (GameObject)Instantiate(lightningYellowBurst_FX, initPlayerPos - eOffset01, transform.rotation);
+        electricity.transform.SetParent(playerMannequin.transform, true);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + offset, 1.2f);
+        yield return new WaitForSeconds(0.25f);
+        GameObject electricity2 = (GameObject)Instantiate(lightningYellowBurst_FX, initPlayerPos - eOffset02, transform.rotation);
+        electricity.transform.SetParent(playerMannequin.transform, true);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos - offset, 1.2f);
+        yield return new WaitForSeconds(0.25f);
+        GameObject electricity3 = (GameObject)Instantiate(lightningYellowBurst_FX, initPlayerPos - eOffset03, transform.rotation);
+        electricity.transform.SetParent(playerMannequin.transform, true);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 1.2f);
+    }
+
+    IEnumerator EnemyStunnedAnim()
+    {
+        Vector3 eOffset01 = new Vector3(15,40,0);
+        Vector3 eOffset02 = new Vector3(-25, 0, 0);
+        Vector3 eOffset03 = new Vector3(35, -20, 0);
+        Vector3 offset = new Vector3(25, 0, 0);
+        this.GetComponent<CombatAudio>().playStunnedSFX();
+        GameObject electricity = (GameObject)Instantiate(lightningYellowBurst_FX, initEnemyPos + eOffset01, transform.rotation);
+        electricity.transform.SetParent(enemyMannequin.transform, true);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(enemyMannequin.transform.position, enemyMannequin.transform.position + offset, 1.2f);
+        yield return new WaitForSeconds(0.25f);
+        GameObject electricity2 = (GameObject)Instantiate(lightningYellowBurst_FX, initEnemyPos + eOffset02, transform.rotation);
+        electricity.transform.SetParent(enemyMannequin.transform, true);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(enemyMannequin.transform.position, initEnemyPos - offset, 1.2f);
+        yield return new WaitForSeconds(0.25f);
+        GameObject electricity3 = (GameObject)Instantiate(lightningYellowBurst_FX, initEnemyPos + eOffset03, transform.rotation);
+        electricity.transform.SetParent(enemyMannequin.transform, true);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(enemyMannequin.transform.position, initEnemyPos, 1.2f);
     }
 
     public void UseTutorialAbility()

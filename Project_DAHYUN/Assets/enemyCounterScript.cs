@@ -13,9 +13,12 @@ public class enemyCounterScript : MonoBehaviour {
     void Start ()
     {
         if(GameController.controller.currentEncounter != null)
+        {
             totalEnemies = GameController.controller.currentEncounter.totalEnemies;
+            print(totalEnemies);
+        }
         else
-            totalEnemies = 1;
+            totalEnemies = 3;
         remainingEnemies = totalEnemies;
         tallies = new GameObject[totalEnemies];
         tallies[0] = this.gameObject;

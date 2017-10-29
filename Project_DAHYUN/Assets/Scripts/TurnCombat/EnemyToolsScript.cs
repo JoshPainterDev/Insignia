@@ -11,6 +11,7 @@ public class EnemyToolsScript : MonoBehaviour {
 
 
     public GameObject Steve_Prefab;
+    public GameObject Dummy_Prefab;
     public GameObject ShadowAssassin_Prefab;
     public GameObject Skitter_Prefab;
     public GameObject DragonLord_Prefab;
@@ -96,6 +97,21 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 3;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 110;
+                break;
+            case "Dummy":
+                enemyInfo.enemyPrefab = Dummy_Prefab;
+                enemyInfo.enemyLevel = 1;
+                enemyInfo.expReward = MODERATE_EXP;
+                enemyInfo.ability_1 = "Outrage";
+                enemyInfo.ability_2 = "Shadow Clone";
+                enemyInfo.ability_3 = "Reap";
+                enemyInfo.ability_4 = "Final Cut";
+
+                enemyInfo.enemyName = "Dummy";
+                enemyInfo.enemyAttack = 0;
+                enemyInfo.enemyDefense = 200;
+                enemyInfo.enemySpeed = 1;
+                enemyInfo.enemyMaxHealthBase = 99999;
                 break;
             default:
                 break;
