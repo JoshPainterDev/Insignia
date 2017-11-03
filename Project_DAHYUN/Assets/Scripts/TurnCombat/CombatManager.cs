@@ -502,6 +502,10 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator UseStrike()
     {
+        int exectueVar = EvaluateExecution();
+        int rand = Random.Range(0, 99);
+        float accuracy = 70 + (5 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
+
         DisableMainButtons();
         HideHealthBars();
         HideButton("top");
@@ -515,20 +519,43 @@ public class CombatManager : MonoBehaviour {
         HideMainButtons();
         yield return new WaitForSeconds(0.25f);
 
-        int exectueVar = EvaluateExecution();
+        if (playerBlinded)
+        {
+            playerBlinded = false;
+            accuracy -= BLINDED_REDUCTION;
+            currSpecialCase = SpecialCase.None;
+            this.GetComponent<StrikeManager_C>().PlayerStrikeMiss();
+        }
+
         if (exectueVar != 1)
         {
-            if (exectueVar == 0)
-                this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+            print("ACCURACY: " + accuracy);
+
+            // accuracy check the attack
+            if (accuracy > 105)
+            {
+                if (exectueVar == 0)
+                {
+                    this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
+                }
+                else
+                {
+                    print("percentage of strike used");
+                    //do only a percentage of your full strike damage 
+                    this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth, 0.33f);
+                }
+            }
             else
-                StruggleFailed(true);
-        } 
+            {
+                print("whoops we missed...");
+                this.GetComponent<StrikeManager_C>().PlayerStrikeMiss();
+            }
+        }
         else
         {
             HideHealthBars();
             this.GetComponent<StruggleManager_C>().BeginStruggle_Player();
         }
-            
     }
 
     int EvaluateExecution(int overrideDamage = 0)
@@ -585,11 +612,15 @@ public class CombatManager : MonoBehaviour {
             percentDealt = damageDealt / (float)enemyMaxHealth;
 
             print("strikeExecutePercent: " + strikeExecutePercent);
+            print("percent Dealt: " + percentDealt);
             print("percentRemaining: " + percentRemaining);
             if (percentDealt > percentRemaining)
             {
                 if (percentRemaining > strikeExecutePercent)
+                {
+                    print("returning 2");
                     return 2;
+                }  
             }
         }
 
@@ -613,66 +644,50 @@ public class CombatManager : MonoBehaviour {
     /// Player DAMAGE FUNCTIONS
 
     // DAMAGE AN ENEMY WITH STRIKE ONLY!
-    public void DamageEnemy_Strike()
+    public void DamageEnemy_Strike(float percentOfDamage = 1.0f)
     {
-        int rand = Random.Range(0, 99);
         int randDamageBuffer = Random.Range(0, 9);
-        float accuracy = 70 + (5 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
 
-        if(playerBlinded)
+
+        //handle attack boost modifier
+        switch (playerAttackBoost)
         {
-            playerBlinded = false;
-            accuracy -= BLINDED_REDUCTION;
-            currSpecialCase = SpecialCase.None;
+            case 1:
+                attBoostMod = 1.5f;
+                break;
+            case 2:
+                attBoostMod = 2;
+                break;
+            case 3:
+                attBoostMod = 2.5f;
+                break;
+            default:
+                attBoostMod = 1;
+                break;
         }
 
-        print("ACCURACY: " + accuracy);
-
-        // accuracy check the attack
-        if (accuracy > rand)
-        {
-            //handle attack boost modifier
-            switch (playerAttackBoost)
-            {
-                case 1:
-                    attBoostMod = 1.5f;
-                    break;
-                case 2:
-                    attBoostMod = 2;
-                    break;
-                case 3:
-                    attBoostMod = 2.5f;
-                    break;
-                default:
-                    attBoostMod = 1;
-                    break;
-            }
-
-            damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
+        damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
             
-            damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
+        damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
-            if (damageDealt < 1)
-                damageDealt = 1;
+        damageDealt *= percentOfDamage;
 
-            enemyHealth -= (int)damageDealt;
+        if (damageDealt < 1)
+            damageDealt = 1;
 
-            print("PLAYER DAMAGE: " + damageDealt);
-            print("enemy is now at: " + enemyHealth);
+        enemyHealth -= (int)damageDealt;
 
-            // check for special attack modifier
-            if (currSpecialCase != SpecialCase.None)
-                ResolveSpecialCase(true);
-        }
-        else
-        {
-            print("whoops we missed...");
-        }
+        print("PLAYER DAMAGE: " + damageDealt);
+        print("enemy is now at: " + enemyHealth);
+
+        // check for special attack modifier
+        if (currSpecialCase != SpecialCase.None)
+            ResolveSpecialCase(true);
     }
 
     public void ExecuteEnemy_Strike()
@@ -786,64 +801,49 @@ public class CombatManager : MonoBehaviour {
     /// ENEMY DAMAGE FUNCTIONS
     /// 
         // DAMAGE PLAYER WITH STRIKE ONLY!
-    public void DamagePlayer_Strike()
+    public void DamagePlayer_Strike(float percentOfDamage = 1.0f)
     {
-        int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
-        float accuracy = 70 + (3 * ((enemyInfo.enemySpeed + enemySpeedBoost) - (GameController.controller.playerSpeed + playerSpeedBoost)));
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
 
-        print("ENEMY STRIKE INCOMING!");
-
-        if (enemyBlinded)
+        //handle attack boost modifier
+        switch (playerAttackBoost)
         {
-            enemyBlinded = false;
-            accuracy -= BLINDED_REDUCTION;
-            currSpecialCase = SpecialCase.None;
+            case 1:
+                attBoostMod = 1.5f;
+                break;
+            case 2:
+                attBoostMod = 2;
+                break;
+            case 3:
+                attBoostMod = 2.5f;
+                break;
+            default:
+                attBoostMod = 1;
+                break;
         }
 
-        // accuracy check the attack
-        if (accuracy > rand)
-        {
-            //handle attack boost modifier
-            switch (playerAttackBoost)
-            {
-                case 1:
-                    attBoostMod = 1.5f;
-                    break;
-                case 2:
-                    attBoostMod = 2;
-                    break;
-                case 3:
-                    attBoostMod = 2.5f;
-                    break;
-                default:
-                    attBoostMod = 1;
-                    break;
-            }
+        damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
 
-            damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
+        damageDealt -= ((GameController.controller.playerDefense) * (GameController.controller.playerDefense * playerDefenseBoost)) / 2f;
 
-            damageDealt -= ((GameController.controller.playerDefense) * (GameController.controller.playerDefense * playerDefenseBoost)) / 2f;
+        damageDealt *= percentOfDamage;
 
-            if (damageDealt < 1)
-                damageDealt = 1;
+        if (damageDealt < 1)
+            damageDealt = 1;
 
-            playerHealth -= (int)damageDealt;
+        playerHealth -= (int)damageDealt;
 
-            print("ENEMY DAMAGE: " + damageDealt);
-            print("player is now at: " + playerHealth);
+        print("ENEMY DAMAGE: " + damageDealt);
+        print("player is now at: " + playerHealth);
 
-            // check for special attack modifier
-            if (currSpecialCase != SpecialCase.None)
-                ResolveSpecialCase(false);
-        }
-        else
-            print("whoops we missed...");
+        // check for special attack modifier
+        if (currSpecialCase != SpecialCase.None)
+            ResolveSpecialCase(false);
     }
 
     public void DamagePlayer_Ability(Ability abilityUsed)
@@ -1178,7 +1178,7 @@ public class CombatManager : MonoBehaviour {
                 else
                     StartCoroutine(StartEnemyTurn());
             }
-            print("got here fam");
+
             enemyHealthBar.GetComponent<HealthScript>().StartAnim();
             LoadCharacterLevels(enemyInfo);
         }
@@ -1206,7 +1206,6 @@ public class CombatManager : MonoBehaviour {
                     StartCoroutine(StartEnemyTurn());
             }
 
-            print("got here fam");
             enemyHealthBar.GetComponent<HealthScript>().StartAnim();
             LoadCharacterLevels(enemyInfo);
         }

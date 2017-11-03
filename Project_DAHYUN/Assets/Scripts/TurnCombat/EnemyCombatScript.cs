@@ -18,6 +18,7 @@ public class EnemyCombatScript : MonoBehaviour {
 
     public EnemyInfo enemyInfo;
 
+    public GameObject standardStrikeMiss_FX;
     public GameObject blood01_FX;
     public GameObject blood02_FX;
     public GameObject blood03_FX;
@@ -72,10 +73,33 @@ public class EnemyCombatScript : MonoBehaviour {
         //regardless of abilities
         int chanceToStrike = Random.Range(100, 100);
 
+
         if(chanceToStrike > 35)
         {
+            int rand = Random.Range(0, 100);
+            float accuracy = 70 + (3 * ((enemyInfo.enemySpeed + combatManager.enemySpeedBoost) 
+                - (GameController.controller.playerSpeed + combatManager.playerSpeedBoost)));
+
             print("Strike selected...");
-            StartCoroutine(EnemyStrike());
+
+            if (combatManager.enemyBlinded)
+            {
+                combatManager.enemyBlinded = false;
+                accuracy -= combatManager.BLINDED_REDUCTION;
+                combatManager.currSpecialCase = SpecialCase.None;
+            }
+
+            // accuracy check the attack
+            if (accuracy > rand)
+            {
+                print("ENEMY STRIKE INCOMING!");
+                StartCoroutine(EnemyStrike());
+            }
+            else
+            {
+                print("whoops we missed...");
+                EnemyMissStrike();
+            }
         }
         else
         {
@@ -143,6 +167,29 @@ public class EnemyCombatScript : MonoBehaviour {
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
         yield return new WaitForSeconds(0.25f);
         combatManager.EndEnemyTurn(true, originalPlayerHP);
+    }
+
+    public void EnemyMissStrike()
+    {
+        StartCoroutine(AnimateEnemyMissStrike());
+    }
+
+    IEnumerator AnimateEnemyMissStrike()
+    {
+        combatManager.HideHealthBars();
+        Vector3 pos1 = new Vector3(origPosition.x + 250, origPosition.y, 0);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
+        yield return new WaitForSeconds(0.15f);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos, playerOrigPos - new Vector3(50, 0, 0), 4.5f);
+        Vector3 spawnPos = new Vector3(playerOrigPos.x, playerOrigPos.y - 15, 0);
+        GameObject effectClone = (GameObject)Instantiate(standardStrikeMiss_FX, spawnPos, transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
+        yield return new WaitForSeconds(0.2f);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos - new Vector3(50, 0, 0), playerOrigPos, 2f);
+        combatManager.ShowHealthBars();
+        yield return new WaitForSeconds(0.2f);
+        combatManager.EndEnemyTurn(false);
     }
 
     public void UseFakeStrike()
