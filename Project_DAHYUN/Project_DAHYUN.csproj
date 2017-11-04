@@ -92,6 +92,7 @@
     <Compile Include="Assets\Character_Menu_Manager.cs" />
     <Compile Include="Assets\Character_Select_Manager.cs" />
     <Compile Include="Assets\ClosePopUp.cs" />
+    <Compile Include="Assets\DamageVisualizer_C.cs" />
     <Compile Include="Assets\Dialogue_Manager_C.cs" />
     <Compile Include="Assets\EnemyAbilityManager_C.cs" />
     <Compile Include="Assets\EnemyEncounter.cs" />
