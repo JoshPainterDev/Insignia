@@ -45,6 +45,16 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void PlayHoldAttackAnim()
+    {
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 6);
+        }
+    }
+
     public void PlayWalkAnim()
     {
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -5;

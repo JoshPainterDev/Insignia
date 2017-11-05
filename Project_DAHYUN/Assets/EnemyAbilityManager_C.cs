@@ -59,20 +59,29 @@ public class EnemyAbilityManager_C : MonoBehaviour
         Vector3 spawnPos = Vector3.zero;
         switch (abilityName)
         {
-            case "Thunder Strike":
+            case "Thunder Charge":
                 int dieRoll = Random.Range(0, 99);
                 float chance = (50f + (combatManager.enemyInfo.enemyAttack - GameController.controller.playerDefense));
                 chance = Mathf.Clamp(chance, 50f, 100f);
+                this.GetComponent<CombatAudio>().playThunderChargeFX();
                 effectClone = (GameObject)Instantiate(lightningBlue_FX, initEnemyPos + new Vector3(0, 10, 0), transform.rotation);
-                yield return new WaitForSeconds(0.5f);
-                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(300, 0, 0), 3);
-                yield return new WaitForSeconds(0.15f);
-                yield return new WaitForSeconds(0.5f);
-                effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
+                effectClone.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
+                GameObject effectClone02 = (GameObject)Instantiate(lightningYellow_FX, initEnemyPos + new Vector3(10, 40, 0), transform.rotation);
+                GameObject effectClone03 = (GameObject)Instantiate(lightningYellow_FX, initEnemyPos + new Vector3(-10, 40, 0), transform.rotation);
+                effectClone03.GetComponent<SpriteRenderer>().flipX = true;
+                yield return new WaitForSeconds(1.4f);
+                GameObject effectClone04 = (GameObject)Instantiate(lightningYellow_FX, initEnemyPos - new Vector3(250, -40, 0), transform.rotation);
+                effectClone04.transform.eulerAngles = new Vector3(0, 0, -90);
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(420, 0, 0), 5);
+                yield return new WaitForSeconds(1f);
+                if (chance > dieRoll)
+                {
+                    combatManager.currSpecialCase = SpecialCase.StunFoe;
+                    effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
+                }
+                yield return new WaitForSeconds(0.75f);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 2);
                 yield return new WaitForSeconds(0.75f);
-                if (chance > dieRoll)
-                    combatManager.currSpecialCase = SpecialCase.StunFoe;
                 break;
             case "Guard Break":
                 dieRoll = Random.Range(0, 99);

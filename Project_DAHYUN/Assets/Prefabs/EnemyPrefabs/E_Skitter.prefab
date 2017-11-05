@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEffect: {fileID: 1862190314031148, guid: 4946ac1f908fe724682e1c0b24d6bc7a,
     type: 2}
-  spawnSound: {fileID: 8300000, guid: 917172825eca3c5429fd3ce820aae199, type: 3}
+  spawnSound: {fileID: 8300000, guid: c19873bc94b80834da220c825801efec, type: 3}
   spawnSoundVolume: 0.5
   enemySpawnPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114551649039968966

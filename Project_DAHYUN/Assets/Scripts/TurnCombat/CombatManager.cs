@@ -150,15 +150,15 @@ public class CombatManager : MonoBehaviour {
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
-        print("player def: " + GameController.controller.playerDefense);
+        //print("player def: " + GameController.controller.playerDefense);
         //Max Health = ((base max hp) * player lv) + (9 * player def)
         playerMaxHealth = (playerMaxHealth * playerLevel) + (9 * GameController.controller.playerDefense);
         playerHealth = playerMaxHealth;
-        print("Player max HP: " + playerHealth);
+        //print("Player max HP: " + playerHealth);
 
         if(!hasTutorial)
         {
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Strike");
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
             GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
@@ -236,10 +236,8 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator CheckForDamage(bool damage, bool player, int origHP)
     {
+        float delay = 0.5f;
         ShowHealthBars();
-        yield return new WaitForSeconds(0.5f);
-
-        print("damage: " + damage);
 
         if(player)
             print("CHECKING DAMAGE AGAINST PLAYER");
@@ -247,7 +245,9 @@ public class CombatManager : MonoBehaviour {
             print("CHECKING DAMAGE AGAINST ENEMY");
 
         if (currSpecialCase != SpecialCase.None)
-            ResolveSpecialCase(true);
+            delay = ResolveSpecialCase(!player);
+
+        yield return new WaitForSeconds(0.5f);
 
         if (damage)
         {
@@ -258,8 +258,11 @@ public class CombatManager : MonoBehaviour {
                 playerHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
                 playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+                playerHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - playerHealth);
 
-                if(CheckForDeath(false))
+                yield return new WaitForSeconds(delay);
+
+                if (CheckForDeath(false))
                     StartCoroutine(PlayPlayerDeathAnim());
                 else
                     StartCoroutine(StartPlayerTurn());
@@ -271,6 +274,9 @@ public class CombatManager : MonoBehaviour {
                 enemyHealthBar.GetComponent<HealthScript>().Hurt();
                 yield return new WaitForSeconds(0.25f);
                 enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+                enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - enemyHealth);
+
+                yield return new WaitForSeconds(delay);
 
                 if (CheckForDeath(true))
                     StartCoroutine(PlayEnemyDeathAnim());
@@ -280,6 +286,8 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
+            yield return new WaitForSeconds(delay);
+
             if (player)//is being attacked
                 StartCoroutine(StartPlayerTurn());
             else//enemy is being attacked
@@ -300,7 +308,6 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator StartPlayerTurn()
     {
-        print("Player Stunned: " + playerStunned);
         if (playerStunned)
         {
             currentState = State.Done;
@@ -324,6 +331,7 @@ public class CombatManager : MonoBehaviour {
             enemyStunned = false;
             this.GetComponent<AbilityManager_C>().PlayStunAnim(false);
             currSpecialCase = SpecialCase.None;
+            yield return new WaitForSeconds(2);
             StartCoroutine(StartPlayerTurn());
         }
         else
@@ -356,13 +364,6 @@ public class CombatManager : MonoBehaviour {
         DisableMainButtons();
         HideAbilityButtons();
         HideMainButtons();
-
-        //topButton.GetComponentInChildren<Text>().text = "STRIKE";
-        //topButton.GetComponent<Image>().color = strike_C;
-        //leftButton.GetComponentInChildren<Text>().text = "";
-        //leftButton.GetComponent<Image>().color = retreat_C;
-        //rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
-        //rightButton.GetComponent<Image>().color = abilities_C;
 
         yield return new WaitForSeconds(0.15f);
 
@@ -532,7 +533,7 @@ public class CombatManager : MonoBehaviour {
             print("ACCURACY: " + accuracy);
 
             // accuracy check the attack
-            if (accuracy > 105)
+            if (accuracy > rand)
             {
                 if (exectueVar == 0)
                 {
@@ -684,10 +685,6 @@ public class CombatManager : MonoBehaviour {
 
         print("PLAYER DAMAGE: " + damageDealt);
         print("enemy is now at: " + enemyHealth);
-
-        // check for special attack modifier
-        if (currSpecialCase != SpecialCase.None)
-            ResolveSpecialCase(true);
     }
 
     public void ExecuteEnemy_Strike()
@@ -742,21 +739,17 @@ public class CombatManager : MonoBehaviour {
                         break;
                 }
 
-                damageDealt = ((attack + randDamageBuffer) * abilityUsed.BaseDamage) * attBoostMod;
+                damageDealt = ((attack + randDamageBuffer) + (abilityUsed.BaseDamage * playerLevel)) * attBoostMod;
 
-                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost));
+                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 1.5f;
 
                 if (damageDealt < 1)
                     damageDealt = 1;
 
                 enemyHealth -= (int)damageDealt;
 
-                print("damage: " + damageDealt);
+                print("Ability damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
-                print(currSpecialCase);
-                // check for special attack modifier
-                if (currSpecialCase != SpecialCase.None)
-                    ResolveSpecialCase(true);
             }
         }
         else
@@ -781,18 +774,18 @@ public class CombatManager : MonoBehaviour {
                         break;
                 }
 
-                damageDealt = ((attack * abilityUsed.BaseDamage) + (randDamageBuffer)) * attBoostMod;
-
-                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost));
+                damageDealt = ((attack + randDamageBuffer) + (abilityUsed.BaseDamage * playerLevel)) * attBoostMod;
+                print("pAttack: " + attack);
+                print("eDefense: " + enemyInfo.enemyDefense);
+                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 2.0f;
 
                 if (damageDealt < 1)
                     damageDealt = 1;
 
                 enemyHealth -= (int)damageDealt;
-                print(currSpecialCase);
-                // check for special attack modifier
-                if (currSpecialCase != SpecialCase.None)
-                    ResolveSpecialCase(true);
+
+                print("damage: " + damageDealt);
+                print("enemy HP: " + enemyHealth);
             }
         }
     }
@@ -840,10 +833,6 @@ public class CombatManager : MonoBehaviour {
 
         print("ENEMY DAMAGE: " + damageDealt);
         print("player is now at: " + playerHealth);
-
-        // check for special attack modifier
-        if (currSpecialCase != SpecialCase.None)
-            ResolveSpecialCase(false);
     }
 
     public void DamagePlayer_Ability(Ability abilityUsed)
@@ -897,10 +886,6 @@ public class CombatManager : MonoBehaviour {
 
                 print("damage: " + damageDealt);
                 print("player HP: " + playerHealth);
-
-                // check for special attack modifier
-                if (currSpecialCase != SpecialCase.None)
-                    ResolveSpecialCase(false);
             }
         }
         else
@@ -933,11 +918,6 @@ public class CombatManager : MonoBehaviour {
                     damageDealt = 1;
 
                 playerHealth -= (int)damageDealt;
-
-
-                // check for special attack modifier
-                if (currSpecialCase != SpecialCase.None)
-                    ResolveSpecialCase(false);
             }
         }
     }
@@ -968,8 +948,9 @@ public class CombatManager : MonoBehaviour {
 
     }
 
-    void ResolveSpecialCase(bool playerTurn)
+    float ResolveSpecialCase(bool playerTurn)
     {
+        float delay = 0;
         print("Current SC: " + currSpecialCase + ", " + playerTurn);
 
         switch(currSpecialCase)
@@ -983,13 +964,21 @@ public class CombatManager : MonoBehaviour {
                     playerBlinded = true;
                 break;
             case SpecialCase.Execute://
+                currSpecialCase = SpecialCase.None;
                 print("pProwess: " + (GameController.controller.playerProwess));
                 int executeDamage = ((GameController.controller.playerProwess) * AbilityToolsScript.tools.LookUpAbility("Final Cut").SpecialValue);
                 print("executeDamage: " + executeDamage);
-
-                if(EvaluateExecution(executeDamage) == 1)
+                print("enemy hp: " + enemyHealth);
+                
+                if (enemyHealth > 0)
                 {
-                    ExecuteEnemy_Strike();
+                    if (EvaluateExecution(executeDamage) == 1)
+                    {
+                        if (playerTurn)
+                        {
+                            this.GetComponent<StruggleManager_C>().BeginStruggle_Player();
+                        }
+                    }
                 }
                 break;
             case SpecialCase.Deceive: //
@@ -997,7 +986,7 @@ public class CombatManager : MonoBehaviour {
             case SpecialCase.Outrage://done
                 int outrageDmg;
                 float boost = 0;
-                int baseDamage = AbilityToolsScript.tools.LookUpAbility("Outrage").BaseDamage;
+                int baseDamage = AbilityToolsScript.tools.LookUpAbility("Outrage").SpecialValue;
 
                 if (playerTurn)
                 {
@@ -1018,7 +1007,6 @@ public class CombatManager : MonoBehaviour {
                             break;
                     }
 
-                    print("playerLevel: " + playerLevel);
                     print("playerAttackBoost: " + playerAttackBoost);
                     outrageDmg =  (int)Mathf.Pow((playerLevel), boost) + baseDamage;
                     print("Outrage Damage: " + outrageDmg);
@@ -1049,13 +1037,17 @@ public class CombatManager : MonoBehaviour {
             case SpecialCase.ShadowClone:
                 break;
             case SpecialCase.StunFoe://done
+                delay = 1.0f;
+
                 if (playerTurn)
                 {
                     enemyStunned = true;
-                    print("Stunning enemy, " + enemyStunned);
                 }
                 else
+                {
                     playerStunned = true;
+                }
+                    
                 break;
             case SpecialCase.StunSelf://done
                 if (playerTurn)
@@ -1064,6 +1056,8 @@ public class CombatManager : MonoBehaviour {
                     enemyStunned = true;
                 break;
         }
+
+        return delay;
     }
 
     /// Helper Functions
@@ -1143,13 +1137,15 @@ public class CombatManager : MonoBehaviour {
     {
         if(enemyPrfb)
             Destroy(enemyPrfb);
+
         enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
         enemyPrfb = Instantiate(enemyInfo.enemyPrefab, enemyMannequin.transform.position, Quaternion.identity) as GameObject;
         enemyPrfb.transform.SetParent(enemyMannequin.transform);
         enemyPrfb.transform.localScale = Vector3.one;
         enemyOrigColor = enemyPrfb.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         enemyHealthBar.GetComponent<HealthScript>().setColors(enemyOrigColor);
-        currSpecialCase = SpecialCase.None;
+
+        ResetEnemyValues();
 
         if (enemiesRemaining != encounter.totalEnemies)
         {
@@ -1166,11 +1162,8 @@ public class CombatManager : MonoBehaviour {
                 {
                     sprite.enabled = true;
                 }
-                yield return new WaitForSeconds(0.5f);
 
-                ResetEnemyValues();
-
-                yield return new WaitForSeconds(0.65f);
+                yield return new WaitForSeconds(1.15f);
 
                 //print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
                 if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
@@ -1184,27 +1177,23 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
-            if(!initialEnemy)
-            {
-                foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-                    sprite.enabled = false;
+            //if(!initialEnemy)
+            //{
+            //    foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
+            //        sprite.enabled = false;
 
-                yield return new WaitForSeconds(0.25f);
+            //    yield return new WaitForSeconds(0.25f);
 
-                foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-                    sprite.enabled = true;
+            //    foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
+            //        sprite.enabled = true;
 
-                yield return new WaitForSeconds(1f);
+            //    yield return new WaitForSeconds(1.15f);
 
-                ResetEnemyValues();
-
-                yield return new WaitForSeconds(1.5f);
-
-                if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
-                    StartCoroutine(StartPlayerTurn());
-                else
-                    StartCoroutine(StartEnemyTurn());
-            }
+            //    if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
+            //        StartCoroutine(StartPlayerTurn());
+            //    else
+            //        StartCoroutine(StartEnemyTurn());
+            //}
 
             enemyHealthBar.GetComponent<HealthScript>().StartAnim();
             LoadCharacterLevels(enemyInfo);
@@ -1218,10 +1207,21 @@ public class CombatManager : MonoBehaviour {
         else
             enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
 
+        EnemyInfo tempInfo = enemyInfo;
+        tempInfo.enemyAttack = tempInfo.enemyAttack * tempInfo.enemyLevel;
+        tempInfo.enemyDefense = tempInfo.enemyDefense * tempInfo.enemyLevel;
+        tempInfo.enemyProwess = tempInfo.enemyProwess * tempInfo.enemyLevel;
+        tempInfo.enemySpeed = (tempInfo.enemySpeed * tempInfo.enemyLevel) / 2;
+        enemyInfo = tempInfo;
+
         enemyCanLB = enemyInfo.canLimitBreak;
-        enemySpeedBoost = 0;
+        currSpecialCase = SpecialCase.None;
+        enemyStunned = false;
+        enemyBlinded = false;
+        enemyVulernable = false;
         enemyAttackBoost = 0;
         enemyDefenseBoost = 0;
+        enemySpeedBoost = 0;
 
         enemyMaxHealth = (enemyInfo.enemyMaxHealthBase * enemyInfo.enemyLevel) + (9 * enemyInfo.enemyDefense);
         enemyHealth = enemyMaxHealth;

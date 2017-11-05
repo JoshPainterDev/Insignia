@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: b828626cc2a25374e8e50f524abcbfee
-timeCreated: 1509750464
+timeCreated: 1509821650
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - damagePrefab: {fileID: 1779692508853224, guid: 583e76b5048f67148bcb660a56fae58c,
+      type: 2}
+  - canvas: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -79,27 +79,38 @@ public class AbilityManager_C : MonoBehaviour {
 
         switch (abilityName)
         {
-            case "Thunder Strike":
+            case "Thunder Charge":
                 int dieRoll = Random.Range(0, 99);
                 float chance = (50f + GameController.controller.playerAttack - combatManager.enemyInfo.enemyDefense);
                 chance = Mathf.Clamp(chance, 50f, 100f);
+                this.GetComponent<CombatAudio>().playThunderChargeFX();
                 effectClone = (GameObject)Instantiate(lightningBlue_FX, initPlayerPos + new Vector3(0,10,0), transform.rotation);
-                yield return new WaitForSeconds(0.85f);
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos + new Vector3(300, 0, 0), 3);
-                yield return new WaitForSeconds(0.15f);
-                playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
-                yield return new WaitForSeconds(0.5f);
-                effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initEnemyPos + new Vector3(0, 20, 0), transform.rotation);
+                effectClone.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
+                GameObject effectClone02 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(10, 40, 0), transform.rotation);
+                GameObject effectClone03 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(-10, 40, 0), transform.rotation);
+                effectClone03.GetComponent<SpriteRenderer>().flipX = true;
+                yield return new WaitForSeconds(1.4f);
+                GameObject effectClone04 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(250, 40, 0), transform.rotation);
+                effectClone04.transform.eulerAngles = new Vector3(0,0,90);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos + new Vector3(420, 0, 0), 5);
+                playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
+                yield return new WaitForSeconds(1f);
+                if (chance > dieRoll)
+                {
+                    combatManager.currSpecialCase = SpecialCase.StunFoe;
+                    effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initEnemyPos + new Vector3(0, 20, 0), transform.rotation);
+                }
+                yield return new WaitForSeconds(0.75f);
+                playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 2);
                 yield return new WaitForSeconds(0.75f);
-                if (chance > dieRoll)
-                    combatManager.currSpecialCase = SpecialCase.StunFoe;
                 break;
             case "Guard Break":
                 dieRoll = Random.Range(0, 99);
                 chance = (75f + GameController.controller.playerProwess - combatManager.enemyInfo.enemyDefense);
                 chance = Mathf.Clamp(chance, 75f, 100f);
                 combatManager.enemyVulernable = true;
+                this.GetComponent<CombatAudio>().playGuardBreakSFX();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(-40, 0, 0), 2);
                 yield return new WaitForSeconds(0.2f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(350, 0, 0), 3);
@@ -119,6 +130,7 @@ public class AbilityManager_C : MonoBehaviour {
             case "Outrage":
                 spawnPos = initPlayerPos + new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
+                this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.25f);
                 combatManager.currSpecialCase = SpecialCase.Outrage;
                 combatManager.DamageEnemy_Ability(ability);

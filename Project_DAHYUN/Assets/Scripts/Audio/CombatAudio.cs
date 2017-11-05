@@ -17,6 +17,9 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip strugglePress05;
     public AudioClip strugglePress06;
     public AudioClip stunned_SFX;
+    public AudioClip thunderCharge_SFX;
+    public AudioClip shoulder_Check_SFX;
+    public AudioClip outrage_SFX;
     public AudioClip shadowVanish;
     public AudioClip finalCut;
     AudioSource audioSource;
@@ -40,6 +43,20 @@ public class CombatAudio : MonoBehaviour {
         audioSource.PlayOneShot(stunned_SFX, LOW_VOLUME);
     }
 
+    public void playOutrageSFX()
+    {
+        audioSource.PlayOneShot(outrage_SFX, MEDIUM_VOLUME);
+    }
+
+    public void playThunderChargeFX()
+    {
+        audioSource.PlayOneShot(thunderCharge_SFX, MEDIUM_VOLUME);
+    }
+
+    public void playGuardBreakSFX()
+    {
+        audioSource.PlayOneShot(shoulder_Check_SFX, MEDIUM_VOLUME);
+    }
 
     public void playShadowVanish()
     {

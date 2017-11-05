@@ -77,7 +77,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "";
 
                 enemyInfo.enemyName = "Skitter";
-                enemyInfo.enemyAttack = 3;
+                enemyInfo.enemyAttack = 6;
                 enemyInfo.enemyDefense = 4;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 80;
@@ -108,10 +108,10 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "Final Cut";
 
                 enemyInfo.enemyName = "Dummy";
-                enemyInfo.enemyAttack = 0;
-                enemyInfo.enemyDefense = 2;
+                enemyInfo.enemyAttack = 5;
+                enemyInfo.enemyDefense = 5;
                 enemyInfo.enemySpeed = 1;
-                enemyInfo.enemyMaxHealthBase = 19;
+                enemyInfo.enemyMaxHealthBase = 60;
                 break;
             default:
                 break;

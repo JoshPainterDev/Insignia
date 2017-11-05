@@ -5,9 +5,9 @@ using UnityEngine;
 public class AbilityToolsScript : MonoBehaviour {
     public static AbilityToolsScript tools;
 
-    public int STRONG_DAMAGE = 55;
-    public int MEDIUM_DAMAGE = 35;
-    public int WEAK_DAMAGE = 15;
+    public int STRONG_DAMAGE = 10;
+    public int MEDIUM_DAMAGE = 5;
+    public int WEAK_DAMAGE = 2;
 
     public int STRONG_HEAL = 45;
     public int MEDIUM_HEAL = 25;
@@ -46,8 +46,9 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.None;
                 break;
             case "Final Cut":
-                ability.Accuracy = 100;
-                ability.BaseDamage = 0;
+                ability.Accuracy = 85;
+                ability.BaseDamage = 2;
+                ability.Cooldown = 3;
                 ability.Buffs = false;
                 ability.Description = "Strike from the shadows to deliver a fatal blow.";
                 ability.Name = name;
@@ -102,10 +103,12 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case "Outrage":
                 ability.Accuracy = 100;
-                ability.BaseDamage = 10;
+                ability.BaseDamage = 3;
+                ability.Cooldown = 3;
                 ability.Description = "Explode in a fiery rage. Consumes your attack boost to deal more damage.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.Outrage;
+                ability.SpecialValue = 10;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
                 break;
@@ -118,9 +121,9 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
                 break;
-            case "Thunder Strike":
+            case "Thunder Charge":
                 ability.Accuracy = 100;
-                ability.BaseDamage = MEDIUM_DAMAGE;
+                ability.BaseDamage = 30;
                 ability.Cooldown = 3;
                 ability.Buffs = false;
                 ability.Description = "A lightning imbued strike. Has a chance to stun your foe.";
@@ -128,6 +131,17 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.StunFoe;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
+                break;
+            case "Guard Break":
+                ability.Accuracy = 100;
+                ability.BaseDamage = 2;
+                ability.Cooldown = 3;
+                ability.Buffs = false;
+                ability.Description = "Charge your foe and break through their defenses.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.StunFoe;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Physical;
                 break;
             default:
                 ability.Accuracy = 0;
