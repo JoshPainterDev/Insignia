@@ -236,7 +236,6 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator CheckForDamage(bool damage, bool player, int origHP)
     {
-        float delay = 0.5f;
         ShowHealthBars();
 
         if(player)
@@ -244,54 +243,52 @@ public class CombatManager : MonoBehaviour {
         else
             print("CHECKING DAMAGE AGAINST ENEMY");
 
-        if (currSpecialCase != SpecialCase.None)
-            delay = ResolveSpecialCase(!player);
-
-        yield return new WaitForSeconds(0.5f);
-
-        if (damage)
+        if (ResolveSpecialCase(!player))
         {
-            if(player)//is being attacked
+            yield return new WaitForSeconds(0.5f);
+
+            if (damage)
             {
-                float var1 = ((float)origHP / (float)playerMaxHealth);
-                float var2 = ((float)playerHealth / (float)playerMaxHealth);
-                playerHealthBar.GetComponent<HealthScript>().Hurt();
-                yield return new WaitForSeconds(0.25f);
-                playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                playerHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - playerHealth);
+                if (player)//is being attacked
+                {
+                    float var1 = ((float)origHP / (float)playerMaxHealth);
+                    float var2 = ((float)playerHealth / (float)playerMaxHealth);
+                    playerHealthBar.GetComponent<HealthScript>().Hurt();
+                    yield return new WaitForSeconds(0.25f);
+                    playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+                    playerHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - playerHealth);
 
-                yield return new WaitForSeconds(delay);
+                    if (CheckForDeath(false))
+                        StartCoroutine(PlayPlayerDeathAnim());
+                    else
+                        StartCoroutine(StartPlayerTurn());
+                }
+                else //if enemy is being attacked
+                {
+                    float var1 = ((float)origHP / (float)enemyMaxHealth);
+                    float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
+                    enemyHealthBar.GetComponent<HealthScript>().Hurt();
+                    yield return new WaitForSeconds(0.25f);
+                    enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+                    enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - enemyHealth);
 
-                if (CheckForDeath(false))
-                    StartCoroutine(PlayPlayerDeathAnim());
-                else
-                    StartCoroutine(StartPlayerTurn());
+                    if (CheckForDeath(true))
+                        StartCoroutine(PlayEnemyDeathAnim());
+                    else
+                        StartCoroutine(StartEnemyTurn());
+                }
             }
-            else //if enemy is being attacked
+            else
             {
-                float var1 = ((float)origHP / (float)enemyMaxHealth);
-                float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
-                enemyHealthBar.GetComponent<HealthScript>().Hurt();
-                yield return new WaitForSeconds(0.25f);
-                enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - enemyHealth);
-
-                yield return new WaitForSeconds(delay);
-
-                if (CheckForDeath(true))
-                    StartCoroutine(PlayEnemyDeathAnim());
-                else
+                if (player)//is being attacked
+                    StartCoroutine(StartPlayerTurn());
+                else//enemy is being attacked
                     StartCoroutine(StartEnemyTurn());
             }
         }
         else
         {
-            yield return new WaitForSeconds(delay);
-
-            if (player)//is being attacked
-                StartCoroutine(StartPlayerTurn());
-            else//enemy is being attacked
-                StartCoroutine(StartEnemyTurn());
+            print("got here");
         }
     }
 
@@ -948,13 +945,14 @@ public class CombatManager : MonoBehaviour {
 
     }
 
-    float ResolveSpecialCase(bool playerTurn)
+    bool ResolveSpecialCase(bool playerTurn)
     {
-        float delay = 0;
         print("Current SC: " + currSpecialCase + ", " + playerTurn);
 
         switch(currSpecialCase)
         {
+            case SpecialCase.None:
+                break;
             case SpecialCase.Ablaze:
                 break;
             case SpecialCase.Blind://done (not tested)
@@ -977,6 +975,7 @@ public class CombatManager : MonoBehaviour {
                         if (playerTurn)
                         {
                             this.GetComponent<StruggleManager_C>().BeginStruggle_Player();
+                            return false;
                         }
                     }
                 }
@@ -1037,7 +1036,6 @@ public class CombatManager : MonoBehaviour {
             case SpecialCase.ShadowClone:
                 break;
             case SpecialCase.StunFoe://done
-                delay = 1.0f;
 
                 if (playerTurn)
                 {
@@ -1057,7 +1055,7 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        return delay;
+        return true;
     }
 
     /// Helper Functions

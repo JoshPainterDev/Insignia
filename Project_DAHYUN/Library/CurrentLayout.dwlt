@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 43
     width: 1920
     height: 997
@@ -106,10 +106,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 683, y: 492}
+  m_MinSize: {x: 681, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 48
+  controlID: 11
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,10 +130,10 @@ MonoBehaviour:
     y: 0
     width: 1531
     height: 947
-  m_MinSize: {x: 406, y: 492}
+  m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 49
+  controlID: 12
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,10 +154,10 @@ MonoBehaviour:
     y: 0
     width: 1531
     height: 543
-  m_MinSize: {x: 406, y: 221}
-  m_MaxSize: {x: 8006, y: 4021}
+  m_MinSize: {x: 404, y: 221}
+  m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 50
+  controlID: 13
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,8 +176,8 @@ MonoBehaviour:
     y: 0
     width: 474
     height: 543
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1533
+    x: -387
     y: 92
     width: 387
     height: 926
@@ -317,15 +317,15 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 92
     width: 472
     height: 522
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5c050000
+    m_SelectedIDs: 863b0000
     m_LastClickedID: 0
-    m_ExpandedIDs: 68f8f8ff2aadffff00000000aa6f000004700000
+    m_ExpandedIDs: 72bbffffe0fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -344,7 +344,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
   m_ExpandedScenes:
-  - TurnCombat_Scene
+  - CharacterSelect_Scene
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 476
+    x: -1444
     y: 92
     width: 1053
     height: 522
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 476
+    x: -1444
     y: 92
     width: 1053
     height: 522
@@ -707,12 +707,12 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 0
+    x: -1920
     y: 635
     width: 1529
     height: 383
   m_SearchFilter:
-    m_NameFilter: enemy
+    m_NameFilter: char
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -722,19 +722,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/EnemyPrefabs
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/EnemyPrefabs
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: J:\ProjectDAHYUN\Project_DAHYUN
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 240}
+    scrollPos: {x: 0, y: 95}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000405d0000a45e0000e85e0000fc5e0000c65f00008660000088600000186200002a6200004c6200006262000078630000ca630000fe6300005e640000a6640000f86500003a660000dc660000f466000026680000cc6800002c690000bc690000c06900000c6a0000346a0000266b0000e46d00006a7100006c71000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000cc250000fe2700008a280000a8280000f22900004a2b00004c2b0000042e0000222e0000522e0000722e00002e300000a030000000310000b83100001a32000064340000d8340000f23500001a3600001838000040390000f0390000e83a0000ee3a00006e3b0000b43b0000383d0000cc410000084b00000a4b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -762,7 +762,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000405d0000a45e0000e85e0000fc5e0000c65f00008660000088600000186200002a6200004c6200006262000078630000ca630000fe6300005e640000a6640000f86500003a660000dc660000f466000026680000cc6800002c690000bc690000c06900000c6a0000346a0000266b0000e46d00006a7100006c710000
+    m_ExpandedIDs: 00000000cc250000fe2700008a280000a8280000f22900004a2b00004c2b0000042e0000222e0000522e0000722e00002e300000a030000000310000b83100001a32000064340000d8340000f23500001a3600001838000040390000f0390000e83a0000ee3a00006e3b0000b43b0000383d0000cc410000084b00000a4b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
