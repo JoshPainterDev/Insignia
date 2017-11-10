@@ -208,6 +208,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
                             equipInfo.imgSourceName = prefixTorso + "\\Novice_Armor\\Player_Torso_NoviceTorso_AnimController";
+                            equipInfo.hideUnderLayer = true;
                             break;
                         case 1:
                             equipInfo.Name = "Test Helmet";

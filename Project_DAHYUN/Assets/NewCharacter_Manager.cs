@@ -17,16 +17,72 @@ public class NewCharacter_Manager : MonoBehaviour {
     public GameObject textField;
     public GameObject blackSq;
 
-    private PlayerClass currentClass = PlayerClass.Knight;
+    public GameObject skinPanel;
+    public GameObject auraPanel;
 
-	// Use this for initialization
-	void Start ()
+    public GameObject skinColor;
+    public GameObject auraColor;
+
+    private PlayerClass currentClass = PlayerClass.Knight;
+    private bool skinColorActive = false;
+    private bool auraColorActive = false;
+
+    // Use this for initialization
+    void Start ()
     {
         if (GameController.controller.charClasses.Length == 0)
             GameController.controller.charClasses = new PlayerClass[6];
 
         UseDefaultArmor(1);
 	}
+
+    public void toggleSkinColor()
+    {
+        if (skinColorActive)
+        {
+            skinColorActive = false;
+            skinPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            skinColorActive = true;
+            skinPanel.gameObject.SetActive(true);
+            auraColorActive = false;
+            auraPanel.gameObject.SetActive(false);
+        }
+    }
+
+    public void toggleAuraColor()
+    {
+        if (auraColorActive)
+        {
+            auraColorActive = false;
+            auraPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            auraColorActive = true;
+            auraPanel.gameObject.SetActive(true);
+            skinColorActive = false;
+            skinPanel.gameObject.SetActive(false);
+        }
+    }
+
+    public void changeSkinColor(GameObject image)
+    {
+        Color color = image.GetComponent<Image>().color;
+        GameController.controller.setPlayerSkinColor(color);
+        skinColor.GetComponent<Image>().color = color;
+        playerMannequin.GetComponent<AnimationController>().setSkinColor(color);
+    }
+
+    public void changeAuraColor(GameObject image)
+    {
+        Color color = image.GetComponent<Image>().color;
+        GameController.controller.setPlayerColorPreference(color);
+        auraColor.GetComponent<Image>().color = color;
+        playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
+    }
 
     void UseDefaultArmor(int classNum)
     {
@@ -45,6 +101,8 @@ public class NewCharacter_Manager : MonoBehaviour {
                 break;
         }
 
+        GameController.controller.playerEquippedIDs[14] = 28;
+        GameController.controller.playerEquippedIDs[15] = 2;
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
     }
 
@@ -72,8 +130,6 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             SetInitialStats(currentClass);
 
-            GameController.controller.setPlayerColorPreference(Color.yellow);
-            GameController.controller.setPlayerSkinColor(Color.white);
             GameController.controller.Save(charName);
 
             ++GameController.controller.numChars;

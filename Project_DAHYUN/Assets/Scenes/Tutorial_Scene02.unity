@@ -1963,6 +1963,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -1980,6 +1981,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -1997,6 +1999,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -2014,6 +2017,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -2221,6 +2225,7 @@ MonoBehaviour:
   MODERATE_EXP: 50
   THICC_EXP: 100
   Steve_Prefab: {fileID: 0}
+  Dummy_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -4248,11 +4253,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4099147528883130, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4099147528883130, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4099147528883130, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4859,6 +4864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LIMIT_BREAK_THRESH: 0.2
+  VULNERABLE_REDUCTION: 0.2
+  BLINDED_REDUCTION: 66.6
   hasTutorial: 1
   canvas: {fileID: 889873490}
   playerMannequin: {fileID: 119668991}
@@ -4878,6 +4885,9 @@ MonoBehaviour:
   playerAttackBoost: 0
   playerDefenseBoost: 0
   playerSpeedBoost: 0
+  playerStunned: 0
+  playerVulernable: 0
+  playerBlinded: 0
   canLimitBreak: 1
   playerLimitBreak:
     name: 6
@@ -4901,6 +4911,9 @@ MonoBehaviour:
   enemyAttackBoost: 0
   enemyDefenseBoost: 0
   enemySpeedBoost: 0
+  enemyStunned: 0
+  enemyVulernable: 0
+  enemyBlinded: 0
   strikeAnimDuration: 5
   strikePosX: 300
   strikeMod: 
@@ -4928,6 +4941,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -4945,6 +4959,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -4962,6 +4977,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -4979,6 +4995,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -5012,6 +5029,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMannequin: {fileID: 119668991}
   enemyMannequin: {fileID: 666657974}
+  lightningBlue_FX: {fileID: 0}
+  lightningYellow_FX: {fileID: 0}
+  lightningStatic_FX: {fileID: 0}
+  lightningYellowBurst_FX: {fileID: 0}
+  lightningBigBurst_FX: {fileID: 0}
   outrage_FX: {fileID: 1862190314031148, guid: adfdd95e327b2d14fbb061cb391d2373, type: 2}
   solarFlare_FX: {fileID: 1862190314031148, guid: a99e0ddf06d49314d8917d2632c0a566,
     type: 2}
@@ -5050,9 +5072,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMannequin: {fileID: 119668991}
   enemyMannequin: {fileID: 666657974}
+  combatManager: {fileID: 0}
   strikeAnimDuration: 2
   standardStrikeHit_FX: {fileID: 1876573840352192, guid: f0383814a4e8b3b43912bb289ed00e72,
     type: 2}
+  standardStrikeMiss_FX: {fileID: 0}
   shadowStrike_FX: {fileID: 1862190314031148, guid: 1d7b14b8fd5d03c4db5cf79df4440aa4,
     type: 2}
   seratedStrike_FX: {fileID: 1862190314031148, guid: b3ea50e27d080094a8e29bcfa685e6bf,
@@ -5083,6 +5107,7 @@ MonoBehaviour:
   strugglePress04: {fileID: 8300000, guid: 294515b69c8fea3499cf9b307039b951, type: 3}
   strugglePress05: {fileID: 8300000, guid: 8bd0fbaf7405b5444bbad9874cb706cf, type: 3}
   strugglePress06: {fileID: 8300000, guid: b8babd1bdfb5ba84a89dc0e3ad7d5a60, type: 3}
+  stunned_SFX: {fileID: 0}
   shadowVanish: {fileID: 8300000, guid: 851e21dc1a030ed4ca91264d03f0fe6d, type: 3}
   finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
   HIGH_VOLUME: 1
@@ -5223,6 +5248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMannequin: {fileID: 666657974}
   playerMannequin: {fileID: 119668991}
+  standardStrikeMiss_FX: {fileID: 0}
   blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
   blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
   blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
@@ -5240,6 +5266,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMannequinn: {fileID: 666657974}
   playerMannequin: {fileID: 119668991}
+  lightningBlue_FX: {fileID: 0}
+  lightningYellow_FX: {fileID: 0}
+  lightningStatic_FX: {fileID: 0}
+  lightningYellowBurst_FX: {fileID: 0}
+  lightningBigBurst_FX: {fileID: 0}
   outrage_FX: {fileID: 1862190314031148, guid: adfdd95e327b2d14fbb061cb391d2373, type: 2}
   solarFlare_FX: {fileID: 1862190314031148, guid: a99e0ddf06d49314d8917d2632c0a566,
     type: 2}

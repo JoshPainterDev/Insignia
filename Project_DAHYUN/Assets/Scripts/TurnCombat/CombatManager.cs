@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour {
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
     public bool hasTutorial = false;
+    public bool chaosPlayerAI = false;
     public Canvas canvas;
     public GameObject playerMannequin;
     public GameObject enemyMannequin;
@@ -351,6 +352,32 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         ShowMainButtons();
         EnableMainButtons();
+
+        if(chaosPlayerAI)
+        {
+            int rand = Random.Range(0, 4);
+
+            switch(rand)
+            {
+                case 0:
+                    AbilitySelected(0);
+                    break;
+                case 1:
+                    AbilitySelected(1);
+                    break;
+                case 2:
+                    AbilitySelected(2);
+                    break;
+                case 3:
+                    currentState = State.Done;
+                    AbilitySelected(3);
+                    break;
+                case 4:
+                    currentState = State.Done;
+                    StartCoroutine(UseStrike());
+                    break;
+            }
+        }
     }
 
     IEnumerator ShowMainMenuOptions()

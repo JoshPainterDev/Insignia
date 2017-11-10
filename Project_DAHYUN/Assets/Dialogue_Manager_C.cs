@@ -13,6 +13,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     public GameObject rightImage;
     public GameObject leftImage;
 
+    private float fadeSpeed = 4.0f;
     private bool isLeftVisibile = false;
     private bool isRightVisibile = false;
     private Vector3 rightOrigPos;
@@ -73,17 +74,17 @@ public class Dialogue_Manager_C : MonoBehaviour
                 isLeftVisibile = true;
                 leftImage.GetComponent<Image>().enabled = true;
                 leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
-                leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, 2f);
+                leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
                 leftSpeaker.GetComponent<Text>().text = speaker;
-                leftSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, 2f);
-                leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos, leftOrigPos + new Vector3(25, 0, 0), 1f);
+                leftSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
+                leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos, leftOrigPos + new Vector3(25, 0, 0), fadeSpeed);
 
                 if (isRightVisibile)
                 {
                     isRightVisibile = false;
-                    rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1,1,1,0), 2f);
-                    rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 2f);
-                    rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos - new Vector3(25, 0, 0), rightOrigPos, 2f);
+                    rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1,1,1,0), fadeSpeed);
+                    rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                    rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos - new Vector3(25, 0, 0), rightOrigPos, fadeSpeed);
                 }
             }
             else
@@ -91,17 +92,17 @@ public class Dialogue_Manager_C : MonoBehaviour
                 isRightVisibile = true;
                 rightImage.GetComponent<Image>().enabled = true;
                 rightImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
-                rightImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, 2f);
+                rightImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
                 rightSpeaker.GetComponent<Text>().text = speaker;
-                rightSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, 2f);
-                rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos, rightOrigPos - new Vector3(25, 0, 0), 1f);
+                rightSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
+                rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos, rightOrigPos - new Vector3(25, 0, 0), fadeSpeed);
 
                 if (isLeftVisibile)
                 {
                     isLeftVisibile = false;
-                    leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 5f);
-                    leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 2f);
-                    leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos + new Vector3(25, 0, 0), leftOrigPos, 2f);
+                    leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                    leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                    leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos + new Vector3(25, 0, 0), leftOrigPos, fadeSpeed);
                 }
             }
         }
@@ -124,15 +125,15 @@ public class Dialogue_Manager_C : MonoBehaviour
 
             if(isLeftSpeaker)
             {
-                leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 2f);
-                leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 2f);
-                leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftImage.transform.position, leftOrigPos, 2f);
+                leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftImage.transform.position, leftOrigPos, fadeSpeed);
             }
             else
             {
-                rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 2f);
-                rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), 2f);
-                rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightSpeaker.transform.position, rightOrigPos, 2f);
+                rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+                rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightSpeaker.transform.position, rightOrigPos, fadeSpeed);
             }
 
             yield return new WaitForSeconds(1.5f);

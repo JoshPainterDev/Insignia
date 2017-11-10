@@ -397,11 +397,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 73.7
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -57
+      value: -35.3
       objectReference: {fileID: 0}
     - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2313,11 +2313,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.300003
+      value: -187
       objectReference: {fileID: 0}
     - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -57
+      value: -35.300003
       objectReference: {fileID: 0}
     - target: {fileID: 4418611324275204, guid: 0fb79b3741cb1074b9d64585018a18fb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3284,11 +3284,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4099147528883130, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 600.6
+      value: 447
       objectReference: {fileID: 0}
     - target: {fileID: 4099147528883130, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -72
+      value: -46
       objectReference: {fileID: 0}
     - target: {fileID: 4099147528883130, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3750,6 +3750,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3767,6 +3768,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3784,6 +3786,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3801,6 +3804,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3866,6 +3870,7 @@ MonoBehaviour:
   MODERATE_EXP: 50
   THICC_EXP: 100
   Steve_Prefab: {fileID: 0}
+  Dummy_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,

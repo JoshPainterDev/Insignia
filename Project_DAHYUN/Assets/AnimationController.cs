@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    public bool showAura = false;
+
     public void Start()
     {
         LoadCharacter();
@@ -72,14 +74,22 @@ public class AnimationController : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         if (!info.hideUnderLayer)
             this.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
-        
+        else
+            this.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = false;
+
         //torso
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[2], GameController.controller.playerEquippedIDs[3]);
         this.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        //print(info.Name);
         if (!info.hideUnderLayer)
         {
             this.transform.GetChild(9).GetComponent<SpriteRenderer>().enabled = true;
             this.transform.GetChild(11).GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            this.transform.GetChild(9).GetComponent<SpriteRenderer>().enabled = false;
+            this.transform.GetChild(11).GetComponent<SpriteRenderer>().enabled = false;
         }
 
         string newStr = info.imgSourceName;
@@ -121,14 +131,35 @@ public class AnimationController : MonoBehaviour
         this.transform.GetChild(4).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         if (!info.hideUnderLayer)
             this.transform.GetChild(10).GetComponent<SpriteRenderer>().enabled = true;
+        else
+            this.transform.GetChild(10).GetComponent<SpriteRenderer>().enabled = false;
         //shoes
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[10], GameController.controller.playerEquippedIDs[11]);
         this.transform.GetChild(5).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         //weapon
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[12], GameController.controller.playerEquippedIDs[13]);
         this.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-        //Aura
-        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
-        this.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        
+        if(showAura)
+        {
+            //Aura
+            info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
+            this.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        }
+
+        setSkinColor(GameController.controller.getPlayerSkinColor()); // set skin color
+    }
+
+    public void setSkinColor(Color color)
+    {
+        this.transform.GetChild(8).GetComponent<SpriteRenderer>().color = color;
+        this.transform.GetChild(9).GetComponent<SpriteRenderer>().color = color;
+        this.transform.GetChild(10).GetComponent<SpriteRenderer>().color = color;
+        this.transform.GetChild(11).GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void seteAuraColor(Color color)
+    {
+        this.transform.GetChild(12).GetComponent<SpriteRenderer>().color = color;
     }
 }

@@ -75,8 +75,6 @@ public class GameController : MonoBehaviour {
                 charNames[0] = "Skip";
                 numChars = 0;
                 charClasses[0] = PlayerClass.none;
-                //sr.WriteLine ("This is my file.");
-                //sr.Close();
                 SaveCharacters();
             }
         }

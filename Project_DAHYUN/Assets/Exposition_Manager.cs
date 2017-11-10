@@ -275,7 +275,7 @@ public class Exposition_Manager : MonoBehaviour
                         script[0] = "As he says then!";
                         speaker[1] = "Not Steve";
                         leftspeaker[1] = false;
-                        script[1] = "The beasts will make short work of you anyway...";
+                        script[1] = "Let's see what you can do, Nova...";
 
                         totalLines = 2;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -336,7 +336,7 @@ public class Exposition_Manager : MonoBehaviour
         speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(300, 0, 0));
         yield return new WaitForSeconds(1f);
         sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
-        yield return new WaitForSeconds(5.5f);
+        yield return new WaitForSeconds(3f);
         LoadNextLv();
     }
 
