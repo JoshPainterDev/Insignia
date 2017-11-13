@@ -14,7 +14,6 @@ public class Character_Select_Manager : MonoBehaviour
     public GameObject deleteButton;
     public GameObject playButton;
     public GameObject nameplate;
-
     public Color oldButtonColor;
     public Color newButtonColor;
 
@@ -22,6 +21,7 @@ public class Character_Select_Manager : MonoBehaviour
 
     private int selectedChar = 0;
     private int charToDelete = 0;
+    private bool auraColorActive = false;
 
     private void Awake()
     {

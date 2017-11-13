@@ -88,6 +88,7 @@ public class Exposition_Manager : MonoBehaviour
     public IEnumerator LoadCombatScene(int level, int encounterNum)
     {
         GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(level, encounterNum);
+        GameController.controller.currentEncounter.returnOnSuccessScene = "Exposition_Scene07";
         print(GameController.controller.currentEncounter.backgroundName);
         yield return new WaitForSeconds(1.15f);
         blackSq.GetComponent<FadeScript>().FadeIn(10f);

@@ -67,6 +67,16 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void PlayDeathAnim()
+    {
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = 5;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", -1);
+        }
+    }
+
     public void LoadCharacter()
     {
         //head

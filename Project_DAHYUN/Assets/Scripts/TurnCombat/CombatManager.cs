@@ -1262,6 +1262,7 @@ public class CombatManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         this.playerHealthBar.GetComponent<HealthScript>().Death();
+        playerMannequin.GetComponent<AnimationController>().PlayDeathAnim();
         yield return new WaitForSeconds(3.5f);
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);

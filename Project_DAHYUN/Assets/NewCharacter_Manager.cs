@@ -182,7 +182,7 @@ public class NewCharacter_Manager : MonoBehaviour {
 
     private void LoadTutorial()
     {
-        SceneManager.LoadScene("Exposition_Scene06");
+        SceneManager.LoadScene("Exposition_Scene05");
     }
 
     private bool nameChecksOut(string charName)

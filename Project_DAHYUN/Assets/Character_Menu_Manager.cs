@@ -14,6 +14,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject equipmentSelectPopUpPrefab;
     private GameObject equipmentSelectPopUp;
     public GameObject playerLv_TextObj;
+    public GameObject inputDetector;
+    public GameObject auraPanel;
+    public GameObject auraColor;
+    private bool auraColorActive = false;
 
     public GameObject canvas;
     public GameObject camera;
@@ -135,6 +139,37 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         playerLv_TextObj.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
         LoadPersona();
+    }
+
+    public void disableAuraPanel()
+    {
+        auraColorActive = false;
+        auraPanel.gameObject.SetActive(false);
+        inputDetector.gameObject.SetActive(false);
+    }
+
+    public void toggleAuraColor()
+    {
+        if (auraColorActive)
+        {
+            auraColorActive = false;
+            auraPanel.gameObject.SetActive(false);
+            inputDetector.gameObject.SetActive(false);
+        }
+        else
+        {
+            auraColorActive = true;
+            auraPanel.gameObject.SetActive(true);
+            inputDetector.gameObject.SetActive(true);
+        }
+    }
+
+    public void setAuraColor(GameObject obj)
+    {
+        Color color = obj.GetComponent<Image>().color;
+        GameController.controller.setPlayerColorPreference(color);
+        auraColor.GetComponent<Image>().color = color;
+        playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
     }
 
     public void UpdateStats()

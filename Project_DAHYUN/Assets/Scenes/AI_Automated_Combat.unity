@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061eeca7d18a26f47b17cb47accbfb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAura: 0
 --- !u!1 &209706809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,6 +4703,7 @@ MonoBehaviour:
   VULNERABLE_REDUCTION: 0.2
   BLINDED_REDUCTION: 66.6
   hasTutorial: 0
+  chaosPlayerAI: 0
   canvas: {fileID: 889873490}
   playerMannequin: {fileID: 119668991}
   enemyMannequin: {fileID: 666657974}

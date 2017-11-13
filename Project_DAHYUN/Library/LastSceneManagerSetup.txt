@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/AI_Automated_Combat.unity
+- path: Assets/Scenes/Exposition_Scene06.unity
   isLoaded: 1
   isActive: 1
