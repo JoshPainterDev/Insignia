@@ -12,6 +12,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     public GameObject leftSpeaker;
     public GameObject rightImage;
     public GameObject leftImage;
+    public GameObject tap2Continue;
 
     private float fadeSpeed = 4.0f;
     private bool isLeftVisibile = false;
@@ -24,6 +25,18 @@ public class Dialogue_Manager_C : MonoBehaviour
     private int counter;
     private GameObject playerImage;
 
+    //NEW SHIT
+    private int dCurrentLine = 0;
+    private int dTotalLines = 0;
+    private string[] dScript;
+    private string[] dSpeaker;
+    private bool[] dIsLeftSpeaker;
+    [HideInInspector]
+    public bool typing = false;
+    private IEnumerator typeRoutine;
+    private int prevLineNum = -1;
+    private bool dDialogueCompleted = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -32,83 +45,72 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer)
     {
-        float waitTime = 0;
-        float readTime = 1f;
-        total = totalLines;
+        dDialogueCompleted = false;
+        dCurrentLine = 0;
+        dTotalLines = totalLines;
+        dScript = script;
+        dSpeaker = speaker;
+        dIsLeftSpeaker = isLeftSpeaker;
+
         previousSpeaker = "";
         dialogueBox.GetComponent<Text>().text = "";
-
-
         rightOrigPos = rightSpeaker.transform.position;
         leftOrigPos = leftSpeaker.transform.position;
 
-        if (usesPlayer)
-        {
-            playerImage = Instantiate(playerCopy, Vector3.zero, Quaternion.identity) as GameObject;
-            playerImage.transform.localScale = new Vector3(1,1,1);
-        }
-
-        for (int i = 0; i < totalLines; ++i)
-        {
-            if (i > 0)
-                waitTime += (script[i - 1].Length * 0.095f) + (i * readTime);
-            else
-                waitTime = 1;
-            // the previous waittime + length of typing + a reading buffer
-            StartCoroutine(LoadNextLine(waitTime, script[i], speaker[i], isLeftSpeaker[i], image[i]));
-        }
+        DialogueHandler();
     }
 
-    public IEnumerator LoadNextLine(float waitTime, string line, string speaker, bool isLeftSpeaker, string image)
+    public void DialogueHandler()
     {
-        //wait a long time to start the next dialogue
-        yield return new WaitForSeconds(waitTime);
+        print("line loaded: " + dCurrentLine);
+        print("dSpeaker size: " + dSpeaker.Length);
+        string speaker = dSpeaker[dCurrentLine];
+        string line = dScript[dCurrentLine];
+        bool isLeftSpeaker = dIsLeftSpeaker[dCurrentLine];
 
+        //check for new speaker
         if (previousSpeaker != speaker)
         {
             previousSpeaker = speaker;
-            string imgSource = LookUpSpeakerIcon(speaker);
 
             if (isLeftSpeaker)
             {
-                isLeftVisibile = true;
-                leftImage.GetComponent<Image>().enabled = true;
-                leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
-                leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
-                leftSpeaker.GetComponent<Text>().text = speaker;
-                leftSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
-                leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos, leftOrigPos + new Vector3(25, 0, 0), fadeSpeed);
+                SetLeftVisibile(true, dCurrentLine);
 
                 if (isRightVisibile)
-                {
-                    isRightVisibile = false;
-                    rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1,1,1,0), fadeSpeed);
-                    rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                    rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos - new Vector3(25, 0, 0), rightOrigPos, fadeSpeed);
-                }
+                    SetRightVisibile(false, dCurrentLine);
             }
             else
             {
-                isRightVisibile = true;
-                rightImage.GetComponent<Image>().enabled = true;
-                rightImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
-                rightImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
-                rightSpeaker.GetComponent<Text>().text = speaker;
-                rightSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
-                rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos, rightOrigPos - new Vector3(25, 0, 0), fadeSpeed);
+                SetRightVisibile(true, dCurrentLine);
 
                 if (isLeftVisibile)
-                {
-                    isLeftVisibile = false;
-                    leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                    leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                    leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos + new Vector3(25, 0, 0), leftOrigPos, fadeSpeed);
-                }
+                    SetLeftVisibile(false, dCurrentLine);
             }
         }
 
         dialogueBox.GetComponent<Text>().text = "";
 
+        if(!typing)
+        {
+            typing = true;
+            typeRoutine = TypeLine(line);
+            StartCoroutine(typeRoutine);
+        }
+        else
+            StartCoroutine(FastForward(line));
+    }
+
+    IEnumerator FastForward(string line)
+    {
+        StopCoroutine(typeRoutine);
+        yield return new WaitForSeconds(0.01f);
+        dialogueBox.GetComponent<Text>().text = line;
+        StartCoroutine(DoneTyping(dCurrentLine));
+    }
+
+    IEnumerator TypeLine(string line)
+    {
         for (int i = 0; i < line.Length; ++i)
         {
             yield return new WaitForSeconds(0.01f);
@@ -116,29 +118,83 @@ public class Dialogue_Manager_C : MonoBehaviour
             dialogueBox.GetComponent<Text>().text = dialogueBox.GetComponent<Text>().text + line[i].ToString();
         }
 
-        ++counter;
+        StartCoroutine(DoneTyping(dCurrentLine));
+    }
 
-        if (counter >= total)
+    IEnumerator DoneTyping(int lineNum)
+    {
+        if (lineNum > prevLineNum)
         {
-            counter = 0;
-            yield return new WaitForSeconds(1.5f);
+            prevLineNum = lineNum;
 
-            if(isLeftSpeaker)
+            dCurrentLine = lineNum + 1; // finished a line in the script
+
+            // if were done with the script
+            if (dCurrentLine >= dTotalLines)
             {
-                leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftImage.transform.position, leftOrigPos, fadeSpeed);
-            }
-            else
-            {
-                rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
-                rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightSpeaker.transform.position, rightOrigPos, fadeSpeed);
+                if (dIsLeftSpeaker[dCurrentLine])
+                    SetLeftVisibile(false, dCurrentLine);
+                else
+                    SetRightVisibile(false, dCurrentLine);
+
+                yield return new WaitForSeconds(1f);
+                dCurrentLine = 0;
+                dDialogueCompleted = true;
+                expositionManager.EndDialogue();
             }
 
-            yield return new WaitForSeconds(1.5f);
-            expositionManager.EndDialogue();
-        }   
+            typing = false;
+            expositionManager.NextActon();
+        }
+    }
+
+    public void SetRightVisibile(bool visible, int lineNum)
+    {
+        string speaker = dSpeaker[lineNum];
+        string imgSource = LookUpSpeakerIcon(speaker);
+
+        //show the right speaker
+        if (visible)
+        {
+            isRightVisibile = true;
+            rightImage.GetComponent<Image>().enabled = true;
+            rightImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+            rightImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
+            rightSpeaker.GetComponent<Text>().text = speaker;
+            rightSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
+            rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos, rightOrigPos - new Vector3(25, 0, 0), fadeSpeed);
+        }
+        else // hide right speaker
+        {
+            isRightVisibile = false;
+            rightImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+            rightSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+            rightSpeaker.GetComponent<LerpScript>().LerpToPos(rightOrigPos - new Vector3(25, 0, 0), rightOrigPos, fadeSpeed);
+        }
+    }
+
+    public void SetLeftVisibile(bool visibile, int lineNum)
+    {
+        string speaker = dSpeaker[lineNum];
+        string imgSource = LookUpSpeakerIcon(speaker);
+
+        if (visibile)
+        {
+            isLeftVisibile = true;
+            leftImage.GetComponent<Image>().enabled = true;
+            leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+            leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
+            leftSpeaker.GetComponent<Text>().text = speaker;
+            leftSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
+            leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos, leftOrigPos + new Vector3(25, 0, 0), fadeSpeed);
+        }
+        else
+        {
+            isLeftVisibile = false;
+            leftImage.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+            leftSpeaker.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1, 1, 1, 0), fadeSpeed);
+            leftSpeaker.GetComponent<LerpScript>().LerpToPos(leftOrigPos + new Vector3(25, 0, 0), leftOrigPos, fadeSpeed);
+        }
     }
 
     public string LookUpSpeakerIcon(string speaker)
@@ -157,6 +213,9 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "";
                 break;
             case "Slade":
+                iconString = "";
+                break;
+            case "Not Steve":
                 iconString = "";
                 break;
             case "Ayo":

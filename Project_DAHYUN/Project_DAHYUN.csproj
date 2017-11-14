@@ -100,6 +100,7 @@
     <Compile Include="Assets\ExperienceScript.cs" />
     <Compile Include="Assets\Exposition_Manager.cs" />
     <Compile Include="Assets\FadeScript.cs" />
+    <Compile Include="Assets\FadingScript.cs" />
     <Compile Include="Assets\GhostSprites2D\Scripts\GhostSprites\GhostSprites.cs" />
     <Compile Include="Assets\MainMenuManager.cs" />
     <Compile Include="Assets\Music_Controller.cs" />

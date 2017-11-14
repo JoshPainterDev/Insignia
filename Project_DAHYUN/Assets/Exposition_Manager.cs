@@ -8,6 +8,8 @@ public class Exposition_Manager : MonoBehaviour
 {
     public int sceneNumber;
     public GameObject playerMannequin;
+    [HideInInspector]
+    public bool ready4Input = false;
 
     public GameObject canvas;
     public GameObject camera;
@@ -25,6 +27,10 @@ public class Exposition_Manager : MonoBehaviour
     private Vector3 panelDownPos;
     private Color panelOrigColor;
     private string nextLevel;
+    private Dialogue_Manager_C dialogueManager;
+
+    private bool actionsCompleted = false;
+    private int actionCounter = 0;
 
     string playerName;
     EnemyEncounter encounter;
@@ -42,6 +48,7 @@ public class Exposition_Manager : MonoBehaviour
         panelUpPos = panelDownPos + new Vector3(0, 100, 0);
         panelOrigColor = dialoguePanel.GetComponent<Image>().color;
         dialoguePanel.GetComponent<Image>().color = Color.clear;
+        dialogueManager = this.GetComponent<Dialogue_Manager_C>();
 
         if (encounter == null)
         {
@@ -58,6 +65,35 @@ public class Exposition_Manager : MonoBehaviour
         {
             SceneManager.LoadScene("TurnCombat_Scene");
         }
+    }
+
+    public void InputDetected()
+    {
+        if(ready4Input)
+        {
+            ready4Input = false;
+            StartCoroutine(handleInput());
+        }
+    }
+
+    IEnumerator handleInput()
+    {
+        if (!dialogueManager.typing)
+        {
+            dialogueManager.DialogueHandler();
+
+        }
+            
+
+        yield return new WaitForSeconds(0.25f);
+        ready4Input = true;
+    }
+
+    public void NextActon()
+    {
+        ++actionCounter;
+
+        StartCoroutine(Cutscene7(actionCounter));
     }
 
     public void BeginCutscene(int encounterNum)
@@ -81,6 +117,9 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 6:
                 StartCoroutine(Cutscene6());
+                break;
+            case 7:
+                StartCoroutine(Cutscene7(0));
                 break;
         }
     }
@@ -106,6 +145,7 @@ public class Exposition_Manager : MonoBehaviour
 
     public void EndDialogue()
     {
+        ready4Input = false;
         dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
     }
@@ -135,6 +175,8 @@ public class Exposition_Manager : MonoBehaviour
         string[] speaker = new string[20];
         bool[] leftspeaker = new bool[20];
         string[] script = new string[20];
+
+        actionCounter = 0;
 
         dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelDownPos, panelUpPos, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(Color.clear, panelOrigColor, 2f);
@@ -299,7 +341,69 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                 }
                 break;
+            case 7:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Not Steve";
+                        leftspeaker[0] = false;
+                        script[0] = "Listen you brat! I've had enough of this...";
+
+                        speaker[1] = "???";
+                        leftspeaker[1] = false;
+                        script[1] = "Slade! Not now! The enemy must not find us!";
+
+                        speaker[2] = "???";
+                        leftspeaker[2] = false;
+                        script[2] = "Enemy forces are enclosing on your position...";
+
+                        speaker[3] = "Slade";
+                        leftspeaker[3] = false;
+                        script[3] = "I guess it's your lucky day! Nova!";
+
+                        speaker[4] = "Slade";
+                        leftspeaker[4] = false;
+                        script[4] = "I look forward to seeing you again...";
+
+                        totalLines = 5;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
         }
+
+        ready4Input = true;
+    }
+
+    IEnumerator Cutscene7(int action)
+    {
+        switch(action)
+        {
+            case 0:
+                // Set next Level //
+                nextLevel = "MainMenu_Scene";
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                yield return new WaitForSeconds(1f);
+                StartCoroutine(NewDialogue(7, 1));
+                break;
+            case 1:
+                yield return new WaitForSeconds(1f);
+                speaker02.SetActive(true);
+                speaker03.SetActive(true);
+                speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(90, 0, 0), 2.5f);
+                speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(90, 0, 0), 2.5f);
+                break;
+            case 5:
+                speaker01.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.grey, Color.clear, 2.5f);
+                speaker02.SetActive(false);
+                speaker03.SetActive(false);
+                speaker04.GetComponent<ParticleSystem>().Play();
+                yield return new WaitForSeconds(2.5f);
+                LoadNextLv();
+                actionsCompleted = true; //actions are completed
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene6()
