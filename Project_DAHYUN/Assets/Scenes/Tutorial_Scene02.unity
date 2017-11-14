@@ -6664,7 +6664,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Striking a foe with low health allows you to Execute them
+  m_Text: Striking a foe with low health lets you Press the Attack
 --- !u!222 &2052662620
 CanvasRenderer:
   m_ObjectHideFlags: 0

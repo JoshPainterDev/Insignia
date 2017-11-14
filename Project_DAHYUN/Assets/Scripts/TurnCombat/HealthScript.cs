@@ -124,10 +124,13 @@ public class HealthScript : MonoBehaviour
     {
         if(playerHealth)
         {
+            Color skinC = GameController.controller.getPlayerSkinColor();
             foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
             {
                 sprite.color = fadeColor;
             }
+
+            character.GetComponent<AnimationController>().setSkinColor(fadeColor);
 
             yield return new WaitForSeconds(0.1f);
 
@@ -136,6 +139,8 @@ public class HealthScript : MonoBehaviour
                 sprite.color = origColor;
             }
 
+            character.GetComponent<AnimationController>().setSkinColor(skinC);
+
             yield return new WaitForSeconds(0.1f);
 
             foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
@@ -143,12 +148,16 @@ public class HealthScript : MonoBehaviour
                 sprite.color = fadeColor;
             }
 
+            character.GetComponent<AnimationController>().setSkinColor(fadeColor);
+
             yield return new WaitForSeconds(0.1f);
 
             foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
             {
                 sprite.color = origColor;
             }
+
+            character.GetComponent<AnimationController>().setSkinColor(skinC);
         }
         else
         {

@@ -415,13 +415,12 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 StartCoroutine(NewDialogue(6, 1));
                 break;
-            case 1:
+            case 2:
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(50, 0, 0), 2);
                 yield return new WaitForSeconds(0.5f);
                 speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                 break;
-            case 2:
-                
+            case 3:
                 yield return new WaitForSeconds(2f);
                 StartCoroutine(LoadCombatScene(1, 0));
                 actionsCompleted = true; //actions are completed
@@ -434,7 +433,6 @@ public class Exposition_Manager : MonoBehaviour
         switch (action)
         {
             case 0:
-                print("case 0");
                 // Set next Level //
                 nextLevel = "Tutorial_Scene02";
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
@@ -442,21 +440,18 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(NewDialogue(5, 1));
                 break;
             case 4:
-                print("case 1");
                 yield return new WaitForSeconds(1f);
                 speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                 yield return new WaitForSeconds(0.5f);
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0));
                 break;
             case 6:
-                print("case 2");
                 yield return new WaitForSeconds(2f);
                 speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(300, 0, 0));
                 yield return new WaitForSeconds(1f);
                 sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
                 break;
             case 7:
-                print("case 3");
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 1.75f);
                 yield return new WaitForSeconds(1);
                 actionsCompleted = true; //actions are completed

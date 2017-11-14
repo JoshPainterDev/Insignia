@@ -166,8 +166,19 @@ public class AbilityManager_C : MonoBehaviour {
                 GameObject effectClone3 = (GameObject)Instantiate(smoke03_FX, initPlayerPos, transform.rotation);
                 effectClone3.GetComponent<SpriteRenderer>().color = Color.black;
                 effectClone3.transform.position += new Vector3(0, 30, 0);
+                int i = 0;
+                Color skinColor = GameController.controller.getPlayerSkinColor();
                 foreach (LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
-                    script.LerpToColor(Color.white, Color.clear, 5);
+                {
+                    if(i > 7 && i < 12)
+                    {
+                        script.LerpToColor(skinColor, Color.clear, 5);
+                    }
+                    else
+                        script.LerpToColor(Color.white, Color.clear, 5);
+
+                    ++i;
+                }
                 yield return new WaitForSeconds(0.5f);
                 combatManager.GetComponent<CombatAudio>().playFinalCut();
                 spawnPos = initPlayerPos + new Vector3(200, 20, 0);
@@ -177,8 +188,18 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(1.25f);
                 GameObject effectClone4 = (GameObject)Instantiate(blood04_FX, new Vector3(-320,145,0), transform.rotation);
                 yield return new WaitForSeconds(0.5f);
+                i = 0;
                 foreach (LerpScript script in playerMannequin.GetComponentsInChildren<LerpScript>())
-                    script.LerpToColor(Color.clear, Color.white, 5);
+                {
+                    if (i > 7 && i < 12)
+                    {
+                        script.LerpToColor(Color.clear, skinColor, 5);
+                    }
+                    else
+                        script.LerpToColor(Color.clear, Color.white, 5);
+
+                    ++i;
+                }
                 yield return new WaitForSeconds(0.25f);
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(0.85f);

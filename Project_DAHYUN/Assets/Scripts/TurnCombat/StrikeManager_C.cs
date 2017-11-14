@@ -32,7 +32,7 @@ public class StrikeManager_C : MonoBehaviour {
     void Start ()
     {
         initPlayerPos = playerMannequin.transform.position;
-        initEnemyPos = enemyMannequin.transform.GetChild(0).transform.GetChild(0).transform.position;
+        initEnemyPos = enemyMannequin.transform.position;
         combatManager = this.GetComponent<CombatManager>();
     }
 	

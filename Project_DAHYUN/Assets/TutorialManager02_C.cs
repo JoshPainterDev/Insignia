@@ -38,13 +38,13 @@ public class TutorialManager02_C : MonoBehaviour
         inputEnabled = false;
         ++tutorialState;
 
-        if(tutorialState < 3)
+        if(tutorialState < 2)
         {
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
             StartCoroutine(FakeStrike());
         }
-        else if (tutorialState == 3)
+        else if (tutorialState == 2)
         {
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
@@ -59,16 +59,16 @@ public class TutorialManager02_C : MonoBehaviour
         yield return new WaitForSeconds(1);
         if(tutorialState == 1)
         {
-            enemyHealth.GetComponent<HealthScript>().LerpHealth(1, 0.55f);
+            enemyHealth.GetComponent<HealthScript>().LerpHealth(1, 0.25f);
             yield return new WaitForSeconds(2);
             StartCoroutine(EnemyStrike());
         }
-        else if(tutorialState == 2)
-        {
-            enemyHealth.GetComponent<HealthScript>().LerpHealth(0.55f, 0.15f);
-            yield return new WaitForSeconds(2);
-            StartCoroutine(EnemyStrike());
-        }
+        //else if(tutorialState == 2)
+        //{
+        //    enemyHealth.GetComponent<HealthScript>().LerpHealth(0.55f, 0.15f);
+        //    yield return new WaitForSeconds(2);
+        //    StartCoroutine(EnemyStrike());
+        //}
     }
 
     IEnumerator EnemyStrike()
@@ -85,7 +85,7 @@ public class TutorialManager02_C : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         inputEnabled = true;
 
-        if(tutorialState == 2)
+        if(tutorialState == 1)
         {
             panel01.GetComponent<Image>().enabled = true;
             panel01.transform.GetChild(0).GetComponent<Text>().enabled = true;

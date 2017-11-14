@@ -141,7 +141,6 @@ public class CombatManager : MonoBehaviour {
             
 
         enemiesRemaining = encounter.totalEnemies;
-        encounter.returnOnSuccessScene = "AdventureSelect_Scene"; // remove this later 
 
         //REMOVE THIS LATER
         GameController.controller.Load(GameController.controller.charNames[1]);
