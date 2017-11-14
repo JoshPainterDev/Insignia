@@ -29,6 +29,7 @@ public class RewardManager_C : MonoBehaviour
         RewardToolsScript.tools.ClearReward();
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);
+        print(GameController.controller.currentEncounter.returnOnSuccessScene);
         SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
     }
 }

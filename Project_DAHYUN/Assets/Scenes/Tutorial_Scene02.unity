@@ -648,6 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061eeca7d18a26f47b17cb47accbfb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAura: 0
 --- !u!1 &209706809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &666774114
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2630,6 +2631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startOnAwake: 1
   speed: 1.5
+  delay: 0
   offset1: {x: 0, y: 3, z: 0}
   offset2: {x: 0, y: -3, z: 0}
 --- !u!114 &679343936
@@ -4867,6 +4869,7 @@ MonoBehaviour:
   VULNERABLE_REDUCTION: 0.2
   BLINDED_REDUCTION: 66.6
   hasTutorial: 1
+  chaosPlayerAI: 0
   canvas: {fileID: 889873490}
   playerMannequin: {fileID: 119668991}
   enemyMannequin: {fileID: 666657974}
@@ -5108,6 +5111,9 @@ MonoBehaviour:
   strugglePress05: {fileID: 8300000, guid: 8bd0fbaf7405b5444bbad9874cb706cf, type: 3}
   strugglePress06: {fileID: 8300000, guid: b8babd1bdfb5ba84a89dc0e3ad7d5a60, type: 3}
   stunned_SFX: {fileID: 0}
+  thunderCharge_SFX: {fileID: 0}
+  shoulder_Check_SFX: {fileID: 0}
+  outrage_SFX: {fileID: 0}
   shadowVanish: {fileID: 8300000, guid: 851e21dc1a030ed4ca91264d03f0fe6d, type: 3}
   finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
   HIGH_VOLUME: 1

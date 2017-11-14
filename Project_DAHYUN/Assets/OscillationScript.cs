@@ -7,6 +7,7 @@ public class OscillationScript : MonoBehaviour
 {
     public bool startOnAwake = true;
     public float speed = 1.0f;
+    public float delay = 0.0f;
     private bool active = false;
 
     public Vector3 offset1;
@@ -32,7 +33,7 @@ public class OscillationScript : MonoBehaviour
         if (active)
         {
             this.GetComponent<LerpScript>().LerpToPos(this.transform.position, offset1, speed);
-            yield return new WaitForSeconds(1 / speed);
+            yield return new WaitForSeconds((1 / speed) + delay);
             StartCoroutine(MoveToSecond());
         }
     }
@@ -42,7 +43,7 @@ public class OscillationScript : MonoBehaviour
         if (active)
         {
             this.GetComponent<LerpScript>().LerpToPos(this.transform.position, offset2, speed);
-            yield return new WaitForSeconds(1 / speed);
+            yield return new WaitForSeconds((1 / speed) + delay);
             StartCoroutine(MoveToFirst());
         }
     }

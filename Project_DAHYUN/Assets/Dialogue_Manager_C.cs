@@ -35,10 +35,11 @@ public class Dialogue_Manager_C : MonoBehaviour
     public bool typing = false;
     private IEnumerator typeRoutine;
     private int prevLineNum = -1;
-    private bool dDialogueCompleted = false;
+    [HideInInspector]
+    public bool dDialogueCompleted = false;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         expositionManager = this.GetComponent<Exposition_Manager>();
     }
@@ -62,11 +63,11 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     public void DialogueHandler()
     {
-        print("line loaded: " + dCurrentLine);
-        print("dSpeaker size: " + dSpeaker.Length);
         string speaker = dSpeaker[dCurrentLine];
         string line = dScript[dCurrentLine];
         bool isLeftSpeaker = dIsLeftSpeaker[dCurrentLine];
+
+        tap2Continue.SetActive(false);
 
         //check for new speaker
         if (previousSpeaker != speaker)
@@ -91,7 +92,7 @@ public class Dialogue_Manager_C : MonoBehaviour
 
         dialogueBox.GetComponent<Text>().text = "";
 
-        if(!typing)
+        if (!typing)
         {
             typing = true;
             typeRoutine = TypeLine(line);
@@ -104,6 +105,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     IEnumerator FastForward(string line)
     {
         StopCoroutine(typeRoutine);
+        tap2Continue.SetActive(false);
         yield return new WaitForSeconds(0.01f);
         dialogueBox.GetComponent<Text>().text = line;
         StartCoroutine(DoneTyping(dCurrentLine));
@@ -131,21 +133,38 @@ public class Dialogue_Manager_C : MonoBehaviour
 
             // if were done with the script
             if (dCurrentLine >= dTotalLines)
-            {
-                if (dIsLeftSpeaker[dCurrentLine])
-                    SetLeftVisibile(false, dCurrentLine);
-                else
-                    SetRightVisibile(false, dCurrentLine);
-
-                yield return new WaitForSeconds(1f);
-                dCurrentLine = 0;
                 dDialogueCompleted = true;
-                expositionManager.EndDialogue();
-            }
-
+            
             typing = false;
             expositionManager.NextActon();
+
+            if (dCurrentLine <= dTotalLines)
+            {
+                yield return new WaitForSeconds(3f);
+                tap2Continue.SetActive(true);
+                tap2Continue.GetComponent<FadingScript>().Restart();
+                tap2Continue.transform.GetChild(0).GetComponent<FadingScript>().Restart();
+            }
         }
+    }
+
+    public void StopDialogue()
+    {
+        StartCoroutine(DialogueFinished());
+    }
+
+    IEnumerator DialogueFinished()
+    {
+        expositionManager.NextActon();
+
+        if (dIsLeftSpeaker[dCurrentLine])
+            SetLeftVisibile(false, dCurrentLine);
+        else
+            SetRightVisibile(false, dCurrentLine);
+
+        yield return new WaitForSeconds(1f);
+        
+        expositionManager.EndDialogue();
     }
 
     public void SetRightVisibile(bool visible, int lineNum)

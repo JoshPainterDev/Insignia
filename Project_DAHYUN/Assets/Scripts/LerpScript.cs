@@ -101,7 +101,7 @@ public class LerpScript : MonoBehaviour {
                     this.GetComponent<SpriteRenderer>().color = c;
                 if(this.GetComponent<Text>())
                     this.GetComponent<Text>().color = c;
-
+                    
                 if (t_C > 1)
                 {
                     t_C = 0;

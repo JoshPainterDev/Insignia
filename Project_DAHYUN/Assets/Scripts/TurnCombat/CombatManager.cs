@@ -29,6 +29,7 @@ public class CombatManager : MonoBehaviour {
     public GameObject Music_Manager;
 
     //COMBAT VARIABLES
+    [HideInInspector]
     public SpecialCase currSpecialCase = SpecialCase.None;
     public GameObject playerHealthBar;
 
@@ -557,7 +558,7 @@ public class CombatManager : MonoBehaviour {
             print("ACCURACY: " + accuracy);
 
             // accuracy check the attack
-            if (accuracy > rand)
+            if (accuracy >= rand)
             {
                 if (exectueVar == 0)
                 {
@@ -744,7 +745,7 @@ public class CombatManager : MonoBehaviour {
         if (abilityUsed.Type == AbilityType.Physical)
         {
             // accuracy check the attack
-            if (accuracy > rand)
+            if (accuracy >= rand)
             {
                 //handle attack boost modifier
                 switch (playerAttackBoost)
@@ -779,7 +780,7 @@ public class CombatManager : MonoBehaviour {
         else
         {
             // accuracy check the attack
-            if (accuracy > rand)
+            if (accuracy >= rand)
             {
                 //handle attack boost modifier
                 switch (playerAttackBoost)
