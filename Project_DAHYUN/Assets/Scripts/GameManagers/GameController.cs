@@ -44,11 +44,6 @@ public class GameController : MonoBehaviour {
     public int numChars;
     public PlayerClass[] charClasses = new PlayerClass[6];
 
-    //private int atk = 0;
-    //private int def = 0;
-    //private int spd = 0;
-    //private int prw = 0;
-
     // Use this for initialization
     void Awake () {
 
