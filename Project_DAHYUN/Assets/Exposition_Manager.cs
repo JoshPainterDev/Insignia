@@ -50,6 +50,7 @@ public class Exposition_Manager : MonoBehaviour
         panelOrigColor = dialoguePanel.GetComponent<Image>().color;
         dialoguePanel.GetComponent<Image>().color = Color.clear;
         dialogueManager = this.GetComponent<Dialogue_Manager_C>();
+        ready4Input = false;
 
         if (encounter == null)
         {
@@ -121,13 +122,19 @@ public class Exposition_Manager : MonoBehaviour
             case 7:
                 StartCoroutine(Cutscene7(actionCounter));
                 break;
+            case 8:
+                StartCoroutine(Cutscene8(actionCounter));
+                break;
+            case 9:
+                StartCoroutine(Cutscene9(actionCounter));
+                break;
         }
     }
 
-    public IEnumerator LoadCombatScene(int level, int encounterNum)
+    public IEnumerator LoadCombatScene(int level, int encounterNum, string returnScene)
     {
         GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(level, encounterNum);
-        GameController.controller.currentEncounter.returnOnSuccessScene = "Exposition_Scene07";
+        GameController.controller.currentEncounter.returnOnSuccessScene = returnScene;
         yield return new WaitForSeconds(1.15f);
         blackSq.GetComponent<FadeScript>().FadeIn(10f);
         yield return new WaitForSeconds(0.15f);
@@ -148,18 +155,6 @@ public class Exposition_Manager : MonoBehaviour
         touch2Continue.SetActive(false);
         dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
-    }
-
-    public void SkipCutscene()
-    {
-        if (nextLevel == "TurnCombat_Scene")
-            return;
-
-        GameController.controller.GetComponent<TimeController>().LerpTimeScale(1, 0.1f, 3);
-        dialoguePanel.GetComponent<Image>().enabled = false;
-        dialoguePanel.GetComponentInChildren<Text>().enabled = false;
-        blackSq.GetComponent<FadeScript>().FadeIn(10f);
-        Invoke("LoadNextLv", 0.25f);
     }
 
     public void LoadNextLv()
@@ -343,19 +338,19 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Not Steve";
                         leftspeaker[0] = false;
-                        script[0] = "Listen you brat! I've had enough of this...";
+                        script[0] = "Listen you brat! I've had enough of th-";
 
-                        speaker[1] = "???";
-                        leftspeaker[1] = false;
-                        script[1] = "Slade! Enemy forces are enclosing on your position!";
+                        speaker[1] = "Seamstress";
+                        leftspeaker[1] = true;
+                        script[1] = "Watch it Slade!";
 
-                        speaker[2] = "???";
-                        leftspeaker[2] = false;
-                        script[2] = "They must not find us yet...";
+                        speaker[2] = "Seamstress";
+                        leftspeaker[2] = true;
+                        script[2] = " Clearly the Nova can handle a blade.";
 
                         speaker[3] = "Slade";
                         leftspeaker[3] = false;
-                        script[3] = "I guess it's your lucky day! Nova!";
+                        script[3] = "I guess it's your lucky day Nova!";
 
                         speaker[4] = "Slade";
                         leftspeaker[4] = false;
@@ -366,9 +361,119 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                 }
                 break;
-        }
+            case 8:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Seamstress";
+                        leftspeaker[0] = false;
+                        script[0] = "Sorry about that. Slade can be a bit rough with newcomers.";
 
-        ready4Input = true;
+                        speaker[1] = playerName;
+                        leftspeaker[1] = true;
+                        script[1] = "Rough?! He was trying to kill me!";
+
+                        speaker[2] = "Seamstress";
+                        leftspeaker[2] = false;
+                        script[2] = "I'm sure he'll warm up to you.";
+
+                        speaker[3] = "Seamstress";
+                        leftspeaker[3] = false;
+                        script[3] = "Anyway, they call me the Seamstress, but you can call me Hyun. What should I call you?";
+
+                        speaker[4] = playerName;
+                        leftspeaker[4] = true;
+                        script[4] = "I'm " + playerName + ".";
+
+                        speaker[5] = "Seamstress";
+                        leftspeaker[5] = false;
+                        script[5] = "Nice to meet you, " + playerName + ".";
+
+                        speaker[6] = playerName;
+                        leftspeaker[6] = true;
+                        script[6] = "Why have I been brought here? And who is the spooky-cloak-guy?";
+
+                        speaker[7] = "Seamstress";
+                        leftspeaker[7] = false;
+                        script[7] = "Let me show you around. There's a lot to explain.";
+
+                        totalLines = 8;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
+            case 9:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Seamstress";
+                        leftspeaker[0] = false;
+                        script[0] = "And here is the combat yard -";
+
+                        speaker[1] = "Seamstress";
+                        leftspeaker[1] = true;
+                        script[1] = "You've shown you can handle a blade, but...";
+
+                        speaker[2] = "Seamstress";
+                        leftspeaker[2] = true;
+                        script[2] = "Something tells me you could use a lesson or two in the Arcane arts!";
+
+                        speaker[3] = playerName;
+                        leftspeaker[3] = true;
+                        script[3] = "*Gulp*";
+
+                        totalLines = 4;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
+        }
+    }
+
+    IEnumerator Cutscene9(int action)
+    {
+        switch (action)
+        {
+            case 0:
+                nextLevel = "TurnCombat_Scene";
+                // Set next Level //
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                yield return new WaitForSeconds(1f);
+                speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(400, 0, 0), 1f);
+                yield return new WaitForSeconds(1f);
+                speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                yield return new WaitForSeconds(0.65f);
+                StartCoroutine(NewDialogue(9, 1));
+                break;
+            case 4:
+                yield return new WaitForSeconds(2);
+                actionsCompleted = true; //actions are completed
+                StartCoroutine(LoadCombatScene(1, 1, "Exposition_Scene10"));
+                break;
+        }
+        //////////////////
+    }
+
+    IEnumerator Cutscene8(int action)
+    {
+        switch (action)
+        {
+            case 0:
+                // Set next Level //
+                nextLevel = "Exposition_Scene09";
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                yield return new WaitForSeconds(1f);
+                StartCoroutine(NewDialogue(8, 1));
+                break;
+            case 9:
+                yield return new WaitForSeconds(2f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
+                yield return new WaitForSeconds(1);
+                actionsCompleted = true; //actions are completed
+                LoadNextLv();
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene7(int action)
@@ -377,7 +482,7 @@ public class Exposition_Manager : MonoBehaviour
         {
             case 0:
                 // Set next Level //
-                nextLevel = "MainMenu_Scene";
+                nextLevel = "Exposition_Scene08";
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
                 yield return new WaitForSeconds(1f);
                 StartCoroutine(NewDialogue(7, 1));
@@ -388,8 +493,11 @@ public class Exposition_Manager : MonoBehaviour
                 speaker03.SetActive(true);
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(90, 0, 0), 2.5f);
                 speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(90, 0, 0), 2.5f);
-                break;
+                break;  
             case 5:
+                yield return new WaitForSeconds(1.75f);
+                speaker01.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, Color.grey, 2.5f);
+                yield return new WaitForSeconds(0.75f);
                 speaker01.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.grey, Color.clear, 2.5f);
                 speaker02.SetActive(false);
                 speaker03.SetActive(false);
@@ -422,7 +530,7 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 3:
                 yield return new WaitForSeconds(2f);
-                StartCoroutine(LoadCombatScene(1, 0));
+                StartCoroutine(LoadCombatScene(1, 0, "Exposition_Scene07"));
                 actionsCompleted = true; //actions are completed
                 break;
         }

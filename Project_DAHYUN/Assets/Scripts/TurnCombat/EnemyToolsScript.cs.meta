@@ -1,11 +1,17 @@
 fileFormatVersion: 2
 guid: 3d292131bd9bde3499dc4bc79b54dd7d
-timeCreated: 1509243260
+timeCreated: 1510871010
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - Steve_Prefab: {fileID: 1291192845535296, guid: 6e2aff721afcaab4aa3d047a5b27c49e,
+      type: 2}
+  - Seamstress_Prefab: {fileID: 1919287724249914, guid: f40a3db5cae633447a2511167650a523,
+      type: 2}
+  - Ayo_Prefab: {fileID: 1919287724249914, guid: d2da33bb3473f4d48b86f99cd5a700df,
+      type: 2}
+  - Slade_Prefab: {fileID: 1919287724249914, guid: c1fca89800cfb4b4688d26e00e0e1818,
       type: 2}
   - Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
       type: 2}

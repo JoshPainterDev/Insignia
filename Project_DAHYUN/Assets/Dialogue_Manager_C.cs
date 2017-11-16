@@ -36,7 +36,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     private IEnumerator typeRoutine;
     private int prevLineNum = -1;
     [HideInInspector]
-    public bool dDialogueCompleted = false;
+    public bool dDialogueCompleted = true;
 
     // Use this for initialization
     void Start()
@@ -58,6 +58,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         rightOrigPos = rightSpeaker.transform.position;
         leftOrigPos = leftSpeaker.transform.position;
 
+        expositionManager.ready4Input = true;
         DialogueHandler();
     }
 
@@ -130,20 +131,19 @@ public class Dialogue_Manager_C : MonoBehaviour
             prevLineNum = lineNum;
 
             dCurrentLine = lineNum + 1; // finished a line in the script
-
-            // if were done with the script
-            if (dCurrentLine >= dTotalLines)
-                dDialogueCompleted = true;
             
             typing = false;
             expositionManager.NextActon();
 
-            if (dCurrentLine <= dTotalLines)
+            yield return new WaitForSeconds(3f);
+            tap2Continue.SetActive(true);
+            tap2Continue.GetComponent<FadingScript>().Restart();
+            tap2Continue.transform.GetChild(0).GetComponent<FadingScript>().Restart();
+
+            if (dCurrentLine >= dTotalLines)
             {
-                yield return new WaitForSeconds(3f);
-                tap2Continue.SetActive(true);
-                tap2Continue.GetComponent<FadingScript>().Restart();
-                tap2Continue.transform.GetChild(0).GetComponent<FadingScript>().Restart();
+                //expositionManager.NextActon();
+                dDialogueCompleted = true;
             }
         }
     }

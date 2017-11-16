@@ -44,14 +44,15 @@ public class EncounterToolsScript : MonoBehaviour {
                 }
                 else if (levelsCompleted == 1)
                 {
+                    print("The Seamstress");
                     encounter.encounterNumber = 2;
                     encounter.backgroundName = "\\Environments\\dark_forest";
                     encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.enemyNames[0] = "The Seamstress";
                     encounter.bossFight[0] = false;
 
                     Reward newReward = new Reward();
-                    newReward.experience = 2500;
+                    newReward.experience = 5000;
                     encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 2)
