@@ -97,7 +97,7 @@ public class AI_CombatManager_C : MonoBehaviour
         //    print(elapsedTime);
         //}  
 
-        if(Input.GetKeyDown(KeyCode.Space) == true && !running)
+        if (Input.GetKeyDown(KeyCode.Space) == true && !running)
         {
             running = true;
             RunSimulation();
@@ -121,12 +121,36 @@ public class AI_CombatManager_C : MonoBehaviour
         //print("Elapsed Time: " + (elapsedTime * 100));
         print("AI1 Wins: " + AI1_Wins);
         print("AI1 Wins: " + AI2_Wins);
+
+        SaveStats();
+
+        AI1_Wins = 0;
+        AI2_Wins = 0;
+    }
+
+    void SaveStats()
+    {
+        AnalyticsController.controller.AI1_Wins = AI1_Wins;
+        AnalyticsController.controller.AI2_Wins = AI2_Wins;
+
+        print(AnalyticsController.controller.AI1_Wins);
+
+        AnalyticsController.controller.SaveData();
+        AnalyticsController.controller.LoadCurrentSheet();
     }
 
     public void BeginCombatSimulation()
     {
         AI1_Health = AI1_MaxHealth;
         AI2_Health = AI2_MaxHealth;
+
+        AI1_AttackBoost = 0;
+        AI1_DefenseBoost = 0;
+        AI1_SpeedBoost = 0;
+
+        AI2_AttackBoost = 0;
+        AI2_DefenseBoost = 0;
+        AI2_SpeedBoost = 0;
 
         // compare speeds
         if (AI1_Speed >= AI2_Speed)

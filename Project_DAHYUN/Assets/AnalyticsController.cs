@@ -1,11 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 public class AnalyticsController : MonoBehaviour {
     public static AnalyticsController controller;
+
+    public GameObject currentSheetText;
+    public GameObject StatsSheet;
 
     public int AI1_Wins, AI2_Wins;
     public int AI1_StrikesUsed, AI2_StrikesUsed;
@@ -27,11 +31,18 @@ public class AnalyticsController : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             controller = this;
 
-            while(File.Exists(Application.persistentDataPath + "/analysisInfo" + dataSheetNumber + ".dat"))
-                dataSheetNumber++;
-
-            var sr = File.CreateText(Application.persistentDataPath + "/analysisInfo" + dataSheetNumber + ".dat");
-            SaveData();
+            if(File.Exists(Application.persistentDataPath + "/analysisInfo" + dataSheetNumber + ".dat"))
+            {
+                LoadData(dataSheetNumber);
+                print("Current Sheet: " + dataSheetNumber);
+                currentSheetText.GetComponent<Text>().text = dataSheetNumber.ToString();
+            }
+            else
+            {
+                //var sr = File.CreateText(Application.persistentDataPath + "/analysisInfo" + dataSheetNumber + ".dat");
+                SaveData();
+                LoadCurrentSheet();
+            }
         }
         else if (controller != this)
         {
@@ -39,9 +50,49 @@ public class AnalyticsController : MonoBehaviour {
         }
     }
 
-    void SaveData()
+    public void NextSheet()
+    {
+        if(File.Exists(Application.persistentDataPath + "/analysisInfo" + (dataSheetNumber + 1) + ".dat"))
+        {
+            ++dataSheetNumber;
+            currentSheetText.GetComponent<Text>().text = dataSheetNumber.ToString();
+        }
+    }
+
+    public void PrevSheet()
+    {
+        if(dataSheetNumber != 0)
+        {
+            if (File.Exists(Application.persistentDataPath + "/analysisInfo" + (dataSheetNumber - 1) + ".dat"))
+            {
+                --dataSheetNumber;
+                currentSheetText.GetComponent<Text>().text = dataSheetNumber.ToString();
+            }
+        }
+    }
+
+    public void LoadCurrentSheet()
+    {
+        LoadData(dataSheetNumber);
+
+        //update UI
+        //AI1 wins
+        StatsSheet.transform.GetChild(0).GetComponent<Text>().text = "AI1 Wins: " + AI1_Wins;
+        //AI2 wins
+        StatsSheet.transform.GetChild(1).GetComponent<Text>().text = "AI2 Wins: " + AI2_Wins;
+    }
+
+    public void SaveData()
     {
         BinaryFormatter bf = new BinaryFormatter();
+
+        dataSheetNumber = 0;
+
+        while (File.Exists(Application.persistentDataPath + "/analysisInfo" + dataSheetNumber + ".dat"))
+            dataSheetNumber++;
+
+        print("saving data sheet: " + dataSheetNumber);
+
         FileStream dataFile = File.Create(Application.persistentDataPath + "/analysisInfo" + dataSheetNumber + ".dat");
 
         AnalysisData data = new AnalysisData();
@@ -74,8 +125,11 @@ public class AnalyticsController : MonoBehaviour {
         data.sAvgNumberOfTurns = AvgNumberOfTurns;
         data.sTotalBattles = TotalBattles;
 
-        bf.Serialize(accountInfoFile, data);
-        accountInfoFile.Close();
+        bf.Serialize(dataFile, data);
+        dataFile.Close();
+
+        currentSheetText.GetComponent<Text>().text = dataSheetNumber.ToString();
+        print("dsn: " + dataSheetNumber);
     }
 
 
@@ -98,7 +152,7 @@ public class AnalyticsController : MonoBehaviour {
             AI1_Speed = data.sAI1_Speed;
             AI1_StartingHP = data.sAI1_StartingHP;
             AI1_StrikesUsed = data.sAI1_StrikesUsed;
-            data.sAI1_Wins = AI1_Wins;
+            AI1_Wins = data.sAI1_Wins;
             AI2_ability1Uses = data.sAI2_ability1Uses;
             AI2_ability2Uses = data.sAI2_ability2Uses;
             AI2_ability3Uses = data.sAI2_ability3Uses;
