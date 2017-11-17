@@ -47,7 +47,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_3 = "Reap";
                 enemyInfo.ability_4 = "Final Cut";
 
-                enemyInfo.enemyName = "Shadow Assassin";
+                enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 5;
                 enemyInfo.enemyDefense = 2;
                 enemyInfo.enemySpeed = 1;
@@ -63,7 +63,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_3 = "Reap";
                 enemyInfo.ability_4 = "Final Cut";
 
-                enemyInfo.enemyName = "Shadow Assassin";
+                enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 5;
                 enemyInfo.enemyDefense = 2;
                 enemyInfo.enemySpeed = 1;
@@ -79,7 +79,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_3 = "";
                 enemyInfo.ability_4 = "";
 
-                enemyInfo.enemyName = "Skitter";
+                enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 6;
                 enemyInfo.enemyDefense = 4;
                 enemyInfo.enemySpeed = 1;
@@ -95,7 +95,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_3 = "Final Cut";
                 enemyInfo.ability_4 = "Reap";
 
-                enemyInfo.enemyName = "Dragon Lord";
+                enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 3;
                 enemyInfo.enemyDefense = 3;
                 enemyInfo.enemySpeed = 1;
@@ -104,16 +104,16 @@ public class EnemyToolsScript : MonoBehaviour {
             case "The Seamstress":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\Skitter_Image";
                 enemyInfo.enemyPrefab = Seamstress_Prefab;
-                enemyInfo.enemyLevel = 5;
+                enemyInfo.enemyLevel = 3;
                 enemyInfo.expReward = THICC_EXP;
                 enemyInfo.ability_1 = "Solar Flare";
                 enemyInfo.ability_2 = "Shadow Clone";
                 enemyInfo.ability_3 = "Final Cut";
                 enemyInfo.ability_4 = "Reap";
 
-                enemyInfo.enemyName = "Dragon Lord";
-                enemyInfo.enemyAttack = 3;
-                enemyInfo.enemyDefense = 3;
+                enemyInfo.enemyName = name;
+                enemyInfo.enemyAttack = 1;
+                enemyInfo.enemyDefense = 1;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 110;
                 break;

@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061eeca7d18a26f47b17cb47accbfb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAura: 0
 --- !u!1 &177538891 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1291192845535296, guid: 6e2aff721afcaab4aa3d047a5b27c49e,
@@ -2509,16 +2510,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneNumber: 4
   playerMannequin: {fileID: 119668991}
+  ready4Input: 0
   canvas: {fileID: 889873487}
   camera: {fileID: 1243540803}
   blackSq: {fileID: 538142076}
   background: {fileID: 2037268560}
   dialoguePanel: {fileID: 2085123214}
   sfxManager: {fileID: 1082181825}
+  touch2Continue: {fileID: 0}
   speaker01: {fileID: 177538891}
   speaker02: {fileID: 0}
   speaker03: {fileID: 0}
   speaker04: {fileID: 0}
+  speaker05: {fileID: 0}
 --- !u!114 &1616549428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2537,6 +2541,9 @@ MonoBehaviour:
   leftSpeaker: {fileID: 1066471889}
   rightImage: {fileID: 1500741108}
   leftImage: {fileID: 1354402595}
+  tap2Continue: {fileID: 0}
+  typing: 0
+  dDialogueCompleted: 1
 --- !u!1 &1619637139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,6 +3327,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3337,6 +3345,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3354,6 +3363,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3371,6 +3381,7 @@ MonoBehaviour:
     Type: 3
     BaseDamage: 0
     specialCase: 8
+    SpecialValue: 0
     Buffs: 0
     Heals: 0
     Description: 
@@ -3435,7 +3446,15 @@ MonoBehaviour:
   TRASH_EXP: 15
   MODERATE_EXP: 50
   THICC_EXP: 100
-  Steve_Prefab: {fileID: 0}
+  Steve_Prefab: {fileID: 1291192845535296, guid: 6e2aff721afcaab4aa3d047a5b27c49e,
+    type: 2}
+  Seamstress_Prefab: {fileID: 1919287724249914, guid: f40a3db5cae633447a2511167650a523,
+    type: 2}
+  Ayo_Prefab: {fileID: 1919287724249914, guid: d2da33bb3473f4d48b86f99cd5a700df, type: 2}
+  Slade_Prefab: {fileID: 1919287724249914, guid: c1fca89800cfb4b4688d26e00e0e1818,
+    type: 2}
+  Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
+    type: 2}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,

@@ -44,7 +44,6 @@ public class EncounterToolsScript : MonoBehaviour {
                 }
                 else if (levelsCompleted == 1)
                 {
-                    print("The Seamstress");
                     encounter.encounterNumber = 2;
                     encounter.backgroundName = "\\Environments\\dark_forest";
                     encounter.totalEnemies = 1;

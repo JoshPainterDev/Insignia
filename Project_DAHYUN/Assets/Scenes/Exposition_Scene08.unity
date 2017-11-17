@@ -2049,6 +2049,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 212326466753250072, guid: 24da7b50b03952845a7cc56b12b7f832,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224324618672949368, guid: 24da7b50b03952845a7cc56b12b7f832,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 224324618672949368, guid: 24da7b50b03952845a7cc56b12b7f832,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 224324618672949368, guid: 24da7b50b03952845a7cc56b12b7f832,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24da7b50b03952845a7cc56b12b7f832, type: 2}
   m_IsPrefabParent: 0
@@ -2581,6 +2601,7 @@ MonoBehaviour:
   speaker02: {fileID: 0}
   speaker03: {fileID: 0}
   speaker04: {fileID: 0}
+  speaker05: {fileID: 0}
 --- !u!114 &1616549428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3514,11 +3535,15 @@ MonoBehaviour:
   TRASH_EXP: 15
   MODERATE_EXP: 50
   THICC_EXP: 100
-  Steve_Prefab: {fileID: 0}
-  Seamstress_Prefab: {fileID: 0}
-  Ayo_Prefab: {fileID: 0}
-  Slade_Prefab: {fileID: 0}
-  Dummy_Prefab: {fileID: 0}
+  Steve_Prefab: {fileID: 1291192845535296, guid: 6e2aff721afcaab4aa3d047a5b27c49e,
+    type: 2}
+  Seamstress_Prefab: {fileID: 1919287724249914, guid: f40a3db5cae633447a2511167650a523,
+    type: 2}
+  Ayo_Prefab: {fileID: 1919287724249914, guid: d2da33bb3473f4d48b86f99cd5a700df, type: 2}
+  Slade_Prefab: {fileID: 1919287724249914, guid: c1fca89800cfb4b4688d26e00e0e1818,
+    type: 2}
+  Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
+    type: 2}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,

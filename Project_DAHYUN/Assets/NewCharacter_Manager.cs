@@ -161,7 +161,6 @@ public class NewCharacter_Manager : MonoBehaviour {
                 GameController.controller.playerDefense = 3 + 6;
                 GameController.controller.playerProwess = 1 + 2;
                 GameController.controller.playerSpeed = 1;
-                print(GameController.controller.playerSpeed);
                 break;
             default:
                 break;

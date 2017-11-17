@@ -189,6 +189,7 @@ public class CombatManager : MonoBehaviour {
         DisableBackButton();
         HideAbilityButtons();
         DisableBackButton();
+        HideMainButtons();
 
         if (!hasTutorial)
         {
@@ -198,8 +199,22 @@ public class CombatManager : MonoBehaviour {
             LoadCharacterLevels(enemyInfo);
 
             if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
-                StartCoroutine(ShowStartingButtons());    
+            {
+                StartCoroutine(ShowStartingButtons());
+            }
+            else
+                StartCoroutine(EnemyStarts());        
         }
+        else
+        {
+            StartCoroutine(ShowStartingButtons());
+        }
+    }
+
+    IEnumerator EnemyStarts()
+    {
+        yield return new WaitForSeconds(2);
+        StartCoroutine(StartEnemyTurn());
     }
 
     public void AbilitySelected(int selectedOption = 0)
@@ -343,6 +358,7 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator ShowStartingButtons()
     {
+        print("got here");
         DisableMainButtons();
         HideMainButtons();
         yield return new WaitForSeconds(2);

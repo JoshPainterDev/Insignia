@@ -70,6 +70,17 @@ public class Dialogue_Manager_C : MonoBehaviour
 
         tap2Continue.SetActive(false);
 
+        if (dCurrentLine >= dTotalLines)
+        {
+            print("current: " + dCurrentLine);
+            //expositionManager.NextActon();
+            dDialogueCompleted = true;
+            tap2Continue.SetActive(false);
+            dialogueBox.GetComponent<Text>().text = "";
+            StopDialogue();
+            return;
+        }
+
         //check for new speaker
         if (previousSpeaker != speaker)
         {
@@ -133,18 +144,12 @@ public class Dialogue_Manager_C : MonoBehaviour
             dCurrentLine = lineNum + 1; // finished a line in the script
             
             typing = false;
-            expositionManager.NextActon();
+            expositionManager.NextAction();
 
             yield return new WaitForSeconds(3f);
             tap2Continue.SetActive(true);
             tap2Continue.GetComponent<FadingScript>().Restart();
             tap2Continue.transform.GetChild(0).GetComponent<FadingScript>().Restart();
-
-            if (dCurrentLine >= dTotalLines)
-            {
-                //expositionManager.NextActon();
-                dDialogueCompleted = true;
-            }
         }
     }
 
@@ -155,12 +160,10 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     IEnumerator DialogueFinished()
     {
-        expositionManager.NextActon();
+        expositionManager.NextAction();
 
-        if (dIsLeftSpeaker[dCurrentLine])
-            SetLeftVisibile(false, dCurrentLine);
-        else
-            SetRightVisibile(false, dCurrentLine);
+        SetLeftVisibile(false, dCurrentLine);
+        SetRightVisibile(false, dCurrentLine);
 
         yield return new WaitForSeconds(1f);
         
