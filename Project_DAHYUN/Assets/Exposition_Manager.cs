@@ -441,7 +441,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(400, 0, 0), 1f);
                 yield return new WaitForSeconds(1f);
-                speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                 yield return new WaitForSeconds(0.65f);
                 StartCoroutine(NewDialogue(9, 1));
                 break;
