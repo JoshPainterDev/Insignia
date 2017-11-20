@@ -80,6 +80,15 @@ public class AnalyticsController : MonoBehaviour {
         StatsSheet.transform.GetChild(0).GetComponent<Text>().text = "AI1 Wins: " + AI1_Wins;
         //AI2 wins
         StatsSheet.transform.GetChild(1).GetComponent<Text>().text = "AI2 Wins: " + AI2_Wins;
+        //Ability Uses:
+        StatsSheet.transform.GetChild(2).GetComponent<Text>().text = "AI1 Ability1Uses: " + AI1_ability1Uses;
+        StatsSheet.transform.GetChild(3).GetComponent<Text>().text = "AI2 Ability1Uses: " + AI2_ability1Uses;
+        StatsSheet.transform.GetChild(4).GetComponent<Text>().text = "AI1 Ability2Uses: " + AI1_ability2Uses;
+        StatsSheet.transform.GetChild(5).GetComponent<Text>().text = "AI2 Ability2Uses: " + AI2_ability2Uses;
+        StatsSheet.transform.GetChild(6).GetComponent<Text>().text = "AI1 Ability3Uses: " + AI1_ability3Uses;
+        StatsSheet.transform.GetChild(7).GetComponent<Text>().text = "AI2 Ability3Uses: " + AI2_ability3Uses;
+        StatsSheet.transform.GetChild(8).GetComponent<Text>().text = "AI1 Ability4Uses: " + AI1_ability4Uses;
+        StatsSheet.transform.GetChild(9).GetComponent<Text>().text = "AI2 Ability4Uses: " + AI2_ability4Uses;
     }
 
     public void SaveData()

@@ -144,8 +144,10 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.Physical;
                 break;
             default:
+                ability.Name = "";
                 ability.Accuracy = 0;
                 ability.Description = "";
+                ability.BaseDamage = 0;
                 ability.Name = name;
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;

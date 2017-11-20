@@ -1723,37 +1723,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 224324618672949368, guid: 24da7b50b03952845a7cc56b12b7f832,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 224324618672949368, guid: 24da7b50b03952845a7cc56b12b7f832,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 224324618672949368, guid: 24da7b50b03952845a7cc56b12b7f832,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 5.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 24da7b50b03952845a7cc56b12b7f832,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1024582385
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 24da7b50b03952845a7cc56b12b7f832,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 212326466753250072, guid: 24da7b50b03952845a7cc56b12b7f832,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6340ce25f0c7578419bba6083841f926,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24da7b50b03952845a7cc56b12b7f832, type: 2}
   m_IsPrefabParent: 0
