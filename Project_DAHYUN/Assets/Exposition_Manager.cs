@@ -580,11 +580,17 @@ public class Exposition_Manager : MonoBehaviour
         nextLevel = "Tutorial_Scene01";
         
         //////////////////
-        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(NewDialogue(4, 1));
-        yield return new WaitForSeconds(25f);
-        LoadNextLv();
+        switch(action)
+        {
+            case 0:
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                yield return new WaitForSeconds(1f);
+                StartCoroutine(NewDialogue(4, 1));
+                break;
+            case 5:
+                LoadNextLv();
+                break;
+        }
     }
 
     IEnumerator Cutscene3(int action)

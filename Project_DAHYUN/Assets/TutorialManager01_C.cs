@@ -221,6 +221,6 @@ public class TutorialManager01_C : MonoBehaviour
         yield return new WaitForSeconds(1f);
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("MainMenu_Tutorial_Scene");
+        SceneManager.LoadScene("Exposition_Scene05");
     }
 }

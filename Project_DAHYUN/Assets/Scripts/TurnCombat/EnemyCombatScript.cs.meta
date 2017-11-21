@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: 002afdecef55489408c5524fd9597074
-timeCreated: 1508881866
+timeCreated: 1511298013
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - enemyMannequin: {instanceID: 0}
+  - playerMannequin: {instanceID: 0}
+  - standardStrikeMiss_FX: {fileID: 1862190314031148, guid: 9ec2c067bfe3a424ab76da2abf69e25c,
+      type: 2}
   - blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342,
       type: 2}
   - blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918,

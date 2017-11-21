@@ -80,7 +80,6 @@ public class Character_Select_Manager : MonoBehaviour
             }
             else
             {
-                print(GameController.controller.charNames[i + 1]);
                 gridThing.transform.GetChild(i).GetChild(0).GetComponentInChildren<Text>().text = GameController.controller.charNames[i + 1];
             }
         }

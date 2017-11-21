@@ -358,7 +358,6 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator ShowStartingButtons()
     {
-        print("got here");
         DisableMainButtons();
         HideMainButtons();
         yield return new WaitForSeconds(2);
