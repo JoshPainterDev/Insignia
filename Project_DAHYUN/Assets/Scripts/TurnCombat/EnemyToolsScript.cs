@@ -106,16 +106,16 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyPrefab = Seamstress_Prefab;
                 enemyInfo.enemyLevel = 3;
                 enemyInfo.expReward = THICC_EXP;
-                enemyInfo.ability_1 = "Solar Flare";
-                enemyInfo.ability_2 = "Shadow Clone";
-                enemyInfo.ability_3 = "Final Cut";
-                enemyInfo.ability_4 = "Reap";
+                enemyInfo.ability_1 = "Black Rain";
+                enemyInfo.ability_2 = "Reap";
+                enemyInfo.ability_3 = "";
+                enemyInfo.ability_4 = "";
 
                 enemyInfo.enemyName = name;
-                enemyInfo.enemyAttack = 1;
+                enemyInfo.enemyAttack = 2;
                 enemyInfo.enemyDefense = 1;
                 enemyInfo.enemySpeed = 1;
-                enemyInfo.enemyMaxHealthBase = 110;
+                enemyInfo.enemyMaxHealthBase = 122;
                 break;
             case "Dummy":
                 enemyInfo.enemyPrefab = Dummy_Prefab;

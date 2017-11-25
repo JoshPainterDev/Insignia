@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061eeca7d18a26f47b17cb47accbfb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAura: 0
 --- !u!222 &119668994
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1647,7 +1648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.1, y: 40.3}
+  m_AnchoredPosition: {x: -46.1, y: 71.7}
   m_SizeDelta: {x: 50, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463483874
@@ -2188,7 +2189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.100037, y: 22}
+  m_AnchoredPosition: {x: -46.100037, y: 46.499996}
   m_SizeDelta: {x: 50, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548156210
@@ -3458,7 +3459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 40}
+  m_AnchoredPosition: {x: 13, y: 71.399994}
   m_SizeDelta: {x: 50, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837331528
@@ -4855,6 +4856,9 @@ MonoBehaviour:
   MODERATE_EXP: 50
   THICC_EXP: 100
   Steve_Prefab: {fileID: 0}
+  Seamstress_Prefab: {fileID: 0}
+  Ayo_Prefab: {fileID: 0}
+  Slade_Prefab: {fileID: 0}
   Dummy_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
@@ -7409,7 +7413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 22}
+  m_AnchoredPosition: {x: 13, y: 46.5}
   m_SizeDelta: {x: 50, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1512998427
@@ -9050,8 +9054,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000003874302, y: -17.35}
-  m_SizeDelta: {x: -10.6, y: -45.3}
+  m_AnchoredPosition: {x: -0.0000003874302, y: -23.7}
+  m_SizeDelta: {x: -10.6, y: -58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997948830
 MonoBehaviour:

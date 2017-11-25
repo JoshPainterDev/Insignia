@@ -19,6 +19,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
     public GameObject illusion_FX;
     public GameObject reap_FX;
     public GameObject finalCut_FX;
+    public GameObject blackRain_FX;
 
     private Vector3 initEnemyPos;
     private Vector3 initPlayerPos;
@@ -100,6 +101,18 @@ public class EnemyAbilityManager_C : MonoBehaviour
                     effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
                 }
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
+                yield return new WaitForSeconds(1);
+                break;
+            case "Black Rain":
+                spawnPos = initEnemyPos + new Vector3(-80, 100, 0);
+                yield return new WaitForSeconds(0.25f);
+                effectClone = (GameObject)Instantiate(blackRain_FX, spawnPos, transform.rotation);
+                //this.GetComponent<CombatAudio>().playOutrageSFX();
+                yield return new WaitForSeconds(0.35f);
+                combatManager.DamageEnemy_Ability(ability);
+                effectClone.GetComponent<Animator>().speed = 0.0f;
+                yield return new WaitForSeconds(0.75f);
+                effectClone.GetComponent<Animator>().speed = 1.45f;
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":

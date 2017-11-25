@@ -124,7 +124,7 @@ public class AbilityToolsScript : MonoBehaviour {
             case "Thunder Charge":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 30;
-                ability.Cooldown = 3;
+                ability.Cooldown = 1;
                 ability.Buffs = false;
                 ability.Description = "A lightning imbued strike. Has a chance to stun your foe.";
                 ability.Name = name;

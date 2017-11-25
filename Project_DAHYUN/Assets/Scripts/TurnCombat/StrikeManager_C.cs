@@ -99,7 +99,7 @@ public class StrikeManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 yield return new WaitForSeconds(0.2f);
                 generateRandomBlood();
-                bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                bloodPos = new Vector3(initEnemyPos.x - 50, initEnemyPos.y, 0);
                 bloodClone.transform.position = bloodPos;
                 yield return new WaitForSeconds(0.5f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
@@ -113,7 +113,7 @@ public class StrikeManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, pos2, strikeAnimDuration / .25f);
                 yield return new WaitForSeconds(0.25f);
                 generateRandomBlood();
-                bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                bloodPos = new Vector3(initEnemyPos.x - 50, initEnemyPos.y, 0);
                 bloodClone.transform.position = bloodPos;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
                 yield return new WaitForSeconds(0.25f);
@@ -128,7 +128,7 @@ public class StrikeManager_C : MonoBehaviour {
                 effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(0.5f);
                 generateRandomBlood();
-                bloodPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
+                bloodPos = new Vector3(initEnemyPos.x - 50, initEnemyPos.y, 0);
                 bloodClone.transform.position = bloodPos;
                 this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
                 yield return new WaitForSeconds(0.25f);

@@ -81,7 +81,7 @@ public class ExperienceScript : MonoBehaviour {
                 t = 0;
                 lerping = false;
 
-                if(ding)
+                if (ding)
                 {
                     //player leveled up
                     ++GameController.controller.playerLevel;
@@ -89,7 +89,7 @@ public class ExperienceScript : MonoBehaviour {
                     ding = false;
                 }
                 else
-                    rewardManager.GetComponent<RewardManager_C>().ExperienceIsDone();
+                    rewardManager.GetComponent<RewardManager_C>().UnlockSequenceFinished(0);
             }
         }
     }
@@ -169,6 +169,6 @@ public class ExperienceScript : MonoBehaviour {
 
         yield return new WaitForSeconds(3f);
 
-        rewardManager.GetComponent<RewardManager_C>().ExperienceIsDone();
+        rewardManager.GetComponent<RewardManager_C>().UnlockSequenceFinished(0);
     }
 }

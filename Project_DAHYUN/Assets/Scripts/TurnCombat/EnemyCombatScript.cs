@@ -42,6 +42,22 @@ public class EnemyCombatScript : MonoBehaviour {
         difficulty = GameController.controller.difficultyScale;
     }
 
+    public void TickCooldowns()
+    {
+
+        if (cooldownA1 > 0)
+            --cooldownA1;
+
+        if (cooldownA2 > 0)
+            --cooldownA2;
+
+        if (cooldownA3 > 0)
+            --cooldownA3;
+
+        if (cooldownA4 > 0)
+            --cooldownA4;
+    }
+
     public void BeginEnemyTurn()
     {
         enemyInfo = combatManager.enemyInfo;
@@ -111,6 +127,7 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 0:
                     if((ability1.Name != "") && (cooldownA1 == 0))
                     {
+                        cooldownA1 = ability1.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability1, combatManager.getPlayerHealth());
                     }
@@ -120,6 +137,7 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 1:
                     if ((ability2.Name != "") && (cooldownA2 == 0))
                     {
+                        cooldownA2 = ability2.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability2, combatManager.getPlayerHealth());
                     }
@@ -129,6 +147,7 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 2:
                     if ((ability3.Name != "") && (cooldownA3 == 0))
                     {
+                        cooldownA3 = ability3.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability3, combatManager.getPlayerHealth());
                     }
@@ -138,6 +157,7 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 3:
                     if ((ability4.Name != "") && (cooldownA4 == 0))
                     {
+                        cooldownA4 = ability4.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability4, combatManager.getPlayerHealth());
                     }

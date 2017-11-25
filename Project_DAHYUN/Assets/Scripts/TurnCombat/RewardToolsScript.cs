@@ -30,7 +30,7 @@ public class RewardToolsScript : MonoBehaviour {
         GameController.controller.playerEXP += totalExpGained;
     }
 
-    public void StoreReward(Reward reward)
+    public void SaveReward(Reward reward)
     {
         GameController.controller.rewardEarned = reward;
     }
@@ -43,8 +43,10 @@ public class RewardToolsScript : MonoBehaviour {
 
 public class Reward
 {
-    public string ability = "";
+    public bool hasAbility = false;
+    public bool hasEquipment = false;
+    public string[] ability;
     public string item = "";
-    public string equipment = "";
+    public string[] equipment;
     public int experience = 0;
 }

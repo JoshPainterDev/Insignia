@@ -5531,10 +5531,10 @@ MonoBehaviour:
   playerMannequin: {fileID: 119668991}
   standardStrikeMiss_FX: {fileID: 1862190314031148, guid: 9ec2c067bfe3a424ab76da2abf69e25c,
     type: 2}
-  blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
-  blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
-  blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
-  blood04_FX: {fileID: 1862190314031148, guid: d499bc62574a7364ba27c2e4cc79ebd7, type: 2}
+  blood01_FX: {fileID: 0}
+  blood02_FX: {fileID: 0}
+  blood03_FX: {fileID: 0}
+  blood04_FX: {fileID: 0}
 --- !u!114 &1616549435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6140,7 +6140,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lv 5
+  m_Text: Lv 1
 --- !u!222 &1789068149
 CanvasRenderer:
   m_ObjectHideFlags: 0

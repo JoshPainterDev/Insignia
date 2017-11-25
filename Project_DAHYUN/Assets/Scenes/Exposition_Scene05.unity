@@ -243,7 +243,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4cc11467ee6b98458bf9ad21d314f37, type: 3}
-    m_FontSize: 22
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -3284,6 +3284,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114338116496665996, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
+    - {fileID: 114819387634602862, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e01d6b25110c6b146942b81c9bb58f64, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1756996785 stripped

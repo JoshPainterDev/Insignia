@@ -16,6 +16,7 @@ public class StruggleManager_C : MonoBehaviour {
     public GameObject effectClone;
     public float readySize, pressedSize;
     public Color origColor, pressedColor;
+    [HideInInspector]
     public float goal = 50f;
 
     public GameObject hitEffect;
@@ -54,7 +55,7 @@ public class StruggleManager_C : MonoBehaviour {
     int frameTracker = 0;
     int timeOutTracker = 0;
     int failCounter = 0;
-    int failScale = 30;
+    int failScale = 40;
     bool playerInitiated = true;
     bool playerCanFail = true;
     int enemyLevel = 1;
@@ -76,7 +77,12 @@ public class StruggleManager_C : MonoBehaviour {
             enemyLevel = combatController.enemyInfo.enemyLevel;
 
         failScale += GameController.controller.playerProwess;
-        goal -= (GameController.controller.playerLevel - enemyLevel) * combatController.playerAttackBoost;
+        int rand = Random.Range(0, 9);
+        goal = 10 + (enemyLevel) + rand;
+        print("GOAL: " + goal);
+        int lvDiff = GameController.controller.playerLevel - enemyLevel;
+        goal -= lvDiff > 0 ? GameController.controller.playerProwess * lvDiff : lvDiff;
+        print("GOAL: " + goal);
     } 
 	
 	// Update is called once per frame
@@ -219,11 +225,11 @@ public class StruggleManager_C : MonoBehaviour {
     //ANIMATE CHARACTERS STRUGGLING
     IEnumerator AlignCharacters(bool playerStarted)
     {
-        player.GetComponent<LerpScript>().LerpToPos(playerOrig, playerStrugglePos, 3);
-        enemy.GetComponent<LerpScript>().LerpToPos(enemyOrig, enemyStrugglePos, 3);
-        camera.GetComponent<CameraController>().LerpCameraSize(150, 100, 2);
+        player.GetComponent<LerpScript>().LerpToPos(playerOrig, playerStrugglePos, 2);
+        enemy.GetComponent<LerpScript>().LerpToPos(enemyOrig, enemyStrugglePos, 2);
+        camera.GetComponent<CameraController>().LerpCameraSize(150, 100, 1);
         camera.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos + new Vector3(10,-5,0), 2);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         enableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = true;
 

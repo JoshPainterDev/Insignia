@@ -18,6 +18,7 @@ public class AbilityManager_C : MonoBehaviour {
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
     public GameObject finalCut_FX;
+    public GameObject blackRain_FX; 
 
     public GameObject smoke01_FX;
     public GameObject smoke02_FX;
@@ -125,6 +126,18 @@ public class AbilityManager_C : MonoBehaviour {
                 else
                     combatManager.currSpecialCase = SpecialCase.None;
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
+                yield return new WaitForSeconds(1);
+                break;
+            case "Black Rain":
+                spawnPos = initPlayerPos + new Vector3(80, 100, 0);
+                yield return new WaitForSeconds(0.25f);
+                effectClone = (GameObject)Instantiate(blackRain_FX, spawnPos, transform.rotation);
+                //this.GetComponent<CombatAudio>().playOutrageSFX();
+                yield return new WaitForSeconds(0.35f);
+                combatManager.DamageEnemy_Ability(ability);
+                effectClone.GetComponent<Animator>().speed = 0.0f;
+                yield return new WaitForSeconds(0.75f);
+                effectClone.GetComponent<Animator>().speed = 1.45f;
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":

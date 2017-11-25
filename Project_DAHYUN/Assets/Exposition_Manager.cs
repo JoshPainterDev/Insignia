@@ -87,7 +87,7 @@ public class Exposition_Manager : MonoBehaviour
         {
             dialogueManager.DialogueHandler();
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(1.15f);
             ready4Input = true;
         }
     }
@@ -413,7 +413,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = "Seamstress";
                         leftspeaker[1] = true;
-                        script[1] = "You've shown you can handle a blade, but...";
+                        script[1] = "You've shown knowledge of your weapon, but...";
 
                         speaker[2] = "Seamstress";
                         leftspeaker[2] = true;
@@ -548,9 +548,17 @@ public class Exposition_Manager : MonoBehaviour
             case 0:
                 // Set next Level //
                 nextLevel = "Tutorial_Scene02";
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-                yield return new WaitForSeconds(1f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0.75f), 0.25f);
+                yield return new WaitForSeconds(3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0.75f), new Color(0, 0, 0, 1), 0.5f);
+                yield return new WaitForSeconds(3.5f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0.75f), 0.25f);   
+                yield return new WaitForSeconds(5f);
                 StartCoroutine(NewDialogue(5, 1));
+                yield return new WaitForSeconds(5f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0.75f), new Color(0, 0, 0, 1), 0.5f);
+                yield return new WaitForSeconds(3.5f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.25f);
                 break;
             case 4:
                 yield return new WaitForSeconds(1f);
@@ -588,6 +596,10 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(NewDialogue(4, 1));
                 break;
             case 5:
+                yield return new WaitForSeconds(1);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 1.75f);
+                yield return new WaitForSeconds(1);
+                actionsCompleted = true; //actions are completed
                 LoadNextLv();
                 break;
         }
