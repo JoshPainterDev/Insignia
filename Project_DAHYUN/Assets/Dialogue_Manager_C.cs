@@ -205,6 +205,7 @@ public class Dialogue_Manager_C : MonoBehaviour
             isLeftVisibile = true;
             leftImage.GetComponent<Image>().enabled = true;
             leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+            leftImage.transform.localScale = new Vector3(-1, 1, 0);
             leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
             leftSpeaker.GetComponent<Text>().text = speaker;
             leftSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
@@ -229,16 +230,17 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "";
                 break;
             case "???":
-                iconString = "";
+                print("nigguh we made it");
+                iconString = "CloseUps\\Character_CloseUp_Unknown";
                 break;
             case "Theron":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_Theron";
                 break;
             case "Slade":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_Slade";
                 break;
             case "Not Steve":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_Slade";
                 break;
             case "Ayo":
                 iconString = "";

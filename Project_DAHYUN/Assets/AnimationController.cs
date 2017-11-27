@@ -8,7 +8,7 @@ public class AnimationController : MonoBehaviour
 
     public void Start()
     {
-        LoadCharacter();
+        Invoke("LoadCharacter", 0.25f);
     }
 
     public void SetPlaySpeed(float newSpeed = 1)

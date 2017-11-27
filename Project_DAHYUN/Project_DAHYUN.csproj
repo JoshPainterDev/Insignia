@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AI_CombatManager_C.cs" />
-    <Compile Include="Assets\AbilitySelect_Manager.cs" />
     <Compile Include="Assets\AccountInfo.cs" />
     <Compile Include="Assets\AdventureSelect_Manager.cs" />
     <Compile Include="Assets\AnalyticsController.cs" />

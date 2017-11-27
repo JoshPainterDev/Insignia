@@ -39,10 +39,13 @@ public class CombatManager : MonoBehaviour {
     private int playerMaxHealth = 100;
     [HideInInspector]
     public int playerAttackBoost = 0;
+    private int playerAttBoostDur = 0;
     [HideInInspector]
     public int playerDefenseBoost = 0;
+    private int playerDefBoostDur = 0;
     [HideInInspector]
     public int playerSpeedBoost = 0;
+    private int playerSpdBoostDur = 0;
     [HideInInspector]
     public bool playerStunned = false;
     [HideInInspector]
@@ -70,10 +73,13 @@ public class CombatManager : MonoBehaviour {
     public int enemyMaxHealth = 100;
     [HideInInspector]
     public int enemyAttackBoost = 0;
+    private int enemyAttBoostDur = 0;
     [HideInInspector]
     public int enemyDefenseBoost = 0;
+    private int enemyDefBoostDur = 0;
     [HideInInspector]
     public int enemySpeedBoost = 0;
+    private int enemySpdBoostDur = 0;
     [HideInInspector]
     public bool enemyStunned = false;
     [HideInInspector]
@@ -123,7 +129,7 @@ public class CombatManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             int origHealth = playerHealth;
-            playerHealth = (int)(playerMaxHealth * 0.01f);
+            playerHealth = (int)(playerMaxHealth * 0.25f);
 
             float var1 = ((float)origHealth / (float)playerMaxHealth);
             float var2 = ((float)playerHealth / (float)playerMaxHealth);
@@ -152,10 +158,14 @@ public class CombatManager : MonoBehaviour {
         enemiesRemaining = encounter.totalEnemies;
 
         //REMOVE THIS LATER
-        GameController.controller.Load(GameController.controller.charNames[1]);
+        if (GameController.controller.playerName == "")
+        {
+            GameController.controller.Load(GameController.controller.charNames[1]);
+            print(GameController.controller.charNames[1]);
+        }
 
         //0. pretend the player has save data for ability sake
-        GameController.controller.playerLevel = 1;
+        playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
 
         //1. Load in player and enemy
@@ -169,7 +179,7 @@ public class CombatManager : MonoBehaviour {
         if(!hasTutorial)
         {
             GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
-            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Rage");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
             GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
             GameController.controller.strikeModifier = "Serated Strike";
@@ -187,6 +197,11 @@ public class CombatManager : MonoBehaviour {
             ability3CD = 0;
             ability4CD = 0;
 
+            abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
+            abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
+            abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
+            abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
+
             abilityButton1.transform.GetChild(0).GetComponent<Text>().text = ability1.Name;
             abilityButton2.transform.GetChild(0).GetComponent<Text>().text = ability2.Name;
             abilityButton3.transform.GetChild(0).GetComponent<Text>().text = ability3.Name;
@@ -197,10 +212,6 @@ public class CombatManager : MonoBehaviour {
             abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3.Cooldown.ToString();
             abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4.Cooldown.ToString();
 
-            Color temp = Color.white;
-
-            abilityButton1.GetComponent<Image>().color = temp;
-
             if (GameController.controller.limitBreakTracker == 0)
                 canLimitBreak = true;
         }
@@ -208,7 +219,7 @@ public class CombatManager : MonoBehaviour {
         initPlayerPos = playerMannequin.transform.position;
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
-        DisableAbilityButtons();
+        HideAbilityButtons();
         DisableBackButton();
         HideAbilityButtons();
         DisableBackButton();
@@ -281,6 +292,8 @@ public class CombatManager : MonoBehaviour {
     {
         Color temp = Color.white;
 
+        print(ability.Type);
+
         switch (ability.Type)
         {
             case AbilityType.Physical:
@@ -301,6 +314,7 @@ public class CombatManager : MonoBehaviour {
     {
         print("PLAYER TURN IS OVER");
         AbilityCooldownTick(true);
+        BoostTick(true);
         StartCoroutine(CheckForDamage(damageDealt, false, originalHP));
     }
 
@@ -308,6 +322,7 @@ public class CombatManager : MonoBehaviour {
     {
         print("ENEMY TURN IS OVER");
         AbilityCooldownTick(false);
+        BoostTick(false);
         StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
     }
 
@@ -616,6 +631,56 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
+    public void BoostTick(bool player)
+    {
+        if(player)
+        {
+            if (playerAttBoostDur == 0)
+            {
+                playerAttackBoost = 0;
+            }
+            else
+                --playerAttBoostDur;
+
+            if (playerDefBoostDur == 0)
+            {
+                playerDefenseBoost = 0;
+            }
+            else
+                --playerDefBoostDur;
+
+            if (playerSpdBoostDur == 0)
+            {
+                playerSpeedBoost = 0;
+            }
+            else
+                --playerSpdBoostDur;
+        }
+        else
+        {
+            if (enemyAttBoostDur == 0)
+            {
+                enemyAttackBoost = 0;
+            }
+            else
+                --enemyAttBoostDur;
+
+            if (enemyDefBoostDur == 0)
+            {
+                enemyDefenseBoost = 0;
+            }
+            else
+                --enemyDefBoostDur;
+
+            if (enemySpdBoostDur == 0)
+            {
+                enemySpeedBoost = 0;
+            }
+            else
+                --enemySpdBoostDur;
+        }
+    }
+
     public bool CheckForDeath(bool EnemyCheck)
     {
         canLimitBreak = false;
@@ -725,6 +790,8 @@ public class CombatManager : MonoBehaviour {
         int prowess = GameController.controller.playerProwess;
         float attBoostMod = 1;
 
+        print("REGISTERED AB: " + playerAttackBoost);
+
         switch(playerAttackBoost)
         {
             case 1:
@@ -778,10 +845,7 @@ public class CombatManager : MonoBehaviour {
             if (percentDealt > percentRemaining)
             {
                 if (percentRemaining > strikeExecutePercent)
-                {
-                    print("returning 2");
                     return 2;
-                }  
             }
         }
 
@@ -814,18 +878,19 @@ public class CombatManager : MonoBehaviour {
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
 
+        print("REGISTERED AB: " + playerAttackBoost);
 
         //handle attack boost modifier
         switch (playerAttackBoost)
         {
             case 1:
-                attBoostMod = 1.5f;
+                attBoostMod = 1.35f;
                 break;
             case 2:
-                attBoostMod = 2;
+                attBoostMod = 1.75f;
                 break;
             case 3:
-                attBoostMod = 2.5f;
+                attBoostMod = 2.15f;
                 break;
             default:
                 attBoostMod = 1;
@@ -833,7 +898,9 @@ public class CombatManager : MonoBehaviour {
         }
 
         damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
-            
+
+        print("attBoostMod: " + attBoostMod);
+
         damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
         damageDealt *= percentOfDamage;
@@ -1103,9 +1170,34 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void HealPlayer()
+    public void HealPlayer(int amount)
     {
+        float origHP = ((float)playerHealth / (float)playerMaxHealth);
+        playerHealth += amount;
 
+        if (playerHealth > playerMaxHealth)
+            playerHealth = playerMaxHealth;
+
+
+        StartCoroutine(HealAnim(origHP, ((float)playerHealth / (float)playerMaxHealth)));
+    }
+
+    IEnumerator HealAnim(float var1, float var2)
+    {
+        playerHealthBar.GetComponent<Image>().enabled = true;
+        playerHealthBar.transform.GetChild(2).GetComponent<Image>().enabled = true;
+        playerHealthBar.transform.GetChild(3).GetComponent<Text>().enabled = true;
+        playerHealthBar.transform.GetChild(4).GetComponent<Text>().enabled = true;
+        foreach (Image img in playerHealthBar.GetComponentsInChildren<Image>())
+        {
+            img.enabled = true;
+        }
+
+        yield return new WaitForSeconds(0.75f);
+
+        playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, 1f);
+        print("orig HP: " + var1);
+        print("new health: " + var2);
     }
 
     bool ResolveSpecialCase(bool playerTurn)

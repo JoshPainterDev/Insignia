@@ -18,6 +18,7 @@ public class AI_CombatManager_C : MonoBehaviour
     private float elapsedTime = 0.0f;
     private int AI1_Wins = 0;
     private int AI2_Wins = 0;
+    private int TurnTracker = 1;
 
     [HideInInspector]
     public SpecialCase currSpecialCase = SpecialCase.None;
@@ -27,8 +28,11 @@ public class AI_CombatManager_C : MonoBehaviour
     private int AI1_MaxHealth;
     private int AI1_Attack, AI1_Defense, AI1_Prowess, AI1_Speed;
     private int AI1_AttackBoost = 0;
+    private int AI1_AttBoostDur = 0;
     private int AI1_DefenseBoost = 0;
+    private int AI1_DefBoostDur = 0;
     private int AI1_SpeedBoost = 0;
+    private int AI1_SpdBoostDur = 0;
     private bool AI1_Stunned = false;
     private bool AI1_Vulnerable = false;
     private bool AI1_Blinded = false;
@@ -40,8 +44,11 @@ public class AI_CombatManager_C : MonoBehaviour
     private int AI2_MaxHealth;
     private int AI2_Attack, AI2_Defense, AI2_Prowess, AI2_Speed;
     private int AI2_AttackBoost = 0;
+    private int AI2_AttBoostDur = 0;
     private int AI2_DefenseBoost = 0;
+    private int AI2_DefBoostDur = 0;
     private int AI2_SpeedBoost = 0;
+    private int AI2_SpdBoostDur = 0;
     private bool AI2_Stunned = false;
     private bool AI2_Vulnerable = false;
     private bool AI2_Blinded = false;
@@ -52,9 +59,9 @@ public class AI_CombatManager_C : MonoBehaviour
     {
         // AI1 Base Stats
         AI1_Level = 5;
-        AI1_MaxHealth = 1000;
+        AI1_MaxHealth = 250; // 25%
         AI1_Attack = 75;
-        AI1_Defense = 75;
+        AI1_Defense = 55;
         AI1_Prowess = 30;
         AI1_Speed = 5;
         // AI1 Boosts
@@ -63,7 +70,7 @@ public class AI_CombatManager_C : MonoBehaviour
         AI1_SpeedBoost = 0;
         // AI1 Abilities
         AI1_ability1 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
-        AI1_ability2 = AbilityToolsScript.tools.LookUpAbility("Outrage");
+        AI1_ability2 = AbilityToolsScript.tools.LookUpAbility("Rage");
         AI1_ability3 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
         AI1_ability4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
 
@@ -71,9 +78,9 @@ public class AI_CombatManager_C : MonoBehaviour
 
         // AI2 Base Stats
         AI2_Level = 5;
-        AI2_MaxHealth = 1000;
+        AI2_MaxHealth = 250;
         AI2_Attack = 75;
-        AI2_Defense = 75;
+        AI2_Defense = 55;
         AI2_Prowess = 30;
         AI2_Speed = 5;
         // AI2 Boosts
@@ -82,7 +89,7 @@ public class AI_CombatManager_C : MonoBehaviour
         AI2_SpeedBoost = 5;
         // AI2 Abilities
         AI2_ability1 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
-        AI2_ability2 = AbilityToolsScript.tools.LookUpAbility("Outrage");
+        AI2_ability2 = AbilityToolsScript.tools.LookUpAbility("Rage");
         AI2_ability3 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
         AI2_ability4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
 
@@ -91,11 +98,6 @@ public class AI_CombatManager_C : MonoBehaviour
 
     private void Update()
     {
-        //if (running)
-        //{
-        //    elapsedTime += Time.deltaTime * 100;
-        //    print(elapsedTime);
-        //}  
 
         if (Input.GetKeyDown(KeyCode.Space) == true && !running)
         {
@@ -154,10 +156,12 @@ public class AI_CombatManager_C : MonoBehaviour
         // compare speeds
         if (AI1_Speed >= AI2_Speed)
         {
+            BoostTick(false);
             BeginAI1Turn();
         }
         else
         {
+            BoostTick(true);
             BeginAI2Turn();
         }
     }
@@ -253,48 +257,57 @@ public class AI_CombatManager_C : MonoBehaviour
             BeginAI1Turn();
         }
 
-        switch (rand)
+        if(TurnTracker == 1)
         {
-            case 0:
-                damageDealt = AI2_UseStrike();
-                break;
-            case 1:
-                if(AI2_ability1.Name != "-")
-                {
-                    damageDealt = AI2_UseAbility(AI2_ability1);
-                    AnalyticsController.controller.AI2_ability1Uses++;
-                }                    
-                else
-                    damageDealt = AI2_UseStrike();
-                break;
-            case 2:
-                if (AI2_ability2.Name != "-")
-                {
-                    damageDealt = AI2_UseAbility(AI2_ability2);
-                    AnalyticsController.controller.AI2_ability2Uses++;
-                }
-                else
-                    damageDealt = AI2_UseStrike();
-                break;
-            case 3:
-                if (AI2_ability3.Name != "-")
-                {
-                    damageDealt = AI2_UseAbility(AI2_ability3);
-                    AnalyticsController.controller.AI2_ability3Uses++;
-                }
-                else
-                    damageDealt = AI2_UseStrike();
-                break;
-            case 4:
-                if (AI2_ability4.Name != "-")
-                {
-                    damageDealt = AI2_UseAbility(AI2_ability4);
-                    AnalyticsController.controller.AI2_ability4Uses++;
-                }
-                else
-                    damageDealt = AI2_UseStrike();
-                break;
+            damageDealt = AI2_UseAbility(AI2_ability1);
+            AnalyticsController.controller.AI2_ability1Uses++;
         }
+        else
+        {
+            switch (rand)
+            {
+                case 0:
+                    damageDealt = AI2_UseStrike();
+                    break;
+                case 1:
+                    if (AI2_ability1.Name != "-")
+                    {
+                        damageDealt = AI2_UseAbility(AI2_ability1);
+                        AnalyticsController.controller.AI2_ability1Uses++;
+                    }
+                    else
+                        damageDealt = AI2_UseStrike();
+                    break;
+                case 2:
+                    if (AI2_ability2.Name != "-")
+                    {
+                        damageDealt = AI2_UseAbility(AI2_ability2);
+                        AnalyticsController.controller.AI2_ability2Uses++;
+                    }
+                    else
+                        damageDealt = AI2_UseStrike();
+                    break;
+                case 3:
+                    if (AI2_ability3.Name != "-")
+                    {
+                        damageDealt = AI2_UseAbility(AI2_ability3);
+                        AnalyticsController.controller.AI2_ability3Uses++;
+                    }
+                    else
+                        damageDealt = AI2_UseStrike();
+                    break;
+                case 4:
+                    if (AI2_ability4.Name != "-")
+                    {
+                        damageDealt = AI2_UseAbility(AI2_ability4);
+                        AnalyticsController.controller.AI2_ability4Uses++;
+                    }
+                    else
+                        damageDealt = AI2_UseStrike();
+                    break;
+            }
+        }
+
 
         AI1_Health -= damageDealt;
 
@@ -308,6 +321,7 @@ public class AI_CombatManager_C : MonoBehaviour
         }
         else
         {
+            TurnTracker++;
             BeginAI1Turn();
         }
     }
@@ -445,10 +459,28 @@ public class AI_CombatManager_C : MonoBehaviour
                 return (int)damageDealt;
             }
             else
-                return 0;
+                return 0; // we missed
         }
         else
         {
+            if (abilityInfo.AttackBoost != 0)
+            {
+                AI1_AttackBoost = abilityInfo.AttackBoost;
+                AI1_AttBoostDur = abilityInfo.AttBoostDuration;
+            }
+                
+            if (abilityInfo.DefenseBoost != 0)
+            {
+                AI1_DefenseBoost = abilityInfo.DefenseBoost;
+                AI1_DefBoostDur = abilityInfo.DefBoostDuration;
+            }
+
+            if (abilityInfo.DefenseBoost != 0)
+            {
+                AI1_SpeedBoost = abilityInfo.SpeedBoost;
+                AI1_SpdBoostDur = abilityInfo.SpdBoostDuration;
+            }
+
             return 0;
         }
     }
@@ -591,7 +623,76 @@ public class AI_CombatManager_C : MonoBehaviour
         }
         else
         {
+            if (abilityInfo.AttackBoost != 0)
+            {
+                print("Attack Boost Used! " + abilityInfo.AttackBoost);
+                AI2_AttackBoost = abilityInfo.AttackBoost;
+                AI2_AttBoostDur = abilityInfo.AttBoostDuration;
+            }
+
+            if (abilityInfo.DefenseBoost != 0)
+            {
+                AI2_DefenseBoost = abilityInfo.DefenseBoost;
+                AI2_DefBoostDur = abilityInfo.DefBoostDuration;
+            }
+
+            if (abilityInfo.DefenseBoost != 0)
+            {
+                AI2_SpeedBoost = abilityInfo.SpeedBoost;
+                AI2_SpdBoostDur = abilityInfo.SpdBoostDuration;
+            }
+
             return 0;
+        }
+    }
+
+    public void BoostTick(bool player)
+    {
+        if (player)
+        {
+            if (AI1_AttBoostDur == 0)
+            {
+                AI1_AttackBoost = 0;
+            }
+            else
+                --AI1_AttBoostDur;
+
+            if (AI1_DefBoostDur == 0)
+            {
+                AI1_DefenseBoost = 0;
+            }
+            else
+                --AI1_DefBoostDur;
+
+            if (AI1_SpdBoostDur == 0)
+            {
+                AI1_SpeedBoost = 0;
+            }
+            else
+                --AI1_SpdBoostDur;
+        }
+        else
+        {
+            if (AI2_AttBoostDur == 0)
+            {
+                AI2_AttackBoost = 0;
+            }
+            else
+                --AI2_AttBoostDur;
+
+            if (AI2_DefBoostDur == 0)
+            {
+                AI2_DefenseBoost = 0;
+            }
+            else
+                --AI2_DefBoostDur;
+
+            if (AI2_SpdBoostDur == 0)
+            {
+                AI2_SpeedBoost = 0;
+            }
+            else
+                --AI2_SpdBoostDur;
         }
     }
 }

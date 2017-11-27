@@ -79,6 +79,7 @@ public class AbilityToolsScript : MonoBehaviour {
             case "Solar Flare":
                 ability.Accuracy = 75;
                 ability.BaseDamage = STRONG_DAMAGE;
+                ability.Cooldown = 2;
                 ability.Buffs = false;
                 ability.Description = "A strong, focused, fire blast. Has a Strong chance of setting the opponent Ablaze.";
                 ability.Name = name;
@@ -95,7 +96,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.AttBoostDuration = 3;
                 ability.Heals = true;
                 ability.HealAmount = WEAK_HEAL;
-                ability.Description = "Harness your pain and hatred. Attack boost +2, heal for a small amount.";
+                ability.Description = "Harness your pain and hatred. Attack boost +2.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
@@ -104,7 +105,7 @@ public class AbilityToolsScript : MonoBehaviour {
             case "Outrage":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 3;
-                ability.Cooldown = 3;
+                ability.Cooldown = 2;
                 ability.Description = "Explode in a fiery rage. Consumes your attack boost to deal more damage.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.Outrage;
@@ -122,9 +123,9 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.Magical;
                 break;
             case "Thunder Charge":
-                ability.Accuracy = 100;
-                ability.BaseDamage = 30;
-                ability.Cooldown = 1;
+                ability.Accuracy = 85;
+                ability.BaseDamage = 25;
+                ability.Cooldown = 3;
                 ability.Buffs = false;
                 ability.Description = "A lightning imbued strike. Has a chance to stun your foe.";
                 ability.Name = name;
@@ -135,13 +136,24 @@ public class AbilityToolsScript : MonoBehaviour {
             case "Guard Break":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 2;
-                ability.Cooldown = 3;
+                ability.Cooldown = 2;
                 ability.Buffs = false;
                 ability.Description = "Charge your foe and break through their defenses.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.StunFoe;
                 ability.Ticks = 0;
-                ability.Type = AbilityType.Physical;
+                ability.Type = AbilityType.Utility;
+                break;
+            case "Black Rain":
+                ability.Accuracy = 100;
+                ability.BaseDamage = 30;
+                ability.Cooldown = 3;
+                ability.Buffs = false;
+                ability.Description = "1,000 Needles of Shadow rain down upon your foes.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Magical;
                 break;
             default:
                 ability.Name = "";

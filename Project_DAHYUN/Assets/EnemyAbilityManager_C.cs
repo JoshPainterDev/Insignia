@@ -60,6 +60,14 @@ public class EnemyAbilityManager_C : MonoBehaviour
         Vector3 spawnPos = Vector3.zero;
         switch (abilityName)
         {
+            case "Rage":
+                spawnPos = initEnemyPos + new Vector3(0, 80, 0);
+                effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
+                this.GetComponent<CombatAudio>().playOutrageSFX();
+                yield return new WaitForSeconds(0.25f);
+                StartCoroutine(AttackBoostAnim(2));
+                yield return new WaitForSeconds(2f);
+                break;
             case "Thunder Charge":
                 int dieRoll = Random.Range(0, 99);
                 float chance = (50f + (combatManager.enemyInfo.enemyAttack - GameController.controller.playerDefense));
@@ -192,6 +200,13 @@ public class EnemyAbilityManager_C : MonoBehaviour
 
         yield return new WaitForSeconds(0.25f);
         EndTurn();
+    }
+
+    IEnumerator AttackBoostAnim(int level)
+    {
+        combatManager.enemyAttackBoost = level;
+        yield return new WaitForSeconds(0.25f);
+
     }
 
     void EndTurn()

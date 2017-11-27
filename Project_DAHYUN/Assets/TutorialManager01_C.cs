@@ -62,11 +62,13 @@ public class TutorialManager01_C : MonoBehaviour
 
         ++tutorialState;
 
+        print("what?");
+
         combatController.DisableMainButtons();
         combatController.HideMainButtons();
         Destroy(panel02);
         combatController.ShowAbilityButtons();
-        combatController.EnableAbilityButtons();
+        //combatController.EnableAbilityButtons();
         combatController.DisableBackButton();
     }
 
@@ -79,8 +81,6 @@ public class TutorialManager01_C : MonoBehaviour
 
         combatController.DisableMainButtons();
         combatController.HideMainButtons();
-        combatController.ShowAbilityButtons();
-        combatController.DisableAbilityButtons();
         combatController.HideAbilityButtons();
 
         StartCoroutine(FakeAbility());
@@ -88,12 +88,12 @@ public class TutorialManager01_C : MonoBehaviour
 
     IEnumerator FakeAbility()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         textBox = panel03.transform.GetChild(0).gameObject;
         this.GetComponent<AbilityManager_C>().UseTutorialAbility();
         yield return new WaitForSeconds(1.5f);
         enemyHealth.GetComponent<HealthScript>().LerpHealth(0.75f, 0.5f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         panel03.GetComponent<Image>().enabled = true;
         textBox.GetComponent<Text>().enabled = true;
         StartCoroutine(explanationScene01());
@@ -218,9 +218,11 @@ public class TutorialManager01_C : MonoBehaviour
         enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
         yield return new WaitForSeconds(0.85f);
         playerHealth.GetComponent<HealthScript>().LerpHealth(1, 0.1f);
+        yield return new WaitForSeconds(0.15f);
+        combatController.playerMannequin.GetComponent<AnimationController>().PlayDeathAnim();
         yield return new WaitForSeconds(1f);
         blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Exposition_Scene05");
     }
 }

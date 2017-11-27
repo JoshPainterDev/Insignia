@@ -12,8 +12,10 @@ public class Ability{
     public int Cooldown = 3;
     public int AttackBoost = 0;
     public int DefenseBoost = 0;
+    public int SpeedBoost = 0;
     public int AttBoostDuration = 3;
     public int DefBoostDuration = 3;
+    public int SpdBoostDuration = 3;
     public int Ticks = 1;
     public int HealAmount = 0;
     public int AblazeChance = 0;

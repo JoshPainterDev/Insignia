@@ -14,6 +14,8 @@ public class NewCharacter_Manager : MonoBehaviour {
     public GameObject class4;
     public GameObject classIcon;
 
+    public int maxNameLength = 16;
+
     public GameObject textField;
     public GameObject blackSq;
 
@@ -138,6 +140,8 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.SaveCharacters();//DONT FORGET TO SAVE :3
 
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
+            //DONT FORGET TO LOAD EITHER!
+            GameController.controller.Load(charName);
             Invoke("LoadTutorial", 0.5f);
         }
         else
@@ -193,6 +197,8 @@ public class NewCharacter_Manager : MonoBehaviour {
             if(character == charName)
                 return false;
         }
+        if (charName.Length > maxNameLength)
+            return false;
 
         return true;
     }

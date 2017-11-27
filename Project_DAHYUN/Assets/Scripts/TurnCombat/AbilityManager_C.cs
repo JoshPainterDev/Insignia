@@ -80,6 +80,14 @@ public class AbilityManager_C : MonoBehaviour {
 
         switch (abilityName)
         {
+            case "Rage":
+                spawnPos = initPlayerPos + new Vector3(0, 80, 0);
+                effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
+                this.GetComponent<CombatAudio>().playOutrageSFX();
+                yield return new WaitForSeconds(0.25f);
+                StartCoroutine(AttackBoostAnim(2));
+                yield return new WaitForSeconds(2f);
+                break;
             case "Thunder Charge":
                 int dieRoll = Random.Range(0, 99);
                 float chance = (50f + GameController.controller.playerAttack - combatManager.enemyInfo.enemyDefense);
@@ -136,9 +144,11 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.35f);
                 combatManager.DamageEnemy_Ability(ability);
                 effectClone.GetComponent<Animator>().speed = 0.0f;
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.65f);
+                playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                yield return new WaitForSeconds(0.1f);
                 effectClone.GetComponent<Animator>().speed = 1.45f;
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
                 break;
             case "Outrage":
                 spawnPos = initPlayerPos + new Vector3(0, 80, 0);
@@ -244,7 +254,15 @@ public class AbilityManager_C : MonoBehaviour {
             StartCoroutine(EnemyStunnedAnim());
     }
 
-    IEnumerator PlayerStunnedAnim()
+    IEnumerator AttackBoostAnim(int level)
+    {
+        print("ATTACK BOOST SET: " + level);
+        combatManager.playerAttackBoost = level;
+        yield return new WaitForSeconds(0.25f);
+
+    }
+
+        IEnumerator PlayerStunnedAnim()
     {
         Vector3 eOffset01 = new Vector3(15, 30, 0);
         Vector3 eOffset02 = new Vector3(-20, 0, 0);
