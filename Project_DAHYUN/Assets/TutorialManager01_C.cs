@@ -69,7 +69,7 @@ public class TutorialManager01_C : MonoBehaviour
         Destroy(panel02);
         combatController.ShowAbilityButtons();
         //combatController.EnableAbilityButtons();
-        combatController.DisableBackButton();
+        combatController.HideBackButton();
     }
 
     public void AbilitySelected()

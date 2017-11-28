@@ -230,7 +230,6 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "";
                 break;
             case "???":
-                print("nigguh we made it");
                 iconString = "CloseUps\\Character_CloseUp_Unknown";
                 break;
             case "Theron":
@@ -241,6 +240,9 @@ public class Dialogue_Manager_C : MonoBehaviour
                 break;
             case "Not Steve":
                 iconString = "CloseUps\\Character_CloseUp_Slade";
+                break;
+            case "Seamstress":
+                iconString = "CloseUps\\Character_CloseUp_Seamstress";
                 break;
             case "Ayo":
                 iconString = "";

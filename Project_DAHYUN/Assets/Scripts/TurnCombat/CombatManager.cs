@@ -148,7 +148,7 @@ public class CombatManager : MonoBehaviour {
             encounter = new EnemyEncounter();
             encounter.enemyNames = new string[3];
             encounter.totalEnemies = 3;
-            encounter.enemyNames[0] = "Dummy";
+            encounter.enemyNames[0] = "The Seamstress";
             encounter.enemyNames[1] = "Skitter";
             encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
@@ -220,9 +220,8 @@ public class CombatManager : MonoBehaviour {
 
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         HideAbilityButtons();
-        DisableBackButton();
         HideAbilityButtons();
-        DisableBackButton();
+        HideBackButton();
         HideMainButtons();
 
         if (!hasTutorial)
@@ -389,7 +388,7 @@ public class CombatManager : MonoBehaviour {
         currentState = State.MainMenu;
         DisableAbilityButtons();
         HideAbilityButtons();
-        DisableBackButton();
+        HideBackButton();
         //enable main buttons?
 
         StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
@@ -475,7 +474,7 @@ public class CombatManager : MonoBehaviour {
     {
         currentState = State.MainMenu;
         DisableAbilityButtons();
-        DisableBackButton();
+        HideBackButton();
         DisableMainButtons();
         HideAbilityButtons();
         HideMainButtons();
@@ -1520,7 +1519,7 @@ public class CombatManager : MonoBehaviour {
                 currentState = State.Abilities;
                 HideMainButtons();
                 DisableMainButtons();
-                EnableBackButton();
+                ShowBackButton();
                 ShowAbilityButtons();
                 EnableAbilityButtons();
                 break;
@@ -1536,7 +1535,7 @@ public class CombatManager : MonoBehaviour {
             case State.MainMenu:
                 currentState = State.Retreat;
                 DisableMainButtons();
-                EnableBackButton();
+                ShowBackButton();
                 SpawnItemsUI();
                 break;
         }
@@ -1665,18 +1664,17 @@ public class CombatManager : MonoBehaviour {
         rightButton.GetComponentInChildren<Button>().enabled = false;
     }
 
-    public void EnableBackButton()
+    public void ShowBackButton()
     {
-        backButton.GetComponent<Image>().enabled = true;
-        backButton.GetComponent<Button>().enabled = true;
-        backButton.GetComponentInChildren<Text>().enabled = true;
+        backButton.SetActive(true);
     }
 
-    public void DisableBackButton()
+    public void HideBackButton()
     {
-        backButton.GetComponent<Image>().enabled = false;
-        backButton.GetComponent<Button>().enabled = false;
-        backButton.GetComponentInChildren<Text>().enabled = false;
+        backButton.SetActive(false);
+        //backButton.GetComponent<Image>().enabled = false;
+        //backButton.GetComponent<Button>().enabled = false;
+        //backButton.GetComponentInChildren<Text>().enabled = false;
     }
 
     public void EnableAbilityButtons()

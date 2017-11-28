@@ -8,6 +8,8 @@ public class EnemyCombatScript : MonoBehaviour {
     public GameObject enemyMannequin;
     public GameObject playerMannequin;
 
+    public GameObject seamstress_StrikeFX;
+
     [HideInInspector]
     private Vector3 origPosition;
     private Vector3 playerOrigPos;
@@ -181,12 +183,43 @@ public class EnemyCombatScript : MonoBehaviour {
     IEnumerator EnemyStrike()
     {
         combatManager.HideHealthBars();
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
-        yield return new WaitForSeconds(0.7f);
-        combatManager.DamagePlayer_Strike();
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
-        yield return new WaitForSeconds(0.25f);
-        combatManager.EndEnemyTurn(true, originalPlayerHP);
+
+        if(enemyInfo.specialStrikeAnim)
+        {
+            switch(enemyInfo.enemyName)
+            {
+                case "The Seamstress":
+                    print("succ 123");
+                    enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, (origPosition - new Vector3(170,0,0)), 3f);
+                    yield return new WaitForSeconds(0.5f);
+                    enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+                    yield return new WaitForSeconds(0.5f);
+                    //enemyMannequin.GetComponent<LerpScript>().LerpToPos((origPosition - new Vector3(20, 0, 0)), origPosition - new Vector3(140, 0, 0), 3f);
+                    //yield return new WaitForSeconds(0.5f);
+                    GameObject effectClone = (GameObject)Instantiate(seamstress_StrikeFX, origPosition, transform.rotation);
+                    effectClone.transform.parent = enemyMannequin.transform;
+                    effectClone.transform.localPosition = new Vector3(-14, 3, 0);
+                    combatManager.DamagePlayer_Strike();
+                    yield return new WaitForSeconds(0.25f);
+                    enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().speed = 0.75f;
+                    yield return new WaitForSeconds(0.75f);
+                    enemyMannequin.GetComponent<LerpScript>().LerpToPos((origPosition - new Vector3(170, 0, 0)), origPosition, 2f);
+                    enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
+                    enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().speed = 1f;
+                    yield return new WaitForSeconds(0.25f);
+                    combatManager.EndEnemyTurn(true, originalPlayerHP);
+                    break;
+            }
+        }
+        else
+        {
+            enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
+            yield return new WaitForSeconds(0.7f);
+            combatManager.DamagePlayer_Strike();
+            enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
+            yield return new WaitForSeconds(0.25f);
+            combatManager.EndEnemyTurn(true, originalPlayerHP);
+        }
     }
 
     public void EnemyMissStrike()

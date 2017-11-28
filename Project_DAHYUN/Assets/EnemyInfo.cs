@@ -19,5 +19,6 @@ public class EnemyInfo
     public string enemyCombatType;
 
     public string enemyImageSource;
+    public bool specialStrikeAnim;
     public GameObject enemyPrefab;
 }

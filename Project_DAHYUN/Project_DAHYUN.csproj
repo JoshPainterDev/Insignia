@@ -121,7 +121,6 @@
     <Compile Include="Assets\Scripts\DressRoom\DressRoom_Manager.cs" />
     <Compile Include="Assets\Scripts\DressRoom\EquipmentInfo.cs" />
     <Compile Include="Assets\Scripts\DressRoom\EquipmentInfoManager.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\GameManagers\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameManagers\GameController.cs" />

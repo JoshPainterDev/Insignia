@@ -60,6 +60,8 @@ public class StruggleManager_C : MonoBehaviour {
     bool playerCanFail = true;
     int enemyLevel = 1;
 
+    bool LeftKeyReady = true;
+    bool RightKeyReady = true;
 
     // Use this for initialization
     void Start ()
@@ -86,22 +88,31 @@ public class StruggleManager_C : MonoBehaviour {
     } 
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
 		if(struggling_Player || struggling_Enemy)
         {
             ++frameTracker;
             ++timeOutTracker;
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && LeftKeyReady)
             {
+                print((float)strugglePressCounter / goal);
+                LeftKeyReady = false;
                 leftButtonPressed();
             }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && RightKeyReady)
             {
+                RightKeyReady = false;
                 rightButtonPressed();
             }
+
+            if (!LeftKeyReady && Input.GetKeyUp(KeyCode.LeftArrow))
+                LeftKeyReady = true;
+
+            if (!RightKeyReady && Input.GetKeyUp(KeyCode.RightArrow))
+                RightKeyReady = true;
 
             percentCompleted = (float)strugglePressCounter / goal;
 
@@ -141,6 +152,8 @@ public class StruggleManager_C : MonoBehaviour {
                     timeOutTracker = 0;
                     ++failCounter;
                     --strugglePressCounter;
+                    strugglePressCounter = (strugglePressCounter > 0) ? strugglePressCounter : 0;
+                    struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
                 }
 
                 if (checkFailCounter(currentMode) || (strugglePressCounter < 0))

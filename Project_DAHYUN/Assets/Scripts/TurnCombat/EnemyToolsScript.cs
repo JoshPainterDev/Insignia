@@ -52,6 +52,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 2;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 60;
+                enemyInfo.specialStrikeAnim = false;
                 break;
             case "Shadow Assassin":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\zed_idle01";
@@ -68,6 +69,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 2;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 60;
+                enemyInfo.specialStrikeAnim = false;
                 break;
             case "Skitter":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\Skitter_Image";
@@ -84,6 +86,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 4;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 80;
+                enemyInfo.specialStrikeAnim = false;
                 break;
             case "Dragon Lord":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\dragonLord_0004_dragonlord-3";
@@ -100,6 +103,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 3;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 110;
+                enemyInfo.specialStrikeAnim = false;
                 break;
             case "The Seamstress":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\Skitter_Image";
@@ -116,6 +120,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 1;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 122;
+                enemyInfo.specialStrikeAnim = true;
                 break;
             case "Dummy":
                 enemyInfo.enemyPrefab = Dummy_Prefab;
@@ -131,6 +136,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 5;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 60;
+                enemyInfo.specialStrikeAnim = false;
                 break;
             default:
                 break;

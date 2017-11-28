@@ -555,10 +555,6 @@ public class Exposition_Manager : MonoBehaviour
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0.75f), 0.25f);   
                 yield return new WaitForSeconds(5f);
                 StartCoroutine(NewDialogue(5, 1));
-                yield return new WaitForSeconds(5f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0.75f), new Color(0, 0, 0, 1), 0.5f);
-                yield return new WaitForSeconds(3.5f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.25f);
                 break;
             case 4:
                 yield return new WaitForSeconds(1f);
