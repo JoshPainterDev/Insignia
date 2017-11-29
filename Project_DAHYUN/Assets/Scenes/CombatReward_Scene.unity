@@ -149,12 +149,12 @@ RectTransform:
   - {fileID: 875132317}
   - {fileID: 1112483669}
   - {fileID: 2051592325}
-  m_Father: {fileID: 889873491}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.25, y: 0}
+  m_AnchoredPosition: {x: 224, y: -91}
   m_SizeDelta: {x: 8.5, y: 13.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119668993
@@ -535,7 +535,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -595,6 +595,15 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114674956026531620, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+        type: 2}
+      propertyPath: FadeOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112125458341768, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
@@ -1050,7 +1059,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 149272721
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &889873491
@@ -1063,12 +1072,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 119668992}
   - {fileID: 1125771736}
   - {fileID: 1694830661}
   - {fileID: 2024994486}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.18800001}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1350,7 +1358,7 @@ RectTransform:
   - {fileID: 442386564}
   - {fileID: 1436702295}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1744,7 +1752,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1616549427
 MonoBehaviour:
@@ -1932,7 +1940,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1692702548
 GameObject:
@@ -2032,7 +2040,7 @@ RectTransform:
   - {fileID: 835724866}
   - {fileID: 2071942120}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2556,8 +2564,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2574,8 +2584,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2592,8 +2604,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2610,8 +2624,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2657,7 +2673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2029249001
 MonoBehaviour:
@@ -3035,7 +3051,7 @@ Transform:
   m_LocalScale: {x: 300, y: 300, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125264003
 GameObject:

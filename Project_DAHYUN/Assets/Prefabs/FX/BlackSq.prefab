@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222830196854077152}
   - component: {fileID: 114315015676046356}
   - component: {fileID: 114674956026531620}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BlackSq
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cb6f6bfa6021740a0c45ae0086438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FadeOnStart: 1
 --- !u!222 &222830196854077152
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -89,5 +90,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 450}
+  m_SizeDelta: {x: 1000, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}

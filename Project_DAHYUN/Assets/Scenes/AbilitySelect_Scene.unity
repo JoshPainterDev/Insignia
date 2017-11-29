@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061eeca7d18a26f47b17cb47accbfb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showAura: 0
 --- !u!1 &209706809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1847,7 @@ Prefab:
     - target: {fileID: 224072230898177550, guid: 51357127df538854493aac510ac0c284,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224750402801797426, guid: 51357127df538854493aac510ac0c284,
         type: 2}
@@ -1866,7 +1867,7 @@ Prefab:
     - target: {fileID: 224750402801797426, guid: 51357127df538854493aac510ac0c284,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224439620088877572, guid: 51357127df538854493aac510ac0c284,
         type: 2}
@@ -1886,7 +1887,7 @@ Prefab:
     - target: {fileID: 224439620088877572, guid: 51357127df538854493aac510ac0c284,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224584694590004944, guid: 51357127df538854493aac510ac0c284,
         type: 2}
@@ -1906,12 +1907,12 @@ Prefab:
     - target: {fileID: 224584694590004944, guid: 51357127df538854493aac510ac0c284,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224035348620481894, guid: 51357127df538854493aac510ac0c284,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51357127df538854493aac510ac0c284, type: 2}
@@ -3025,6 +3026,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
   levelUp: {fileID: 0}
   buttonClick: {fileID: 0}
+  swordSwing01: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -3150,9 +3152,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNames: []
-  numChars: 0
-  characterName: Steve Lee
+  playerName: 
+  playerSkinColor: []
+  playerAbility1:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    SpeedBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    SpdBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 9
+    SpecialValue: 0
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility2:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    SpeedBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    SpdBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 9
+    SpecialValue: 0
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility3:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    SpeedBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    SpdBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 9
+    SpecialValue: 0
+    Buffs: 0
+    Heals: 0
+    Description: 
+  playerAbility4:
+    Accuracy: 100
+    Cooldown: 3
+    AttackBoost: 0
+    DefenseBoost: 0
+    SpeedBoost: 0
+    AttBoostDuration: 3
+    DefBoostDuration: 3
+    SpdBoostDuration: 3
+    Ticks: 1
+    HealAmount: 0
+    AblazeChance: 0
+    Name: 
+    Type: 3
+    BaseDamage: 0
+    specialCase: 9
+    SpecialValue: 0
+    Buffs: 0
+    Heals: 0
+    Description: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -3173,6 +3254,9 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  charNames: []
+  numChars: 0
+  charClasses: 000000000000000000000000000000000000000000000000
 --- !u!4 &2029249000
 Transform:
   m_ObjectHideFlags: 0
@@ -3211,6 +3295,11 @@ MonoBehaviour:
   TRASH_EXP: 15
   MODERATE_EXP: 50
   THICC_EXP: 100
+  Steve_Prefab: {fileID: 0}
+  Seamstress_Prefab: {fileID: 0}
+  Ayo_Prefab: {fileID: 0}
+  Slade_Prefab: {fileID: 0}
+  Dummy_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,

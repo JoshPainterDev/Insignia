@@ -1492,8 +1492,8 @@ public class CombatManager : MonoBehaviour {
         playerMannequin.GetComponent<AnimationController>().PlayDeathAnim();
         yield return new WaitForSeconds(3.5f);
         blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("AdventureSelect_Scene");
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Retry_Scene");
     }
 
         public void TopSelected()

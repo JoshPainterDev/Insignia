@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\GameManagers\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameManagers\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameManagers\RetryManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\HealthPickup.cs" />
     <Compile Include="Assets\Scripts\LayBombs.cs" />

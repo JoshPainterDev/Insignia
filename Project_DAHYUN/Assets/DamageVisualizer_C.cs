@@ -53,7 +53,7 @@ public class DamageVisualizer_C : MonoBehaviour
             driftOffset = effectClone.transform.position + new Vector3(-50, 75, 0);
         effectClone.GetComponent<LerpScript>().LerpToPos(effectClone.transform.position, driftOffset, floatSpeed);
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject current = effectClone.transform.GetChild(i).gameObject;
             current.GetComponent<Text>().text = damage.ToString();
@@ -67,7 +67,7 @@ public class DamageVisualizer_C : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         effectClone.GetComponent<LerpScript>().LerpToPos(effectClone.transform.position, driftOffset + new Vector3(0,200,0), floatSpeed);
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject current = effectClone.transform.GetChild(i).gameObject;
             Color curColor = current.GetComponent<Text>().color;
