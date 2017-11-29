@@ -55,7 +55,7 @@ public class StruggleManager_C : MonoBehaviour {
     int frameTracker = 0;
     int timeOutTracker = 0;
     int failCounter = 0;
-    int failScale = 40;
+    int failScale = 10;
     bool playerInitiated = true;
     bool playerCanFail = true;
     int enemyLevel = 1;
@@ -160,6 +160,7 @@ public class StruggleManager_C : MonoBehaviour {
                 {
                     if(playerCanFail)
                     {
+                        failCounter = 0;
                         struggling_Player = false;
                         StartCoroutine(StruggleFailed());
                     }
