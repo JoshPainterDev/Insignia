@@ -113,30 +113,30 @@ public class CombatManager : MonoBehaviour {
     public int enemiesRemaining;
     public GameObject enemyCounter;
 
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            int origHealth = enemyHealth;
-            enemyHealth = (int)(enemyMaxHealth * 0.25f);
+    //public void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Alpha9))
+    //    {
+    //        int origHealth = enemyHealth;
+    //        enemyHealth = (int)(enemyMaxHealth * 0.25f);
 
-            float var1 = ((float)origHealth / (float)enemyMaxHealth);
-            float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
-            enemyHealthBar.GetComponent<HealthScript>().Hurt();
-            enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-        }
+    //        float var1 = ((float)origHealth / (float)enemyMaxHealth);
+    //        float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
+    //        enemyHealthBar.GetComponent<HealthScript>().Hurt();
+    //        enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            int origHealth = playerHealth;
-            playerHealth = (int)(playerMaxHealth * 0.25f);
+    //    if (Input.GetKeyDown(KeyCode.Alpha0))
+    //    {
+    //        int origHealth = playerHealth;
+    //        playerHealth = (int)(playerMaxHealth * 0.25f);
 
-            float var1 = ((float)origHealth / (float)playerMaxHealth);
-            float var2 = ((float)playerHealth / (float)playerMaxHealth);
-            playerHealthBar.GetComponent<HealthScript>().Hurt();
-            playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-        }
-    }
+    //        float var1 = ((float)origHealth / (float)playerMaxHealth);
+    //        float var2 = ((float)playerHealth / (float)playerMaxHealth);
+    //        playerHealthBar.GetComponent<HealthScript>().Hurt();
+    //        playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+    //    }
+    //}
 
     // Use this for initialization
     void Start ()
@@ -178,11 +178,11 @@ public class CombatManager : MonoBehaviour {
 
         if(!hasTutorial)
         {
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
-            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Rage");
-            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
-            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
-            GameController.controller.strikeModifier = "Serated Strike";
+            //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
+            //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Rage");
+            //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
+            //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
+            //GameController.controller.strikeModifier = "Serated Strike";
 
             ResetEnemyValues();
             //strikeMod = GameController.controller.strikeModifier;
@@ -197,20 +197,55 @@ public class CombatManager : MonoBehaviour {
             ability3CD = 0;
             ability4CD = 0;
 
-            abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
-            abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
-            abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
-            abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
-
             abilityButton1.transform.GetChild(0).GetComponent<Text>().text = ability1.Name;
             abilityButton2.transform.GetChild(0).GetComponent<Text>().text = ability2.Name;
             abilityButton3.transform.GetChild(0).GetComponent<Text>().text = ability3.Name;
             abilityButton4.transform.GetChild(0).GetComponent<Text>().text = ability4.Name;
 
-            abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
-            abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2.Cooldown.ToString();
-            abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3.Cooldown.ToString();
-            abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4.Cooldown.ToString();
+            if (ability1.Name == "-")
+            {
+                abilityButton1.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+                abilityButton1.transform.GetChild(1).GetComponent<Text>().text = "";
+            }
+            else
+            {
+                abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
+                abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
+            }
+
+            if (ability2.Name == "-")
+            {
+                abilityButton2.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+                abilityButton2.transform.GetChild(1).GetComponent<Text>().text = "";
+            }
+            else
+            {
+                abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
+                abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2.Cooldown.ToString();
+            }
+
+            if (ability3.Name == "-")
+            {
+                abilityButton3.transform.GetChild(1).GetComponent<Text>().text = "";
+                abilityButton3.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+            }
+            else
+            {
+                abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
+                abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3.Cooldown.ToString();
+            }  
+
+            if (ability4.Name == "-")
+            {
+                abilityButton4.transform.GetChild(1).GetComponent<Text>().text = "";
+                abilityButton4.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+            }
+            else
+            {
+                abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
+                abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4.Cooldown.ToString();
+            }
+                
 
             if (GameController.controller.limitBreakTracker == 0)
                 canLimitBreak = true;
@@ -252,34 +287,37 @@ public class CombatManager : MonoBehaviour {
 
     public void AbilitySelected(int selectedOption = 0)
     {
-        this.GetComponent<CombatAudio>().playUIAbilitySelect();
-
         switch(selectedOption)
         {
             case 1:
-                if(ability1CD < 1)
+                if(ability1CD < 1 && ability1.Name != "-")
                 {
+                    DisableAbilityButtons();
                     ability1CD = ability1.Cooldown + 1;
                     StartCoroutine(AbilitySelectAnim(abilityButton1, ability1));
                 }
                 break;
             case 2:
-                if (ability2CD < 1)
+                if (ability2CD < 1 && ability2.Name != "-")
                 {
+                    DisableAbilityButtons();
                     ability2CD = ability2.Cooldown + 1;
+                    abilityButton2.GetComponent<Button>().enabled = false;
                     StartCoroutine(AbilitySelectAnim(abilityButton2, ability2));
                 }
                 break;
             case 3:
-                if (ability3CD < 1)
+                if (ability3CD < 1 && ability3.Name != "-")
                 {
+                    DisableAbilityButtons();
                     ability3CD = ability3.Cooldown + 1;
                     StartCoroutine(AbilitySelectAnim(abilityButton3, ability3));
                 }
                 break;
             case 4:
-                if (ability4CD < 1)
+                if (ability4CD < 1 && ability4.Name != "-")
                 {
+                    DisableAbilityButtons();
                     ability4CD = ability4.Cooldown + 1;
                     StartCoroutine(AbilitySelectAnim(abilityButton4, ability4));
                 }
@@ -515,10 +553,12 @@ public class CombatManager : MonoBehaviour {
     {
         Vector3 origPos = button.transform.position;
         Color origColor = button.GetComponent<Image>().color;
-        
+
+        DisableAbilityButtons();
         HideButton("back");
         HideHealthBars();
 
+        this.GetComponent<CombatAudio>().playUIAbilitySelect();
         button.GetComponent<Image>().color = abilitySelectColor;
         Vector3 centerPos = Vector3.zero;
         if (button.name == "TLA1_Button")
@@ -562,7 +602,7 @@ public class CombatManager : MonoBehaviour {
         button.GetComponent<Image>().color = (Color.grey - new Color(0,0,0,0.15f));
         button.transform.position = origPos;
 
-        this.GetComponent<AbilityManager_C>().AbilityUsed(abilityUsed, enemyHealth);
+        this.GetComponent<AbilityManager_C>().AbilityToUse(abilityUsed, enemyHealth);
     }
 
     // Combat Functions
@@ -574,7 +614,6 @@ public class CombatManager : MonoBehaviour {
             if(ability1CD > 0)
             {
                 --ability1CD;
-
                 abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1CD.ToString();
 
                 if (ability1CD == 0)
@@ -952,20 +991,20 @@ public class CombatManager : MonoBehaviour {
                 switch (playerAttackBoost)
                 {
                     case 1:
-                        attBoostMod = 1.5f;
+                        attBoostMod = 1.2f;
                         break;
                     case 2:
-                        attBoostMod = 2;
+                        attBoostMod = 1.5f;
                         break;
                     case 3:
-                        attBoostMod = 2.5f;
+                        attBoostMod = 1.7f;
                         break;
                     default:
                         attBoostMod = 1;
                         break;
                 }
 
-                damageDealt = ((attack + randDamageBuffer) + (abilityUsed.BaseDamage * playerLevel)) * attBoostMod;
+                damageDealt = ((attack + playerLevel) + (abilityUsed.BaseDamage + (abilityUsed.BaseDamage * playerLevel / 2))) * attBoostMod;
 
                 damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 1.5f;
 
@@ -978,6 +1017,42 @@ public class CombatManager : MonoBehaviour {
                 print("enemy HP: " + enemyHealth);
             }
         }
+        else if(abilityUsed.Type == AbilityType.Magical)
+        {
+            // accuracy check the attack
+            if (accuracy >= rand)
+            {
+                //handle attack boost modifier
+                switch (playerAttackBoost)
+                {
+                    case 1:
+                        attBoostMod = 1.2f;
+                        break;
+                    case 2:
+                        attBoostMod = 1.5f;
+                        break;
+                    case 3:
+                        attBoostMod = 1.7f;
+                        break;
+                    default:
+                        attBoostMod = 1;
+                        break;
+                }
+
+                damageDealt = ((attack + randDamageBuffer) + (abilityUsed.BaseDamage * playerLevel)) * attBoostMod;
+                print("pAttack: " + attack);
+                print("eDefense: " + enemyInfo.enemyDefense);
+                damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 2.0f;
+
+                if (damageDealt < 1)
+                    damageDealt = 1;
+
+                enemyHealth -= (int)damageDealt;
+
+                print("damage: " + damageDealt);
+                print("enemy HP: " + enemyHealth);
+            }
+        }
         else
         {
             // accuracy check the attack
@@ -987,13 +1062,13 @@ public class CombatManager : MonoBehaviour {
                 switch (playerAttackBoost)
                 {
                     case 1:
-                        attBoostMod = 1.5f;
+                        attBoostMod = 1.2f;
                         break;
                     case 2:
-                        attBoostMod = 2;
+                        attBoostMod = 1.5f;
                         break;
                     case 3:
-                        attBoostMod = 2.5f;
+                        attBoostMod = 1.7f;
                         break;
                     default:
                         attBoostMod = 1;
@@ -1030,16 +1105,16 @@ public class CombatManager : MonoBehaviour {
         int prowess = enemyInfo.enemyProwess;
 
         //handle attack boost modifier
-        switch (playerAttackBoost)
+        switch (enemyAttackBoost)
         {
             case 1:
-                attBoostMod = 1.5f;
+                attBoostMod = 1.35f;
                 break;
             case 2:
-                attBoostMod = 2;
+                attBoostMod = 1.75f;
                 break;
             case 3:
-                attBoostMod = 2.5f;
+                attBoostMod = 2.15f;
                 break;
             default:
                 attBoostMod = 1;
@@ -1048,7 +1123,7 @@ public class CombatManager : MonoBehaviour {
 
         damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
 
-        damageDealt -= ((GameController.controller.playerDefense) * (GameController.controller.playerDefense * playerDefenseBoost)) / 2f;
+        damageDealt -= (GameController.controller.playerDefense * playerDefenseBoost);
 
         damageDealt *= percentOfDamage;
 
@@ -1120,7 +1195,7 @@ public class CombatManager : MonoBehaviour {
             if (accuracy > rand)
             {
                 //handle attack boost modifier
-                switch (playerAttackBoost)
+                switch (enemyAttackBoost)
                 {
                     case 1:
                         attBoostMod = 1.5f;

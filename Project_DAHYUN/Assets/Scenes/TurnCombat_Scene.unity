@@ -2296,6 +2296,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -2316,6 +2317,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -2336,6 +2338,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -2356,6 +2359,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -5153,6 +5157,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   ability2:
     Accuracy: 100
     Cooldown: 3
@@ -5173,6 +5178,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   ability3:
     Accuracy: 100
     Cooldown: 3
@@ -5193,6 +5199,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   ability4:
     Accuracy: 100
     Cooldown: 3
@@ -5213,11 +5220,12 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   abilityTextColor: {r: 1, g: 1, b: 1, a: 1}
   abilitySelectColor: {r: 1, g: 0.7982759, b: 0.1397059, a: 1}
   physicalColor: {r: 0.9485294, g: 0.48426947, b: 0.06277033, a: 1}
-  magicalColor: {r: 0, g: 0.751724, b: 1, a: 1}
-  utilityColor: {r: 0.6847872, g: 0.38235295, b: 1, a: 1}
+  magicalColor: {r: 0.6847872, g: 0.38235295, b: 1, a: 1}
+  utilityColor: {r: 0.2205882, g: 0.7419877, b: 1, a: 1}
   enemiesRemaining: 0
   enemyCounter: {fileID: 524059995}
 --- !u!4 &1616549426

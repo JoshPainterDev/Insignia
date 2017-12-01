@@ -131,7 +131,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     {
                         cooldownA1 = ability1.Cooldown + 1;
                         combatManager.HideHealthBars();
-                        this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability1, combatManager.getPlayerHealth());
+                        this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability1, combatManager.getPlayerHealth());
                     }
                     else
                         StartCoroutine(EnemyStrike());
@@ -141,7 +141,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     {
                         cooldownA2 = ability2.Cooldown + 1;
                         combatManager.HideHealthBars();
-                        this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability2, combatManager.getPlayerHealth());
+                        this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability2, combatManager.getPlayerHealth());
                     }
                     else
                         StartCoroutine(EnemyStrike());
@@ -151,7 +151,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     {
                         cooldownA3 = ability3.Cooldown + 1;
                         combatManager.HideHealthBars();
-                        this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability3, combatManager.getPlayerHealth());
+                        this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability3, combatManager.getPlayerHealth());
                     }
                     else
                         StartCoroutine(EnemyStrike());
@@ -161,7 +161,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     {
                         cooldownA4 = ability4.Cooldown + 1;
                         combatManager.HideHealthBars();
-                        this.GetComponent<EnemyAbilityManager_C>().AbilityUsed(ability4, combatManager.getPlayerHealth());
+                        this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability4, combatManager.getPlayerHealth());
                     }
                     else
                         StartCoroutine(EnemyStrike());

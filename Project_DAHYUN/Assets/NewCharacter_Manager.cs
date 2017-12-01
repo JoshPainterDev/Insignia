@@ -122,10 +122,10 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("none");
-            GameController.controller.playerAbility2 = new Ability();
-            GameController.controller.playerAbility3 = new Ability();
-            GameController.controller.playerAbility4 = new Ability();
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("none");
+            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("none");
+            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("none");
             GameController.controller.strikeModifier = "none";
             GameController.controller.limitBreakModifier = LimitBreakName.none;
             GameController.controller.limitBreakTracker = -1;

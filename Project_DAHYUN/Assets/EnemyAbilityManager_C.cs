@@ -46,7 +46,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
     //8. end turn
 
 
-    public void AbilityUsed(Ability abilityUsed, int playerHP)
+    public void AbilityToUse(Ability abilityUsed, int playerHP)
     {
         ability = abilityUsed;
         origPlayerHP = playerHP;

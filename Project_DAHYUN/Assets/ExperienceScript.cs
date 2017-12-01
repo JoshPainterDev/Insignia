@@ -90,7 +90,7 @@ public class ExperienceScript : MonoBehaviour {
                     ding = false;
                 }
                 else
-                    rewardManager.GetComponent<RewardManager_C>().UnlockSequenceFinished(0);
+                    rewardManager.GetComponent<RewardManager_C>().checkEquipmentUnlock();
             }
         }
     }
@@ -168,8 +168,8 @@ public class ExperienceScript : MonoBehaviour {
 
         LerpEXP(0, newPercent);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
 
-        rewardManager.GetComponent<RewardManager_C>().UnlockSequenceFinished(0);
+        rewardManager.GetComponent<RewardManager_C>().checkAbilityUnlock();
     }
 }

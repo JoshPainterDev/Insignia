@@ -72,7 +72,7 @@ public class Dialogue_Manager_C : MonoBehaviour
 
         if (dCurrentLine >= dTotalLines)
         {
-            print("current: " + dCurrentLine);
+            //print("current: " + dCurrentLine);
             //expositionManager.NextActon();
             dDialogueCompleted = true;
             tap2Continue.SetActive(false);
@@ -263,7 +263,7 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "";
                 break;
             case "Steve":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_Steve";
                 break;
             case "Honor Guard":
                 iconString = "";

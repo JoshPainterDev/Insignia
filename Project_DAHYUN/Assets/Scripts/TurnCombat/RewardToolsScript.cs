@@ -44,7 +44,7 @@ public class RewardToolsScript : MonoBehaviour {
     public Ability CheckForUnlock(int level)
     {
         Ability unlock = new Ability();
-
+        print("Unlock level: " + level);
         if (level == 2)
             unlock = AbilityToolsScript.tools.LookUpAbility("Guard Break");
         else if(level == 5)
@@ -58,9 +58,9 @@ public class RewardToolsScript : MonoBehaviour {
 
 public class Reward
 {
-    public bool hasAbility = false;
+    public bool hasTrait = false;
     public bool hasEquipment = false;
-    public Ability ability;
+    public Trait trait;
     public string item = "";
     public string[] equipment;
     public int experience = 0;

@@ -54,7 +54,7 @@ public class AbilityManager_C : MonoBehaviour {
     //8. end turn
 
 
-    public void AbilityUsed(Ability abilityUsed, int enemyHP)
+    public void AbilityToUse(Ability abilityUsed, int enemyHP)
     {
         ability = abilityUsed;
         origEnemyHP = enemyHP;
@@ -229,11 +229,6 @@ public class AbilityManager_C : MonoBehaviour {
                 break;
             default:
                 break;
-        }
-
-        if(ability.Type != AbilityType.Utility)
-        {
-            this.GetComponent<CombatManager>().DamageEnemy_Ability(ability);
         }
 
         yield return new WaitForSeconds(0.25f);

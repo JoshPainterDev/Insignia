@@ -66,9 +66,9 @@ public class EnemyToolsScript : MonoBehaviour {
 
                 enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 5;
-                enemyInfo.enemyDefense = 2;
+                enemyInfo.enemyDefense = 5;
                 enemyInfo.enemySpeed = 1;
-                enemyInfo.enemyMaxHealthBase = 60;
+                enemyInfo.enemyMaxHealthBase = 75;
                 enemyInfo.specialStrikeAnim = false;
                 break;
             case "Skitter":

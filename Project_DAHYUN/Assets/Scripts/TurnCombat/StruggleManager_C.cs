@@ -97,7 +97,6 @@ public class StruggleManager_C : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) && LeftKeyReady)
             {
-                print((float)strugglePressCounter / goal);
                 LeftKeyReady = false;
                 leftButtonPressed();
             }

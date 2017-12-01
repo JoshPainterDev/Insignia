@@ -158,6 +158,7 @@
     <Compile Include="Assets\Scripts\TurnCombat\RewardToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StruggleManager_C.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\Trait.cs" />
     <Compile Include="Assets\SkipButtonScript.cs" />
     <Compile Include="Assets\SoundFXManager_C.cs" />
     <Compile Include="Assets\StatDescriptionScript.cs" />

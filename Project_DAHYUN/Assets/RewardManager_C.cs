@@ -11,6 +11,7 @@ public class RewardManager_C : MonoBehaviour
     public GameObject blackSq;
     public GameObject playerMannequin;
     private Reward reward;
+    private Ability unlockAbility;
     private bool levelUp = false;
     private bool WaitForInput = false;
 
@@ -22,44 +23,32 @@ public class RewardManager_C : MonoBehaviour
         reward = GameController.controller.rewardEarned;
         if (experienceHandle.GetComponent<ExperienceScript>().experienceAnimation(GameController.controller.playerEXP, reward.experience))
             levelUp = true;
+        print("level up? " + levelUp);
         playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
     }
 
-    public void UnlockSequenceFinished(int index)
+    public void checkAbilityUnlock()
     {
-        switch(index)
+        if (levelUp)
         {
-            case 0:
-                if (reward.hasEquipment)
-                {
-                    unlockingEquips = true;
-                    StartCoroutine(UnlockEquipment(0));
-                }
-                else if (reward.hasAbility)
-                {
-                    StartCoroutine(UnlockAbility(0));
-                }
-                else
-                    StartCoroutine(LoadNextScene());
-                break;
-            case 1:
-                if (reward.hasAbility)
-                {
-                    StartCoroutine(UnlockAbility(0));
-                }
-                else if(levelUp)
-                {
-                    print("Player Level: " + GameController.controller.playerLevel);
-                    reward.ability = RewardToolsScript.tools.CheckForUnlock(GameController.controller.playerLevel);
+            print("Player Level: " + GameController.controller.playerLevel);
+            unlockAbility = RewardToolsScript.tools.CheckForUnlock(GameController.controller.playerLevel);
 
-                    if(reward.ability.Name != "none")
-                        StartCoroutine(UnlockAbility(1));
-                }
-                else
-                    StartCoroutine(LoadNextScene());
-                break;
+            if (unlockAbility.Name == "none")
+                checkEquipmentUnlock();
+            else
+                StartCoroutine(UnlockAbility());
         }
+        else
+            checkEquipmentUnlock();
+    }
 
+    public void checkEquipmentUnlock()
+    {
+        if(reward.hasEquipment)
+        {
+            StartCoroutine(UnlockEquipment());
+        }
     }
 
     public void InputDetected()
@@ -71,24 +60,27 @@ public class RewardManager_C : MonoBehaviour
         }
     }
 
-    IEnumerator UnlockEquipment(int index)
+    IEnumerator UnlockEquipment()
     {
-        int myIndex = index;
-
+        print("unlocking stuff");
+        int equipmentUnlocked = 0;
 
         yield return new WaitForSeconds(1.5f);
-        ++myIndex;
-        if (myIndex < reward.equipment.Length)
-            StartCoroutine(UnlockEquipment(myIndex));
-        else
-            UnlockSequenceFinished(1);
+        
+        while(equipmentUnlocked < reward.equipment.Length)
+        {
+            print(reward.equipment[equipmentUnlocked]);
+            ++equipmentUnlocked;
+        }
+
+        StartCoroutine(LoadNextScene());
     }
 
-    IEnumerator UnlockAbility(int index)
+    IEnumerator UnlockAbility()
     {
         //set image
-        abilityUnlockHandle.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load(reward.ability.Icon, typeof(Sprite)) as Sprite;
-        abilityUnlockHandle.transform.GetChild(3).GetComponent<Text>().text = reward.ability.Name;
+        abilityUnlockHandle.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load(unlockAbility.Icon, typeof(Sprite)) as Sprite;
+        abilityUnlockHandle.transform.GetChild(3).GetComponent<Text>().text = unlockAbility.Name;
         abilityUnlockHandle.GetComponent<LerpScript>().LerpToScale(new Vector3(0.8f, 0.8f, 0.8f), new Vector3(1,1,1), 1);
         Color temp = abilityUnlockHandle.transform.GetChild(0).GetComponent<Image>().color;
         abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0,0,0,1), 1);

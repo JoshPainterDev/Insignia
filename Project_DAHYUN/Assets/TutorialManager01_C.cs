@@ -62,8 +62,6 @@ public class TutorialManager01_C : MonoBehaviour
 
         ++tutorialState;
 
-        print("what?");
-
         combatController.DisableMainButtons();
         combatController.HideMainButtons();
         Destroy(panel02);

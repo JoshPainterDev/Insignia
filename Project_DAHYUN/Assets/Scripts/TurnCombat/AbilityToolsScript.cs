@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityToolsScript : MonoBehaviour {
     public static AbilityToolsScript tools;
 
-    public int STRONG_DAMAGE = 10;
+    public int STRONG_DAMAGE = 15;
     public int MEDIUM_DAMAGE = 5;
     public int WEAK_DAMAGE = 2;
 
@@ -40,6 +40,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Accuracy = 0;
                 ability.BaseDamage = 0;
                 ability.Description = "-";
+                ability.Cooldown = 0;
                 ability.Name = "-";
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
@@ -78,12 +79,12 @@ public class AbilityToolsScript : MonoBehaviour {
             //    break;
             case "Solar Flare":
                 ability.Accuracy = 75;
-                ability.BaseDamage = STRONG_DAMAGE;
+                ability.BaseDamage = 2;
                 ability.Cooldown = 2;
                 ability.Buffs = false;
-                ability.Description = "A strong, focused, fire blast. Has a Strong chance of setting the opponent Ablaze.";
+                ability.Description = "A focused fire blast of star magic.";
                 ability.Name = name;
-                ability.specialCase = SpecialCase.Ablaze;
+                //ability.specialCase = SpecialCase.Ablaze;
                 ability.Ticks = 1;
                 ability.AblazeChance = STRONG_ABLAZE;
                 ability.Type = AbilityType.Magical;
