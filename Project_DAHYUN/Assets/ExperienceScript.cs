@@ -31,21 +31,22 @@ public class ExperienceScript : MonoBehaviour {
         StartCoroutine(BarBlinkAnim());
     }
 
-    public void experienceAnimation(int currentExp, int newExp)
+    public bool experienceAnimation(int currentExp, int newExp)
     {
+        ding = false;
+
         if (CheckForDing(currentExp + newExp))
             ding = true;
 
         float start = currentExp / requiredEXP;
         float end = newExp / requiredEXP;
 
-        print(start);
-        print(end);
-
         if (end > 1)
             end = 1;
 
         LerpEXP(start, end);
+
+        return ding;
     }
 
     public bool CheckForDing(int exp)

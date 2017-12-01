@@ -27,6 +27,7 @@ public class Ability{
     public bool Buffs = false;
     public bool Heals = false;
     public string Description = "";
+    public string Icon = "";
 }
 
 

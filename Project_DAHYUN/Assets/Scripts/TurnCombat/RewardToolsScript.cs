@@ -39,13 +39,28 @@ public class RewardToolsScript : MonoBehaviour {
     {
         GameController.controller.rewardEarned = null;
     }
+
+    // progression of ability unlocks
+    public Ability CheckForUnlock(int level)
+    {
+        Ability unlock = new Ability();
+
+        if (level == 2)
+            unlock = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+        else if(level == 5)
+            unlock = AbilityToolsScript.tools.LookUpAbility("Rage");
+        else
+            unlock = AbilityToolsScript.tools.LookUpAbility("none");
+
+        return unlock;
+    }
 }
 
 public class Reward
 {
     public bool hasAbility = false;
     public bool hasEquipment = false;
-    public string[] ability;
+    public Ability ability;
     public string item = "";
     public string[] equipment;
     public int experience = 0;
