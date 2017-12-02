@@ -1565,13 +1565,15 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         this.playerHealthBar.GetComponent<HealthScript>().Death();
         playerMannequin.GetComponent<AnimationController>().PlayDeathAnim();
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(0.5f);
+        this.GetComponent<CombatAudio>().playSwordDrop();
+        yield return new WaitForSeconds(2.5f);
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Retry_Scene");
     }
 
-        public void TopSelected()
+    public void TopSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
 

@@ -122,7 +122,8 @@ public class StrikeManager_C : MonoBehaviour {
             default:
                 pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
-                yield return new WaitForSeconds(0.25f);
+                this.GetComponent<CombatAudio>().playStrikeHit();
+                yield return new WaitForSeconds(0.2f);
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
                 effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);
@@ -153,10 +154,11 @@ public class StrikeManager_C : MonoBehaviour {
         Vector3 pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
         yield return new WaitForSeconds(0.15f);
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos + new Vector3(50, 0, 0), 4.5f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos + new Vector3(70, 0, 0), 5f);
         Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y - 25, 0);
         effectClone = (GameObject)Instantiate(standardStrikeMiss_FX, spawnPos, transform.rotation);
         playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        this.GetComponent<CombatAudio>().playRandomSwordMiss();
         yield return new WaitForSeconds(0.5f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
         yield return new WaitForSeconds(0.2f);
@@ -173,6 +175,7 @@ public class StrikeManager_C : MonoBehaviour {
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
         yield return new WaitForSeconds(0.25f);
         playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        this.GetComponent<CombatAudio>().playStrikeHit();
         Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
         effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);
         yield return new WaitForSeconds(0.5f);

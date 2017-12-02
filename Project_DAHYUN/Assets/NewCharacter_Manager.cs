@@ -130,6 +130,9 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.limitBreakModifier = LimitBreakName.none;
             GameController.controller.limitBreakTracker = -1;
 
+            for (int i = 0; i < 9; ++i)
+                GameController.controller.playerDecisions[i] = 0;
+
             SetInitialStats(currentClass);
 
             GameController.controller.Save(charName);

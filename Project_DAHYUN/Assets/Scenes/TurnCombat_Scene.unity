@@ -2380,6 +2380,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  playerDecisions: 
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
@@ -5345,7 +5346,27 @@ MonoBehaviour:
   shoulder_Check_SFX: {fileID: 8300000, guid: cf1820b3e6874f640a4d22a83664ea26, type: 3}
   outrage_SFX: {fileID: 8300000, guid: aac632c2e3af8ec40a1b3054478b9404, type: 3}
   shadowVanish: {fileID: 8300000, guid: 851e21dc1a030ed4ca91264d03f0fe6d, type: 3}
+  swordRing: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775, type: 3}
+  swordDrop: {fileID: 8300000, guid: b2063882ccd6770419eae5b8b4973a4f, type: 3}
   finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
+  swordHit01: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
+  swordHit02: {fileID: 8300000, guid: a508b1df52d09ea4397c7f922f70bde0, type: 3}
+  swordHit03: {fileID: 8300000, guid: 1fdf651628edbf4419dec37fe12c53c9, type: 3}
+  swordHit04: {fileID: 8300000, guid: c53d046dbc9e5dc43afd9574c5c7cfa8, type: 3}
+  swordHit05: {fileID: 8300000, guid: ebef2386edf856b42b0e033d34a0c760, type: 3}
+  swordHit06: {fileID: 8300000, guid: cf5811be44376004989824c6ee90ffe3, type: 3}
+  swordHit07: {fileID: 8300000, guid: e92ad2965d62c1f45afe6ed5cf240f5a, type: 3}
+  swordHit08: {fileID: 8300000, guid: be3a5a7357b898343ad03ba9087f3cbe, type: 3}
+  swordImpactArmor01: {fileID: 8300000, guid: f27761118a0449f419068362ec15310b, type: 3}
+  swordSwoosh01: {fileID: 8300000, guid: 3863930b1a15c164c8408334025f5840, type: 3}
+  swordDraw01: {fileID: 8300000, guid: 0b77b537034fc764aba72a80fa9e89e2, type: 3}
+  swordMiss01: {fileID: 8300000, guid: 55c994dc72615b54fa0275f2699ca16c, type: 3}
+  swordMiss02: {fileID: 8300000, guid: 9a60dafb08335d341a5bb0dd0235bde8, type: 3}
+  swordMiss03: {fileID: 8300000, guid: 57ef28c8e1fad784c853e7949d8571fa, type: 3}
+  swordMiss04: {fileID: 8300000, guid: 6dac23ef1ad99dc48aff223b0da25d6d, type: 3}
+  swordBlood01: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
+  swordBlood02: {fileID: 8300000, guid: 070816a64d7127f418fd468465ca7a4c, type: 3}
+  bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5

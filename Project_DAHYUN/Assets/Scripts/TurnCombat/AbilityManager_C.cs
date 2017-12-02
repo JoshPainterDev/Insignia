@@ -182,6 +182,8 @@ public class AbilityManager_C : MonoBehaviour {
                 break;
             case "Final Cut":
                 combatManager.currSpecialCase = SpecialCase.Execute;
+                combatManager.GetComponent<CombatAudio>().playSwordRing();
+                yield return new WaitForSeconds(0.2f);
                 combatManager.GetComponent<CombatAudio>().playShadowVanish();
                 GameObject effectClone2 = (GameObject)Instantiate(smoke02_FX, initPlayerPos, transform.rotation);
                 effectClone2.GetComponent<SpriteRenderer>().color = Color.black;

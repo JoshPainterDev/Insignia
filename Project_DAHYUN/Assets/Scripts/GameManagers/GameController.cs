@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour {
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
     public Reward rewardEarned;
+    public int[] playerDecisions;
 
     public string[] charNames;
     public int numChars;
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour {
             playerSkinColor = new float[4];
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
+            playerDecisions = new int[8];
             charNames = new string[6];
             charClasses = new PlayerClass[6];
             for(int i = 0; i < 6; ++i)
@@ -138,6 +140,7 @@ public class GameController : MonoBehaviour {
         data.prowess = playerProwess;
         data.speed = playerSpeed;
         data.PlayerColor = playerColorPreference;
+        data.PlayerDecisions = playerDecisions;
 
         data.EquipmentList = playerEquipmentList;
         data.EquippedIDs = playerEquippedIDs;
@@ -175,6 +178,7 @@ public class GameController : MonoBehaviour {
             playerDefense = data.defense;
             playerProwess = data.prowess;
             playerSpeed = data.speed;
+            playerDecisions = data.PlayerDecisions;
 
             playerInventory = data.InventoryList;
             playerEquipmentList = data.EquipmentList;
@@ -325,6 +329,7 @@ class PlayerData
     public float[] PlayerColor;
     public int LevelsCompleted;
     public int StagesCompleted;
+    public int[] PlayerDecisions;
 }
 
 [Serializable]

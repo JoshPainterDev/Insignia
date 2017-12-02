@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnAwake: 1
-  awakeDestroyDelay: 1.15
+  awakeDestroyDelay: 0.5
   findChild: 0
   namedChild: 
 --- !u!212 &212059133336497812

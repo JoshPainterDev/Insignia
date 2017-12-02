@@ -98,12 +98,14 @@ public class StruggleManager_C : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.LeftArrow) && LeftKeyReady)
             {
                 LeftKeyReady = false;
+                RightKeyReady = true;
                 leftButtonPressed();
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow) && RightKeyReady)
             {
                 RightKeyReady = false;
+                LeftKeyReady = true;
                 rightButtonPressed();
             }
 
@@ -138,9 +140,15 @@ public class StruggleManager_C : MonoBehaviour {
             {
                 randomVar = Random.Range(-0.05f, 0.05f);
                 frameTracker = 0 + Random.Range(0, 5);
+
             }
-            
-            if(struggling_Player)
+
+            int rand = Random.Range(0, 100);
+
+            if (rand > 90)
+                this.GetComponent<CombatAudio>().playRandomSwordHit();
+
+            if (struggling_Player)
             {
                 player.transform.position = Vector3.Lerp(playerStrugglePos, playerMax, percentCompleted + randomVar);
                 enemy.transform.position = Vector3.Lerp(enemyStrugglePos, enemyMin, percentCompleted + randomVar);
@@ -279,9 +287,12 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.GetComponent<Image>().color = origColor;
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<AnimationController>().PlayAttackAnim();
+        this.GetComponent<CombatAudio>().playStrikeHit();
+        yield return new WaitForSeconds(0.1f);
         Vector3 spawnPos = new Vector3(player.transform.position.x + 80, player.transform.position.y, 0);
         effectClone = (GameObject)Instantiate(hitEffect, spawnPos, transform.rotation);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
+        this.GetComponent<CombatAudio>().playBloodSplatter();
         //this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
         //play execution anim
         //yield return new WaitForSeconds(0.75f);

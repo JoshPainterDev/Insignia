@@ -77,3 +77,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exposition_Scene10.unity
     guid: 987a03fe1b5a151498465b073922c66b
+  - enabled: 1
+    path: Assets/Scenes/Retry_Scene.unity
+    guid: 3a31445b34b80ae429dca740ca2ad91a

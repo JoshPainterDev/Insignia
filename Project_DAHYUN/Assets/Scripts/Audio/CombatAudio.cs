@@ -21,7 +21,27 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip shoulder_Check_SFX;
     public AudioClip outrage_SFX;
     public AudioClip shadowVanish;
+    public AudioClip swordRing;
+    public AudioClip swordDrop;
     public AudioClip finalCut;
+    public AudioClip swordHit01;
+    public AudioClip swordHit02;
+    public AudioClip swordHit03;
+    public AudioClip swordHit04;
+    public AudioClip swordHit05;
+    public AudioClip swordHit06;
+    public AudioClip swordHit07;
+    public AudioClip swordHit08;
+    public AudioClip swordImpactArmor01;
+    public AudioClip swordSwoosh01;
+    public AudioClip swordDraw01;
+    public AudioClip swordMiss01;
+    public AudioClip swordMiss02;
+    public AudioClip swordMiss03;
+    public AudioClip swordMiss04;
+    public AudioClip swordBlood01;
+    public AudioClip swordBlood02;
+    public AudioClip bloodSplatter01;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -38,9 +58,89 @@ public class CombatAudio : MonoBehaviour {
         audioSource.PlayOneShot(soundClip, volume);
     }
 
+    public void playRandomSwordHit()
+    {
+        int rand = Random.Range(0, 7);
+
+        switch(rand)
+        {
+            case 0:
+                audioSource.PlayOneShot(swordHit01, LOW_VOLUME);
+                break;
+            case 1:
+                audioSource.PlayOneShot(swordHit02, LOW_VOLUME);
+                break;
+            case 2:
+                audioSource.PlayOneShot(swordHit03, LOW_VOLUME);
+                break;
+            case 3:
+                audioSource.PlayOneShot(swordHit04, LOW_VOLUME);
+                break;
+            case 4:
+                audioSource.PlayOneShot(swordHit05, LOW_VOLUME);
+                break;
+            case 5:
+                audioSource.PlayOneShot(swordHit06, LOW_VOLUME);
+                break;
+            case 6:
+                audioSource.PlayOneShot(swordHit07, LOW_VOLUME);
+                break;
+            case 7:
+                audioSource.PlayOneShot(swordHit08, LOW_VOLUME);
+                break;
+        }
+    }
+
+    public void playSwordHit()
+    {
+        audioSource.PlayOneShot(swordHit01, MEDIUM_VOLUME);
+    }
+
+    public void playStrikeHit()
+    {
+        StartCoroutine(StrikeSound());   
+    }
+
+    IEnumerator StrikeSound()
+    {
+        audioSource.PlayOneShot(swordBlood02, LOW_VOLUME);
+        yield return new WaitForSeconds(0.2f);
+        audioSource.PlayOneShot(swordMiss04, MEDIUM_VOLUME);
+        //audioSource.PlayOneShot(swordSwoosh01, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(swordRing, MEDIUM_VOLUME);
+        //yield return new WaitForSeconds(0.1f);
+        
+    }
+
+    public void playRandomSwordMiss()
+    {
+        int rand = Random.Range(0, 3);
+
+        switch (rand)
+        {
+            case 0:
+                audioSource.PlayOneShot(swordMiss01, LOW_VOLUME);
+                break;
+            case 1:
+                audioSource.PlayOneShot(swordMiss02, LOW_VOLUME);
+                break;
+            case 2:
+                audioSource.PlayOneShot(swordMiss03, LOW_VOLUME);
+                break;
+            case 3:
+                audioSource.PlayOneShot(swordMiss04, LOW_VOLUME);
+                break;
+        }
+    }
+
     public void playStunnedSFX()
     {
         audioSource.PlayOneShot(stunned_SFX, LOW_VOLUME);
+    }
+
+    public void playBloodSplatter()
+    {
+        audioSource.PlayOneShot(bloodSplatter01, MEDIUM_VOLUME);
     }
 
     public void playOutrageSFX()
@@ -56,6 +156,16 @@ public class CombatAudio : MonoBehaviour {
     public void playGuardBreakSFX()
     {
         audioSource.PlayOneShot(shoulder_Check_SFX, MEDIUM_VOLUME);
+    }
+
+    public void playSwordDrop()
+    {
+        audioSource.PlayOneShot(swordDrop, LOW_VOLUME);
+    }
+
+    public void playSwordRing()
+    {
+        audioSource.PlayOneShot(swordRing, LOW_VOLUME);
     }
 
     public void playShadowVanish()

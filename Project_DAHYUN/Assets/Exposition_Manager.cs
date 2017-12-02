@@ -129,6 +129,9 @@ public class Exposition_Manager : MonoBehaviour
             case 9:
                 StartCoroutine(Cutscene9(actionCounter));
                 break;
+            case 10:
+                StartCoroutine(Cutscene10(actionCounter));
+                break;
         }
     }
 
@@ -428,7 +431,136 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                 }
                 break;
+            case 10:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Seamstress";
+                        leftspeaker[0] = false;
+                        script[0] = "You're not too bad, " + playerName;
+
+                        speaker[1] = "Seamstress";
+                        leftspeaker[1] = false;
+                        script[1] =  "With some proper training, you could really benefit our cause.";
+
+                        speaker[2] = playerName;
+                        leftspeaker[2] = true;
+                        script[2] = "What cause? I'm still not sure what you want with me.";
+
+                        speaker[3] = "Seamstress";
+                        leftspeaker[3] = false;
+                        script[3] = "Our primary goal is to take control of the Kingdom of Light...";
+
+                        speaker[4] = playerName;
+                        leftspeaker[4] = true;
+                        script[4] = "Wait what? Why?!";
+
+                        speaker[5] = "Seamstress";
+                        leftspeaker[5] = false;
+                        script[5] = "Our reasons are our own right now. I've probably said too much already.";
+
+                        speaker[6] = "Seamstress";
+                        leftspeaker[6] = false;
+                        script[6] = "But since you are Nova, I do trust you enough to get to know you better.";
+
+                        speaker[7] = playerName;
+                        leftspeaker[7] = true;
+                        script[7] = "Nova? Why is everone calling me that?! What does this even have to do with me?!";
+
+                        speaker[8] = "???";
+                        leftspeaker[8] = false;
+                        script[8] = "She is referring to your true name, " + playerName + ". The title that was taken from you...";
+
+                        speaker[9] = "???";
+                        leftspeaker[9] = false;
+                        script[9] = "Nova, if you do not join us, I fear the worst for you and the people of Light.";
+
+                        speaker[10] = playerName;
+                        leftspeaker[10] = true;
+                        script[10] = "I don't even know who you are! You want me to drop everything and join your shady cult?!";
+
+                        speaker[11] = "???";
+                        leftspeaker[11] = false;
+                        script[11] = "Who I am is not important. And there isn't much for you to 'drop' now, is there?";
+
+                        speaker[12] = "???";
+                        leftspeaker[12] = false;
+                        script[12] = "You've forgotten everything that you were. And now the fog of war is upon us...";
+
+                        speaker[13] = "???";
+                        leftspeaker[13] = false;
+                        script[13] = "Those corrupted walls will crumble, with or without you. Even I cannot stop it.";
+
+                        speaker[14] = "???";
+                        leftspeaker[14] = false;
+                        script[14] = "But you, Nova, have the power to rebuild something even greater from the ashes.";
+
+                        speaker[15] = "???";
+                        leftspeaker[15] = false;
+                        script[15] = "So I must ask you," + playerName + " will you join us? Or be burried in the sands of time?";
+
+                        totalLines = 16;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
         }
+    }
+
+    IEnumerator Cutscene10(int action)
+    {
+        switch (action)
+        {
+            case 0:
+                nextLevel = "MainMenu_Tutorial_Scene";
+                // Set next Level //
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 6);
+                yield return new WaitForSeconds(0.75f);
+                speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
+                StartCoroutine(NewDialogue(10, 1));
+                yield return new WaitForSeconds(1f);
+                break;
+            case 9:
+                yield return new WaitForSeconds(1);
+                //actionsCompleted = true; //actions are completed
+                speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(70, 0, 0), 1f);
+                yield return new WaitForSeconds(0.5f);
+                playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                yield return new WaitForSeconds(0.5f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(70, 0, 0), 2f);
+                break;
+            case 1:
+                yield return new WaitForSeconds(0.75f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, new Color(0.75f, 0.75f, 0.75f, 0.75f), 0.85f);
+                yield return new WaitForSeconds(1.5f);
+
+                speaker04.SetActive(true);
+                speaker05.SetActive(true);
+
+                Color temp = speaker04.GetComponent<Image>().color;
+                speaker04.GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
+                temp = speaker04.transform.GetChild(0).GetComponent<Text>().color;
+                speaker04.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
+                temp = speaker04.transform.GetChild(1).GetComponent<Text>().color;
+                speaker04.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
+
+                yield return new WaitForSeconds(1.5f);
+
+                temp = speaker05.GetComponent<Image>().color;
+                speaker05.GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
+                temp = speaker05.transform.GetChild(0).GetComponent<Text>().color;
+                speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
+                temp = speaker05.transform.GetChild(1).GetComponent<Text>().color;
+                speaker05.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
+
+                yield return new WaitForSeconds(2.5f);
+
+                speaker04.GetComponent<Button>().enabled = true;
+                speaker05.GetComponent<Button>().enabled = true;
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene9(int action)
