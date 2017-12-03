@@ -63,12 +63,6 @@ public class TutorialManager02_C : MonoBehaviour
             yield return new WaitForSeconds(2);
             StartCoroutine(EnemyStrike());
         }
-        //else if(tutorialState == 2)
-        //{
-        //    enemyHealth.GetComponent<HealthScript>().LerpHealth(0.55f, 0.15f);
-        //    yield return new WaitForSeconds(2);
-        //    StartCoroutine(EnemyStrike());
-        //}
     }
 
     IEnumerator EnemyStrike()

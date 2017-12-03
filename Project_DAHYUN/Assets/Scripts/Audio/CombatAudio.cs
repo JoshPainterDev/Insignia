@@ -42,6 +42,7 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip swordBlood01;
     public AudioClip swordBlood02;
     public AudioClip bloodSplatter01;
+    public AudioClip plasmaIgnite;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -107,6 +108,7 @@ public class CombatAudio : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         audioSource.PlayOneShot(swordMiss04, MEDIUM_VOLUME);
         //audioSource.PlayOneShot(swordSwoosh01, MEDIUM_VOLUME);
+        yield return new WaitForSeconds(0.1f);
         audioSource.PlayOneShot(swordRing, MEDIUM_VOLUME);
         //yield return new WaitForSeconds(0.1f);
         
@@ -131,6 +133,11 @@ public class CombatAudio : MonoBehaviour {
                 audioSource.PlayOneShot(swordMiss04, LOW_VOLUME);
                 break;
         }
+    }
+
+    public void playPlasmaIgnite()
+    {
+        audioSource.PlayOneShot(plasmaIgnite, MEDIUM_VOLUME);
     }
 
     public void playStunnedSFX()

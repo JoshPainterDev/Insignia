@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour {
     public GameObject craftingButton;
     public GameObject settingsButton;
     public GameObject charSelectButton;
+    public GameObject background;
 
     public GameObject camera;
     public GameObject blackSq;
@@ -23,6 +24,7 @@ public class MainMenuManager : MonoBehaviour {
     public void Start()
     {
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
+        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void ButtonPressed(int buttonNumber)

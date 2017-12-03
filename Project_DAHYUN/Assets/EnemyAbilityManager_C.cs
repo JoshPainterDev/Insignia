@@ -145,7 +145,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone = (GameObject)Instantiate(solarFlare_FX, spawnPos, transform.rotation);
                 effectClone.transform.parent = enemyMannequinn.transform;
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
-                effectClone.transform.localPosition += new Vector3(35,0,0);
+                effectClone.transform.localPosition += new Vector3(-35,40,0);
                 yield return new WaitForSeconds(0.75f);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, enemyMannequinn.transform.position - new Vector3(300, 0, 0), 5);
                 yield return new WaitForSeconds(0.25f);
@@ -211,8 +211,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
 
     void EndTurn()
     {
-
-
         switch (ability.Name)
         {
             case "Shadow Strike":

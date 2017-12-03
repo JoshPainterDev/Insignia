@@ -17,7 +17,10 @@ public class Exposition_Manager : MonoBehaviour
     public GameObject background;
     public GameObject dialoguePanel;
     public GameObject sfxManager;
+    public GameObject MusicManager;
     public GameObject touch2Continue;
+
+    public AudioClip CombatStartup;
 
     public GameObject speaker01;
     public GameObject speaker02;
@@ -62,13 +65,13 @@ public class Exposition_Manager : MonoBehaviour
         BeginCutscene(encounter.encounterNumber);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            SceneManager.LoadScene("TurnCombat_Scene");
-        }
-    }
+    //public void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha9))
+    //    {
+    //        SceneManager.LoadScene("TurnCombat_Scene");
+    //    }
+    //}
 
     public void InputDetected()
     {
@@ -139,7 +142,10 @@ public class Exposition_Manager : MonoBehaviour
     {
         GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(level, encounterNum);
         GameController.controller.currentEncounter.returnOnSuccessScene = returnScene;
-        yield return new WaitForSeconds(1.15f);
+        
+        yield return new WaitForSeconds(1f);
+        GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup);
+        yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(10f);
         yield return new WaitForSeconds(0.15f);
         blackSq.GetComponent<FadeScript>().FadeOut(10f);
@@ -149,7 +155,7 @@ public class Exposition_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeOut(10f);
         yield return new WaitForSeconds(0.15f);
         blackSq.GetComponent<FadeScript>().FadeIn(10f);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene("TurnCombat_Scene");
     }
 
@@ -161,9 +167,12 @@ public class Exposition_Manager : MonoBehaviour
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
     }
 
-    public void LoadNextLv()
+    IEnumerator LoadNextLv()
     {
         Time.timeScale = 1.0f;
+        MusicManager.GetComponent<Music_Controller>().FadeVolume(MusicManager.GetComponent<AudioSource>().volume, 0);
+
+        yield return new WaitForSeconds(1.75f);
         SceneManager.LoadScene(nextLevel);
     }
 
@@ -601,9 +610,8 @@ public class Exposition_Manager : MonoBehaviour
             case 9:
                 yield return new WaitForSeconds(2f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
-                yield return new WaitForSeconds(1);
                 actionsCompleted = true; //actions are completed
-                LoadNextLv();
+                StartCoroutine(LoadNextLv());
                 break;
         }
         //////////////////
@@ -643,9 +651,8 @@ public class Exposition_Manager : MonoBehaviour
             case 6:
                 yield return new WaitForSeconds(1f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
-                yield return new WaitForSeconds(2);
                 actionsCompleted = true; //actions are completed
-                LoadNextLv();
+                StartCoroutine(LoadNextLv());
                 break;
         }
         //////////////////
@@ -666,7 +673,6 @@ public class Exposition_Manager : MonoBehaviour
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(50, 0, 0), 2);
                 yield return new WaitForSeconds(0.5f);
                 speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                yield return new WaitForSeconds(2f);
                 StartCoroutine(LoadCombatScene(1, 0, "Exposition_Scene07"));
                 actionsCompleted = true; //actions are completed
                 break;
@@ -700,12 +706,22 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
                 break;
-            case 6: 
-                yield return new WaitForSeconds(3);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 1.75f);
-                yield return new WaitForSeconds(1);
+            case 6:
+                yield return new WaitForSeconds(1f);
+                MusicManager.GetComponent<Music_Controller>().stopAllMusic();
+                GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup, 0.1f);
+                yield return new WaitForSeconds(0.25f);
+                blackSq.GetComponent<FadeScript>().FadeIn(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeOut(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeIn(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeOut(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeIn(10f);
                 actionsCompleted = true; //actions are completed
-                LoadNextLv();
+                StartCoroutine(LoadNextLv());
                 break;
         }
     }
@@ -724,11 +740,21 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(NewDialogue(4, 1));
                 break;
             case 5:
-                yield return new WaitForSeconds(1);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 1.75f);
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(1f);
+                MusicManager.GetComponent<Music_Controller>().stopAllMusic();
+                GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup, 0.1f);
+                yield return new WaitForSeconds(0.25f);
+                blackSq.GetComponent<FadeScript>().FadeIn(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeOut(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeIn(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeOut(10f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeIn(10f);
                 actionsCompleted = true; //actions are completed
-                LoadNextLv();
+                StartCoroutine(LoadNextLv());
                 break;
         }
     }
@@ -754,8 +780,7 @@ public class Exposition_Manager : MonoBehaviour
         yield return new WaitForSeconds(30f);
         blackSq.GetComponent<FadeScript>().FadeIn();
         sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
-        yield return new WaitForSeconds(3.25f);
-        LoadNextLv();
+        StartCoroutine(LoadNextLv());
     }
 
     IEnumerator Cutscene2(int action)
@@ -773,7 +798,7 @@ public class Exposition_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeIn();
         sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
         yield return new WaitForSeconds(3.25f);
-        LoadNextLv();
+        StartCoroutine(LoadNextLv());
     }
 
     IEnumerator Cutscene1(int action)
@@ -811,6 +836,6 @@ public class Exposition_Manager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 0.5f);
         sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
         yield return new WaitForSeconds(3.25f);
-        LoadNextLv();
+        StartCoroutine(LoadNextLv());
     }
 }

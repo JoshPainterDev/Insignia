@@ -173,6 +173,7 @@ public class GameController : MonoBehaviour {
             strikeModifier = data.StrikeMod;
             limitBreakModifier = data.limitBreakMod;
             limitBreakTracker = data.limitBreakTrack;
+            playerSkinColor = data.PlayerSkinColor;
             playerColorPreference = data.PlayerColor;
             playerAttack = data.attack;
             playerDefense = data.defense;
@@ -286,6 +287,8 @@ public class GameController : MonoBehaviour {
         playerSkinColor[1] = newColor.g;
         playerSkinColor[2] = newColor.b;
         playerSkinColor[3] = newColor.a;
+
+        print("new skin colr:" + newColor);
     }
 
     public Color getPlayerSkinColor()

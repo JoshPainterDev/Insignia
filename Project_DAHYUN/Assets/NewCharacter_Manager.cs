@@ -35,6 +35,9 @@ public class NewCharacter_Manager : MonoBehaviour {
         if (GameController.controller.charClasses.Length == 0)
             GameController.controller.charClasses = new PlayerClass[6];
 
+        GameController.controller.setPlayerSkinColor(Color.white);
+        GameController.controller.setPlayerColorPreference(Color.white);
+
         UseDefaultArmor(1);
 	}
 
@@ -129,8 +132,9 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.strikeModifier = "none";
             GameController.controller.limitBreakModifier = LimitBreakName.none;
             GameController.controller.limitBreakTracker = -1;
+            GameController.controller.playerDecisions = new int[8];
 
-            for (int i = 0; i < 9; ++i)
+            for (int i = 0; i < 8; ++i)
                 GameController.controller.playerDecisions[i] = 0;
 
             SetInitialStats(currentClass);

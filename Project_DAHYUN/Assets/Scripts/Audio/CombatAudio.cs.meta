@@ -1,10 +1,50 @@
 fileFormatVersion: 2
 guid: a8addc0308c4172479f12e0dfa40b115
-timeCreated: 1499804975
+timeCreated: 1512255083
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - combatLoop: {fileID: 8300000, guid: ed6e49ded297930498bf0347afcd6dec, type: 3}
+  - select_UI: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
+  - abilitySelect_UI: {fileID: 8300000, guid: 3e80b7f792dfd5940a009b8c92026119, type: 3}
+  - back_UI: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
+  - nope_UI: {fileID: 8300000, guid: 6f7ed5630ec36ec41acb009aa1ff224f, type: 3}
+  - strugglePress01: {fileID: 8300000, guid: 4c3783e7bf8ffa44b8de2887c1e5f302, type: 3}
+  - strugglePress02: {fileID: 8300000, guid: cde72f0500835494cb8faf144feebe71, type: 3}
+  - strugglePress03: {fileID: 8300000, guid: aee500b4ee21a164297ead01f542cccc, type: 3}
+  - strugglePress04: {fileID: 8300000, guid: 294515b69c8fea3499cf9b307039b951, type: 3}
+  - strugglePress05: {fileID: 8300000, guid: 8bd0fbaf7405b5444bbad9874cb706cf, type: 3}
+  - strugglePress06: {fileID: 8300000, guid: b8babd1bdfb5ba84a89dc0e3ad7d5a60, type: 3}
+  - stunned_SFX: {fileID: 8300000, guid: 5a36ac849543a6b4db1c398b68460789, type: 3}
+  - thunderCharge_SFX: {fileID: 8300000, guid: 70c47442f405b5f41bbf84252bbf9d52, type: 3}
+  - shoulder_Check_SFX: {fileID: 8300000, guid: cf1820b3e6874f640a4d22a83664ea26,
+      type: 3}
+  - outrage_SFX: {fileID: 8300000, guid: aac632c2e3af8ec40a1b3054478b9404, type: 3}
+  - shadowVanish: {fileID: 8300000, guid: 851e21dc1a030ed4ca91264d03f0fe6d, type: 3}
+  - swordRing: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775, type: 3}
+  - swordDrop: {fileID: 8300000, guid: b2063882ccd6770419eae5b8b4973a4f, type: 3}
+  - finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
+  - swordHit01: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
+  - swordHit02: {fileID: 8300000, guid: 9e0d8861213192e44a8859a9b2ccb3e2, type: 3}
+  - swordHit03: {fileID: 8300000, guid: 1fdf651628edbf4419dec37fe12c53c9, type: 3}
+  - swordHit04: {fileID: 8300000, guid: ebef2386edf856b42b0e033d34a0c760, type: 3}
+  - swordHit05: {fileID: 8300000, guid: a508b1df52d09ea4397c7f922f70bde0, type: 3}
+  - swordHit06: {fileID: 8300000, guid: e92ad2965d62c1f45afe6ed5cf240f5a, type: 3}
+  - swordHit07: {fileID: 8300000, guid: a497c45b3188ea84caeb49c01fd208c4, type: 3}
+  - swordHit08: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
+  - swordImpactArmor01: {fileID: 8300000, guid: f27761118a0449f419068362ec15310b,
+      type: 3}
+  - swordSwoosh01: {fileID: 8300000, guid: 3863930b1a15c164c8408334025f5840, type: 3}
+  - swordDraw01: {fileID: 8300000, guid: 0b77b537034fc764aba72a80fa9e89e2, type: 3}
+  - swordMiss01: {fileID: 8300000, guid: 55c994dc72615b54fa0275f2699ca16c, type: 3}
+  - swordMiss02: {fileID: 8300000, guid: 9a60dafb08335d341a5bb0dd0235bde8, type: 3}
+  - swordMiss03: {fileID: 8300000, guid: 57ef28c8e1fad784c853e7949d8571fa, type: 3}
+  - swordMiss04: {fileID: 8300000, guid: 6dac23ef1ad99dc48aff223b0da25d6d, type: 3}
+  - swordBlood01: {fileID: 8300000, guid: 070816a64d7127f418fd468465ca7a4c, type: 3}
+  - swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
+  - bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
+  - plasmaIgnite: {fileID: 8300000, guid: dc7c09114e9f5c2409496dc14b337f5e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,15 +6,16 @@ public class Music_Controller : MonoBehaviour
 {
     public bool FadeOnStart = false;
 
-    public AudioClip combatLoop;
-    public AudioClip expositionConfrontation;
+    private AudioClip musicLoop;
 
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
     public float MEDIUM_VOLUME = 0.7f;
     public float LOW_VOLUME = 0.50f;
-    public float BACKGROUND_VOLUME = 0.25f;
+    public float BACKGROUND_VOLUME = 0.15f;
+
+    public float STARTING_VOLUME = 0.5f;
 
     private float t = 0f;
     private bool lerping = false;
@@ -25,24 +26,17 @@ public class Music_Controller : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        musicLoop = audioSource.clip;
 
-        if(FadeOnStart)
+        if (FadeOnStart)
         {
-            float endVolume = audioSource.volume;
-            FadeVolume(0, endVolume, 0.25f);
+            FadeVolume(0, STARTING_VOLUME, 0.25f);
         }
     }
 
-    public void playCombatLoop()
+    public void restartMusic()
     {
-        audioSource.PlayOneShot(combatLoop, BACKGROUND_VOLUME);
-        audioSource.loop = true;
-        FadeVolume(0, BACKGROUND_VOLUME);
-    }
-
-    public void playExpositionConfrontation()
-    {
-        audioSource.PlayOneShot(combatLoop, BACKGROUND_VOLUME);
+        audioSource.PlayOneShot(musicLoop, BACKGROUND_VOLUME);
         audioSource.loop = true;
         FadeVolume(0, BACKGROUND_VOLUME);
     }

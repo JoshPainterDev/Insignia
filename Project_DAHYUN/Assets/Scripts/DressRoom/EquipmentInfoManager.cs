@@ -15,6 +15,13 @@ public class EquipmentInfoManager : MonoBehaviour{
     private const string prefixWeapon = "Animations\\Equipment\\Weapons";
     private const string prefixAura = "Animations\\Equipment\\Aura";
 
+    /// <Equipment List>
+    /// 1. Novice Armor
+    /// 2. Proto-Set
+    /// 3. Slayer Armor
+    /// 4.
+    /// <>
+
     void Awake()
     {
         if (equipmentInfoTool == null)

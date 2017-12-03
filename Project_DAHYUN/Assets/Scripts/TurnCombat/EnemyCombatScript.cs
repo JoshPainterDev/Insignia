@@ -89,10 +89,9 @@ public class EnemyCombatScript : MonoBehaviour {
         print("Easy AI:");
         //first evaluate random chance to strike
         //regardless of abilities
-        int chanceToStrike = Random.Range(100, 100);
-
-
-        if(chanceToStrike > 35)
+        int chanceToStrike = Random.Range(0, 100);
+        
+        if(chanceToStrike > 34)
         {
             int rand = Random.Range(0, 100);
             float accuracy = 70 + (3 * ((enemyInfo.enemySpeed + combatManager.enemySpeedBoost) 
@@ -121,8 +120,10 @@ public class EnemyCombatScript : MonoBehaviour {
         }
         else
         {
-            print("selecting ability...");
-            int randomAbility = Random.Range(0, 3);
+            
+            int randomAbility = Random.Range(0, 4);
+
+            print("selecting ability:" + randomAbility);
 
             switch (randomAbility)
             {
@@ -215,8 +216,10 @@ public class EnemyCombatScript : MonoBehaviour {
         {
             enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
             this.GetComponent<CombatAudio>().playRandomSwordMiss();
+            yield return new WaitForSeconds(0.1f);
             this.GetComponent<CombatAudio>().playStrikeHit();
-            yield return new WaitForSeconds(0.7f);
+            enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+            yield return new WaitForSeconds(0.6f);
             combatManager.DamagePlayer_Strike();
             enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
             yield return new WaitForSeconds(0.25f);
@@ -238,7 +241,7 @@ public class EnemyCombatScript : MonoBehaviour {
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos, playerOrigPos - new Vector3(70, 0, 0), 5f);
         Vector3 spawnPos = new Vector3(playerOrigPos.x, playerOrigPos.y - 15, 0);
         GameObject effectClone = (GameObject)Instantiate(standardStrikeMiss_FX, spawnPos, transform.rotation);
-        yield return new WaitForSeconds(0.5f);
+        enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
         yield return new WaitForSeconds(0.2f);
         this.GetComponent<CombatAudio>().playRandomSwordMiss();
@@ -257,7 +260,11 @@ public class EnemyCombatScript : MonoBehaviour {
     {
         combatManager.HideHealthBars();
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
-        yield return new WaitForSeconds(0.7f);
+        this.GetComponent<CombatAudio>().playRandomSwordMiss();
+        yield return new WaitForSeconds(0.1f);
+        enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+        this.GetComponent<CombatAudio>().playStrikeHit();
+        yield return new WaitForSeconds(0.6f);
         generateRandomBlood();
         Vector3 bloodPos = new Vector3(playerOrigPos.x, playerOrigPos.y, 0);
         bloodClone.transform.position = bloodPos;

@@ -113,30 +113,30 @@ public class CombatManager : MonoBehaviour {
     public int enemiesRemaining;
     public GameObject enemyCounter;
 
-    //public void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.Alpha9))
-    //    {
-    //        int origHealth = enemyHealth;
-    //        enemyHealth = (int)(enemyMaxHealth * 0.25f);
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            int origHealth = enemyHealth;
+            enemyHealth = (int)(enemyMaxHealth * 0.25f);
 
-    //        float var1 = ((float)origHealth / (float)enemyMaxHealth);
-    //        float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
-    //        enemyHealthBar.GetComponent<HealthScript>().Hurt();
-    //        enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-    //    }
+            float var1 = ((float)origHealth / (float)enemyMaxHealth);
+            float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
+            enemyHealthBar.GetComponent<HealthScript>().Hurt();
+            enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+        }
 
-    //    if (Input.GetKeyDown(KeyCode.Alpha0))
-    //    {
-    //        int origHealth = playerHealth;
-    //        playerHealth = (int)(playerMaxHealth * 0.25f);
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            int origHealth = playerHealth;
+            playerHealth = (int)(playerMaxHealth * 0.25f);
 
-    //        float var1 = ((float)origHealth / (float)playerMaxHealth);
-    //        float var2 = ((float)playerHealth / (float)playerMaxHealth);
-    //        playerHealthBar.GetComponent<HealthScript>().Hurt();
-    //        playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-    //    }
-    //}
+            float var1 = ((float)origHealth / (float)playerMaxHealth);
+            float var2 = ((float)playerHealth / (float)playerMaxHealth);
+            playerHealthBar.GetComponent<HealthScript>().Hurt();
+            playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
+        }
+    }
 
     // Use this for initialization
     void Start ()
@@ -202,50 +202,7 @@ public class CombatManager : MonoBehaviour {
             abilityButton3.transform.GetChild(0).GetComponent<Text>().text = ability3.Name;
             abilityButton4.transform.GetChild(0).GetComponent<Text>().text = ability4.Name;
 
-            if (ability1.Name == "-")
-            {
-                abilityButton1.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
-                abilityButton1.transform.GetChild(1).GetComponent<Text>().text = "";
-            }
-            else
-            {
-                abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
-                abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
-            }
-
-            if (ability2.Name == "-")
-            {
-                abilityButton2.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
-                abilityButton2.transform.GetChild(1).GetComponent<Text>().text = "";
-            }
-            else
-            {
-                abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
-                abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2.Cooldown.ToString();
-            }
-
-            if (ability3.Name == "-")
-            {
-                abilityButton3.transform.GetChild(1).GetComponent<Text>().text = "";
-                abilityButton3.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
-            }
-            else
-            {
-                abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
-                abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3.Cooldown.ToString();
-            }  
-
-            if (ability4.Name == "-")
-            {
-                abilityButton4.transform.GetChild(1).GetComponent<Text>().text = "";
-                abilityButton4.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
-            }
-            else
-            {
-                abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
-                abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4.Cooldown.ToString();
-            }
-                
+            setAbilityButtons();    
 
             if (GameController.controller.limitBreakTracker == 0)
                 canLimitBreak = true;
@@ -1504,24 +1461,6 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
-            //if(!initialEnemy)
-            //{
-            //    foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-            //        sprite.enabled = false;
-
-            //    yield return new WaitForSeconds(0.25f);
-
-            //    foreach (SpriteRenderer sprite in enemyPrfb.GetComponentsInChildren<SpriteRenderer>())
-            //        sprite.enabled = true;
-
-            //    yield return new WaitForSeconds(1.15f);
-
-            //    if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
-            //        StartCoroutine(StartPlayerTurn());
-            //    else
-            //        StartCoroutine(StartEnemyTurn());
-            //}
-
             enemyHealthBar.GetComponent<HealthScript>().StartAnim();
             LoadCharacterLevels(enemyInfo);
         }
@@ -1864,6 +1803,53 @@ public class CombatManager : MonoBehaviour {
         enemyHealthBar.transform.GetChild(4).GetComponent<Text>().text = enemyInfo.enemyName;
         enemyHealthBar.transform.GetChild(4).GetComponent<Text>().enabled = true;
         enemyHealthBar.transform.GetChild(4).GetComponent<Text>().color = Color.white;
+    }
+
+    public void setAbilityButtons()
+    {
+        if (ability1.Name == "-")
+        {
+            abilityButton1.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+            abilityButton1.transform.GetChild(1).GetComponent<Text>().text = "";
+        }
+        else
+        {
+            abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
+            abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
+        }
+
+        if (ability2.Name == "-")
+        {
+            abilityButton2.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+            abilityButton2.transform.GetChild(1).GetComponent<Text>().text = "";
+        }
+        else
+        {
+            abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
+            abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2.Cooldown.ToString();
+        }
+
+        if (ability3.Name == "-")
+        {
+            abilityButton3.transform.GetChild(1).GetComponent<Text>().text = "";
+            abilityButton3.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+        }
+        else
+        {
+            abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
+            abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3.Cooldown.ToString();
+        }
+
+        if (ability4.Name == "-")
+        {
+            abilityButton4.transform.GetChild(1).GetComponent<Text>().text = "";
+            abilityButton4.GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.75f);
+        }
+        else
+        {
+            abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
+            abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4.Cooldown.ToString();
+        }
     }
 
     public int getPlayerHealth()

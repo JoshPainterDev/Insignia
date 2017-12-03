@@ -8,7 +8,7 @@ public class AnimationController : MonoBehaviour
 
     public void Start()
     {
-        Invoke("LoadCharacter", 0.01f);
+        Invoke("LoadCharacter", 0.1f);
     }
 
     public void SetPlaySpeed(float newSpeed = 1)
@@ -83,7 +83,9 @@ public class AnimationController : MonoBehaviour
         EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         this.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         if (!info.hideUnderLayer)
+        {
             this.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = true;
+        }
         else
             this.transform.GetChild(8).GetComponent<SpriteRenderer>().enabled = false;
 
@@ -156,7 +158,6 @@ public class AnimationController : MonoBehaviour
             info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
             this.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
         }
-
         setSkinColor(GameController.controller.getPlayerSkinColor()); // set skin color
     }
 

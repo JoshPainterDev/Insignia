@@ -200,7 +200,7 @@ public class TutorialManager01_C : MonoBehaviour
     {
         GameObject slade = Steve.transform.GetChild(1).gameObject;
         slade.GetComponent<Animator>().SetInteger("AnimState", 1);
-        GameController.controller.GetComponent<MenuUIAudio>().PlaySwordSound();
+        combatController.GetComponent<CombatAudio>().playPlasmaIgnite();
         yield return new WaitForSeconds(2f);
         Vector3 initEnemyPos = enemyMannequinn.transform.position;
         enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, enemyMannequinn.transform.position + new Vector3(100, 0, 0), 3);

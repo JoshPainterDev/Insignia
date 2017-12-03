@@ -289,7 +289,7 @@ public class StruggleManager_C : MonoBehaviour {
         player.GetComponent<AnimationController>().PlayAttackAnim();
         this.GetComponent<CombatAudio>().playStrikeHit();
         yield return new WaitForSeconds(0.1f);
-        Vector3 spawnPos = new Vector3(player.transform.position.x + 80, player.transform.position.y, 0);
+        Vector3 spawnPos = new Vector3(player.transform.position.x + 150, player.transform.position.y, 0);
         effectClone = (GameObject)Instantiate(hitEffect, spawnPos, transform.rotation);
         yield return new WaitForSeconds(0.15f);
         this.GetComponent<CombatAudio>().playBloodSplatter();
@@ -301,7 +301,6 @@ public class StruggleManager_C : MonoBehaviour {
         yield return new WaitForSeconds(0.75f);
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
-        //yield return new WaitForSeconds(0.5f);
         enemy.GetComponent<LerpScript>().LerpToColor(origColor, Color.clear, 1.5f);
 
         if(!playerCanFail)

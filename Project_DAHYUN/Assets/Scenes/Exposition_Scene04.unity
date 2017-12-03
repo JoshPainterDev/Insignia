@@ -525,13 +525,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOnStart: 1
-  combatLoop: {fileID: 8300000, guid: 2d935bab044a449468b6c3d4bbfd63ac, type: 3}
-  expositionConfrontation: {fileID: 8300000, guid: 15b98173374a12546ac48d8e9308bbf9,
-    type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
   BACKGROUND_VOLUME: 0.25
+  STARTING_VOLUME: 0.1
   rate: 1
 --- !u!82 &422027584
 AudioSource:
@@ -2461,7 +2459,9 @@ MonoBehaviour:
   background: {fileID: 2037268560}
   dialoguePanel: {fileID: 2085123214}
   sfxManager: {fileID: 1082181825}
+  MusicManager: {fileID: 422027582}
   touch2Continue: {fileID: 1728996135}
+  CombatStartup: {fileID: 8300000, guid: c29544d7584145c4db980bdf76f6ada7, type: 3}
   speaker01: {fileID: 177538891}
   speaker02: {fileID: 0}
   speaker03: {fileID: 0}
@@ -3271,8 +3271,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3284,13 +3286,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3302,13 +3307,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3320,13 +3328,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3338,6 +3349,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -3358,6 +3370,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  playerDecisions: 
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000

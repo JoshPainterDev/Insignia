@@ -79,7 +79,7 @@ public class AbilityToolsScript : MonoBehaviour {
             //    break;
             case "Solar Flare":
                 ability.Accuracy = 75;
-                ability.BaseDamage = 2;
+                ability.BaseDamage = 4;
                 ability.Cooldown = 2;
                 ability.Buffs = false;
                 ability.Description = "A focused fire blast of star magic.";

@@ -55,13 +55,12 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.specialStrikeAnim = false;
                 break;
             case "Shadow Assassin":
-                enemyInfo.enemyImageSource = "Animations\\NPCs\\zed_idle01";
                 enemyInfo.enemyPrefab = ShadowAssassin_Prefab;
                 enemyInfo.enemyLevel = 1;
                 enemyInfo.expReward = MODERATE_EXP;
-                enemyInfo.ability_1 = "Outrage";
+                enemyInfo.ability_1 = "none";
                 enemyInfo.ability_2 = "Shadow Clone";
-                enemyInfo.ability_3 = "Reap";
+                enemyInfo.ability_3 = "none";
                 enemyInfo.ability_4 = "Final Cut";
 
                 enemyInfo.enemyName = name;
@@ -74,7 +73,7 @@ public class EnemyToolsScript : MonoBehaviour {
             case "Skitter":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\Skitter_Image";
                 enemyInfo.enemyPrefab = Skitter_Prefab;
-                enemyInfo.enemyLevel = 2;
+                enemyInfo.enemyLevel = 1;
                 enemyInfo.expReward = TRASH_EXP;
                 enemyInfo.ability_1 = "Reap";
                 enemyInfo.ability_2 = "";
@@ -82,7 +81,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "";
 
                 enemyInfo.enemyName = name;
-                enemyInfo.enemyAttack = 6;
+                enemyInfo.enemyAttack = 2;
                 enemyInfo.enemyDefense = 4;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 80;
@@ -116,7 +115,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "";
 
                 enemyInfo.enemyName = name;
-                enemyInfo.enemyAttack = 2;
+                enemyInfo.enemyAttack = 3;
                 enemyInfo.enemyDefense = 1;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 122;

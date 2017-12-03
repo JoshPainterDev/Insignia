@@ -1254,7 +1254,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ecf2cda4a9712949b0e42873cf7a0e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2693,7 +2693,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300014, guid: f42b7b75dae92e94abe35a4f84b55622, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d6ba73417659e14eb8c83778f4ca344, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3508,8 +3508,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3521,13 +3523,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3539,13 +3544,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3557,13 +3565,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3575,6 +3586,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -3595,6 +3607,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  playerDecisions: 
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
@@ -3637,6 +3650,9 @@ MonoBehaviour:
   MODERATE_EXP: 50
   THICC_EXP: 100
   Steve_Prefab: {fileID: 0}
+  Seamstress_Prefab: {fileID: 0}
+  Ayo_Prefab: {fileID: 0}
+  Slade_Prefab: {fileID: 0}
   Dummy_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
@@ -3959,7 +3975,7 @@ Animator:
   m_GameObject: {fileID: 1013507639}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 411ff689e02c9714f9d4a4d8115ceafa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5cb63b7c410cbc34880f6cbb4055f150, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4449,7 +4465,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300014, guid: 2d0ab54c99403ab4cb79d2359aefa876, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd2b2d1a3b6c78642aff75a76e439f0f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5046,7 +5062,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300018, guid: 76740ea5be49cc246a9dd58fa434f945, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc4fc6ff900504f42a730a950f849cb1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5825,7 +5841,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f0c733d901d25634185bd01833662d96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1606a1271cece974ea1cdb0723c0135d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5893,7 +5909,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bfac9190963ddc74ab4bf747aba89308, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b24f65ee39c23b4469eb8ceb5b23702b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6560,7 +6576,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300016, guid: 00776517c67ffdb42a6f6e9896fb53ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da5f83ce51a60d745b07164c56880e66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7678,14 +7694,14 @@ RectTransform:
   m_GameObject: {fileID: 2037268560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalScale: {x: 35, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 37.79}
+  m_AnchoredPosition: {x: 42, y: 5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2037268562
@@ -7720,7 +7736,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -15
-  m_Sprite: {fileID: 21300000, guid: ce6ce28e73ec0214b9aba664010bcba4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b869a134ce34cf45bf582c74eab6fa4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

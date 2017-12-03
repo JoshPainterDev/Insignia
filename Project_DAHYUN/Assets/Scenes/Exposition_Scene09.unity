@@ -505,13 +505,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOnStart: 1
-  combatLoop: {fileID: 8300000, guid: 2d935bab044a449468b6c3d4bbfd63ac, type: 3}
-  expositionConfrontation: {fileID: 8300000, guid: 15b98173374a12546ac48d8e9308bbf9,
-    type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
   BACKGROUND_VOLUME: 0.25
+  STARTING_VOLUME: 0.1
   rate: 1
 --- !u!82 &422027584
 AudioSource:
@@ -522,7 +520,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 90041f8a60e74984db6e84e0a7d7ba52, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9621229cd00bc41428cd84c007b54e2e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -953,115 +951,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 617437404}
---- !u!1 &741433122
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 741433123}
-  - component: {fileID: 741433124}
-  m_Layer: 0
-  m_Name: ArcticSFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &741433123
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 741433122}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1082181828}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &741433124
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 741433122}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 90041f8a60e74984db6e84e0a7d7ba52, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 96
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &827138399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,6 +1380,134 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &988609436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 988609439}
+  - component: {fileID: 988609438}
+  - component: {fileID: 988609437}
+  m_Layer: 0
+  m_Name: AmbientSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &988609437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988609436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d0af92ce997f843acd61fc424a3f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeOnStart: 1
+  HIGH_VOLUME: 1
+  MEDIUM_VOLUME: 0.7
+  LOW_VOLUME: 0.5
+  BACKGROUND_VOLUME: 0.25
+  STARTING_VOLUME: 0.1
+  rate: 1
+--- !u!82 &988609438
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988609436}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 90041f8a60e74984db6e84e0a7d7ba52, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &988609439
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988609436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 113.42795, y: -69.80595, z: -3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013507639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,8 +1831,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 113.42795, y: -69.80595, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 741433123}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2607,7 +2623,9 @@ MonoBehaviour:
   background: {fileID: 2037268560}
   dialoguePanel: {fileID: 2085123214}
   sfxManager: {fileID: 1082181825}
+  MusicManager: {fileID: 422027582}
   touch2Continue: {fileID: 2000768919}
+  CombatStartup: {fileID: 0}
   speaker01: {fileID: 86317908}
   speaker02: {fileID: 0}
   speaker03: {fileID: 0}
@@ -3418,8 +3436,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3431,13 +3451,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3449,13 +3472,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3467,13 +3493,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -3485,6 +3514,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -3505,6 +3535,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  playerDecisions: 
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000

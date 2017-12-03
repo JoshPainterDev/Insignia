@@ -211,23 +211,29 @@ public class Character_Select_Manager : MonoBehaviour
         GameController.controller.Load(GameController.controller.charNames[charNum]);
         Color skinColor = GameController.controller.getPlayerSkinColor();
 
-        playerMannequin.GetComponent<AnimationController>().LoadCharacter();
-        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
-
         for (int i = 0; i < 8; ++i)
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
 
-        for (int i = 8; i < 12; ++i)
-        {
-            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
-            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = skinColor;
-        }
+        //for (int i = 8; i < 12; ++i)
+        //{
+        //    playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = false;
+        //    playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = skinColor;
+        //}
+
+        playerMannequin.GetComponent<AnimationController>().LoadCharacter();
+        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
 
         int playerLv = GameController.controller.playerLevel;
         PlayerClass playerClass = GameController.controller.charClasses[selectedChar];
         playButton.transform.GetChild(1).GetComponent<Text>().text = "Lv " + playerLv + " " + playerClass;
         nameplate.GetComponent<Text>().text = GameController.controller.charNames[selectedChar];
         nameplate.GetComponent<Text>().color = GameController.controller.getPlayerColorPreference();
+    }
+
+    private void ShowPreview()
+    {
+        for (int i = 0; i < 8; ++i)
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void ShowDelete()

@@ -2816,8 +2816,10 @@ MonoBehaviour:
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2829,13 +2831,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2847,13 +2852,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2865,13 +2873,16 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
     AttackBoost: 0
     DefenseBoost: 0
+    SpeedBoost: 0
     AttBoostDuration: 3
     DefBoostDuration: 3
+    SpdBoostDuration: 3
     Ticks: 1
     HealAmount: 0
     AblazeChance: 0
@@ -2883,6 +2894,7 @@ MonoBehaviour:
     Buffs: 0
     Heals: 0
     Description: 
+    Icon: 
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -2903,6 +2915,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  playerDecisions: 
   charNames: []
   numChars: 0
   charClasses: 
@@ -3400,7 +3413,7 @@ Animator:
   m_GameObject: {fileID: 1013507639}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 411ff689e02c9714f9d4a4d8115ceafa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5cb63b7c410cbc34880f6cbb4055f150, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3442,12 +3455,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOnStart: 0
-  combatLoop: {fileID: 0}
-  expositionConfrontation: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
   BACKGROUND_VOLUME: 0.25
+  STARTING_VOLUME: 0.5
   rate: 1
 --- !u!82 &1079011845
 AudioSource:

@@ -72,24 +72,17 @@ public class Character_Menu_Manager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        //TEMPORARY SHIT BEFORE I GET SAVING WORKING//
-        GameController.controller.playerColorPreference = new float[4];
-        GameController.controller.playerColorPreference[0] = 1f;
-        GameController.controller.playerColorPreference[1] = 0f;
-        GameController.controller.playerColorPreference[2] = 0f;
-        GameController.controller.playerColorPreference[3] = 0.75f;
-
         //0. pretend the player has save data for ability sake
-        GameController.controller.playerLevel = 1;
-        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
-        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
-        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
-        GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
-        GameController.controller.strikeModifier = "Serrated Strike";
-        GameController.controller.playerBaseAtk = 5;
-        GameController.controller.playerBaseDef = 5;
-        GameController.controller.playerBasePrw = 1;
-        GameController.controller.playerBaseSpd = 1;
+        //GameController.controller.playerLevel = 1;
+        //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
+        //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+        //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
+        //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
+        //GameController.controller.strikeModifier = "Serrated Strike";
+        //GameController.controller.playerBaseAtk = 5;
+        //GameController.controller.playerBaseDef = 5;
+        //GameController.controller.playerBasePrw = 1;
+        //GameController.controller.playerBaseSpd = 1;
         //******************************************//
 
         //unlockedEquipment = GameController.controller.playerEquipmentList;
@@ -128,16 +121,19 @@ public class Character_Menu_Manager : MonoBehaviour {
         unlockedEquipment[28, 0] = true;
         unlockedEquipment[28, 2] = true;
 
-        spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Head");
-        spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Torso");
-        spriteSheet_Legs = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Legs");
-        spriteSheet_Back = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Back");
-        spriteSheet_Gloves = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Gloves");
-        spriteSheet_Shoes = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Shoes");
-        spriteSheet_Weapon = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Weapon");
+        spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Helmet_Spritesheet01");
+        spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Torso_Spritesheet01");
+        spriteSheet_Legs = Resources.LoadAll<Sprite>("IconSpritesheets\\Legs_Spritesheet01");
+        spriteSheet_Back = Resources.LoadAll<Sprite>("IconSpritesheets\\Back_Spritesheet01");
+        spriteSheet_Gloves = Resources.LoadAll<Sprite>("IconSpritesheets\\Gloves_Spritesheet01");
+        spriteSheet_Shoes = Resources.LoadAll<Sprite>("IconSpritesheets\\Shoes_Spritesheet01");
+        spriteSheet_Weapon = Resources.LoadAll<Sprite>("IconSpritesheets\\Sword_Spritesheet01");
         spriteSheet_Aura = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Aura");
 
         playerLv_TextObj.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
+
+
+
         LoadPersona();
     }
 
@@ -414,50 +410,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void RefreshAnimations()
     {
-        int counter = 0;
-        bool[] previousState = new bool[16];
-
-        foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
-        {
-            previousState[counter] = child.enabled;
-            child.enabled = false;
-            ++counter;
-        }
-
-        counter = 0;
-
-        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 5);
-            ++counter;
-        }
-
-        StartCoroutine(Refresh(previousState));
-    }
-
-    IEnumerator Refresh(bool[] previousState)
-    {
-        int counter = 0;
-
-        refreshing = true;
-
-        yield return new WaitForSeconds(0.15f);
-
-        foreach (Animator child in playerMannequin.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 0);
-            ++counter;
-        }
-
-        counter = 0;
-
-        foreach (SpriteRenderer child in playerMannequin.GetComponentsInChildren<SpriteRenderer>())
-        {
-            child.enabled = previousState[counter];
-            ++counter;
-        }
-
-        refreshing = false;
+        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
     }
 
     //*4 items per row*

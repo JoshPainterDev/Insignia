@@ -168,10 +168,12 @@ public class AbilityManager_C : MonoBehaviour {
             case "Solar Flare":
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(-100, 0, 0), 3);
                 yield return new WaitForSeconds(0.35f);
-                spawnPos = initPlayerPos + new Vector3(0, 0, 0);
+                spawnPos = initPlayerPos;
                 effectClone = (GameObject)Instantiate(solarFlare_FX, spawnPos, transform.rotation);
                 effectClone.transform.parent = playerMannequin.transform;
+                effectClone.transform.position += new Vector3(0, 40, 0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
+                this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.75f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300,0,0), 5);
                 yield return new WaitForSeconds(0.25f);
@@ -312,6 +314,8 @@ public class AbilityManager_C : MonoBehaviour {
         GameObject effectClone = (GameObject)Instantiate(solarFlare_FX, spawnPos, transform.rotation);
         effectClone.transform.parent = playerMannequin.transform;
         effectClone.GetComponent<SpriteRenderer>().flipX = true;
+        effectClone.transform.position += new Vector3(0, 40, 0);
+        this.GetComponent<CombatAudio>().playOutrageSFX();
         yield return new WaitForSeconds(0.75f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300, 0, 0), 5);
         yield return new WaitForSeconds(1f);

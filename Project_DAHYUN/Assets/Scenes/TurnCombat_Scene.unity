@@ -5330,11 +5330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8addc0308c4172479f12e0dfa40b115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatLoop: {fileID: 8300000, guid: 2d935bab044a449468b6c3d4bbfd63ac, type: 3}
+  combatLoop: {fileID: 8300000, guid: ed6e49ded297930498bf0347afcd6dec, type: 3}
   select_UI: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   abilitySelect_UI: {fileID: 8300000, guid: 3e80b7f792dfd5940a009b8c92026119, type: 3}
   back_UI: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
-  nope_UI: {fileID: 0}
+  nope_UI: {fileID: 8300000, guid: 6f7ed5630ec36ec41acb009aa1ff224f, type: 3}
   strugglePress01: {fileID: 8300000, guid: 4c3783e7bf8ffa44b8de2887c1e5f302, type: 3}
   strugglePress02: {fileID: 8300000, guid: cde72f0500835494cb8faf144feebe71, type: 3}
   strugglePress03: {fileID: 8300000, guid: aee500b4ee21a164297ead01f542cccc, type: 3}
@@ -5350,13 +5350,13 @@ MonoBehaviour:
   swordDrop: {fileID: 8300000, guid: b2063882ccd6770419eae5b8b4973a4f, type: 3}
   finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
   swordHit01: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
-  swordHit02: {fileID: 8300000, guid: a508b1df52d09ea4397c7f922f70bde0, type: 3}
+  swordHit02: {fileID: 8300000, guid: 9e0d8861213192e44a8859a9b2ccb3e2, type: 3}
   swordHit03: {fileID: 8300000, guid: 1fdf651628edbf4419dec37fe12c53c9, type: 3}
-  swordHit04: {fileID: 8300000, guid: c53d046dbc9e5dc43afd9574c5c7cfa8, type: 3}
-  swordHit05: {fileID: 8300000, guid: ebef2386edf856b42b0e033d34a0c760, type: 3}
-  swordHit06: {fileID: 8300000, guid: cf5811be44376004989824c6ee90ffe3, type: 3}
-  swordHit07: {fileID: 8300000, guid: e92ad2965d62c1f45afe6ed5cf240f5a, type: 3}
-  swordHit08: {fileID: 8300000, guid: be3a5a7357b898343ad03ba9087f3cbe, type: 3}
+  swordHit04: {fileID: 8300000, guid: ebef2386edf856b42b0e033d34a0c760, type: 3}
+  swordHit05: {fileID: 8300000, guid: a508b1df52d09ea4397c7f922f70bde0, type: 3}
+  swordHit06: {fileID: 8300000, guid: e92ad2965d62c1f45afe6ed5cf240f5a, type: 3}
+  swordHit07: {fileID: 8300000, guid: a497c45b3188ea84caeb49c01fd208c4, type: 3}
+  swordHit08: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
   swordImpactArmor01: {fileID: 8300000, guid: f27761118a0449f419068362ec15310b, type: 3}
   swordSwoosh01: {fileID: 8300000, guid: 3863930b1a15c164c8408334025f5840, type: 3}
   swordDraw01: {fileID: 8300000, guid: 0b77b537034fc764aba72a80fa9e89e2, type: 3}
@@ -5364,9 +5364,10 @@ MonoBehaviour:
   swordMiss02: {fileID: 8300000, guid: 9a60dafb08335d341a5bb0dd0235bde8, type: 3}
   swordMiss03: {fileID: 8300000, guid: 57ef28c8e1fad784c853e7949d8571fa, type: 3}
   swordMiss04: {fileID: 8300000, guid: 6dac23ef1ad99dc48aff223b0da25d6d, type: 3}
-  swordBlood01: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
-  swordBlood02: {fileID: 8300000, guid: 070816a64d7127f418fd468465ca7a4c, type: 3}
+  swordBlood01: {fileID: 8300000, guid: 070816a64d7127f418fd468465ca7a4c, type: 3}
+  swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
   bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
+  plasmaIgnite: {fileID: 8300000, guid: dc7c09114e9f5c2409496dc14b337f5e, type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -6139,13 +6140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d0af92ce997f843acd61fc424a3f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOnStart: 0
-  combatLoop: {fileID: 8300000, guid: 2d935bab044a449468b6c3d4bbfd63ac, type: 3}
-  expositionConfrontation: {fileID: 0}
+  FadeOnStart: 1
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
   BACKGROUND_VOLUME: 0.25
+  STARTING_VOLUME: 0.2
   rate: 1
 --- !u!82 &1797351039
 AudioSource:
@@ -6156,11 +6156,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ed6e49ded297930498bf0347afcd6dec, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6202,7 +6202,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -6226,7 +6226,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!4 &1797351040
 Transform:
   m_ObjectHideFlags: 0
