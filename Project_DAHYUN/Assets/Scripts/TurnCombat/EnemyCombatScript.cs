@@ -217,7 +217,7 @@ public class EnemyCombatScript : MonoBehaviour {
             enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
             this.GetComponent<CombatAudio>().playRandomSwordMiss();
             yield return new WaitForSeconds(0.1f);
-            this.GetComponent<CombatAudio>().playStrikeHit();
+            this.GetComponent<CombatAudio>().playRandomSwordHit();
             enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
             yield return new WaitForSeconds(0.6f);
             combatManager.DamagePlayer_Strike();
@@ -241,10 +241,11 @@ public class EnemyCombatScript : MonoBehaviour {
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos, playerOrigPos - new Vector3(70, 0, 0), 5f);
         Vector3 spawnPos = new Vector3(playerOrigPos.x, playerOrigPos.y - 15, 0);
         GameObject effectClone = (GameObject)Instantiate(standardStrikeMiss_FX, spawnPos, transform.rotation);
-        enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
         yield return new WaitForSeconds(0.2f);
+        enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
         this.GetComponent<CombatAudio>().playRandomSwordMiss();
+        yield return new WaitForSeconds(1f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos - new Vector3(50, 0, 0), playerOrigPos, 2f);
         combatManager.ShowHealthBars();
         yield return new WaitForSeconds(0.2f);

@@ -162,6 +162,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone.transform.parent = enemyMannequinn.transform;
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
                 effectClone.transform.position -= new Vector3(80,-30,0);
+                combatManager.GetComponent<CombatAudio>().playShadowVanish();
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(300, 0, 0), 5);
                 yield return new WaitForSeconds(0.25f);
                 combatManager.DamagePlayer_Ability(ability);
@@ -175,6 +176,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                     script.LerpToColor(Color.white, Color.clear, 5);
                 }
                 yield return new WaitForSeconds(0.5f);
+                combatManager.GetComponent<CombatAudio>().playFinalCut();
                 spawnPos = initPlayerPos + new Vector3(0, 0, 0);
                 effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
                 effectClone.transform.position = playerMannequin.transform.position + new Vector3(30, 30, 0);

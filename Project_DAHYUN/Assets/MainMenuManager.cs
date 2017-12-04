@@ -39,8 +39,7 @@ public class MainMenuManager : MonoBehaviour {
             case 2: // Adventure
                 StartCoroutine(LoadAdventureScreen());
                 break;
-            case 3: // Crafting
-                StartCoroutine(LoadCraftingScreen());
+            case 3: // Battle
                 break;
             case 4: // Settings
                 StartCoroutine(LoadSettingsScreen());

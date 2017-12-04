@@ -210,6 +210,7 @@ public class TutorialManager01_C : MonoBehaviour
         effectClone.transform.parent = enemyMannequinn.transform;
         effectClone.GetComponent<SpriteRenderer>().flipX = false;
         effectClone.transform.position -= new Vector3(80, -30, 0);
+        combatController.GetComponent<CombatAudio>().playShadowVanish();
         enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(200, 0, 0), 5);
         yield return new WaitForSeconds(0.25f);
         yield return new WaitForSeconds(0.7f);

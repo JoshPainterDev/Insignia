@@ -17,6 +17,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject inputDetector;
     public GameObject auraPanel;
     public GameObject auraColor;
+    public GameObject background;
     private bool auraColorActive = false;
 
     public GameObject canvas;
@@ -49,25 +50,25 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     EquipmentInfo info;
 
-    //private void Awake()
-    //{
-    //    GameController.controller.playerEquippedIDs[0] = 0;
-    //    GameController.controller.playerEquippedIDs[1] = 0;
-    //    GameController.controller.playerEquippedIDs[2] = 4;
-    //    GameController.controller.playerEquippedIDs[3] = 0;
-    //    GameController.controller.playerEquippedIDs[4] = 8;
-    //    GameController.controller.playerEquippedIDs[5] = 0;
-    //    GameController.controller.playerEquippedIDs[6] = 12;
-    //    GameController.controller.playerEquippedIDs[7] = 0;
-    //    GameController.controller.playerEquippedIDs[8] = 16;
-    //    GameController.controller.playerEquippedIDs[9] = 0;
-    //    GameController.controller.playerEquippedIDs[10] = 20;
-    //    GameController.controller.playerEquippedIDs[11] = 0;
-    //    GameController.controller.playerEquippedIDs[12] = 24;
-    //    GameController.controller.playerEquippedIDs[13] = 0;
-    //    GameController.controller.playerEquippedIDs[14] = 28;
-    //    GameController.controller.playerEquippedIDs[15] = 0;
-    //}
+    private void Awake()
+    {
+        GameController.controller.playerEquippedIDs[0] = 0;
+        GameController.controller.playerEquippedIDs[1] = 0;
+        GameController.controller.playerEquippedIDs[2] = 4;
+        GameController.controller.playerEquippedIDs[3] = 0;
+        GameController.controller.playerEquippedIDs[4] = 8;
+        GameController.controller.playerEquippedIDs[5] = 0;
+        GameController.controller.playerEquippedIDs[6] = 12;
+        GameController.controller.playerEquippedIDs[7] = 0;
+        GameController.controller.playerEquippedIDs[8] = 16;
+        GameController.controller.playerEquippedIDs[9] = 0;
+        GameController.controller.playerEquippedIDs[10] = 20;
+        GameController.controller.playerEquippedIDs[11] = 0;
+        GameController.controller.playerEquippedIDs[12] = 24;
+        GameController.controller.playerEquippedIDs[13] = 0;
+        GameController.controller.playerEquippedIDs[14] = 28;
+        GameController.controller.playerEquippedIDs[15] = 0;
+    }
 
     // Use this for initialization
     void Start()
@@ -85,14 +86,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         //GameController.controller.playerBaseSpd = 1;
         //******************************************//
 
-        //unlockedEquipment = GameController.controller.playerEquipmentList;
-        for (int i = 0; i < 30; ++i)
-        {
-            for(int j = 0; j < 4; ++j)
-            {
-                unlockedEquipment[i,j] = false;
-            }
-        }
+        unlockedEquipment = GameController.controller.playerEquipmentList;
 
         //load in defaults for now : FIX THIS SHIT L8R
         unlockedEquipment[0, 0] = true;
@@ -132,7 +126,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         playerLv_TextObj.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
 
-
+        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
 
         LoadPersona();
     }

@@ -120,9 +120,6 @@ public class NewCharacter_Manager : MonoBehaviour {
         {
             GameController.controller.GetComponent<MenuUIAudio>().playButtonClick();
 
-            //GameController.controller.playerEquippedIDs[12] = 24;
-            //GameController.controller.playerEquippedIDs[13] = 0;
-
             GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
             GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
@@ -132,6 +129,24 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.strikeModifier = "none";
             GameController.controller.limitBreakModifier = LimitBreakName.none;
             GameController.controller.limitBreakTracker = -1;
+            GameController.controller.playerEquippedIDs = new int[16];
+            GameController.controller.playerEquipmentList = new bool[30, 4];
+
+            for (int i = 0; i < 30; ++i)
+            {
+                for (int j = 0; j < 4; ++j)
+                {
+                    GameController.controller.playerEquipmentList[i, j] = false;
+                }
+
+                if((i % 4) == 0)
+                {
+                    GameController.controller.playerEquipmentList[i, 0] = true;
+                    GameController.controller.playerEquipmentList[i, 1] = true;
+                    GameController.controller.playerEquipmentList[i, 2] = true;
+                }
+            }
+
             GameController.controller.playerDecisions = new int[8];
 
             for (int i = 0; i < 8; ++i)
@@ -145,6 +160,7 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.charNames[GameController.controller.numChars] = charName;
             GameController.controller.charClasses[GameController.controller.numChars] = currentClass;
             GameController.controller.SaveCharacters();//DONT FORGET TO SAVE :3
+            
 
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
             //DONT FORGET TO LOAD EITHER!
@@ -172,6 +188,23 @@ public class NewCharacter_Manager : MonoBehaviour {
                 GameController.controller.playerDefense = 3 + 6;
                 GameController.controller.playerProwess = 1 + 2;
                 GameController.controller.playerSpeed = 1;
+
+                GameController.controller.playerEquippedIDs[0] = 0;
+                GameController.controller.playerEquippedIDs[1] = 0;
+                GameController.controller.playerEquippedIDs[2] = 4;
+                GameController.controller.playerEquippedIDs[3] = 0;
+                GameController.controller.playerEquippedIDs[4] = 8;
+                GameController.controller.playerEquippedIDs[5] = 0;
+                GameController.controller.playerEquippedIDs[6] = 12;
+                GameController.controller.playerEquippedIDs[7] = 0;
+                GameController.controller.playerEquippedIDs[8] = 16;
+                GameController.controller.playerEquippedIDs[9] = 0;
+                GameController.controller.playerEquippedIDs[10] = 20;
+                GameController.controller.playerEquippedIDs[11] = 0;
+                GameController.controller.playerEquippedIDs[12] = 24;
+                GameController.controller.playerEquippedIDs[13] = 0;
+                GameController.controller.playerEquippedIDs[14] = 28;
+                GameController.controller.playerEquippedIDs[15] = 0;
                 break;
             default:
                 break;

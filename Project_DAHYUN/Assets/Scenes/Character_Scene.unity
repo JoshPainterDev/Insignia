@@ -5957,6 +5957,7 @@ MonoBehaviour:
   inputDetector: {fileID: 1095666464}
   auraPanel: {fileID: 1517835816}
   auraColor: {fileID: 1474093249}
+  background: {fileID: 2037268560}
   canvas: {fileID: 889873487}
   camera: {fileID: 1317330911}
   blackSq: {fileID: 1814897235}

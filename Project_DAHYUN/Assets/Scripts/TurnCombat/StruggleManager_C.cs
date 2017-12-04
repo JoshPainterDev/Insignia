@@ -81,12 +81,15 @@ public class StruggleManager_C : MonoBehaviour {
         failScale += GameController.controller.playerProwess;
         int rand = Random.Range(0, 9);
         goal = 10 + (enemyLevel) + rand;
-        print("GOAL: " + goal);
         int lvDiff = GameController.controller.playerLevel - enemyLevel;
         goal -= lvDiff > 0 ? GameController.controller.playerProwess * lvDiff : lvDiff;
-        print("GOAL: " + goal);
     } 
 	
+    public void ForceExecute()
+    {
+        StartCoroutine(ExecuteEnemy());
+    }
+
 	// Update is called once per frame
 	void FixedUpdate ()
     {

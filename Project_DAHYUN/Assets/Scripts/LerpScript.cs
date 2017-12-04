@@ -20,6 +20,7 @@ public class LerpScript : MonoBehaviour {
     Color finalColor = Color.white;
     private float rate = 1f;
     private bool localPosLerp;
+    private bool posSLerp = false;
 
     public void LerpToPos(Vector3 startPos, Vector3 endPos, float speed = 1f, bool local = false)
     {
@@ -30,6 +31,19 @@ public class LerpScript : MonoBehaviour {
         lerping = true;
         lerpingPosition = true;
         localPosLerp = local;
+        posSLerp = false;
+    }
+
+    public void SLerpToPos(Vector3 startPos, Vector3 endPos, float speed = 1f, bool local = false)
+    {
+        t_P = 0f;
+        initPos = startPos;
+        finalPos = endPos;
+        rate = speed;
+        lerping = true;
+        lerpingPosition = true;
+        localPosLerp = local;
+        posSLerp = true;
     }
 
     public void LerpToScale(Vector3 startScale, Vector3 endScale, float speed = 1f)
@@ -60,7 +74,12 @@ public class LerpScript : MonoBehaviour {
             if(lerpingPosition)
             {
                 t_P += Time.deltaTime * rate;
-                Vector3 pos = Vector3.Lerp(initPos, finalPos, t_P);
+                Vector3 pos;
+
+                if (!posSLerp)
+                    pos = Vector3.Lerp(initPos, finalPos, t_P);
+                else
+                    pos = Vector3.SlerpUnclamped(initPos, finalPos, t_P);
 
                 if (localPosLerp)
                     transform.localPosition = pos;

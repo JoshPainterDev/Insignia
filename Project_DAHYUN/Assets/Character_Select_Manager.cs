@@ -98,7 +98,6 @@ public class Character_Select_Manager : MonoBehaviour
     {
         charToDelete = selectedChar;
 
-        print(GameController.controller.charNames[selectedChar]);
         if (GameController.controller.charNames[selectedChar] == null)
         {
             GameController.controller.GetComponent<MenuUIAudio>().playNope();

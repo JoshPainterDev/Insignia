@@ -20,7 +20,7 @@ public class FadingScript : MonoBehaviour
         if (this.GetComponent<Image>())
             origColor = this.GetComponent<Image>().color;
         else
-            origColor = this.GetComponent<Text>().color;
+            origColor = this.GetComponent<Text>().color - new Color(0,0,0,1);
     }
 
     // Use this for initialization
@@ -48,7 +48,7 @@ public class FadingScript : MonoBehaviour
         if (active)
         {
             this.GetComponent<LerpScript>().LerpToColor(otherColor, origColor, speed);
-            yield return new WaitForSeconds((1 / speed) + delay);
+            yield return new WaitForSeconds((1 / speed));
             StartCoroutine(MoveToFirst());
         }
     }
@@ -73,8 +73,8 @@ public class FadingScript : MonoBehaviour
             this.GetComponent<Text>().color = Color.clear;
 
         active = true;
-        this.GetComponent<LerpScript>().LerpToColor(Color.clear, otherColor, 2);
-        yield return new WaitForSeconds(0.6f);
+        this.GetComponent<LerpScript>().LerpToColor(new Color(1,1,1,0), otherColor, 1);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(MoveToSecond());
     }
 }

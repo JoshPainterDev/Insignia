@@ -136,6 +136,11 @@ public class CombatManager : MonoBehaviour {
             playerHealthBar.GetComponent<HealthScript>().Hurt();
             playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            this.GetComponent<StruggleManager_C>().ForceExecute();
+        }
     }
 
     // Use this for initialization

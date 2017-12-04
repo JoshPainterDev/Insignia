@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour {
             playerSkinColor = new float[4];
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
+            playerEquipmentList = new bool[30, 4];
             playerDecisions = new int[8];
             charNames = new string[6];
             charClasses = new PlayerClass[6];
@@ -287,8 +288,6 @@ public class GameController : MonoBehaviour {
         playerSkinColor[1] = newColor.g;
         playerSkinColor[2] = newColor.b;
         playerSkinColor[3] = newColor.a;
-
-        print("new skin colr:" + newColor);
     }
 
     public Color getPlayerSkinColor()
