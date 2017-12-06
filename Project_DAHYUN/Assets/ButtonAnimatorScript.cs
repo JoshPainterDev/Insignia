@@ -54,7 +54,7 @@ public class ButtonAnimatorScript : MonoBehaviour
     public void ChangeColor()
     {
         this.GetComponent<Image>().color = newColor;
-        Invoke("RevertColor", 0.26f);
+        //  Invoke("RevertColor", 0.26f);
     }
 
     public void RevertColor()

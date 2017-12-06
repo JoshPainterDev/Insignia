@@ -9,6 +9,7 @@ public class ExperienceScript : MonoBehaviour {
     public GameObject playerLevel;
     public Color fadeColor;
     public GameObject rewardManager;
+    public GameObject playerMannequin;
 
     private Color origColor;
 
@@ -19,6 +20,7 @@ public class ExperienceScript : MonoBehaviour {
     private float final = 0f;
     private float requiredEXP;
     private bool ding = false;
+    private bool newCheck = true;
 
     // Use this for initialization
     void Start()
@@ -34,6 +36,7 @@ public class ExperienceScript : MonoBehaviour {
     public bool experienceAnimation(int currentExp, int newExp)
     {
         ding = false;
+        newCheck = true;
 
         if (CheckForDing(currentExp + newExp))
             ding = true;
@@ -88,8 +91,9 @@ public class ExperienceScript : MonoBehaviour {
                     ++GameController.controller.playerLevel;
                     StartCoroutine(LevelUpAnim());
                     ding = false;
+                    newCheck = false;
                 }
-                else
+                else if(newCheck)
                     rewardManager.GetComponent<RewardManager_C>().checkEquipmentUnlock();
             }
         }
@@ -153,6 +157,8 @@ public class ExperienceScript : MonoBehaviour {
 
     IEnumerator LevelUpAnim()
     {
+        GameController.controller.playerEXP = 0 + (GameController.controller.playerEXP - (int)requiredEXP);
+
         requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
                              + (GameController.controller.playerLevel * 15);
 
@@ -164,11 +170,13 @@ public class ExperienceScript : MonoBehaviour {
 
         expBar.GetComponent<Image>().fillAmount = 0;
 
-        yield return new WaitForSeconds(1.25f);
+        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+
+        yield return new WaitForSeconds(0.25f);
 
         LerpEXP(0, newPercent);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
 
         rewardManager.GetComponent<RewardManager_C>().checkAbilityUnlock();
     }

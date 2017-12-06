@@ -20,18 +20,19 @@ public class RewardManager_C : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //EncounterToolsScript.tools.SpecifyEncounter(1, 0);
         reward = GameController.controller.rewardEarned;
-        if (experienceHandle.GetComponent<ExperienceScript>().experienceAnimation(GameController.controller.playerEXP, reward.experience))
-            levelUp = true;
+        int currentXP = GameController.controller.playerEXP;
+        GameController.controller.playerEXP += reward.experience;
 
-        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        if (experienceHandle.GetComponent<ExperienceScript>().experienceAnimation(currentXP, reward.experience))
+            levelUp = true;
     }
 
     public void checkAbilityUnlock()
     {
         if (levelUp)
         {
-            //print("Player Level: " + GameController.controller.playerLevel);
             unlockAbility = RewardToolsScript.tools.CheckForUnlock(GameController.controller.playerLevel);
 
             if (unlockAbility.Name == "none")
@@ -45,6 +46,8 @@ public class RewardManager_C : MonoBehaviour
 
     public void checkEquipmentUnlock()
     {
+        print("get fuqd");
+
         if(reward.hasEquipment)
         {
             StartCoroutine(UnlockEquipment());
@@ -84,17 +87,17 @@ public class RewardManager_C : MonoBehaviour
         //set image
         abilityUnlockHandle.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load(unlockAbility.Icon, typeof(Sprite)) as Sprite;
         abilityUnlockHandle.transform.GetChild(3).GetComponent<Text>().text = unlockAbility.Name;
-        abilityUnlockHandle.GetComponent<LerpScript>().LerpToScale(new Vector3(0.8f, 0.8f, 0.8f), new Vector3(1,1,1), 1);
+        abilityUnlockHandle.GetComponent<LerpScript>().LerpToScale(new Vector3(0.8f, 0.8f, 0.8f), new Vector3(1,1,1), 2);
         Color temp = abilityUnlockHandle.transform.GetChild(0).GetComponent<Image>().color;
-        abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 1);
+        abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 2);
         temp = abilityUnlockHandle.transform.GetChild(1).GetComponent<Image>().color;
-        abilityUnlockHandle.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 1);
+        abilityUnlockHandle.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 2);
         temp = abilityUnlockHandle.transform.GetChild(2).GetComponent<Text>().color;
-        abilityUnlockHandle.transform.GetChild(2).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 1);
+        abilityUnlockHandle.transform.GetChild(2).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 2);
         temp = abilityUnlockHandle.transform.GetChild(3).GetComponent<Text>().color;
-        abilityUnlockHandle.transform.GetChild(3).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 1);
+        abilityUnlockHandle.transform.GetChild(3).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 2);
+        yield return new WaitForSeconds(0.35f);
         WaitForInput = true;
-        yield return new WaitForSeconds(0.1f);
     }
 
     IEnumerator HideAbilityHandle()
@@ -115,7 +118,7 @@ public class RewardManager_C : MonoBehaviour
 
     IEnumerator LoadNextScene()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         RewardToolsScript.tools.ClearReward();
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);

@@ -39,7 +39,7 @@ public class EncounterToolsScript : MonoBehaviour {
                     encounter.bossFight[1] = false;
 
                     Reward newReward = new Reward();
-                    newReward.experience = 2500;
+                    newReward.experience = 22;
                     encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 1)

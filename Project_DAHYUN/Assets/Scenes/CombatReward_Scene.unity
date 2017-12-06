@@ -1571,6 +1571,7 @@ MonoBehaviour:
   playerLevel: {fileID: 1436702294}
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
   rewardManager: {fileID: 1616549424}
+  playerMannequin: {fileID: 119668991}
   rate: 1
 --- !u!1001 &1243540802
 Prefab:
@@ -2567,6 +2568,7 @@ GameObject:
   - component: {fileID: 2029248995}
   - component: {fileID: 2029249001}
   - component: {fileID: 2029249002}
+  - component: {fileID: 2029249003}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2822,6 +2824,7 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  playerDecisions: 
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
@@ -2858,6 +2861,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5199243a02457a4e87bb2bcad906ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2029249003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029248994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75da49298c3192344a1903b4b4537f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2032562587

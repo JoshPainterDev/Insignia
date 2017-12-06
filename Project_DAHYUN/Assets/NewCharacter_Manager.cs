@@ -13,6 +13,7 @@ public class NewCharacter_Manager : MonoBehaviour {
     public GameObject class3;
     public GameObject class4;
     public GameObject classIcon;
+    public GameObject classPanel;
 
     public int maxNameLength = 16;
 
@@ -250,30 +251,45 @@ public class NewCharacter_Manager : MonoBehaviour {
             case 1:
                 currentClass = PlayerClass.Knight;
                 classIcon.GetComponent<Image>().sprite = class1.transform.GetChild(0).GetComponent<Image>().sprite;
+                class1.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
+
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Knight";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text =
+                    "Knights are sturdy and lethal. Focusing on Strikes and Melee Abilities, they uphold their virtues by the blade.";
                 break;
             case 2:
                 currentClass = PlayerClass.Knight;
                 classIcon.GetComponent<Image>().sprite = class2.transform.GetChild(0).GetComponent<Image>().sprite;
+                class2.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
+
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class:";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text = "";
                 break;
             case 3:
                 currentClass = PlayerClass.Knight;
                 classIcon.GetComponent<Image>().sprite = class3.transform.GetChild(0).GetComponent<Image>().sprite;
+                class3.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class:";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text = "";
                 break;
             case 4:
                 currentClass = PlayerClass.Knight;
                 classIcon.GetComponent<Image>().sprite = class4.transform.GetChild(0).GetComponent<Image>().sprite;
+                class4.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class:";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text = "";
                 break;
         }
 
