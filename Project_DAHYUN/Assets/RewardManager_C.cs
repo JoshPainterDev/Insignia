@@ -46,8 +46,6 @@ public class RewardManager_C : MonoBehaviour
 
     public void checkEquipmentUnlock()
     {
-        print("get fuqd");
-
         if(reward.hasEquipment)
         {
             StartCoroutine(UnlockEquipment());
@@ -89,7 +87,7 @@ public class RewardManager_C : MonoBehaviour
         abilityUnlockHandle.transform.GetChild(3).GetComponent<Text>().text = unlockAbility.Name;
         abilityUnlockHandle.GetComponent<LerpScript>().LerpToScale(new Vector3(0.8f, 0.8f, 0.8f), new Vector3(1,1,1), 2);
         Color temp = abilityUnlockHandle.transform.GetChild(0).GetComponent<Image>().color;
-        abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 2);
+        abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 0.75f), 2);
         temp = abilityUnlockHandle.transform.GetChild(1).GetComponent<Image>().color;
         abilityUnlockHandle.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 2);
         temp = abilityUnlockHandle.transform.GetChild(2).GetComponent<Text>().color;

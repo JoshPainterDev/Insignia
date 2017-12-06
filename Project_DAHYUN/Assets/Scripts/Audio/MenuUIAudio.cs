@@ -10,7 +10,7 @@ public class MenuUIAudio : MonoBehaviour
     public AudioClip back;
     public AudioClip levelUp;
     public AudioClip buttonClick;
-    public AudioClip swordSwing01;
+    public AudioClip error;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -27,9 +27,9 @@ public class MenuUIAudio : MonoBehaviour
         audioSource.PlayOneShot(sound, volume);
     }
 
-    public void PlaySwordSound()
+    public void playError()
     {
-        audioSource.PlayOneShot(swordSwing01, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(error, MEDIUM_VOLUME);
     }
 
     public void playButtonClick()

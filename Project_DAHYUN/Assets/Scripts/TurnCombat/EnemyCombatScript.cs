@@ -38,7 +38,7 @@ public class EnemyCombatScript : MonoBehaviour {
         combatManager = this.GetComponent<CombatManager>();
         origPosition = enemyMannequin.transform.position;
         playerOrigPos = playerMannequin.transform.position;
-        strikePosition = origPosition - new Vector3(250,0,0);
+        strikePosition = origPosition - new Vector3(220,0,0);
 
         GameController.controller.difficultyScale = 1;
         difficulty = GameController.controller.difficultyScale;
@@ -190,7 +190,7 @@ public class EnemyCombatScript : MonoBehaviour {
             switch(enemyInfo.enemyName)
             {
                 case "The Seamstress":
-                    enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, (origPosition - new Vector3(170,0,0)), 3f);
+                    enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, (origPosition - new Vector3(150,0,0)), 3f);
                     yield return new WaitForSeconds(0.5f);
                     enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
                     yield return new WaitForSeconds(0.5f);
@@ -235,16 +235,16 @@ public class EnemyCombatScript : MonoBehaviour {
     IEnumerator AnimateEnemyMissStrike()
     {
         combatManager.HideHealthBars();
-        Vector3 pos1 = new Vector3(origPosition.x + 250, origPosition.y, 0);
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
         yield return new WaitForSeconds(0.15f);
+        enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+        this.GetComponent<CombatAudio>().playRandomSwordMiss();
+        yield return new WaitForSeconds(0.25f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos, playerOrigPos - new Vector3(70, 0, 0), 5f);
         Vector3 spawnPos = new Vector3(playerOrigPos.x, playerOrigPos.y - 15, 0);
         GameObject effectClone = (GameObject)Instantiate(standardStrikeMiss_FX, spawnPos, transform.rotation);
+        yield return new WaitForSeconds(0.75f);
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
-        yield return new WaitForSeconds(0.2f);
-        enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
-        this.GetComponent<CombatAudio>().playRandomSwordMiss();
         yield return new WaitForSeconds(1f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos - new Vector3(50, 0, 0), playerOrigPos, 2f);
         combatManager.ShowHealthBars();

@@ -144,6 +144,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.StunFoe;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
+                ability.Icon = "AbilityIcons\\GuardBreak_AbilityIcon";
                 break;
             case "Black Rain":
                 ability.Accuracy = 100;

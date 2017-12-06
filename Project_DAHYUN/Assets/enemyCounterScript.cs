@@ -8,6 +8,7 @@ public class enemyCounterScript : MonoBehaviour {
     private int totalEnemies;
     private int remainingEnemies;
     private GameObject original;
+    public GameObject combatManager;
     private GameObject[] tallies;
     // Use this for initialization
     void Start ()
@@ -49,7 +50,7 @@ public class enemyCounterScript : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         tallies[removalNum].GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 3);
         tallies[removalNum].GetComponent<LerpScript>().LerpToPos(tallies[removalNum].transform.position, tallies[removalNum].transform.position + new Vector3(0,20,0), 3);
-        GameController.controller.GetComponent<MenuUIAudio>().PlaySwordSound();
+        combatManager.GetComponent<CombatAudio>().playSwordHit();
         yield return new WaitForSeconds(1f);
         Destroy(tallies[remainingEnemies - 1]);
         --remainingEnemies;

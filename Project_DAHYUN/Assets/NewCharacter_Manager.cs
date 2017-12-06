@@ -14,6 +14,7 @@ public class NewCharacter_Manager : MonoBehaviour {
     public GameObject class4;
     public GameObject classIcon;
     public GameObject classPanel;
+    public GameObject namePanel;
 
     public int maxNameLength = 16;
 
@@ -119,6 +120,8 @@ public class NewCharacter_Manager : MonoBehaviour {
 
         if(nameChecksOut(charName))
         {
+            namePanel.transform.GetChild(2).GetComponent<Text>().text = "";
+
             GameController.controller.GetComponent<MenuUIAudio>().playButtonClick();
 
             GameController.controller.playerName = charName;
@@ -170,8 +173,7 @@ public class NewCharacter_Manager : MonoBehaviour {
         }
         else
         {
-            GameController.controller.GetComponent<MenuUIAudio>().playNope();
-            print("Bad Name! only chars and numbers!");
+            GameController.controller.GetComponent<MenuUIAudio>().playError();
         }
     }
 
@@ -232,14 +234,24 @@ public class NewCharacter_Manager : MonoBehaviour {
     private bool nameChecksOut(string charName)
     {
         if (charName == "")
+        {
+            namePanel.transform.GetChild(2).GetComponent<Text>().text = "You must have a name!";
             return false;
+        }
+            
         foreach(string character in GameController.controller.charNames)
         {
             if(character == charName)
+            {
+                namePanel.transform.GetChild(2).GetComponent<Text>().text = "Name already in use!";
                 return false;
+            }
         }
         if (charName.Length > maxNameLength)
+        {
+            namePanel.transform.GetChild(2).GetComponent<Text>().text = "Your name must be less than 16 characters!";
             return false;
+        }
 
         return true;
     }
