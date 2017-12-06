@@ -12,6 +12,9 @@ public class StartupManager_C : MonoBehaviour
     public GameObject title;
     public GameObject blackSq;
     public GameObject musicController;
+
+    private bool started = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -39,7 +42,11 @@ public class StartupManager_C : MonoBehaviour
 
     public void startGame()
     {
-        StartCoroutine(LoadCharSelect());
+        if(!started)
+        {
+            started = true;
+            StartCoroutine(LoadCharSelect());
+        }
     }
 
     IEnumerator LoadCharSelect()

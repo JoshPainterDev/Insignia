@@ -457,7 +457,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Seamstress";
                         leftspeaker[3] = false;
-                        script[3] = "Our primary goal is to take control of the Kingdom of Light...";
+                        script[3] = "Our order is to seize control of the Kingdom of Light...";
 
                         speaker[4] = playerName;
                         leftspeaker[4] = true;
@@ -489,7 +489,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[11] = "???";
                         leftspeaker[11] = false;
-                        script[11] = "Who I am is not important. And there isn't much for you to 'drop' now, is there?";
+                        script[11] = "But I know who you are. You're free from your old life now.";
 
                         speaker[12] = "???";
                         leftspeaker[12] = false;
@@ -505,7 +505,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[15] = "???";
                         leftspeaker[15] = false;
-                        script[15] = "So I must ask you," + playerName + " will you join us? Or be burried in the sands of time?";
+                        script[15] = "So I must ask you, " + playerName + " will you join us? Or be burried in the sands of time?";
 
                         totalLines = 16;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);

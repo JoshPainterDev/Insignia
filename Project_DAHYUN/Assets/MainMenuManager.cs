@@ -29,8 +29,6 @@ public class MainMenuManager : MonoBehaviour {
 
     public void ButtonPressed(int buttonNumber)
     {
-        DisableButtons();
-
         switch(buttonNumber)
         {
             case 1: // Character
@@ -40,7 +38,7 @@ public class MainMenuManager : MonoBehaviour {
                 StartCoroutine(LoadAdventureScreen());
                 break;
             case 3: // Battle
-                break;
+                return;
             case 4: // Settings
                 StartCoroutine(LoadSettingsScreen());
                 break;
@@ -48,6 +46,8 @@ public class MainMenuManager : MonoBehaviour {
                 StartCoroutine(LoadCharSelectScene());
                 break;
         }
+
+        DisableButtons();
     }
 
 

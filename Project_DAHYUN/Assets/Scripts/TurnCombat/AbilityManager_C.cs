@@ -287,14 +287,14 @@ public class AbilityManager_C : MonoBehaviour {
 
     IEnumerator AnimateEnemyAbilityMiss()
     {
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(220,0,0), 3f);
+        //enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(220,0,0), 3f);
         yield return new WaitForSeconds(0.15f);
         this.GetComponent<CombatAudio>().playRandomSwordMiss();
         yield return new WaitForSeconds(0.25f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos - new Vector3(70, 0, 0), 5f);
         Vector3 spawnPos = new Vector3(initPlayerPos.x, initPlayerPos.y - 15, 0);
         GameObject effectClone = (GameObject)Instantiate(abilityMiss_FX, spawnPos, transform.rotation);
-        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos - new Vector3(220, 0, 0), initEnemyPos, 3.5f);
+        //enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos - new Vector3(220, 0, 0), initEnemyPos, 3.5f);
         yield return new WaitForSeconds(1f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos - new Vector3(70, 0, 0), initPlayerPos, 2f);
     }

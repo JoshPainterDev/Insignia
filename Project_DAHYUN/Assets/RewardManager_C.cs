@@ -45,18 +45,16 @@ public class RewardManager_C : MonoBehaviour
         if (levelUp)
         {
             unlockAbility = RewardToolsScript.tools.CheckForUnlock(GameController.controller.playerLevel);
-            print("Checking for ability unlock");
+
             if (unlockAbility.Name == "-")
             {
-                print("No ability to unlock");
                 checkEquipmentUnlock();
             }
             else
             {
-                print("Unlocking " + unlockAbility.Name);
                 GameController.controller.unlockedAbilities[unlockAbility.AbilityIndex] = true;
-                GameController.controller.Save(GameController.controller.playerName);
                 checkForEmptySlot(unlockAbility);
+                GameController.controller.Save(GameController.controller.playerName);
                 StartCoroutine(UnlockAbility());
             }
         }
@@ -66,7 +64,6 @@ public class RewardManager_C : MonoBehaviour
 
     public void checkEquipmentUnlock()
     {
-        print("Checking for equipment unlock");
         if (reward.hasEquipment)
         {
             StartCoroutine(UnlockEquipment());
@@ -121,7 +118,6 @@ public class RewardManager_C : MonoBehaviour
 
     IEnumerator HideAbilityHandle()
     {
-        print("Hiding Handle");
         abilityUnlockHandle.GetComponent<LerpScript>().LerpToScale(new Vector3(1, 1, 1), new Vector3(0.8f, 0.8f, 0.8f), 2);
         Color temp = abilityUnlockHandle.transform.GetChild(0).GetComponent<Image>().color;
         abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 2);
@@ -147,19 +143,19 @@ public class RewardManager_C : MonoBehaviour
 
     private void checkForEmptySlot(Ability unlockAbility)
     {
-        if (GameController.controller.playerAbility1.Name == "none")
+        if (GameController.controller.playerAbility1.Name == "-")
         {
             GameController.controller.playerAbility1 = unlockAbility;
         }
-        else if(GameController.controller.playerAbility2.Name == "none")
+        else if(GameController.controller.playerAbility2.Name == "-")
         {
             GameController.controller.playerAbility2 = unlockAbility;
         }
-        else if (GameController.controller.playerAbility3.Name == "none")
+        else if (GameController.controller.playerAbility3.Name == "-")
         {
             GameController.controller.playerAbility3 = unlockAbility;
         }
-        else if (GameController.controller.playerAbility4.Name == "none")
+        else if (GameController.controller.playerAbility4.Name == "-")
         {
             GameController.controller.playerAbility4 = unlockAbility;
         }

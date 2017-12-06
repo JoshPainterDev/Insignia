@@ -60,7 +60,7 @@ public class Character_Select_Manager : MonoBehaviour
         {
             playButton.GetComponent<Button>().enabled = false;
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
-            Invoke("LoadMainMenu", 1);
+            Invoke("LoadMainMenu", 2);
         }
     }
 
@@ -89,9 +89,15 @@ public class Character_Select_Manager : MonoBehaviour
     {
         if (GameController.controller.numChars < MAX_CHARACTERS)
         {
+            playButton.GetComponent<Button>().enabled = false;
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
-            SceneManager.LoadScene("NewCharacter_Scene");
+            Invoke("LoadNewChar", 2);
         }
+    }
+
+    private void LoadNewChar()
+    {
+        SceneManager.LoadScene("NewCharacter_Scene");
     }
 
     public void CheckForDelete()
