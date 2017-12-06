@@ -9,6 +9,7 @@ public class CombatManager : MonoBehaviour {
     public float LIMIT_BREAK_THRESH = 0.2f;
     public float VULNERABLE_REDUCTION = 0.2f;
     public float BLINDED_REDUCTION = 66.6f;
+    public int BLIND_DURATION = 2;
 
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
@@ -107,6 +108,8 @@ public class CombatManager : MonoBehaviour {
     public Color physicalColor;
     public Color magicalColor;
     public Color utilityColor;
+    public int playerBlindedDur = 0;
+    public int enemyBlindedDur = 0;
 
     //ENCOUNTER VARIABLES
     [HideInInspector]
@@ -186,7 +189,7 @@ public class CombatManager : MonoBehaviour {
             //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
             //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Rage");
             //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
-            //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
+            //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
             //GameController.controller.strikeModifier = "Serated Strike";
 
             ResetEnemyValues();
@@ -290,8 +293,6 @@ public class CombatManager : MonoBehaviour {
     public Color getAbilityTypeColor(Ability ability)
     {
         Color temp = Color.white;
-
-        print(ability.Type);
 
         switch (ability.Type)
         {
@@ -655,6 +656,16 @@ public class CombatManager : MonoBehaviour {
             }
             else
                 --playerSpdBoostDur;
+
+            if (playerBlinded)
+            {
+                --playerBlindedDur;
+
+                if (playerBlindedDur <= 0)
+                {
+                    playerBlinded = false;
+                }
+            }
         }
         else
         {
@@ -678,6 +689,17 @@ public class CombatManager : MonoBehaviour {
             }
             else
                 --enemySpdBoostDur;
+
+            if(enemyBlinded)
+            {
+                --enemyBlindedDur;
+
+                if (enemyBlindedDur <= 0)
+                {
+                    enemyBlinded = false;
+                }
+            }
+
         }
     }
 
@@ -735,7 +757,7 @@ public class CombatManager : MonoBehaviour {
     {
         int exectueVar = EvaluateExecution();
         int rand = Random.Range(0, 99);
-        float accuracy = 70 + (5 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
+        float accuracy = 80 + (3 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
 
         DisableMainButtons();
         HideHealthBars();
@@ -978,6 +1000,10 @@ public class CombatManager : MonoBehaviour {
                 print("Ability damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
             }
+            else
+            {
+                this.GetComponent<AbilityManager_C>().PlayerAbilityMiss();
+            }
         }
         else if(abilityUsed.Type == AbilityType.Magical)
         {
@@ -1014,6 +1040,10 @@ public class CombatManager : MonoBehaviour {
                 print("damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
             }
+            else
+            {
+                this.GetComponent<AbilityManager_C>().PlayerAbilityMiss();
+            }
         }
         else
         {
@@ -1049,6 +1079,10 @@ public class CombatManager : MonoBehaviour {
 
                 print("damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
+            }
+            else
+            {
+                this.GetComponent<AbilityManager_C>().PlayerAbilityMiss();
             }
         }
     }
@@ -1125,13 +1159,13 @@ public class CombatManager : MonoBehaviour {
                 switch (enemyAttackBoost)
                 {
                     case 1:
-                        attBoostMod = 1.5f;
+                        attBoostMod = 1.2f;
                         break;
                     case 2:
-                        attBoostMod = 2;
+                        attBoostMod = 1.5f;
                         break;
                     case 3:
-                        attBoostMod = 2.5f;
+                        attBoostMod = 1.7f;
                         break;
                     default:
                         attBoostMod = 1;
@@ -1150,6 +1184,46 @@ public class CombatManager : MonoBehaviour {
                 print("damage: " + damageDealt);
                 print("player HP: " + playerHealth);
             }
+            else
+            {
+                this.GetComponent<AbilityManager_C>().EnemyAbilityMiss();
+            }
+        }
+        else if (abilityUsed.Type == AbilityType.Magical)
+        {
+            // accuracy check the attack
+            if (accuracy > rand)
+            {
+                //handle attack boost modifier
+                switch (enemyAttackBoost)
+                {
+                    case 1:
+                        attBoostMod = 1.2f;
+                        break;
+                    case 2:
+                        attBoostMod = 1.5f;
+                        break;
+                    case 3:
+                        attBoostMod = 1.7f;
+                        break;
+                    default:
+                        attBoostMod = 1;
+                        break;
+                }
+
+                damageDealt = ((attack + randDamageBuffer) * abilityUsed.BaseDamage) * attBoostMod;
+
+                damageDealt -= (GameController.controller.playerDefense * (playerDefenseBoost * playerDefenseBoost));
+
+                if (damageDealt < 1)
+                    damageDealt = 1;
+
+                playerHealth -= (int)damageDealt;
+            }
+            else
+            {
+                this.GetComponent<AbilityManager_C>().PlayerAbilityMiss();
+            }
         }
         else
         {
@@ -1160,13 +1234,13 @@ public class CombatManager : MonoBehaviour {
                 switch (enemyAttackBoost)
                 {
                     case 1:
-                        attBoostMod = 1.5f;
+                        attBoostMod = 1.2f;
                         break;
                     case 2:
-                        attBoostMod = 2;
+                        attBoostMod = 1.5f;
                         break;
                     case 3:
-                        attBoostMod = 2.5f;
+                        attBoostMod = 1.7f;
                         break;
                     default:
                         attBoostMod = 1;
@@ -1181,6 +1255,10 @@ public class CombatManager : MonoBehaviour {
                     damageDealt = 1;
 
                 playerHealth -= (int)damageDealt;
+            }
+            else
+            {
+                this.GetComponent<AbilityManager_C>().EnemyAbilityMiss();
             }
         }
     }
@@ -1248,9 +1326,15 @@ public class CombatManager : MonoBehaviour {
                 break;
             case SpecialCase.Blind://done (not tested)
                 if (playerTurn)
+                {
                     enemyBlinded = true;
+                    enemyBlindedDur = BLIND_DURATION;
+                }   
                 else
+                {
                     playerBlinded = true;
+                    playerBlindedDur = BLIND_DURATION;
+                }
                 break;
             case SpecialCase.Execute://
                 currSpecialCase = SpecialCase.None;
@@ -1405,7 +1489,6 @@ public class CombatManager : MonoBehaviour {
         }
         else // player won! go back YOU WIN!
         {
-            RewardToolsScript.tools.SaveReward(encounter.reward);
             StartCoroutine(LoadSuccessScene());
         }
     }

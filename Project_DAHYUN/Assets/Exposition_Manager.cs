@@ -138,10 +138,9 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    public IEnumerator LoadCombatScene(int level, int encounterNum, string returnScene)
+    public IEnumerator LoadCombatScene(int level, int encounterNum)
     {
         GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(level, encounterNum);
-        GameController.controller.currentEncounter.returnOnSuccessScene = returnScene;
         
         yield return new WaitForSeconds(1f);
         GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup);
@@ -539,7 +538,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(70, 0, 0), 2f);
                 break;
-            case 1:
+            case 17:
                 yield return new WaitForSeconds(0.75f);
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, new Color(0.75f, 0.75f, 0.75f, 0.75f), 0.85f);
                 yield return new WaitForSeconds(1.5f);
@@ -590,7 +589,7 @@ public class Exposition_Manager : MonoBehaviour
             case 4:
                 yield return new WaitForSeconds(2);
                 actionsCompleted = true; //actions are completed
-                StartCoroutine(LoadCombatScene(1, 1, "Exposition_Scene10"));
+                StartCoroutine(LoadCombatScene(1, 2));
                 break;
         }
         //////////////////
@@ -673,7 +672,7 @@ public class Exposition_Manager : MonoBehaviour
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(50, 0, 0), 2);
                 yield return new WaitForSeconds(0.5f);
                 speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                StartCoroutine(LoadCombatScene(1, 0, "Exposition_Scene07"));
+                StartCoroutine(LoadCombatScene(1, 1));
                 actionsCompleted = true; //actions are completed
                 break;
         }

@@ -1741,6 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b496ad00192b504aac8e366cbc9a861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatManager: {fileID: 0}
 --- !u!114 &524059998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2444,7 +2445,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  swordSwing01: {fileID: 8300000, guid: 5cc20d81c1aab144890ab39a26ae0216, type: 3}
+  error: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -5066,6 +5067,7 @@ MonoBehaviour:
   LIMIT_BREAK_THRESH: 0.2
   VULNERABLE_REDUCTION: 0.2
   BLINDED_REDUCTION: 66.6
+  BLIND_DURATION: 2
   hasTutorial: 0
   chaosPlayerAI: 0
   canvas: {fileID: 889873490}
@@ -5227,6 +5229,8 @@ MonoBehaviour:
   physicalColor: {r: 0.9485294, g: 0.48426947, b: 0.06277033, a: 1}
   magicalColor: {r: 0.6847872, g: 0.38235295, b: 1, a: 1}
   utilityColor: {r: 0.2205882, g: 0.7419877, b: 1, a: 1}
+  playerBlindedDur: 0
+  enemyBlindedDur: 0
   enemiesRemaining: 0
   enemyCounter: {fileID: 524059995}
 --- !u!4 &1616549426
@@ -5274,9 +5278,12 @@ MonoBehaviour:
     type: 2}
   blackRain_FX: {fileID: 1862190314031148, guid: e7ff796e0be32e14a958015907a0d1d0,
     type: 2}
+  rush_FX: {fileID: 1862190314031148, guid: 9a9a7d418982f9744bb72dd6b5970ff4, type: 2}
   smoke01_FX: {fileID: 1862190314031148, guid: 349beb58d1923f946b5f4e5fc8b328f9, type: 2}
   smoke02_FX: {fileID: 1862190314031148, guid: 826e4684ee0ca9b4384ecc8be9c35d49, type: 2}
   smoke03_FX: {fileID: 1862190314031148, guid: 880e6bff1183e9c478fe9872dc368fa8, type: 2}
+  abilityMiss_FX: {fileID: 1862190314031148, guid: 9ec2c067bfe3a424ab76da2abf69e25c,
+    type: 2}
   blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
   blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
   blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
@@ -5507,6 +5514,8 @@ MonoBehaviour:
   enemyMannequin: {fileID: 666657974}
   playerMannequin: {fileID: 119668991}
   seamstress_StrikeFX: {fileID: 1862190314031148, guid: 5f633b7859975084397429cb387c1ceb,
+    type: 2}
+  standardStrikeHit_FX: {fileID: 1876573840352192, guid: 9eaac98ec5035e14d94f618fcbf1c27c,
     type: 2}
   standardStrikeMiss_FX: {fileID: 1862190314031148, guid: 9ec2c067bfe3a424ab76da2abf69e25c,
     type: 2}

@@ -11,8 +11,9 @@ public class StartupManager_C : MonoBehaviour
     public GameObject inputDetector;
     public GameObject title;
     public GameObject blackSq;
-	// Use this for initialization
-	void Start ()
+    public GameObject musicController;
+    // Use this for initialization
+    void Start ()
     {
         title.GetComponent<SpriteRenderer>().color = Color.clear;
         tap2Start.SetActive(false);
@@ -44,6 +45,7 @@ public class StartupManager_C : MonoBehaviour
     IEnumerator LoadCharSelect()
     {
         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1,1,1,0), Color.white, 0.75f);
+        musicController.GetComponent<Music_Controller>().FadeOutVolume();
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("CharacterSelect_Scene");
     }

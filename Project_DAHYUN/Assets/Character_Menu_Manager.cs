@@ -14,10 +14,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject equipmentSelectPopUpPrefab;
     private GameObject equipmentSelectPopUp;
     public GameObject playerLv_TextObj;
+    public GameObject playerClassIcon;
     public GameObject inputDetector;
     public GameObject auraPanel;
     public GameObject auraColor;
     public GameObject background;
+    public Sprite KnightIcon;
+
     private bool auraColorActive = false;
 
     public GameObject canvas;
@@ -68,6 +71,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.playerEquippedIDs[13] = 0;
         GameController.controller.playerEquippedIDs[14] = 28;
         GameController.controller.playerEquippedIDs[15] = 0;
+
+        GameController.controller.Load(GameController.controller.charNames[1]);
     }
 
     // Use this for initialization
@@ -128,6 +133,8 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
 
+        ChangeClassIcon(GameController.controller.charClasses[GameController.controller.playerNumber]);
+
         LoadPersona();
     }
 
@@ -160,6 +167,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.setPlayerColorPreference(color);
         auraColor.GetComponent<Image>().color = color;
         playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
+    }
+
+    public void LoadAbilityScene()
+    {
+        SceneManager.LoadScene("AbilitySelect_Scene");
     }
 
     public void UpdateStats()
@@ -197,8 +209,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         }
         statText[3].GetComponent<Text>().text = statTotal.ToString();
         GameController.controller.playerSpeed = statTotal;
-
-        print("player prow boyo: " + GameController.controller.playerProwess);
     }
 
     public void LoadPersona()
@@ -211,7 +221,7 @@ public class Character_Menu_Manager : MonoBehaviour {
             playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().color = playerSkin;
         }
 
-        PersonaButton.transform.GetChild(2).GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
+        auraColor.GetComponent<Image>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void LoadSelectedImage(int i, int j)
@@ -778,6 +788,16 @@ public class Character_Menu_Manager : MonoBehaviour {
         foreach (GameObject buttton in equipmentOptions)
         {
             buttton.GetComponent<Button>().enabled = false;
+        }
+    }
+
+    private void ChangeClassIcon(PlayerClass pClass)
+    {
+        switch(pClass)
+        {
+            case PlayerClass.Knight:
+                playerClassIcon.GetComponent<Image>().sprite = KnightIcon;
+                break;
         }
     }
 }

@@ -28,6 +28,7 @@ public class Ability{
     public bool Heals = false;
     public string Description = "";
     public string Icon = "";
+    public int AbilityIndex = 0;
 }
 
 

@@ -512,7 +512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 428, y: 100.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190650308
@@ -756,6 +756,7 @@ GameObject:
   - component: {fileID: 216420524}
   - component: {fileID: 216420523}
   - component: {fileID: 216420522}
+  - component: {fileID: 216420525}
   m_Layer: 5
   m_Name: No
   m_TagString: Untagged
@@ -832,6 +833,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 216420525}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &216420523
@@ -867,6 +879,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216420520}
+--- !u!114 &216420525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 216420520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 0.76551723, b: 0, a: 1}
+  scaler: 1.2
 --- !u!1 &401920074
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,13 +1003,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOnStart: 1
-  combatLoop: {fileID: 8300000, guid: 2d935bab044a449468b6c3d4bbfd63ac, type: 3}
-  expositionConfrontation: {fileID: 8300000, guid: 15b98173374a12546ac48d8e9308bbf9,
-    type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
   BACKGROUND_VOLUME: 0.25
+  STARTING_VOLUME: 0.5
   rate: 1
 --- !u!82 &422027584
 AudioSource:
@@ -2679,6 +2702,7 @@ GameObject:
   - component: {fileID: 1114017429}
   - component: {fileID: 1114017428}
   - component: {fileID: 1114017427}
+  - component: {fileID: 1114017430}
   m_Layer: 5
   m_Name: Yes
   m_TagString: Untagged
@@ -2755,6 +2779,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1114017430}
+        m_MethodName: AnimateButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1114017430}
+        m_MethodName: ChangeColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1114017428
@@ -2790,6 +2836,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1114017425}
+--- !u!114 &1114017430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1114017425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066eb72863255949ad4d1dcff250be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 1, g: 0.76551723, b: 0, a: 1}
+  scaler: 1.2
 --- !u!1 &1171612190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3936,7 +3995,9 @@ MonoBehaviour:
   background: {fileID: 2037268560}
   dialoguePanel: {fileID: 2085123214}
   sfxManager: {fileID: 1082181825}
+  MusicManager: {fileID: 0}
   touch2Continue: {fileID: 2000768919}
+  CombatStartup: {fileID: 0}
   speaker01: {fileID: 86317908}
   speaker02: {fileID: 1784664232}
   speaker03: {fileID: 0}
@@ -4734,7 +4795,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  swordSwing01: {fileID: 8300000, guid: 5cc20d81c1aab144890ab39a26ae0216, type: 3}
+  error: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5

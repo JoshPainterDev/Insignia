@@ -2649,6 +2649,7 @@ MonoBehaviour:
   blackSq: {fileID: 538142076}
   mmCameraPos: {x: 175, y: -92, z: -10}
   selectPrefab: {fileID: 2135960358}
+  background: {fileID: 713696877}
   BackButton: {fileID: 1447408310}
   adventureCameraPos: {x: 285, y: -92, z: -10}
 --- !u!1 &1619637139
@@ -2818,7 +2819,7 @@ Prefab:
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224150412733161736, guid: dc63f3cea52417d4d98d06cd911a2498,
         type: 2}
@@ -3432,7 +3433,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: a9041f15a000b7748bc04d401019aa86, type: 3}
   levelUp: {fileID: 0}
   buttonClick: {fileID: 0}
-  swordSwing01: {fileID: 0}
+  error: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5

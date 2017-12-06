@@ -139,7 +139,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":
-                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, enemyMannequinn.transform.position - new Vector3(-100, 0, 0), 3);
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, enemyMannequinn.transform.position + new Vector3(-100, 0, 0), 3);
                 yield return new WaitForSeconds(0.35f);
                 spawnPos = initPlayerPos + new Vector3(0, 0, 0);
                 effectClone = (GameObject)Instantiate(solarFlare_FX, spawnPos, transform.rotation);
@@ -170,7 +170,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
                 yield return new WaitForSeconds(0.85f);
                 break;
-            case "Final Cut": // FIX THIS
+            case "Final Cut":
                 foreach (LerpScript script in enemyMannequinn.GetComponentsInChildren<LerpScript>())
                 {
                     script.LerpToColor(Color.white, Color.clear, 5);
@@ -188,7 +188,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 {
                     script.LerpToColor(Color.clear, Color.white, 5);
                 }
-                yield return new WaitForSeconds(0.25f);
                 yield return new WaitForSeconds(0.85f);
                 break;
             default:

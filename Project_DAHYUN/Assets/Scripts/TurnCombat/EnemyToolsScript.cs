@@ -59,7 +59,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyLevel = 1;
                 enemyInfo.expReward = MODERATE_EXP;
                 enemyInfo.ability_1 = "none";
-                enemyInfo.ability_2 = "Shadow Clone";
+                enemyInfo.ability_2 = "none";
                 enemyInfo.ability_3 = "none";
                 enemyInfo.ability_4 = "Final Cut";
 

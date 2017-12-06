@@ -126,6 +126,7 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
+            GameController.controller.playerEXP = 0;
             GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("none");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("none");
@@ -158,9 +159,11 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             SetInitialStats(currentClass);
 
-            GameController.controller.Save(charName);
-
             ++GameController.controller.numChars;
+            GameController.controller.playerNumber = GameController.controller.numChars;
+
+            GameController.controller.Save(charName);//DONT FORGET TO SAVE :3
+
             GameController.controller.charNames[GameController.controller.numChars] = charName;
             GameController.controller.charClasses[GameController.controller.numChars] = currentClass;
             GameController.controller.SaveCharacters();//DONT FORGET TO SAVE :3

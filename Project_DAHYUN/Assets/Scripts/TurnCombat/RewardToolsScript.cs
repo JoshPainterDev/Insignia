@@ -30,27 +30,19 @@ public class RewardToolsScript : MonoBehaviour {
         GameController.controller.playerEXP += totalExpGained;
     }
 
-    public void SaveReward(Reward reward)
-    {
-        GameController.controller.rewardEarned = reward;
-    }
-
-    public void ClearReward()
-    {
-        GameController.controller.rewardEarned = null;
-    }
-
     // progression of ability unlocks
     public Ability CheckForUnlock(int level)
     {
         Ability unlock = new Ability();
-        print("Unlock level: " + level);
+
         if (level == 2)
             unlock = AbilityToolsScript.tools.LookUpAbility("Guard Break");
-        else if(level == 5)
+        else if (level == 5)
             unlock = AbilityToolsScript.tools.LookUpAbility("Rage");
         else
             unlock = AbilityToolsScript.tools.LookUpAbility("none");
+
+        print(unlock.Name);
 
         return unlock;
     }

@@ -13,6 +13,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     public GameObject blackSq;
     public Vector3 mmCameraPos;
     public GameObject selectPrefab;
+    public GameObject background;
 
     public GameObject BackButton;
     public Vector3 adventureCameraPos;
@@ -25,6 +26,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         GameController.controller.levelsCompleted = 0;
         GameController.controller.stagesCompleted = 0;
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
+        background.GetComponent<Image>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void Update()

@@ -54,6 +54,15 @@ public class Music_Controller : MonoBehaviour
         lerping = true;
     }
 
+    public void FadeOutVolume(float speed = 1.0f)
+    {
+
+        init = audioSource.volume * 100f;
+        final = 0;
+        rate = speed;
+        lerping = true;
+    }
+
     void Update()
     {
         if (lerping)

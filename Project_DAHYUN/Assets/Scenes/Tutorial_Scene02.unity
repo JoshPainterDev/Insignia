@@ -1396,7 +1396,6 @@ GameObject:
   - component: {fileID: 524059996}
   - component: {fileID: 524059999}
   - component: {fileID: 524059998}
-  - component: {fileID: 524059997}
   m_Layer: 5
   m_Name: Enemy_Counter
   m_TagString: Untagged
@@ -1423,17 +1422,6 @@ RectTransform:
   m_AnchoredPosition: {x: -27.5, y: -6}
   m_SizeDelta: {x: 39.799988, y: 39.100006}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &524059997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 524059995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b496ad00192b504aac8e366cbc9a861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &524059998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,6 +1918,7 @@ GameObject:
   - component: {fileID: 651132274}
   - component: {fileID: 651132275}
   - component: {fileID: 651132276}
+  - component: {fileID: 651132277}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1948,8 +1937,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   playerName: 
   playerSkinColor: []
+  unlockedAbilities: 
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -1971,6 +1962,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -1992,6 +1984,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -2013,6 +2006,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -2034,6 +2028,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -2118,7 +2113,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  swordSwing01: {fileID: 8300000, guid: 5cc20d81c1aab144890ab39a26ae0216, type: 3}
+  error: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -2249,6 +2244,17 @@ MonoBehaviour:
     type: 2}
   DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
     type: 2}
+--- !u!114 &651132277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 651132267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75da49298c3192344a1903b4b4537f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &666657974
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,6 +4885,7 @@ MonoBehaviour:
   LIMIT_BREAK_THRESH: 0.2
   VULNERABLE_REDUCTION: 0.2
   BLINDED_REDUCTION: 66.6
+  BLIND_DURATION: 2
   hasTutorial: 1
   chaosPlayerAI: 0
   canvas: {fileID: 889873490}
@@ -4972,6 +4979,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   ability2:
     Accuracy: 100
     Cooldown: 3
@@ -4993,6 +5001,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   ability3:
     Accuracy: 100
     Cooldown: 3
@@ -5014,6 +5023,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   ability4:
     Accuracy: 100
     Cooldown: 3
@@ -5035,11 +5045,14 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   abilityTextColor: {r: 1, g: 1, b: 1, a: 1}
   abilitySelectColor: {r: 1, g: 0.6827586, b: 0, a: 1}
   physicalColor: {r: 0, g: 0, b: 0, a: 0}
   magicalColor: {r: 0, g: 0, b: 0, a: 0}
   utilityColor: {r: 0, g: 0, b: 0, a: 0}
+  playerBlindedDur: 0
+  enemyBlindedDur: 0
   enemiesRemaining: 0
   enemyCounter: {fileID: 524059995}
 --- !u!4 &1616549426
@@ -5081,9 +5094,11 @@ MonoBehaviour:
   finalCut_FX: {fileID: 1862190314031148, guid: e7a40193cf8683c469f6500d1fcb67c2,
     type: 2}
   blackRain_FX: {fileID: 0}
+  rush_FX: {fileID: 0}
   smoke01_FX: {fileID: 1862190314031148, guid: 349beb58d1923f946b5f4e5fc8b328f9, type: 2}
   smoke02_FX: {fileID: 1862190314031148, guid: 826e4684ee0ca9b4384ecc8be9c35d49, type: 2}
   smoke03_FX: {fileID: 1862190314031148, guid: 880e6bff1183e9c478fe9872dc368fa8, type: 2}
+  abilityMiss_FX: {fileID: 0}
   blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
   blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}
   blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
@@ -5313,6 +5328,7 @@ MonoBehaviour:
   enemyMannequin: {fileID: 666657974}
   playerMannequin: {fileID: 119668991}
   seamstress_StrikeFX: {fileID: 0}
+  standardStrikeHit_FX: {fileID: 0}
   standardStrikeMiss_FX: {fileID: 0}
   blood01_FX: {fileID: 1862190314031148, guid: b402f3bca7d51de4cac661dd12c2a342, type: 2}
   blood02_FX: {fileID: 1862190314031148, guid: 7da289aa231d87543afdb0a32a158918, type: 2}

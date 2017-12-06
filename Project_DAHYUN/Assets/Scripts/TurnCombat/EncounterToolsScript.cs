@@ -32,11 +32,10 @@ public class EncounterToolsScript : MonoBehaviour {
                     encounter.encounterNumber = 1;
                     //load first stage
                     encounter.backgroundName = "\\Environments\\dark_forest";
-                    encounter.totalEnemies = 2;
-                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Skitter";
                     encounter.bossFight[0] = false;
-                    encounter.enemyNames[1] = "Shadow Assassin";
-                    encounter.bossFight[1] = false;
+                    encounter.returnOnSuccessScene = "Exposition_Scene06";
 
                     Reward newReward = new Reward();
                     newReward.experience = 22;
@@ -44,25 +43,31 @@ public class EncounterToolsScript : MonoBehaviour {
                 }
                 else if (levelsCompleted == 1)
                 {
-                    encounter.encounterNumber = 2;
+                    encounter.encounterNumber = 1;
+                    //load first stage
                     encounter.backgroundName = "\\Environments\\dark_forest";
-                    encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "The Seamstress";
+                    encounter.totalEnemies = 2;
+                    encounter.enemyNames[0] = "Shadow Assassin";
                     encounter.bossFight[0] = false;
+                    encounter.enemyNames[1] = "Shadow Assassin";
+                    encounter.bossFight[1] = false;
+                    encounter.returnOnSuccessScene = "Exposition_Scene07";
 
                     Reward newReward = new Reward();
-                    newReward.experience = 5000;
+                    newReward.experience = 47;
                     encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 2)
                 {
                     encounter.encounterNumber = 3;
+                    encounter.backgroundName = "\\Environments\\dark_forest";
                     encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
-                    encounter.bossFight[0] = false;
+                    encounter.enemyNames[0] = "The Seamstress";
+                    encounter.bossFight[0] = true;
+                    encounter.returnOnSuccessScene = "Exposition_Scene10";
 
                     Reward newReward = new Reward();
-                    newReward.experience = 2500;
+                    newReward.experience = 150;
                     encounter.reward = newReward;
                 }
                 else if (levelsCompleted == 3)

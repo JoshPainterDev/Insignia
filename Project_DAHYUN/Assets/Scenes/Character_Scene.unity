@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.89705884, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8897059, g: 0.294388, b: 0.294388, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17058817, g: 0.85294116, b: 0, a: 1}
+  m_Color: {r: 0.4907439, g: 0.89705884, b: 0.38916522, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.6413793, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.7574037, b: 0.32352942, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1863,7 +1863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9338235, g: 0.9095782, b: 0.05493079, a: 1}
+  m_Color: {r: 0.9632353, g: 0.9425248, b: 0.21247835, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.641}
+  m_Color: {r: 0.36764705, g: 0.36764705, b: 0.36764705, a: 0.641}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3097,7 +3097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.6413793, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.7574037, b: 0.32352942, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3375,7 +3375,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  swordSwing01: {fileID: 8300000, guid: 5cc20d81c1aab144890ab39a26ae0216, type: 3}
+  error: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -3501,8 +3501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   playerName: 
   playerSkinColor: []
+  unlockedAbilities: 
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -3524,6 +3526,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -3545,6 +3548,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -3566,6 +3570,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -3587,6 +3592,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -4373,7 +4379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4381,7 +4387,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f4cc11467ee6b98458bf9ad21d314f37, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -4533,7 +4539,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fce48ba7d48f054899005ad2ff9fe44, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4658,7 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.89705884, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8897059, g: 0.294388, b: 0.294388, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5954,10 +5960,12 @@ MonoBehaviour:
   equipmentSelectPopUpPrefab: {fileID: 1436204678186462, guid: 224ca9bdc807f3c4dab1c5dd91ad2dcb,
     type: 2}
   playerLv_TextObj: {fileID: 1759579004}
+  playerClassIcon: {fileID: 1205824060}
   inputDetector: {fileID: 1095666464}
   auraPanel: {fileID: 1517835816}
   auraColor: {fileID: 1474093249}
   background: {fileID: 2037268560}
+  KnightIcon: {fileID: 21300000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
   canvas: {fileID: 889873487}
   camera: {fileID: 1317330911}
   blackSq: {fileID: 1814897235}
@@ -6864,7 +6872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9338235, g: 0.9095782, b: 0.05493079, a: 1}
+  m_Color: {r: 0.9632353, g: 0.9425248, b: 0.21247835, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7243,6 +7251,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1616549425}
+        m_MethodName: LoadAbilityScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8014,7 +8033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17058817, g: 0.85294116, b: 0, a: 1}
+  m_Color: {r: 0.4907439, g: 0.89705884, b: 0.38916522, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

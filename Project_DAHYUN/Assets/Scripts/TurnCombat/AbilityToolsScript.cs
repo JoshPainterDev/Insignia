@@ -45,6 +45,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.None;
+                ability.AbilityIndex = 0;
                 break;
             case "Final Cut":
                 ability.Accuracy = 85;
@@ -56,6 +57,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.Execute;
                 ability.SpecialValue = 7;
                 ability.Type = AbilityType.Physical;
+                ability.AbilityIndex = 1;
                 break;
             case "Deceive":
                 ability.Accuracy = 100;
@@ -66,6 +68,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.Deceive;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
+                ability.AbilityIndex = 2;
                 break;
             //case "Stranglehold":
             //    ability.Accuracy = 100;
@@ -76,18 +79,20 @@ public class AbilityToolsScript : MonoBehaviour {
             //    ability.specialCase = SpecialCase.Linger_L;
             //    ability.Ticks = 1;
             //    ability.Type = AbilityType.Magical;
+            //    ability.AbilityIndex = 3;
             //    break;
             case "Solar Flare":
-                ability.Accuracy = 75;
-                ability.BaseDamage = 4;
+                ability.Accuracy = 85;
+                ability.BaseDamage = 5;
                 ability.Cooldown = 2;
                 ability.Buffs = false;
-                ability.Description = "A focused fire blast of star magic.";
+                ability.Description = "A focused fire blast of star magic that blinds foes.";
                 ability.Name = name;
-                //ability.specialCase = SpecialCase.Ablaze;
+                ability.specialCase = SpecialCase.Blind;
                 ability.Ticks = 1;
-                ability.AblazeChance = STRONG_ABLAZE;
                 ability.Type = AbilityType.Magical;
+                ability.Icon = "AbilityIcons\\SolarFlare_AbilityIcon";
+                ability.AbilityIndex = 4;
                 break;
             case "Rage":
                 ability.Accuracy = 100;
@@ -102,6 +107,8 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
+                ability.Icon = "AbilityIcons\\Rage_AbilityIcon";
+                ability.AbilityIndex = 5;
                 break;
             case "Outrage":
                 ability.Accuracy = 100;
@@ -113,6 +120,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.SpecialValue = 10;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
+                ability.AbilityIndex = 6;
                 break;
             case "Shadow Clone":
                 ability.Accuracy = 100;
@@ -122,6 +130,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.ShadowClone;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
+                ability.AbilityIndex = 7;
                 break;
             case "Thunder Charge":
                 ability.Accuracy = 85;
@@ -133,6 +142,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.StunFoe;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
+                ability.AbilityIndex = 8;
                 break;
             case "Guard Break":
                 ability.Accuracy = 100;
@@ -145,6 +155,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
                 ability.Icon = "AbilityIcons\\GuardBreak_AbilityIcon";
+                ability.AbilityIndex = 9;
                 break;
             case "Black Rain":
                 ability.Accuracy = 100;
@@ -156,6 +167,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
+                ability.AbilityIndex = 10;
                 break;
             default:
                 ability.Name = "";
@@ -166,6 +178,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.None;
+                ability.AbilityIndex = 0;
                 break;
         }
 

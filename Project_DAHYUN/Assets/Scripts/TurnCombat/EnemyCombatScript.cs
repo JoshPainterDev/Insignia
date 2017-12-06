@@ -20,6 +20,7 @@ public class EnemyCombatScript : MonoBehaviour {
 
     public EnemyInfo enemyInfo;
 
+    public GameObject standardStrikeHit_FX;
     public GameObject standardStrikeMiss_FX;
     public GameObject blood01_FX;
     public GameObject blood02_FX;
@@ -91,7 +92,7 @@ public class EnemyCombatScript : MonoBehaviour {
         //regardless of abilities
         int chanceToStrike = Random.Range(0, 100);
         
-        if(chanceToStrike > 34)
+        if(chanceToStrike > 29)
         {
             int rand = Random.Range(0, 100);
             float accuracy = 70 + (3 * ((enemyInfo.enemySpeed + combatManager.enemySpeedBoost) 
@@ -128,44 +129,44 @@ public class EnemyCombatScript : MonoBehaviour {
             switch (randomAbility)
             {
                 case 0:
-                    if((ability1.Name != "") && (cooldownA1 == 0))
+                    if ((ability1.Name != "-") && (cooldownA1 == 0))
                     {
                         cooldownA1 = ability1.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability1, combatManager.getPlayerHealth());
                     }
                     else
-                        StartCoroutine(EnemyStrike());
+                        EasyEnemyAI();
                     break;
                 case 1:
-                    if ((ability2.Name != "") && (cooldownA2 == 0))
+                    if ((ability2.Name != "-") && (cooldownA2 == 0))
                     {
                         cooldownA2 = ability2.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability2, combatManager.getPlayerHealth());
                     }
                     else
-                        StartCoroutine(EnemyStrike());
+                        EasyEnemyAI();
                     break;
                 case 2:
-                    if ((ability3.Name != "") && (cooldownA3 == 0))
+                    if ((ability3.Name != "-") && (cooldownA3 == 0))
                     {
                         cooldownA3 = ability3.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability3, combatManager.getPlayerHealth());
                     }
                     else
-                        StartCoroutine(EnemyStrike());
+                        EasyEnemyAI();
                     break;
                 case 3:
-                    if ((ability4.Name != "") && (cooldownA4 == 0))
+                    if ((ability4.Name != "-") && (cooldownA4 == 0))
                     {
                         cooldownA4 = ability4.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability4, combatManager.getPlayerHealth());
                     }
                     else
-                        StartCoroutine(EnemyStrike());
+                        EasyEnemyAI();
                     break;
             }
         }
@@ -219,6 +220,7 @@ public class EnemyCombatScript : MonoBehaviour {
             yield return new WaitForSeconds(0.1f);
             this.GetComponent<CombatAudio>().playRandomSwordHit();
             enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+            GameObject effectClone = (GameObject)Instantiate(standardStrikeHit_FX, playerOrigPos, transform.rotation);
             yield return new WaitForSeconds(0.6f);
             combatManager.DamagePlayer_Strike();
             enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);

@@ -24,7 +24,8 @@ public class TutorialManager01_C : MonoBehaviour
     private int tutorialState = 0;
     private int inputNumber = 0;
     // Use this for initialization
-    void Start()
+
+    public void Awake()
     {
         combatController = this.GetComponent<CombatManager>();
     }

@@ -6,10 +6,15 @@ public class AnimationController : MonoBehaviour
 {
     public bool showAura = false;
 
-    public void Start()
+    public void Awake()
     {
-        Invoke("LoadCharacter", 0.1f);
+        LoadCharacter();
     }
+
+    //public void Start()
+    //{
+    //    Invoke("LoadCharacter", 0.1f);
+    //}
 
     public void SetPlaySpeed(float newSpeed = 1)
     {

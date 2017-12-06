@@ -10,8 +10,10 @@ public enum PlayerClass {Knight, none};
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
+    public int playerNumber = 0;
     public string playerName = "";
     public float[] playerSkinColor;
+    public bool[] unlockedAbilities;
     public Ability playerAbility1;
     public Ability playerAbility2;
     public Ability playerAbility3;
@@ -38,7 +40,6 @@ public class GameController : MonoBehaviour {
     public int levelsCompleted;
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
-    public Reward rewardEarned;
     public int[] playerDecisions;
 
     public string[] charNames;
@@ -52,6 +53,7 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             controller = this;
+            unlockedAbilities = new bool[15];
             playerSkinColor = new float[4];
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
@@ -124,11 +126,13 @@ public class GameController : MonoBehaviour {
 
         PlayerData data = new PlayerData();
 
+        data.PlayerNumber = playerNumber;
         data.PlayerName = playerName;
         data.PlayerSkinColor = playerSkinColor;
         data.Level = playerLevel;
         data.PlayerExperience = playerEXP;
         data.difficulty = difficultyScale;
+        data.UnlockedAbilities = unlockedAbilities;
         data.ability1 = playerAbility1;
         data.ability2 = playerAbility2;
         data.ability3 = playerAbility3;
@@ -163,10 +167,12 @@ public class GameController : MonoBehaviour {
             file.Close();
 
             // set variables here
+            playerNumber = data.PlayerNumber;
             playerName = data.PlayerName;
             playerLevel = data.Level;
             playerEXP = data.PlayerExperience;
             difficultyScale = data.difficulty;
+            unlockedAbilities = data.UnlockedAbilities;
             playerAbility1 = data.ability1;
             playerAbility2 = data.ability2;
             playerAbility3 = data.ability3;
@@ -314,8 +320,10 @@ public class GameController : MonoBehaviour {
 [Serializable]
 class PlayerData
 {
+    public int PlayerNumber;
     public string PlayerName;
     public float[] PlayerSkinColor;
+    public bool[] UnlockedAbilities;
     public Ability ability1, ability2, ability3, ability4;
     public string StrikeMod;
     public int Level;

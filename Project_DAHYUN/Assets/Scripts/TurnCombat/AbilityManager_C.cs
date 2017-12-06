@@ -18,11 +18,13 @@ public class AbilityManager_C : MonoBehaviour {
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
     public GameObject finalCut_FX;
-    public GameObject blackRain_FX; 
+    public GameObject blackRain_FX;
 
+    public GameObject rush_FX;
     public GameObject smoke01_FX;
     public GameObject smoke02_FX;
     public GameObject smoke03_FX;
+    public GameObject abilityMiss_FX;
 
     public GameObject blood01_FX;
     public GameObject blood02_FX;
@@ -122,10 +124,11 @@ public class AbilityManager_C : MonoBehaviour {
                 this.GetComponent<CombatAudio>().playGuardBreakSFX();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(-40, 0, 0), 2);
                 yield return new WaitForSeconds(0.2f);
+                effectClone = (GameObject)Instantiate(rush_FX, playerMannequin.transform.position + new Vector3(15, 5, 0), transform.rotation);
+                effectClone.transform.SetParent(playerMannequin.transform, true);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(350, 0, 0), 3);
                 yield return new WaitForSeconds(0.65f);
-                print("chance: " + chance);
-                print("roll: " + dieRoll);
+                combatManager.DamageEnemy_Ability(ability);
                 if (chance > dieRoll)
                 {
                     combatManager.currSpecialCase = SpecialCase.StunFoe;
@@ -155,14 +158,14 @@ public class AbilityManager_C : MonoBehaviour {
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.25f);
-                combatManager.currSpecialCase = SpecialCase.Outrage;
+                combatManager.currSpecialCase = ability.specialCase;
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
             case "Deceive":
                 spawnPos = initPlayerPos + new Vector3(0, 60, 0);
                 effectClone = (GameObject)Instantiate(illusion_FX, spawnPos, transform.rotation);
-                combatManager.currSpecialCase = SpecialCase.Deceive;
+                combatManager.currSpecialCase = ability.specialCase;
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Solar Flare":
@@ -178,6 +181,7 @@ public class AbilityManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300,0,0), 5);
                 yield return new WaitForSeconds(0.25f);
                 combatManager.DamageEnemy_Ability(ability);
+                combatManager.currSpecialCase = ability.specialCase;
                 yield return new WaitForSeconds(0.7f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
                 yield return new WaitForSeconds(0.85f);
@@ -261,7 +265,41 @@ public class AbilityManager_C : MonoBehaviour {
 
     }
 
-        IEnumerator PlayerStunnedAnim()
+    public void PlayerAbilityMiss()
+    {
+        StartCoroutine(AnimatePlayerAbilityMiss());
+    }
+
+    IEnumerator AnimatePlayerAbilityMiss()
+    {
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos + new Vector3(70, 0, 0), 5f);
+        Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y - 25, 0);
+        GameObject effectClone = (GameObject)Instantiate(abilityMiss_FX, spawnPos, transform.rotation);
+        this.GetComponent<CombatAudio>().playRandomSwordMiss();
+        yield return new WaitForSeconds(0.5f);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos + new Vector3(50, 0, 0), initEnemyPos, 2f);
+    }
+
+    public void EnemyAbilityMiss()
+    {
+        StartCoroutine(AnimateEnemyAbilityMiss());
+    }
+
+    IEnumerator AnimateEnemyAbilityMiss()
+    {
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(220,0,0), 3f);
+        yield return new WaitForSeconds(0.15f);
+        this.GetComponent<CombatAudio>().playRandomSwordMiss();
+        yield return new WaitForSeconds(0.25f);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos - new Vector3(70, 0, 0), 5f);
+        Vector3 spawnPos = new Vector3(initPlayerPos.x, initPlayerPos.y - 15, 0);
+        GameObject effectClone = (GameObject)Instantiate(abilityMiss_FX, spawnPos, transform.rotation);
+        enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos - new Vector3(220, 0, 0), initEnemyPos, 3.5f);
+        yield return new WaitForSeconds(1f);
+        playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos - new Vector3(70, 0, 0), initPlayerPos, 2f);
+    }
+
+    IEnumerator PlayerStunnedAnim()
     {
         Vector3 eOffset01 = new Vector3(15, 30, 0);
         Vector3 eOffset02 = new Vector3(-20, 0, 0);

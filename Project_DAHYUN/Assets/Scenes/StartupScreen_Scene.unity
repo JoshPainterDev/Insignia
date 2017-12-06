@@ -344,6 +344,8 @@ GameObject:
   - component: {fileID: 944876045}
   - component: {fileID: 944876051}
   - component: {fileID: 944876052}
+  - component: {fileID: 944876053}
+  - component: {fileID: 944876054}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -367,7 +369,7 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  swordSwing01: {fileID: 8300000, guid: 5cc20d81c1aab144890ab39a26ae0216, type: 3}
+  error: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -493,8 +495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   playerName: 
   playerSkinColor: []
+  unlockedAbilities: 
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -516,6 +520,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -537,6 +542,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -558,6 +564,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -579,6 +586,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -656,6 +664,28 @@ MonoBehaviour:
     type: 2}
   DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
     type: 2}
+--- !u!114 &944876053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944876044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75da49298c3192344a1903b4b4537f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &944876054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944876044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a69622ac1078048871dd69e24e5b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052597244 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1112125458341768, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
@@ -1172,6 +1202,7 @@ MonoBehaviour:
   inputDetector: {fileID: 1399366347}
   title: {fileID: 1078394668}
   blackSq: {fileID: 1052597244}
+  musicController: {fileID: 1079011843}
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0

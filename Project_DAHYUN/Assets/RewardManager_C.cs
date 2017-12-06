@@ -20,10 +20,21 @@ public class RewardManager_C : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //EncounterToolsScript.tools.SpecifyEncounter(1, 0);
-        reward = GameController.controller.rewardEarned;
+        reward = GameController.controller.currentEncounter.reward;
         int currentXP = GameController.controller.playerEXP;
-        GameController.controller.playerEXP += reward.experience;
+
+        if (GameController.controller.playerName == "")
+        {
+            GameController.controller.Load(GameController.controller.charNames[1]);
+            reward = new Reward();
+            reward.experience = 45;
+        }
+        else
+        {
+            GameController.controller.playerEXP += reward.experience;
+            print("Player exp: " + GameController.controller.playerEXP);
+        }
+            
 
         if (experienceHandle.GetComponent<ExperienceScript>().experienceAnimation(currentXP, reward.experience))
             levelUp = true;
@@ -34,11 +45,20 @@ public class RewardManager_C : MonoBehaviour
         if (levelUp)
         {
             unlockAbility = RewardToolsScript.tools.CheckForUnlock(GameController.controller.playerLevel);
-
-            if (unlockAbility.Name == "none")
+            print("Checking for ability unlock");
+            if (unlockAbility.Name == "-")
+            {
+                print("No ability to unlock");
                 checkEquipmentUnlock();
+            }
             else
+            {
+                print("Unlocking " + unlockAbility.Name);
+                GameController.controller.unlockedAbilities[unlockAbility.AbilityIndex] = true;
+                GameController.controller.Save(GameController.controller.playerName);
+                checkForEmptySlot(unlockAbility);
                 StartCoroutine(UnlockAbility());
+            }
         }
         else
             checkEquipmentUnlock();
@@ -46,7 +66,8 @@ public class RewardManager_C : MonoBehaviour
 
     public void checkEquipmentUnlock()
     {
-        if(reward.hasEquipment)
+        print("Checking for equipment unlock");
+        if (reward.hasEquipment)
         {
             StartCoroutine(UnlockEquipment());
         }
@@ -100,6 +121,7 @@ public class RewardManager_C : MonoBehaviour
 
     IEnumerator HideAbilityHandle()
     {
+        print("Hiding Handle");
         abilityUnlockHandle.GetComponent<LerpScript>().LerpToScale(new Vector3(1, 1, 1), new Vector3(0.8f, 0.8f, 0.8f), 2);
         Color temp = abilityUnlockHandle.transform.GetChild(0).GetComponent<Image>().color;
         abilityUnlockHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 2);
@@ -117,10 +139,29 @@ public class RewardManager_C : MonoBehaviour
     IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(1.5f);
-        RewardToolsScript.tools.ClearReward();
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);
         print(GameController.controller.currentEncounter.returnOnSuccessScene);
         SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
+    }
+
+    private void checkForEmptySlot(Ability unlockAbility)
+    {
+        if (GameController.controller.playerAbility1.Name == "none")
+        {
+            GameController.controller.playerAbility1 = unlockAbility;
+        }
+        else if(GameController.controller.playerAbility2.Name == "none")
+        {
+            GameController.controller.playerAbility2 = unlockAbility;
+        }
+        else if (GameController.controller.playerAbility3.Name == "none")
+        {
+            GameController.controller.playerAbility3 = unlockAbility;
+        }
+        else if (GameController.controller.playerAbility4.Name == "none")
+        {
+            GameController.controller.playerAbility4 = unlockAbility;
+        }
     }
 }
