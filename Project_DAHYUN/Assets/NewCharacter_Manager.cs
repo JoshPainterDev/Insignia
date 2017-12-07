@@ -41,7 +41,13 @@ public class NewCharacter_Manager : MonoBehaviour {
         GameController.controller.setPlayerColorPreference(Color.white);
 
         UseDefaultArmor(1);
+        Invoke("setKnightFirst", 0.25f);
 	}
+
+    void setKnightFirst()
+    {
+        ChangeClass();
+    }
 
     public void toggleSkinColor()
     {
@@ -117,6 +123,14 @@ public class NewCharacter_Manager : MonoBehaviour {
     {
         string charName = textField.GetComponent<InputField>().text;
         charName = Regex.Replace(charName, @"[^a-zA-Z0-9 ]", "");
+
+        //THIS IS ONLY FOR NOW: FIX THIS LATER
+
+        if(currentClass != PlayerClass.Knight)
+        {
+            namePanel.transform.GetChild(2).GetComponent<Text>().text = "Class not available!";
+            return;
+        }
 
         if(nameChecksOut(charName))
         {
@@ -259,7 +273,7 @@ public class NewCharacter_Manager : MonoBehaviour {
         return true;
     }
 
-    public void ChangeClass(int classNum)
+    public void ChangeClass(int classNum = 1)
     {
         switch(classNum)
         {
@@ -273,38 +287,49 @@ public class NewCharacter_Manager : MonoBehaviour {
 
                 classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Knight";
                 classPanel.transform.GetChild(1).GetComponent<Text>().text =
-                    "Knights are sturdy and lethal. Focusing on Strikes and Melee Abilities, they uphold their virtues by the blade.";
+                    "Knights are sturdy and lethal warriors of old, " +
+                    " upholding their people's virutes by the blade. These honorary warriors focus on Strikes and Physical Abilities.";
                 break;
             case 2:
-                currentClass = PlayerClass.Knight;
+                currentClass = PlayerClass.Guardian;
                 classIcon.GetComponent<Image>().sprite = class2.transform.GetChild(0).GetComponent<Image>().sprite;
                 class2.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
 
-                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class:";
-                classPanel.transform.GetChild(1).GetComponent<Text>().text = "";
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Guardian";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text =
+                    "Guardians are the righteous bulwark of the kingdom." +
+                    " They thrive on the defensive, brandishing a variety of Utility focused Abilities." +
+                    " Thought to be divine hands of justice by the common folk.";
+                    
                 break;
             case 3:
-                currentClass = PlayerClass.Knight;
+                currentClass = PlayerClass.Occultist;
                 classIcon.GetComponent<Image>().sprite = class3.transform.GetChild(0).GetComponent<Image>().sprite;
                 class3.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
-                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class:";
-                classPanel.transform.GetChild(1).GetComponent<Text>().text = "";
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Occultist";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text =
+                    "The Occultist is defined by attunement and knowledge of all things arcana." +
+                    " Occultists weave spells and lethal Strikes together to create a seamless offensive." +
+                    " Their prowess with Magical Abilities makes them devastating in combat.";
+                    
                 break;
             case 4:
-                currentClass = PlayerClass.Knight;
+                currentClass = PlayerClass.Cutthroat;
                 classIcon.GetComponent<Image>().sprite = class4.transform.GetChild(0).GetComponent<Image>().sprite;
                 class4.GetComponent<ButtonAnimatorScript>().ChangeColor();
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
-                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class:";
-                classPanel.transform.GetChild(1).GetComponent<Text>().text = "";
+                classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Cutthroat";
+                classPanel.transform.GetChild(1).GetComponent<Text>().text =
+                    "Cutthroats are wild mercenaries that live and die by the blade." +
+                    " Using a combination of Utility and Physical Abilities, these blade-dancers bolster their Strikes for maximum lethality.";
                 break;
         }
 

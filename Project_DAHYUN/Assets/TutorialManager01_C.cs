@@ -10,7 +10,9 @@ public class TutorialManager01_C : MonoBehaviour
     public GameObject panel02;
     public GameObject panel03;
 
+    public GameObject musicManager;
     public GameObject gameCamera;
+    public GameObject shadowOverlay;
     public GameObject blackSq;
     public GameObject enemyMannequinn;
     public GameObject Steve;
@@ -100,7 +102,7 @@ public class TutorialManager01_C : MonoBehaviour
 
     IEnumerator explanationScene01()
     {
-        string line = "Good, good!";
+        string line = "Good, you're doing grea-";
         textBox.GetComponent<Text>().text = "";
 
         for (int i = 0; i < line.Length; ++i)
@@ -110,13 +112,19 @@ public class TutorialManager01_C : MonoBehaviour
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.75f);
+        musicManager.GetComponent<Music_Controller>().FadeOutVolume();
+        yield return new WaitForSeconds(1.75f);
+        musicManager.GetComponent<Music_Controller>().stopAllMusic();
+        Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
         StartCoroutine(explanationScene02());
     }
 
     IEnumerator explanationScene02()
     {
-        string line = "Yesss, good... Now-";
+        shadowOverlay.GetComponent<OverlayScript>().Pulse(0, 1, 3);
+        shadowOverlay.GetComponent<Image>().enabled = true;
+        string line = "AHHHGGG!AHAHAHGHGHGAAHGGH!!!!";
         textBox.GetComponent<Text>().text = "";
         for (int i = 0; i < line.Length; ++i)
         {
@@ -124,8 +132,11 @@ public class TutorialManager01_C : MonoBehaviour
             //typewriter effect
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
-        yield return new WaitForSeconds(2f);
-        line = "Let's see how you hold up, against a REAL KILLER!!";
+        yield return new WaitForSeconds(0.5f);
+        Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+        yield return new WaitForSeconds(1.75f);
+        Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+        line = "OOOHHH! AAHHGGG!!! WHHYYY!?";
         textBox.GetComponent<Text>().text = "";
         for (int i = 0; i < line.Length; ++i)
         {
@@ -133,9 +144,15 @@ public class TutorialManager01_C : MonoBehaviour
             //typewriter effect
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
+        shadowOverlay.GetComponent<OverlayScript>().Pulse(0, 1, 3);
         yield return new WaitForSeconds(2f);
+        Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+        shadowOverlay.GetComponent<OverlayScript>().Pulse(0, 1, 3);
         gameCamera.GetComponent<CameraController>().ShakeCamera(5, true, 5);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+        yield return new WaitForSeconds(0.5f);
+        Steve.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
         textBox.GetComponent<Text>().enabled = false;
         panel03.GetComponent<Image>().enabled = false;
         StartCoroutine(revealShadowAssassin());
@@ -171,11 +188,12 @@ public class TutorialManager01_C : MonoBehaviour
 
     IEnumerator explanationScene03()
     {
+        GameObject slade = Steve.transform.GetChild(1).gameObject;
         textBox.GetComponent<Text>().text = "";
         textBox.GetComponent<Text>().enabled = true;
         panel03.GetComponent<Image>().enabled = true;
 
-        string line = "...";
+        string line = "Ugh, unbearable.";
         for (int i = 0; i < line.Length; ++i)
         {
             yield return new WaitForSeconds(0.01f);
@@ -183,7 +201,9 @@ public class TutorialManager01_C : MonoBehaviour
             textBox.GetComponent<Text>().text = textBox.GetComponent<Text>().text + line[i].ToString();
         }
         yield return new WaitForSeconds(3f);
-        line = "Don't squirm, it will only make things... messy.";
+        slade.GetComponent<SpriteRenderer>().flipX = true;
+        line = "You! You're coming with me, Nova...";
+        yield return new WaitForSeconds(0.75f);
         textBox.GetComponent<Text>().text = "";
         for (int i = 0; i < line.Length; ++i)
         {

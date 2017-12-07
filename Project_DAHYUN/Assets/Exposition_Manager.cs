@@ -283,18 +283,21 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Steve";
                         leftspeaker[0] = false;
-                        script[0] = "So you claim to remember very little of your past, but...";
+                        script[0] = "Since you're injury, you seem to have lost most of your memory. But!";
                         speaker[1] = "Steve";
                         leftspeaker[1] = false;
-                        script[1] = "Sorceress Jess beleives you to have been a practiced warrior.";
+                        script[1] = "Since, Sorceress Jess beleives you to have been a practiced warrior-";
                         speaker[2] = "Steve";
                         leftspeaker[2] = false;
-                        script[2] = "I shall remind you your skills with a friendly duel.";
+                        script[2] = "I will be training you until your memory returns.";
                         speaker[3] = "Steve";
                         leftspeaker[3] = false;
-                        script[3] = "Ready yourself... En garde!";
+                        script[3] = "Ready yourself! Give me everything you've got!";
+                        speaker[4] = "Steve";
+                        leftspeaker[4] = false;
+                        script[4] = "En Garde!";
 
-                        totalLines = 4;
+                        totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -311,19 +314,24 @@ public class Exposition_Manager : MonoBehaviour
                         script[1] = "Why is our time wasted on this lackie?";
                         speaker[2] = "???";
                         leftspeaker[2] = false;
-                        script[2] = "Do you question my judgement?";
+                        script[2] = "...";
                         speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "All will be made clear to you soon enough... ";
+                        script[3] = "All will be made clear soon enough.";
 
                         speaker[4] = "Not Steve";
                         leftspeaker[4] = false;
                         script[4] = "As he says then!";
+
                         speaker[5] = "Not Steve";
                         leftspeaker[5] = false;
-                        script[5] = "Let's see what you can do, Nova...";
+                        script[5] = "Release the vermin!";
 
-                        totalLines = 6;
+                        speaker[6] = "Not Steve";
+                        leftspeaker[6] = false;
+                        script[6] = "Let's see what you can do, Nova...";
+
+                        totalLines = 7;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -334,12 +342,15 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Not Steve";
                         leftspeaker[0] = false;
-                        script[0] = "So there's a bit of fight left in you.";
+                        script[0] = "So rebellious...";
                         speaker[1] = "Not Steve";
                         leftspeaker[1] = false;
-                        script[1] = "No matter. Seize this vermin!";
+                        script[1] = "You remind me of myself, when I was a mere fleshling...";
+                        speaker[2] = "Not Steve";
+                        leftspeaker[2] = false;
+                        script[2] = "Men! Prove yourselves. Show this brat a thing or two!";
 
-                        totalLines = 2;
+                        totalLines = 3;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -379,11 +390,11 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Seamstress";
                         leftspeaker[0] = false;
-                        script[0] = "Sorry about that. Slade can be a bit rough with newcomers.";
+                        script[0] = "Sorry about Slade. He doesn't like newcomers stealing the spotlight.";
 
                         speaker[1] = playerName;
                         leftspeaker[1] = true;
-                        script[1] = "Rough?! He was trying to kill me!";
+                        script[1] = "He was trying to kill me!";
 
                         speaker[2] = "Seamstress";
                         leftspeaker[2] = false;
@@ -391,7 +402,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Seamstress";
                         leftspeaker[3] = false;
-                        script[3] = "Anyway, I'm The Seamstress, but you can call me Hyun. What should I call you?";
+                        script[3] = "So what's your name again?";
 
                         speaker[4] = playerName;
                         leftspeaker[4] = true;
@@ -399,15 +410,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Seamstress";
                         leftspeaker[5] = false;
-                        script[5] = "Nice to meet you, " + playerName + ".";
+                        script[5] = playerName + ". Got it.";
 
                         speaker[6] = playerName;
                         leftspeaker[6] = true;
-                        script[6] = "Why have I been brought here? And who is the spooky-cloak-guy?";
+                        script[6] = "Why am I here? And who is this spooky-cloak-guy?";
 
                         speaker[7] = "Seamstress";
                         leftspeaker[7] = false;
-                        script[7] = "Let me show you around. There's a lot to explain.";
+                        script[7] = "There's a lot to explain... Why don't I show you around first?";
 
                         totalLines = 8;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -420,21 +431,17 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Seamstress";
                         leftspeaker[0] = false;
-                        script[0] = "And here is the combat yard -";
+                        script[0] = "This here is the combat yard -";
 
                         speaker[1] = "Seamstress";
                         leftspeaker[1] = true;
-                        script[1] = "You've shown knowledge of your weapon, but...";
+                        script[1] = "It seems you can handle youself, but...";
 
                         speaker[2] = "Seamstress";
                         leftspeaker[2] = true;
-                        script[2] = "Something tells me you could use a lesson or two in the Arcane arts!";
+                        script[2] = "Something tells me you could use a lesson or two in the Arcane arts.";
 
-                        speaker[3] = playerName;
-                        leftspeaker[3] = true;
-                        script[3] = "*Gulp*";
-
-                        totalLines = 4;
+                        totalLines = 3;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -586,7 +593,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.65f);
                 StartCoroutine(NewDialogue(9, 1));
                 break;
-            case 4:
+            case 3:
                 yield return new WaitForSeconds(2);
                 actionsCompleted = true; //actions are completed
                 StartCoroutine(LoadCombatScene(1, 2));
@@ -668,7 +675,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 StartCoroutine(NewDialogue(6, 1));
                 break;
-            case 2:
+            case 3:
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(50, 0, 0), 2);
                 yield return new WaitForSeconds(0.5f);
                 speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
@@ -699,13 +706,13 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0));
                 break;
-            case 5:
+            case 6:
                 yield return new WaitForSeconds(2f);
                 speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(300, 0, 0));
                 yield return new WaitForSeconds(1f);
                 sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
                 break;
-            case 6:
+            case 7:
                 yield return new WaitForSeconds(1f);
                 MusicManager.GetComponent<Music_Controller>().stopAllMusic();
                 GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup, 0.1f);
@@ -738,7 +745,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 StartCoroutine(NewDialogue(4, 1));
                 break;
-            case 5:
+            case 6:
                 yield return new WaitForSeconds(1f);
                 MusicManager.GetComponent<Music_Controller>().stopAllMusic();
                 GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup, 0.1f);

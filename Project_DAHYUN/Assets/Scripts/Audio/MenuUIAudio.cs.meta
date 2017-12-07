@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6f8d919770b040f448923d7c9f6c3e17
-timeCreated: 1507618346
+timeCreated: 1512678225
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -10,7 +10,8 @@ MonoImporter:
   - back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   - levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   - buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  - swordSwing01: {fileID: 8300000, guid: 5cc20d81c1aab144890ab39a26ae0216, type: 3}
+  - error: {fileID: 8300000, guid: f27761118a0449f419068362ec15310b, type: 3}
+  - heartbeat: {fileID: 8300000, guid: eae4c6c7174b622499ff0bd800554c21, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

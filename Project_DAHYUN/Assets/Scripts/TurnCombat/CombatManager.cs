@@ -156,12 +156,11 @@ public class CombatManager : MonoBehaviour {
             encounter = new EnemyEncounter();
             encounter.enemyNames = new string[3];
             encounter.totalEnemies = 3;
-            encounter.enemyNames[2] = "The Seamstress";
+            encounter.enemyNames[0] = "The Seamstress";
             encounter.enemyNames[1] = "Skitter";
-            encounter.enemyNames[0] = "Shadow Assassin";
+            encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
         }
-            
 
         enemiesRemaining = encounter.totalEnemies;
 

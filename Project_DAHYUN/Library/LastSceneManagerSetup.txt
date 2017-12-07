@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MainMenu_Tutorial_Scene.unity
+- path: Assets/Scenes/Exposition_Scene08.unity
   isLoaded: 1
   isActive: 1

@@ -109,6 +109,7 @@
     <Compile Include="Assets\Music_Controller.cs" />
     <Compile Include="Assets\NewCharacter_Manager.cs" />
     <Compile Include="Assets\OscillationScript.cs" />
+    <Compile Include="Assets\OverlayScript.cs" />
     <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
     <Compile Include="Assets\Scripts\Audio\MenuUIAudio.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\Scripts\BackgroundPropSpawner.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\BombPickup.cs" />
+    <Compile Include="Assets\Scripts\BossAnimationController.cs" />
     <Compile Include="Assets\Scripts\CameraController_TurnCombat.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Crafting Scripts\CraftingManager.cs" />

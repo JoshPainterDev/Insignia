@@ -112,15 +112,19 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 break;
             case "Black Rain":
-                spawnPos = initEnemyPos + new Vector3(-80, 100, 0);
+                spawnPos = initEnemyPos + new Vector3(-15, 80, 0);
                 yield return new WaitForSeconds(0.25f);
                 effectClone = (GameObject)Instantiate(blackRain_FX, spawnPos, transform.rotation);
+                effectClone.GetComponent<SpriteRenderer>().flipX = true;
                 //this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.35f);
+                
                 combatManager.DamageEnemy_Ability(ability);
                 effectClone.GetComponent<Animator>().speed = 0.0f;
                 yield return new WaitForSeconds(0.75f);
                 effectClone.GetComponent<Animator>().speed = 1.45f;
+                yield return new WaitForSeconds(0.25f);
+                effectClone.transform.position += new Vector3(-120, -60, 0);
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":

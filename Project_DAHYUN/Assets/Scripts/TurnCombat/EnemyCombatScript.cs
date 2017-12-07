@@ -90,7 +90,7 @@ public class EnemyCombatScript : MonoBehaviour {
         print("Easy AI:");
         //first evaluate random chance to strike
         //regardless of abilities
-        int chanceToStrike = Random.Range(0, 100);
+        int chanceToStrike = Random.Range(0, 1);
         
         if(chanceToStrike > 29)
         {

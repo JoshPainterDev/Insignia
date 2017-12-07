@@ -159,10 +159,10 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case "Black Rain":
                 ability.Accuracy = 100;
-                ability.BaseDamage = 30;
+                ability.BaseDamage = 18;
                 ability.Cooldown = 3;
                 ability.Buffs = false;
-                ability.Description = "1,000 Needles of Shadow rain down upon your foes.";
+                ability.Description = "1,000 Needles of Dark Magic rain down on your foes.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;

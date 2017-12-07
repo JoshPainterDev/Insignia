@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 [Serializable]
-public enum PlayerClass {Knight, none};
+public enum PlayerClass {Knight, Guardian, Occultist, Cutthroat, none};
 
 public class GameController : MonoBehaviour {
 

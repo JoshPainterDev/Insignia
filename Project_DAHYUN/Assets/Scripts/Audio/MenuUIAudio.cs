@@ -11,6 +11,7 @@ public class MenuUIAudio : MonoBehaviour
     public AudioClip levelUp;
     public AudioClip buttonClick;
     public AudioClip error;
+    public AudioClip heartbeat;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -50,6 +51,11 @@ public class MenuUIAudio : MonoBehaviour
     public void playBack()
     {
         audioSource.PlayOneShot(back, MEDIUM_VOLUME);
+    }
+
+    public void playHeartbeat()
+    {
+        audioSource.PlayOneShot(heartbeat, MEDIUM_VOLUME);
     }
 
     public void stopAllAudio()

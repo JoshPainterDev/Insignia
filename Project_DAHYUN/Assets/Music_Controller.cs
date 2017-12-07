@@ -6,6 +6,7 @@ public class Music_Controller : MonoBehaviour
 {
     public bool FadeOnStart = false;
 
+    public AudioClip ShadowTheme;
     private AudioClip musicLoop;
 
     AudioSource audioSource;
@@ -32,6 +33,13 @@ public class Music_Controller : MonoBehaviour
         {
             FadeVolume(0, STARTING_VOLUME, 0.25f);
         }
+    }
+
+    public void PlayShadowTheme()
+    {
+        audioSource.PlayOneShot(ShadowTheme, BACKGROUND_VOLUME);
+        audioSource.loop = true;
+        FadeVolume(0, BACKGROUND_VOLUME);
     }
 
     public void restartMusic()
