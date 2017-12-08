@@ -28,7 +28,7 @@ public class Character_Select_Manager : MonoBehaviour
         //if this is the first character made
         if (GameController.controller.numChars != 0)
         {
-            GameController.controller.LoadCharacters();
+            GameController.controller.LoadCharacters(); 
         }
     }
 
@@ -44,23 +44,34 @@ public class Character_Select_Manager : MonoBehaviour
             LoadCharacterPreview(selectedChar);
         }
         else
+        {
+            selectedChar = -1;
             LoadDefaultCharacter();
+        }
+            
     }
 
     public void Play()
     {
-        string character = GameController.controller.charNames[selectedChar];
-
-        if (GameController.controller.numChars == 0 || character == null || character == "")
+        if(selectedChar == -1)
         {
-            GameController.controller.GetComponent<MenuUIAudio>().playNope();
-            return;
+            CreateCharacter(); 
         }
         else
         {
-            playButton.GetComponent<Button>().enabled = false;
-            blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
-            Invoke("LoadMainMenu", 2);
+            string character = GameController.controller.charNames[selectedChar];
+
+            if (GameController.controller.numChars == 0 || character == null || character == "")
+            {
+                GameController.controller.GetComponent<MenuUIAudio>().playNope();
+                return;
+            }
+            else
+            {
+                playButton.GetComponent<Button>().enabled = false;
+                blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
+                Invoke("LoadMainMenu", 2);
+            }
         }
     }
 
@@ -202,6 +213,7 @@ public class Character_Select_Manager : MonoBehaviour
         if (charNum > GameController.controller.numChars)
         {
             HideDelete();
+            selectedChar = -1;
             LoadDefaultCharacter();
         }
         else
