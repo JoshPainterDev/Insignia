@@ -265,6 +265,12 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Steve":
                 iconString = "CloseUps\\Character_CloseUp_Steve";
                 break;
+            case "General Vixon":
+                iconString = "CloseUps\\Character_CloseUp_GeneralVixon";
+                break;
+            case "Officer":
+                iconString = "CloseUps\\Character_CloseUp_HammerfellOfficer";
+                break;
             case "Honor Guard":
                 iconString = "";
                 break;
