@@ -105,7 +105,9 @@ public class AbilityManager_C : MonoBehaviour {
                 effectClone04.transform.eulerAngles = new Vector3(0,0,90);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos + new Vector3(420, 0, 0), 5);
                 playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
+                combatManager.DamageEnemy_Ability(ability);
+                yield return new WaitForSeconds(0.5f);
                 if (chance > dieRoll)
                 {
                     combatManager.currSpecialCase = SpecialCase.StunFoe;
@@ -120,7 +122,7 @@ public class AbilityManager_C : MonoBehaviour {
                 dieRoll = Random.Range(0, 99);
                 chance = (75f + GameController.controller.playerProwess - combatManager.enemyInfo.enemyDefense);
                 chance = Mathf.Clamp(chance, 75f, 100f);
-                combatManager.enemyVulernable = true;
+                combatManager.enemyVulnernable = true;
                 this.GetComponent<CombatAudio>().playGuardBreakSFX();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(-40, 0, 0), 2);
                 yield return new WaitForSeconds(0.2f);
@@ -287,14 +289,12 @@ public class AbilityManager_C : MonoBehaviour {
 
     IEnumerator AnimateEnemyAbilityMiss()
     {
-        //enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(220,0,0), 3f);
         yield return new WaitForSeconds(0.15f);
         this.GetComponent<CombatAudio>().playRandomSwordMiss();
         yield return new WaitForSeconds(0.25f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos - new Vector3(70, 0, 0), 5f);
         Vector3 spawnPos = new Vector3(initPlayerPos.x, initPlayerPos.y - 15, 0);
         GameObject effectClone = (GameObject)Instantiate(abilityMiss_FX, spawnPos, transform.rotation);
-        //enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos - new Vector3(220, 0, 0), initEnemyPos, 3.5f);
         yield return new WaitForSeconds(1f);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos - new Vector3(70, 0, 0), initPlayerPos, 2f);
     }

@@ -26,7 +26,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         GameController.controller.levelsCompleted = 0;
         GameController.controller.stagesCompleted = 0;
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
-        background.GetComponent<Image>().color = GameController.controller.getPlayerColorPreference();
+        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void Update()

@@ -1003,6 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOnStart: 1
+  ShadowTheme: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -1528,7 +1529,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Join The Order of Shadow
+  m_Text: Train With The Order of Shadow
 --- !u!222 &688380081
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3784,7 +3785,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Join The Order of Shadow
+  m_Text: Train With The Order of Shadow
 --- !u!222 &1517113330
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3990,7 +3991,7 @@ MonoBehaviour:
   playerMannequin: {fileID: 119668991}
   ready4Input: 1
   canvas: {fileID: 889873487}
-  camera: {fileID: 1243540803}
+  cameraObj: {fileID: 1243540803}
   blackSq: {fileID: 538142076}
   background: {fileID: 2037268560}
   dialoguePanel: {fileID: 2085123214}
@@ -4237,7 +4238,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 212326466753250072, guid: 8f4ced53df1bbe745b514b31e804fc60,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114672456524649476, guid: 8f4ced53df1bbe745b514b31e804fc60, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8f4ced53df1bbe745b514b31e804fc60, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1729520496
@@ -4796,6 +4803,7 @@ MonoBehaviour:
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 0}
+  heartbeat: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -4901,6 +4909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba593f60408c54f918b3652e40de97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TOTAL_ABILITIES: 20
   STRONG_DAMAGE: 55
   MEDIUM_DAMAGE: 35
   WEAK_DAMAGE: 15
@@ -4921,8 +4930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   playerName: 
   playerSkinColor: []
+  unlockedAbilities: 
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -4944,6 +4955,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -4965,6 +4977,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -4986,6 +4999,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -5007,6 +5021,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -5028,6 +5043,7 @@ MonoBehaviour:
   levelsCompleted: 0
   stagesCompleted: 0
   playerDecisions: 
+  totalAbilities: 0
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000

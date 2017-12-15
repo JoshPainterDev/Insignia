@@ -50,7 +50,7 @@ public class CombatManager : MonoBehaviour {
     [HideInInspector]
     public bool playerStunned = false;
     [HideInInspector]
-    public bool playerVulernable = false;
+    public bool playerVulnernable = false;
     [HideInInspector]
     public bool playerBlinded = false;
     [HideInInspector]
@@ -84,7 +84,7 @@ public class CombatManager : MonoBehaviour {
     [HideInInspector]
     public bool enemyStunned = false;
     [HideInInspector]
-    public bool enemyVulernable = false;
+    public bool enemyVulnernable = false;
     [HideInInspector]
     public bool enemyBlinded = false;
     private Color enemyOrigColor;
@@ -776,7 +776,6 @@ public class CombatManager : MonoBehaviour {
             playerBlinded = false;
             accuracy -= BLINDED_REDUCTION;
             currSpecialCase = SpecialCase.None;
-            this.GetComponent<StrikeManager_C>().PlayerStrikeMiss();
         }
 
         if (exectueVar != 1)
@@ -872,11 +871,11 @@ public class CombatManager : MonoBehaviour {
 
         print("percent damage: " + percentDealt);
 
-        if(enemyVulernable)
+        if(enemyVulnernable)
         {
             percentRemaining -= VULNERABLE_REDUCTION;
             print("vulnerable execution percent: " + percentRemaining);
-            enemyVulernable = false;
+            enemyVulnernable = false;
         }
 
         // check if the player can press the enemy
@@ -1221,7 +1220,7 @@ public class CombatManager : MonoBehaviour {
             }
             else
             {
-                this.GetComponent<AbilityManager_C>().PlayerAbilityMiss();
+                this.GetComponent<AbilityManager_C>().EnemyAbilityMiss();
             }
         }
         else
@@ -1571,7 +1570,7 @@ public class CombatManager : MonoBehaviour {
         currSpecialCase = SpecialCase.None;
         enemyStunned = false;
         enemyBlinded = false;
-        enemyVulernable = false;
+        enemyVulnernable = false;
         enemyAttackBoost = 0;
         enemyDefenseBoost = 0;
         enemySpeedBoost = 0;

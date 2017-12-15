@@ -145,6 +145,8 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("none");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("none");
             GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("none");
+            GameController.controller.unlockedAbilities[1] = true;
+            GameController.controller.totalAbilities = 1;
             GameController.controller.strikeModifier = "none";
             GameController.controller.limitBreakModifier = LimitBreakName.none;
             GameController.controller.limitBreakTracker = -1;

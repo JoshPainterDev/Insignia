@@ -2906,7 +2906,7 @@ MonoBehaviour:
   playerMannequin: {fileID: 119668991}
   ready4Input: 0
   canvas: {fileID: 889873487}
-  camera: {fileID: 1243540803}
+  cameraObj: {fileID: 1243540803}
   blackSq: {fileID: 538142076}
   background: {fileID: 2037268560}
   dialoguePanel: {fileID: 2085123214}
@@ -3667,6 +3667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba593f60408c54f918b3652e40de97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TOTAL_ABILITIES: 20
   STRONG_DAMAGE: 55
   MEDIUM_DAMAGE: 35
   WEAK_DAMAGE: 15
@@ -3800,6 +3801,7 @@ MonoBehaviour:
   levelsCompleted: 0
   stagesCompleted: 0
   playerDecisions: 
+  totalAbilities: 0
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000

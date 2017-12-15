@@ -53,6 +53,7 @@ public class RewardManager_C : MonoBehaviour
             else
             {
                 GameController.controller.unlockedAbilities[unlockAbility.AbilityIndex] = true;
+                ++GameController.controller.totalAbilities;
                 checkForEmptySlot(unlockAbility);
                 GameController.controller.Save(GameController.controller.playerName);
                 StartCoroutine(UnlockAbility());
@@ -137,7 +138,6 @@ public class RewardManager_C : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);
-        print(GameController.controller.currentEncounter.returnOnSuccessScene);
         SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
     }
 

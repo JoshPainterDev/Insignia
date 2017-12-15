@@ -79,6 +79,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 GameObject effectClone03 = (GameObject)Instantiate(lightningYellow_FX, initEnemyPos + new Vector3(-10, 40, 0), transform.rotation);
                 effectClone03.GetComponent<SpriteRenderer>().flipX = true;
                 yield return new WaitForSeconds(1.4f);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 GameObject effectClone04 = (GameObject)Instantiate(lightningYellow_FX, initEnemyPos - new Vector3(250, -40, 0), transform.rotation);
                 effectClone04.transform.eulerAngles = new Vector3(0, 0, -90);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(initEnemyPos, initEnemyPos - new Vector3(420, 0, 0), 5);
@@ -96,10 +97,11 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 dieRoll = Random.Range(0, 99);
                 chance = (75f + (combatManager.enemyInfo.enemyProwess - GameController.controller.playerDefense));
                 chance = Mathf.Clamp(chance, 75f, 100f);
-                combatManager.playerVulernable = true;
+                combatManager.playerVulnernable = true;
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(-40, 0, 0), 2);
                 yield return new WaitForSeconds(0.2f);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(350, 0, 0), 3);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(0.65f);
                 print("chance: " + chance);
                 print("roll: " + dieRoll);
@@ -125,6 +127,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone.GetComponent<Animator>().speed = 1.45f;
                 yield return new WaitForSeconds(0.25f);
                 effectClone.transform.position += new Vector3(-120, -60, 0);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":
@@ -133,7 +136,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
                 yield return new WaitForSeconds(0.25f);
                 //combatManager.currSpecialCase = SpecialCase.Outrage;
-                combatManager.DamagePlayer_Ability(ability);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
             case "Deceive":
@@ -153,7 +156,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 yield return new WaitForSeconds(0.75f);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, enemyMannequinn.transform.position - new Vector3(300, 0, 0), 5);
                 yield return new WaitForSeconds(0.25f);
-                combatManager.DamagePlayer_Ability(ability);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(0.7f);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
                 yield return new WaitForSeconds(0.85f);
@@ -169,7 +172,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 combatManager.GetComponent<CombatAudio>().playShadowVanish();
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(300, 0, 0), 5);
                 yield return new WaitForSeconds(0.25f);
-                combatManager.DamagePlayer_Ability(ability);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(0.7f);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
                 yield return new WaitForSeconds(0.85f);
@@ -186,7 +189,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone.transform.position = playerMannequin.transform.position + new Vector3(30, 30, 0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
                 yield return new WaitForSeconds(0.35f);
-                combatManager.DamagePlayer_Ability(ability);
+                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1f);
                 foreach (LerpScript script in enemyMannequinn.GetComponentsInChildren<LerpScript>())
                 {
@@ -196,11 +199,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 break;
             default:
                 break;
-        }
-
-        if (ability.Type != AbilityType.Utility)
-        {
-            this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
         }
 
         yield return new WaitForSeconds(0.25f);

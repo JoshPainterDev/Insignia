@@ -8,13 +8,13 @@ public class AnimationController : MonoBehaviour
 
     public void Awake()
     {
-        LoadCharacter();
+        //LoadCharacter();
     }
 
-    //public void Start()
-    //{
-    //    Invoke("LoadCharacter", 0.1f);
-    //}
+    public void Start()
+    {
+        Invoke("LoadCharacter", 0.1f);
+    }
 
     public void SetPlaySpeed(float newSpeed = 1)
     {

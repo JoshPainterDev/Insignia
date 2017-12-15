@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour {
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
     public int[] playerDecisions;
+    public int totalAbilities;
 
     public string[] charNames;
     public int numChars;
@@ -53,7 +54,7 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             controller = this;
-            unlockedAbilities = new bool[15];
+            unlockedAbilities = new bool[AbilityToolsScript.tools.TOTAL_ABILITIES];
             playerSkinColor = new float[4];
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
@@ -146,6 +147,7 @@ public class GameController : MonoBehaviour {
         data.speed = playerSpeed;
         data.PlayerColor = playerColorPreference;
         data.PlayerDecisions = playerDecisions;
+        data.TotalAbilities = totalAbilities;
 
         data.EquipmentList = playerEquipmentList;
         data.EquippedIDs = playerEquippedIDs;
@@ -187,6 +189,7 @@ public class GameController : MonoBehaviour {
             playerProwess = data.prowess;
             playerSpeed = data.speed;
             playerDecisions = data.PlayerDecisions;
+            totalAbilities = data.TotalAbilities;
 
             playerInventory = data.InventoryList;
             playerEquipmentList = data.EquipmentList;
@@ -340,6 +343,7 @@ class PlayerData
     public int LevelsCompleted;
     public int StagesCompleted;
     public int[] PlayerDecisions;
+    public int TotalAbilities;
 }
 
 [Serializable]

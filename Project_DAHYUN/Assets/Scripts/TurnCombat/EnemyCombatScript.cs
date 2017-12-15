@@ -10,6 +10,8 @@ public class EnemyCombatScript : MonoBehaviour {
 
     public GameObject seamstress_StrikeFX;
 
+    public int MAX_ATTEMPTS = 5;
+
     [HideInInspector]
     private Vector3 origPosition;
     private Vector3 playerOrigPos;
@@ -27,6 +29,7 @@ public class EnemyCombatScript : MonoBehaviour {
     public GameObject blood03_FX;
     public GameObject blood04_FX;
     private GameObject bloodClone;
+    private int abilityAttempts = 0;
     [HideInInspector]
     Ability ability1, ability2, ability3, ability4;
     private int cooldownA1, cooldownA2, cooldownA3, cooldownA4;
@@ -92,13 +95,23 @@ public class EnemyCombatScript : MonoBehaviour {
         //regardless of abilities
         int chanceToStrike = Random.Range(0, 1);
         
-        if(chanceToStrike > 29)
+        int rand = 0;
+
+        if (abilityAttempts >= MAX_ATTEMPTS)
         {
-            int rand = Random.Range(0, 100);
-            float accuracy = 70 + (3 * ((enemyInfo.enemySpeed + combatManager.enemySpeedBoost) 
+            abilityAttempts = 0;
+            chanceToStrike = 100;
+        }
+
+        if (chanceToStrike > 29)
+        {
+            float accuracy = 0;
+            rand = Random.Range(0, 100);
+            accuracy += 70 + (3 * ((enemyInfo.enemySpeed + combatManager.enemySpeedBoost) 
                 - (GameController.controller.playerSpeed + combatManager.playerSpeedBoost)));
 
             print("Strike selected...");
+            abilityAttempts = 0;
 
             if (combatManager.enemyBlinded)
             {
@@ -121,10 +134,20 @@ public class EnemyCombatScript : MonoBehaviour {
         }
         else
         {
-            
             int randomAbility = Random.Range(0, 4);
+            //float accuracy = 0;
+            //rand = Random.Range(0, 100);
+            //print("Chance To Miss: " + rand);
 
-            print("selecting ability:" + randomAbility);
+            //if (combatManager.enemyBlinded)
+            //{
+            //    combatManager.enemyBlinded = false;
+            //    accuracy -= combatManager.BLINDED_REDUCTION;
+            //    combatManager.currSpecialCase = SpecialCase.None;
+            //}
+
+            ++abilityAttempts;
+
 
             switch (randomAbility)
             {
@@ -141,9 +164,12 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 1:
                     if ((ability2.Name != "-") && (cooldownA2 == 0))
                     {
-                        cooldownA2 = ability2.Cooldown + 1;
-                        combatManager.HideHealthBars();
-                        this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability2, combatManager.getPlayerHealth());
+                        if (rand > ability2.Accuracy)
+                        {
+                            cooldownA2 = ability2.Cooldown + 1;
+                            combatManager.HideHealthBars();
+                            this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability2, combatManager.getPlayerHealth());
+                        }
                     }
                     else
                         EasyEnemyAI();

@@ -5,6 +5,8 @@ using UnityEngine;
 public class AbilityToolsScript : MonoBehaviour {
     public static AbilityToolsScript tools;
 
+    public int TOTAL_ABILITIES = 20;
+
     public int STRONG_DAMAGE = 15;
     public int MEDIUM_DAMAGE = 5;
     public int WEAK_DAMAGE = 2;
@@ -30,6 +32,50 @@ public class AbilityToolsScript : MonoBehaviour {
         }
     }
 
+    public Ability IndexToAbilityLookUp(int index)
+    {
+        string AbilityName = "";
+
+        switch(index)
+        {
+            case 0:
+                AbilityName = "none";
+                break;
+            case 1:
+                AbilityName = "Final Cut";
+                break;
+            case 2:
+                AbilityName = "Deceive";
+                break;
+            case 3:
+                AbilityName = "Stranglehold";
+                break;
+            case 4:
+                AbilityName = "Solar Flare";
+                break;
+            case 5:
+                AbilityName = "Rage";
+                break;
+            case 6:
+                AbilityName = "Outrage";
+                break;
+            case 7:
+                AbilityName = "Shadow Clone";
+                break;
+            case 8:
+                AbilityName = "Thunder Charge";
+                break;
+            case 9:
+                AbilityName = "Guard Break";
+                break;
+            case 10:
+                AbilityName = "Black Rain";
+                break;
+        }
+
+        return LookUpAbility(AbilityName);
+    }
+
     public Ability LookUpAbility(string name)
     {
         Ability ability = new Ability();
@@ -45,6 +91,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.None;
+                ability.Icon = "AbilityIcons\\none_AbilityIcon";
                 ability.AbilityIndex = 0;
                 break;
             case "Final Cut":
@@ -134,14 +181,15 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case "Thunder Charge":
                 ability.Accuracy = 85;
-                ability.BaseDamage = 25;
+                ability.BaseDamage = 15;
                 ability.Cooldown = 3;
                 ability.Buffs = false;
-                ability.Description = "A lightning imbued strike. Has a chance to stun your foe.";
+                ability.Description = "A lightning imbued blade charge. Has a chance to stun your foe.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.StunFoe;
                 ability.Ticks = 0;
-                ability.Type = AbilityType.Magical;
+                ability.Type = AbilityType.Physical;
+                ability.Icon = "AbilityIcons\\ThunderCharge_AbilityIcon";
                 ability.AbilityIndex = 8;
                 break;
             case "Guard Break":
@@ -167,6 +215,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
+                ability.Icon = "AbilityIcons\\BlackRain_AbilityIcon";
                 ability.AbilityIndex = 10;
                 break;
             default:

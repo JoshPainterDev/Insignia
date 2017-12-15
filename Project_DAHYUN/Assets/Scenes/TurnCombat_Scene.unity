@@ -1741,7 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b496ad00192b504aac8e366cbc9a861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatManager: {fileID: 0}
+  combatManager: {fileID: 1616549424}
 --- !u!114 &524059998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2388,6 +2388,7 @@ MonoBehaviour:
   levelsCompleted: 0
   stagesCompleted: 0
   playerDecisions: 
+  totalAbilities: 0
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
@@ -2415,6 +2416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba593f60408c54f918b3652e40de97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TOTAL_ABILITIES: 20
   STRONG_DAMAGE: 55
   MEDIUM_DAMAGE: 35
   WEAK_DAMAGE: 15
@@ -2452,6 +2454,7 @@ MonoBehaviour:
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 0}
+  heartbeat: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -5095,7 +5098,7 @@ MonoBehaviour:
   playerDefenseBoost: 0
   playerSpeedBoost: 0
   playerStunned: 0
-  playerVulernable: 0
+  playerVulnernable: 0
   playerBlinded: 0
   ability1CD: 0
   ability2CD: 0
@@ -5127,7 +5130,7 @@ MonoBehaviour:
   enemyDefenseBoost: 0
   enemySpeedBoost: 0
   enemyStunned: 0
-  enemyVulernable: 0
+  enemyVulnernable: 0
   enemyBlinded: 0
   enemyAbility1CD: 0
   enemyAbility2CD: 0
@@ -5525,6 +5528,7 @@ MonoBehaviour:
   playerMannequin: {fileID: 119668991}
   seamstress_StrikeFX: {fileID: 1862190314031148, guid: 5f633b7859975084397429cb387c1ceb,
     type: 2}
+  MAX_ATTEMPTS: 5
   standardStrikeHit_FX: {fileID: 1876573840352192, guid: 9eaac98ec5035e14d94f618fcbf1c27c,
     type: 2}
   standardStrikeMiss_FX: {fileID: 1862190314031148, guid: 9ec2c067bfe3a424ab76da2abf69e25c,
@@ -6160,6 +6164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOnStart: 1
+  ShadowTheme: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
