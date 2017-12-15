@@ -247,7 +247,7 @@ public class NewCharacter_Manager : MonoBehaviour {
 
     private void LoadTutorial()
     {
-        SceneManager.LoadScene("Exposition_Scene04");
+        SceneManager.LoadScene("Exposition_Scene01");
     }
 
     private bool nameChecksOut(string charName)

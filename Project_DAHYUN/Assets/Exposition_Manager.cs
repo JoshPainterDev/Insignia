@@ -476,7 +476,11 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[2] = true;
                         script[2] = "Something tells me you could use a lesson or two in the Arcane arts.";
 
-                        totalLines = 3;
+                        speaker[3] = "Seamstress";
+                        leftspeaker[3] = true;
+                        script[3] = "Don't worry, I'll go easy on you this time.";
+
+                        totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -491,23 +495,23 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = playerName;
                         leftspeaker[1] = true;
-                        script[1] = "Thanks, but I'm still not sure what you want with me.";
+                        script[1] = "Thanks, but can you explain to me why I've been kidnapped?";
 
                         speaker[2] = "Seamstress";
                         leftspeaker[2] = false;
-                        script[2] = "Boss says you've got some real untapped potential. He'd like you to train with us.";
+                        script[2] = "Boss says he'd like you to train with us.";
 
                         speaker[3] = playerName;
                         leftspeaker[3] = true;
-                        script[3] = "Wait, you want me to train with you guys?";
+                        script[3] = "Wait, you want me to train here? With your cult?";
 
                         speaker[4] = "Seamstress";
                         leftspeaker[4] = false;
-                        script[4] = "The Order of Shadow is a school specializing in cryptic and powerful magics.";
+                        script[4] = "The Order of Shadow is a school specializing in ancient powerful magics.";
 
                         speaker[5] = "Seamstress";
                         leftspeaker[5] = false;
-                        script[5] = "As the Nova, your raw power could have limitless potential with some direction.";
+                        script[5] = "As the Nova, you have a lot of natural talent. You just need a teacher.";
 
                         speaker[6] = playerName;
                         leftspeaker[6] = true;
@@ -519,11 +523,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[8] = playerName;
                         leftspeaker[8] = true;
-                        script[8] = "It seems you happen to know a lot about me...";
+                        script[8] = "!";
 
                         speaker[9] = "???";
                         leftspeaker[9] = false;
-                        script[9] = "I've been watching you. Pointlessly pacing about in the castle.";
+                        script[9] = "I've been watching you. Pointlessly pacing about in your quarters.";
 
                         speaker[10] = "???";
                         leftspeaker[10] = false;
@@ -535,21 +539,17 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[12] = "???";
                         leftspeaker[12] = false;
-                        script[12] = "So tell me child, do you wish to discover your purpose?";
+                        script[12] = "Or maybe you would you like to know who you once were?";
 
                         speaker[13] = "???";
                         leftspeaker[13] = false;
-                        script[13] = "Would you like to know who you once were?";
+                        script[13] = "You need not stay forever. Only until you've learned all you need to know.";
 
                         speaker[14] = "???";
                         leftspeaker[14] = false;
-                        script[14] = "You need not stay forever; Only until your curiosity is sated.";
+                        script[14] = "So tell me child, will you join us? Or return to your nest of comfort?";
 
-                        speaker[15] = "???";
-                        leftspeaker[15] = false;
-                        script[15] = "It's your choice. Will join us? Or continue to idle behind the walls of Solaris?";
-
-                        totalLines = 16;
+                        totalLines = 15;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
