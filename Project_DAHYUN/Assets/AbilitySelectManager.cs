@@ -38,7 +38,7 @@ public class AbilitySelectManager : MonoBehaviour
     {
         totalAbiliyUnlocks = GameController.controller.totalAbilities;
         totalAbiliyUnlocks = 15;
-        maxAbilities = AbilityToolsScript.tools.TOTAL_ABILITIES;
+        maxAbilities = GameController.controller.TOTAL_ABILITIES;
 
         for(int f = 0; f < 19; ++f)
             GameController.controller.unlockedAbilities[f] = true;
@@ -192,8 +192,8 @@ public class AbilitySelectManager : MonoBehaviour
 
     IEnumerator LoadMM()
     {
-        blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(2f);
+        blackSq.GetComponent<FadeScript>().FadeIn(2);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Character_Scene");
     }
 }

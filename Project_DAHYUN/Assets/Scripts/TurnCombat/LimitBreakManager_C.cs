@@ -2,18 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LimitBreakManager_C : MonoBehaviour {
+public class LimitBreakManager_C : MonoBehaviour
+{
+    public GameObject player;
+    public GameObject enemy;
 
-    
+    public GameObject cameraObj;
+    public GameObject blackSq;
+
+    private Vector3 playerOrigpos;
+    private Vector3 enemyOrigpos;
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+        playerOrigpos = player.transform.position;
+        enemyOrigpos = enemy.transform.position;
+
+    }
 
     public void UseLimitBreak(LimitBreak limitBreak)
     {
+        print(limitBreak.name);
+        switch (limitBreak.name)
+        {
+            case LimitBreakName.Ascenion:
+                break;
+            case LimitBreakName.Blood_Rage:
+                break;
+            case LimitBreakName.Hellion_Form:
+                break;
+            case LimitBreakName.Overdrive:
+                break;
+            case LimitBreakName.Shadows_Embrace:
+                break;
+            case LimitBreakName.Super_Nova: // default LB
+                StartCoroutine(SuperNovaAnim());
+                break;
+            case LimitBreakName.none:
+                break;
+        }
 
+        this.GetComponent<CombatManager>().playerLimitBreaking = true;
+    }
+
+    IEnumerator SuperNovaAnim()
+    {
+        cameraObj.GetComponent<CameraController>().LerpCameraSize(175, 120, 0.5f);
+        yield return new WaitForSeconds(2);
+        player.GetComponent<AnimationController>().PlayAttackAnim();
+        yield return new WaitForSeconds(0.75f);
+        cameraObj.GetComponent<CameraController>().LerpCameraSize(120, 175, 3.5f);
     }
 
     public LimitBreak LookUpLimitBreak(LimitBreakName lbName)
@@ -28,21 +67,21 @@ public class LimitBreakManager_C : MonoBehaviour {
                 limitBreak.defenseBoost = 1;
                 limitBreak.prowessBoost = 1;
                 limitBreak.speedBoost = 1;
-                limitBreak.description = "Take up the holy form of the Ascended One. Encapsulated in the light of the Sun, take up the sword of justice.";
+                limitBreak.description = "Take up the holy form of the Ascended One and dawn justice on your foes.";
                 break;
             case LimitBreakName.Blood_Rage:
                 limitBreak.attackBoost = 3;
                 limitBreak.coolDown = 2;
                 limitBreak.defenseBoost = 1;
                 limitBreak.speedBoost = 1;
-                limitBreak.description = "Now that you see red, they will see nothing. Harness your anger in a manefestation of onslaught.";
+                limitBreak.description = "Now that you see red, they will see nothing. Channel your anger into a bloodied onslaught.";
                 break;
             case LimitBreakName.Hellion_Form:
                 limitBreak.attackBoost = 2;
                 limitBreak.coolDown = 1;
                 limitBreak.defenseBoost = 0;
                 limitBreak.speedBoost = 2;
-                limitBreak.description = "'A bat out of hell...' Said to be the physical form of fear, your body takes on an altered demon-like state.";
+                limitBreak.description = "Said to be the physical form of fear, take on a demon-like state of the ancient Hellions.";
                 break;
             case LimitBreakName.Overdrive:
                 limitBreak.attackBoost = 1;
@@ -57,14 +96,14 @@ public class LimitBreakManager_C : MonoBehaviour {
                 limitBreak.defenseBoost = 0;
                 limitBreak.prowessBoost = 2;
                 limitBreak.speedBoost = 1;
-                limitBreak.description = "Embrace the shadows, and they will perish in darkness.";
+                limitBreak.description = "There is no turning back. Embrace the shadows. Only silence now.";
                 break;
-            case LimitBreakName.Solaris_Invictus:
+            case LimitBreakName.Super_Nova:
                 limitBreak.attackBoost = 3;
                 limitBreak.coolDown = 2;
                 limitBreak.defenseBoost = 0;
                 limitBreak.speedBoost = 1;
-                limitBreak.description = "Embody the blaze of the Sun as you take up the torch of Solaris.";
+                limitBreak.description = "Unleash the might of the Sun as the legendary Nova!";
                 break;
             case LimitBreakName.none:
                 limitBreak.attackBoost = 0;
@@ -77,6 +116,8 @@ public class LimitBreakManager_C : MonoBehaviour {
             default:
                 break;
         }
+
+        limitBreak.name = lbName;
 
         return limitBreak;
     }

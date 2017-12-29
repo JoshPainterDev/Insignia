@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 212326466753250072}
   - component: {fileID: 95972033087310086}
   - component: {fileID: 114672456524649476}
-  - component: {fileID: 114241195412467186}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -73,7 +72,7 @@ Animator:
   m_GameObject: {fileID: 1180717903234244}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8ed881cf78a99804d8bf7b716103611c, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -97,17 +96,6 @@ MonoBehaviour:
   spawnSound: {fileID: 0}
   spawnSoundVolume: 0.5
   enemySpawnPos: {x: 0, y: 0, z: 0}
---- !u!114 &114241195412467186
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1180717903234244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114672456524649476
 MonoBehaviour:
   m_ObjectHideFlags: 1

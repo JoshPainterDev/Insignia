@@ -312,7 +312,8 @@ MonoBehaviour:
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
-  swordSwing01: {fileID: 0}
+  error: {fileID: 0}
+  heartbeat: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -418,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba593f60408c54f918b3652e40de97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TOTAL_ABILITIES: 20
   STRONG_DAMAGE: 55
   MEDIUM_DAMAGE: 35
   WEAK_DAMAGE: 15
@@ -438,8 +440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2cd21a146730b4caa1fc76ac0b8af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   playerName: 
   playerSkinColor: []
+  unlockedAbilities: 
   playerAbility1:
     Accuracy: 100
     Cooldown: 3
@@ -461,6 +465,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -482,6 +487,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -503,6 +509,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -524,6 +531,7 @@ MonoBehaviour:
     Heals: 0
     Description: 
     Icon: 
+    AbilityIndex: 0
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
@@ -545,6 +553,7 @@ MonoBehaviour:
   levelsCompleted: 0
   stagesCompleted: 0
   playerDecisions: 
+  totalAbilities: 0
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
@@ -2619,7 +2628,7 @@ MonoBehaviour:
   blackSq: {fileID: 488820262}
   characterCameraPos: {x: 225, y: -50, z: -10}
   adventureCameraPos: {x: 325, y: -92, z: -10}
-  craftingCameraPos: {x: 125, y: -92, z: -10}
+  arenaCameraPos: {x: 225, y: -50, z: 0}
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0

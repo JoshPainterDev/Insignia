@@ -65,6 +65,10 @@ public class CombatManager : MonoBehaviour {
     public LimitBreak enemyLimitBreak;
     [HideInInspector]
     public bool enemyCanLB;
+    [HideInInspector]
+    public bool playerLimitBreaking = false;
+    [HideInInspector]
+    public bool enemyLimitBreaking = false;
 
     // ENEMY COMBAT VARIABLES
     public EnemyInfo enemyInfo;
@@ -144,6 +148,12 @@ public class CombatManager : MonoBehaviour {
         {
             this.GetComponent<StruggleManager_C>().ForceExecute();
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            print("wut");
+            this.GetComponent<LimitBreakManager_C>().UseLimitBreak(playerLimitBreak);
+        }
     }
 
     // Use this for initialization
@@ -151,7 +161,8 @@ public class CombatManager : MonoBehaviour {
     {
         encounter = GameController.controller.currentEncounter;
 
-        if(encounter == null)
+        //REMOVE THIS LATER
+        if (encounter == null)
         {
             encounter = new EnemyEncounter();
             encounter.enemyNames = new string[3];
@@ -185,11 +196,14 @@ public class CombatManager : MonoBehaviour {
 
         if(!hasTutorial)
         {
-            //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
-            //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Rage");
-            //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
-            //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
-            //GameController.controller.strikeModifier = "Serated Strike";
+            //REMOVE THIS LATER
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
+            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Hatred");
+            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
+            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+            GameController.controller.strikeModifier = "Serated Strike";
+            playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
+            //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
 
             ResetEnemyValues();
             //strikeMod = GameController.controller.strikeModifier;
@@ -351,7 +365,7 @@ public class CombatManager : MonoBehaviour {
 
                     if (CheckForDeath(false))
                         StartCoroutine(PlayPlayerDeathAnim());
-                    else
+                    else// CUM BACK HERE!!
                         StartCoroutine(StartPlayerTurn());
                 }
                 else //if enemy is being attacked
@@ -365,7 +379,7 @@ public class CombatManager : MonoBehaviour {
 
                     if (CheckForDeath(true))
                         StartCoroutine(PlayEnemyDeathAnim());
-                    else
+                    else// CUM BACK HERE!!
                         StartCoroutine(StartEnemyTurn());
                 }
             }
@@ -523,28 +537,32 @@ public class CombatManager : MonoBehaviour {
         this.GetComponent<CombatAudio>().playUIAbilitySelect();
         button.GetComponent<Image>().color = abilitySelectColor;
         Vector3 centerPos = Vector3.zero;
+        Vector3 ascend = Vector3.zero;
+
         if (button.name == "TLA1_Button")
         {
-            centerPos = button.transform.position + new Vector3(300, 0, 0);
+            centerPos = button.transform.position + new Vector3(100, -50, 0);
+            ascend = centerPos + new Vector3(0, 300, 0);
             abilityButton1.transform.GetChild(1).GetComponent<Text>().color = abilityUsedColor;
         }
         else if (button.name == "TLA2_Button")
         {
-            centerPos = button.transform.position - new Vector3(300, 0, 0);
+            centerPos = button.transform.position - new Vector3(100, 50, 0);
+            ascend = centerPos + new Vector3(0, 300, 0);
             abilityButton2.transform.GetChild(1).GetComponent<Text>().color = abilityUsedColor;
         }
         else if (button.name == "TLA3_Button")
         {
-            centerPos = button.transform.position + new Vector3(300, 0, 0);
+            centerPos = button.transform.position + new Vector3(100, 50, 0);
+            ascend = centerPos + new Vector3(0, 300, 0);
             abilityButton3.transform.GetChild(1).GetComponent<Text>().color = abilityUsedColor;
         }
         else if (button.name == "TLA4_Button")
         {
-            centerPos = button.transform.position - new Vector3(300, 0, 0);
+            centerPos = button.transform.position - new Vector3(100, -50, 0);
+            ascend = centerPos + new Vector3(0, 300, 0);
             abilityButton4.transform.GetChild(1).GetComponent<Text>().color = abilityUsedColor;
         }
-
-        Vector3 ascend = centerPos + new Vector3(0, 600, 0);
 
         yield return new WaitForSeconds(0.15f);
         HideAbilityButtons();
@@ -553,14 +571,17 @@ public class CombatManager : MonoBehaviour {
 
         button.GetComponent<LerpScript>().LerpToPos(button.transform.position, centerPos, 8f);
         yield return new WaitForSeconds(0.75f);
-        button.GetComponent<LerpScript>().LerpToPos(centerPos, ascend, 1.5f, true);
+        button.GetComponent<LerpScript>().LerpToPos(centerPos, ascend, 1.2f);
         button.GetComponent<LerpScript>().LerpToColor(abilitySelectColor, seethrough, 5f);
         Transform child = button.transform.GetChild(0);
         child.gameObject.GetComponent<LerpScript>().LerpToColor(abilityTextColor, Color.clear, 5f);
+        child = button.transform.GetChild(1);
+        child.GetComponent<LerpScript>().LerpToColor(abilityUsedColor, Color.clear, 5f);
 
         yield return new WaitForSeconds(1f);
         HideButton(button.name);
         button.GetComponentInChildren<Text>().color = abilityTextColor;
+        button.transform.GetChild(1).GetComponent<Text>().color = abilityUsedColor;
         button.GetComponent<Image>().color = (Color.grey - new Color(0,0,0,0.15f));
         button.transform.position = origPos;
 
@@ -729,8 +750,9 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
+            print("Check Player LB");
             // check if the player has triggered a Limit Break
-            if(canLimitBreak && ((float)playerHealth / (float)playerMaxHealth) <= LIMIT_BREAK_THRESH)
+            if (canLimitBreak && ((float)playerHealth / (float)playerMaxHealth) <= LIMIT_BREAK_THRESH)
             {
                 print("THIS IS IMPOSSIBLE?!?!?!");
                 canLimitBreak = false;
@@ -1946,5 +1968,30 @@ public class CombatManager : MonoBehaviour {
     public int getEnemyHealth()
     {
         return enemyHealth;
+    }
+
+    public void setBoostDur(string stat, int duration, bool player)
+    {
+        switch(stat)
+        {
+            case "Attack":
+                if (player)
+                    playerAttBoostDur = duration;
+                else
+                    enemyAttBoostDur = duration;
+                break;
+            case "Defense":
+                if (player)
+                    playerDefBoostDur = duration;
+                else
+                    enemyDefBoostDur = duration;
+                break;
+            case "Speed":
+                if (player)
+                    playerSpdBoostDur = duration;
+                else
+                    enemySpdBoostDur = duration;
+                break;
+        }
     }
 }

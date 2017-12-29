@@ -115,7 +115,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         unlockedEquipment[24, 0] = true;
         unlockedEquipment[24, 1] = true;
         unlockedEquipment[24, 2] = true;
-        unlockedEquipment[24, 3] = true;
+        //unlockedEquipment[24, 3] = true;
 
         unlockedEquipment[28, 0] = true;
         unlockedEquipment[28, 2] = true;
@@ -136,6 +136,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         ChangeClassIcon(GameController.controller.charClasses[GameController.controller.playerNumber]);
 
         LoadPersona();
+
+        LoadEquipmentIcons();
     }
 
     public void disableAuraPanel()
@@ -167,10 +169,18 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.setPlayerColorPreference(color);
         auraColor.GetComponent<Image>().color = color;
         playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
+        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void LoadAbilityScene()
     {
+        StartCoroutine(GoToAbilityScreen());
+    }
+
+    IEnumerator GoToAbilityScreen()
+    {
+        blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("AbilitySelect_Scene");
     }
 
@@ -675,6 +685,7 @@ public class Character_Menu_Manager : MonoBehaviour {
                 {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 24, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
+                    print((4 * i) + j);
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Weapon[(4 * i) + j];
                 }
                 else
@@ -799,5 +810,38 @@ public class Character_Menu_Manager : MonoBehaviour {
                 playerClassIcon.GetComponent<Image>().sprite = KnightIcon;
                 break;
         }
+    }
+
+    private void LoadEquipmentIcons()
+    {
+        GameObject menuButton;
+        int sheetIndex = (4 * (GameController.controller.playerEquippedIDs[0] % 4)) + GameController.controller.playerEquippedIDs[1];
+        //head
+        menuButton = GameObject.Find("Head_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Head[sheetIndex];
+        //torso
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[2] % 4)) + GameController.controller.playerEquippedIDs[3];
+        menuButton = GameObject.Find("Torso_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Torso[sheetIndex];
+        //Legs
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[4] % 4)) + GameController.controller.playerEquippedIDs[5];
+        menuButton = GameObject.Find("Legs_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Legs[sheetIndex];
+        //back
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[6] % 4)) + GameController.controller.playerEquippedIDs[7];
+        menuButton = GameObject.Find("Back_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Back[sheetIndex];
+        //gloves 
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[8] % 4)) + GameController.controller.playerEquippedIDs[9];
+        menuButton = GameObject.Find("Gloves_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Gloves[sheetIndex];
+        //weapon
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[10] % 4)) + GameController.controller.playerEquippedIDs[11];
+        menuButton = GameObject.Find("Weapon_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Weapon[sheetIndex];
+        //aura
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[12] % 4)) + GameController.controller.playerEquippedIDs[13];
+        menuButton = GameObject.Find("Aura_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Aura[sheetIndex];
     }
 }

@@ -76,9 +76,9 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyLevel = 1;
                 enemyInfo.expReward = TRASH_EXP;
                 enemyInfo.ability_1 = "Reap";
-                enemyInfo.ability_2 = "";
-                enemyInfo.ability_3 = "";
-                enemyInfo.ability_4 = "";
+                enemyInfo.ability_2 = "none";
+                enemyInfo.ability_3 = "none";
+                enemyInfo.ability_4 = "none";
 
                 enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 2;
@@ -111,8 +111,8 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.expReward = THICC_EXP;
                 enemyInfo.ability_1 = "Black Rain";
                 enemyInfo.ability_2 = "Reap";
-                enemyInfo.ability_3 = "";
-                enemyInfo.ability_4 = "";
+                enemyInfo.ability_3 = "none";
+                enemyInfo.ability_4 = "none";
 
                 enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 3;

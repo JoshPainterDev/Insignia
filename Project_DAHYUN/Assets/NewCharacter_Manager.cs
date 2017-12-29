@@ -148,10 +148,13 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.unlockedAbilities[1] = true;
             GameController.controller.totalAbilities = 1;
             GameController.controller.strikeModifier = "none";
-            GameController.controller.limitBreakModifier = LimitBreakName.none;
+            GameController.controller.limitBreakModifier = LimitBreakName.Super_Nova;
             GameController.controller.limitBreakTracker = -1;
             GameController.controller.playerEquippedIDs = new int[16];
             GameController.controller.playerEquipmentList = new bool[30, 4];
+            
+            for(int i = 0; i < 6; ++i)
+                GameController.controller.arenaCompleted[i] = false;
 
             for (int i = 0; i < 30; ++i)
             {

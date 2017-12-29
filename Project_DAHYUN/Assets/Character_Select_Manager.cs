@@ -41,6 +41,7 @@ public class Character_Select_Manager : MonoBehaviour
         if (GameController.controller.numChars != 0)
         {
             selectedChar = 1;
+            gridThing.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = newButtonColor;
             LoadCharacterPreview(selectedChar);
         }
         else

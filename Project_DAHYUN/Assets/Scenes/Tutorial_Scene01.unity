@@ -1839,9 +1839,12 @@ MonoBehaviour:
   levelsCompleted: 0
   stagesCompleted: 0
   playerDecisions: 
+  totalAbilities: 0
+  arenaCompleted: 
   charNames: []
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
+  curArenaStage: 0
 --- !u!4 &651132269
 Transform:
   m_ObjectHideFlags: 0
@@ -1866,6 +1869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba593f60408c54f918b3652e40de97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TOTAL_ABILITIES: 20
   STRONG_DAMAGE: 55
   MEDIUM_DAMAGE: 35
   WEAK_DAMAGE: 15
@@ -2111,7 +2115,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
 --- !u!222 &652833358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5752,7 +5756,7 @@ MonoBehaviour:
   playerDefenseBoost: 0
   playerSpeedBoost: 0
   playerStunned: 0
-  playerVulernable: 0
+  playerVulnernable: 0
   playerBlinded: 0
   ability1CD: 0
   ability2CD: 0
@@ -5784,7 +5788,7 @@ MonoBehaviour:
   enemyDefenseBoost: 0
   enemySpeedBoost: 0
   enemyStunned: 0
-  enemyVulernable: 0
+  enemyVulnernable: 0
   enemyBlinded: 0
   enemyAbility1CD: 0
   enemyAbility2CD: 0
@@ -6175,6 +6179,7 @@ MonoBehaviour:
   enemyMannequin: {fileID: 666657974}
   playerMannequin: {fileID: 119668991}
   seamstress_StrikeFX: {fileID: 0}
+  MAX_ATTEMPTS: 5
   standardStrikeHit_FX: {fileID: 0}
   standardStrikeMiss_FX: {fileID: 1862190314031148, guid: 9ec2c067bfe3a424ab76da2abf69e25c,
     type: 2}

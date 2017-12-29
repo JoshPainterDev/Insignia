@@ -18,7 +18,7 @@ public class EnemyCombatScript : MonoBehaviour {
     private Vector3 strikePosition;
 
     [HideInInspector]
-    private int difficulty;
+    private Difficulty difficulty;
 
     public EnemyInfo enemyInfo;
 
@@ -44,7 +44,6 @@ public class EnemyCombatScript : MonoBehaviour {
         playerOrigPos = playerMannequin.transform.position;
         strikePosition = origPosition - new Vector3(220,0,0);
 
-        GameController.controller.difficultyScale = 1;
         difficulty = GameController.controller.difficultyScale;
     }
 
@@ -76,13 +75,13 @@ public class EnemyCombatScript : MonoBehaviour {
 
         switch (difficulty)
         {
-            case 1:
+            case Difficulty.Chill:
                 EasyEnemyAI();
                 break;
-            case 2:
+            case Difficulty.Story:
                 MediumEnemyAI();
                 break;
-            case 3:
+            case Difficulty.Challenge:
                 HardEnemyAI();
                 break;
         }
@@ -147,8 +146,9 @@ public class EnemyCombatScript : MonoBehaviour {
             //}
 
             ++abilityAttempts;
-
-
+            print("Ability Attempts: " + abilityAttempts);
+            randomAbility = 3;
+            print("Ab Num Selected: " + randomAbility);
             switch (randomAbility)
             {
                 case 0:
@@ -164,12 +164,9 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 1:
                     if ((ability2.Name != "-") && (cooldownA2 == 0))
                     {
-                        if (rand > ability2.Accuracy)
-                        {
-                            cooldownA2 = ability2.Cooldown + 1;
-                            combatManager.HideHealthBars();
-                            this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability2, combatManager.getPlayerHealth());
-                        }
+                        cooldownA2 = ability2.Cooldown + 1;
+                        combatManager.HideHealthBars();
+                        this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability2, combatManager.getPlayerHealth());
                     }
                     else
                         EasyEnemyAI();
@@ -187,6 +184,7 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 3:
                     if ((ability4.Name != "-") && (cooldownA4 == 0))
                     {
+                        print("wtf");
                         cooldownA4 = ability4.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability4, combatManager.getPlayerHealth());
@@ -230,6 +228,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     this.GetComponent<CombatAudio>().playShadowVanish();
                     yield return new WaitForSeconds(0.25f);
                     enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().speed = 0.75f;
+                    GameObject effectClone2 = (GameObject)Instantiate(standardStrikeHit_FX, playerOrigPos, transform.rotation);
                     yield return new WaitForSeconds(0.75f);
                     enemyMannequin.GetComponent<LerpScript>().LerpToPos((origPosition - new Vector3(170, 0, 0)), origPosition, 2f);
                     enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);

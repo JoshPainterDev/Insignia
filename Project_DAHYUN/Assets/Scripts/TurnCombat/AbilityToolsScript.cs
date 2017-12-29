@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityToolsScript : MonoBehaviour {
     public static AbilityToolsScript tools;
 
-    public int TOTAL_ABILITIES = 20;
+    
 
     public int STRONG_DAMAGE = 15;
     public int MEDIUM_DAMAGE = 5;
@@ -54,7 +54,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 AbilityName = "Solar Flare";
                 break;
             case 5:
-                AbilityName = "Rage";
+                AbilityName = "Hatred";
                 break;
             case 6:
                 AbilityName = "Outrage";
@@ -70,6 +70,9 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case 10:
                 AbilityName = "Black Rain";
+                break;
+            case 11:
+                AbilityName = "Divine Shield";
                 break;
         }
 
@@ -141,7 +144,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Icon = "AbilityIcons\\SolarFlare_AbilityIcon";
                 ability.AbilityIndex = 4;
                 break;
-            case "Rage":
+            case "Hatred":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 0;
                 ability.Buffs = true;
@@ -149,12 +152,12 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.AttBoostDuration = 3;
                 ability.Heals = true;
                 ability.HealAmount = WEAK_HEAL;
-                ability.Description = "Harness your pain and hatred. Attack boost +2.";
+                ability.Description = "Seeth in bloodlust and anger. Attack boost +2.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
-                ability.Icon = "AbilityIcons\\Rage_AbilityIcon";
+                ability.Icon = "AbilityIcons\\Hatred_AbilityIcon";
                 ability.AbilityIndex = 5;
                 break;
             case "Outrage":
@@ -181,7 +184,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 break;
             case "Thunder Charge":
                 ability.Accuracy = 85;
-                ability.BaseDamage = 15;
+                ability.BaseDamage = 10;
                 ability.Cooldown = 3;
                 ability.Buffs = false;
                 ability.Description = "A lightning imbued blade charge. Has a chance to stun your foe.";
@@ -206,8 +209,8 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.AbilityIndex = 9;
                 break;
             case "Black Rain":
-                ability.Accuracy = 100;
-                ability.BaseDamage = 18;
+                ability.Accuracy = 90;
+                ability.BaseDamage = 15;
                 ability.Cooldown = 3;
                 ability.Buffs = false;
                 ability.Description = "1,000 Needles of Dark Magic rain down on your foes.";
@@ -216,6 +219,21 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
                 ability.Icon = "AbilityIcons\\BlackRain_AbilityIcon";
+                ability.AbilityIndex = 10;
+                break;
+            case "Divine Barrier":
+                ability.Accuracy = 100;
+                ability.BaseDamage = 0;
+                ability.DefenseBoost = 2;
+                ability.DefBoostDuration = 2;
+                ability.Cooldown = 3;
+                ability.Buffs = true;
+                ability.Description = "Channel holy light as a protective shielding around you. Boost Defense by 2";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Utility;
+                ability.Icon = "AbilityIcons\\DivineShield_AbilityIcon";
                 ability.AbilityIndex = 10;
                 break;
             default:

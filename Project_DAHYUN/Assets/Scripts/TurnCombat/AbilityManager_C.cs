@@ -82,12 +82,12 @@ public class AbilityManager_C : MonoBehaviour {
 
         switch (abilityName)
         {
-            case "Rage":
+            case "Hatred":
                 spawnPos = initPlayerPos + new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.25f);
-                StartCoroutine(AttackBoostAnim(2));
+                StartCoroutine(AttackBoostAnim(ability.AttackBoost, ability.AttBoostDuration));
                 yield return new WaitForSeconds(2f);
                 break;
             case "Thunder Charge":
@@ -237,6 +237,14 @@ public class AbilityManager_C : MonoBehaviour {
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(0.85f);
                 break;
+            case "Divine Barrier":
+                spawnPos = initPlayerPos + new Vector3(0, 80, 0);
+                effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
+                this.GetComponent<CombatAudio>().playOutrageSFX();
+                yield return new WaitForSeconds(0.25f);
+                StartCoroutine(DefenseBoostAnim(ability.DefenseBoost, ability.DefBoostDuration));
+                yield return new WaitForSeconds(2f);
+                break;
             default:
                 break;
         }
@@ -259,10 +267,19 @@ public class AbilityManager_C : MonoBehaviour {
             StartCoroutine(EnemyStunnedAnim());
     }
 
-    IEnumerator AttackBoostAnim(int level)
+    IEnumerator AttackBoostAnim(int level, int duration)
     {
         print("ATTACK BOOST SET: " + level);
         combatManager.playerAttackBoost = level;
+        combatManager.setBoostDur("Attack", duration, true);
+        yield return new WaitForSeconds(0.25f);
+    } 
+
+    IEnumerator DefenseBoostAnim(int level, int duration)
+    {
+        print("DEFENSE BOOST SET: " + level);
+        combatManager.playerDefenseBoost = level;
+        combatManager.setBoostDur("Defense", duration, true);
         yield return new WaitForSeconds(0.25f);
 
     }

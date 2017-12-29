@@ -6,6 +6,8 @@ using System.IO;
 
 [Serializable]
 public enum PlayerClass {Knight, Guardian, Occultist, Cutthroat, none};
+[Serializable]
+public enum Difficulty { Chill, Story, Challenge, none };
 
 public class GameController : MonoBehaviour {
 
@@ -25,7 +27,7 @@ public class GameController : MonoBehaviour {
     public int[] playerInventoryQuantity;
     public bool [,] playerEquipmentList;
     public int[] playerEquippedIDs;
-    public int difficultyScale;
+    public Difficulty difficultyScale;
     public int playerLevel;
     public int playerEXP;
     public int playerAttack;
@@ -41,11 +43,18 @@ public class GameController : MonoBehaviour {
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
     public int[] playerDecisions;
+    public int TOTAL_ABILITIES = 20;
     public int totalAbilities;
+    public bool[] arenaCompleted;
 
     public string[] charNames;
     public int numChars;
     public PlayerClass[] charClasses = new PlayerClass[6];
+
+    public bool volumeMuted = false;
+    public float musicScale = 1.0f;
+
+    public int curArenaStage = 0;
 
     // Use this for initialization
     void Awake () {
@@ -54,12 +63,14 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             controller = this;
-            unlockedAbilities = new bool[AbilityToolsScript.tools.TOTAL_ABILITIES];
+            difficultyScale = Difficulty.Story;
+            unlockedAbilities = new bool[TOTAL_ABILITIES];
             playerSkinColor = new float[4];
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
             playerEquipmentList = new bool[30, 4];
             playerDecisions = new int[8];
+            arenaCompleted = new bool[6];
             charNames = new string[6];
             charClasses = new PlayerClass[6];
             for(int i = 0; i < 6; ++i)
@@ -97,6 +108,9 @@ public class GameController : MonoBehaviour {
         data.numberOfCharacters = numChars;
         data.characterClasses = charClasses;
 
+        data.VolumeMuted = volumeMuted;
+        data.MusicScale = musicScale;
+
         bf.Serialize(accountInfoFile, data);
         accountInfoFile.Close();
     }
@@ -111,6 +125,10 @@ public class GameController : MonoBehaviour {
             charNames = data.characterNames;
             numChars = data.numberOfCharacters;
             charClasses = data.characterClasses;
+
+            volumeMuted = data.VolumeMuted;
+            musicScale = data.MusicScale;
+
             file.Close();
             return true;
         }
@@ -132,7 +150,6 @@ public class GameController : MonoBehaviour {
         data.PlayerSkinColor = playerSkinColor;
         data.Level = playerLevel;
         data.PlayerExperience = playerEXP;
-        data.difficulty = difficultyScale;
         data.UnlockedAbilities = unlockedAbilities;
         data.ability1 = playerAbility1;
         data.ability2 = playerAbility2;
@@ -149,11 +166,14 @@ public class GameController : MonoBehaviour {
         data.PlayerDecisions = playerDecisions;
         data.TotalAbilities = totalAbilities;
 
+        data.ArenaCompleted = arenaCompleted;
         data.EquipmentList = playerEquipmentList;
         data.EquippedIDs = playerEquippedIDs;
         data.InventoryList = playerInventory;
         data.LevelsCompleted = levelsCompleted;
         data.StagesCompleted = stagesCompleted;
+
+        data.difficulty = difficultyScale;
 
         bf.Serialize(playerInfoFile, data);
         playerInfoFile.Close();
@@ -191,6 +211,7 @@ public class GameController : MonoBehaviour {
             playerDecisions = data.PlayerDecisions;
             totalAbilities = data.TotalAbilities;
 
+            arenaCompleted = data.ArenaCompleted;
             playerInventory = data.InventoryList;
             playerEquipmentList = data.EquipmentList;
             playerEquippedIDs = data.EquippedIDs;
@@ -331,7 +352,7 @@ class PlayerData
     public string StrikeMod;
     public int Level;
     public int PlayerExperience;
-    public int difficulty;
+    public Difficulty difficulty;
     public LimitBreakName limitBreakMod;
     public int limitBreakTrack;
     public string [] InventoryList;
@@ -344,6 +365,7 @@ class PlayerData
     public int StagesCompleted;
     public int[] PlayerDecisions;
     public int TotalAbilities;
+    public bool[] ArenaCompleted;
 }
 
 [Serializable]
@@ -352,4 +374,7 @@ class AccountData
     public string[] characterNames;
     public PlayerClass[] characterClasses;
     public int numberOfCharacters = 0;
+
+    public bool VolumeMuted = false;
+    public float MusicScale = 1.0f;
 }

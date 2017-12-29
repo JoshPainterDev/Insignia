@@ -60,7 +60,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
         Vector3 spawnPos = Vector3.zero;
         switch (abilityName)
         {
-            case "Rage":
+            case "Hatred":
                 spawnPos = initEnemyPos + new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 this.GetComponent<CombatAudio>().playOutrageSFX();
@@ -120,14 +120,12 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
                 //this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.35f);
-                
-                combatManager.DamageEnemy_Ability(ability);
+                combatManager.DamagePlayer_Ability(ability);
                 effectClone.GetComponent<Animator>().speed = 0.0f;
                 yield return new WaitForSeconds(0.75f);
                 effectClone.GetComponent<Animator>().speed = 1.45f;
                 yield return new WaitForSeconds(0.25f);
                 effectClone.transform.position += new Vector3(-120, -60, 0);
-                this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":

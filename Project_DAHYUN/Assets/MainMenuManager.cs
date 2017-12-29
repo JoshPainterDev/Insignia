@@ -7,7 +7,6 @@ using UnityEngine;
 public class MainMenuManager : MonoBehaviour {
 
     public GameObject playerMannequin;
-
     public GameObject characterButton;
     public GameObject adventureButton;
     public GameObject craftingButton;
@@ -19,7 +18,7 @@ public class MainMenuManager : MonoBehaviour {
     public GameObject blackSq;
     public Vector3 characterCameraPos;
     public Vector3 adventureCameraPos;
-    public Vector3 craftingCameraPos;
+    public Vector3 arenaCameraPos;
 
     public void Start()
     {
@@ -38,6 +37,7 @@ public class MainMenuManager : MonoBehaviour {
                 StartCoroutine(LoadAdventureScreen());
                 break;
             case 3: // Battle
+                StartCoroutine(LoadArenaScreen());
                 return;
             case 4: // Settings
                 StartCoroutine(LoadSettingsScreen());
@@ -69,18 +69,20 @@ public class MainMenuManager : MonoBehaviour {
         SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
-    IEnumerator LoadCraftingScreen()
+    IEnumerator LoadArenaScreen()
     {
-        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, craftingCameraPos, 1f);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, arenaCameraPos, 1f);
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Crafting_Scene");
+        SceneManager.LoadScene("ArenaSelect_Scene");
     }
 
     IEnumerator LoadSettingsScreen()
     {
-        yield return new WaitForSeconds(0.1f);
+        blackSq.GetComponent<FadeScript>().FadeIn(2f);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Settings_Scene");
     }
 
     IEnumerator LoadCharSelectScene()
