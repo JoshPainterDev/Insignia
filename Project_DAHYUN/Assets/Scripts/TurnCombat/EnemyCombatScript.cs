@@ -63,15 +63,20 @@ public class EnemyCombatScript : MonoBehaviour {
             --cooldownA4;
     }
 
-    public void BeginEnemyTurn()
+    public void ResetEnemy(EnemyInfo info)
     {
-        enemyInfo = combatManager.enemyInfo;
+        enemyInfo = info;
         ability1 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_1);
         ability2 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_2);
         ability3 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_3);
         ability4 = AbilityToolsScript.tools.LookUpAbility(enemyInfo.ability_4);
+    }
 
+    public void BeginEnemyTurn()
+    {
         originalPlayerHP = combatManager.getPlayerHealth();
+
+        print(difficulty.ToString());
 
         switch (difficulty)
         {
@@ -79,10 +84,10 @@ public class EnemyCombatScript : MonoBehaviour {
                 EasyEnemyAI();
                 break;
             case Difficulty.Story:
-                MediumEnemyAI();
+                EasyEnemyAI();
                 break;
             case Difficulty.Challenge:
-                HardEnemyAI();
+                EasyEnemyAI();
                 break;
         }
     }

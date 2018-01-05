@@ -8,22 +8,27 @@ public class LimitBreakManager_C : MonoBehaviour
     public GameObject enemy;
 
     public GameObject cameraObj;
+    private Vector3 origCameraPos;
     public GameObject blackSq;
 
     private Vector3 playerOrigpos;
     private Vector3 enemyOrigpos;
+
+    /// <summary>
+    /// Enter Limit Break Effects
+    /// </summary>
+    public GameObject SuperNova_Start;
 
     // Use this for initialization
     void Start ()
     {
         playerOrigpos = player.transform.position;
         enemyOrigpos = enemy.transform.position;
-
+        origCameraPos = cameraObj.transform.position;
     }
 
     public void UseLimitBreak(LimitBreak limitBreak)
     {
-        print(limitBreak.name);
         switch (limitBreak.name)
         {
             case LimitBreakName.Ascenion:
@@ -48,11 +53,21 @@ public class LimitBreakManager_C : MonoBehaviour
 
     IEnumerator SuperNovaAnim()
     {
-        cameraObj.GetComponent<CameraController>().LerpCameraSize(175, 120, 0.5f);
-        yield return new WaitForSeconds(2);
+        cameraObj.GetComponent<CameraController>().LerpCameraSize(175, 120, 1f);
+        cameraObj.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos - new Vector3(80, 20, 0), 1.0f);
+        this.GetComponent<CombatAudio>().playLBSuperNovaStart();
+        yield return new WaitForSeconds(1f);
         player.GetComponent<AnimationController>().PlayAttackAnim();
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.15f);
+        player.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        player.transform.GetChild(12).gameObject.SetActive(true);
+        player.transform.GetChild(12).GetComponent<SpriteMaskAnimator>().setActive(true);
+        Vector3 spawnPos = new Vector3(player.transform.position.x + 20, player.transform.position.y + 65, 0);
+        GameObject effectClone = (GameObject)Instantiate(SuperNova_Start, spawnPos, transform.rotation);
         cameraObj.GetComponent<CameraController>().LerpCameraSize(120, 175, 3.5f);
+        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, origCameraPos, 3.5f);
+        yield return new WaitForSeconds(0.75f);
+        player.transform.GetChild(12).GetComponent<AudioSource>().enabled = true;
     }
 
     public LimitBreak LookUpLimitBreak(LimitBreakName lbName)

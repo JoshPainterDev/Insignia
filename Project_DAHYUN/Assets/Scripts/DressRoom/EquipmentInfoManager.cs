@@ -6,6 +6,11 @@ public class EquipmentInfoManager : MonoBehaviour{
 
     public static EquipmentInfoManager equipmentInfoTool;
 
+    public Sprite perlinTexture;
+    public Sprite whiteSqTexture;
+    public Sprite redBlackSpaceTexture;
+    public Sprite monoSpaceTexture;
+
     private const string prefixHead = "Animations\\Equipment\\Head";
     private const string prefixTorso = "Animations\\Equipment\\Torso";
     private const string prefixLegs = "Animations\\Equipment\\Legs";
@@ -993,6 +998,8 @@ public class EquipmentInfoManager : MonoBehaviour{
         // WEAPON //
         else if (i < 28)
         {
+            Color weaponColor = Color.white;
+
             switch (i)
             {
                 case 24:
@@ -1049,12 +1056,17 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixWeapon + "\\Test_Sword\\Player_Weapon_TestSword_AnimController";
                             break;
                         case 1:
-                            equipInfo.Name = "Test Helmet";
+                            equipInfo.Name = "Galaxy's Edge";
                             equipInfo.AttackStat = 69;
                             equipInfo.DefenseStat = 69;
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
+                            equipInfo.imgSourceName = prefixWeapon + "\\Test_Sword\\Player_Weapon_SlayerSword_AnimController";
+                            equipInfo.useMaskTexture = true;
+                            equipInfo.maskTexture = monoSpaceTexture;
+                            weaponColor = GameController.controller.getPlayerColorPreference();
+                            equipInfo.equipmentColor = weaponColor;
                             break;
                         case 2:
                             equipInfo.Name = "Test Helmet";
@@ -1153,28 +1165,40 @@ public class EquipmentInfoManager : MonoBehaviour{
         // AURA //
         else if (i > 27)
         {
+            Color auraColor = Color.white;
+
             switch (i)
             {
                 case 28:
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Aura";
-                            equipInfo.AttackStat = 0;
+                            equipInfo.Name = "SuperNova Aura";
+                            equipInfo.AttackStat = 3;
                             equipInfo.DefenseStat = 0;
                             equipInfo.ProwessStat = 0;
-                            equipInfo.SpeedStat = 0;
+                            equipInfo.SpeedStat = 3;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
-                            equipInfo.imgSourceName = prefixAura + "None";
+                            equipInfo.imgSourceName = prefixAura + "\\SuperNova_Aura\\Player_Aura_SuperNova_AnimController";
+                            equipInfo.useMaskTexture = true;
+                            equipInfo.maskTexture = whiteSqTexture;
+                            auraColor = GameController.controller.getPlayerColorPreference();
+                            auraColor.a = 255;
+                            equipInfo.equipmentColor = auraColor;
                             break;
                         case 1:
-                            equipInfo.Name = "Fire Sword";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.Name = "Storm Aura";
+                            equipInfo.AttackStat = 8;
+                            equipInfo.DefenseStat = 2;
+                            equipInfo.ProwessStat = 2;
+                            equipInfo.SpeedStat = 10;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
-                            equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
+                            equipInfo.imgSourceName = prefixAura + "\\Storm_Aura\\Player_Aura_Storm_AnimController";
+                            equipInfo.useMaskTexture = true;
+                            equipInfo.maskTexture = perlinTexture;
+                            auraColor = GameController.controller.getPlayerColorPreference();
+                            auraColor.a = 0.9f;
+                            equipInfo.equipmentColor = auraColor;
                             break;
                         case 2:
                             equipInfo.Name = "Blaze Aura";
@@ -1183,7 +1207,8 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 3;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Aura;
-                            equipInfo.imgSourceName = prefixAura + "\\Test_Aura\\Player_Aura_Blaze_AnimController";
+                            equipInfo.imgSourceName = prefixAura + "\\SuperNova_Aura\\Player_Aura_SuperNova_AnimController";
+                            equipInfo.equipmentColor = Color.white;
                             break;
                         case 3:
                             equipInfo.Name = "idklol aura";

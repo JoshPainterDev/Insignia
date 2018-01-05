@@ -149,10 +149,10 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.BaseDamage = 0;
                 ability.Buffs = true;
                 ability.AttackBoost = 2;
-                ability.AttBoostDuration = 3;
+                ability.AttBoostDuration = 2;
                 ability.Heals = true;
                 ability.HealAmount = WEAK_HEAL;
-                ability.Description = "Seeth in bloodlust and anger. Attack boost +2.";
+                ability.Description = "Seeth in bloodlust and anger. Attack boost +2 for 2 turns.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.None;
                 ability.Ticks = 0;

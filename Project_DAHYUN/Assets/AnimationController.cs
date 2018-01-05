@@ -156,13 +156,32 @@ public class AnimationController : MonoBehaviour
         //weapon
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[12], GameController.controller.playerEquippedIDs[13]);
         this.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-        
-        if(showAura)
+
+        if (info.useMaskTexture)
         {
-            //Aura
-            info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
-            this.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+            this.transform.GetChild(6).GetComponent<SpriteRenderer>().enabled = false;
+            this.transform.GetChild(6).GetComponent<SpriteMask>().enabled = true;
+            this.transform.GetChild(6).GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
+            this.transform.GetChild(6).GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
         }
+
+        //Aura
+        info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
+        this.transform.GetChild(12).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+
+        if(info.useMaskTexture)
+        {
+            this.transform.GetChild(12).GetComponent<SpriteRenderer>().enabled = false;
+            this.transform.GetChild(12).GetComponent<SpriteMask>().enabled = true;
+            this.transform.GetChild(12).GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
+            this.transform.GetChild(12).GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
+        }
+
+        if (showAura)
+        {
+            this.transform.GetChild(12).gameObject.SetActive(true);
+        }
+
         setSkinColor(GameController.controller.getPlayerSkinColor()); // set skin color
     }
 

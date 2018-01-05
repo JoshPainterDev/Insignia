@@ -16,12 +16,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject playerLv_TextObj;
     public GameObject playerClassIcon;
     public GameObject inputDetector;
-    public GameObject auraPanel;
+    public GameObject personaPanel;
     public GameObject auraColor;
     public GameObject background;
     public Sprite KnightIcon;
 
-    private bool auraColorActive = false;
+    private bool personaPanelActive = false;
 
     public GameObject canvas;
     public GameObject camera;
@@ -140,27 +140,50 @@ public class Character_Menu_Manager : MonoBehaviour {
         LoadEquipmentIcons();
     }
 
-    public void disableAuraPanel()
+    public void disablePersonaPanel()
     {
-        auraColorActive = false;
-        auraPanel.gameObject.SetActive(false);
-        inputDetector.gameObject.SetActive(false);
+        personaPanelActive = false;
+        personaPanel.gameObject.SetActive(false);
+        //inputDetector.gameObject.SetActive(false);
     }
 
-    public void toggleAuraColor()
+    public void togglePersonaPanel()
     {
-        if (auraColorActive)
+        if (personaPanelActive)
         {
-            auraColorActive = false;
-            auraPanel.gameObject.SetActive(false);
-            inputDetector.gameObject.SetActive(false);
+            personaPanelActive = false;
+            personaPanel.gameObject.SetActive(false);
+            //inputDetector.gameObject.SetActive(false);
         }
         else
         {
-            auraColorActive = true;
-            auraPanel.gameObject.SetActive(true);
-            inputDetector.gameObject.SetActive(true);
+            personaPanelActive = true;
+            personaPanel.gameObject.SetActive(true);
+            //inputDetector.gameObject.SetActive(true);
         }
+    }
+
+    public void UpdateAuraColor(GameObject slider)
+    {
+        Color color = GameController.controller.getPlayerColorPreference();
+
+        switch (slider.name)
+        {
+            case "Slider1": // R
+                color.r = slider.GetComponent<Slider>().value;
+                break;
+            case "Slider2": // G
+                color.g = slider.GetComponent<Slider>().value;
+                break;
+            case "Slider3": // B
+                color.b = slider.GetComponent<Slider>().value;
+                break;
+        }
+        
+        auraColor.GetComponent<Image>().color = color;
+        GameController.controller.setPlayerColorPreference(color);
+        playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
+        background.GetComponent<SpriteRenderer>().color = color;
     }
 
     public void setAuraColor(GameObject obj)
@@ -223,7 +246,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void LoadPersona()
     {
-        float[] colorPref = GameController.controller.playerColorPreference;
+        Color colorPref = GameController.controller.getPlayerColorPreference();
         Color playerSkin = GameController.controller.getPlayerSkinColor();
 
         for (int i = 8; i < 12; ++i)
@@ -232,6 +255,10 @@ public class Character_Menu_Manager : MonoBehaviour {
         }
 
         auraColor.GetComponent<Image>().color = GameController.controller.getPlayerColorPreference();
+
+        personaPanel.transform.GetChild(1).GetComponent<Slider>().value = colorPref.r;
+        personaPanel.transform.GetChild(2).GetComponent<Slider>().value = colorPref.g;
+        personaPanel.transform.GetChild(3).GetComponent<Slider>().value = colorPref.b;
     }
 
     public void LoadSelectedImage(int i, int j)

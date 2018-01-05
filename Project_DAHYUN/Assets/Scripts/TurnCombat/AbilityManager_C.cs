@@ -7,6 +7,9 @@ public class AbilityManager_C : MonoBehaviour {
     private CombatManager combatManager;
     public GameObject playerMannequin;
     public GameObject enemyMannequin;
+    public GameObject boostHandle;
+
+    public GameObject boostPrefab;
 
     public GameObject lightningBlue_FX;
     public GameObject lightningYellow_FX;
@@ -272,7 +275,12 @@ public class AbilityManager_C : MonoBehaviour {
         print("ATTACK BOOST SET: " + level);
         combatManager.playerAttackBoost = level;
         combatManager.setBoostDur("Attack", duration, true);
-        yield return new WaitForSeconds(0.25f);
+
+        GameObject effectClone = (GameObject)Instantiate(boostPrefab, initPlayerPos + new Vector3(100, 100, 0), transform.rotation);
+        effectClone.GetComponent<StatBoost_C>().player = 1;
+        yield return new WaitForSeconds(2.25f);
+        //boostHandle.transform.GetChild(0).gameObject.SetActive(true);
+        boostHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.5f);
     } 
 
     IEnumerator DefenseBoostAnim(int level, int duration)

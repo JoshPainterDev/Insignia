@@ -8,6 +8,7 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip snowCollapse_FX;
     public AudioClip snowSteps_FX;
     public AudioClip skitterScreech_FX;
+    public AudioClip exitScene_FX;
 
     AudioSource audioSource;
 
@@ -47,6 +48,11 @@ public class SoundFXManager_C : MonoBehaviour
     public void playSkitterScreech()
     {
         audioSource.PlayOneShot(skitterScreech_FX, HIGH_VOLUME);
+    }
+
+    public void playExitScene()
+    {
+        audioSource.PlayOneShot(exitScene_FX, HIGH_VOLUME);
     }
 
     public void FadeVolume(float startPercent, float endPercent, float speed = 1f, bool ambient = false)

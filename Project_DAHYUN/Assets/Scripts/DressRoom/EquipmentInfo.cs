@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentInfo{
-    public enum EquipmentType { Head, Torso, Legs, Back, Gloves, Shoes, Sword, Claws, Bow, Aura, none};
+    public enum EquipmentType { Head, Torso, Legs, Back, Gloves, Shoes, Sword, Claws, Bow, Staff, Aura, none};
 
-    public enum EquipmentAnimation{ Sword, Claws, Bow, none};
+    public enum EquipmentAnimation{ Sword, Claws, Bow, Staff, none};
     
     public int AttackStat = 0;
     public int DefenseStat = 0;
@@ -16,4 +16,7 @@ public class EquipmentInfo{
     public EquipmentAnimation EquipAnimation;
     public string imgSourceName = "";
     public bool hideUnderLayer = true;
+    public bool useMaskTexture = false;
+    public Sprite maskTexture;
+    public Color equipmentColor = Color.white;
 }

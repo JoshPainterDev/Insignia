@@ -11,7 +11,7 @@ public class HealthScript : MonoBehaviour
     public Color fadeColor;
     public bool playerHealth = false;
 
-    private Color origColor;
+    private Color[] origColors;
 
     private float t = 0f;
     private bool lerping = false;
@@ -27,6 +27,7 @@ public class HealthScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        origColors = new Color[20];
         StartCoroutine(StartingAnim());
         Invoke("getColors", 2);
     }
@@ -41,15 +42,28 @@ public class HealthScript : MonoBehaviour
 
     private void getColors()
     {
+        int i = 0;
         if (playerHealth)
-            origColor = character.GetComponentInChildren<SpriteRenderer>().color;
+        {
+            foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+            {
+                origColors[i] = sprite.color;
+                ++i;
+            }
+        }
         else
-            origColor = character.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().color;
+        {
+            foreach (SpriteRenderer sprite in character.transform.GetChild(0).gameObject.GetComponentsInChildren<SpriteRenderer>())
+            {
+                origColors[i] = sprite.color;
+                ++i;
+            }
+        }
     }
 
     public void setColors(Color color)
     {
-        origColor = color;
+        origColors[0] = color;
     }
 
     public void Hurt()
@@ -105,8 +119,16 @@ public class HealthScript : MonoBehaviour
 
         foreach (Image sprite in this.GetComponentsInChildren<Image>())
         {
-            sprite.enabled = true;
-            sprite.color = Color.white;
+            if (sprite.gameObject.transform.parent.name != "BoostHandle")
+            {
+                sprite.enabled = true;
+                sprite.color = Color.white;
+            }
+            else
+            {
+                sprite.enabled = false;
+                sprite.color = Color.clear;
+            }
         }
 
         foreach (Text text in this.GetComponentsInChildren<Text>())
@@ -122,6 +144,8 @@ public class HealthScript : MonoBehaviour
 
     IEnumerator HurtAnim()
     {
+        int i = 0;
+
         if(playerHealth)
         {
             Color skinC = GameController.controller.getPlayerSkinColor();
@@ -136,7 +160,8 @@ public class HealthScript : MonoBehaviour
 
             foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
             {
-                sprite.color = origColor;
+                sprite.color = origColors[i];
+                ++i;
             }
 
             character.GetComponent<AnimationController>().setSkinColor(skinC);
@@ -152,9 +177,11 @@ public class HealthScript : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
 
+            i = 0;
             foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
             {
-                sprite.color = origColor;
+                sprite.color = origColors[i];
+                ++i;
             }
 
             character.GetComponent<AnimationController>().setSkinColor(skinC);
@@ -170,7 +197,8 @@ public class HealthScript : MonoBehaviour
 
             foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
             {
-                sprite.color = origColor;
+                sprite.color = origColors[i];
+                ++i;
             }
 
             yield return new WaitForSeconds(0.1f);
@@ -182,9 +210,11 @@ public class HealthScript : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
 
+            i = 0;
             foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
             {
-                sprite.color = origColor;
+                sprite.color = origColors[i];
+                ++i;
             }
         }
     }
@@ -195,7 +225,8 @@ public class HealthScript : MonoBehaviour
 
         foreach (LerpScript lerp in this.GetComponentsInChildren<LerpScript>())
         {
-            lerp.LerpToColor(Color.white, Color.clear, 1);
+            if (lerp.gameObject.transform.parent.name != "BoostHandle")
+                lerp.LerpToColor(Color.white, Color.clear, 1);
         }
 
         yield return new WaitForSeconds(3f);
@@ -206,7 +237,11 @@ public class HealthScript : MonoBehaviour
         foreach (Image sprite in this.GetComponentsInChildren<Image>())
         {
             sprite.enabled = false;
-            sprite.color = Color.white;
+
+            if (sprite.gameObject.transform.parent.name != "BoostHandle")
+            {
+                sprite.color = Color.white;
+            }   
         }
 
         foreach (Text text in this.GetComponentsInChildren<Text>())

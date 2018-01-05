@@ -10,6 +10,8 @@ public class CombatManager : MonoBehaviour {
     public float VULNERABLE_REDUCTION = 0.2f;
     public float BLINDED_REDUCTION = 66.6f;
     public int BLIND_DURATION = 2;
+    public float CRITICAL_THRESHOLD = 0.8f;
+    public int STAT_LIMIT = 50;
 
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
@@ -101,6 +103,7 @@ public class CombatManager : MonoBehaviour {
     public float strikePosX = 320f;
     public string strikeMod = "none";
     private float strikeExecutePercent = 0.20f;
+    private bool wasCriticalHit = false;
 
     //ABILITY VARIABLES
     public Vector2 ab1_pos, ab2_pos, ab3_pos, ab4_pos;
@@ -151,7 +154,6 @@ public class CombatManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            print("wut");
             this.GetComponent<LimitBreakManager_C>().UseLimitBreak(playerLimitBreak);
         }
     }
@@ -328,7 +330,9 @@ public class CombatManager : MonoBehaviour {
         print("PLAYER TURN IS OVER");
         AbilityCooldownTick(true);
         BoostTick(true);
-        StartCoroutine(CheckForDamage(damageDealt, false, originalHP));
+        print("was crit: " + wasCriticalHit);
+        StartCoroutine(CheckForDamage(damageDealt, false, originalHP, wasCriticalHit));
+        wasCriticalHit = false;
     }
 
     public void EndEnemyTurn(bool damageDealt, int originalHP = 0)
@@ -336,10 +340,11 @@ public class CombatManager : MonoBehaviour {
         print("ENEMY TURN IS OVER");
         AbilityCooldownTick(false);
         BoostTick(false);
-        StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
+        StartCoroutine(CheckForDamage(damageDealt, true, originalHP, wasCriticalHit));
+        wasCriticalHit = false;
     }
 
-    IEnumerator CheckForDamage(bool damage, bool player, int origHP)
+    IEnumerator CheckForDamage(bool damage, bool player, int origHP, bool critical)
     {
         ShowHealthBars();
 
@@ -361,7 +366,7 @@ public class CombatManager : MonoBehaviour {
                     playerHealthBar.GetComponent<HealthScript>().Hurt();
                     yield return new WaitForSeconds(0.25f);
                     playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                    playerHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - playerHealth);
+                    playerHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - playerHealth, critical);
 
                     if (CheckForDeath(false))
                         StartCoroutine(PlayPlayerDeathAnim());
@@ -375,12 +380,12 @@ public class CombatManager : MonoBehaviour {
                     enemyHealthBar.GetComponent<HealthScript>().Hurt();
                     yield return new WaitForSeconds(0.25f);
                     enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                    enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - enemyHealth);
+                    enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - enemyHealth, critical);
 
                     if (CheckForDeath(true))
                         StartCoroutine(PlayEnemyDeathAnim());
                     else// CUM BACK HERE!!
-                        StartCoroutine(StartEnemyTurn());
+                        StartCoroutine(StartEnemyTurn());      
                 }
             }
             else
@@ -405,7 +410,7 @@ public class CombatManager : MonoBehaviour {
         HideBackButton();
         //enable main buttons?
 
-        StartCoroutine(CheckForDamage(damageDealt, true, originalHP));
+        StartCoroutine(CheckForDamage(damageDealt, true, originalHP, false));
     }
 
     IEnumerator StartPlayerTurn()
@@ -654,11 +659,14 @@ public class CombatManager : MonoBehaviour {
 
     public void BoostTick(bool player)
     {
-        if(player)
+        Transform trans = this.GetComponent<AbilityManager_C>().boostHandle.transform;
+
+        if (player)
         {
             if (playerAttBoostDur == 0)
             {
                 playerAttackBoost = 0;
+                trans.GetChild(0).GetComponent<Image>().enabled = false;
             }
             else
                 --playerAttBoostDur;
@@ -666,6 +674,7 @@ public class CombatManager : MonoBehaviour {
             if (playerDefBoostDur == 0)
             {
                 playerDefenseBoost = 0;
+                trans.GetChild(1).GetComponent<Image>().enabled = false;
             }
             else
                 --playerDefBoostDur;
@@ -673,6 +682,7 @@ public class CombatManager : MonoBehaviour {
             if (playerSpdBoostDur == 0)
             {
                 playerSpeedBoost = 0;
+                trans.GetChild(2).GetComponent<Image>().enabled = false;
             }
             else
                 --playerSpdBoostDur;
@@ -914,6 +924,7 @@ public class CombatManager : MonoBehaviour {
     public void DamageEnemy_Strike(float percentOfDamage = 1.0f)
     {
         int randDamageBuffer = Random.Range(0, 9);
+        float critRand = Random.Range(1.0f, 1.0f);
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
@@ -941,9 +952,16 @@ public class CombatManager : MonoBehaviour {
 
         damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
 
-        print("attBoostMod: " + attBoostMod);
-
         damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
+
+        // critical hit chance
+        float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
+        print("Chance to crit: " + chance);
+        if (chance >= CRITICAL_THRESHOLD)
+        {
+            wasCriticalHit = true;
+            damageDealt *= 1.5f;
+        }
 
         damageDealt *= percentOfDamage;
 
@@ -961,6 +979,7 @@ public class CombatManager : MonoBehaviour {
         int origHP = enemyHealth;
         //spawn effects or something idk
         enemyHealth = 0;
+        wasCriticalHit = true;
         EndPlayerTurn(true, origHP);
     }
 
@@ -1114,6 +1133,7 @@ public class CombatManager : MonoBehaviour {
     public void DamagePlayer_Strike(float percentOfDamage = 1.0f)
     {
         int randDamageBuffer = Random.Range(0, 9);
+        float critRand = Random.Range(1.0f, 1.0f);
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
@@ -1140,6 +1160,15 @@ public class CombatManager : MonoBehaviour {
         damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
 
         damageDealt -= (GameController.controller.playerDefense * playerDefenseBoost);
+
+        // critical hit chance
+        float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
+        print(chance);
+        if (chance >= CRITICAL_THRESHOLD)
+        {
+            wasCriticalHit = true;
+            damageDealt *= 1.5f;
+        }
 
         damageDealt *= percentOfDamage;
 
@@ -1600,6 +1629,8 @@ public class CombatManager : MonoBehaviour {
         enemyMaxHealth = (enemyInfo.enemyMaxHealthBase * enemyInfo.enemyLevel) + (9 * enemyInfo.enemyDefense);
         enemyHealth = enemyMaxHealth;
         enemyCanLB = enemyInfo.canLimitBreak;
+
+        this.GetComponent<EnemyCombatScript>().ResetEnemy(enemyInfo);
     }
 
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
     private CombatManager combatManager;
     public GameObject enemyMannequinn;
     public GameObject playerMannequin;
+    public GameObject boostHandle;
 
     public GameObject lightningBlue_FX;
     public GameObject lightningYellow_FX;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class DamageVisualizer_C : MonoBehaviour
 {
     public GameObject damagePrefab;
+    public GameObject criticalPrefab;
     public GameObject canvas;
     public bool playerHealth = true;
     public Color enemyColor;
@@ -23,22 +24,35 @@ public class DamageVisualizer_C : MonoBehaviour
     {
     }
 
-    public void SpawnDamage(int damage)
+    public void SpawnDamage(int damage, bool criticalHit = false)
     {
         Vector3 spawnPos;
-        Color textColor;
+        Color textColor = Color.white;
         if (playerHealth)
         {
             spawnPos = playerPos;
-            textColor = enemyColor;
+            
+            if (criticalHit)
+            {
+                effectClone = (GameObject)Instantiate(criticalPrefab, Vector3.zero, transform.rotation);
+                textColor = enemyColor;
+            }
+            else
+                effectClone = (GameObject)Instantiate(damagePrefab, Vector3.zero, transform.rotation);
         }
         else
         {
             spawnPos = enemyPos;
-            textColor = GameController.controller.getPlayerColorPreference();
+
+            if (criticalHit)
+            {
+                effectClone = (GameObject)Instantiate(criticalPrefab, Vector3.zero, transform.rotation);
+                textColor = GameController.controller.getPlayerColorPreference();
+            }
+            else
+                effectClone = (GameObject)Instantiate(damagePrefab, Vector3.zero, transform.rotation);
         } 
 
-        effectClone = (GameObject)Instantiate(damagePrefab, Vector3.zero, transform.rotation);
         effectClone.transform.SetParent(canvas.transform);
         effectClone.transform.GetChild(1).GetComponent<Text>().color = textColor;
         effectClone.transform.localPosition = spawnPos;

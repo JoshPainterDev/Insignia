@@ -152,8 +152,9 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.limitBreakTracker = -1;
             GameController.controller.playerEquippedIDs = new int[16];
             GameController.controller.playerEquipmentList = new bool[30, 4];
-            
-            for(int i = 0; i < 6; ++i)
+            GameController.controller.arenaCompleted = new bool[6];
+
+            for (int i = 0; i < 6; ++i)
                 GameController.controller.arenaCompleted[i] = false;
 
             for (int i = 0; i < 30; ++i)

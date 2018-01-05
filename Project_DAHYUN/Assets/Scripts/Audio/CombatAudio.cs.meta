@@ -1,8 +1,9 @@
 fileFormatVersion: 2
 guid: a8addc0308c4172479f12e0dfa40b115
-timeCreated: 1512255083
+timeCreated: 1515028914
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - combatLoop: {fileID: 8300000, guid: ed6e49ded297930498bf0347afcd6dec, type: 3}
@@ -45,6 +46,8 @@ MonoImporter:
   - swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
   - bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
   - plasmaIgnite: {fileID: 8300000, guid: dc7c09114e9f5c2409496dc14b337f5e, type: 3}
+  - LB_SuperNova_Start: {fileID: 8300000, guid: 7fa4a7692ece60440842a6d7843ae3d4,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

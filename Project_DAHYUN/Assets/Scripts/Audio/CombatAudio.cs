@@ -43,6 +43,8 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip swordBlood02;
     public AudioClip bloodSplatter01;
     public AudioClip plasmaIgnite;
+
+    public AudioClip LB_SuperNova_Start;
     AudioSource audioSource;
 
     public float HIGH_VOLUME = 1.0f;
@@ -57,6 +59,11 @@ public class CombatAudio : MonoBehaviour {
     public void playSoundEffect(AudioClip soundClip, float volume = 0.5f)
     {
         audioSource.PlayOneShot(soundClip, volume);
+    }
+
+    public void playLBSuperNovaStart()
+    {
+        audioSource.PlayOneShot(LB_SuperNova_Start, MEDIUM_VOLUME);
     }
 
     public void playRandomSwordHit()

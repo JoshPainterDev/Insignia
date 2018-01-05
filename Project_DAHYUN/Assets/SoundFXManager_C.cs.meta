@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 451727e9ac3b6d346871fdf0f3c4d600
-timeCreated: 1507757642
+timeCreated: 1515060954
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - snowCollapse_FX: {fileID: 8300000, guid: b1165f8de36c5a142a38761b641a2fa4, type: 3}
+  - snowSteps_FX: {fileID: 8300000, guid: c2272e566f6bdfe4081e641e64f85fd9, type: 3}
+  - skitterScreech_FX: {fileID: 8300000, guid: c19873bc94b80834da220c825801efec, type: 3}
+  - exitScene_FX: {fileID: 8300000, guid: 697dea622412e8943b9ef2af923fb774, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
