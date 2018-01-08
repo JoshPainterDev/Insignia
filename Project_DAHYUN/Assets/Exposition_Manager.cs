@@ -28,6 +28,7 @@ public class Exposition_Manager : MonoBehaviour
     public GameObject speaker03;
     public GameObject speaker04;
     public GameObject speaker05;
+    public GameObject speaker06;
 
     private Vector3 panelUpPos;
     private Vector3 panelDownPos;
@@ -35,8 +36,8 @@ public class Exposition_Manager : MonoBehaviour
     private string nextLevel;
     private Dialogue_Manager_C dialogueManager;
 
-    private bool actionsCompleted = false;
-    private int actionCounter = 0;
+    public bool actionsCompleted = false;
+    public int actionCounter = 0;
 
     string playerName;
     EnemyEncounter encounter;
@@ -90,51 +91,50 @@ public class Exposition_Manager : MonoBehaviour
         else
         {
             dialogueManager.DialogueHandler();
-
             yield return new WaitForSeconds(1.15f);
             ready4Input = true;
         }
     }
 
-    public void NextAction()
+    public void NextAction(int act = 0)
     {
         ++actionCounter;
-        BeginCutscene(encounter.encounterNumber);
+        BeginCutscene(encounter.encounterNumber, act);
     }
 
-    public void BeginCutscene(int encounterNum)
+    public void BeginCutscene(int encounterNum, int act = 0)
     {
         switch(sceneNumber)
         {
             case 1:
-                StartCoroutine(Cutscene1(actionCounter));
+                StartCoroutine(Cutscene1(actionCounter, act));
                 break;
             case 2:
-                StartCoroutine(Cutscene2(actionCounter));
+                StartCoroutine(Cutscene2(actionCounter, act));
                 break;
             case 3:
-                StartCoroutine(Cutscene3(actionCounter));
+                StartCoroutine(Cutscene3(actionCounter, act));
                 break;
             case 4:
-                StartCoroutine(Cutscene4(actionCounter));
+                StartCoroutine(Cutscene4(actionCounter, act));
                 break;
             case 5:
-                StartCoroutine(Cutscene5(actionCounter));
+                StartCoroutine(Cutscene5(actionCounter, act));
                 break;
             case 6:
-                StartCoroutine(Cutscene6(actionCounter));
+                StartCoroutine(Cutscene6(actionCounter, act));
                 break;
             case 7:
-                StartCoroutine(Cutscene7(actionCounter));
+                StartCoroutine(Cutscene7(actionCounter, act));
                 break;
             case 8:
-                StartCoroutine(Cutscene8(actionCounter));
+                StartCoroutine(Cutscene8(actionCounter, act));
                 break;
             case 9:
-                StartCoroutine(Cutscene9(actionCounter));
+                StartCoroutine(Cutscene9(actionCounter, act));
                 break;
             case 10:
-                StartCoroutine(Cutscene10(actionCounter));
+                StartCoroutine(Cutscene10(actionCounter, act));
                 break;
         }
     }
@@ -162,7 +162,8 @@ public class Exposition_Manager : MonoBehaviour
     public void EndDialogue()
     {
         ready4Input = false;
-        //touch2Continue.SetActive(false);
+        actionsCompleted = false;
+        actionCounter = 0;
         dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
     }
@@ -183,7 +184,7 @@ public class Exposition_Manager : MonoBehaviour
         sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
     }
 
-    IEnumerator NewDialogue(int cutscene, int instance)
+    IEnumerator NewDialogue(int cutscene, int instance, int act = 0)
     {
         int totalLines = 0;
         bool usesPlayer = false;
@@ -246,7 +247,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[1] = true;
                         script[1] = "Steady now! On my mark!";
 
-                        speaker[2] = "Mark";
+                        speaker[2] = "PVT Mark";
                         leftspeaker[2] = false;
                         script[2] = "Ready and willing, sir!";
 
@@ -279,83 +280,91 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[0] = true;
                         script[0] = "Soldier!";
 
-                        speaker[1] = "General Vixon";
-                        leftspeaker[1] = true;
-                        script[1] = "Listen, I know you're new to the Bulwark,";
+                        //speaker[1] = "General Vixon";
+                        //leftspeaker[1] = true;
+                        //script[1] = "Listen, I know you're new to the Bulwark,";
 
-                        speaker[2] = "General Vixon";
-                        leftspeaker[2] = true;
-                        script[2] = "but we've got an apocalypse on our hands!";
+                        //speaker[2] = "General Vixon";
+                        //leftspeaker[2] = true;
+                        //script[2] = "but we've got an apocalypse on our hands!";
 
-                        speaker[3] = "General Vixon";
-                        leftspeaker[3] = true;
-                        script[3] = "I'm counting on you-";
+                        //speaker[3] = "General Vixon";
+                        //leftspeaker[3] = true;
+                        //script[3] = "I'm counting on you-";
 
-                        speaker[4] = playerName;
-                        leftspeaker[4] = false;
-                        script[4] = "Me?!";
+                        //speaker[4] = playerName;
+                        //leftspeaker[4] = false;
+                        //script[4] = "Me?!";
 
-                        speaker[5] = "General Vixon";
-                        leftspeaker[5] = true;
-                        script[5] = "To hold this choke with your life!";
+                        //speaker[5] = "General Vixon";
+                        //leftspeaker[5] = true;
+                        //script[5] = "to hold this choke with your life!";
 
-                        speaker[6] = "General Vixon";
-                        leftspeaker[6] = true;
-                        script[6] = "Nothing gets past that bridge! Got it?!";
+                        //speaker[6] = "General Vixon";
+                        //leftspeaker[6] = true;
+                        //script[6] = "Nothing gets past that bridge! Got it?!";
 
-                        speaker[7] = playerName;
-                        leftspeaker[7] = false;
-                        script[7] = "Sir, yes, sir!";
+                        //speaker[7] = playerName;
+                        //leftspeaker[7] = false;
+                        //script[7] = "Sir, yes, sir!";
 
-                        speaker[8] = "General Vixon";
-                        leftspeaker[8] = true;
-                        script[8] = "I knew I could count on you-";
+                        //speaker[8] = "General Vixon";
+                        //leftspeaker[8] = true;
+                        //script[8] = "I knew I could count on you-";
 
-                        speaker[9] = "General Vixon";
-                        leftspeaker[9] = true;
-                        script[9] = "Uhh-";
+                        //speaker[9] = "General Vixon";
+                        //leftspeaker[9] = true;
+                        //script[9] = "Uhh-";
 
-                        speaker[10] = playerName;
-                        leftspeaker[10] = false;
-                        script[10] = "Private " + playerName + ", sir...";
+                        //speaker[10] = playerName;
+                        //leftspeaker[10] = false;
+                        //script[10] = "Private " + playerName + ", sir...";
 
-                        speaker[11] = "General Vixon";
-                        leftspeaker[11] = true;
-                        script[11] = "Right! Ummm...";
+                        //speaker[11] = "General Vixon";
+                        //leftspeaker[11] = true;
+                        //script[11] = "Right! Ummm...";
 
-                        speaker[12] = "General Vixon";
-                        leftspeaker[12] = true;
-                        script[12] = "I'm sure you'll do fine out there, kid!";
+                        //speaker[12] = "General Vixon";
+                        //leftspeaker[12] = true;
+                        //script[12] = "I'm sure you'll do fine out there, kid!";
 
-                        speaker[13] = "General Vixon";
-                        leftspeaker[13] = true;
-                        script[13] = "Now get your dainty look'n underside out of my sight!";
+                        //speaker[13] = "General Vixon";
+                        //leftspeaker[13] = true;
+                        //script[13] = "Now get your dainty look'n underside out of my sight!";
 
-                        speaker[14] = playerName;
-                        leftspeaker[14] = false;
-                        script[14] = "Sir, yes, sir!";
+                        //speaker[14] = playerName;
+                        //leftspeaker[14] = false;
+                        //script[14] = "Sir, yes, sir!";
 
+                        //speaker[15] = "Officer";
+                        //leftspeaker[15] = true;
+                        //script[15] = "Sir! They've breached the catwalk!";
+
+                        //speaker[16] = "Officer";
+                        //leftspeaker[16] = true;
+                        //script[16] = "We'ere losing bodies too fa-";
+
+                        //speaker[17] = "General Vixon";
+                        //leftspeaker[17] = true;
+                        //script[17] = "Rally your men back to the inner wall and ready the Flogger!";
+
+                        //speaker[18] = "General Vixon";
+                        //leftspeaker[18] = true;
+                        //script[18] = "I've got a buckethead cover'n our retreat!";
+
+                        //speaker[19] = "Officer";
+                        //leftspeaker[19] = true;
+                        //script[19] = "Right away, sir!";
+
+                        totalLines = 1;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
                         speaker[15] = "Officer";
                         leftspeaker[15] = true;
-                        script[15] = "Sir! They've breached the catwalk!";
+                        script[15] = "fuck this bug!";
 
-                        speaker[16] = "Officer";
-                        leftspeaker[16] = true;
-                        script[16] = "We'ere losing bodies too fa-";
-
-                        speaker[17] = "General Vixon";
-                        leftspeaker[17] = true;
-                        script[17] = "Rally your men back to the inner wall and ready the Flogger!";
-
-                        speaker[18] = "General Vixon";
-                        leftspeaker[18] = true;
-                        script[18] = "I've got a buckethead cover'n our retreat!";
-
-                        speaker[19] = "Officer";
-                        leftspeaker[19] = true;
-                        script[19] = "Right away, sir!";
-
-                        totalLines = 20;
+                        totalLines = 1;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                         //case 1:
@@ -675,7 +684,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene10(int action)
+    IEnumerator Cutscene10(int action, int act = 0)
     {
         switch (action)
         {
@@ -731,7 +740,7 @@ public class Exposition_Manager : MonoBehaviour
         //////////////////
     }
 
-    IEnumerator Cutscene9(int action)
+    IEnumerator Cutscene9(int action, int act = 0)
     {
         switch (action)
         {
@@ -755,7 +764,7 @@ public class Exposition_Manager : MonoBehaviour
         //////////////////
     }
 
-    IEnumerator Cutscene8(int action)
+    IEnumerator Cutscene8(int action, int act = 0)
     {
         switch (action)
         {
@@ -776,7 +785,7 @@ public class Exposition_Manager : MonoBehaviour
         //////////////////
     }
 
-    IEnumerator Cutscene7(int action)
+    IEnumerator Cutscene7(int action, int act = 0)
     {
         switch(action)
         {
@@ -817,7 +826,7 @@ public class Exposition_Manager : MonoBehaviour
         //////////////////
     }
 
-    IEnumerator Cutscene6(int action)
+    IEnumerator Cutscene6(int action, int act = 0)
     {
         switch(action)
         {
@@ -838,7 +847,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene5(int action)
+    IEnumerator Cutscene5(int action, int act = 0)
     {
         switch (action)
         {
@@ -885,7 +894,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator CutsceneTutorial(int action)
+    IEnumerator CutsceneTutorial(int action, int act = 0)
     {
         // Set next Level //
         nextLevel = "Tutorial_Scene01";
@@ -918,7 +927,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator CutsceneSnow(int action)
+    IEnumerator CutsceneSnow(int action, int act = 0)
     {
         // Set next Level //
         nextLevel = "Exposition_Scene04";
@@ -956,7 +965,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene4(int action)
+    IEnumerator Cutscene4(int action, int act = 0)
     {
         // Set next Level //
         nextLevel = "Tutorial_Scene02";
@@ -997,58 +1006,83 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene3(int action)
+    IEnumerator dialogueInvoker(int scene, int instance, int act, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(NewDialogue(scene, instance, act));
+    }
+
+    IEnumerator Cutscene3(int action, int act = 0)
     {
         // Set next Level //
         nextLevel = "Exposition_Scene04";
         //////////////////
-
-        switch (action)
+        print(action);
+        switch(act)
         {
             case 0:
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(1, 1, 1, 0.5f), 0.6f);
-                yield return new WaitForSeconds(0.75f);
-                speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(200, 0, 0), 1f);
-                yield return new WaitForSeconds(2f);
-                StartCoroutine(NewDialogue(3, 1));
-                yield return new WaitForSeconds(1f);
-                Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 3, playerMannequin.transform.position.y + 90, 0);
-                GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
-                yield return new WaitForSeconds(0.75f);
-                playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                switch (action)
+                {
+                    case 0:
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(1, 1, 1, 0.5f), 0.6f);
+                        yield return new WaitForSeconds(0.75f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(200, 0, 0), 1f);
+                        yield return new WaitForSeconds(2f);
+                        StartCoroutine(NewDialogue(3, 1));
+                        yield return new WaitForSeconds(1f);
+                        Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 3, playerMannequin.transform.position.y + 90, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        yield return new WaitForSeconds(0.75f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        break;
+                    case 1:
+                        StartCoroutine(dialogueInvoker(3, 2, 1, 3.2f));
+                        break;
+                    //case 15:
+                    //    yield return new WaitForSeconds(1.5f);
+                    //    dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 3f);
+                    //    dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 3f);
+                    //    playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                    //    yield return new WaitForSeconds(0.2f);
+                    //    playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(60, 0, 0), 2f);
+                    //    yield return new WaitForSeconds(0.75f);
+                    //    StartCoroutine(ExitScene(playerMannequin));
+                    //    break;
+                }
                 break;
-            case 15:
-                yield return new WaitForSeconds(1.5f);
-                dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 3f);
-                dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 3f);
-                playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                yield return new WaitForSeconds(0.2f);
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(60,0,0), 1f);
-                yield return new WaitForSeconds(1f);
-                StartCoroutine(ExitScene(playerMannequin));
-                break;
-            case 16:
-                yield return new WaitForSeconds(1f);
-                speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0), 1.0f);
-                yield return new WaitForSeconds(1f);
-                dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelDownPos, panelUpPos, 2f);
-                dialoguePanel.GetComponent<LerpScript>().LerpToColor(Color.clear, panelOrigColor, 2f);
-                //dialoguePanel.transform.GetChild(0).GetComponent<Text>().text = "";
-                break;
-            case 17:
-                speaker01.GetComponentInChildren<SpriteRenderer>().flipX = true;
-                break;
-            case 20:
-                yield return new WaitForSeconds(1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
-                sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
-                yield return new WaitForSeconds(2f);
-                StartCoroutine(LoadNextLv());
+            case 1:
+                print("got here boiiii");
+                switch (action)
+                {
+                    case 16:
+
+                        yield return new WaitForSeconds(1f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0), 1.0f);
+                        yield return new WaitForSeconds(1f);
+                        dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelDownPos, panelUpPos, 2f);
+                        dialoguePanel.GetComponent<LerpScript>().LerpToColor(Color.clear, panelOrigColor, 2f);
+                        break;
+                    case 17:
+                        yield return new WaitForSeconds(1f);
+                        speaker01.GetComponentInChildren<SpriteRenderer>().flipX = true;
+                        break;
+                    case 20:
+                        yield return new WaitForSeconds(1f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position - new Vector3(200, 0, 0), 1.5f);
+                        yield return new WaitForSeconds(0.5f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker02.transform.position - new Vector3(200, 0, 0), 1.5f);
+                        yield return new WaitForSeconds(3f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
+                        sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
+                        yield return new WaitForSeconds(2f);
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
                 break;
         }
     }
 
-    IEnumerator Cutscene2(int action)
+    IEnumerator Cutscene2(int action, int act = 0)
     {
         // Set next Level //
         nextLevel = "Exposition_Scene03";
@@ -1088,11 +1122,65 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 StartCoroutine(NewDialogue(2,1));
                 break;
-            case 3:
+            case 4:
+                yield return new WaitForSeconds(1f);
+                sfxManager.GetComponent<SoundFXManager_C>().playLaserBombardment(true);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.2f);
+                speaker03.GetComponent<ParticleSystem>().Play();
+                speaker04.GetComponent<ParticleSystem>().Play();
+                speaker06.GetComponent<ParticleSystem>().Play();
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.1f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
+                yield return new WaitForSeconds(1.75f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.2f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.1f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
+                break;
+            case 5:
+                yield return new WaitForSeconds(0.1f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
+                break;
+            case 6:
+                yield return new WaitForSeconds(0.2f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.4f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
+                yield return new WaitForSeconds(0.1f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
+                break;
+            case 7:
+                yield return new WaitForSeconds(0.25f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.2f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.15f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.1f);
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
+                yield return new WaitForSeconds(0.3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
                 break;
             case 8:
+                
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 0.35f);
-                yield return new WaitForSeconds(2.25f);
+                yield return new WaitForSeconds(1.5f);
+                sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, false);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1,1,1,0.8f), Color.red, 0.75f);
                 yield return new WaitForSeconds(1f);
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.red, Color.black, 0.75f);
@@ -1103,7 +1191,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene1(int action)
+    IEnumerator Cutscene1(int action, int act = 0)
     {
         // Set next Level //
         nextLevel = "Exposition_Scene02";

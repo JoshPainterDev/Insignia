@@ -10,6 +10,7 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip skitterScreech_FX;
     public AudioClip exitScene_FX;
     public AudioClip footSteps_FX01;
+    public AudioClip laserBombardment_FX;
 
     AudioSource audioSource;
 
@@ -28,6 +29,22 @@ public class SoundFXManager_C : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void playLaserBombardment(bool loop = false)
+    {
+        if(loop)
+        {
+            audioSource.loop = true;
+            audioSource.volume = HIGH_VOLUME;
+            audioSource.clip = laserBombardment_FX;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.PlayOneShot(laserBombardment_FX, HIGH_VOLUME);
+        }
+
     }
 
     public void playFootSteps()

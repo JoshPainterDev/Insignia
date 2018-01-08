@@ -8772,6 +8772,7 @@ MonoBehaviour:
   skitterScreech_FX: {fileID: 8300000, guid: 917172825eca3c5429fd3ce820aae199, type: 3}
   exitScene_FX: {fileID: 0}
   footSteps_FX01: {fileID: 0}
+  laserBombardment_FX: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -9270,7 +9271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -281, y: 51.5}
+  m_AnchoredPosition: {x: -276.4, y: 51.5}
   m_SizeDelta: {x: 75, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1354402599
@@ -9416,7 +9417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1419496728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9432,7 +9433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076294, y: -34.1}
+  m_AnchoredPosition: {x: -2, y: -38}
   m_SizeDelta: {x: 1184.63, y: 96.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419496729
@@ -9455,8 +9456,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e20e6b8eee067634caa82e18384f0b9d, type: 3}
-    m_FontSize: 60
+    m_Font: {fileID: 12800000, guid: e8d20012bc646024987c1f3b644e3b1b, type: 3}
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -9621,7 +9622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 281, y: 10}
+  m_AnchoredPosition: {x: 271.7, y: 10}
   m_SizeDelta: {x: 75, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1500741110
@@ -9747,6 +9748,7 @@ MonoBehaviour:
   speaker03: {fileID: 1667463380}
   speaker04: {fileID: 0}
   speaker05: {fileID: 0}
+  speaker06: {fileID: 0}
 --- !u!114 &1616549428
 MonoBehaviour:
   m_ObjectHideFlags: 0

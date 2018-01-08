@@ -50,7 +50,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         expositionManager = this.GetComponent<Exposition_Manager>();
     }
 
-    public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer)
+    public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer, int act = 0)
     {
         dDialogueCompleted = false;
         dCurrentLine = 0;
@@ -58,6 +58,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         dScript = script;
         dSpeaker = speaker;
         dIsLeftSpeaker = isLeftSpeaker;
+        prevLineNum = -1;
 
         previousSpeaker = "";
         dialogueBox.GetComponent<Text>().text = "";
@@ -65,6 +66,10 @@ public class Dialogue_Manager_C : MonoBehaviour
         leftOrigPos = leftSpeaker.transform.position;
 
         expositionManager.ready4Input = true;
+
+        if (typeRoutine != null)
+            StopCoroutine(typeRoutine);
+
         DialogueHandler();
     }
 
@@ -75,8 +80,8 @@ public class Dialogue_Manager_C : MonoBehaviour
         bool isLeftSpeaker = dIsLeftSpeaker[dCurrentLine];
 
         tap2Continue.SetActive(false);
-        
-        if(TTCisRunning)
+
+        if (TTCisRunning)
         {
             StopCoroutine(showTTC);
             TTCisRunning = false;
@@ -136,6 +141,7 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
+        print(line);
         for (int i = 0; i < line.Length; ++i)
         {
             yield return new WaitForSeconds(0.01f);
@@ -172,6 +178,10 @@ public class Dialogue_Manager_C : MonoBehaviour
                 showTTC = StartCoroutine(showTouch2Continue());
             }
         }
+        else
+        {
+            print("wtf is going on");
+        }
     }
 
     IEnumerator showTouch2Continue()
@@ -195,8 +205,10 @@ public class Dialogue_Manager_C : MonoBehaviour
     {
         expositionManager.NextAction();
 
-        SetLeftVisibile(false, dCurrentLine);
-        SetRightVisibile(false, dCurrentLine);
+        if(isLeftVisibile)
+            SetLeftVisibile(false, dCurrentLine);
+        else
+            SetRightVisibile(false, dCurrentLine);
 
         yield return new WaitForSeconds(1f);
         
@@ -310,7 +322,7 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Skritter":
                 iconString = "CloseUps\\Character_CloseUp_Skritter";
                 break;
-            case "Mark":
+            case "PVT Mark":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
                 break;
             default:

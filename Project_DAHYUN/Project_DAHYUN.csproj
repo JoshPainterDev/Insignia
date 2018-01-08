@@ -325,6 +325,7 @@
     <Compile Include="Assets\NewCharacter_Manager.cs" />
     <Compile Include="Assets\OscillationScript.cs" />
     <Compile Include="Assets\OverlayScript.cs" />
+    <Compile Include="Assets\RandomTPinBounds.cs" />
     <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
     <Compile Include="Assets\Scripts\Audio\MenuUIAudio.cs" />

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 451727e9ac3b6d346871fdf0f3c4d600
-timeCreated: 1515209177
+timeCreated: 1515393185
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -11,6 +11,8 @@ MonoImporter:
   - skitterScreech_FX: {fileID: 8300000, guid: c19873bc94b80834da220c825801efec, type: 3}
   - exitScene_FX: {fileID: 8300000, guid: 697dea622412e8943b9ef2af923fb774, type: 3}
   - footSteps_FX01: {fileID: 8300000, guid: 4e1fe925ee368a54980c89fcadea409c, type: 3}
+  - laserBombardment_FX: {fileID: 8300000, guid: 891e2ea3b04845b44bd680fac636c6c4,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
