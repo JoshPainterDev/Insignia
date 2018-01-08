@@ -330,7 +330,6 @@ public class CombatManager : MonoBehaviour {
         print("PLAYER TURN IS OVER");
         AbilityCooldownTick(true);
         BoostTick(true);
-        print("was crit: " + wasCriticalHit);
         StartCoroutine(CheckForDamage(damageDealt, false, originalHP, wasCriticalHit));
         wasCriticalHit = false;
     }
@@ -659,7 +658,12 @@ public class CombatManager : MonoBehaviour {
 
     public void BoostTick(bool player)
     {
-        Transform trans = this.GetComponent<AbilityManager_C>().boostHandle.transform;
+        Transform trans = null;
+
+        if (this.GetComponent<AbilityManager_C>().boostHandle != null)
+            trans = this.GetComponent<AbilityManager_C>().boostHandle.transform;
+        else
+            return;
 
         if (player)
         {
@@ -924,7 +928,7 @@ public class CombatManager : MonoBehaviour {
     public void DamageEnemy_Strike(float percentOfDamage = 1.0f)
     {
         int randDamageBuffer = Random.Range(0, 9);
-        float critRand = Random.Range(1.0f, 1.0f);
+        float critRand = Random.Range(0.0f, 1.0f);
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = GameController.controller.playerAttack;
@@ -956,7 +960,7 @@ public class CombatManager : MonoBehaviour {
 
         // critical hit chance
         float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
-        print("Chance to crit: " + chance);
+
         if (chance >= CRITICAL_THRESHOLD)
         {
             wasCriticalHit = true;
@@ -1133,7 +1137,7 @@ public class CombatManager : MonoBehaviour {
     public void DamagePlayer_Strike(float percentOfDamage = 1.0f)
     {
         int randDamageBuffer = Random.Range(0, 9);
-        float critRand = Random.Range(1.0f, 1.0f);
+        float critRand = Random.Range(0.0f, 1.0f);
         float attBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;

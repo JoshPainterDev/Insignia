@@ -9,6 +9,8 @@ public class EnemyAbilityManager_C : MonoBehaviour
     public GameObject playerMannequin;
     public GameObject boostHandle;
 
+    public GameObject boostPrefab;
+
     public GameObject lightningBlue_FX;
     public GameObject lightningYellow_FX;
     public GameObject lightningStatic_FX;
@@ -59,6 +61,8 @@ public class EnemyAbilityManager_C : MonoBehaviour
     {
         GameObject effectClone;
         Vector3 spawnPos = Vector3.zero;
+        Ability info = AbilityToolsScript.tools.LookUpAbility(abilityName);
+
         switch (abilityName)
         {
             case "Hatred":
@@ -66,7 +70,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.25f);
-                StartCoroutine(AttackBoostAnim(2));
+                StartCoroutine(AttackBoostAnim(info.AttackBoost, info.AttBoostDuration));
                 yield return new WaitForSeconds(2f);
                 break;
             case "Thunder Charge":
@@ -204,12 +208,45 @@ public class EnemyAbilityManager_C : MonoBehaviour
         EndTurn();
     }
 
-    IEnumerator AttackBoostAnim(int level)
+    //Attack Boost
+    IEnumerator AttackBoostAnim(int level, int duration)
     {
         combatManager.enemyAttackBoost = level;
-        yield return new WaitForSeconds(0.25f);
+        combatManager.setBoostDur("Attack", duration, false);
 
+        GameObject effectClone = (GameObject)Instantiate(boostPrefab, initEnemyPos + new Vector3(-100, 100, 0), transform.rotation);
+        effectClone.GetComponent<StatBoost_C>().boostType = BoostType.Attack;
+        effectClone.GetComponent<StatBoost_C>().player = -1;
+        yield return new WaitForSeconds(2.25f);
+        boostHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.5f);
     }
+
+    //Defense Boost
+    IEnumerator DefenseBoostAnim(int level, int duration)
+    {
+        combatManager.enemyDefenseBoost = level;
+        combatManager.setBoostDur("Defense", duration, false);
+
+        GameObject effectClone = (GameObject)Instantiate(boostPrefab, initEnemyPos + new Vector3(-100, 100, 0), transform.rotation);
+        effectClone.GetComponent<StatBoost_C>().boostType = BoostType.Defense;
+        effectClone.GetComponent<StatBoost_C>().player = -1;
+        yield return new WaitForSeconds(2.25f);
+        boostHandle.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.5f);
+    }
+
+    //Speed Boost
+    IEnumerator SpeedBoostAnim(int level, int duration)
+    {
+        combatManager.enemySpeedBoost = level;
+        combatManager.setBoostDur("Speed", duration, false);
+
+        GameObject effectClone = (GameObject)Instantiate(boostPrefab, initEnemyPos + new Vector3(-100, 100, 0), transform.rotation);
+        effectClone.GetComponent<StatBoost_C>().boostType = BoostType.Speed;
+        effectClone.GetComponent<StatBoost_C>().player = -1;
+        yield return new WaitForSeconds(2.25f);
+        boostHandle.transform.GetChild(2).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.5f);
+    }
+
 
     void EndTurn()
     {

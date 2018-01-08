@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Dialogue_Manager_C : MonoBehaviour
 {
+    [HideInInspector]
+    public float MEDIUM_VOLUME = 0.7f;
+
     public GameObject dialogueManager;
     public GameObject dialogueBox;
     public GameObject playerCopy;
@@ -13,6 +16,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     public GameObject rightImage;
     public GameObject leftImage;
     public GameObject tap2Continue;
+    public AudioClip typing_SFX;
 
     private float fadeSpeed = 4.0f;
     private bool isLeftVisibile = false;
@@ -31,6 +35,8 @@ public class Dialogue_Manager_C : MonoBehaviour
     private string[] dScript;
     private string[] dSpeaker;
     private bool[] dIsLeftSpeaker;
+    private Coroutine showTTC;
+    private bool TTCisRunning = false;
     [HideInInspector]
     public bool typing = false;
     private IEnumerator typeRoutine;
@@ -69,11 +75,15 @@ public class Dialogue_Manager_C : MonoBehaviour
         bool isLeftSpeaker = dIsLeftSpeaker[dCurrentLine];
 
         tap2Continue.SetActive(false);
+        
+        if(TTCisRunning)
+        {
+            StopCoroutine(showTTC);
+            TTCisRunning = false;
+        }
 
         if (dCurrentLine >= dTotalLines)
         {
-            //print("current: " + dCurrentLine);
-            //expositionManager.NextActon();
             dDialogueCompleted = true;
             tap2Continue.SetActive(false);
             dialogueBox.GetComponent<Text>().text = "";
@@ -107,6 +117,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         if (!typing)
         {
             typing = true;
+            playTypingEffect();
             typeRoutine = TypeLine(line);
             StartCoroutine(typeRoutine);
         }
@@ -145,13 +156,35 @@ public class Dialogue_Manager_C : MonoBehaviour
             
             typing = false;
             expositionManager.NextAction();
+            stopTypingEffect();
 
-            yield return new WaitForSeconds(3f);
-            tap2Continue.SetActive(true);
-            tap2Continue.GetComponent<FadingScript>().Restart();
-            tap2Continue.transform.GetChild(0).GetComponent<FadingScript>().Restart();
+            yield return new WaitForSeconds(0.1f);
+
+            if (!TTCisRunning)
+            {
+                TTCisRunning = true;
+
+                showTTC =  StartCoroutine(showTouch2Continue());
+            }
+            else
+            {
+                StopCoroutine(showTTC);
+                showTTC = StartCoroutine(showTouch2Continue());
+            }
         }
     }
+
+    IEnumerator showTouch2Continue()
+    {
+        Color origColor = tap2Continue.GetComponent<Text>().color;
+        Color clearColor = new Color(origColor.r, origColor.g, origColor.b, 0);
+        tap2Continue.GetComponent<Text>().color = clearColor;
+        yield return new WaitForSeconds(3f);
+        tap2Continue.SetActive(true);
+        tap2Continue.GetComponent<LerpScript>().LerpToColor(clearColor, origColor, 4.5f);
+        TTCisRunning = false;
+    }
+
 
     public void StopDialogue()
     {
@@ -272,10 +305,29 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "CloseUps\\Character_CloseUp_HammerfellOfficer";
                 break;
             case "Honor Guard":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
+                break;
+            case "Skritter":
+                iconString = "CloseUps\\Character_CloseUp_Skritter";
+                break;
+            case "Mark":
+                iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
+                break;
+            default:
+                iconString = "CloseUps\\Character_CloseUp_Unknown";
                 break;
         }
 
         return iconString;
+    }
+
+    public void playTypingEffect()
+    {
+        this.GetComponent<AudioSource>().PlayOneShot(typing_SFX, MEDIUM_VOLUME);
+    }
+
+    private void stopTypingEffect()
+    {
+        this.GetComponent<AudioSource>().Stop();
     }
 }

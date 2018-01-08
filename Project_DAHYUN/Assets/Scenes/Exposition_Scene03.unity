@@ -8374,6 +8374,7 @@ MonoBehaviour:
   snowSteps_FX: {fileID: 8300000, guid: c2272e566f6bdfe4081e641e64f85fd9, type: 3}
   skitterScreech_FX: {fileID: 8300000, guid: c19873bc94b80834da220c825801efec, type: 3}
   exitScene_FX: {fileID: 8300000, guid: 697dea622412e8943b9ef2af923fb774, type: 3}
+  footSteps_FX01: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -13027,6 +13028,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e13d493a112b642b27ed8eda4a2ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perlinTexture: {fileID: 0}
+  whiteSqTexture: {fileID: 0}
+  redBlackSpaceTexture: {fileID: 0}
+  monoSpaceTexture: {fileID: 0}
 --- !u!114 &2029248998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13260,7 +13265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2037268561
 RectTransform:
   m_ObjectHideFlags: 0

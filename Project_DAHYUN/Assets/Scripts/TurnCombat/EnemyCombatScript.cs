@@ -84,6 +84,9 @@ public class EnemyCombatScript : MonoBehaviour {
                 EasyEnemyAI();
                 break;
             case Difficulty.Story:
+                //ability1 = AbilityToolsScript.tools.LookUpAbility("Hatred");
+                //combatManager.HideHealthBars();
+                //this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability1, combatManager.getPlayerHealth());
                 EasyEnemyAI();
                 break;
             case Difficulty.Challenge:
@@ -139,16 +142,6 @@ public class EnemyCombatScript : MonoBehaviour {
         else
         {
             int randomAbility = Random.Range(0, 4);
-            //float accuracy = 0;
-            //rand = Random.Range(0, 100);
-            //print("Chance To Miss: " + rand);
-
-            //if (combatManager.enemyBlinded)
-            //{
-            //    combatManager.enemyBlinded = false;
-            //    accuracy -= combatManager.BLINDED_REDUCTION;
-            //    combatManager.currSpecialCase = SpecialCase.None;
-            //}
 
             ++abilityAttempts;
             print("Ability Attempts: " + abilityAttempts);

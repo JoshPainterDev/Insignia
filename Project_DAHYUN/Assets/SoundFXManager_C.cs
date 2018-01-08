@@ -9,6 +9,7 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip snowSteps_FX;
     public AudioClip skitterScreech_FX;
     public AudioClip exitScene_FX;
+    public AudioClip footSteps_FX01;
 
     AudioSource audioSource;
 
@@ -27,6 +28,11 @@ public class SoundFXManager_C : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void playFootSteps()
+    {
+        audioSource.PlayOneShot(footSteps_FX01, MEDIUM_VOLUME);
     }
 
     public void playSnowCollapse()

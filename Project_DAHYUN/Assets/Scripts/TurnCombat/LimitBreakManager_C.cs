@@ -57,7 +57,7 @@ public class LimitBreakManager_C : MonoBehaviour
         cameraObj.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos - new Vector3(80, 20, 0), 1.0f);
         this.GetComponent<CombatAudio>().playLBSuperNovaStart();
         yield return new WaitForSeconds(1f);
-        player.GetComponent<AnimationController>().PlayAttackAnim();
+        player.GetComponent<AnimationController>().PlayCheerAnim();
         yield return new WaitForSeconds(0.15f);
         player.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         player.transform.GetChild(12).gameObject.SetActive(true);

@@ -4867,7 +4867,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMannequinn: {fileID: 666657974}
   playerMannequin: {fileID: 119668991}
-  boostHandle: {fileID: 0}
+  boostHandle: {fileID: 1054701128}
+  boostPrefab: {fileID: 1315987750725008, guid: f2083533a4c760d4a9a3601f6bddea4d,
+    type: 2}
   lightningBlue_FX: {fileID: 1156185022251474, guid: 6fd7904a6526eda4f87dbfb9f9ebafc0,
     type: 2}
   lightningYellow_FX: {fileID: 1156185022251474, guid: 76f99a1ba3b6a4c47a3bce7397856e1a,

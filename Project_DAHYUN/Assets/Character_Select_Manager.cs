@@ -239,7 +239,7 @@ public class Character_Select_Manager : MonoBehaviour
         //}
 
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();
-        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        playerMannequin.GetComponent<AnimationController>().PlayCheerAnim();
 
         int playerLv = GameController.controller.playerLevel;
         PlayerClass playerClass = GameController.controller.charClasses[selectedChar];

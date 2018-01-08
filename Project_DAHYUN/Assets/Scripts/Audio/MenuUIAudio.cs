@@ -8,6 +8,7 @@ public class MenuUIAudio : MonoBehaviour
     public AudioClip buttonSelect01;
     public AudioClip nope;
     public AudioClip back;
+    public AudioClip typingEffect;
     public AudioClip levelUp;
     public AudioClip buttonClick;
     public AudioClip error;
@@ -26,6 +27,11 @@ public class MenuUIAudio : MonoBehaviour
     public void playSoundClip(AudioClip sound, float volume = 0.5f)
     {
         audioSource.PlayOneShot(sound, volume);
+    }
+
+    public void playTypingEffect()
+    {
+        audioSource.PlayOneShot(typingEffect, MEDIUM_VOLUME);
     }
 
     public void playError()

@@ -54,8 +54,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9c96c7b2b085c2f42b41876ecdaa43e0, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -135,8 +135,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a366c03729f9d2a4fad0bbeedc7dd6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostType: 0
   player: 1
-  Speed: 5
+  Speed: 4
+  attSprite: {fileID: 21300000, guid: 8f7bacf333cb6714fb788243e0dda913, type: 3}
+  defSprite: {fileID: 21300000, guid: 4524d7ed92ade3346a26cd1f867ddbe9, type: 3}
+  spdSprite: {fileID: 21300000, guid: f878d4ebf9828d942b48ab65cda13e6e, type: 3}
+  attSFX: {fileID: 8300000, guid: 1a2a3abc70e581a4d9d91b3c7b439cae, type: 3}
+  defSFX: {fileID: 8300000, guid: 3cd7d55785d6b244e9f0486358a379ee, type: 3}
+  spdSFX: {fileID: 8300000, guid: 22ef261ea8e976b44b1da503f11deffe, type: 3}
 --- !u!114 &114459093935728448
 MonoBehaviour:
   m_ObjectHideFlags: 1

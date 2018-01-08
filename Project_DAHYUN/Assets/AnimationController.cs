@@ -42,6 +42,26 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void PlayWalkAnim()
+    {
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -5;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 1);
+        }
+    }
+
+    public void PlayCheerAnim()
+    {
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 2);
+        }
+    }
+
     public void PlayAttackAnim()
     {
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
@@ -59,16 +79,6 @@ public class AnimationController : MonoBehaviour
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
         {
             child.SetInteger("AnimState", 6);
-        }
-    }
-
-    public void PlayWalkAnim()
-    {
-        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -5;
-
-        foreach (Animator child in this.GetComponentsInChildren<Animator>())
-        {
-            child.SetInteger("AnimState", 1);
         }
     }
 
