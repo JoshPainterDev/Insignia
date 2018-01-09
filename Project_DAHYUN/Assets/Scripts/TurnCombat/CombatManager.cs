@@ -239,6 +239,8 @@ public class CombatManager : MonoBehaviour {
         HideBackButton();
         HideMainButtons();
 
+        currSpecialCase = SpecialCase.None;
+
         if (!hasTutorial)
         {
             //3. Load in initial enemy
@@ -328,6 +330,7 @@ public class CombatManager : MonoBehaviour {
     public void EndPlayerTurn(bool damageDealt, int originalHP = 0)
     {
         print("PLAYER TURN IS OVER");
+        print("Current SC: " + currSpecialCase);
         AbilityCooldownTick(true);
         BoostTick(true);
         StartCoroutine(CheckForDamage(damageDealt, false, originalHP, wasCriticalHit));

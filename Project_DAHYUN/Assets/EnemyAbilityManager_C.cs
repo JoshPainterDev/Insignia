@@ -134,11 +134,12 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":
+                print("what the actual fucl");
                 spawnPos = initEnemyPos - new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, initEnemyPos - new Vector3(250,-50,0), transform.rotation);
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
                 yield return new WaitForSeconds(0.25f);
-                //combatManager.currSpecialCase = SpecialCase.Outrage;
+                combatManager.currSpecialCase = SpecialCase.Outrage;
                 this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;

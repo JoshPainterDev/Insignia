@@ -50,7 +50,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         expositionManager = this.GetComponent<Exposition_Manager>();
     }
 
-    public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer, int act = 0)
+    public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer)
     {
         dDialogueCompleted = false;
         dCurrentLine = 0;
@@ -141,7 +141,6 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
-        print(line);
         for (int i = 0; i < line.Length; ++i)
         {
             yield return new WaitForSeconds(0.01f);
@@ -211,7 +210,6 @@ public class Dialogue_Manager_C : MonoBehaviour
             SetRightVisibile(false, dCurrentLine);
 
         yield return new WaitForSeconds(1f);
-        
         expositionManager.EndDialogue();
     }
 

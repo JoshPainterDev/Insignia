@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 96530582}
   - component: {fileID: 96530585}
   - component: {fileID: 96530586}
+  - component: {fileID: 96530587}
   m_Layer: 5
   m_Name: EnemyHP
   m_TagString: Untagged
@@ -409,6 +410,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &96530587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 96530580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b828626cc2a25374e8e50f524abcbfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePrefab: {fileID: 1779692508853224, guid: 583e76b5048f67148bcb660a56fae58c,
+    type: 2}
+  criticalPrefab: {fileID: 1779692508853224, guid: a9d7b87366a547443809872145ef6033,
+    type: 2}
+  canvas: {fileID: 889873487}
+  playerHealth: 0
+  enemyColor: {r: 0.9117647, g: 0, b: 0, a: 1}
 --- !u!1 &107353938
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +929,7 @@ GameObject:
   - component: {fileID: 524059996}
   - component: {fileID: 524059999}
   - component: {fileID: 524059998}
+  - component: {fileID: 524059997}
   m_Layer: 5
   m_Name: Enemy_Counter
   m_TagString: Untagged
@@ -933,9 +953,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.899994, y: -83.5}
+  m_AnchoredPosition: {x: -5.9000244, y: -83.5}
   m_SizeDelta: {x: 39.799988, y: 39.100006}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &524059997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524059995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b496ad00192b504aac8e366cbc9a861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatManager: {fileID: 1616549424}
 --- !u!114 &524059998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,6 +1277,7 @@ GameObject:
   - component: {fileID: 597438598}
   - component: {fileID: 597438601}
   - component: {fileID: 597438602}
+  - component: {fileID: 597438603}
   m_Layer: 5
   m_Name: PlayerHP
   m_TagString: Untagged
@@ -1351,6 +1384,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &597438603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 597438596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b828626cc2a25374e8e50f524abcbfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePrefab: {fileID: 1779692508853224, guid: 583e76b5048f67148bcb660a56fae58c,
+    type: 2}
+  criticalPrefab: {fileID: 1779692508853224, guid: a9d7b87366a547443809872145ef6033,
+    type: 2}
+  canvas: {fileID: 889873487}
+  playerHealth: 1
+  enemyColor: {r: 0.9117647, g: 0, b: 0, a: 1}
 --- !u!1 &604624902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1793,7 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
   nope: {fileID: 8300000, guid: 9de752cd0c7642d4b845e9605748bde2, type: 3}
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
+  typingEffect: {fileID: 0}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 0}

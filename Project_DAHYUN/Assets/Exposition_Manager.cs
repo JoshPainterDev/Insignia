@@ -35,6 +35,10 @@ public class Exposition_Manager : MonoBehaviour
     private Color panelOrigColor;
     private string nextLevel;
     private Dialogue_Manager_C dialogueManager;
+    private int eCurrentCutscene = 0;
+    private int eCurrentInstance = 1;
+    private int eMaxInstances = 1;
+    private float eInstanceDelay = 2.0f;
 
     public bool actionsCompleted = false;
     public int actionCounter = 0;
@@ -96,45 +100,50 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    public void NextAction(int act = 0)
+    public void NextAction()
     {
         ++actionCounter;
-        BeginCutscene(encounter.encounterNumber, act);
+        BeginCutscene(eCurrentCutscene, eCurrentInstance);
     }
 
-    public void BeginCutscene(int encounterNum, int act = 0)
+    public void BeginCutscene(int encounterNum, int instance = 1)
     {
-        switch(sceneNumber)
+        eMaxInstances = 0;
+        eCurrentCutscene = sceneNumber;
+        eCurrentInstance = instance;
+
+        switch (sceneNumber)
         {
             case 1:
-                StartCoroutine(Cutscene1(actionCounter, act));
+                StartCoroutine(Cutscene1(actionCounter, instance));
                 break;
             case 2:
-                StartCoroutine(Cutscene2(actionCounter, act));
+                StartCoroutine(Cutscene2(actionCounter, instance));
                 break;
             case 3:
-                StartCoroutine(Cutscene3(actionCounter, act));
+                eMaxInstances = 2;
+                StartCoroutine(Cutscene3(actionCounter, instance));
                 break;
             case 4:
-                StartCoroutine(Cutscene4(actionCounter, act));
+                StartCoroutine(Cutscene4(actionCounter, instance));
                 break;
             case 5:
-                StartCoroutine(Cutscene5(actionCounter, act));
+                StartCoroutine(Cutscene5(actionCounter, instance));
                 break;
             case 6:
-                StartCoroutine(Cutscene6(actionCounter, act));
+                StartCoroutine(Cutscene6(actionCounter, instance));
                 break;
             case 7:
-                StartCoroutine(Cutscene7(actionCounter, act));
+                StartCoroutine(Cutscene7(actionCounter, instance));
                 break;
             case 8:
-                StartCoroutine(Cutscene8(actionCounter, act));
+                StartCoroutine(Cutscene8(actionCounter, instance));
                 break;
             case 9:
-                StartCoroutine(Cutscene9(actionCounter, act));
+                StartCoroutine(Cutscene9(actionCounter, instance));
                 break;
             case 10:
-                StartCoroutine(Cutscene10(actionCounter, act));
+                StartCoroutine(Cutscene10(actionCounter, instance));
                 break;
         }
     }
@@ -164,8 +173,22 @@ public class Exposition_Manager : MonoBehaviour
         ready4Input = false;
         actionsCompleted = false;
         actionCounter = 0;
+        eInstanceDelay = 2.0f;
         dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
+
+        ++eCurrentInstance;
+
+        if (eCurrentInstance <= eMaxInstances)
+        {
+            StartCoroutine(ContinueToInstance(eInstanceDelay));
+        }
+    }
+
+    IEnumerator ContinueToInstance(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        BeginCutscene(eCurrentCutscene, eCurrentInstance);
     }
 
     IEnumerator LoadNextLv()
@@ -184,7 +207,7 @@ public class Exposition_Manager : MonoBehaviour
         sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
     }
 
-    IEnumerator NewDialogue(int cutscene, int instance, int act = 0)
+    IEnumerator NewDialogue(int cutscene, int instance)
     {
         int totalLines = 0;
         bool usesPlayer = false;
@@ -273,98 +296,95 @@ public class Exposition_Manager : MonoBehaviour
                 }
                 break;
             case 3:
-                switch(instance)
+                switch (instance)
                 {
                     case 1:
                         speaker[0] = "General Vixon";
                         leftspeaker[0] = true;
                         script[0] = "Soldier!";
 
-                        //speaker[1] = "General Vixon";
-                        //leftspeaker[1] = true;
-                        //script[1] = "Listen, I know you're new to the Bulwark,";
+                        speaker[1] = "General Vixon";
+                        leftspeaker[1] = true;
+                        script[1] = "Listen, I know you're new to the Bulwark,";
 
-                        //speaker[2] = "General Vixon";
-                        //leftspeaker[2] = true;
-                        //script[2] = "but we've got an apocalypse on our hands!";
+                        speaker[2] = "General Vixon";
+                        leftspeaker[2] = true;
+                        script[2] = "but we've got an apocalypse on our hands!";
 
-                        //speaker[3] = "General Vixon";
-                        //leftspeaker[3] = true;
-                        //script[3] = "I'm counting on you-";
+                        speaker[3] = "General Vixon";
+                        leftspeaker[3] = true;
+                        script[3] = "I'm counting on you-";
 
-                        //speaker[4] = playerName;
-                        //leftspeaker[4] = false;
-                        //script[4] = "Me?!";
+                        speaker[4] = playerName;
+                        leftspeaker[4] = false;
+                        script[4] = "Me?!";
 
-                        //speaker[5] = "General Vixon";
-                        //leftspeaker[5] = true;
-                        //script[5] = "to hold this choke with your life!";
+                        speaker[5] = "General Vixon";
+                        leftspeaker[5] = true;
+                        script[5] = "to hold this choke with your life!";
 
-                        //speaker[6] = "General Vixon";
-                        //leftspeaker[6] = true;
-                        //script[6] = "Nothing gets past that bridge! Got it?!";
+                        speaker[6] = "General Vixon";
+                        leftspeaker[6] = true;
+                        script[6] = "Nothing gets past that bridge! Got it?!";
 
-                        //speaker[7] = playerName;
-                        //leftspeaker[7] = false;
-                        //script[7] = "Sir, yes, sir!";
+                        speaker[7] = playerName;
+                        leftspeaker[7] = false;
+                        script[7] = "Sir, yes, sir!";
 
-                        //speaker[8] = "General Vixon";
-                        //leftspeaker[8] = true;
-                        //script[8] = "I knew I could count on you-";
+                        speaker[8] = "General Vixon";
+                        leftspeaker[8] = true;
+                        script[8] = "I knew I could count on you-";
 
-                        //speaker[9] = "General Vixon";
-                        //leftspeaker[9] = true;
-                        //script[9] = "Uhh-";
+                        speaker[9] = "General Vixon";
+                        leftspeaker[9] = true;
+                        script[9] = "Uhh-";
 
-                        //speaker[10] = playerName;
-                        //leftspeaker[10] = false;
-                        //script[10] = "Private " + playerName + ", sir...";
+                        speaker[10] = playerName;
+                        leftspeaker[10] = false;
+                        script[10] = "Private " + playerName + ", sir...";
 
-                        //speaker[11] = "General Vixon";
-                        //leftspeaker[11] = true;
-                        //script[11] = "Right! Ummm...";
+                        speaker[11] = "General Vixon";
+                        leftspeaker[11] = true;
+                        script[11] = "Right! Ummm...";
 
-                        //speaker[12] = "General Vixon";
-                        //leftspeaker[12] = true;
-                        //script[12] = "I'm sure you'll do fine out there, kid!";
+                        speaker[12] = "General Vixon";
+                        leftspeaker[12] = true;
+                        script[12] = "I'm sure you'll do fine out there, kid!";
 
-                        //speaker[13] = "General Vixon";
-                        //leftspeaker[13] = true;
-                        //script[13] = "Now get your dainty look'n underside out of my sight!";
+                        speaker[13] = "General Vixon";
+                        leftspeaker[13] = true;
+                        script[13] = "Now get your dainty look'n underside out of my sight!";
 
-                        //speaker[14] = playerName;
-                        //leftspeaker[14] = false;
-                        //script[14] = "Sir, yes, sir!";
+                        speaker[14] = playerName;
+                        leftspeaker[14] = false;
+                        script[14] = "Sir, yes, sir!";
 
-                        //speaker[15] = "Officer";
-                        //leftspeaker[15] = true;
-                        //script[15] = "Sir! They've breached the catwalk!";
-
-                        //speaker[16] = "Officer";
-                        //leftspeaker[16] = true;
-                        //script[16] = "We'ere losing bodies too fa-";
-
-                        //speaker[17] = "General Vixon";
-                        //leftspeaker[17] = true;
-                        //script[17] = "Rally your men back to the inner wall and ready the Flogger!";
-
-                        //speaker[18] = "General Vixon";
-                        //leftspeaker[18] = true;
-                        //script[18] = "I've got a buckethead cover'n our retreat!";
-
-                        //speaker[19] = "Officer";
-                        //leftspeaker[19] = true;
-                        //script[19] = "Right away, sir!";
-
-                        totalLines = 1;
+                        eInstanceDelay = 3.0f;
+                        totalLines = 15;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 2:
-                        speaker[15] = "Officer";
-                        leftspeaker[15] = true;
-                        script[15] = "fuck this bug!";
+                        speaker[0] = "Officer";
+                        leftspeaker[0] = true;
+                        script[0] = "General!!";
 
-                        totalLines = 1;
+                        speaker[1] = "Officer";
+                        leftspeaker[1] = true;
+                        script[1] = "We'ere losing bodies too qui-";
+
+                        speaker[2] = "General Vixon";
+                        leftspeaker[2] = true;
+                        script[2] = "Rally your men back to the inner wall and ready the Flogger!";
+
+                        speaker[3] = "General Vixon";
+                        leftspeaker[3] = true;
+                        script[3] = "I've got a buckethead cover'n our retreat!";
+
+                        speaker[4] = "Officer";
+                        leftspeaker[4] = true;
+                        script[4] = "Of course, sir! Right away, sir!";
+
+                        totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                         //case 1:
@@ -1000,27 +1020,19 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1.2f);
                 sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
-                yield return new WaitForSeconds(2f);
                 StartCoroutine(LoadNextLv());
                 break;
         }
     }
 
-    IEnumerator dialogueInvoker(int scene, int instance, int act, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        StartCoroutine(NewDialogue(scene, instance, act));
-    }
-
-    IEnumerator Cutscene3(int action, int act = 0)
+    IEnumerator Cutscene3(int action, int instance = 0)
     {
         // Set next Level //
         nextLevel = "Exposition_Scene04";
         //////////////////
-        print(action);
-        switch(act)
+        switch(instance)
         {
-            case 0:
+            case 1:
                 switch (action)
                 {
                     case 0:
@@ -1035,39 +1047,35 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(0.75f);
                         playerMannequin.GetComponent<AnimationController>().FlipFlop();
                         break;
-                    case 1:
-                        StartCoroutine(dialogueInvoker(3, 2, 1, 3.2f));
+                    case 15:
+                        yield return new WaitForSeconds(1.5f);
+                        dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 3f);
+                        dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 3f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.2f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(60, 0, 0), 2f);
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(ExitScene(playerMannequin));
                         break;
-                    //case 15:
-                    //    yield return new WaitForSeconds(1.5f);
-                    //    dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelUpPos, panelDownPos, 3f);
-                    //    dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 3f);
-                    //    playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                    //    yield return new WaitForSeconds(0.2f);
-                    //    playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(60, 0, 0), 2f);
-                    //    yield return new WaitForSeconds(0.75f);
-                    //    StartCoroutine(ExitScene(playerMannequin));
-                    //    break;
                 }
                 break;
-            case 1:
-                print("got here boiiii");
+            case 2:
                 switch (action)
                 {
-                    case 16:
-
-                        yield return new WaitForSeconds(1f);
+                    case 0:
+                        yield return new WaitForSeconds(0.5f);
                         speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0), 1.0f);
                         yield return new WaitForSeconds(1f);
-                        dialoguePanel.GetComponent<LerpScript>().LerpToPos(panelDownPos, panelUpPos, 2f);
-                        dialoguePanel.GetComponent<LerpScript>().LerpToColor(Color.clear, panelOrigColor, 2f);
+                        StartCoroutine(NewDialogue(eCurrentCutscene, instance));
                         break;
-                    case 17:
+                    case 1:
                         yield return new WaitForSeconds(1f);
                         speaker01.GetComponentInChildren<SpriteRenderer>().flipX = true;
                         break;
-                    case 20:
+                    case 6:
                         yield return new WaitForSeconds(1f);
+                        speaker02.GetComponentInChildren<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(0.2f);
                         speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position - new Vector3(200, 0, 0), 1.5f);
                         yield return new WaitForSeconds(0.5f);
                         speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker02.transform.position - new Vector3(200, 0, 0), 1.5f);
@@ -1082,7 +1090,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene2(int action, int act = 0)
+    IEnumerator Cutscene2(int action, int instance = 0)
     {
         // Set next Level //
         nextLevel = "Exposition_Scene03";
