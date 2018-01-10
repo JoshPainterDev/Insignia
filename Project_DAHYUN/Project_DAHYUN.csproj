@@ -314,6 +314,7 @@
     <Compile Include="Assets\enemyCounterScript.cs" />
     <Compile Include="Assets\EnemyEncounter.cs" />
     <Compile Include="Assets\EnemyInfo.cs" />
+    <Compile Include="Assets\EnvironmentManager_C.cs" />
     <Compile Include="Assets\ExclamationAnimator.cs" />
     <Compile Include="Assets\ExperienceScript.cs" />
     <Compile Include="Assets\Exposition_Manager.cs" />

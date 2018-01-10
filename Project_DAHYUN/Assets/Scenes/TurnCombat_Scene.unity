@@ -1606,8 +1606,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 572159634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -477.1, y: 236, z: 0}
-  m_LocalScale: {x: 75, y: 75, z: 1.74}
+  m_LocalPosition: {x: -463, y: 183, z: 0}
+  m_LocalScale: {x: 34, y: 34, z: 1.74}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -1646,7 +1646,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 03bacdb415ffb5f479449f083ec8165b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e467938825076584b8687f343ddd2f4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2174,6 +2174,7 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
   nope: {fileID: 8300000, guid: 9de752cd0c7642d4b845e9605748bde2, type: 3}
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
+  typingEffect: {fileID: 0}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 0}
@@ -4356,6 +4357,7 @@ GameObject:
   - component: {fileID: 1616549427}
   - component: {fileID: 1616549434}
   - component: {fileID: 1616549435}
+  - component: {fileID: 1616549436}
   - component: {fileID: 1616549431}
   - component: {fileID: 1616549430}
   m_Layer: 0
@@ -4890,6 +4892,18 @@ MonoBehaviour:
     type: 2}
   blackRain_FX: {fileID: 1862190314031148, guid: e7ff796e0be32e14a958015907a0d1d0,
     type: 2}
+--- !u!114 &1616549436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616549424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2fbeea2dd09bd499fea952901ddc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: {fileID: 572159634}
 --- !u!1 &1663483274
 GameObject:
   m_ObjectHideFlags: 0
