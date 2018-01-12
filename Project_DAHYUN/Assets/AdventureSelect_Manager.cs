@@ -50,11 +50,11 @@ public class AdventureSelect_Manager : MonoBehaviour
         switch(adventureNum)
         {
             case 1:
-                levelToLoad = "Exposition_Scene05";
+                levelToLoad = "Exposition_Scene01";
                 StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
                 break;
             case 2:
-                levelToLoad = "Exposition_Scene01";
+                levelToLoad = "Exposition_Scene09";
                 StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
                 break;
             case 3:

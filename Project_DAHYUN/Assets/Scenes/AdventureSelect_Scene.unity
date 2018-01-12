@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 143227856}
   - component: {fileID: 143227855}
   m_Layer: 5
-  m_Name: Firelands
+  m_Name: Temple of the Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1447,7 +1447,7 @@ Prefab:
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
@@ -1497,6 +1497,46 @@ Prefab:
     - target: {fileID: 114291771465921172, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 0303f88d5e5c86e44b5cbfd218bc02a8,
+        type: 3}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Text
+      value: The Bulwark
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215002703735850, guid: d99aead9a1d16e2428477cd6044af585, type: 2}
+      propertyPath: m_Name
+      value: The Bulwark
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114425518174619370, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 114425518174619370, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1606,7 +1646,7 @@ Prefab:
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
@@ -1656,6 +1696,46 @@ Prefab:
     - target: {fileID: 1625384137250882, guid: d99aead9a1d16e2428477cd6044af585, type: 2}
       propertyPath: m_Name
       value: Adventure_PopUp_Row (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 0303f88d5e5c86e44b5cbfd218bc02a8,
+        type: 3}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Text
+      value: ???
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215002703735850, guid: d99aead9a1d16e2428477cd6044af585, type: 2}
+      propertyPath: m_Name
+      value: Kingdom of Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114425518174619370, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 114425518174619370, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d99aead9a1d16e2428477cd6044af585, type: 2}
@@ -1886,6 +1966,7 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
   nope: {fileID: 8300000, guid: 9de752cd0c7642d4b845e9605748bde2, type: 3}
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
+  typingEffect: {fileID: 0}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 8300000, guid: f27761118a0449f419068362ec15310b, type: 3}
@@ -2260,7 +2341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9290061, b: 0.85294116, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2268,7 +2349,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f69a00abe3909324cbebd52cf6627490, type: 3}
+    m_Font: {fileID: 12800000, guid: 0303f88d5e5c86e44b5cbfd218bc02a8, type: 3}
     m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
@@ -2280,7 +2361,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kingdom of Light
+  m_Text: ???
 --- !u!222 &2071960986
 CanvasRenderer:
   m_ObjectHideFlags: 0

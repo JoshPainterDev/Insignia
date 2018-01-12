@@ -136,6 +136,7 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene6(actionCounter, instance));
                 break;
             case 7:
+                eMaxInstances = 2;
                 StartCoroutine(Cutscene7(actionCounter, instance));
                 break;
             case 8:
@@ -391,53 +392,6 @@ public class Exposition_Manager : MonoBehaviour
                         totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
-                        //case 1:
-                        //    speaker[0] = "???";
-                        //    leftspeaker[0] = false;
-                        //    script[0] = "...";
-
-                        //    speaker[1] = "???";
-                        //    leftspeaker[1] = false;
-                        //    script[1] = "Finally.";
-
-                        //    totalLines = 2;
-                        //    this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
-                        //    break;
-
-                        //case 1:
-                        //    speaker[0] = "???";
-                        //    leftspeaker[0] = false;
-                        //    script[0] = "Can you hear me?";
-                        //    speaker[1] = "Tesdin";
-                        //    leftspeaker[1] = false;
-                        //    script[1] = "I am Commander Tesdin. I'm in charge here at Fort Marr.";
-                        //    speaker[2] = "Tesdin";
-                        //    leftspeaker[2] = false;
-                        //    script[2] = "Jes here tells me that you've made a full recovery.";
-
-                        //    totalLines = 3;
-                        //    this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
-                        //    break;
-                        //case 2:
-                        //    speaker[0] = "Tesdin";
-                        //    leftspeaker[0] = false;
-                        //    script[0] = "Once you feel up to it, Jes will test your physical condition.";
-
-                        //    speaker[1] = "Jess";
-                        //    leftspeaker[1] = true;
-                        //    script[1] = "Actually, Steve should be here any moment to assist in the evaluation.";
-
-                        //    speaker[2] = "Tesdin";
-                        //    leftspeaker[2] = false;
-                        //    script[2] = "Grand! I'll want a report on your findings of what we discussed.";
-
-                        //    speaker[3] = "Jess";
-                        //    leftspeaker[3] = true;
-                        //    script[3] = "Yes sir!";
-
-                        //    totalLines = 4;
-                        //    this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
-                        //    break;
                 }
                 break;
             case 4:
@@ -446,23 +400,27 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = playerName;
                         leftspeaker[0] = true;
-                        script[0] = "*Defending a tunnel, huh? An order's an order I suppose...*";
+                        script[0] = "*Defending a tunnel, huh?*";
 
                         speaker[1] = playerName;
                         leftspeaker[1] = true;
-                        script[1] = "Saint's stars! I have never seen a rat that big!";
+                        script[1] = "Saint's stars!";
 
-                        speaker[2] = "Skritter";
-                        leftspeaker[2] = false;
-                        script[2] = "Hhhhhhssssssss...";
+                        speaker[2] = playerName;
+                        leftspeaker[2] = true;
+                        script[2] = "You are one big rat!";
 
-                        speaker[3] = playerName;
-                        leftspeaker[3] = true;
-                        script[3] = "Easy now...";
+                        speaker[3] = "Skritter";
+                        leftspeaker[3] = false;
+                        script[3] = "Hhhhhhssssssss...";
 
-                        speaker[4] = "Skritter";
-                        leftspeaker[4] = false;
-                        script[4] = "Skhrrreeeeeeh!!";
+                        speaker[4] = playerName;
+                        leftspeaker[4] = true;
+                        script[4] = "Easy now friend...";
+
+                        speaker[5] = "Skritter";
+                        leftspeaker[5] = false;
+                        script[5] = "Skhrrreeeeeeh!!";
 
                         totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -476,32 +434,6 @@ public class Exposition_Manager : MonoBehaviour
                         speaker[0] = "Skritter";
                         leftspeaker[0] = true;
                         script[0] = "Hhhhhhssssssss!!";
-                        
-
-                        //    speaker[0] = "Not Steve";
-                        //    leftspeaker[0] = false;
-                        //    script[0] = "Our forces are ready, my Lord.";
-                        //    speaker[1] = "Not Steve";
-                        //    leftspeaker[1] = false;
-                        //    script[1] = "Why is our time wasted on this lackie?";
-                        //    speaker[2] = "???";
-                        //    leftspeaker[2] = false;
-                        //    script[2] = "...";
-                        //    speaker[3] = "???";
-                        //    leftspeaker[3] = false;
-                        //    script[3] = "All will be made clear soon enough.";
-
-                        //    speaker[4] = "Not Steve";
-                        //    leftspeaker[4] = false;
-                        //    script[4] = "As he says then!";
-
-                        //    speaker[5] = "Not Steve";
-                        //    leftspeaker[5] = false;
-                        //    script[5] = "Release the vermin!";
-
-                        //    speaker[6] = "Not Steve";
-                        //    leftspeaker[6] = false;
-                        //    script[6] = "Let's see what you can do, Nova...";
 
                         totalLines = 1;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -533,27 +465,35 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Not Steve";
+                        speaker[0] = playerName;
                         leftspeaker[0] = false;
-                        script[0] = "Listen you brat! I've had enough of th-";
+                        script[0] = "Not-";
 
-                        speaker[1] = "Seamstress";
+                        speaker[1] = playerName;
                         leftspeaker[1] = true;
-                        script[1] = "Watch it Slade!";
+                        script[1] = "Not like this...";
 
-                        speaker[2] = "Seamstress";
-                        leftspeaker[2] = true;
-                        script[2] = " Clearly the Nova can handle a blade.";
+                        totalLines = 2;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
+                        speaker[0] = "???";
+                        leftspeaker[0] = false;
+                        script[0] = "...";
 
-                        speaker[3] = "Slade";
+                        speaker[1] = "???";
+                        leftspeaker[1] = false;
+                        script[1] = "Nova.";
+
+                        speaker[2] = "???";
+                        leftspeaker[2] = false;
+                        script[2] = "After a century,";
+
+                        speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "I guess it's your lucky day then!";
+                        script[3] = "destiny finally calls.";
 
-                        speaker[4] = "Slade";
-                        leftspeaker[4] = false;
-                        script[4] = "I look forward to seeing you again, Nova...";
-
-                        totalLines = 5;
+                        totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -562,39 +502,79 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Seamstress";
+                        speaker[0] = "???";
                         leftspeaker[0] = false;
-                        script[0] = "Sorry about Slade. He doesn't like newcomers stealing the spotlight.";
+                        script[0] = "Nova!";
 
-                        speaker[1] = playerName;
-                        leftspeaker[1] = true;
-                        script[1] = "He was trying to kill me!";
+                        speaker[1] = "???";
+                        leftspeaker[1] = false;
+                        script[1] = "Spawn of Sun and Void.";
 
-                        speaker[2] = "Seamstress";
+                        speaker[2] = "???";
                         leftspeaker[2] = false;
-                        script[2] = "I'm sure he'll warm up to you.";
+                        script[2] = "I am Theron.";
 
-                        speaker[3] = "Seamstress";
+                        speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "So what's your name again?";
+                        script[3] = "But that is not important.";
 
-                        speaker[4] = playerName;
-                        leftspeaker[4] = true;
-                        script[4] = "I'm " + playerName + ".";
+                        speaker[4] = "???";
+                        leftspeaker[4] = false;
+                        script[4] = "War stretches across our planet.";
 
-                        speaker[5] = "Seamstress";
+                        speaker[5] = "???";
                         leftspeaker[5] = false;
-                        script[5] = playerName + ". Got it.";
+                        script[5] = "If sentient kind is to survive this incursion,";
 
-                        speaker[6] = playerName;
-                        leftspeaker[6] = true;
-                        script[6] = "Why am I here? And who is this spooky-cloak-guy?";
+                        speaker[6] = "???";
+                        leftspeaker[6] = false;
+                        script[6] = "our forces must be unified...";
 
-                        speaker[7] = "Seamstress";
+                        speaker[7] = "???";
                         leftspeaker[7] = false;
-                        script[7] = "There's a lot to explain... Why don't I show you around first?";
+                        script[7] = "The Kingdom of Light must be taken by force.";
 
-                        totalLines = 8;
+                        speaker[8] = playerName;
+                        leftspeaker[8] = true;
+                        script[8] = "What's my place in all of this?";
+
+                        speaker[9] = "???";
+                        leftspeaker[9] = false;
+                        script[9] = "You are the key to it all, my small friend.";
+
+                        speaker[10] = "???";
+                        leftspeaker[10] = false;
+                        script[10] = "I have saved you from the icy whisper of death.";
+
+                        speaker[11] = "???";
+                        leftspeaker[11] = false;
+                        script[11] = "All I ask of your life debt, is that you aid me in taking Solaris.";
+
+                        speaker[12] = playerName;
+                        leftspeaker[12] = true;
+                        script[12] = "And if I refuse?";
+
+                        speaker[13] = "???";
+                        leftspeaker[13] = false;
+                        script[13] = "Test me, child,";
+
+                        speaker[14] = "???";
+                        leftspeaker[14] = false;
+                        script[14] = "and I will snuf out your life like a fleeting candle flame...";
+
+                        speaker[15] = playerName;
+                        leftspeaker[15] = true;
+                        script[15] = "Good to know...";
+
+                        speaker[16] = "???";
+                        leftspeaker[16] = false;
+                        script[16] = "You will come to understand the severity of the situation, Nova.";
+
+                        speaker[17] = "???";
+                        leftspeaker[17] = false;
+                        script[17] = "In time...";
+
+                        totalLines = 18;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -782,12 +762,14 @@ public class Exposition_Manager : MonoBehaviour
         {
             case 0:
                 // Set next Level //
-                nextLevel = "Exposition_Scene09";
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-                yield return new WaitForSeconds(1f);
+                nextLevel = "MainMenu_Tutorial_Scene";
+                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.25f);
+                yield return new WaitForSeconds(3f);
+                speaker01.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, new Color(0.5f, 0.5f, 0.5f, 1.0f), 0.25f);
+                yield return new WaitForSeconds(3f);
                 StartCoroutine(NewDialogue(8, 1));
                 break;
-            case 9:
+            case 19:
                 yield return new WaitForSeconds(2f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
                 actionsCompleted = true; //actions are completed
@@ -797,48 +779,68 @@ public class Exposition_Manager : MonoBehaviour
         //////////////////
     }
 
-    IEnumerator Cutscene7(int action, int act = 0)
+    IEnumerator Cutscene7(int action, int instance = 0)
     {
-        switch(action)
+        switch(instance)
         {
-            case 0:
-                // Set next Level //
-                nextLevel = "Exposition_Scene08";
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-                yield return new WaitForSeconds(1f);
-                StartCoroutine(NewDialogue(7, 1));
-                break;
             case 1:
-                yield return new WaitForSeconds(1f);
-                speaker02.SetActive(true);
-                speaker03.SetActive(true);
-                speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(90, 0, 0), 2.5f);
-                speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(90, 0, 0), 2.5f);
+                switch (action)
+                {
+                    case 0:
+                        // Set next Level //
+                        nextLevel = "Exposition_Scene08";
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
+                        playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
+                        playerMannequin.GetComponent<AnimationController>().SetPlaySpeed(0.5f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(100, 0, 0), 0.25f);
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(NewDialogue(7, 1));
+                        break;
+                    case 2:
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 1f);
+                        yield return new WaitForSeconds(1f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.7f);
+                        yield return new WaitForSeconds(0.5f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos + new Vector3(100, 0, 0), playerInitPos + new Vector3(140, 0, 0), 0.25f);
+                        yield return new WaitForSeconds(3f);
+                        playerMannequin.GetComponent<AnimationController>().SetPlaySpeed(0.75f);
+                        playerMannequin.GetComponent<AnimationController>().PlayDeathAnim();
+                        yield return new WaitForSeconds(0.5f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playSnowCollapse();
+                        break;
+                    case 3:
+                        yield return new WaitForSeconds(1f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
+                        break;
+                }
                 break;
             case 2:
-                yield return new WaitForSeconds(1f);
-                speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(90, 0, 0), 1.25f);
-                break;
-            case 5:
-                yield return new WaitForSeconds(1.75f);
-                speaker01.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, Color.grey, 2.5f);
-                yield return new WaitForSeconds(0.75f);
-                speaker01.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.grey, Color.clear, 2.5f);
-                speaker02.SetActive(false);
-                speaker03.SetActive(false);
-                speaker04.GetComponent<ParticleSystem>().Play();
-                break;
-            case 6:
-                yield return new WaitForSeconds(1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
-                actionsCompleted = true; //actions are completed
-                StartCoroutine(LoadNextLv());
+                switch(action)
+                {
+                    case 0:
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
+                        yield return new WaitForSeconds(2.5f);
+                        
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(140, 0, 0), 0.25f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
+                        yield return new WaitForSeconds(2.5f);
+                        StartCoroutine(NewDialogue(eCurrentCutscene, instance));
+                        break;
+                    case 5:
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
+                        sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
+                        yield return new WaitForSeconds(2f);
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
                 break;
         }
+
+
         //////////////////
     }
 
-    IEnumerator Cutscene6(int action, int act = 0)
+    IEnumerator Cutscene6(int action, int instance = 0)
     {
         switch(action)
         {
@@ -892,7 +894,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene5(int action, int act = 0)
+    IEnumerator Cutscene5(int action, int instance = 0)
     {
         switch (action)
         {
@@ -912,7 +914,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.175f);
                 speaker01.GetComponent<LerpScript>().LerpToPos(start - new Vector3(15, 0, 0), start, 8.0f);
                 yield return new WaitForSeconds(3f);
-                Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 50, playerMannequin.transform.position.y + 90, 0);
+                Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 10, playerMannequin.transform.position.y + 90, 0);
                 GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(1.5f);
                 playerMannequin.GetComponent<AnimationController>().FlipFlop();
@@ -930,50 +932,10 @@ public class Exposition_Manager : MonoBehaviour
                 actionsCompleted = true; //actions are completed
                 StartCoroutine(LoadCombatScene(1, 0));
                 break;
-                //case 0:
-                //    // Set next Level //
-                //    nextLevel = "Tutorial_Scene02";
-                //    blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0.75f), 0.25f);
-                //    yield return new WaitForSeconds(3f);
-                //    blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0.75f), new Color(0, 0, 0, 1), 0.5f);
-                //    yield return new WaitForSeconds(3.5f);
-                //    blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.25f);   
-                //    yield return new WaitForSeconds(5f);
-                //    StartCoroutine(NewDialogue(5, 1));
-                //    break;
-                //case 4:
-                //    yield return new WaitForSeconds(1f);
-                //    speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                //    yield return new WaitForSeconds(0.5f);
-                //    speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0));
-                //    break;
-                //case 6:
-                //    yield return new WaitForSeconds(2f);
-                //    speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(300, 0, 0));
-                //    yield return new WaitForSeconds(1f);
-                //    sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
-                //    break;
-                //case 8:
-                //    yield return new WaitForSeconds(1f);
-                //    MusicManager.GetComponent<Music_Controller>().stopAllMusic();
-                //    GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup, 0.1f);
-                //    yield return new WaitForSeconds(0.25f);
-                //    blackSq.GetComponent<FadeScript>().FadeIn(10f);
-                //    yield return new WaitForSeconds(0.15f);
-                //    blackSq.GetComponent<FadeScript>().FadeOut(10f);
-                //    yield return new WaitForSeconds(0.15f);
-                //    blackSq.GetComponent<FadeScript>().FadeIn(10f);
-                //    yield return new WaitForSeconds(0.15f);
-                //    blackSq.GetComponent<FadeScript>().FadeOut(10f);
-                //    yield return new WaitForSeconds(0.15f);
-                //    blackSq.GetComponent<FadeScript>().FadeIn(10f);
-                //    actionsCompleted = true; //actions are completed
-                //    StartCoroutine(LoadNextLv());
-                //    break;
         }
     }
 
-    IEnumerator CutsceneTutorial(int action, int act = 0)
+    IEnumerator CutsceneTutorial(int action, int instance = 0)
     {
         // Set next Level //
         nextLevel = "Tutorial_Scene01";
@@ -1006,45 +968,7 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator CutsceneSnow(int action, int act = 0)
-    {
-        // Set next Level //
-        nextLevel = "Exposition_Scene04";
-        //////////////////
-        switch (action)
-        {
-            case 0:
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
-                playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
-                playerMannequin.GetComponent<AnimationController>().SetPlaySpeed(0.5f);
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(100, 0, 0), 0.25f);
-                sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
-                yield return new WaitForSeconds(5f);
-                playerMannequin.GetComponent<AnimationController>().SetPlaySpeed(0.75f);
-                playerMannequin.GetComponent<AnimationController>().PlayDeathAnim();
-                yield return new WaitForSeconds(0.5f);
-                sfxManager.GetComponent<SoundFXManager_C>().playSnowCollapse();
-                yield return new WaitForSeconds(2f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
-                yield return new WaitForSeconds(5f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
-                yield return new WaitForSeconds(2.5f);
-                speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(140, 0, 0), 0.25f);
-                sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
-                yield return new WaitForSeconds(4f);
-                StartCoroutine(NewDialogue(3, 1));
-                break;
-            case 3:
-                yield return new WaitForSeconds(1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
-                sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
-                yield return new WaitForSeconds(2f);
-                StartCoroutine(LoadNextLv());
-                break;
-        }
-    }
-
-    IEnumerator Cutscene4(int action, int act = 0)
+    IEnumerator Cutscene4(int action, int instance = 0)
     {
         // Set next Level //
         nextLevel = "Tutorial_Scene02";
@@ -1057,17 +981,20 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(220, 0, 0), 1f);
                 yield return new WaitForSeconds(2f);
-                playerMannequin.GetComponent<AnimationController>().PlayCheerAnim();
+                playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                 StartCoroutine(NewDialogue(4, 1));
                 break;
             case 1:
                 yield return new WaitForSeconds(1.5f);
-                Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 76, playerMannequin.transform.position.y + 90, 0);
-                GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                 speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(-115, 0, 0), 0.5f);
+                break;
+            case 2:
+                Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 5, playerMannequin.transform.position.y + 90, 0);
+                GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                 break;
             case 5:
                 sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
+                yield return new WaitForSeconds(0.7f);
                 break;
             case 6:
                 playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
@@ -1075,8 +1002,8 @@ public class Exposition_Manager : MonoBehaviour
                 MusicManager.GetComponent<Music_Controller>().stopAllMusic();
                 yield return new WaitForSeconds(0.1f);
                 GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(CombatStartup);
-                yield return new WaitForSeconds(1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1.2f);
+                yield return new WaitForSeconds(0.5f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 2f);
                 sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
                 StartCoroutine(LoadNextLv());
                 break;
