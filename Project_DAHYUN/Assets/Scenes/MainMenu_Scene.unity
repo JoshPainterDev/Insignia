@@ -149,6 +149,7 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
   nope: {fileID: 8300000, guid: 9de752cd0c7642d4b845e9605748bde2, type: 3}
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
+  typingEffect: {fileID: 0}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 8300000, guid: f27761118a0449f419068362ec15310b, type: 3}
@@ -1284,16 +1285,6 @@ Prefab:
     - target: {fileID: 1039828592798500, guid: e233626e2faea0e4ebbf3257e9802986, type: 2}
       propertyPath: m_Name
       value: Player_Mannequin
-      objectReference: {fileID: 0}
-    - target: {fileID: 224885263753994568, guid: e233626e2faea0e4ebbf3257e9802986,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 224885263753994568, guid: e233626e2faea0e4ebbf3257e9802986,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e233626e2faea0e4ebbf3257e9802986, type: 2}

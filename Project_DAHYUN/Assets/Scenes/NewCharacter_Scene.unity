@@ -1389,7 +1389,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -3481,6 +3481,7 @@ MonoBehaviour:
   buttonSelect01: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
   nope: {fileID: 8300000, guid: 9de752cd0c7642d4b845e9605748bde2, type: 3}
   back: {fileID: 8300000, guid: 21f0e19cc37c22e499d86284b29a7295, type: 3}
+  typingEffect: {fileID: 0}
   levelUp: {fileID: 8300000, guid: 50c37172dec408746a28e4c4e34c6ce1, type: 3}
   buttonClick: {fileID: 8300000, guid: 6362dc82c01266f4099527e462c7538b, type: 3}
   error: {fileID: 0}

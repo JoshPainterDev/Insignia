@@ -15,6 +15,7 @@ public class CombatManager : MonoBehaviour {
 
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
+    public GameObject cameraObj;
     public bool hasTutorial = false;
     public bool chaosPlayerAI = false;
     public Canvas canvas;
@@ -201,7 +202,7 @@ public class CombatManager : MonoBehaviour {
             //REMOVE THIS LATER
             GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Hatred");
-            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Black Rain");
+            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Strangle");
             GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
             GameController.controller.strikeModifier = "Serated Strike";
             playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
@@ -259,6 +260,8 @@ public class CombatManager : MonoBehaviour {
         {
             StartCoroutine(ShowStartingButtons());
         }
+
+        playerMannequin.GetComponent<AnimationController>().InCombat = true;
     }
 
     IEnumerator EnemyStarts()

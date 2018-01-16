@@ -789,6 +789,12 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         // Set next Level //
                         nextLevel = "Exposition_Scene08";
+                        speaker02.GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1f);
+                        yield return new WaitForSeconds(3.5f);
+                        speaker02.GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 1f);
+                        yield return new WaitForSeconds(1f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, Color.white, 0.6f);
+                        yield return new WaitForSeconds(1.5f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
                         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
                         playerMannequin.GetComponent<AnimationController>().SetPlaySpeed(0.5f);
@@ -818,6 +824,7 @@ public class Exposition_Manager : MonoBehaviour
                 switch(action)
                 {
                     case 0:
+                        yield return new WaitForSeconds(4f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
                         yield return new WaitForSeconds(2.5f);
                         

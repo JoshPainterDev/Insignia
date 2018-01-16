@@ -6,6 +6,8 @@ public class LimitBreakManager_C : MonoBehaviour
 {
     public GameObject player;
     public GameObject enemy;
+    [HideInInspector]
+    public bool limitBreaking = false;
 
     public GameObject cameraObj;
     private Vector3 origCameraPos;
@@ -57,8 +59,10 @@ public class LimitBreakManager_C : MonoBehaviour
         cameraObj.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos - new Vector3(80, 20, 0), 1.0f);
         this.GetComponent<CombatAudio>().playLBSuperNovaStart();
         yield return new WaitForSeconds(1f);
-        player.GetComponent<AnimationController>().PlayCheerAnim();
+        //player.GetComponent<AnimationController>().PlayCheerAnim();
+        player.GetComponent<LerpScript>().LerpToPos(playerOrigpos, playerOrigpos + new Vector3(0, 20, 0), 7.0f);
         yield return new WaitForSeconds(0.15f);
+        player.GetComponent<AnimationController>().PlayKnightLBIdleAnim();
         player.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         player.transform.GetChild(12).gameObject.SetActive(true);
         player.transform.GetChild(12).GetComponent<SpriteMaskAnimator>().setActive(true);
@@ -67,7 +71,21 @@ public class LimitBreakManager_C : MonoBehaviour
         cameraObj.GetComponent<CameraController>().LerpCameraSize(120, 175, 3.5f);
         cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, origCameraPos, 3.5f);
         yield return new WaitForSeconds(0.75f);
+        StartCoroutine(LoopLevitate());
         player.transform.GetChild(12).GetComponent<AudioSource>().enabled = true;
+    }
+
+    IEnumerator LoopLevitate()
+    {
+        player.GetComponent<LerpScript>().LerpToPos(playerOrigpos + new Vector3(0, 20, 0), playerOrigpos + new Vector3(0, 25, 0), 3.0f);
+        yield return new WaitForSeconds(0.35f);
+        player.GetComponent<LerpScript>().LerpToPos(playerOrigpos + new Vector3(0, 25, 0), playerOrigpos + new Vector3(0, 20, 0), 3.0f);
+        yield return new WaitForSeconds(0.35f);
+        if (limitBreaking)
+        {
+            StartCoroutine(LoopLevitate());
+        }
+
     }
 
     public LimitBreak LookUpLimitBreak(LimitBreakName lbName)

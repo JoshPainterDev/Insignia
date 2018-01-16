@@ -81,12 +81,14 @@ public class Dialogue_Manager_C : MonoBehaviour
 
         tap2Continue.SetActive(false);
 
+        //check if typing effect is active
         if (TTCisRunning)
         {
             StopCoroutine(showTTC);
             TTCisRunning = false;
         }
 
+        //check for end of dialogue
         if (dCurrentLine >= dTotalLines)
         {
             dDialogueCompleted = true;

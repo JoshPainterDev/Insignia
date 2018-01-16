@@ -74,6 +74,9 @@ public class AbilityToolsScript : MonoBehaviour {
             case 11:
                 AbilityName = "Divine Shield";
                 break;
+            case 12:
+                AbilityName = "Stangle";
+                break;
         }
 
         return LookUpAbility(AbilityName);
@@ -234,6 +237,19 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
                 ability.Icon = "AbilityIcons\\DivineShield_AbilityIcon";
+                ability.AbilityIndex = 10;
+                break;
+            case "Strangle":
+                ability.Accuracy = 100;
+                ability.BaseDamage = 15;
+                ability.Cooldown = 3;
+                ability.Buffs = false;
+                ability.Description = "Channeling dark energy, you reach out and crush your opponent in your grasp.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Magical;
+                ability.Icon = "AbilityIcons\\Strangle_AbilityIcon";
                 ability.AbilityIndex = 10;
                 break;
             default:

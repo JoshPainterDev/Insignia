@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
     public bool showAura = false;
+    [HideInInspector]
+    public bool InCombat = false;
 
     public void Awake()
     {
@@ -13,7 +17,7 @@ public class AnimationController : MonoBehaviour
 
     public void Start()
     {
-        Invoke("LoadCharacter", 0.1f);
+        Invoke("LoadCharacter", 0.1f);// SWITCH THIS BACK TO AWAKE!
     }
 
     public void SetPlaySpeed(float newSpeed = 1)
@@ -34,7 +38,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayIdleAnim()
     {
-        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -1;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
         {
@@ -42,8 +46,19 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void SetCombatState(bool combat)
+    {
+        InCombat = combat;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetBool("InCombat", InCombat);
+        }
+    }
+
     public void PlayWalkAnim()
     {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -5;
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -5;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
@@ -54,6 +69,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayCheerAnim()
     {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -1;
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
@@ -62,8 +78,20 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void PlayKnightLBIdleAnim()
+    {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -5;
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -5;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 4);
+        }
+    }
+
     public void PlayAttackAnim()
     {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -1;
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
@@ -74,6 +102,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayHoldAttackAnim()
     {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -1;
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
@@ -84,6 +113,7 @@ public class AnimationController : MonoBehaviour
 
     public void PlayDeathAnim()
     {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = 5;
         this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = 5;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
@@ -169,11 +199,22 @@ public class AnimationController : MonoBehaviour
 
         if (info.useMaskTexture)
         {
-            this.transform.GetChild(6).GetComponent<SpriteRenderer>().enabled = false;
-            this.transform.GetChild(6).GetComponent<SpriteMask>().enabled = true;
-            this.transform.GetChild(6).GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
-            this.transform.GetChild(6).GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
+            Color playerPref = GameController.controller.getPlayerColorPreference();
+            GameObject weaponMask = this.transform.GetChild(6).GetChild(0).gameObject;
+            weaponMask.GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.maskSpriteName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+            weaponMask.GetComponent<SpriteRenderer>().enabled = true;
+            weaponMask.GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 0.6f);
+            weaponMask.GetComponent<SpriteMask>().enabled = true;
+            weaponMask.GetComponent<SpriteMaskAnimator>().setActive(true);
+            weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
+            weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
         }
+        else
+        {
+            this.transform.GetChild(6).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            this.transform.GetChild(6).GetChild(0).GetComponent<SpriteMask>().enabled = false;
+        }
+            
 
         //Aura
         info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[14], GameController.controller.playerEquippedIDs[15]);
@@ -193,6 +234,8 @@ public class AnimationController : MonoBehaviour
         }
 
         setSkinColor(GameController.controller.getPlayerSkinColor()); // set skin color
+
+        SetCombatState(InCombat);
     }
 
     public void setSkinColor(Color color)

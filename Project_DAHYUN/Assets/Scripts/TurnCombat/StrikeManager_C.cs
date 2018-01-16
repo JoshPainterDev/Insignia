@@ -123,7 +123,6 @@ public class StrikeManager_C : MonoBehaviour {
                 pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
                 this.GetComponent<CombatAudio>().playStrikeHit();
-                yield return new WaitForSeconds(0.2f);
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
                 effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);

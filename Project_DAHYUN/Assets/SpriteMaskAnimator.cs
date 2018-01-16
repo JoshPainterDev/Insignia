@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpriteMaskAnimator : MonoBehaviour
 {
+    public bool startOnAwake = false;
+
     private SpriteRenderer spriteRenderer;
     private SpriteMask spriteMask;
 
@@ -16,6 +18,11 @@ public class SpriteMaskAnimator : MonoBehaviour
         spriteMask = this.GetComponent<SpriteMask>();
 
         spriteMask.sprite = spriteRenderer.sprite;
+
+        if(startOnAwake)
+        {
+            setActive(true);
+        }
     }
 	
     public void setActive(bool active)

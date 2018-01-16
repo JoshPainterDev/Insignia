@@ -1015,13 +1015,13 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixWeapon + "\\Novice_Sword\\Player_Weapon_NoviceSword_AnimController";
                             break;
                         case 1:
-                            equipInfo.Name = "Dark Mors";
+                            equipInfo.Name = "Dragon's Tooth";
                             equipInfo.AttackStat = 9;
                             equipInfo.DefenseStat = 7;
                             equipInfo.ProwessStat = 7;
                             equipInfo.SpeedStat = 3;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            equipInfo.imgSourceName = prefixWeapon + "\\DarkMors_Sword\\Player_Weapon_DarkMors_AnimController";
+                            equipInfo.imgSourceName = prefixWeapon + "\\DragonsTooth_Sword\\Player_Weapon_DragonsTooth_AnimController";
                             break;
                         case 2:
                             equipInfo.Name = "Slayer Sword";
@@ -1047,13 +1047,18 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Test Sword";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.Name = "Wraith Blade";
+                            equipInfo.AttackStat = 21;
+                            equipInfo.DefenseStat = 21;
+                            equipInfo.ProwessStat = 21;
+                            equipInfo.SpeedStat = 21;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            equipInfo.imgSourceName = prefixWeapon + "\\Test_Sword\\Player_Weapon_TestSword_AnimController";
+                            equipInfo.imgSourceName = prefixWeapon + "\\Wraith_Sword\\Player_Weapon_WraithBlade_AnimController";
+                            equipInfo.useMaskTexture = true;
+                            equipInfo.maskSpriteName = prefixWeapon + "\\Wraith_Sword\\Player_Weapon_WraithBladeMask_AnimController";
+                            equipInfo.maskTexture = monoSpaceTexture;
+                            weaponColor = GameController.controller.getPlayerColorPreference();
+                            equipInfo.equipmentColor = weaponColor;
                             break;
                         case 1:
                             equipInfo.Name = "Galaxy's Edge";
@@ -1062,19 +1067,20 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.ProwessStat = 69;
                             equipInfo.SpeedStat = 69;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
-                            equipInfo.imgSourceName = prefixWeapon + "\\Test_Sword\\Player_Weapon_SlayerSword_AnimController";
+                            equipInfo.imgSourceName = prefixWeapon + "\\Doom_Sword\\Player_Weapon_DoomBlade_AnimController";
                             equipInfo.useMaskTexture = true;
                             equipInfo.maskTexture = monoSpaceTexture;
                             weaponColor = GameController.controller.getPlayerColorPreference();
                             equipInfo.equipmentColor = weaponColor;
                             break;
                         case 2:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.Name = "Dark Mors";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 7;
+                            equipInfo.ProwessStat = 7;
+                            equipInfo.SpeedStat = 3;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Sword;
+                            equipInfo.imgSourceName = prefixWeapon + "\\DarkMors_Sword\\Player_Weapon_DarkMors_AnimController";
                             break;
                         case 3:
                             equipInfo.Name = "Test Helmet";

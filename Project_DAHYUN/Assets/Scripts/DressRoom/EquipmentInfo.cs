@@ -17,6 +17,7 @@ public class EquipmentInfo{
     public string imgSourceName = "";
     public bool hideUnderLayer = true;
     public bool useMaskTexture = false;
+    public string maskSpriteName = "";
     public Sprite maskTexture;
     public Color equipmentColor = Color.white;
 }

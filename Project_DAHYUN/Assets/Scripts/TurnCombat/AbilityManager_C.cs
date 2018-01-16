@@ -5,9 +5,11 @@ using UnityEngine;
 public class AbilityManager_C : MonoBehaviour {
 
     private CombatManager combatManager;
+    private GameObject cameraObj;
     public GameObject playerMannequin;
     public GameObject enemyMannequin;
     public GameObject boostHandle;
+    public GameObject blackSq;
 
     public GameObject boostPrefab;
 
@@ -17,11 +19,13 @@ public class AbilityManager_C : MonoBehaviour {
     public GameObject lightningYellowBurst_FX;
     public GameObject lightningBigBurst_FX;
 
+    public GameObject thunderCharge_FX;
     public GameObject outrage_FX;
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
     public GameObject finalCut_FX;
     public GameObject blackRain_FX;
+    public GameObject strangle_FX;
 
     public GameObject rush_FX;
     public GameObject smoke01_FX;
@@ -46,6 +50,7 @@ public class AbilityManager_C : MonoBehaviour {
         initPlayerPos = playerMannequin.transform.position;
         initEnemyPos = enemyMannequin.transform.position;
         combatManager = this.GetComponent<CombatManager>();
+        cameraObj = combatManager.cameraObj;
     }
 
     //PLAYER TURN SEQUENCE
@@ -98,16 +103,19 @@ public class AbilityManager_C : MonoBehaviour {
                 float chance = (50f + GameController.controller.playerAttack - combatManager.enemyInfo.enemyDefense);
                 chance = Mathf.Clamp(chance, 50f, 100f);
                 this.GetComponent<CombatAudio>().playThunderChargeFX();
-                effectClone = (GameObject)Instantiate(lightningBlue_FX, initPlayerPos + new Vector3(0,10,0), transform.rotation);
-                effectClone.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
-                GameObject effectClone02 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(10, 40, 0), transform.rotation);
-                GameObject effectClone03 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(-10, 40, 0), transform.rotation);
-                effectClone03.GetComponent<SpriteRenderer>().flipX = true;
-                yield return new WaitForSeconds(1.4f);
+                effectClone = (GameObject)Instantiate(thunderCharge_FX, initPlayerPos + new Vector3(20, 80, 0), transform.rotation);
+                //GameObject effectClone02 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(10, 40, 0), transform.rotation);
+                //GameObject effectClone03 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(-10, 40, 0), transform.rotation);
+                //effectClone03.GetComponent<SpriteRenderer>().flipX = true;
+                yield return new WaitForSeconds(1.5f);
+                playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
+                yield return new WaitForSeconds(0.2f);
                 GameObject effectClone04 = (GameObject)Instantiate(lightningYellow_FX, initPlayerPos + new Vector3(250, 40, 0), transform.rotation);
                 effectClone04.transform.eulerAngles = new Vector3(0,0,90);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, initPlayerPos + new Vector3(420, 0, 0), 5);
-                playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.yellow, 10.0f);
+                yield return new WaitForSeconds(0.2f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 2.0f);
                 yield return new WaitForSeconds(0.5f);
                 combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(0.5f);
@@ -247,6 +255,16 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.25f);
                 StartCoroutine(DefenseBoostAnim(ability.DefenseBoost, ability.DefBoostDuration));
                 yield return new WaitForSeconds(2f);
+                break;
+            case "Strangle":
+                spawnPos = new Vector3(0, 0, 0);
+                effectClone = (GameObject)Instantiate(strangle_FX, spawnPos, transform.rotation);
+                effectClone.transform.SetParent(playerMannequin.transform, false);
+                effectClone.transform.GetChild(0).GetComponent<StrangleScript_C>().StartAnim(true, playerMannequin, enemyMannequin);
+                yield return new WaitForSeconds(1.5f);
+                cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2f);
+                yield return new WaitForSeconds(2.5f);
+                combatManager.DamageEnemy_Ability(ability);
                 break;
             default:
                 break;

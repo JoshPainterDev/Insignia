@@ -22,6 +22,8 @@ public class Character_Menu_Manager : MonoBehaviour {
     public Sprite KnightIcon;
 
     private bool personaPanelActive = false;
+    private int actionPresses = 0;
+    private bool readyForAction = true;
 
     public GameObject canvas;
     public GameObject camera;
@@ -115,10 +117,14 @@ public class Character_Menu_Manager : MonoBehaviour {
         unlockedEquipment[24, 0] = true;
         unlockedEquipment[24, 1] = true;
         unlockedEquipment[24, 2] = true;
-        //unlockedEquipment[24, 3] = true;
+        unlockedEquipment[24, 3] = true;
+        unlockedEquipment[25, 0] = true;
+        unlockedEquipment[25, 1] = true;
 
         unlockedEquipment[28, 0] = true;
         unlockedEquipment[28, 2] = true;
+
+
 
         spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Helmet_Spritesheet01");
         spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Torso_Spritesheet01");
@@ -161,6 +167,53 @@ public class Character_Menu_Manager : MonoBehaviour {
             personaPanel.gameObject.SetActive(true);
             //inputDetector.gameObject.SetActive(true);
         }
+    }
+
+    public void ActionPress()
+    {
+        if (actionPresses < 2)
+        {
+            ++actionPresses;
+        }
+
+        if (readyForAction && actionPresses > 0)
+        {
+            readyForAction = false;
+            StartCoroutine(actionPressAnimation());
+        }
+    }
+
+    IEnumerator actionPressAnimation()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        switch(actionPresses)
+        {
+            case 1:
+                if(!playerMannequin.GetComponent<AnimationController>().InCombat)
+                {
+                    playerMannequin.GetComponent<AnimationController>().PlayCheerAnim();
+                }
+                else
+                {
+                    playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                }
+                break;
+            case 2:
+                if (playerMannequin.GetComponent<AnimationController>().InCombat)
+                {
+                    playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
+                }
+                else
+                {
+                    playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+                }
+                break;
+        }
+
+        yield return new WaitForSeconds(1f);
+        readyForAction = true;
+        actionPresses = 0;
     }
 
     public void UpdateAuraColor(GameObject slider)
@@ -256,9 +309,9 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         auraColor.GetComponent<Image>().color = GameController.controller.getPlayerColorPreference();
 
-        personaPanel.transform.GetChild(1).GetComponent<Slider>().value = colorPref.r;
-        personaPanel.transform.GetChild(2).GetComponent<Slider>().value = colorPref.g;
-        personaPanel.transform.GetChild(3).GetComponent<Slider>().value = colorPref.b;
+        personaPanel.transform.GetChild(2).GetComponent<Slider>().value = colorPref.r;
+        personaPanel.transform.GetChild(3).GetComponent<Slider>().value = colorPref.g;
+        personaPanel.transform.GetChild(4).GetComponent<Slider>().value = colorPref.b;
     }
 
     public void LoadSelectedImage(int i, int j)
@@ -419,6 +472,25 @@ public class Character_Menu_Manager : MonoBehaviour {
             menuButton = GameObject.Find("Weapon_Button");
             menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Weapon[sheetIndex];
             playerMannequin.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+
+            if (info.useMaskTexture)
+            {
+                Color playerPref = GameController.controller.getPlayerColorPreference();
+                GameObject weaponMask = playerMannequin.transform.GetChild(6).GetChild(0).gameObject;
+                weaponMask.GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.maskSpriteName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+                weaponMask.GetComponent<SpriteRenderer>().enabled = true;
+                weaponMask.GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 0.6f);
+                weaponMask.GetComponent<SpriteMask>().enabled = true;
+                weaponMask.GetComponent<SpriteMaskAnimator>().setActive(true);
+                weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
+                weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
+            }
+            else
+            {
+                playerMannequin.transform.GetChild(6).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+                playerMannequin.transform.GetChild(6).GetChild(0).GetComponent<SpriteMask>().enabled = false;
+            }
+                
 
             GameController.controller.playerEquippedIDs[12] = i;
             GameController.controller.playerEquippedIDs[13] = j;
@@ -712,7 +784,7 @@ public class Character_Menu_Manager : MonoBehaviour {
                 {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 24, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
-                    print((4 * i) + j);
+                    //print((4 * i) + j);
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Weapon[(4 * i) + j];
                 }
                 else
