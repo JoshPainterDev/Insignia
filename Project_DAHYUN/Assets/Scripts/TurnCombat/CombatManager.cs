@@ -1014,6 +1014,7 @@ public class CombatManager : MonoBehaviour {
             accuracy -= BLINDED_REDUCTION;
             currSpecialCase = SpecialCase.None;
         }
+        
 
         if (abilityUsed.Type == AbilityType.Physical)
         {
@@ -1036,7 +1037,7 @@ public class CombatManager : MonoBehaviour {
                         attBoostMod = 1;
                         break;
                 }
-
+                
                 damageDealt = ((attack + playerLevel) + (abilityUsed.BaseDamage + (abilityUsed.BaseDamage * playerLevel / 2))) * attBoostMod;
 
                 damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 1.5f;
@@ -1076,9 +1077,11 @@ public class CombatManager : MonoBehaviour {
                         break;
                 }
 
-                damageDealt = ((attack + randDamageBuffer) + (abilityUsed.BaseDamage * playerLevel)) * attBoostMod;
-                print("pAttack: " + attack);
+                damageDealt = (((float)attack * (float)abilityUsed.BaseDamage) - ((enemyInfo.enemyLevel - playerLevel) * 
+                                                                                                                    ((float)abilityUsed.BaseDamage * (float)playerLevel))) * attBoostMod;
+                
                 print("eDefense: " + enemyInfo.enemyDefense);
+
                 damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 2.0f;
 
                 if (damageDealt < 1)

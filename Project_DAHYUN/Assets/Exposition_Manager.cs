@@ -608,17 +608,17 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Seamstress";
+                        speaker[0] = "Theron";
                         leftspeaker[0] = false;
-                        script[0] = "Not too shabby, " + playerName;
+                        script[0] = "Are preparations proceeding as planned?";
 
-                        speaker[1] = playerName;
+                        speaker[1] = "Slade";
                         leftspeaker[1] = true;
-                        script[1] = "Thanks, but can you explain to me why I've been kidnapped?";
+                        script[1] = "Of course, my lord.";
 
-                        speaker[2] = "Seamstress";
-                        leftspeaker[2] = false;
-                        script[2] = "Boss says he'd like you to train with us.";
+                        speaker[2] = "Slade";
+                        leftspeaker[2] = true;
+                        script[2] = "The disguises are all in order and my men are preparing as we speak.";
 
                         speaker[3] = playerName;
                         leftspeaker[3] = true;
