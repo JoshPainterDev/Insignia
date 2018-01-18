@@ -192,11 +192,11 @@ public class Character_Menu_Manager : MonoBehaviour {
             case 1:
                 if(!playerMannequin.GetComponent<AnimationController>().InCombat)
                 {
-                    playerMannequin.GetComponent<AnimationController>().PlayCheerAnim();
+                    playerMannequin.GetComponent<AnimationController>().PlayCheerAnim(); // play cheer
                 }
                 else
                 {
-                    playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                    playerMannequin.GetComponent<AnimationController>().PlayForcePushAnim();
                 }
                 break;
             case 2:
@@ -258,6 +258,18 @@ public class Character_Menu_Manager : MonoBehaviour {
         blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("AbilitySelect_Scene");
+    }
+
+    public void LoadSkillsScene()
+    {
+        StartCoroutine(GoToSkillsScreen());
+    }
+
+    IEnumerator GoToSkillsScreen()
+    {
+        blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Skills_Scene");
     }
 
     public void UpdateStats()

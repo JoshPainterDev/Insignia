@@ -172,10 +172,14 @@ public class NewCharacter_Manager : MonoBehaviour {
                 }
             }
 
-            GameController.controller.playerDecisions = new int[8];
+            GameController.controller.playerDecisions = new bool[8];
 
             for (int i = 0; i < 8; ++i)
-                GameController.controller.playerDecisions[i] = 0;
+                GameController.controller.playerDecisions[i] = false;
+
+            GameController.controller.decisionsMade = 0;
+            GameController.controller.playerGoodPoints = 0;
+            GameController.controller.playerEvilPoints = 0;
 
             SetInitialStats(currentClass);
 

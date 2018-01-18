@@ -78,6 +78,17 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public void PlayForcePushAnim()
+    {
+        this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -1;
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+        foreach (Animator child in this.GetComponentsInChildren<Animator>())
+        {
+            child.SetInteger("AnimState", 3);
+        }
+    }
+
     public void PlayKnightLBIdleAnim()
     {
         this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -5;

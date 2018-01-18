@@ -42,7 +42,11 @@ public class GameController : MonoBehaviour {
     public int levelsCompleted;
     public int stagesCompleted;
     public EnemyEncounter currentEncounter;
-    public int[] playerDecisions;
+    public int decisionsMade;
+    public bool[] playerDecisions;
+    public int playerGoodPoints;
+    public int playerEvilPoints;
+
     public int TOTAL_ABILITIES = 20;
     public int totalAbilities;
     public bool[] arenaCompleted;
@@ -69,7 +73,7 @@ public class GameController : MonoBehaviour {
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
             playerEquipmentList = new bool[30, 4];
-            playerDecisions = new int[8];
+            decisionsMade = 0;
             arenaCompleted = new bool[6];
             charNames = new string[6];
             charClasses = new PlayerClass[6];
@@ -163,7 +167,10 @@ public class GameController : MonoBehaviour {
         data.prowess = playerProwess;
         data.speed = playerSpeed;
         data.PlayerColor = playerColorPreference;
+        data.DecisionsMade = decisionsMade;
         data.PlayerDecisions = playerDecisions;
+        data.GoodPoints = playerGoodPoints;
+        data.EvilPoints = playerEvilPoints;
         data.TotalAbilities = totalAbilities;
 
         data.ArenaCompleted = arenaCompleted;
@@ -208,7 +215,10 @@ public class GameController : MonoBehaviour {
             playerDefense = data.defense;
             playerProwess = data.prowess;
             playerSpeed = data.speed;
+            decisionsMade = data.DecisionsMade;
             playerDecisions = data.PlayerDecisions;
+            playerEvilPoints = data.EvilPoints;
+            playerGoodPoints = data.GoodPoints;
             totalAbilities = data.TotalAbilities;
 
             arenaCompleted = data.ArenaCompleted;
@@ -363,7 +373,11 @@ class PlayerData
     public float[] PlayerColor;
     public int LevelsCompleted;
     public int StagesCompleted;
-    public int[] PlayerDecisions;
+    public int DecisionsMade;
+    public bool[] PlayerDecisions;
+    public int GoodPoints;
+    public int EvilPoints;
+
     public int TotalAbilities;
     public bool[] ArenaCompleted;
 }

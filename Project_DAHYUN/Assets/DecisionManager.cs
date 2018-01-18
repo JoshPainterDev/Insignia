@@ -26,13 +26,18 @@ public class DecisionManager : MonoBehaviour
         optionNumber = numSelected;
         blocker.SetActive(true);
 
+
         switch (decisionNumber)
         {
             case 0:
                 if(optionNumber == 1)
+                {
                     StartCoroutine(Decision0(true));
+                }
                 else
+                {
                     StartCoroutine(Decision0(false));
+                }
                 break;
         }
     }
@@ -46,7 +51,12 @@ public class DecisionManager : MonoBehaviour
 
     public void ConfirmSelection()
     {
-        GameController.controller.playerDecisions[decisionNumber] = optionNumber;
+        bool choice = false;
+
+        if (optionNumber == 1)
+            choice = true;
+
+        GameController.controller.playerDecisions[decisionNumber] = choice;
         GameController.controller.Save(GameController.controller.playerName);
         StartCoroutine(ConfirmAnim());
     }
