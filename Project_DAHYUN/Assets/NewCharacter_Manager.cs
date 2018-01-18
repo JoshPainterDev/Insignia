@@ -180,6 +180,7 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.decisionsMade = 0;
             GameController.controller.playerGoodPoints = 0;
             GameController.controller.playerEvilPoints = 0;
+            GameController.controller.skillTree = new int[10];
 
             SetInitialStats(currentClass);
 

@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour {
     public bool[] playerDecisions;
     public int playerGoodPoints;
     public int playerEvilPoints;
+    public int[] skillTree;
 
     public int TOTAL_ABILITIES = 20;
     public int totalAbilities;
@@ -73,6 +74,7 @@ public class GameController : MonoBehaviour {
             playerColorPreference = new float[4];
             playerEquippedIDs = new int[16];
             playerEquipmentList = new bool[30, 4];
+            skillTree = new int[10];
             decisionsMade = 0;
             arenaCompleted = new bool[6];
             charNames = new string[6];
@@ -171,6 +173,7 @@ public class GameController : MonoBehaviour {
         data.PlayerDecisions = playerDecisions;
         data.GoodPoints = playerGoodPoints;
         data.EvilPoints = playerEvilPoints;
+        data.SkillTree = skillTree;
         data.TotalAbilities = totalAbilities;
 
         data.ArenaCompleted = arenaCompleted;
@@ -220,6 +223,7 @@ public class GameController : MonoBehaviour {
             playerEvilPoints = data.EvilPoints;
             playerGoodPoints = data.GoodPoints;
             totalAbilities = data.TotalAbilities;
+            skillTree = data.SkillTree;
 
             arenaCompleted = data.ArenaCompleted;
             playerInventory = data.InventoryList;
@@ -377,6 +381,7 @@ class PlayerData
     public bool[] PlayerDecisions;
     public int GoodPoints;
     public int EvilPoints;
+    public int[] SkillTree;
 
     public int TotalAbilities;
     public bool[] ArenaCompleted;

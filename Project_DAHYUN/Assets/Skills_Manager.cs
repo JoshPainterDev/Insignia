@@ -22,6 +22,7 @@ public class Skills_Manager : MonoBehaviour
     private int p_EvilPoints;
     private int p_GoodPoints;
     private int MAX_UNLOCKS;
+    private int[] skills;
     
 
     // Use this for initialization
@@ -30,9 +31,10 @@ public class Skills_Manager : MonoBehaviour
         MAX_UNLOCKS = unlockRequirements.Length;
         p_EvilPoints = GameController.controller.playerEvilPoints;
         p_GoodPoints = GameController.controller.playerGoodPoints;
+        skills = GameController.controller.skillTree;
 
         setBackground();
-        lockSkills();
+        Invoke("lockSkills", 0.1f);
 	}
 
     public void handleEvilSkill(int skillNumber)
@@ -56,7 +58,19 @@ public class Skills_Manager : MonoBehaviour
 
         for(int i = 0; i < MAX_UNLOCKS; ++i)
         {
-            if(p_EvilPoints < unlockRequirements[MAX_UNLOCKS - i - 1])
+            if (skills[i] == 1)
+            {
+                content.transform.GetChild(i).GetComponent<SkillSelectHandler>().SelectGoodSkill();
+                continue;
+            }
+
+            if (skills[i] == 2)
+            {
+                content.transform.GetChild(i).GetComponent<SkillSelectHandler>().SelectEvilSkill();
+                continue;
+            }
+
+            if (p_EvilPoints < unlockRequirements[MAX_UNLOCKS - i - 1])
             {
                 content.transform.GetChild(i).GetComponent<SkillSelectHandler>().LockEvilSkill();
             }
@@ -88,5 +102,18 @@ public class Skills_Manager : MonoBehaviour
             tempC.a = (float)(p_GoodPoints - p_EvilPoints) / 1000.0f;
             background.GetComponent<SpriteRenderer>().color = tempC;
         }
+    }
+
+    public void BackToCharMenu()
+    {
+        GameController.controller.Save(GameController.controller.playerName);
+        StartCoroutine(LoadCharMenu());
+    }
+
+    IEnumerator LoadCharMenu()
+    {
+        blackSq.GetComponent<FadeScript>().FadeIn(2);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Character_Scene");
     }
 }

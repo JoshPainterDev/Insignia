@@ -4016,7 +4016,11 @@ MonoBehaviour:
   playerColorPreference: []
   levelsCompleted: 0
   stagesCompleted: 0
+  decisionsMade: 0
   playerDecisions: 
+  playerGoodPoints: 0
+  playerEvilPoints: 0
+  skillTree: 
   TOTAL_ABILITIES: 20
   totalAbilities: 0
   arenaCompleted: 
@@ -4971,7 +4975,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1616549425}
-        m_MethodName: LoadAbilityScene
+        m_MethodName: LoadSkillsScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
