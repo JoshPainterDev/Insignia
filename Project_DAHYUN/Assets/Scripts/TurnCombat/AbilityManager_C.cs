@@ -70,6 +70,9 @@ public class AbilityManager_C : MonoBehaviour {
         origEnemyHP = enemyHP;
         combatManager.currSpecialCase = SpecialCase.None;
 
+        GameController.controller.playerEvilPoints += ability.EvilPoints;
+        GameController.controller.playerGoodPoints += ability.GoodPoints;
+
         StartCoroutine(AnimateAbility(ability.Name));
 
         switch (ability.Name)

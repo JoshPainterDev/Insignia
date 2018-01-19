@@ -37,34 +37,19 @@ public class Skills_Manager : MonoBehaviour
         Invoke("lockSkills", 0.1f);
 	}
 
-    public void handleEvilSkill(int skillNumber)
-    {
-        switch(skillNumber)
-        {
-            case 1:
-                break;
-        }
-    }
-
-    public void handleGoodSkill(int skillNumber)
-    {
-
-    }
-
     public void lockSkills()
     {
-        p_EvilPoints = 375;
-        p_GoodPoints = 780;
-
+        //this loop goes through in reverse order!
         for(int i = 0; i < MAX_UNLOCKS; ++i)
         {
-            if (skills[i] == 1)
+
+            if (skills[MAX_UNLOCKS - i - 1] == 2)
             {
                 content.transform.GetChild(i).GetComponent<SkillSelectHandler>().SelectGoodSkill();
                 continue;
             }
 
-            if (skills[i] == 2)
+            if (skills[MAX_UNLOCKS - i - 1] == 1)
             {
                 content.transform.GetChild(i).GetComponent<SkillSelectHandler>().SelectEvilSkill();
                 continue;
@@ -112,6 +97,12 @@ public class Skills_Manager : MonoBehaviour
 
     IEnumerator LoadCharMenu()
     {
+        //print("SKILL TREE: ");
+        //for(int i = 0; i < 5; ++i)
+        //{
+        //    print(i + ": " + GameController.controller.skillTree[i]);
+        //}
+
         blackSq.GetComponent<FadeScript>().FadeIn(2);
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Character_Scene");

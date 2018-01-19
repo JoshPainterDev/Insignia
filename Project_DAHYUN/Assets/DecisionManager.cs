@@ -13,6 +13,7 @@ public class DecisionManager : MonoBehaviour
     public GameObject blackSq;
     public GameObject blocker;
     public int decisionNumber = 0;
+    public int decisionPoints = 100;
 
     private int optionNumber;
 
@@ -123,6 +124,8 @@ public class DecisionManager : MonoBehaviour
             option2Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             temp = option2Button.transform.GetChild(1).GetComponent<Text>().color;
             option2Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //ADD POINTS FOR MAKING A DECISION
+            GameController.controller.playerGoodPoints += decisionPoints;
         }
         else
         {
@@ -132,10 +135,12 @@ public class DecisionManager : MonoBehaviour
             option1Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             temp = option1Button.transform.GetChild(1).GetComponent<Text>().color;
             option1Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //ADD POINTS FOR MAKING A DECISION
+            GameController.controller.playerEvilPoints += decisionPoints;
         }
 
         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0.75f, 0.75f, 0.75f, 0.75f), Color.black, 0.5f);
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("MainMenu_Tutorial_Scene");
+        SceneManager.LoadScene("MainMenu_Scene");
     }
 }

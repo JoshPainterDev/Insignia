@@ -15,7 +15,9 @@ public class SkillSelectHandler : MonoBehaviour
 
     private int SkillSelected = 0;
 
-	// Use this for initialization
+	// PRO TIP:
+    //   1 = EVIL
+    //   2 = GOOD
 	void Start ()
     {
         c_EvilDisabled = evilHighlight.GetComponent<Image>().color;
@@ -34,29 +36,29 @@ public class SkillSelectHandler : MonoBehaviour
         this.transform.GetChild(2).GetComponent<Image>().color = lockColor;
     }
 
-    public void SelectEvilSkill()
+    public void SelectGoodSkill()
     {
-        if(SkillSelected == 0 || SkillSelected == 2)
+        if (SkillSelected == 0 || SkillSelected == 1)
         {
-            print("evil skill");
-            SkillSelected = 1;
-            Color c = evilHighlight.GetComponent<Image>().color;
-            evilHighlight.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1.0f);
-            goodHighlight.GetComponent<Image>().color = c_GoodDisabled;
+            //print("good skill: " + SkillNumber);
+            SkillSelected = 2;
+            Color c = goodHighlight.GetComponent<Image>().color;
+            goodHighlight.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1.0f);
+            evilHighlight.GetComponent<Image>().color = c_EvilDisabled;
 
             GameController.controller.skillTree[SkillNumber - 1] = SkillSelected;
         }
     }
 
-    public void SelectGoodSkill()
+    public void SelectEvilSkill()
     {
-        if (SkillSelected == 0 || SkillSelected == 1)
+        if (SkillSelected == 0 || SkillSelected == 2)
         {
-            print("good skill");
-            SkillSelected = 2;
-            Color c = goodHighlight.GetComponent<Image>().color;
-            goodHighlight.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1.0f);
-            evilHighlight.GetComponent<Image>().color = c_EvilDisabled;
+            //print("evil skill: " + SkillNumber);
+            SkillSelected = 1;
+            Color c = evilHighlight.GetComponent<Image>().color;
+            evilHighlight.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1.0f);
+            goodHighlight.GetComponent<Image>().color = c_GoodDisabled;
 
             GameController.controller.skillTree[SkillNumber - 1] = SkillSelected;
         }

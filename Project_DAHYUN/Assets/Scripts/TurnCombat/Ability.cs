@@ -29,6 +29,8 @@ public class Ability{
     public string Description = "";
     public string Icon = "";
     public int AbilityIndex = 0;
+    public int EvilPoints = 0;
+    public int GoodPoints = 0;
 }
 
 
