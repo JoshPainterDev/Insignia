@@ -583,23 +583,67 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Seamstress";
+                        speaker[0] = "Theron";
                         leftspeaker[0] = false;
-                        script[0] = "This here is the combat yard -";
+                        script[0] = "Are preparations proceeding as planned?";
 
-                        speaker[1] = "Seamstress";
+                        speaker[1] = "Slade";
                         leftspeaker[1] = true;
-                        script[1] = "It seems you can handle youself, but...";
+                        script[1] = "Of course, my lord.";
 
-                        speaker[2] = "Seamstress";
+                        speaker[2] = "Slade";
                         leftspeaker[2] = true;
-                        script[2] = "Something tells me you could use a lesson or two in the Arcane arts.";
+                        script[2] = "The disguises are all in order and my men are preparing as we speak.";
 
-                        speaker[3] = "Seamstress";
+                        speaker[3] = playerName;
                         leftspeaker[3] = true;
-                        script[3] = "Don't worry, I'll go easy on you this time.";
+                        script[3] = "Wait, you want me to train here? With your cult?";
 
-                        totalLines = 4;
+                        speaker[4] = "Seamstress";
+                        leftspeaker[4] = false;
+                        script[4] = "The Order of Shadow is a school specializing in ancient powerful magics.";
+
+                        speaker[5] = "Seamstress";
+                        leftspeaker[5] = false;
+                        script[5] = "As the Nova, you have a lot of natural talent. You just need a teacher.";
+
+                        speaker[6] = playerName;
+                        leftspeaker[6] = true;
+                        script[6] = "Nova? Why is everone calling me that?";
+
+                        speaker[7] = "???";
+                        leftspeaker[7] = false;
+                        script[7] = "She is referring to your true name, " + playerName + ". A title you have so easily forgotten...";
+
+                        speaker[8] = playerName;
+                        leftspeaker[8] = true;
+                        script[8] = "!";
+
+                        speaker[9] = "???";
+                        leftspeaker[9] = false;
+                        script[9] = "I've been watching you. Pointlessly pacing about in your quarters.";
+
+                        speaker[10] = "???";
+                        leftspeaker[10] = false;
+                        script[10] = "You lack purpose.";
+
+                        speaker[11] = "???";
+                        leftspeaker[11] = false;
+                        script[11] = "Your circumstance has... rebirthed you. You're now free from your old life.";
+
+                        speaker[12] = "???";
+                        leftspeaker[12] = false;
+                        script[12] = "Or maybe you would you like to know who you once were?";
+
+                        speaker[13] = "???";
+                        leftspeaker[13] = false;
+                        script[13] = "You need not stay forever. Only until you've learned all you need to know.";
+
+                        speaker[14] = "???";
+                        leftspeaker[14] = false;
+                        script[14] = "So tell me child, will you join us? Or return to your nest of comfort?";
+
+                        totalLines = 15;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -737,20 +781,17 @@ public class Exposition_Manager : MonoBehaviour
         switch (action)
         {
             case 0:
-                nextLevel = "TurnCombat_Scene";
+                nextLevel = "Exposition_Scene10";
                 // Set next Level //
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-                yield return new WaitForSeconds(1f);
-                speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(250, 0, 0), 1f);
-                yield return new WaitForSeconds(1f);
-                speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                yield return new WaitForSeconds(0.65f);
+                yield return new WaitForSeconds(2f);
+                speaker06.GetComponent<SpriteRenderer>().enabled = true;
+                speaker06.GetComponent<Animator>().enabled = true;
+                speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 150, 0), 3.0f);
+                //yield return new WaitForSeconds(0.5f);
+                speaker02.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.0f);
+                yield return new WaitForSeconds(0.75f);
                 StartCoroutine(NewDialogue(9, 1));
-                break;
-            case 3:
-                yield return new WaitForSeconds(2);
-                actionsCompleted = true; //actions are completed
-                StartCoroutine(LoadCombatScene(1, 2));
                 break;
         }
         //////////////////

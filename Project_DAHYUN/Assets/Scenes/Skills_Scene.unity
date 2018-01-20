@@ -316,7 +316,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Evil Ability 1
+  m_Text: Strangle
 --- !u!222 &14195059
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Good Ability 1
+  m_Text: Meditate
 --- !u!222 &107705639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -952,9 +952,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Good Ability 2
-
-'
+  m_Text: Solar Flare
 --- !u!222 &126521567
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1064,7 +1062,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 74, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &250471017
 MonoBehaviour:
@@ -1191,7 +1189,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 74, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326804922
 MonoBehaviour:
@@ -1261,7 +1259,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 74, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402766616
 MonoBehaviour:
@@ -1331,7 +1329,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 74, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &434446352
 MonoBehaviour:
@@ -1537,9 +1535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Good Ability 2
-
-'
+  m_Text: Thunder Charge
 --- !u!222 &640471923
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1581,7 +1577,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 74, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &641219169
 MonoBehaviour:
@@ -1683,9 +1679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Evil Ability 2
-
-'
+  m_Text: Blade Storm
 --- !u!222 &691262821
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1800,7 +1794,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b83f95e6d51bcb94c9d02a2ce646dea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e6f2467a0fccc44f8a76e39cad9050f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2052,9 +2046,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Evil Ability 2
-
-'
+  m_Text: Lightning Surge
 --- !u!222 &840179097
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2285,7 +2277,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1d9c7e3ee1b886b44a0eb186606777ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92684de3179a1be43858e218f9855ea7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2527,7 +2519,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 61892a83e31764040b8cf0057c8bf806, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f22280197d2b40840b7b124060358007, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2783,7 +2775,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f22280197d2b40840b7b124060358007, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3143,7 +3135,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1d9c7e3ee1b886b44a0eb186606777ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3354,7 +3346,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f22280197d2b40840b7b124060358007, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3435,9 +3427,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Good Ability 2
-
-'
+  m_Text: Retribution
 --- !u!222 &1320264769
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3511,9 +3501,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Evil Ability 2
-
-'
+  m_Text: Black Rain
 --- !u!222 &1321398834
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3702,7 +3690,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d9c7e3ee1b886b44a0eb186606777ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4234,8 +4222,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1773142844}
   m_HandleRect: {fileID: 1773142843}
   m_Direction: 2
-  m_Value: 0.000000032572235
-  m_Size: 0.2713508
+  m_Value: 0
+  m_Size: 0.27257714
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4653,7 +4641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Evil Ability 1
+  m_Text: Hatred
 --- !u!222 &1813230249
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4847,7 +4835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 468.46}
+  m_AnchoredPosition: {x: 0, y: 468.46002}
   m_SizeDelta: {x: 0, y: 1288}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1998651509
@@ -5103,6 +5091,8 @@ MonoBehaviour:
     Description: 
     Icon: 
     AbilityIndex: 0
+    EvilPoints: 0
+    GoodPoints: 0
   playerAbility2:
     Accuracy: 100
     Cooldown: 3
@@ -5125,6 +5115,8 @@ MonoBehaviour:
     Description: 
     Icon: 
     AbilityIndex: 0
+    EvilPoints: 0
+    GoodPoints: 0
   playerAbility3:
     Accuracy: 100
     Cooldown: 3
@@ -5147,6 +5139,8 @@ MonoBehaviour:
     Description: 
     Icon: 
     AbilityIndex: 0
+    EvilPoints: 0
+    GoodPoints: 0
   playerAbility4:
     Accuracy: 100
     Cooldown: 3
@@ -5169,6 +5163,8 @@ MonoBehaviour:
     Description: 
     Icon: 
     AbilityIndex: 0
+    EvilPoints: 0
+    GoodPoints: 0
   strikeModifier: none
   limitBreakModifier: 6
   limitBreakTracker: 0
