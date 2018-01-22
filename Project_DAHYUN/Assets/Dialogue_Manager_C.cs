@@ -286,7 +286,7 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Not Steve":
                 iconString = "CloseUps\\Character_CloseUp_Slade";
                 break;
-            case "Seamstress":
+            case "Hyun":
                 iconString = "CloseUps\\Character_CloseUp_Seamstress";
                 break;
             case "Ayo":

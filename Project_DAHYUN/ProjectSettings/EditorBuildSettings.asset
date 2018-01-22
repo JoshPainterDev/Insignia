@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Level.unity
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/StartupTitleScreen_Scene.unity
     guid: 90beee53d3e5d594486059f4a7ad5c80
@@ -45,14 +42,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Exposition_SceneSnow.unity
     guid: b0678f704fef96b45a3e215a4a270f32
   - enabled: 1
-    path: 
-    guid: 85b4cfda9c11ceb45973f966f808010e
-  - enabled: 1
     path: Assets/Scenes/Tutorial_Scene01.unity
     guid: 40840b8997b5f00438af78c106925834
-  - enabled: 1
-    path: 
-    guid: b4a6eb7ad7fd8ce4db759cb7d3e576af
   - enabled: 1
     path: Assets/Scenes/Exposition_Scene04.unity
     guid: 8dd18f7d967d8234f9bee8a13b3eba8e
@@ -60,26 +51,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu_Tutorial_Scene.unity
     guid: 074df2976d688644abefc77fd5f6af98
   - enabled: 1
-    path: 
-    guid: 1d7678d1e6686b34494429cb6badf41f
-  - enabled: 1
     path: Assets/Scenes/Tutorial_Scene02.unity
     guid: fdef24026718b26418cd1101db14ff95
-  - enabled: 1
-    path: 
-    guid: 62fc205f5d260be47b755b97086e1586
-  - enabled: 1
-    path: 
-    guid: 504b950f7a81d094282723f8e40dfac5
-  - enabled: 1
-    path: 
-    guid: 74d8d1a4612772741a35d2be9de8f5a6
-  - enabled: 1
-    path: 
-    guid: bccc764e3fd2fd04c81f0869c4e06ce3
-  - enabled: 1
-    path: Assets/Scenes/Exposition_Scene10_Old.unity
-    guid: 987a03fe1b5a151498465b073922c66b
   - enabled: 1
     path: Assets/Scenes/Retry_Scene.unity
     guid: 3a31445b34b80ae429dca740ca2ad91a
@@ -112,4 +85,7 @@ EditorBuildSettings:
     guid: c8a2db65e8892354fad9956f9d0c9506
   - enabled: 1
     path: Assets/Scenes/Exposition_Scene10.unity
-    guid: 1a08411283541b940a3ea3b2cfc87a84
+    guid: cb61eff18e8b4bd4cb4df53532580d1e
+  - enabled: 1
+    path: Assets/Scenes/Exposition_Scene11.unity
+    guid: 6addc60fa378f954e8ef1f911c492a6e

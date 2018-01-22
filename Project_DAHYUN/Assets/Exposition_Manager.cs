@@ -143,6 +143,7 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene8(actionCounter, instance));
                 break;
             case 9:
+                eMaxInstances = 2;
                 StartCoroutine(Cutscene9(actionCounter, instance));
                 break;
             case 10:
@@ -595,55 +596,47 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[2] = true;
                         script[2] = "The disguises are all in order and my men are preparing as we speak.";
 
-                        speaker[3] = playerName;
-                        leftspeaker[3] = true;
-                        script[3] = "Wait, you want me to train here? With your cult?";
+                        speaker[3] = "Theron";
+                        leftspeaker[3] = false;
+                        script[3] = "How exciting.";
 
-                        speaker[4] = "Seamstress";
+                        speaker[4] = "Theron";
                         leftspeaker[4] = false;
-                        script[4] = "The Order of Shadow is a school specializing in ancient powerful magics.";
+                        script[4] = " It's times like this I forget my own age.";
 
-                        speaker[5] = "Seamstress";
+                        speaker[5] = "Theron";
                         leftspeaker[5] = false;
-                        script[5] = "As the Nova, you have a lot of natural talent. You just need a teacher.";
+                        script[5] = "Make yourselves ready.";
 
-                        speaker[6] = playerName;
-                        leftspeaker[6] = true;
-                        script[6] = "Nova? Why is everone calling me that?";
+                        speaker[6] = "Theron";
+                        leftspeaker[6] = false;
+                        script[6] = "We march on the kingdom at dusk...";
 
-                        speaker[7] = "???";
-                        leftspeaker[7] = false;
-                        script[7] = "She is referring to your true name, " + playerName + ". A title you have so easily forgotten...";
+                        totalLines = 7;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
+                        speaker[0] = "Slade";
+                        leftspeaker[0] = false;
+                        script[0] = "I hope you're ready, lackie.";
 
-                        speaker[8] = playerName;
-                        leftspeaker[8] = true;
-                        script[8] = "!";
+                        speaker[1] = "Hyun";
+                        leftspeaker[1] = true;
+                        script[1] = "Lose the attitude, Slade.";
 
-                        speaker[9] = "???";
-                        leftspeaker[9] = false;
-                        script[9] = "I've been watching you. Pointlessly pacing about in your quarters.";
+                        speaker[2] = "Hyun";
+                        leftspeaker[2] = true;
+                        script[2] = playerName + " knows even better than you just how important this mission is.";
 
-                        speaker[10] = "???";
-                        leftspeaker[10] = false;
-                        script[10] = "You lack purpose.";
+                        speaker[3] = "Slade";
+                        leftspeaker[3] = false;
+                        script[3] = "For your mortal sake,";
 
-                        speaker[11] = "???";
-                        leftspeaker[11] = false;
-                        script[11] = "Your circumstance has... rebirthed you. You're now free from your old life.";
+                        speaker[4] = "Slade";
+                        leftspeaker[4] = false;
+                        script[4] = "I hope you're right.";
 
-                        speaker[12] = "???";
-                        leftspeaker[12] = false;
-                        script[12] = "Or maybe you would you like to know who you once were?";
-
-                        speaker[13] = "???";
-                        leftspeaker[13] = false;
-                        script[13] = "You need not stay forever. Only until you've learned all you need to know.";
-
-                        speaker[14] = "???";
-                        leftspeaker[14] = false;
-                        script[14] = "So tell me child, will you join us? Or return to your nest of comfort?";
-
-                        totalLines = 15;
+                        totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -668,50 +661,6 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[3] = true;
                         script[3] = "Wait, you want me to train here? With your cult?";
 
-                        speaker[4] = "Seamstress";
-                        leftspeaker[4] = false;
-                        script[4] = "The Order of Shadow is a school specializing in ancient powerful magics.";
-
-                        speaker[5] = "Seamstress";
-                        leftspeaker[5] = false;
-                        script[5] = "As the Nova, you have a lot of natural talent. You just need a teacher.";
-
-                        speaker[6] = playerName;
-                        leftspeaker[6] = true;
-                        script[6] = "Nova? Why is everone calling me that?";
-
-                        speaker[7] = "???";
-                        leftspeaker[7] = false;
-                        script[7] = "She is referring to your true name, " + playerName + ". A title you have so easily forgotten...";
-
-                        speaker[8] = playerName;
-                        leftspeaker[8] = true;
-                        script[8] = "!";
-
-                        speaker[9] = "???";
-                        leftspeaker[9] = false;
-                        script[9] = "I've been watching you. Pointlessly pacing about in your quarters.";
-
-                        speaker[10] = "???";
-                        leftspeaker[10] = false;
-                        script[10] = "You lack purpose.";
-
-                        speaker[11] = "???";
-                        leftspeaker[11] = false;
-                        script[11] = "Your circumstance has... rebirthed you. You're now free from your old life.";
-
-                        speaker[12] = "???";
-                        leftspeaker[12] = false;
-                        script[12] = "Or maybe you would you like to know who you once were?";
-
-                        speaker[13] = "???";
-                        leftspeaker[13] = false;
-                        script[13] = "You need not stay forever. Only until you've learned all you need to know.";
-
-                        speaker[14] = "???";
-                        leftspeaker[14] = false;
-                        script[14] = "So tell me child, will you join us? Or return to your nest of comfort?";
-
                         totalLines = 15;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
@@ -720,78 +669,78 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene10(int action, int act = 0)
+    IEnumerator Cutscene10(int action, int instance = 0)
     {
-        switch (action)
+        switch (instance)
         {
-            case 0:
-                nextLevel = "MainMenu_Tutorial_Scene";
-                // Set next Level //
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-                speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 6);
-                yield return new WaitForSeconds(0.75f);
-                speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
-                StartCoroutine(NewDialogue(10, 1));
-                yield return new WaitForSeconds(1f);
-                break;
-            case 8:
-                yield return new WaitForSeconds(1);
-                //actionsCompleted = true; //actions are completed
-                speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(70, 0, 0), 1f);
-                yield return new WaitForSeconds(0.5f);
-                playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                yield return new WaitForSeconds(0.5f);
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(70, 0, 0), 2f);
-                break;
-            case 17:
-                yield return new WaitForSeconds(0.75f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, new Color(0.75f, 0.75f, 0.75f, 0.75f), 0.85f);
-                yield return new WaitForSeconds(1.5f);
-
-                speaker04.SetActive(true);
-                speaker05.SetActive(true);
-
-                Color temp = speaker04.GetComponent<Image>().color;
-                speaker04.GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
-                temp = speaker04.transform.GetChild(0).GetComponent<Text>().color;
-                speaker04.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
-                temp = speaker04.transform.GetChild(1).GetComponent<Text>().color;
-                speaker04.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
-
-                yield return new WaitForSeconds(1.5f);
-
-                temp = speaker05.GetComponent<Image>().color;
-                speaker05.GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
-                temp = speaker05.transform.GetChild(0).GetComponent<Text>().color;
-                speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
-                temp = speaker05.transform.GetChild(1).GetComponent<Text>().color;
-                speaker05.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp + new Color(0, 0, 0, 1), 0.75f);
-
-                yield return new WaitForSeconds(2.5f);
-
-                speaker04.GetComponent<Button>().enabled = true;
-                speaker05.GetComponent<Button>().enabled = true;
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "Exposition_Scene11";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(900, 0, 0), 0.05f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position - new Vector3(900, 0, 0), 0.05f);
+                        speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(900, 0, 0), 0.05f);
+                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(900, 0, 0), 0.05f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position - new Vector3(900, 0, 0), 0.05f);
+                        yield return new WaitForSeconds(7f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
+                        actionsCompleted = true; //actions are completed
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
                 break;
         }
         //////////////////
     }
 
-    IEnumerator Cutscene9(int action, int act = 0)
+    IEnumerator Cutscene9(int action, int instance = 0)
     {
-        switch (action)
+        switch (instance)
         {
-            case 0:
-                nextLevel = "Exposition_Scene10";
-                // Set next Level //
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
-                yield return new WaitForSeconds(2f);
-                speaker06.GetComponent<SpriteRenderer>().enabled = true;
-                speaker06.GetComponent<Animator>().enabled = true;
-                speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 150, 0), 3.0f);
-                //yield return new WaitForSeconds(0.5f);
-                speaker02.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.0f);
-                yield return new WaitForSeconds(0.75f);
-                StartCoroutine(NewDialogue(9, 1));
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "Exposition_Scene10";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                        yield return new WaitForSeconds(2f);
+                        speaker06.GetComponent<SpriteRenderer>().enabled = true;
+                        speaker06.GetComponent<Animator>().enabled = true;
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 100, 0), 3.0f);
+                        //yield return new WaitForSeconds(0.5f);
+                        speaker02.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.0f);
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(NewDialogue(9, 1));
+                        break;
+                    case 8:
+                        speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(0.5f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(220, 0, 0), 1.7f);
+                        break;
+                }
+                break;
+            case 2:
+                switch (action)
+                {
+                    case 0:
+                        yield return new WaitForSeconds(0.5f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(190, 0, 0), 1.0f);
+                        yield return new WaitForSeconds(2.5f);
+                        speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(NewDialogue(eCurrentCutscene, instance));
+                        break;
+                    case 5:
+                        yield return new WaitForSeconds(2f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
+                        actionsCompleted = true; //actions are completed
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
                 break;
         }
         //////////////////
@@ -868,13 +817,13 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(4f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
                         yield return new WaitForSeconds(2.5f);
-                        
                         speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(140, 0, 0), 0.25f);
                         sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
                         yield return new WaitForSeconds(2.5f);
                         StartCoroutine(NewDialogue(eCurrentCutscene, instance));
                         break;
                     case 5:
+                        actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
                         sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
                         yield return new WaitForSeconds(2f);
