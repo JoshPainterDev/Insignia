@@ -23,6 +23,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
         GameController.controller.levelsCompleted = 0;
         GameController.controller.stagesCompleted = 0;
         playerMannequin.GetComponent<AnimationController>().LoadCharacter();

@@ -386,6 +386,7 @@
     <Compile Include="Assets\SkillSelectHandler.cs" />
     <Compile Include="Assets\SkipButtonScript.cs" />
     <Compile Include="Assets\SoundFXManager_C.cs" />
+    <Compile Include="Assets\SpawnPlayerScript_C.cs" />
     <Compile Include="Assets\SpriteMaskAnimator.cs" />
     <Compile Include="Assets\SpriteUsesPlayerColor_C.cs" />
     <Compile Include="Assets\StartupManager_C.cs" />

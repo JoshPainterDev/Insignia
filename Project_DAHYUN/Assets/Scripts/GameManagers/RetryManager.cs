@@ -15,7 +15,7 @@ public class RetryManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+        playerMannequin = GameController.controller.playerObject;
         StartCoroutine(StartingSequence());
     }
 

@@ -12,6 +12,7 @@ public enum Difficulty { Chill, Story, Challenge, none };
 public class GameController : MonoBehaviour {
 
     public static GameController controller;
+    public GameObject playerObject;
     public int playerNumber = 0;
     public string playerName = "";
     public float[] playerSkinColor;

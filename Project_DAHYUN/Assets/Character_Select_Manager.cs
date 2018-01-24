@@ -35,6 +35,8 @@ public class Character_Select_Manager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
+
         HideDeleteCheck();
         RefreshCharacterList();
 

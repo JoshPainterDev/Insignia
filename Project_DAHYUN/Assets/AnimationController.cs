@@ -12,12 +12,24 @@ public class AnimationController : MonoBehaviour
 
     public void Awake()
     {
-        //LoadCharacter();
+        
     }
 
     public void Start()
     {
-        Invoke("LoadCharacter", 0.1f);// SWITCH THIS BACK TO AWAKE!
+        if (GameController.controller.playerObject == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            GameController.controller.playerObject = this.gameObject;
+            LoadCharacter();
+            print("new player object");
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        //Invoke("LoadCharacter", 0.1f);// SWITCH THIS BACK TO AWAKE
     }
 
     public void SetPlaySpeed(float newSpeed = 1)
@@ -135,6 +147,7 @@ public class AnimationController : MonoBehaviour
 
     public void LoadCharacter()
     {
+        print("LOADING CHARACTER...");
         //head
         EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         this.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;

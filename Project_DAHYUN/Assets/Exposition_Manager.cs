@@ -53,6 +53,7 @@ public class Exposition_Manager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
         encounter = GameController.controller.currentEncounter;
         origCameraPos = cameraObj.transform.position;
         playerInitPos = playerMannequin.transform.position;
@@ -1069,7 +1070,7 @@ public class Exposition_Manager : MonoBehaviour
         {
             case 0:
                 // Set next Level //
-                nextLevel = "Tutorial_Scene02";
+                nextLevel = "Tutorial_Scene01";
                 Vector3 start = speaker01.transform.position;
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
                 yield return new WaitForSeconds(0.5f);

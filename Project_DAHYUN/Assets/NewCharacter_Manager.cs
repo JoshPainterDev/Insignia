@@ -34,6 +34,8 @@ public class NewCharacter_Manager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
+
         if (GameController.controller.charClasses.Length == 0)
             GameController.controller.charClasses = new PlayerClass[6];
 

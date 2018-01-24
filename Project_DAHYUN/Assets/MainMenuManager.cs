@@ -22,7 +22,7 @@ public class MainMenuManager : MonoBehaviour {
 
     public void Start()
     {
-        playerMannequin.GetComponent<AnimationController>().LoadCharacter();
+        playerMannequin = GameController.controller.playerObject;
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
