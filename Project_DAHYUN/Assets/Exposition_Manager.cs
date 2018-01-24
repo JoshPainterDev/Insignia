@@ -149,6 +149,9 @@ public class Exposition_Manager : MonoBehaviour
             case 10:
                 StartCoroutine(Cutscene10(actionCounter, instance));
                 break;
+            case 11:
+                StartCoroutine(Cutscene11(actionCounter, instance));
+                break;
         }
     }
 
@@ -590,29 +593,33 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = "Slade";
                         leftspeaker[1] = true;
-                        script[1] = "Of course, my lord.";
+                        script[1] = "Of course, my lord. I must say though,";
 
                         speaker[2] = "Slade";
                         leftspeaker[2] = true;
-                        script[2] = "The disguises are all in order and my men are preparing as we speak.";
+                        script[2] = "keeping the disguises clean was quite the challenge.";
 
                         speaker[3] = "Theron";
                         leftspeaker[3] = false;
-                        script[3] = "How exciting.";
+                        script[3] = "Excellent.";
 
                         speaker[4] = "Theron";
                         leftspeaker[4] = false;
-                        script[4] = " It's times like this I forget my own age.";
+                        script[4] = "It's times like these I forget my own age.";
 
-                        speaker[5] = "Theron";
-                        leftspeaker[5] = false;
-                        script[5] = "Make yourselves ready.";
+                        speaker[5] = "Slade";
+                        leftspeaker[5] = true;
+                        script[5] = "I would argue that it's age that has forgotten you.";
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = false;
-                        script[6] = "We march on the kingdom at dusk...";
+                        script[6] = "See that your men are ready, my friend.";
 
-                        totalLines = 7;
+                        speaker[7] = "Theron";
+                        leftspeaker[7] = false;
+                        script[7] = "We march on the kingdom at dusk...";
+
+                        totalLines = 8;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 2:
@@ -626,15 +633,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = "Hyun";
                         leftspeaker[2] = true;
-                        script[2] = playerName + " knows even better than you just how important this mission is.";
+                        script[2] = playerName + " knows better than you just how important this mission is.";
 
                         speaker[3] = "Slade";
                         leftspeaker[3] = false;
-                        script[3] = "For your mortal sake,";
+                        script[3] = "We don't all share the same mission, princess.";
 
                         speaker[4] = "Slade";
                         leftspeaker[4] = false;
-                        script[4] = "I hope you're right.";
+                        script[4] = "So mind your place and we might pull this thing off.";
 
                         totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -645,28 +652,193 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Theron";
-                        leftspeaker[0] = false;
-                        script[0] = "Are preparations proceeding as planned?";
+                        break;
+                }
+                break;
+            case 11:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Officer";
+                        leftspeaker[0] = true;
+                        script[0] = "Hold it!";
 
-                        speaker[1] = "Slade";
+                        speaker[1] = "Officer";
                         leftspeaker[1] = true;
-                        script[1] = "Of course, my lord.";
+                        script[1] = "...";
 
-                        speaker[2] = "Slade";
+                        speaker[2] = "Officer";
                         leftspeaker[2] = true;
-                        script[2] = "The disguises are all in order and my men are preparing as we speak.";
+                        script[2] = "I hope you've got a good show planned for us.";
 
-                        speaker[3] = playerName;
-                        leftspeaker[3] = true;
-                        script[3] = "Wait, you want me to train here? With your cult?";
+                        speaker[3] = "Theron";
+                        leftspeaker[3] = false;
+                        script[3] = "Oh, of course!";
 
-                        totalLines = 15;
+                        speaker[4] = "Theron";
+                        leftspeaker[4] = false;
+                        script[4] = "I assure you-";
+
+                        speaker[5] = "Theron";
+                        leftspeaker[5] = false;
+                        script[5] = "the experience will leave you,";
+
+                        speaker[6] = "Theron";
+                        leftspeaker[6] = false;
+                        script[6] = "breathless...";
+
+                        speaker[7] = "Officer";
+                        leftspeaker[7] = true;
+                        script[7] = "By Jourjh!";
+
+                        speaker[8] = "Officer";
+                        leftspeaker[8] = true;
+                        script[8] = "I wish you could see the excitement on my face right now!";
+
+                        speaker[9] = "Officer";
+                        leftspeaker[9] = true;
+                        script[9] = "Carry on then!";
+
+                        totalLines = 10;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
+            case 12:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "King DeucheNut";
+                        leftspeaker[0] = true;
+                        script[0] = "Wonderful! Wonderful!";
+
+                        speaker[1] = "King DeucheNut";
+                        leftspeaker[1] = true;
+                        script[1] = "The Myriads of Beyond have graced us with their presence, yet again!";
+
+                        speaker[2] = "King DeucheNut";
+                        leftspeaker[2] = true;
+                        script[2] = "The lady talked about you for weeks after your last performance.";
+
+                        speaker[3] = "Theron";
+                        leftspeaker[3] = false;
+                        script[3] = "Well isn't that funny...";
+
+                        speaker[4] = "Theron";
+                        leftspeaker[4] = false;
+                        script[4] = "I don't seem to rememeber it at all.";
+
+                        speaker[5] = "King DeucheNut";
+                        leftspeaker[5] = true;
+                        script[5] = "Oh you were all so magnificent!";
+
+                        speaker[6] = "King DeucheNut";
+                        leftspeaker[6] = true;
+                        script[6] = "Surely you recall the sword swallowing Bumflark fellow!";
+
+                        speaker[7] = "Theron";
+                        leftspeaker[7] = true;
+                        script[7] = "Hhhhmmm...";
+
+                        speaker[8] = "Theron";
+                        leftspeaker[8] = false;
+                        script[8] = "No, I beleive you're the only one I've ever met.";
+
+                        speaker[9] = "King DeucheNut";
+                        leftspeaker[9] = true;
+                        script[9] = "Uhhmm, excuse me?";
+
+                        speaker[10] = "Theron";
+                        leftspeaker[10] = false;
+                        script[10] = "I'll do much more than excuse you, my liege!";
+
+                        totalLines = 11;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
+                        speaker[0] = "King DeucheNut";
+                        leftspeaker[0] = true;
+                        script[0] = "And here I thought the show was planned for the evening!";
+
+                        speaker[1] = "Theron";
+                        leftspeaker[1] = false;
+                        script[1] = "Kill them!!";
+                        
+                        totalLines = 2;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
                 break;
         }
+    }
+
+    IEnumerator Cutscene12(int action, int instance = 0)
+    {
+        switch (instance)
+        {
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "TurnCombat_Scene";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                        yield return new WaitForSeconds(2.0f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(10, 0, 0), 2.0f);
+                        StartCoroutine(NewDialogue(12, 1));
+                        break;
+                    case 11:
+                        yield return new WaitForSeconds(2f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
+                        actionsCompleted = true; //actions are completed
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
+        }
+        //////////////////
+    }
+
+    IEnumerator Cutscene11(int action, int instance = 0)
+    {
+        switch (instance)
+        {
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "Exposition_Scene12";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.5f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(70, 0, 0), 0.5f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position - new Vector3(70, 0, 0), 0.5f);
+                        speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(70, 0, 0), 0.5f);
+                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(70, 0, 0), 0.5f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position - new Vector3(70, 0, 0), 0.5f);
+                        yield return new WaitForSeconds(2.0f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(10, 0, 0), 2.0f);
+                        StartCoroutine(NewDialogue(11, 1));
+                        break;
+                    case 11:
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 5, 0), 2.0f);
+                        speaker06.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
+                        yield return new WaitForSeconds(0.50f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(500, 0, 0), 0.1f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position - new Vector3(500, 0, 0), 0.1f);
+                        speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(500, 0, 0), 0.1f);
+                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(500, 0, 0), 0.1f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position - new Vector3(500, 0, 0), 0.1f);
+                        yield return new WaitForSeconds(3f);
+                        speaker06.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(2f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
+                        actionsCompleted = true; //actions are completed
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene10(int action, int instance = 0)
