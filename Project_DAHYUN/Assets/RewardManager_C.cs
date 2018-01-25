@@ -20,6 +20,8 @@ public class RewardManager_C : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerMannequin = GameController.controller.playerObject;
+
         reward = GameController.controller.currentEncounter.reward;
         int currentXP = GameController.controller.playerEXP;
 

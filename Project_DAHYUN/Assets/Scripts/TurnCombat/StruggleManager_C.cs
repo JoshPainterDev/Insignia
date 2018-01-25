@@ -66,6 +66,8 @@ public class StruggleManager_C : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        player = GameController.controller.playerObject;
+
         combatController = this.GetComponent<CombatManager>();
         playerOrig = player.transform.position;
         enemyOrig = enemy.transform.position;

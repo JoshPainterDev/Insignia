@@ -25,6 +25,8 @@ public class ExperienceScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        playerMannequin = GameController.controller.playerObject;
+
         requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel) 
                                      + (GameController.controller.playerLevel * 15);
 

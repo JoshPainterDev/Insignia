@@ -28,6 +28,10 @@ public class HealthScript : MonoBehaviour
     void Start()
     {
         origColors = new Color[20];
+
+        if (playerHealth)
+            character = GameController.controller.playerObject;
+
         StartCoroutine(StartingAnim());
         Invoke("getColors", 2);
     }

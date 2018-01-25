@@ -162,6 +162,8 @@ public class CombatManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
+
         encounter = GameController.controller.currentEncounter;
 
         //REMOVE THIS LATER
@@ -234,6 +236,8 @@ public class CombatManager : MonoBehaviour {
 
         initPlayerPos = playerMannequin.transform.position;
 
+        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         HideAbilityButtons();
         HideAbilityButtons();
@@ -241,6 +245,8 @@ public class CombatManager : MonoBehaviour {
         HideMainButtons();
 
         currSpecialCase = SpecialCase.None;
+
+        //StartCoroutine(changeToCombatStance());
 
         if (!hasTutorial)
         {
@@ -260,8 +266,12 @@ public class CombatManager : MonoBehaviour {
         {
             StartCoroutine(ShowStartingButtons());
         }
+    }
 
-        playerMannequin.GetComponent<AnimationController>().InCombat = true;
+    IEnumerator changeToCombatStance()
+    {
+        yield return new WaitForSeconds(0.2f);
+        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
     }
 
     IEnumerator EnemyStarts()

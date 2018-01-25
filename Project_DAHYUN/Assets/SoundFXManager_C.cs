@@ -36,7 +36,7 @@ public class SoundFXManager_C : MonoBehaviour
         if(loop)
         {
             audioSource.loop = true;
-            audioSource.volume = HIGH_VOLUME;
+            audioSource.volume = MEDIUM_VOLUME;
             audioSource.clip = laserBombardment_FX;
             audioSource.Play();
         }

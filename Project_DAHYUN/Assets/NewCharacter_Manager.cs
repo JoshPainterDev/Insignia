@@ -101,7 +101,12 @@ public class NewCharacter_Manager : MonoBehaviour {
 
     void UseDefaultArmor(int classNum)
     {
-        switch(classNum)
+        for (int i = 0; i < 8; ++i)
+        {
+            playerMannequin.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        switch (classNum)
         {
             case 1:
                 for (int i = 0; i < 16; ++i)
@@ -199,7 +204,7 @@ public class NewCharacter_Manager : MonoBehaviour {
             blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
             //DONT FORGET TO LOAD EITHER!
             GameController.controller.Load(charName);
-            Invoke("LoadTutorial", 0.5f);
+            StartCoroutine(LoadNewGame());
         }
         else
         {
@@ -256,8 +261,10 @@ public class NewCharacter_Manager : MonoBehaviour {
         SceneManager.LoadScene("CharacterSelect_Scene");
     }
 
-    private void LoadTutorial()
+    IEnumerator LoadNewGame()
     {
+        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1,1,1,0), Color.white, 1.0f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Exposition_Scene01");
     }
 

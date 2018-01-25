@@ -21,15 +21,14 @@ public class AnimationController : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             GameController.controller.playerObject = this.gameObject;
+            GameController.controller.Load(GameController.controller.charNames[1]);
+            print(GameController.controller.charNames[1]);
             LoadCharacter();
-            print("new player object");
         }
         else
         {
             Destroy(gameObject);
         }
-
-        //Invoke("LoadCharacter", 0.1f);// SWITCH THIS BACK TO AWAKE
     }
 
     public void SetPlaySpeed(float newSpeed = 1)
@@ -48,9 +47,19 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    //public void SetVisible(bool visible)
+    //{
+    //    foreach (SpriteRenderer child in this.GetComponentsInChildren<SpriteRenderer>())
+    //    {
+    //        child.enabled = visible;
+    //    }
+    //}
+
+
     public void PlayIdleAnim()
     {
         this.transform.GetChild(6).GetChild(0).GetComponent<SortingGroup>().sortingOrder = -1;
+        this.transform.GetChild(6).GetComponent<SpriteRenderer>().sortingOrder = -1;
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
         {
@@ -64,7 +73,7 @@ public class AnimationController : MonoBehaviour
 
         foreach (Animator child in this.GetComponentsInChildren<Animator>())
         {
-            child.SetBool("InCombat", InCombat);
+            child.SetBool("InCombat", combat);
         }
     }
 
@@ -147,7 +156,6 @@ public class AnimationController : MonoBehaviour
 
     public void LoadCharacter()
     {
-        print("LOADING CHARACTER...");
         //head
         EquipmentInfo info = GameController.controller.GetComponent<EquipmentInfoManager>().LookUpEquipment(GameController.controller.playerEquippedIDs[0], GameController.controller.playerEquippedIDs[1]);
         this.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.imgSourceName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;

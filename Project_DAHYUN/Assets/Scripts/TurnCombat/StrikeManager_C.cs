@@ -31,6 +31,7 @@ public class StrikeManager_C : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
         initPlayerPos = playerMannequin.transform.position;
         initEnemyPos = enemyMannequin.transform.position;
         combatManager = this.GetComponent<CombatManager>();
@@ -121,9 +122,9 @@ public class StrikeManager_C : MonoBehaviour {
                 break;
             default:
                 pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
                 this.GetComponent<CombatAudio>().playStrikeHit();
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .25f);
                 Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);
                 effectClone = (GameObject)Instantiate(standardStrikeHit_FX, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(0.5f);
@@ -172,7 +173,6 @@ public class StrikeManager_C : MonoBehaviour {
         combatManager.HideHealthBars();
         Vector3 pos1 = new Vector3(initPlayerPos.x + 250, initPlayerPos.y, 0);
         playerMannequin.GetComponent<LerpScript>().LerpToPos(initPlayerPos, pos1, strikeAnimDuration / .1f);
-        yield return new WaitForSeconds(0.25f);
         playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
         this.GetComponent<CombatAudio>().playStrikeHit();
         Vector3 spawnPos = new Vector3(initEnemyPos.x, initEnemyPos.y, 0);

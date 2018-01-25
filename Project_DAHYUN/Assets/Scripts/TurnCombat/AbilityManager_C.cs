@@ -47,9 +47,10 @@ public class AbilityManager_C : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        combatManager = this.GetComponent<CombatManager>();
+        playerMannequin = GameController.controller.playerObject;
         initPlayerPos = playerMannequin.transform.position;
         initEnemyPos = enemyMannequin.transform.position;
-        combatManager = this.GetComponent<CombatManager>();
         cameraObj = combatManager.cameraObj;
     }
 
