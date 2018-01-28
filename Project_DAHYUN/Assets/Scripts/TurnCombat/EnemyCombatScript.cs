@@ -39,6 +39,7 @@ public class EnemyCombatScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        playerMannequin = GameController.controller.playerObject;
         combatManager = this.GetComponent<CombatManager>();
         origPosition = enemyMannequin.transform.position;
         playerOrigPos = playerMannequin.transform.position;

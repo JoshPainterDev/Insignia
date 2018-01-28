@@ -319,8 +319,8 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Honor Guard":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
                 break;
-            case "Skritter":
-                iconString = "CloseUps\\Character_CloseUp_Skritter";
+            case "Skitter":
+                iconString = "CloseUps\\Character_CloseUp_Skitter";
                 break;
             case "PVT Mark":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";

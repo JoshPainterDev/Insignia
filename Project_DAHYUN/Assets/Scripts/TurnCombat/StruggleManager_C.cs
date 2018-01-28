@@ -17,7 +17,9 @@ public class StruggleManager_C : MonoBehaviour {
     public float readySize, pressedSize;
     public Color origColor, pressedColor;
     [HideInInspector]
-    public float goal = 50f;
+    public int goal = 50;
+
+    private int BASE_PRESS_COUNT = 250;
 
     public GameObject hitEffect;
     public GameObject blood01_FX;
@@ -25,43 +27,47 @@ public class StruggleManager_C : MonoBehaviour {
     public GameObject blood03_FX;
     public GameObject blood04_FX;
 
-    [HideInInspector]
-    public int HARD_MODE_FAIL = 1;
-    [HideInInspector]
-    public int NORMAL_MODE_FAIL = 2;
-    [HideInInspector]
-    public int EASY_MODE_FAIL = 3;
-    private int currentMode;
+    public GameObject struggleFuseHandle;
+
+    private float HARD_MODE_FAIL = 0.11f;
+    private float NORMAL_MODE_FAIL = 0.22f;
+    private float EASY_MODE_FAIL = 0.35f;
+    private float currentMode;
 
     //player vars
     private Vector3 playerOrig;
-    private Vector3 playerMax = new Vector3(-293, 138, 0);
+    private Vector3 playerMax = new Vector3(-475, 138, 0);
     private Vector3 playerMin = new Vector3(-765, 138, 0);
-    private Vector3 playerStrugglePos = new Vector3(-540, 138, 0);
+    private Vector3 playerStrugglePos = new Vector3(-530, 138, 0);
+    private Vector3 playerCenter = Vector3.zero;
     //enemy vars
     private Vector3 enemyOrig;
     private Vector3 enemyMax = new Vector3(-468, 160, 0);
-    private Vector3 enemyMin = new Vector3(18, 160, 0);
-    private Vector3 enemyStrugglePos = new Vector3(-335, 160, 0);
+    private Vector3 enemyMin = new Vector3(-335, 160, 0);
+    private Vector3 enemyStrugglePos = new Vector3(-390, 160, 0);
+    private Vector3 enemyCenter = Vector3.zero;
 
     private Vector3 origCameraPos;
     private Vector3 effectPos;
+    private Vector3 offsetVec;
 
     private int strugglePressCounter = 0;
     bool struggling_Player = false;
-    bool struggling_Enemy = false;
     float percentCompleted = 0;
     float randomVar = 0;
     int frameTracker = 0;
-    int timeOutTracker = 0;
-    int failCounter = 0;
+    float timeOutTracker = 0;
+    float failTime = 0;
     int failScale = 10;
-    bool playerInitiated = true;
     bool playerCanFail = true;
     int enemyLevel = 1;
 
     bool LeftKeyReady = true;
     bool RightKeyReady = true;
+    Coroutine randoMovementRoutine;
+    float percHealthRemaining;
+    private Vector3 fuseStart;
+    private Vector3 fuseEnd;
 
     // Use this for initialization
     void Start ()
@@ -75,16 +81,14 @@ public class StruggleManager_C : MonoBehaviour {
         effectPos = enemy.transform.GetChild(0).transform.GetChild(0).transform.position;
         disableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = false;
-        currentMode = EASY_MODE_FAIL;
+        fuseStart = new Vector3(-190, 0, 0);
+        fuseEnd = new Vector3(190, 0, 0);
+        currentMode = HARD_MODE_FAIL; //CHANGE THE THE MODE LATER!
 
         if(combatController.enemyInfo != null)
             enemyLevel = combatController.enemyInfo.enemyLevel;
 
-        failScale += GameController.controller.playerProwess;
-        int rand = Random.Range(0, 9);
-        goal = 10 + (enemyLevel) + rand;
-        int lvDiff = GameController.controller.playerLevel - enemyLevel;
-        goal -= lvDiff > 0 ? GameController.controller.playerProwess * lvDiff : lvDiff;
+        struggleFuseHandle.SetActive(false);
     } 
 	
     public void ForceExecute()
@@ -95,189 +99,150 @@ public class StruggleManager_C : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-		if(struggling_Player || struggling_Enemy)
+		if(struggling_Player)
         {
             ++frameTracker;
-            ++timeOutTracker;
+            timeOutTracker += Time.deltaTime;
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && LeftKeyReady)
+            //Player failed to finish the execution
+            if(timeOutTracker >= failTime)
             {
-                LeftKeyReady = false;
-                RightKeyReady = true;
+                if (playerCanFail)
+                {
+                    percentCompleted = 0;
+                    timeOutTracker = 0;
+                    failTime = 0;
+                    struggling_Player = false;
+                    strugglePressCounter = 0;
+
+                    StartCoroutine(StruggleFailed());
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
                 leftButtonPressed();
             }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && RightKeyReady)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                RightKeyReady = false;
-                LeftKeyReady = true;
                 rightButtonPressed();
             }
-
-            if (!LeftKeyReady && Input.GetKeyUp(KeyCode.LeftArrow))
-                LeftKeyReady = true;
-
-            if (!RightKeyReady && Input.GetKeyUp(KeyCode.RightArrow))
-                RightKeyReady = true;
 
             percentCompleted = (float)strugglePressCounter / goal;
 
             if(percentCompleted >= 0.99f)
             {
                 percentCompleted = 0;
-                
-                if (struggling_Player)
-                {
-                    struggling_Player = false;
-                    struggling_Enemy = false;
-                    StartCoroutine(ExecuteEnemy());
-                }
-                else
-                {
-                    struggling_Player = false;
-                    struggling_Enemy = false;
-                    StartCoroutine(StruggleFailed());
-                }
+                timeOutTracker = 0;
+                failTime = 0;
+                struggling_Player = false;
 
+                StartCoroutine(ExecuteEnemy());
             }
 
-            if (frameTracker > 45)
+            randomVar = Random.Range(-1.0f, 1.0f);
+
+            // randomly decide to move characters
+            if(randomVar >= 0.75f)
             {
-                randomVar = Random.Range(-0.05f, 0.05f);
-                frameTracker = 0 + Random.Range(0, 5);
-
+                //Randomly have them lerp back and forth
+                RandomlyMoveCharacters();
             }
 
-            int rand = Random.Range(0, 100);
+            playerCenter = Vector3.Lerp(playerStrugglePos, playerMax, percentCompleted);
+            enemyCenter = Vector3.Lerp(enemyStrugglePos, enemyMin, percentCompleted);
 
-            if (rand > 90)
-                this.GetComponent<CombatAudio>().playRandomSwordHit();
-
-            if (struggling_Player)
-            {
-                player.transform.position = Vector3.Lerp(playerStrugglePos, playerMax, percentCompleted + randomVar);
-                enemy.transform.position = Vector3.Lerp(enemyStrugglePos, enemyMin, percentCompleted + randomVar);
-
-                //set the player back for not being fast enough
-                if (timeOutTracker > failScale)
-                {
-                    timeOutTracker = 0;
-                    ++failCounter;
-                    --strugglePressCounter;
-                    strugglePressCounter = (strugglePressCounter > 0) ? strugglePressCounter : 0;
-                    struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
-                }
-
-                if (checkFailCounter(currentMode) || (strugglePressCounter < 0))
-                {
-                    if(playerCanFail)
-                    {
-                        failCounter = 0;
-                        struggling_Player = false;
-                        StartCoroutine(StruggleFailed());
-                    }
-                }
-            }
-            else
-            {
-                player.transform.position = Vector3.Lerp(playerStrugglePos, playerMin, percentCompleted + randomVar);
-                enemy.transform.position = Vector3.Lerp(enemyStrugglePos, enemyMax, percentCompleted - randomVar);
-
-                //CHANGE THIS BECAUSE THE ENEMY SHOULD HAVE
-                //SEPERATE STRUGGLE CONDITIONS FOR KILLING THE PLAYER!
-
-                //set the player back for not being fast enough
-                if (timeOutTracker > failScale)
-                {
-                    timeOutTracker = 0;
-                    ++failCounter;
-                    --strugglePressCounter;
-                }
-
-                if (checkFailCounter(currentMode) || (strugglePressCounter < 0))
-                {
-                    struggling_Enemy = false;
-                    StartCoroutine(ExecutePlayer());
-                }
-            }
-
+            //UPDATE FUSE
+            struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().fillAmount = percentCompleted;
+            struggleFuseHandle.transform.GetChild(3).transform.localPosition = Vector3.Lerp(fuseStart, fuseEnd, percentCompleted);
         }
 	}
 
+    public void RandomlyMoveCharacters()
+    {
+        offsetVec = new Vector3(randomVar * 15, 0, 0);
+        player.GetComponent<LerpScript>().LerpToPos(playerCenter, playerCenter + offsetVec, Mathf.Abs(randomVar));
+        enemy.GetComponent<LerpScript>().LerpToPos(enemyCenter, enemyCenter + offsetVec, Mathf.Abs(randomVar));
+    }
+
     public void rightButtonPressed()
     {
-        timeOutTracker = 0;
-
-        StartCoroutine(IncrementCounter());
+        ++strugglePressCounter;
+        struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
 
         struggleButton_R.transform.localScale = new Vector3(pressedSize, pressedSize, 1);
-        struggleButton_R.GetComponent<Button>().enabled = false;
         struggleButton_R.GetComponent<Image>().color = pressedColor;
-        struggleButton_L.transform.localScale = new Vector3(readySize, readySize, 1);
-        struggleButton_L.GetComponent<Button>().enabled = true;
-        struggleButton_L.GetComponent<Image>().color = origColor;
 
         this.GetComponent<CombatAudio>().playRandomStrugglePress();
+
+        Invoke("restoreRight", 0.05f);
+    }
+
+    public void restoreRight()
+    {
+        struggleButton_R.transform.localScale = new Vector3(readySize, readySize, 1);
+        struggleButton_R.GetComponent<Button>().enabled = true;
+        struggleButton_R.GetComponent<Image>().color = origColor;
     }
 
     public void leftButtonPressed()
     {
-        timeOutTracker = 0;
-
-        StartCoroutine(IncrementCounter());
+        ++strugglePressCounter;
+        struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
 
         struggleButton_L.transform.localScale = new Vector3(pressedSize, pressedSize, 1);
-        struggleButton_L.GetComponent<Button>().enabled = false;
         struggleButton_L.GetComponent<Image>().color = pressedColor;
-        struggleButton_R.transform.localScale = new Vector3(readySize, readySize, 1);
-        struggleButton_R.GetComponent<Button>().enabled = true;
-        struggleButton_R.GetComponent<Image>().color = origColor;
 
         this.GetComponent<CombatAudio>().playRandomStrugglePress();
+
+        Invoke("restoreLeft", 0.05f);
+    }
+
+    public void restoreLeft()
+    {
+        struggleButton_L.transform.localScale = new Vector3(readySize, readySize, 1);
+        struggleButton_L.GetComponent<Button>().enabled = true;
+        struggleButton_L.GetComponent<Image>().color = origColor;
     }
 
     //IGNITE THE SPARK
-    public void BeginStruggle_Player(bool canFail = true)
+    public void BeginStruggle_Player(float percentHealthRemaining, bool canFail = true)
     {
+        percHealthRemaining = percentHealthRemaining;
         playerCanFail = canFail;
-        StartCoroutine(AlignCharacters(true));
-    }
 
-    public void BeginStruggle_Enemy()
-    {
-        StartCoroutine(AlignCharacters(false));
+        failScale += GameController.controller.playerProwess;
+        int rand = Random.Range(1, 5);
+        int lvDiff = GameController.controller.playerLevel - enemyLevel;
+        goal = (int)(((float)BASE_PRESS_COUNT * percHealthRemaining) + enemyLevel + (rand * -lvDiff));
+        print("base: " + ((float)BASE_PRESS_COUNT * percHealthRemaining));
+        goal -= GameController.controller.playerProwess;
+        print("goal: " + goal);
+        print("prowess: " + GameController.controller.playerProwess);
+
+        failTime = (float)goal * currentMode;
+        failTime -= 3 * percHealthRemaining;
+        print("first: " + ((float)goal * currentMode));
+        print("failTime: " + failTime);
+
+        StartCoroutine(AlignCharacters(1.0f / failTime));
     }
 
     //ANIMATE CHARACTERS STRUGGLING
-    IEnumerator AlignCharacters(bool playerStarted)
+    IEnumerator AlignCharacters(float cameraTime)
     {
         player.GetComponent<LerpScript>().LerpToPos(playerOrig, playerStrugglePos, 2);
+        player.GetComponent<AnimationController>().PlayHoldAttackAnim();
         enemy.GetComponent<LerpScript>().LerpToPos(enemyOrig, enemyStrugglePos, 2);
-        camera.GetComponent<CameraController>().LerpCameraSize(150, 100, 1);
+        camera.GetComponent<CameraController>().LerpCameraSize(150, 125, 1);
         camera.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos + new Vector3(10,-5,0), 2);
         yield return new WaitForSeconds(1f);
         enableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = true;
-
-        if (playerStarted)
-        {
-            struggling_Player = true;
-            playerInitiated = true;
-        }
-        else
-        {
-            struggling_Enemy = true;
-            playerInitiated = false;
-        }
-    }
-
-    IEnumerator IncrementCounter()
-    {
-        ++strugglePressCounter;
-        struggle_Counter.GetComponent<LerpScript>().LerpToScale(struggle_Counter.transform.localScale, new Vector3(2,2,1), 4);
-        yield return new WaitForSeconds(0.1f);
-        struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
-        struggle_Counter.GetComponent<LerpScript>().LerpToScale(struggle_Counter.transform.localScale, new Vector3(1, 1, 1), 4);
+        struggling_Player = true;
+        camera.GetComponent<CameraController>().LerpCameraSize(125, 100, cameraTime);
+        struggleFuseHandle.SetActive(true);
     }
 
     IEnumerator ExecuteEnemy()
@@ -290,6 +255,12 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_L.GetComponent<Image>().color = origColor;
         struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
         struggleButton_R.GetComponent<Image>().color = origColor;
+
+        //UPDATE FUSE
+        struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().fillAmount = 0;
+        struggleFuseHandle.transform.GetChild(3).transform.localPosition = fuseStart;
+        struggleFuseHandle.SetActive(false);
+
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<AnimationController>().PlayAttackAnim();
         this.GetComponent<CombatAudio>().playStrikeHit();
@@ -302,8 +273,9 @@ public class StruggleManager_C : MonoBehaviour {
         //play execution anim
         //yield return new WaitForSeconds(0.75f);
         this.GetComponent<CombatManager>().ExecuteEnemy_Strike();
-        camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         yield return new WaitForSeconds(0.75f);
+        camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, origCameraPos, 3.0f);
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
         enemy.GetComponent<LerpScript>().LerpToColor(origColor, Color.clear, 1.5f);
@@ -311,23 +283,6 @@ public class StruggleManager_C : MonoBehaviour {
         if(!playerCanFail)
             this.GetComponent<TutorialManager02_C>().StruggleFinished();
     }
-
-    IEnumerator ExecutePlayer()
-    {
-        percentCompleted = 0;
-        strugglePressCounter = 0;
-        disableStruggleButtons();
-        struggle_Counter.GetComponent<Text>().enabled = false;
-        struggleButton_L.transform.localScale = new Vector3(1, 1, 1);
-        struggleButton_L.GetComponent<Image>().color = origColor;
-        struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
-        struggleButton_R.GetComponent<Image>().color = origColor;
-
-        player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
-        enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
-        camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
-        yield return new WaitForSeconds(1f);
-    } 
 
     IEnumerator StruggleFailed()
     {
@@ -340,57 +295,34 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
         struggleButton_R.GetComponent<Image>().color = origColor;
 
+        //UPDATE FUSE
+        struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().fillAmount = 0;
+        struggleFuseHandle.transform.GetChild(3).transform.localPosition = fuseStart;
+        struggleFuseHandle.SetActive(false);
+
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
+        player.GetComponent<AnimationController>().PlayIdleAnim();
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
         camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         yield return new WaitForSeconds(1f);
-
-        if (playerInitiated)
-            combatController.StruggleFailed(true);
-        else
-            combatController.StruggleFailed(false);
+        combatController.StruggleFailed(true);
     }
 
     void enableStruggleButtons()
     {
         struggleButton_L.GetComponent<Button>().enabled = true;
         struggleButton_L.GetComponent<Image>().enabled = true;
-        struggleButton_L.GetComponentInChildren<Text>().enabled = true;
 
         struggleButton_R.GetComponent<Button>().enabled = true;
         struggleButton_R.GetComponent<Image>().enabled = true;
-        struggleButton_R.GetComponentInChildren<Text>().enabled = true;
     }
 
     void disableStruggleButtons()
     {
         struggleButton_L.GetComponent<Button>().enabled = false;
         struggleButton_L.GetComponent<Image>().enabled = false;
-        struggleButton_L.GetComponentInChildren<Text>().enabled = false;
 
         struggleButton_R.GetComponent<Button>().enabled = false;
         struggleButton_R.GetComponent<Image>().enabled = false;
-        struggleButton_R.GetComponentInChildren<Text>().enabled = false;
-    }
-
-    bool checkFailCounter(int mode)
-    {
-        if(mode == HARD_MODE_FAIL)
-        {
-            if (failCounter > HARD_MODE_FAIL)
-                return true;
-        }
-        else if (mode == NORMAL_MODE_FAIL)
-        {
-            if (failCounter > NORMAL_MODE_FAIL)
-                return true;
-        }
-        else if (mode == EASY_MODE_FAIL)
-        {
-            if (failCounter > EASY_MODE_FAIL)
-                return true;
-        }
-
-        return false;
     }
 }

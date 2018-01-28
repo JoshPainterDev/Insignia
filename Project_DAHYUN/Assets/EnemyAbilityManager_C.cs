@@ -33,6 +33,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerMannequin = GameController.controller.playerObject;
         initPlayerPos = playerMannequin.transform.position;
         initEnemyPos = enemyMannequinn.transform.position;
         combatManager = this.GetComponent<CombatManager>();

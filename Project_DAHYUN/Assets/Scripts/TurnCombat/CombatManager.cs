@@ -172,7 +172,7 @@ public class CombatManager : MonoBehaviour {
             encounter = new EnemyEncounter();
             encounter.enemyNames = new string[3];
             encounter.totalEnemies = 3;
-            encounter.enemyNames[0] = "The Seamstress";
+            encounter.enemyNames[0] = "Skitter";
             encounter.enemyNames[1] = "Skitter";
             encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
@@ -852,7 +852,7 @@ public class CombatManager : MonoBehaviour {
         else
         {
             HideHealthBars();
-            this.GetComponent<StruggleManager_C>().BeginStruggle_Player();
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player((float)enemyHealth / (float)enemyMaxHealth);
         }
     }
 
@@ -1421,7 +1421,7 @@ public class CombatManager : MonoBehaviour {
                     {
                         if (playerTurn)
                         {
-                            this.GetComponent<StruggleManager_C>().BeginStruggle_Player();
+                            this.GetComponent<StruggleManager_C>().BeginStruggle_Player((float)enemyHealth / (float)enemyMaxHealth);
                             return false;
                         }
                     }

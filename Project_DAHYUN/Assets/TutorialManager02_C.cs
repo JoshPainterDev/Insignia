@@ -49,7 +49,7 @@ public class TutorialManager02_C : MonoBehaviour
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
             Destroy(panel01);
-            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(false);
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(0.15f, false);
         }
     }
 
