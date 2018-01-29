@@ -51,6 +51,7 @@ public class DamageVisualizer_C : MonoBehaviour
             }
             else
                 effectClone = (GameObject)Instantiate(damagePrefab, Vector3.zero, transform.rotation);
+
         } 
 
         effectClone.transform.SetParent(canvas.transform);

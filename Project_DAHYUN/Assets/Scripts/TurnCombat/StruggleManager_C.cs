@@ -154,8 +154,8 @@ public class StruggleManager_C : MonoBehaviour {
             enemyCenter = Vector3.Lerp(enemyStrugglePos, enemyMin, percentCompleted);
 
             //UPDATE FUSE
-            struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().fillAmount = percentCompleted;
-            struggleFuseHandle.transform.GetChild(3).transform.localPosition = Vector3.Lerp(fuseStart, fuseEnd, percentCompleted);
+            struggleFuseHandle.transform.GetChild(1).GetComponent<Image>().fillAmount = percentCompleted;
+            struggleFuseHandle.transform.GetChild(2).transform.localPosition = Vector3.Lerp(fuseStart, fuseEnd, percentCompleted);
         }
 	}
 
@@ -257,8 +257,8 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.GetComponent<Image>().color = origColor;
 
         //UPDATE FUSE
-        struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().fillAmount = 0;
-        struggleFuseHandle.transform.GetChild(3).transform.localPosition = fuseStart;
+        struggleFuseHandle.transform.GetChild(1).GetComponent<Image>().fillAmount = 0;
+        struggleFuseHandle.transform.GetChild(2).transform.localPosition = fuseStart;
         struggleFuseHandle.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
@@ -296,8 +296,8 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.GetComponent<Image>().color = origColor;
 
         //UPDATE FUSE
-        struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().fillAmount = 0;
-        struggleFuseHandle.transform.GetChild(3).transform.localPosition = fuseStart;
+        struggleFuseHandle.transform.GetChild(1).GetComponent<Image>().fillAmount = 0;
+        struggleFuseHandle.transform.GetChild(2).transform.localPosition = fuseStart;
         struggleFuseHandle.SetActive(false);
 
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
