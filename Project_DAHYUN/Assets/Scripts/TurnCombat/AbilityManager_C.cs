@@ -265,10 +265,12 @@ public class AbilityManager_C : MonoBehaviour {
                 effectClone = (GameObject)Instantiate(strangle_FX, spawnPos, transform.rotation);
                 effectClone.transform.SetParent(playerMannequin.transform, false);
                 effectClone.transform.GetChild(0).GetComponent<StrangleScript_C>().StartAnim(true, playerMannequin, enemyMannequin);
+                playerMannequin.GetComponent<AnimationController>().PlayForcePushAnim();
                 yield return new WaitForSeconds(1.5f);
                 cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2f);
                 yield return new WaitForSeconds(2.5f);
                 combatManager.DamageEnemy_Ability(ability);
+                playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                 break;
             default:
                 break;

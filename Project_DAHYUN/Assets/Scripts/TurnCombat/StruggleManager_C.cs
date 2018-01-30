@@ -6,6 +6,7 @@ using UnityEngine;
 public class StruggleManager_C : MonoBehaviour {
 
     private CombatManager combatController;
+    public GameObject canvas;
 
     public GameObject player;
     public GameObject enemy;
@@ -28,6 +29,9 @@ public class StruggleManager_C : MonoBehaviour {
     public GameObject blood04_FX;
 
     public GameObject struggleFuseHandle;
+
+    public GameObject sparks;
+    private GameObject sparkClone;
 
     private float HARD_MODE_FAIL = 0.11f;
     private float NORMAL_MODE_FAIL = 0.22f;
@@ -161,7 +165,7 @@ public class StruggleManager_C : MonoBehaviour {
 
     public void RandomlyMoveCharacters()
     {
-        offsetVec = new Vector3(randomVar * 15, 0, 0);
+        offsetVec = new Vector3(randomVar * 35, 0, 0);
         player.GetComponent<LerpScript>().LerpToPos(playerCenter, playerCenter + offsetVec, Mathf.Abs(randomVar));
         enemy.GetComponent<LerpScript>().LerpToPos(enemyCenter, enemyCenter + offsetVec, Mathf.Abs(randomVar));
     }
@@ -243,6 +247,9 @@ public class StruggleManager_C : MonoBehaviour {
         struggling_Player = true;
         camera.GetComponent<CameraController>().LerpCameraSize(125, 100, cameraTime);
         struggleFuseHandle.SetActive(true);
+        sparkClone = (GameObject)Instantiate(sparks, Vector3.zero, transform.rotation);
+        sparkClone.transform.SetParent(player.transform);
+        sparkClone.transform.localPosition = new Vector3(10, 2, 0);
     }
 
     IEnumerator ExecuteEnemy()
@@ -260,6 +267,7 @@ public class StruggleManager_C : MonoBehaviour {
         struggleFuseHandle.transform.GetChild(1).GetComponent<Image>().fillAmount = 0;
         struggleFuseHandle.transform.GetChild(2).transform.localPosition = fuseStart;
         struggleFuseHandle.SetActive(false);
+        Destroy(sparkClone);
 
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<AnimationController>().PlayAttackAnim();
@@ -299,6 +307,7 @@ public class StruggleManager_C : MonoBehaviour {
         struggleFuseHandle.transform.GetChild(1).GetComponent<Image>().fillAmount = 0;
         struggleFuseHandle.transform.GetChild(2).transform.localPosition = fuseStart;
         struggleFuseHandle.SetActive(false);
+        Destroy(sparkClone);
 
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);
         player.GetComponent<AnimationController>().PlayIdleAnim();

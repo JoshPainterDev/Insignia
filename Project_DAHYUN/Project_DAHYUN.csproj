@@ -333,8 +333,6 @@
     <Compile Include="Assets\Scripts\Audio\MenuUIAudio.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\BackgroundPropSpawner.cs" />
-    <Compile Include="Assets\Scripts\Bomb.cs" />
-    <Compile Include="Assets\Scripts\BombPickup.cs" />
     <Compile Include="Assets\Scripts\BossAnimationController.cs" />
     <Compile Include="Assets\Scripts\CameraController_TurnCombat.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -348,17 +346,12 @@
     <Compile Include="Assets\Scripts\GameManagers\GameController.cs" />
     <Compile Include="Assets\Scripts\GameManagers\RetryManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
-    <Compile Include="Assets\Scripts\HealthPickup.cs" />
-    <Compile Include="Assets\Scripts\LayBombs.cs" />
     <Compile Include="Assets\Scripts\LerpScript.cs" />
     <Compile Include="Assets\Scripts\Pauser.cs" />
-    <Compile Include="Assets\Scripts\PickupSpawner.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerCombatAnimator.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Remover.cs" />
-    <Compile Include="Assets\Scripts\Rocket.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\ScoreShadow.cs" />
     <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
@@ -377,6 +370,7 @@
     <Compile Include="Assets\Scripts\TurnCombat\ItemsManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\LimitBreak.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\LimitBreakManager_C.cs" />
+    <Compile Include="Assets\Scripts\TurnCombat\LootManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\RewardToolsScript.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StrikeManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\StruggleManager_C.cs" />
@@ -393,6 +387,7 @@
     <Compile Include="Assets\StatBoost_C.cs" />
     <Compile Include="Assets\StatDescriptionScript.cs" />
     <Compile Include="Assets\StrangleScript_C.cs" />
+    <Compile Include="Assets\StruggleParticle_C.cs" />
     <Compile Include="Assets\TimeController.cs" />
     <Compile Include="Assets\TutorialManager01_C.cs" />
     <Compile Include="Assets\TutorialManager02_C.cs" />

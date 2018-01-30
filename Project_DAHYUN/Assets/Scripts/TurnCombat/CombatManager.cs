@@ -171,11 +171,12 @@ public class CombatManager : MonoBehaviour {
         {
             encounter = new EnemyEncounter();
             encounter.enemyNames = new string[3];
-            encounter.totalEnemies = 3;
+            encounter.totalEnemies = 1;
             encounter.enemyNames[0] = "Skitter";
-            encounter.enemyNames[1] = "Skitter";
-            encounter.enemyNames[2] = "Shadow Assassin";
+            //encounter.enemyNames[1] = "Skitter";
+            //encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
+            encounter.returnOnSuccessScene = "MainMenu_Scene";
         }
 
         enemiesRemaining = encounter.totalEnemies;
@@ -1561,17 +1562,8 @@ public class CombatManager : MonoBehaviour {
         }
         else // player won! go back YOU WIN!
         {
-            StartCoroutine(LoadSuccessScene());
+            this.GetComponent<LootManager_C>().GenerateLoot();
         }
-    }
-
-    IEnumerator LoadSuccessScene()
-    {
-        // this could get complicated depending on where I'm supposed to return to
-        // store the return level in the game controller
-        blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("CombatReward_Scene");
     }
 
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -13,6 +13,7 @@ public class DamageVisualizer_C : MonoBehaviour
 
     private float floatSpeed = 3.0f;
     private float fadeSpeed = 1.5f;
+    private Vector3 damageScale;
 
     private Vector3 playerPos = new Vector3(-210, 0, 0);
     private Vector3 enemyPos = new Vector3(210, 0, 0);
@@ -28,6 +29,9 @@ public class DamageVisualizer_C : MonoBehaviour
     {
         Vector3 spawnPos;
         Color textColor = Color.white;
+
+        damageScale = new Vector3(1, 1, 1);
+
         if (playerHealth)
         {
             spawnPos = playerPos;
@@ -36,6 +40,7 @@ public class DamageVisualizer_C : MonoBehaviour
             {
                 effectClone = (GameObject)Instantiate(criticalPrefab, Vector3.zero, transform.rotation);
                 textColor = enemyColor;
+                damageScale = new Vector3(1.35f, 1.35f, 1);
             }
             else
                 effectClone = (GameObject)Instantiate(damagePrefab, Vector3.zero, transform.rotation);
@@ -48,6 +53,7 @@ public class DamageVisualizer_C : MonoBehaviour
             {
                 effectClone = (GameObject)Instantiate(criticalPrefab, Vector3.zero, transform.rotation);
                 textColor = GameController.controller.getPlayerColorPreference();
+                damageScale = new Vector3(1.35f, 1.35f, 1);
             }
             else
                 effectClone = (GameObject)Instantiate(damagePrefab, Vector3.zero, transform.rotation);
@@ -57,6 +63,7 @@ public class DamageVisualizer_C : MonoBehaviour
         effectClone.transform.SetParent(canvas.transform);
         effectClone.transform.GetChild(1).GetComponent<Text>().color = textColor;
         effectClone.transform.localPosition = spawnPos;
+        effectClone.transform.localScale = damageScale;  
         StartCoroutine(animateText(damage));
     }
 
@@ -76,7 +83,7 @@ public class DamageVisualizer_C : MonoBehaviour
             current.GetComponent<LerpScript>().LerpToColor(Color.clear, curColor, 2.0f);
         }
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.15f);
 
         effectClone.GetComponent<LerpScript>().LerpToPos(driftOffset, driftOffset - new Vector3(0, 35, 0), floatSpeed);
         yield return new WaitForSeconds(0.15f);

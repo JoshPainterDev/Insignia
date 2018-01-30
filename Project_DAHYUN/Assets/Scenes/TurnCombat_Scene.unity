@@ -2771,7 +2771,7 @@ Prefab:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 2}
@@ -4569,6 +4569,7 @@ GameObject:
   - component: {fileID: 1616549434}
   - component: {fileID: 1616549435}
   - component: {fileID: 1616549436}
+  - component: {fileID: 1616549437}
   - component: {fileID: 1616549431}
   - component: {fileID: 1616549430}
   m_Layer: 0
@@ -5038,6 +5039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ddb13fb1efe435429d2c7c4b07b9d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 889873487}
   player: {fileID: 119668991}
   enemy: {fileID: 666657974}
   struggleButton_L: {fileID: 1402637987}
@@ -5056,6 +5058,7 @@ MonoBehaviour:
   blood03_FX: {fileID: 1862190314031148, guid: 108923b2694026141929f3aad3a42123, type: 2}
   blood04_FX: {fileID: 1862190314031148, guid: d499bc62574a7364ba27c2e4cc79ebd7, type: 2}
   struggleFuseHandle: {fileID: 1446349970}
+  sparks: {fileID: 1838582568278010, guid: 68c82b77f1127a849a45f7e926e8e406, type: 2}
 --- !u!114 &1616549434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5128,6 +5131,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Background: {fileID: 572159634}
+--- !u!114 &1616549437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616549424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f0b1f6bec85354784cde84d6c285d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1663483274
 GameObject:
   m_ObjectHideFlags: 0
@@ -5358,7 +5372,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -402501077
+  randomSeed: -632128647
   InitialModule:
     serializedVersion: 3
     enabled: 1
