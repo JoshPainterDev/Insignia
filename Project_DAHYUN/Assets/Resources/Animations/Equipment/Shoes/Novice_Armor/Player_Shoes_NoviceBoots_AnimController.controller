@@ -109,6 +109,30 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
+--- !u!1101 &1101126790488461858
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AnimState
+    m_EventTreshold: 7
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102347143067445206}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &1101170923869545054
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -500,6 +524,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &1102347143067445206
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Player_Shoes_NoviceBoots_Struggle_Hold
+  m_Speed: 0.35
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: cf676b17ee894074fb592009a1f25ef5, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1102614397990259552
 AnimatorState:
   serializedVersion: 5
@@ -639,13 +688,13 @@ AnimatorStateMachine:
     m_Position: {x: 24, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102045175820211622}
-    m_Position: {x: 300, y: 96, z: 0}
+    m_Position: {x: 288, y: 36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102744393058301876}
     m_Position: {x: -396, y: 336, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102191480458736678}
-    m_Position: {x: 420, y: 336, z: 0}
+    m_Position: {x: 432, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102676871471510426}
     m_Position: {x: 264, y: 468, z: 0}
@@ -661,6 +710,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102614397990259552}
     m_Position: {x: -192, y: 120, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102347143067445206}
+    m_Position: {x: 444, y: 312, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1101671771567759612}
@@ -672,6 +724,7 @@ AnimatorStateMachine:
   - {fileID: 1101073904989054180}
   - {fileID: 1101977379284627264}
   - {fileID: 1101975271780549730}
+  - {fileID: 1101126790488461858}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []

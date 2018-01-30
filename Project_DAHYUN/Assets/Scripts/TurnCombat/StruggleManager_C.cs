@@ -237,19 +237,20 @@ public class StruggleManager_C : MonoBehaviour {
     IEnumerator AlignCharacters(float cameraTime)
     {
         player.GetComponent<LerpScript>().LerpToPos(playerOrig, playerStrugglePos, 2);
-        player.GetComponent<AnimationController>().PlayHoldAttackAnim();
+        player.GetComponent<AnimationController>().PlayStruggleHoldAnim();
         enemy.GetComponent<LerpScript>().LerpToPos(enemyOrig, enemyStrugglePos, 2);
         camera.GetComponent<CameraController>().LerpCameraSize(150, 125, 1);
         camera.GetComponent<LerpScript>().LerpToPos(origCameraPos, origCameraPos + new Vector3(10,-5,0), 2);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        sparkClone = (GameObject)Instantiate(sparks, Vector3.zero, transform.rotation);
+        sparkClone.transform.SetParent(player.transform);
+        sparkClone.transform.localPosition = new Vector3(8, 2, 0);
+        yield return new WaitForSeconds(0.5f);
         enableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = true;
         struggling_Player = true;
         camera.GetComponent<CameraController>().LerpCameraSize(125, 100, cameraTime);
         struggleFuseHandle.SetActive(true);
-        sparkClone = (GameObject)Instantiate(sparks, Vector3.zero, transform.rotation);
-        sparkClone.transform.SetParent(player.transform);
-        sparkClone.transform.localPosition = new Vector3(10, 2, 0);
     }
 
     IEnumerator ExecuteEnemy()

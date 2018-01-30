@@ -12,7 +12,7 @@ public class LootManager_C : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        player = GameController.controller.playerObject;
     }
 
     public void GenerateLoot()
