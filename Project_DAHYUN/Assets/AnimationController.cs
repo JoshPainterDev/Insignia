@@ -10,11 +10,8 @@ public class AnimationController : MonoBehaviour
     [HideInInspector]
     public bool InCombat = false;
 
-    public void Awake()
-    {
-        
-    }
-
+    private bool[] hiddenContainer = new bool[20];
+    
     public void Start()
     {
         if (GameController.controller.playerObject == null)
@@ -47,14 +44,29 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    //public void SetVisible(bool visible)
-    //{
-    //    foreach (SpriteRenderer child in this.GetComponentsInChildren<SpriteRenderer>())
-    //    {
-    //        child.enabled = visible;
-    //    }
-    //}
+    public void HidePlayer()
+    {
+        int j = 0;
 
+        foreach (SpriteRenderer i in this.GetComponentsInChildren<SpriteRenderer>())
+        {
+            hiddenContainer[j] = i.enabled;
+
+            i.enabled = false;
+            ++j;
+        }
+    }
+
+    public void ShowPlayer()
+    {
+        int j = 0;
+
+        foreach (SpriteRenderer i in this.GetComponentsInChildren<SpriteRenderer>())
+        {
+            i.enabled = hiddenContainer[j];
+            ++j;
+        }
+    }
 
     public void PlayIdleAnim()
     {

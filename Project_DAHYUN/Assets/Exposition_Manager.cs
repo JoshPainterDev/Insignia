@@ -59,7 +59,6 @@ public class Exposition_Manager : MonoBehaviour
         encounter = GameController.controller.currentEncounter;
         origCameraPos = cameraObj.transform.position;
         playerInitPos = playerMannequin.transform.position;
-        print("pos: " + playerInitPos);
         playerName = GameController.controller.playerName;
         panelDownPos = dialoguePanel.transform.position;
         panelUpPos = panelDownPos + new Vector3(0, 100, 0);
@@ -155,6 +154,9 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 11:
                 StartCoroutine(Cutscene11(actionCounter, instance));
+                break;
+            case 12:
+                StartCoroutine(Cutscene12(actionCounter, instance));
                 break;
         }
     }
@@ -722,15 +724,15 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "King DeucheNut";
+                        speaker[0] = "King Gerard";
                         leftspeaker[0] = true;
                         script[0] = "Wonderful! Wonderful!";
 
-                        speaker[1] = "King DeucheNut";
+                        speaker[1] = "King Gerard";
                         leftspeaker[1] = true;
                         script[1] = "The Myriads of Beyond have graced us with their presence, yet again!";
 
-                        speaker[2] = "King DeucheNut";
+                        speaker[2] = "King Gerard";
                         leftspeaker[2] = true;
                         script[2] = "The lady talked about you for weeks after your last performance.";
 
@@ -742,23 +744,23 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[4] = false;
                         script[4] = "I don't seem to rememeber it at all.";
 
-                        speaker[5] = "King DeucheNut";
+                        speaker[5] = "King Gerard";
                         leftspeaker[5] = true;
                         script[5] = "Oh you were all so magnificent!";
 
-                        speaker[6] = "King DeucheNut";
+                        speaker[6] = "King Gerard";
                         leftspeaker[6] = true;
                         script[6] = "Surely you recall the sword swallowing Bumflark fellow!";
 
                         speaker[7] = "Theron";
-                        leftspeaker[7] = true;
+                        leftspeaker[7] = false;
                         script[7] = "Hhhhmmm...";
 
                         speaker[8] = "Theron";
                         leftspeaker[8] = false;
                         script[8] = "No, I beleive you're the only one I've ever met.";
 
-                        speaker[9] = "King DeucheNut";
+                        speaker[9] = "King Gerard";
                         leftspeaker[9] = true;
                         script[9] = "Uhhmm, excuse me?";
 
@@ -770,15 +772,23 @@ public class Exposition_Manager : MonoBehaviour
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 2:
-                        speaker[0] = "King DeucheNut";
+                        speaker[0] = "King Gerard";
                         leftspeaker[0] = true;
                         script[0] = "And here I thought the show was planned for the evening!";
 
                         speaker[1] = "Theron";
                         leftspeaker[1] = false;
-                        script[1] = "Kill them!!";
-                        
-                        totalLines = 2;
+                        script[1] = "...";
+
+                        speaker[2] = "King Gerard";
+                        leftspeaker[2] = true;
+                        script[2] = "Aaauuuggghhh!";
+
+                        speaker[3] = "Theron";
+                        leftspeaker[3] = false;
+                        script[3] = "Break them!!";
+
+                        totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -804,6 +814,24 @@ public class Exposition_Manager : MonoBehaviour
                     case 11:
                         yield return new WaitForSeconds(2f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
+                        actionsCompleted = true; //actions are completed
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
+            case 2:
+                switch (action)
+                {
+                    case 1:
+                        yield return new WaitForSeconds(2f);
+
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(15, 20, 0), 0.25f);
+                        yield return new WaitForSeconds(2f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(125, 0, 0), 1.25f);
+                        break;
+                    case 3:
+                        yield return new WaitForSeconds(2f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), new Color(0, 0, 0, 1), 1.5f);
                         actionsCompleted = true; //actions are completed
                         StartCoroutine(LoadNextLv());
                         break;
