@@ -14,7 +14,7 @@ public class SpawnPlayerScript_C : MonoBehaviour
         playerObj.SetActive(visibleOnStart);
         playerObj.transform.position = this.transform.position;
         playerObj.transform.localScale = this.transform.localScale;
-        print("start Pos: " + playerObj.transform.position);
+        //print("start Pos: " + playerObj.transform.position);
     }
 
     // Use this for initialization

@@ -341,7 +341,7 @@ public class CombatManager : MonoBehaviour {
         return temp;
     }
 
-    public void EndPlayerTurn(bool damageDealt, int originalHP = 0)
+    public void EndPlayerTurn(int damageDealt, int originalHP = 0)
     {
         print("PLAYER TURN IS OVER");
         print("Current SC: " + currSpecialCase);
@@ -351,7 +351,7 @@ public class CombatManager : MonoBehaviour {
         wasCriticalHit = false;
     }
 
-    public void EndEnemyTurn(bool damageDealt, int originalHP = 0)
+    public void EndEnemyTurn(int damageDealt, int originalHP = 0)
     {
         print("ENEMY TURN IS OVER");
         AbilityCooldownTick(false);
@@ -360,7 +360,7 @@ public class CombatManager : MonoBehaviour {
         wasCriticalHit = false;
     }
 
-    IEnumerator CheckForDamage(bool damage, bool player, int origHP, bool critical)
+    IEnumerator CheckForDamage(int damage, bool player, int origHP, bool critical)
     {
         ShowHealthBars();
 
@@ -373,7 +373,7 @@ public class CombatManager : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.5f);
 
-            if (damage)
+            if (damage > 0)
             {
                 if (player)//is being attacked
                 {
@@ -393,10 +393,12 @@ public class CombatManager : MonoBehaviour {
                 {
                     float var1 = ((float)origHP / (float)enemyMaxHealth);
                     float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
+                    var1 = Mathf.Clamp(var1, 0.0f, 1.0f);
+                    var2 = Mathf.Clamp(var2, 0.0f, 1.0f);
                     enemyHealthBar.GetComponent<HealthScript>().Hurt();
                     yield return new WaitForSeconds(0.25f);
                     enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
-                    enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(origHP - enemyHealth, critical);
+                    enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(damage, critical);
 
                     if (CheckForDeath(true))
                         StartCoroutine(PlayEnemyDeathAnim());
@@ -418,7 +420,7 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void EndEnemyStruggle(bool damageDealt, int originalHP)
+    public void EndEnemyStruggle(int damageDealt, int originalHP)
     {
         currentState = State.MainMenu;
         DisableAbilityButtons();
@@ -831,7 +833,7 @@ public class CombatManager : MonoBehaviour {
             currSpecialCase = SpecialCase.None;
         }
 
-        if (exectueVar != 1)
+        if (exectueVar == 0)
         {
             print("ACCURACY: " + accuracy);
 
@@ -853,7 +855,7 @@ public class CombatManager : MonoBehaviour {
         else
         {
             HideHealthBars();
-            this.GetComponent<StruggleManager_C>().BeginStruggle_Player((float)enemyHealth / (float)enemyMaxHealth);
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(exectueVar, enemyHealth);
         }
     }
 
@@ -862,8 +864,9 @@ public class CombatManager : MonoBehaviour {
         int attack = GameController.controller.playerAttack;
         int prowess = GameController.controller.playerProwess;
         float attBoostMod = 1;
+        int vulnerablePenalty = 0;
 
-        print("REGISTERED AB: " + playerAttackBoost);
+        //print("REGISTERED AB: " + playerAttackBoost);
 
         switch(playerAttackBoost)
         {
@@ -882,58 +885,45 @@ public class CombatManager : MonoBehaviour {
         }
 
         float damageDealt = 0;
-        float percentRemaining = 0;
-        float percentDealt = 0;
+
+        if (enemyVulnernable)
+        {
+            vulnerablePenalty = (int)(VULNERABLE_REDUCTION * enemyHealth);
+            print("vulnerable penalty: " + vulnerablePenalty);
+            enemyVulnernable = false;
+        }
 
         if (overrideDamage != 0)
         {
-            strikeExecutePercent = .15f + (((GameController.controller.playerProwess - (enemyInfo.enemyDefense / 2)) + 0.01f) / GameController.controller.playerProwess);
-            if (strikeExecutePercent < 0.15f)
-                strikeExecutePercent = .15f;
-            percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
-            percentDealt = overrideDamage / (float)enemyMaxHealth;
+            float threshold = 2.0f * overrideDamage;
+            threshold -= vulnerablePenalty;
 
-            print("strikeExecutePercent: " + strikeExecutePercent);
-            print("percentRemaining: " + percentRemaining);
+            print("threshold: " + threshold);
 
-            if(percentDealt > percentRemaining)
+            if (threshold >= enemyHealth)
             {
-                if (percentRemaining > strikeExecutePercent)
-                    return 2;
+                return (int)(damageDealt + vulnerablePenalty);
             }
         }
         else //Do the normal execution calculation
         {
-            strikeExecutePercent = .15f + (((GameController.controller.playerProwess - (enemyInfo.enemyDefense / 2)) + 0.01f) / GameController.controller.playerProwess);
-            if (strikeExecutePercent < 0.15f)
-                strikeExecutePercent = .15f;
+            damageDealt = ((attack * attack) + 9) * attBoostMod;
 
-            damageDealt = (attack * attack) * attBoostMod;
-            percentRemaining = ((float)enemyHealth / (float)enemyMaxHealth);
-            percentDealt = damageDealt / (float)enemyMaxHealth;
+            damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
-            print("strikeExecutePercent: " + strikeExecutePercent);
-            print("percent Dealt: " + percentDealt);
-            print("percentRemaining: " + percentRemaining);
-            if (percentDealt > percentRemaining)
+            float threshold = (2.0f * damageDealt) + (damageDealt * (GameController.controller.playerProwess * 0.02f));
+            threshold -= vulnerablePenalty;
+
+            print("damage dealt: " + damageDealt);
+            print("threshold: " + threshold);
+
+            if (threshold >= enemyHealth)
             {
-                if (percentRemaining > strikeExecutePercent)
-                    return 2;
+                return (int)(damageDealt + vulnerablePenalty); 
             }
         }
 
-        print("percent damage: " + percentDealt);
-
-        if(enemyVulnernable)
-        {
-            percentRemaining -= VULNERABLE_REDUCTION;
-            print("vulnerable execution percent: " + percentRemaining);
-            enemyVulnernable = false;
-        }
-
-        // check if the player can press the enemy
-        if (percentDealt >= percentRemaining)
-            return 1;
+        print("damage dealt: " + damageDealt);
 
         return 0;
     }
@@ -942,8 +932,9 @@ public class CombatManager : MonoBehaviour {
     /// Player DAMAGE FUNCTIONS
 
     // DAMAGE AN ENEMY WITH STRIKE ONLY!
-    public void DamageEnemy_Strike(float percentOfDamage = 1.0f)
+    public int DamageEnemy_Strike(float percentOfDamage = 1.0f)
     {
+        int damageReturn = 0;
         int randDamageBuffer = Random.Range(0, 9);
         float critRand = Random.Range(0.0f, 1.0f);
         float attBoostMod = 1;
@@ -989,24 +980,28 @@ public class CombatManager : MonoBehaviour {
         if (damageDealt < 1)
             damageDealt = 1;
 
-        enemyHealth -= (int)damageDealt;
+        damageReturn -= (int)damageDealt;
+        enemyHealth -= damageReturn;
 
         print("PLAYER DAMAGE: " + damageDealt);
         print("enemy is now at: " + enemyHealth);
+
+        return damageReturn;
     }
 
-    public void ExecuteEnemy_Strike()
+    public void ExecuteEnemy_Strike(int damageDealt, bool useCrit = false)
     {
         int origHP = enemyHealth;
         //spawn effects or something idk
-        enemyHealth = 0;
-        wasCriticalHit = true;
-        EndPlayerTurn(true, origHP);
+        enemyHealth -= damageDealt;
+        wasCriticalHit = useCrit;
+        EndPlayerTurn(damageDealt, origHP);
     }
 
     // DAMAGE AN ENEMY WITH AN ABILITY ONLY!
-    public void DamageEnemy_Ability(Ability abilityUsed)
+    public int DamageEnemy_Ability(Ability abilityUsed)
     {
+        int damageReturn = 0;
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
         float accuracy = abilityUsed.Accuracy;
@@ -1017,7 +1012,7 @@ public class CombatManager : MonoBehaviour {
         int prowess = GameController.controller.playerProwess;
 
         if (hasTutorial)
-            return;
+            return damageReturn;
 
         if (playerBlinded)
         {
@@ -1025,7 +1020,6 @@ public class CombatManager : MonoBehaviour {
             accuracy -= BLINDED_REDUCTION;
             currSpecialCase = SpecialCase.None;
         }
-        
 
         if (abilityUsed.Type == AbilityType.Physical)
         {
@@ -1056,7 +1050,8 @@ public class CombatManager : MonoBehaviour {
                 if (damageDealt < 1)
                     damageDealt = 1;
 
-                enemyHealth -= (int)damageDealt;
+                damageReturn = (int)damageDealt;
+                enemyHealth -= damageReturn;
 
                 print("Ability damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
@@ -1098,7 +1093,8 @@ public class CombatManager : MonoBehaviour {
                 if (damageDealt < 1)
                     damageDealt = 1;
 
-                enemyHealth -= (int)damageDealt;
+                damageReturn = (int)damageDealt;
+                enemyHealth -= damageReturn;
 
                 print("damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
@@ -1138,7 +1134,8 @@ public class CombatManager : MonoBehaviour {
                 if (damageDealt < 1)
                     damageDealt = 1;
 
-                enemyHealth -= (int)damageDealt;
+                damageReturn = (int)damageDealt;
+                enemyHealth -= damageReturn;
 
                 print("damage: " + damageDealt);
                 print("enemy HP: " + enemyHealth);
@@ -1148,14 +1145,17 @@ public class CombatManager : MonoBehaviour {
                 this.GetComponent<AbilityManager_C>().PlayerAbilityMiss();
             }
         }
+
+        return damageReturn;
     }
 
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// ENEMY DAMAGE FUNCTIONS
     /// 
         // DAMAGE PLAYER WITH STRIKE ONLY!
-    public void DamagePlayer_Strike(float percentOfDamage = 1.0f)
+    public int DamagePlayer_Strike(float percentOfDamage = 1.0f)
     {
+        int damageReturn = 0;
         int randDamageBuffer = Random.Range(0, 9);
         float critRand = Random.Range(0.0f, 1.0f);
         float attBoostMod = 1;
@@ -1199,14 +1199,18 @@ public class CombatManager : MonoBehaviour {
         if (damageDealt < 1)
             damageDealt = 1;
 
-        playerHealth -= (int)damageDealt;
+        damageReturn = (int)damageDealt;
+        playerHealth -= damageReturn;
 
         print("ENEMY DAMAGE: " + damageDealt);
         print("player is now at: " + playerHealth);
+
+        return damageReturn;
     }
 
-    public void DamagePlayer_Ability(Ability abilityUsed)
+    public int DamagePlayer_Ability(Ability abilityUsed)
     {
+        int damageReturn = 0;
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
         float accuracy = abilityUsed.Accuracy;
@@ -1252,7 +1256,9 @@ public class CombatManager : MonoBehaviour {
                 if (damageDealt < 1)
                     damageDealt = 1;
 
-                playerHealth -= (int)damageDealt;
+                damageReturn = (int)damageDealt;
+
+                playerHealth -= damageReturn;
 
                 print("damage: " + damageDealt);
                 print("player HP: " + playerHealth);
@@ -1291,7 +1297,9 @@ public class CombatManager : MonoBehaviour {
                 if (damageDealt < 1)
                     damageDealt = 1;
 
-                playerHealth -= (int)damageDealt;
+                damageReturn = (int)damageDealt;
+
+                playerHealth -= damageReturn;
             }
             else
             {
@@ -1327,34 +1335,27 @@ public class CombatManager : MonoBehaviour {
                 if (damageDealt < 1)
                     damageDealt = 1;
 
-                playerHealth -= (int)damageDealt;
+                damageReturn = (int)damageDealt;
+
+                playerHealth -= damageReturn;
             }
             else
             {
                 this.GetComponent<AbilityManager_C>().EnemyAbilityMiss();
             }
         }
+
+        return damageReturn;
     }
 
     /// END OF DAMAGE FUNCTIONS
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void StruggleFailed(bool playerFailed)
+    public void StruggleFailed(int damage)
     {
-        int originalHP;
-
-        if (playerFailed)
-        {
-            originalHP = enemyHealth;
-            enemyHealth -= (int)((float)enemyHealth * 0.35f);
-            EndPlayerTurn(true, originalHP);
-        }
-        else
-        {
-            originalHP = playerHealth;
-            playerHealth -= (int)((float)playerHealth * 0.35f);
-            EndEnemyStruggle(true, originalHP);
-        }
+        int originalHP = enemyHealth;
+        enemyHealth -= (int)((float)enemyHealth * 0.35f);
+        EndPlayerTurn(damage, originalHP);
     }
 
     public void HealPlayer(int amount)
@@ -1418,13 +1419,18 @@ public class CombatManager : MonoBehaviour {
                 
                 if (enemyHealth > 0)
                 {
-                    if (EvaluateExecution(executeDamage) == 1)
+                    if (playerTurn)
                     {
-                        if (playerTurn)
+                        executeDamage = EvaluateExecution(executeDamage);
+                        if (executeDamage > 0)
                         {
-                            this.GetComponent<StruggleManager_C>().BeginStruggle_Player((float)enemyHealth / (float)enemyMaxHealth);
+                            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(executeDamage, enemyHealth);
                             return false;
                         }
+                    }
+                    else
+                    {
+                        print("ENEMIES CANT STRUGGLE DUMMY!");
                     }
                 }
                 break;

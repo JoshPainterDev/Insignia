@@ -38,7 +38,9 @@ public class TutorialManager02_C : MonoBehaviour
         inputEnabled = false;
         ++tutorialState;
 
-        if(tutorialState < 2)
+        float enemyHP = combatController.getEnemyHealth();
+
+        if (tutorialState < 2)
         {
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
@@ -49,7 +51,7 @@ public class TutorialManager02_C : MonoBehaviour
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
             Destroy(panel01);
-            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(0.15f, false);
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player((int)(0.25f * enemyHP), (int)(0.25f * enemyHP), false);
         }
     }
 

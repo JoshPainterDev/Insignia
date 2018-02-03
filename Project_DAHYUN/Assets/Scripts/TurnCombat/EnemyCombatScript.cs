@@ -207,6 +207,7 @@ public class EnemyCombatScript : MonoBehaviour {
 
     IEnumerator EnemyStrike()
     {
+        int damageDealt = 0;
         combatManager.HideHealthBars();
 
         if(enemyInfo.specialStrikeAnim)
@@ -223,7 +224,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     GameObject effectClone = (GameObject)Instantiate(seamstress_StrikeFX, origPosition, transform.rotation);
                     effectClone.transform.parent = enemyMannequin.transform;
                     effectClone.transform.localPosition = new Vector3(-14, 3, 0);
-                    combatManager.DamagePlayer_Strike();
+                    damageDealt = combatManager.DamagePlayer_Strike();
                     this.GetComponent<CombatAudio>().playShadowVanish();
                     yield return new WaitForSeconds(0.25f);
                     enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().speed = 0.75f;
@@ -233,7 +234,7 @@ public class EnemyCombatScript : MonoBehaviour {
                     enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
                     enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().speed = 1f;
                     yield return new WaitForSeconds(0.25f);
-                    combatManager.EndEnemyTurn(true, originalPlayerHP);
+                    combatManager.EndEnemyTurn(damageDealt, originalPlayerHP);
                     break;
             }
         }
@@ -246,10 +247,10 @@ public class EnemyCombatScript : MonoBehaviour {
             enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
             GameObject effectClone = (GameObject)Instantiate(standardStrikeHit_FX, playerOrigPos, transform.rotation);
             yield return new WaitForSeconds(0.6f);
-            combatManager.DamagePlayer_Strike();
+            damageDealt = combatManager.DamagePlayer_Strike();
             enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
             yield return new WaitForSeconds(0.25f);
-            combatManager.EndEnemyTurn(true, originalPlayerHP);
+            combatManager.EndEnemyTurn(damageDealt, originalPlayerHP);
         }
     }
 
@@ -275,7 +276,7 @@ public class EnemyCombatScript : MonoBehaviour {
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerOrigPos - new Vector3(50, 0, 0), playerOrigPos, 2f);
         combatManager.ShowHealthBars();
         yield return new WaitForSeconds(0.2f);
-        combatManager.EndEnemyTurn(false);
+        combatManager.EndEnemyTurn(0);
     }
 
     public void UseFakeStrike()

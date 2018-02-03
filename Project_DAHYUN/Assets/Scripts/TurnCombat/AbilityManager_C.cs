@@ -42,7 +42,7 @@ public class AbilityManager_C : MonoBehaviour {
     private Vector3 initEnemyPos;
     private Ability ability;
 
-    private int origEnemyHP;
+    private int origEnemyHP, damageReturn;
 
     // Use this for initialization
     void Start ()
@@ -70,6 +70,7 @@ public class AbilityManager_C : MonoBehaviour {
         ability = abilityUsed;
         origEnemyHP = enemyHP;
         combatManager.currSpecialCase = SpecialCase.None;
+        damageReturn = 0;
 
         GameController.controller.playerEvilPoints += ability.EvilPoints;
         GameController.controller.playerGoodPoints += ability.GoodPoints;
@@ -121,7 +122,7 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.2f);
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 2.0f);
                 yield return new WaitForSeconds(0.5f);
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(0.5f);
                 if (chance > dieRoll)
                 {
@@ -135,8 +136,8 @@ public class AbilityManager_C : MonoBehaviour {
                 break;
             case "Guard Break":
                 dieRoll = Random.Range(0, 99);
-                chance = (75f + GameController.controller.playerProwess - combatManager.enemyInfo.enemyDefense);
-                chance = Mathf.Clamp(chance, 75f, 100f);
+                chance = (85f + GameController.controller.playerProwess - combatManager.enemyInfo.enemyDefense);
+                chance = Mathf.Clamp(chance, 85f, 100f);
                 combatManager.enemyVulnernable = true;
                 this.GetComponent<CombatAudio>().playGuardBreakSFX();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(-40, 0, 0), 2);
@@ -145,7 +146,7 @@ public class AbilityManager_C : MonoBehaviour {
                 effectClone.transform.SetParent(playerMannequin.transform, true);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(350, 0, 0), 3);
                 yield return new WaitForSeconds(0.65f);
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 if (chance > dieRoll)
                 {
                     combatManager.currSpecialCase = SpecialCase.StunFoe;
@@ -162,7 +163,7 @@ public class AbilityManager_C : MonoBehaviour {
                 effectClone = (GameObject)Instantiate(blackRain_FX, spawnPos, transform.rotation);
                 //this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.35f);
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 effectClone.GetComponent<Animator>().speed = 0.0f;
                 yield return new WaitForSeconds(0.65f);
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
@@ -176,7 +177,7 @@ public class AbilityManager_C : MonoBehaviour {
                 this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.25f);
                 combatManager.currSpecialCase = ability.specialCase;
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(1);
                 break;
             case "Deceive":
@@ -197,7 +198,7 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.75f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300,0,0), 5);
                 yield return new WaitForSeconds(0.25f);
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 combatManager.currSpecialCase = ability.specialCase;
                 yield return new WaitForSeconds(0.7f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
@@ -249,7 +250,7 @@ public class AbilityManager_C : MonoBehaviour {
                     ++i;
                 }
                 yield return new WaitForSeconds(0.25f);
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Divine Barrier":
@@ -269,7 +270,7 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(1.5f);
                 cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2f);
                 yield return new WaitForSeconds(2.5f);
-                combatManager.DamageEnemy_Ability(ability);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
                 playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                 break;
             default:
@@ -280,9 +281,9 @@ public class AbilityManager_C : MonoBehaviour {
 
         // if the ability does damage, make sure to animate the damage
         if(ability.BaseDamage != 0)
-            this.GetComponent<CombatManager>().EndPlayerTurn(true, origEnemyHP);
+            this.GetComponent<CombatManager>().EndPlayerTurn(damageReturn, origEnemyHP);
         else
-            this.GetComponent<CombatManager>().EndPlayerTurn(false);
+            this.GetComponent<CombatManager>().EndPlayerTurn(damageReturn);
 
     }
 

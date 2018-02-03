@@ -55,12 +55,15 @@ public class StruggleManager_C : MonoBehaviour {
     private Vector3 effectPos;
     private Vector3 offsetVec;
 
+    int strikeDamage = 0;
     private int strugglePressCounter = 0;
     bool struggling_Player = false;
     float percentCompleted = 0;
+    float percentDamage = 0.5f;
+    float timePercent = 0;
+    float timeRemaining = 0;
     float randomVar = 0;
     int frameTracker = 0;
-    float timeOutTracker = 0;
     float failTime = 0;
     int failScale = 10;
     bool playerCanFail = true;
@@ -70,8 +73,10 @@ public class StruggleManager_C : MonoBehaviour {
     bool RightKeyReady = true;
     Coroutine randoMovementRoutine;
     float percHealthRemaining;
+    int enemyHP, enemyMaxHP;
     private Vector3 fuseStart;
     private Vector3 fuseEnd;
+    private GameObject fuseFill, fuseTracker;
 
     // Use this for initialization
     void Start ()
@@ -87,6 +92,8 @@ public class StruggleManager_C : MonoBehaviour {
         struggle_Counter.GetComponent<Text>().enabled = false;
         fuseStart = new Vector3(-190, 0, 0);
         fuseEnd = new Vector3(190, 0, 0);
+        fuseFill = struggleFuseHandle.transform.GetChild(1).gameObject;
+        fuseTracker = struggleFuseHandle.transform.GetChild(3).gameObject;
         currentMode = HARD_MODE_FAIL; //CHANGE THE THE MODE LATER!
 
         if(combatController.enemyInfo != null)
@@ -97,7 +104,7 @@ public class StruggleManager_C : MonoBehaviour {
 	
     public void ForceExecute()
     {
-        StartCoroutine(ExecuteEnemy());
+        StartCoroutine(ExecuteEnemy(enemyHP, true));
     }
 
 	// Update is called once per frame
@@ -106,20 +113,20 @@ public class StruggleManager_C : MonoBehaviour {
 		if(struggling_Player)
         {
             ++frameTracker;
-            timeOutTracker += Time.deltaTime;
+            timeRemaining -= Time.deltaTime;
 
             //Player failed to finish the execution
-            if(timeOutTracker >= failTime)
+            if(timeRemaining <= 0.0f)
             {
                 if (playerCanFail)
                 {
                     percentCompleted = 0;
-                    timeOutTracker = 0;
+                    timeRemaining = 0;
                     failTime = 0;
                     struggling_Player = false;
                     strugglePressCounter = 0;
 
-                    StartCoroutine(StruggleFailed());
+                    EvaluateResult();
                 }
             }
 
@@ -133,33 +140,39 @@ public class StruggleManager_C : MonoBehaviour {
                 rightButtonPressed();
             }
 
-            percentCompleted = (float)strugglePressCounter / goal;
+            timePercent = timeRemaining / failTime;
+            percentCompleted = (float)strugglePressCounter / (float)goal;
+            percentDamage = 2.0f * percentCompleted;
+            struggle_Counter.GetComponent<Text>().text = percentDamage.ToString() + "%";
 
-            if(percentCompleted >= 0.99f)
+            if (percentCompleted >= 0.99f)
             {
                 percentCompleted = 0;
-                timeOutTracker = 0;
+                timeRemaining = 0;
                 failTime = 0;
                 struggling_Player = false;
+                strugglePressCounter = 0;
 
-                StartCoroutine(ExecuteEnemy());
+                StartCoroutine(ExecuteEnemy((int)(strikeDamage * percentDamage), true));
             }
-
-            randomVar = Random.Range(-1.0f, 1.0f);
-
-            // randomly decide to move characters
-            if(randomVar >= 0.75f)
+            else
             {
-                //Randomly have them lerp back and forth
-                RandomlyMoveCharacters();
+                randomVar = Random.Range(-1.0f, 1.0f);
+
+                // randomly decide to move characters
+                if (randomVar >= 0.75f)
+                {
+                    //Randomly have them lerp back and forth
+                    RandomlyMoveCharacters();
+                }
+
+                playerCenter = Vector3.Lerp(playerStrugglePos, playerMax, percentCompleted);
+                enemyCenter = Vector3.Lerp(enemyStrugglePos, enemyMin, percentCompleted);
+
+                //UPDATE FUSE
+                fuseFill.GetComponent<Image>().fillAmount = 1.0f - timePercent;
+                fuseTracker.transform.localPosition = Vector3.Lerp(fuseStart, fuseEnd, percentCompleted);
             }
-
-            playerCenter = Vector3.Lerp(playerStrugglePos, playerMax, percentCompleted);
-            enemyCenter = Vector3.Lerp(enemyStrugglePos, enemyMin, percentCompleted);
-
-            //UPDATE FUSE
-            struggleFuseHandle.transform.GetChild(1).GetComponent<Image>().fillAmount = percentCompleted;
-            struggleFuseHandle.transform.GetChild(2).transform.localPosition = Vector3.Lerp(fuseStart, fuseEnd, percentCompleted);
         }
 	}
 
@@ -173,7 +186,7 @@ public class StruggleManager_C : MonoBehaviour {
     public void rightButtonPressed()
     {
         ++strugglePressCounter;
-        struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
+        
 
         struggleButton_R.transform.localScale = new Vector3(pressedSize, pressedSize, 1);
         struggleButton_R.GetComponent<Image>().color = pressedColor;
@@ -193,7 +206,6 @@ public class StruggleManager_C : MonoBehaviour {
     public void leftButtonPressed()
     {
         ++strugglePressCounter;
-        struggle_Counter.GetComponent<Text>().text = strugglePressCounter.ToString();
 
         struggleButton_L.transform.localScale = new Vector3(pressedSize, pressedSize, 1);
         struggleButton_L.GetComponent<Image>().color = pressedColor;
@@ -211,10 +223,15 @@ public class StruggleManager_C : MonoBehaviour {
     }
 
     //IGNITE THE SPARK
-    public void BeginStruggle_Player(float percentHealthRemaining, bool canFail = true)
+    public void BeginStruggle_Player(int strikeDmg, int enemyHealth, bool canFail = true)
     {
-        percHealthRemaining = percentHealthRemaining;
+        strikeDamage = strikeDmg;
+        enemyHP = enemyHealth;
+        enemyMaxHP = combatController.enemyMaxHealth;
         playerCanFail = canFail;
+
+        percHealthRemaining = (float)enemyHP / (float)enemyMaxHP;
+        struggleFuseHandle.transform.GetChild(2).localPosition= new Vector3(Mathf.Lerp(-190, 190, (float)enemyMaxHP / (float)(strikeDamage * 2)), 0, 0);
 
         failScale += GameController.controller.playerProwess;
         int rand = Random.Range(1, 5);
@@ -230,7 +247,29 @@ public class StruggleManager_C : MonoBehaviour {
         print("first: " + ((float)goal * currentMode));
         print("failTime: " + failTime);
 
+        timeRemaining = failTime;
+
+        percentDamage = 0.5f;
+
         StartCoroutine(AlignCharacters(1.0f / failTime));
+    }
+
+    void EvaluateResult()
+    {
+        int damageDealt = (int)(strikeDamage * percentDamage);
+        bool useCrit = false;
+
+        if (percentDamage > 1.0f)
+            useCrit = true;
+
+        if(damageDealt >= enemyHP)
+        {
+            StartCoroutine(ExecuteEnemy(damageDealt, useCrit));
+        }
+        else
+        {
+            StartCoroutine(StruggleFailed(damageDealt));
+        }
     }
 
     //ANIMATE CHARACTERS STRUGGLING
@@ -253,7 +292,7 @@ public class StruggleManager_C : MonoBehaviour {
         struggleFuseHandle.SetActive(true);
     }
 
-    IEnumerator ExecuteEnemy()
+    IEnumerator ExecuteEnemy(int damageDealt, bool useCrit)
     {
         percentCompleted = 0;
         strugglePressCounter = 0;
@@ -281,7 +320,7 @@ public class StruggleManager_C : MonoBehaviour {
         //this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
         //play execution anim
         //yield return new WaitForSeconds(0.75f);
-        this.GetComponent<CombatManager>().ExecuteEnemy_Strike();
+        this.GetComponent<CombatManager>().ExecuteEnemy_Strike(damageDealt, useCrit);
         yield return new WaitForSeconds(0.75f);
         camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, origCameraPos, 3.0f);
@@ -293,7 +332,7 @@ public class StruggleManager_C : MonoBehaviour {
             this.GetComponent<TutorialManager02_C>().StruggleFinished();
     }
 
-    IEnumerator StruggleFailed()
+    IEnumerator StruggleFailed(int damageDealt)
     {
         percentCompleted = 0;
         strugglePressCounter = 0;
@@ -315,7 +354,7 @@ public class StruggleManager_C : MonoBehaviour {
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
         camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         yield return new WaitForSeconds(1f);
-        combatController.StruggleFailed(true);
+        combatController.StruggleFailed(damageDealt);
     }
 
     void enableStruggleButtons()

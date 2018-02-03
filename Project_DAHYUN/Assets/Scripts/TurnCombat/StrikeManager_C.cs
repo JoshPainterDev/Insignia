@@ -84,6 +84,7 @@ public class StrikeManager_C : MonoBehaviour {
     {
         Vector3 pos1;
         Vector3 pos2;
+        int damageReturn = 0;
         combatManager.HideHealthBars();
 
         print("Strike Mod: " + strikeModifier);
@@ -96,7 +97,7 @@ public class StrikeManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.1f);
                 effectClone.GetComponent<Animator>().enabled = true;
                 effectClone.GetComponent<SpriteRenderer>().enabled = true;
-                this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
+                damageReturn = this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
                 playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 yield return new WaitForSeconds(0.2f);
                 generateRandomBlood();
@@ -116,7 +117,7 @@ public class StrikeManager_C : MonoBehaviour {
                 generateRandomBlood();
                 bloodPos = new Vector3(initEnemyPos.x - 50, initEnemyPos.y, 0);
                 bloodClone.transform.position = bloodPos;
-                this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
+                damageReturn = this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
                 yield return new WaitForSeconds(0.25f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos2, initPlayerPos, strikeAnimDuration / .25f);
                 break;
@@ -131,7 +132,7 @@ public class StrikeManager_C : MonoBehaviour {
                 generateRandomBlood();
                 bloodPos = new Vector3(initEnemyPos.x - 50, initEnemyPos.y, 0);
                 bloodClone.transform.position = bloodPos;
-                this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
+                damageReturn = this.GetComponent<CombatManager>().DamageEnemy_Strike(percentageMod);
                 yield return new WaitForSeconds(0.25f);
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(pos1, initPlayerPos, strikeAnimDuration / .25f);
                 break;
@@ -139,7 +140,7 @@ public class StrikeManager_C : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
         combatManager.ShowHealthBars();
-        this.GetComponent<CombatManager>().EndPlayerTurn(true, origEnemyHealth);
+        this.GetComponent<CombatManager>().EndPlayerTurn(damageReturn, origEnemyHealth);
     }
 
     public void PlayerStrikeMiss()
@@ -165,7 +166,7 @@ public class StrikeManager_C : MonoBehaviour {
         enemyMannequin.GetComponent<LerpScript>().LerpToPos(initEnemyPos + new Vector3(50, 0, 0), initEnemyPos, 2f);
         combatManager.ShowHealthBars();
         yield return new WaitForSeconds(0.2f);
-        combatManager.EndPlayerTurn(false);
+        combatManager.EndPlayerTurn(0);
     }
 
     IEnumerator TutorialStrike()

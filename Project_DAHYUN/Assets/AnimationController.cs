@@ -19,7 +19,7 @@ public class AnimationController : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             GameController.controller.playerObject = this.gameObject;
             GameController.controller.Load(GameController.controller.charNames[1]);
-            print(GameController.controller.charNames[1]);
+            //print(GameController.controller.charNames[1]);
             LoadCharacter();
         }
         else
