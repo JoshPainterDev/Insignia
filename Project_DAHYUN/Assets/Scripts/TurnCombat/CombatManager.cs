@@ -395,6 +395,8 @@ public class CombatManager : MonoBehaviour {
                     float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
                     var1 = Mathf.Clamp(var1, 0.0f, 1.0f);
                     var2 = Mathf.Clamp(var2, 0.0f, 1.0f);
+                    print("var1: " + var1);
+                    print("var2: " + var2);
                     enemyHealthBar.GetComponent<HealthScript>().Hurt();
                     yield return new WaitForSeconds(0.25f);
                     enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
@@ -901,20 +903,21 @@ public class CombatManager : MonoBehaviour {
         else //Do the normal execution calculation
         {
             int rand = Random.Range(0, 9);
-            damageDealt = (attack + rand) * attBoostMod;
+            damageDealt = (((attack * 2) + rand) * attBoostMod) * 1.5f;
 
             damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
-            float threshold = ((damageDealt * 1.5f) * (GameController.controller.playerProwess * 0.02f));
+            float threshold = (damageDealt + (damageDealt * GameController.controller.playerProwess * 0.02f));
             threshold -= vulnerablePenalty;
 
-            print("damage dealt: " + damageDealt);
+            print("prowess bonus: " + (GameController.controller.playerProwess * 0.02f));
             print("threshold: " + threshold);
-            print("health: " + enemyHealth);
+            print("E_health: " + enemyHealth);
 
             if (threshold >= enemyHealth)
             {
-                return (int)(damageDealt + vulnerablePenalty); 
+                //return (int)(damageDealt + vulnerablePenalty); 
+                return (int)threshold;
             }
         }
 
@@ -957,7 +960,7 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        damageDealt = (attack + (randDamageBuffer)) * attBoostMod;
+        damageDealt = ((attack * 2) + (randDamageBuffer)) * attBoostMod;
 
         damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
@@ -1348,8 +1351,9 @@ public class CombatManager : MonoBehaviour {
 
     public void StruggleFailed(int damage)
     {
+        print("Struggle failed");
         int originalHP = enemyHealth;
-        enemyHealth -= (int)((float)enemyHealth * 0.35f);
+        enemyHealth -= damage;
         EndPlayerTurn(damage, originalHP);
     }
 
