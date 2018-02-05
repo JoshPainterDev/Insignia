@@ -172,7 +172,7 @@ public class CombatManager : MonoBehaviour {
             encounter = new EnemyEncounter();
             encounter.enemyNames = new string[3];
             encounter.totalEnemies = 1;
-            encounter.enemyNames[0] = "Shadow Assassin";
+            encounter.enemyNames[0] = "Skitter";
             //encounter.enemyNames[1] = "Skitter";
             //encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
@@ -840,14 +840,7 @@ public class CombatManager : MonoBehaviour {
             // accuracy check the attack
             if (accuracy >= rand)
             {
-                if (exectueVar == 0)
-                    this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
-                else
-                {
-                    print("percentage of strike used");
-                    //do only a percentage of your full strike damage 
-                    this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth, 0.33f);
-                }
+                this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
             }
             else
                 this.GetComponent<StrikeManager_C>().PlayerStrikeMiss();
@@ -895,7 +888,7 @@ public class CombatManager : MonoBehaviour {
 
         if (overrideDamage != 0)
         {
-            float threshold = 2.0f * overrideDamage;
+            float threshold = 1.5f * overrideDamage;
             threshold -= vulnerablePenalty;
 
             print("threshold: " + threshold);
@@ -907,15 +900,17 @@ public class CombatManager : MonoBehaviour {
         }
         else //Do the normal execution calculation
         {
-            damageDealt = ((attack * attack) + 9) * attBoostMod;
+            int rand = Random.Range(0, 9);
+            damageDealt = (attack + rand) * attBoostMod;
 
             damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
-            float threshold = (2.0f * damageDealt) + (damageDealt * (GameController.controller.playerProwess * 0.02f));
+            float threshold = ((damageDealt * 1.5f) * (GameController.controller.playerProwess * 0.02f));
             threshold -= vulnerablePenalty;
 
             print("damage dealt: " + damageDealt);
             print("threshold: " + threshold);
+            print("health: " + enemyHealth);
 
             if (threshold >= enemyHealth)
             {
@@ -962,7 +957,7 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
+        damageDealt = (attack + (randDamageBuffer)) * attBoostMod;
 
         damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
 
@@ -980,7 +975,7 @@ public class CombatManager : MonoBehaviour {
         if (damageDealt < 1)
             damageDealt = 1;
 
-        damageReturn -= (int)damageDealt;
+        damageReturn = (int)damageDealt;
         enemyHealth -= damageReturn;
 
         print("PLAYER DAMAGE: " + damageDealt);
@@ -1520,6 +1515,7 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         this.enemyHealthBar.GetComponent<HealthScript>().Death();
         this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
+        enemyMannequin.transform.GetChild(0).GetComponent<EnemyMannequinController>().PlayDeathSound();
         yield return new WaitForSeconds(0.5f);
         foreach (SpriteRenderer sprite in enemyMannequin.GetComponentsInChildren<SpriteRenderer>())
         {

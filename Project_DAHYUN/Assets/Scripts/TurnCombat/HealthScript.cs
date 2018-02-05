@@ -144,8 +144,6 @@ public class HealthScript : MonoBehaviour
         LerpHealth(0, 1);
     }
 
-
-
     IEnumerator HurtAnim()
     {
         int i = 0;

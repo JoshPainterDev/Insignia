@@ -77,8 +77,6 @@ public class EnemyCombatScript : MonoBehaviour {
     {
         originalPlayerHP = combatManager.getPlayerHealth();
 
-        print(difficulty.ToString());
-
         switch (difficulty)
         {
             case Difficulty.Chill:
@@ -98,7 +96,6 @@ public class EnemyCombatScript : MonoBehaviour {
 
     void EasyEnemyAI()
     {
-        print("Easy AI:");
         //first evaluate random chance to strike
         //regardless of abilities
         int chanceToStrike = Random.Range(0, 1);
@@ -145,9 +142,7 @@ public class EnemyCombatScript : MonoBehaviour {
             int randomAbility = Random.Range(0, 4);
 
             ++abilityAttempts;
-            print("Ability Attempts: " + abilityAttempts);
             randomAbility = 3;
-            print("Ab Num Selected: " + randomAbility);
             switch (randomAbility)
             {
                 case 0:

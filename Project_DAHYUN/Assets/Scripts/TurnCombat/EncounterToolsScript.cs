@@ -32,15 +32,12 @@ public class EncounterToolsScript : MonoBehaviour {
                     encounter.encounterNumber = 1;
                     //load first stage
                     encounter.environment = Environment.Castel_Hall;
-                    encounter.totalEnemies = 3;
+                    encounter.totalEnemies = 2;
                     encounter.enemyNames[0] = "Skitter";
                     encounter.bossFight[0] = false;
 
                     encounter.enemyNames[1] = "Skitter";
                     encounter.bossFight[1] = false;
-
-                    encounter.enemyNames[2] = "Skitter";
-                    encounter.bossFight[2] = false;
 
                     encounter.returnOnSuccessScene = "Exposition_Scene05";
 

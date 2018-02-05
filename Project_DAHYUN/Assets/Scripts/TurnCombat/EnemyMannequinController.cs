@@ -6,6 +6,8 @@ public class EnemyMannequinController : MonoBehaviour {
     public GameObject spawnEffect;
     public AudioClip spawnSound;
     public float spawnSoundVolume = 0.5f;
+    public AudioClip deathSound;
+    public float deathSoundVolume = 0.5f;
     private bool visible = true;
     [HideInInspector]
     public Vector3 enemySpawnPos;
@@ -39,6 +41,11 @@ public class EnemyMannequinController : MonoBehaviour {
     {
         Vector3 spawnPos = enemySpawnPos + new Vector3(0, 15, 0);
         GameObject effectClone = (GameObject)Instantiate(spawnEffect, spawnPos, transform.rotation);
+    }
+
+    public void PlayDeathSound()
+    {
+        GameController.controller.GetComponent<MenuUIAudio>().playSoundClip(deathSound, deathSoundVolume);
     }
 
     void ToggleVisible()

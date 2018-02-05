@@ -71,7 +71,7 @@ Animator:
   m_GameObject: {fileID: 1631947355457368}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a29177cf371b33142930fd5651f33681, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -94,6 +94,8 @@ MonoBehaviour:
     type: 2}
   spawnSound: {fileID: 8300000, guid: c19873bc94b80834da220c825801efec, type: 3}
   spawnSoundVolume: 0.5
+  deathSound: {fileID: 8300000, guid: c19873bc94b80834da220c825801efec, type: 3}
+  deathSoundVolume: 0.5
   enemySpawnPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114551649039968966
 MonoBehaviour:
@@ -151,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: -964833023
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 984ab8cb96447c84f821ab310e7f2018, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f04182e782f318488650b2753a0b6e1, type: 3}
   m_Color: {r: 0.89705884, g: 0.89705884, b: 0.89705884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -181,13 +183,13 @@ RectTransform:
   m_GameObject: {fileID: 1631947355457368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 4099147528883130}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: -0.8}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

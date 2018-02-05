@@ -20,7 +20,7 @@ public class StruggleManager_C : MonoBehaviour {
     [HideInInspector]
     public int goal = 50;
 
-    private int BASE_PRESS_COUNT = 250;
+    private int BASE_PRESS_COUNT = 150;
 
     public GameObject hitEffect;
     public GameObject blood01_FX;
@@ -238,6 +238,7 @@ public class StruggleManager_C : MonoBehaviour {
         int lvDiff = GameController.controller.playerLevel - enemyLevel;
         goal = (int)(((float)BASE_PRESS_COUNT * percHealthRemaining) + enemyLevel + (rand * -lvDiff));
         print("base: " + ((float)BASE_PRESS_COUNT * percHealthRemaining));
+        print("percHealthRemaining: " + percHealthRemaining);
         goal -= GameController.controller.playerProwess;
         print("goal: " + goal);
         print("prowess: " + GameController.controller.playerProwess);

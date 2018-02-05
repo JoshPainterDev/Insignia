@@ -4248,7 +4248,7 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: e8d20012bc646024987c1f3b644e3b1b,
+      objectReference: {fileID: 12800000, guid: 0303f88d5e5c86e44b5cbfd218bc02a8,
         type: 3}
     - target: {fileID: 1980983848509518, guid: cb82c368f730a7446889c7da6539a397, type: 2}
       propertyPath: m_IsActive
@@ -4258,6 +4258,26 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_FontSize
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 114620640363078142, guid: cb82c368f730a7446889c7da6539a397,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.5441177
+      objectReference: {fileID: 0}
+    - target: {fileID: 114620640363078142, guid: cb82c368f730a7446889c7da6539a397,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.5441177
+      objectReference: {fileID: 0}
+    - target: {fileID: 114620640363078142, guid: cb82c368f730a7446889c7da6539a397,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.5441177
+      objectReference: {fileID: 0}
+    - target: {fileID: 114620640363078142, guid: cb82c368f730a7446889c7da6539a397,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.934
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb82c368f730a7446889c7da6539a397, type: 2}
@@ -8250,7 +8270,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1550280485
+  randomSeed: -63456426
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12126,7 +12146,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1456581373
+  randomSeed: 650422226
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19513,7 +19533,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 526652727
+  randomSeed: -1558755370
   InitialModule:
     serializedVersion: 3
     enabled: 1

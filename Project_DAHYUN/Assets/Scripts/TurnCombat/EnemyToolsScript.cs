@@ -73,7 +73,7 @@ public class EnemyToolsScript : MonoBehaviour {
             case "Skitter":
                 enemyInfo.enemyImageSource = "Animations\\NPCs\\Skitter_Image";
                 enemyInfo.enemyPrefab = Skitter_Prefab;
-                enemyInfo.enemyLevel = 1;
+                enemyInfo.enemyLevel = 2;
                 enemyInfo.expReward = TRASH_EXP;
                 enemyInfo.ability_1 = "Reap";
                 enemyInfo.ability_2 = "none";
