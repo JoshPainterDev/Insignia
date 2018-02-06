@@ -190,6 +190,8 @@ public class HealthScript : MonoBehaviour
         }
         else
         {
+            character.transform.GetChild(0).GetComponent<EnemyMannequinController>().playFlinchAnim();
+
             foreach (SpriteRenderer sprite in character.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>())
             {
                 sprite.color = fadeColor;

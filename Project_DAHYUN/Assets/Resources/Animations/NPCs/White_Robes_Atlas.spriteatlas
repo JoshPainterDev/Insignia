@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: White_Robes_Atlas
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: a4942ce410a6b5e46aa88fd90973543a, type: 3}
+    - {fileID: 2800000, guid: 0edd1b814908ef04883a7d2bc3cde86c, type: 3}
+    - {fileID: 2800000, guid: 439c22c5db8b03a4cb919cd0ba720824, type: 3}
+    - {fileID: 2800000, guid: 2cdced13caa248e448332e01aa293131, type: 3}
+    - {fileID: 2800000, guid: 542424e37ae014949b25d207f860bc68, type: 3}
+    - {fileID: 2800000, guid: 7aa3189d1ee1a6a48a88fcac5751ed13, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2cdced13caa248e448332e01aa293131, type: 3}
+  - {fileID: 21300000, guid: 439c22c5db8b03a4cb919cd0ba720824, type: 3}
+  - {fileID: 21300000, guid: a4942ce410a6b5e46aa88fd90973543a, type: 3}
+  - {fileID: 21300000, guid: 0edd1b814908ef04883a7d2bc3cde86c, type: 3}
+  - {fileID: 21300000, guid: 542424e37ae014949b25d207f860bc68, type: 3}
+  - {fileID: 21300000, guid: 7aa3189d1ee1a6a48a88fcac5751ed13, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Player_Cloaked02
+  - Player_Cloaked01
+  - Theron_Cloaked_Still
+  - Slade_Cloaked_Still
+  - Seamstress_Cloaked_Still
+  - Ayo_NoHat_Cloak_Image
+  m_Tag: White_Robes_Atlas
+  m_IsVariant: 0

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a8addc0308c4172479f12e0dfa40b115
-timeCreated: 1515028914
+timeCreated: 1517869890
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -11,6 +11,10 @@ MonoImporter:
   - abilitySelect_UI: {fileID: 8300000, guid: 3e80b7f792dfd5940a009b8c92026119, type: 3}
   - back_UI: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
   - nope_UI: {fileID: 8300000, guid: 6f7ed5630ec36ec41acb009aa1ff224f, type: 3}
+  - struggleSuccess01_SFX: {fileID: 8300000, guid: 59bf85e25b5990a4ba2caf33aa388c86,
+      type: 3}
+  - struggleSuccess02_SFX: {fileID: 8300000, guid: 012e3ea6ce765b0458a6c9352e804ab7,
+      type: 3}
   - strugglePress01: {fileID: 8300000, guid: 4c3783e7bf8ffa44b8de2887c1e5f302, type: 3}
   - strugglePress02: {fileID: 8300000, guid: cde72f0500835494cb8faf144feebe71, type: 3}
   - strugglePress03: {fileID: 8300000, guid: aee500b4ee21a164297ead01f542cccc, type: 3}
@@ -26,6 +30,7 @@ MonoImporter:
   - swordRing: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775, type: 3}
   - swordDrop: {fileID: 8300000, guid: b2063882ccd6770419eae5b8b4973a4f, type: 3}
   - finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
+  - criticalHit: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   - swordHit01: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
   - swordHit02: {fileID: 8300000, guid: 9e0d8861213192e44a8859a9b2ccb3e2, type: 3}
   - swordHit03: {fileID: 8300000, guid: 1fdf651628edbf4419dec37fe12c53c9, type: 3}

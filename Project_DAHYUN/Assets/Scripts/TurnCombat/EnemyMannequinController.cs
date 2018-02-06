@@ -21,6 +21,16 @@ public class EnemyMannequinController : MonoBehaviour {
         StartCoroutine(StartingSpawnSequence());
     }
 
+    public void playAttackAnim()
+    {
+        this.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+    }
+
+    public void playFlinchAnim()
+    {
+        this.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", -2);
+    }
+
     public void RefreshMannequinn()
     {
         body = this.transform.GetChild(0).gameObject;

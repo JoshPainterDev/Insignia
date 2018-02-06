@@ -10,6 +10,8 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip abilitySelect_UI;
     public AudioClip back_UI;
     public AudioClip nope_UI;
+    public AudioClip struggleSuccess01_SFX;
+    public AudioClip struggleSuccess02_SFX;
     public AudioClip strugglePress01;
     public AudioClip strugglePress02;
     public AudioClip strugglePress03;
@@ -24,6 +26,7 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip swordRing;
     public AudioClip swordDrop;
     public AudioClip finalCut;
+    public AudioClip criticalHit;
     public AudioClip swordHit01;
     public AudioClip swordHit02;
     public AudioClip swordHit03;
@@ -104,6 +107,11 @@ public class CombatAudio : MonoBehaviour {
         audioSource.PlayOneShot(swordHit01, MEDIUM_VOLUME);
     }
 
+    public void playCriticalHit()
+    {
+        audioSource.PlayOneShot(criticalHit, MEDIUM_VOLUME);
+    }
+
     public void playStrikeHit()
     {
         StartCoroutine(StrikeSound());   
@@ -140,6 +148,16 @@ public class CombatAudio : MonoBehaviour {
                 audioSource.PlayOneShot(swordMiss04, LOW_VOLUME);
                 break;
         }
+    }
+
+    public void playStruggleSuccess01()
+    {
+        audioSource.PlayOneShot(struggleSuccess01_SFX, 0.8f);
+    }
+
+    public void playStruggleSuccess02()
+    {
+        audioSource.PlayOneShot(struggleSuccess02_SFX, 0.8f);
     }
 
     public void playPlasmaIgnite()
@@ -219,22 +237,22 @@ public class CombatAudio : MonoBehaviour {
         switch(rand)
         {
             case 1:
-                audioSource.PlayOneShot(strugglePress01, LOW_VOLUME);
+                audioSource.PlayOneShot(strugglePress01, 0.2f);
                 break;
             case 2:
-                audioSource.PlayOneShot(strugglePress02, LOW_VOLUME);
+                audioSource.PlayOneShot(strugglePress02, 0.2f);
                 break;
             case 3:
-                audioSource.PlayOneShot(strugglePress03, LOW_VOLUME);
+                audioSource.PlayOneShot(strugglePress03, 0.2f);
                 break;
             case 4:
-                audioSource.PlayOneShot(strugglePress04, LOW_VOLUME);
+                audioSource.PlayOneShot(strugglePress04, 0.2f);
                 break;
             case 5:
-                audioSource.PlayOneShot(strugglePress05, LOW_VOLUME);
+                audioSource.PlayOneShot(strugglePress05, 0.2f);
                 break;
             case 6:
-                audioSource.PlayOneShot(strugglePress06, LOW_VOLUME);
+                audioSource.PlayOneShot(strugglePress06, 0.2f);
                 break;
         }
     }

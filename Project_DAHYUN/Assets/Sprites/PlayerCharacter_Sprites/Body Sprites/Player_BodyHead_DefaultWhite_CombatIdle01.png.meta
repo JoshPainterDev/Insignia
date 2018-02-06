@@ -88,8 +88,8 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - buildTarget: Android
     maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: 56
+    resizeAlgorithm: 1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0

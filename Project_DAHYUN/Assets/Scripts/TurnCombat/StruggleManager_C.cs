@@ -79,6 +79,7 @@ public class StruggleManager_C : MonoBehaviour {
     private GameObject fuseFill, fuseTracker;
     private bool overTheLine = false;
     private float killNum = 0.0f;
+    private int currentDamage = 0;
 
     // Use this for initialization
     void Start ()
@@ -122,7 +123,8 @@ public class StruggleManager_C : MonoBehaviour {
             {
                 if (playerCanFail)
                 {
-                    EvaluateResult((int)(strikeDamage * percentCompleted));
+                    struggling_Player = false;
+                    EvaluateResult(currentDamage);
                 }
             }
 
@@ -137,22 +139,30 @@ public class StruggleManager_C : MonoBehaviour {
             }
 
             timePercent = timeRemaining / failTime;
-            percentCompleted = (float)strugglePressCounter / (float)goal;
+            percentCompleted = Mathf.Clamp((float)strugglePressCounter / (float)goal, 0.0f, 1.0f);
             percentDamage = 0.5f + (percentCompleted);
             struggle_Counter.GetComponent<Text>().text = ((int)(percentDamage * 100)).ToString() + "%";
 
+            currentDamage = (int)(strikeDamage * percentCompleted);
+
             if (percentCompleted >= 0.999f)
             {
-                StartCoroutine(ExecuteEnemy((int)(strikeDamage * percentCompleted), true));
+                struggling_Player = false;
+                StartCoroutine(ExecuteEnemy(currentDamage, true));
             }
             else
             {
                 //change color of the kill tick
-                if(!overTheLine && (((int)(strikeDamage * percentCompleted)) >= (int)killNum))
+                if(!overTheLine && (currentDamage >= enemyHP))
                 {
+                    GameObject middleTick = struggleFuseHandle.transform.GetChild(2).gameObject;
                     overTheLine = true;
-                    struggleFuseHandle.transform.GetChild(2).GetComponent<Image>().color = Color.yellow;
+                    middleTick.GetComponent<Image>().color = Color.yellow;
+                    middleTick.GetComponent<LerpScript>().LerpToScale(middleTick.transform.localScale, middleTick.transform.localScale * 2.0f, 2.0f);
                     struggle_Counter.GetComponent<Text>().color = Color.yellow;
+                    struggle_Counter.GetComponent<LerpScript>().LerpToScale(struggle_Counter.transform.localScale, struggle_Counter.transform.localScale * 2.0f, 2.0f);
+
+                    this.GetComponent<CombatAudio>().playStruggleSuccess01();
                 }
 
                 randomVar = Random.Range(-1.0f, 1.0f);
@@ -257,7 +267,6 @@ public class StruggleManager_C : MonoBehaviour {
 
     void EvaluateResult(int totalDamage)
     {
-        print("DAMAGE BOYS: " + totalDamage);
         bool useCrit = false;
 
         if (totalDamage > 1.0f)
@@ -302,9 +311,7 @@ public class StruggleManager_C : MonoBehaviour {
         strugglePressCounter = 0;
         timeRemaining = 0;
         failTime = 0;
-        struggling_Player = false;
         disableStruggleButtons();
-        struggle_Counter.GetComponent<Text>().enabled = false;
         struggleButton_L.transform.localScale = new Vector3(1, 1, 1);
         struggleButton_L.GetComponent<Image>().color = origColor;
         struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
@@ -327,8 +334,22 @@ public class StruggleManager_C : MonoBehaviour {
         //this.GetComponent<EnemyCombatScript>().PlayDeathAnim();
         //play execution anim
         //yield return new WaitForSeconds(0.75f);
-        this.GetComponent<CombatManager>().ExecuteEnemy_Strike(damageDealt, useCrit);
         yield return new WaitForSeconds(0.75f);
+        this.GetComponent<CombatAudio>().playStruggleSuccess02();
+        struggle_Counter.GetComponent<Text>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        struggle_Counter.GetComponent<Text>().enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        struggle_Counter.GetComponent<Text>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        struggle_Counter.GetComponent<Text>().enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        Vector3 origPos = struggle_Counter.transform.position;
+        struggle_Counter.GetComponent<LerpScript>().LerpToPos(origPos, origPos + new Vector3(0, 200, 0), 4.0f);
+        yield return new WaitForSeconds(0.2f);
+        this.GetComponent<CombatManager>().ExecuteEnemy_Strike(damageDealt, useCrit);
+        struggle_Counter.GetComponent<Text>().enabled = false;
+        struggle_Counter.transform.position = origPos;
         camera.GetComponent<CameraController>().LerpCameraSize(100, 150, 3);
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, origCameraPos, 3.0f);
         player.GetComponent<LerpScript>().LerpToPos(player.transform.position, playerOrig, 3);

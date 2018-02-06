@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Player_Body_Hands_Atlas
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - m_BuildTarget: Android
+      m_MaxTextureSize: 512
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+    packingParameters:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 17e73ad321049cc4bb64ea9e5b6ae951, type: 3}
+    - {fileID: 2800000, guid: ed6add487a695f44884c4f046bafa3cc, type: 3}
+    - {fileID: 2800000, guid: 12d40e209149f1a479f3c2757dd3cb51, type: 3}
+    - {fileID: 2800000, guid: 58003b29db7710f489a5bf60a31eaa88, type: 3}
+    - {fileID: 2800000, guid: 0c0d3da0a28fe37409602ccc1feda827, type: 3}
+    - {fileID: 2800000, guid: 20c47d7bba1f7ff459321526bcdd3cda, type: 3}
+    - {fileID: 2800000, guid: 78b118fc363038841babaa5a45fbfb4c, type: 3}
+    - {fileID: 2800000, guid: 72cf99467ef00ec429d0ec047c17638c, type: 3}
+    - {fileID: 2800000, guid: f4460ba8cdffa7d4eb7dacdc5c13c42b, type: 3}
+    - {fileID: 2800000, guid: 78b1974f2549d3542a285a513642f7e9, type: 3}
+    - {fileID: 2800000, guid: 88c079a6c290bd24bb2ca6bc22a9b06f, type: 3}
+    - {fileID: 2800000, guid: d791ffbd1485d8f47b5ba3c12b6e69bd, type: 3}
+    - {fileID: 2800000, guid: a56ae486006da544499c2c068166b2a4, type: 3}
+    - {fileID: 2800000, guid: 3a35f01eed090444aa830ec0b674dbb8, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 20c47d7bba1f7ff459321526bcdd3cda, type: 3}
+  - {fileID: 21300000, guid: 0c0d3da0a28fe37409602ccc1feda827, type: 3}
+  - {fileID: 21300000, guid: 17e73ad321049cc4bb64ea9e5b6ae951, type: 3}
+  - {fileID: 21300000, guid: ed6add487a695f44884c4f046bafa3cc, type: 3}
+  - {fileID: 21300000, guid: 78b118fc363038841babaa5a45fbfb4c, type: 3}
+  - {fileID: 21300000, guid: 3a35f01eed090444aa830ec0b674dbb8, type: 3}
+  - {fileID: 21300000, guid: a56ae486006da544499c2c068166b2a4, type: 3}
+  - {fileID: 21300000, guid: d791ffbd1485d8f47b5ba3c12b6e69bd, type: 3}
+  - {fileID: 21300000, guid: 88c079a6c290bd24bb2ca6bc22a9b06f, type: 3}
+  - {fileID: 21300000, guid: 78b1974f2549d3542a285a513642f7e9, type: 3}
+  - {fileID: 21300000, guid: f4460ba8cdffa7d4eb7dacdc5c13c42b, type: 3}
+  - {fileID: 21300000, guid: 72cf99467ef00ec429d0ec047c17638c, type: 3}
+  - {fileID: 21300000, guid: 58003b29db7710f489a5bf60a31eaa88, type: 3}
+  - {fileID: 21300000, guid: 12d40e209149f1a479f3c2757dd3cb51, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Player_BodyHands_DefaultWhite_Attack02
+  - Player_BodyHands_DefaultWhite_Attack01
+  - Player_BodyHands_DefaultWhite_Idle01
+  - Player_BodyHands_DefaultWhite_Idle02
+  - Player_BodyHands_DefaultWhite_Death08
+  - Player_BodyHands_DefaultWhite_Death07
+  - Player_BodyHands_DefaultWhite_Death06
+  - Player_BodyHands_DefaultWhite_Death05
+  - Player_BodyHands_DefaultWhite_Death04
+  - Player_BodyHands_DefaultWhite_Death03
+  - Player_BodyHands_DefaultWhite_Death02
+  - Player_BodyHands_DefaultWhite_Death01
+  - Player_BodyHands_DefaultWhite_CombatIdle01
+  - Player_BodyHands_DefaultWhite_CombatIdle02
+  m_Tag: Player_Body_Hands_Atlas
+  m_IsVariant: 0

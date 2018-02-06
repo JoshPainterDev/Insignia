@@ -239,7 +239,7 @@ public class EnemyCombatScript : MonoBehaviour {
             this.GetComponent<CombatAudio>().playRandomSwordMiss();
             yield return new WaitForSeconds(0.1f);
             this.GetComponent<CombatAudio>().playRandomSwordHit();
-            enemyMannequin.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 5);
+            enemyMannequin.transform.GetChild(0).GetComponent<EnemyMannequinController>().playAttackAnim();
             GameObject effectClone = (GameObject)Instantiate(standardStrikeHit_FX, playerOrigPos, transform.rotation);
             yield return new WaitForSeconds(0.6f);
             damageDealt = combatManager.DamagePlayer_Strike();

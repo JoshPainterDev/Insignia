@@ -395,12 +395,13 @@ public class CombatManager : MonoBehaviour {
                     float var2 = ((float)enemyHealth / (float)enemyMaxHealth);
                     var1 = Mathf.Clamp(var1, 0.0f, 1.0f);
                     var2 = Mathf.Clamp(var2, 0.0f, 1.0f);
-                    print("var1: " + var1);
-                    print("var2: " + var2);
                     enemyHealthBar.GetComponent<HealthScript>().Hurt();
                     yield return new WaitForSeconds(0.25f);
                     enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, (2.5f - (var2 - var1)));
                     enemyHealthBar.GetComponent<DamageVisualizer_C>().SpawnDamage(damage, critical);
+
+                    if (critical)
+                        this.GetComponent<CombatAudio>().playCriticalHit();
 
                     if (CheckForDeath(true))
                         StartCoroutine(PlayEnemyDeathAnim());
