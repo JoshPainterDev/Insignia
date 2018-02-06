@@ -8,8 +8,10 @@ public class LootManager_C : MonoBehaviour
 {
     private GameObject player;
     public GameObject canvasObj;
+    public GameObject blackSq;
 
     public GameObject equipmentUL_Prefab;
+    public GameObject goldCredits_Prefab;
 
     private Sprite[] spriteSheet_Head, spriteSheet_Torso, spriteSheet_Legs, spriteSheet_Back, spriteSheet_Gloves, spriteSheet_Shoes, spriteSheet_Weapon, spriteSheet_Aura;
 
@@ -28,6 +30,16 @@ public class LootManager_C : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (GameController.controller.currentEncounter == null)
+        {
+            GameController.controller.currentEncounter = new EnemyEncounter();
+            GameController.controller.currentEncounter.returnOnSuccessScene = "MainMenu_Scene";
+            GameController.controller.currentEncounter.reward = null;
+            GameController.controller.currentEncounter.totalEnemies = 3;
+        }
+            
+
+
         player = GameController.controller.playerObject;
         GenerateLoot();
     }
@@ -41,6 +53,11 @@ public class LootManager_C : MonoBehaviour
 
     IEnumerator LootSequence()
     {
+        if(GameController.controller.currentEncounter.reward != null)
+        {
+            print("YOU GOT REWARD!");
+        }
+
         //float rand = 1.0f - Random.Range(0.0f, 1.0f);
         float rand = 0.1f;
 
@@ -109,26 +126,32 @@ public class LootManager_C : MonoBehaviour
 
             GameObject equipUL = Instantiate(equipmentUL_Prefab, Vector3.zero, Quaternion.identity) as GameObject;
             equipUL.transform.SetParent(canvasObj.transform);
+            equipUL.transform.localPosition = Vector3.zero;
 
             equipUL.GetComponent<Image>().sprite = spriteToUse;
             equipUL.transform.GetChild(0).GetComponent<Text>().text = equipToUnlock.Name;
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(5.0f);
 
-        //float randCredits = GameController.controller.playerLevel * (GOLD_BASE_DROP + (GameController.controller.currentEncounter.totalEnemies * Random.Range(15, 25)));
-        //print("Gold Credits Earned: " + randCredits);
+        GameObject goldCreditsBag = Instantiate(goldCredits_Prefab, Vector3.zero, Quaternion.identity) as GameObject;
+        goldCreditsBag.transform.SetParent(canvasObj.transform);
+        goldCreditsBag.transform.localPosition = Vector3.zero;
+        int randCredits = GameController.controller.playerLevel * (GOLD_BASE_DROP + (GameController.controller.currentEncounter.totalEnemies * Random.Range(15, 25)));
+        goldCreditsBag.GetComponent<GoldCredits_C>().totalCoins = randCredits;
+        print("Gold Credits Earned: " + randCredits);
+        
 
         //blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(1.5f);
-        //SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
+        yield return new WaitForSeconds(5.5f);
+        SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
     }
 
     IEnumerator LoadReturnScene()
     {
         // this could get complicated depending on where I'm supposed to return to
         // store the return level in the game controller
-        //blackSq.GetComponent<FadeScript>().FadeIn();
+        blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
     }

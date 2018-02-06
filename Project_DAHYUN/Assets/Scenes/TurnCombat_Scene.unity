@@ -5229,7 +5229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasObj: {fileID: 889873487}
+  blackSq: {fileID: 711003507}
   equipmentUL_Prefab: {fileID: 1420154304120586, guid: aa3283c6c1bdb164d8d310b228913e6e,
+    type: 2}
+  goldCredits_Prefab: {fileID: 1690097366620476, guid: d046390404cfce74883fa1684c8b6525,
     type: 2}
 --- !u!1 &1663483274
 GameObject:
@@ -5461,7 +5464,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 949788507
+  randomSeed: -1837614969
   InitialModule:
     serializedVersion: 3
     enabled: 1

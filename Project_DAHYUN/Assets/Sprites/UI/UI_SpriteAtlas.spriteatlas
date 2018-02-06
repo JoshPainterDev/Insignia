@@ -56,6 +56,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: f878d4ebf9828d942b48ab65cda13e6e, type: 3}
     - {fileID: 2800000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
     - {fileID: 2800000, guid: 09d3b051d1bef8d45adfb35110a2af34, type: 3}
+    - {fileID: 2800000, guid: b7bcd057db0d8764a9a07e1296635e60, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -77,6 +78,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2e9a882b4dec6af4684a6cdb8413a5d0, type: 3}
   - {fileID: 21300000, guid: eaf8710350f16844d97ba359003c5d9b, type: 3}
   - {fileID: 21300000, guid: bc9e28bd94aa4e84f8a5c40d1ee23909, type: 3}
+  - {fileID: 21300000, guid: b7bcd057db0d8764a9a07e1296635e60, type: 3}
   m_PackedSpriteNamesToIndex:
   - home_icon
   - gear-11-icon--free-icons-4
@@ -96,5 +98,6 @@ SpriteAtlas:
   - 300px-Button_Icon_White.svg
   - shield_icon_pixelart
   - social
+  - Gold_Credit
   m_Tag: UI_SpriteAtlas
   m_IsVariant: 0

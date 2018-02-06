@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class GoldCredits_C : MonoBehaviour
 {
+    [HideInInspector]
+    public int totalCoins = 0;
+    private int currentCoins = 0;
+    private bool counting = true;
+    private float well = 0.0f;
+
     private void Awake()
     {
         this.GetComponent<Image>().enabled = false;
@@ -24,13 +30,40 @@ public class GoldCredits_C : MonoBehaviour
         StartCoroutine(killMe());
 	}
 
+    private void FixedUpdate()
+    {
+        if(counting)
+        {
+            if(currentCoins >= totalCoins)
+            {
+                counting = false;
+                well = 0.0f;
+                this.transform.GetChild(0).GetComponent<Text>().text = "+" + totalCoins + " Gold Credits";
+            }
+            else
+            {
+                well += Time.deltaTime * ((float)totalCoins);
+                print("well: " + well);
+
+                if(well >= 0.08f)
+                {
+                    
+                    currentCoins += (int)(well / 1.5f);
+                    well = 0.0f;
+                    this.transform.GetChild(0).GetComponent<Text>().text = "+" + currentCoins + " Gold Credits";
+                }
+                
+            }
+        }
+    }
+
     IEnumerator killMe()
     {
         Color origColor = this.transform.GetChild(0).GetComponent<Text>().color;
         yield return new WaitForSeconds(3.5f);
         this.GetComponent<LerpScript>().LerpToColor(Color.white, new Color(1,1,1,0), 2.0f);
         this.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(origColor, new Color(1, 1, 1, 0), 2.0f);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.8f);
         Destroy(this);
     }
 }
