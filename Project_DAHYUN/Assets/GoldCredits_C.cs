@@ -13,8 +13,6 @@ public class GoldCredits_C : MonoBehaviour
 
     private void Awake()
     {
-        this.GetComponent<Image>().enabled = false;
-        this.transform.GetChild(0).GetComponent<Text>().enabled = false;
     }
 
     // Use this for initialization

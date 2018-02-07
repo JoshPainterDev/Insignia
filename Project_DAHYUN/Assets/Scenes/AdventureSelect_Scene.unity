@@ -1547,7 +1547,7 @@ Prefab:
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
@@ -1746,7 +1746,7 @@ Prefab:
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
@@ -1806,7 +1806,7 @@ Prefab:
     - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_Text
-      value: ???
+      value: Kingdom of Light
       objectReference: {fileID: 0}
     - target: {fileID: 1215002703735850, guid: d99aead9a1d16e2428477cd6044af585, type: 2}
       propertyPath: m_Name
@@ -1836,6 +1836,11 @@ Prefab:
         type: 2}
       propertyPath: m_Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653999334597638, guid: d99aead9a1d16e2428477cd6044af585,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d99aead9a1d16e2428477cd6044af585, type: 2}

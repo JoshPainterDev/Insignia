@@ -31,6 +31,8 @@ public class TutorialManagerMM_C : MonoBehaviour
     void Start()
     {
         menuManager = this.GetComponent<MainMenuManager>();
+        GameController.controller.stagesCompleted = 1;
+        GameController.controller.Save(GameController.controller.playerName);
     }
 
     public void InputDetected()

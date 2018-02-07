@@ -15,6 +15,7 @@ public class EnemyToolsScript : MonoBehaviour {
     public GameObject Ayo_Prefab;
     public GameObject Slade_Prefab;
     public GameObject Dummy_Prefab;
+    public GameObject SolarisKnight_Prefab;
     public GameObject ShadowAssassin_Prefab;
     public GameObject Skitter_Prefab;
     public GameObject DragonLord_Prefab;
@@ -83,8 +84,24 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 6;
                 enemyInfo.enemyDefense = 4;
-                enemyInfo.enemySpeed = 1;
+                enemyInfo.enemySpeed = 2;
                 enemyInfo.enemyMaxHealthBase = 80;
+                enemyInfo.specialStrikeAnim = false;
+                break;
+            case "Solaris Knight":
+                enemyInfo.enemyPrefab = SolarisKnight_Prefab;
+                enemyInfo.enemyLevel = 2;
+                enemyInfo.expReward = MODERATE_EXP;
+                enemyInfo.ability_1 = "Guard Break";
+                enemyInfo.ability_2 = "none";
+                enemyInfo.ability_3 = "none";
+                enemyInfo.ability_4 = "none";
+
+                enemyInfo.enemyName = name;
+                enemyInfo.enemyAttack = 7;
+                enemyInfo.enemyDefense = 6;
+                enemyInfo.enemySpeed = 1;
+                enemyInfo.enemyMaxHealthBase = 100;
                 enemyInfo.specialStrikeAnim = false;
                 break;
             case "Dragon Lord":

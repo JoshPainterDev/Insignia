@@ -17,7 +17,6 @@ public class TutorialManager02_C : MonoBehaviour
     public GameObject shroudParticles;
     public GameObject playerHealth;
     public GameObject enemyHealth;
-    public GameObject reap_FX;
 
     private GameObject textBox;
     private CombatManager combatController;
@@ -38,20 +37,23 @@ public class TutorialManager02_C : MonoBehaviour
         inputEnabled = false;
         ++tutorialState;
 
-        float enemyHP = combatController.getEnemyHealth();
+        float enemyHP = 100;
 
         if (tutorialState < 2)
         {
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
             StartCoroutine(FakeStrike());
+            enemyHP = 50;
         }
         else if (tutorialState == 2)
         {
+            enemyHP = combatController.getEnemyHealth();
             combatController.DisableMainButtons();
             combatController.HideMainButtons();
             Destroy(panel01);
-            this.GetComponent<StruggleManager_C>().BeginStruggle_Player((int)(0.25f * enemyHP), (int)(0.25f * enemyHP), false);
+            print(enemyHP);
+            this.GetComponent<StruggleManager_C>().BeginStruggle_Player(50, 50, false);
         }
     }
 
@@ -98,6 +100,6 @@ public class TutorialManager02_C : MonoBehaviour
         GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(1,0);
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("CombatReward_Scene");
+        SceneManager.LoadScene("Exposition_Scene05");
     }
 }

@@ -37,11 +37,8 @@ public class LootManager_C : MonoBehaviour
             GameController.controller.currentEncounter.reward = null;
             GameController.controller.currentEncounter.totalEnemies = 3;
         }
-            
-
-
+        
         player = GameController.controller.playerObject;
-        GenerateLoot();
     }
 
     public void GenerateLoot()
@@ -53,6 +50,8 @@ public class LootManager_C : MonoBehaviour
 
     IEnumerator LootSequence()
     {
+        player.GetComponent<AnimationController>().SetCombatState(false);
+
         if(GameController.controller.currentEncounter.reward != null)
         {
             print("YOU GOT REWARD!");
@@ -144,7 +143,7 @@ public class LootManager_C : MonoBehaviour
 
         //blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(5.5f);
-        SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
+        StartCoroutine(LoadReturnScene());
     }
 
     IEnumerator LoadReturnScene()
@@ -152,7 +151,7 @@ public class LootManager_C : MonoBehaviour
         // this could get complicated depending on where I'm supposed to return to
         // store the return level in the game controller
         blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.0f);
         SceneManager.LoadScene(GameController.controller.currentEncounter.returnOnSuccessScene);
     }
 }

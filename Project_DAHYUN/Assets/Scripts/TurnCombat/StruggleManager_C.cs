@@ -80,6 +80,7 @@ public class StruggleManager_C : MonoBehaviour {
     private bool overTheLine = false;
     private float killNum = 0.0f;
     private int currentDamage = 0;
+    private Vector3 origNumberScale;
 
     // Use this for initialization
     void Start ()
@@ -92,6 +93,7 @@ public class StruggleManager_C : MonoBehaviour {
         origCameraPos = camera.transform.position;
         effectPos = enemy.transform.GetChild(0).transform.GetChild(0).transform.position;
         disableStruggleButtons();
+        origNumberScale = struggle_Counter.transform.localScale;
         struggle_Counter.GetComponent<Text>().enabled = false;
         fuseStart = new Vector3(-190, 0, 0);
         fuseEnd = new Vector3(190, 0, 0);
@@ -148,6 +150,7 @@ public class StruggleManager_C : MonoBehaviour {
             if (percentCompleted >= 0.999f)
             {
                 struggling_Player = false;
+                struggle_Counter.GetComponent<Text>().text = "150%";
                 StartCoroutine(ExecuteEnemy(currentDamage, true));
             }
             else
@@ -160,7 +163,6 @@ public class StruggleManager_C : MonoBehaviour {
                     middleTick.GetComponent<Image>().color = Color.yellow;
                     middleTick.GetComponent<LerpScript>().LerpToScale(middleTick.transform.localScale, middleTick.transform.localScale * 2.0f, 2.0f);
                     struggle_Counter.GetComponent<Text>().color = Color.yellow;
-                    struggle_Counter.GetComponent<LerpScript>().LerpToScale(struggle_Counter.transform.localScale, struggle_Counter.transform.localScale * 2.0f, 2.0f);
 
                     this.GetComponent<CombatAudio>().playStruggleSuccess01();
                 }
@@ -199,6 +201,8 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.transform.localScale = new Vector3(pressedSize, pressedSize, 1);
         struggleButton_R.GetComponent<Image>().color = pressedColor;
 
+        struggle_Counter.transform.localScale = Vector3.Lerp(origNumberScale, origNumberScale * 2.0f, percentCompleted);
+
         this.GetComponent<CombatAudio>().playRandomStrugglePress();
 
         Invoke("restoreRight", 0.05f);
@@ -217,6 +221,8 @@ public class StruggleManager_C : MonoBehaviour {
 
         struggleButton_L.transform.localScale = new Vector3(pressedSize, pressedSize, 1);
         struggleButton_L.GetComponent<Image>().color = pressedColor;
+
+        struggle_Counter.transform.localScale = Vector3.Lerp(origNumberScale, origNumberScale * 2.0f, percentCompleted);
 
         this.GetComponent<CombatAudio>().playRandomStrugglePress();
 
@@ -301,7 +307,7 @@ public class StruggleManager_C : MonoBehaviour {
         enableStruggleButtons();
         struggle_Counter.GetComponent<Text>().enabled = true;
         struggling_Player = true;
-        camera.GetComponent<CameraController>().LerpCameraSize(125, 100, cameraTime);
+        //camera.GetComponent<CameraController>().LerpCameraSize(125, 100, cameraTime);
         struggleFuseHandle.SetActive(true);
     }
 

@@ -371,7 +371,7 @@ public class CombatManager : MonoBehaviour {
 
         if (ResolveSpecialCase(!player))
         {
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
 
             if (damage > 0)
             {

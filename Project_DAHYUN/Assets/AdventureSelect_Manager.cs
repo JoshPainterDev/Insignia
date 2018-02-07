@@ -24,9 +24,6 @@ public class AdventureSelect_Manager : MonoBehaviour
     void Start ()
     {
         playerMannequin = GameController.controller.playerObject;
-        GameController.controller.levelsCompleted = 0;
-        GameController.controller.stagesCompleted = 0;
-        playerMannequin.GetComponent<AnimationController>().LoadCharacter();
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
@@ -43,6 +40,8 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         if (adventureNum > (GameController.controller.stagesCompleted + 1))
         {
+            print((GameController.controller.stagesCompleted + 1));
+            print(adventureNum);
             // play a "you havnt unlocked this level" sound
             GameController.controller.GetComponent<MenuUIAudio>().playNope();
             return;

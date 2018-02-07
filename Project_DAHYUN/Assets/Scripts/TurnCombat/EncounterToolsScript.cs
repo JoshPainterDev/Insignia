@@ -51,11 +51,11 @@ public class EncounterToolsScript : MonoBehaviour {
                     //load first stage
                     encounter.environment = Environment.none;
                     encounter.totalEnemies = 2;
-                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.enemyNames[0] = "Solaris Knight";
                     encounter.bossFight[0] = false;
-                    encounter.enemyNames[1] = "Shadow Assassin";
+                    encounter.enemyNames[1] = "Solaris Knight";
                     encounter.bossFight[1] = false;
-                    encounter.returnOnSuccessScene = "Exposition_Scene07";
+                    encounter.returnOnSuccessScene = "Exposition_Scene14";
 
                     Reward newReward = new Reward();
                     newReward.experience = 47;
