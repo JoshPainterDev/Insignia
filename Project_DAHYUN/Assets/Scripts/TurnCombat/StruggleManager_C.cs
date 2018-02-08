@@ -54,6 +54,7 @@ public class StruggleManager_C : MonoBehaviour {
     private Vector3 origCameraPos;
     private Vector3 effectPos;
     private Vector3 offsetVec;
+    private Vector3 origCounterPos;
 
     int strikeDamage = 0;
     private int strugglePressCounter = 0;
@@ -91,6 +92,7 @@ public class StruggleManager_C : MonoBehaviour {
         playerOrig = player.transform.position;
         enemyOrig = enemy.transform.position;
         origCameraPos = camera.transform.position;
+        origCounterPos = struggle_Counter.transform.position;
         effectPos = enemy.transform.GetChild(0).transform.GetChild(0).transform.position;
         disableStruggleButtons();
         origNumberScale = struggle_Counter.transform.localScale;
@@ -120,8 +122,13 @@ public class StruggleManager_C : MonoBehaviour {
             ++frameTracker;
             timeRemaining -= Time.deltaTime;
 
+            timePercent = timeRemaining / failTime;
+            percentCompleted = Mathf.Clamp((float)strugglePressCounter / (float)goal, 0.0f, 1.0f);
+            percentDamage = 0.5f + percentCompleted;
+            struggle_Counter.GetComponent<Text>().text = ((int)(percentDamage * 100.0f)).ToString() + "%";
+
             //Player failed to finish the execution
-            if(timeRemaining <= 0.0f)
+            if (timeRemaining <= 0.0f)
             {
                 if (playerCanFail)
                 {
@@ -140,10 +147,7 @@ public class StruggleManager_C : MonoBehaviour {
                 rightButtonPressed();
             }
 
-            timePercent = timeRemaining / failTime;
-            percentCompleted = Mathf.Clamp((float)strugglePressCounter / (float)goal, 0.0f, 1.0f);
-            percentDamage = 0.5f + (percentCompleted);
-            struggle_Counter.GetComponent<Text>().text = ((int)(percentDamage * 100)).ToString() + "%";
+
 
             currentDamage = (int)(strikeDamage * percentCompleted);
 
@@ -278,7 +282,9 @@ public class StruggleManager_C : MonoBehaviour {
         if (totalDamage > 1.0f)
             useCrit = true;
 
-        if(totalDamage >= enemyHP)
+        struggle_Counter.GetComponent<Text>().text = ((int)(percentDamage * 100.0f)).ToString() + "%";
+
+        if (totalDamage >= enemyHP)
         {
             StartCoroutine(ExecuteEnemy(totalDamage, useCrit));
         }
@@ -362,8 +368,11 @@ public class StruggleManager_C : MonoBehaviour {
         enemy.GetComponent<LerpScript>().LerpToPos(enemy.transform.position, enemyOrig, 3);
         enemy.GetComponent<LerpScript>().LerpToColor(origColor, Color.clear, 1.5f);
 
-        if(!playerCanFail)
+        if (!playerCanFail)
             this.GetComponent<TutorialManager02_C>().StruggleFinished();
+
+        yield return new WaitForSeconds(0.5f);
+        struggle_Counter.transform.position = origCounterPos;
     }
 
     IEnumerator StruggleFailed(int damageDealt)
@@ -379,6 +388,7 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_L.GetComponent<Image>().color = origColor;
         struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
         struggleButton_R.GetComponent<Image>().color = origColor;
+        struggle_Counter.transform.position = origCounterPos;
 
         player.GetComponent<AnimationController>().PlayAttackAnim();
         this.GetComponent<CombatAudio>().playStrikeHit();

@@ -12,7 +12,9 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip footSteps_FX01;
     public AudioClip laserBombardment_FX;
     public AudioClip laserSwordIgnite_FX;
+    public AudioClip laserSwordRetract_FX;
     public AudioClip criticalHit_FX;
+    public AudioClip bodyCollapse_FX;
 
     AudioSource audioSource;
 
@@ -56,7 +58,17 @@ public class SoundFXManager_C : MonoBehaviour
 
     public void playSwordIgnite()
     {
-        audioSource.PlayOneShot(laserSwordIgnite_FX, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(laserSwordIgnite_FX, HIGH_VOLUME);
+    }
+
+    public void playSwordRetract()
+    {
+        audioSource.PlayOneShot(laserSwordRetract_FX, HIGH_VOLUME);
+    }
+
+    public void playBodyCollapse()
+    {
+        audioSource.PlayOneShot(bodyCollapse_FX, HIGH_VOLUME);
     }
 
     public void playCriticalHit()

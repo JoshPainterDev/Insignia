@@ -82,10 +82,10 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "none";
 
                 enemyInfo.enemyName = name;
-                enemyInfo.enemyAttack = 6;
+                enemyInfo.enemyAttack = 5;
                 enemyInfo.enemyDefense = 4;
                 enemyInfo.enemySpeed = 2;
-                enemyInfo.enemyMaxHealthBase = 80;
+                enemyInfo.enemyMaxHealthBase = 60;
                 enemyInfo.specialStrikeAnim = false;
                 break;
             case "Solaris Knight":

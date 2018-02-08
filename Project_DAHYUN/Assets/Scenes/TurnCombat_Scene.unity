@@ -2467,6 +2467,7 @@ MonoBehaviour:
     type: 2}
   Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
     type: 2}
+  SolarisKnight_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -4992,6 +4993,7 @@ MonoBehaviour:
   swordRing: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775, type: 3}
   swordDrop: {fileID: 8300000, guid: b2063882ccd6770419eae5b8b4973a4f, type: 3}
   finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
+  damage_SFX: {fileID: 8300000, guid: 3e1df8e99e5dc8740a11fe0e8f3e0c25, type: 3}
   criticalHit: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   swordHit01: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
   swordHit02: {fileID: 8300000, guid: 9e0d8861213192e44a8859a9b2ccb3e2, type: 3}
@@ -5011,7 +5013,7 @@ MonoBehaviour:
   swordBlood01: {fileID: 8300000, guid: 070816a64d7127f418fd468465ca7a4c, type: 3}
   swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
   bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
-  plasmaIgnite: {fileID: 8300000, guid: dc7c09114e9f5c2409496dc14b337f5e, type: 3}
+  plasmaIgnite: {fileID: 8300000, guid: aff2b147c10316c4b94790cdba23e8c9, type: 3}
   LB_SuperNova_Start: {fileID: 8300000, guid: 7fa4a7692ece60440842a6d7843ae3d4, type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
@@ -5284,7 +5286,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "0\n\n "
+  m_Text: 0
 --- !u!222 &1663483276
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5464,7 +5466,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1837614969
+  randomSeed: -1425503439
   InitialModule:
     serializedVersion: 3
     enabled: 1

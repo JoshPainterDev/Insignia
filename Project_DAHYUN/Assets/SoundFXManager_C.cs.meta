@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 451727e9ac3b6d346871fdf0f3c4d600
-timeCreated: 1517985064
+timeCreated: 1518039164
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -13,9 +13,12 @@ MonoImporter:
   - footSteps_FX01: {fileID: 8300000, guid: 4e1fe925ee368a54980c89fcadea409c, type: 3}
   - laserBombardment_FX: {fileID: 8300000, guid: 891e2ea3b04845b44bd680fac636c6c4,
       type: 3}
-  - laserSwordIgnite_FX: {fileID: 8300000, guid: dc7c09114e9f5c2409496dc14b337f5e,
+  - laserSwordIgnite_FX: {fileID: 8300000, guid: aff2b147c10316c4b94790cdba23e8c9,
+      type: 3}
+  - laserSwordRetract_FX: {fileID: 8300000, guid: ae34cbcfd79e783479359c7c32104288,
       type: 3}
   - criticalHit_FX: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
+  - bodyCollapse_FX: {fileID: 8300000, guid: 4fc1c0a018f1d124496a334bb1d34d65, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

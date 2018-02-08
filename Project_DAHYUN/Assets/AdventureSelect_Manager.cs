@@ -76,7 +76,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         Destroy(selectPrefab);
         Destroy(BackButton);
         yield return new WaitForSeconds(0.25f);
-        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        playerMannequin.GetComponent<AnimationController>().PlayCheerAnim();
         yield return new WaitForSeconds(1.5f);
         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(500, 0, 0), 0.5f);

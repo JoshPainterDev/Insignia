@@ -294,29 +294,17 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = "General Vixon";
                         leftspeaker[1] = true;
-                        script[1] = "Steady now! On my mark!";
+                        script[1] = "Steady now!";
 
-                        speaker[2] = "PVT Mark";
-                        leftspeaker[2] = false;
-                        script[2] = "Ready and willing, sir!";
+                        speaker[2] = "General Vixon";
+                        leftspeaker[2] = true;
+                        script[2] = "...";
 
                         speaker[3] = "General Vixon";
                         leftspeaker[3] = true;
-                        script[3] = "Shut the hell up, Mark!";
+                        script[3] = "Give 'em hell boys!";
 
-                        speaker[4] = "General Vixon";
-                        leftspeaker[4] = true;
-                        script[4] = "...";
-
-                        speaker[5] = "General Vixon";
-                        leftspeaker[5] = true;
-                        script[5] = "Alright!!";
-
-                        speaker[6] = "General Vixon";
-                        leftspeaker[6] = true;
-                        script[6] = "Give 'em hell boys!";
-
-                        totalLines = 7;
+                        totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -799,7 +787,6 @@ public class Exposition_Manager : MonoBehaviour
 
     IEnumerator Cutscene12(int action, int instance = 0)
     {
-        print("cutscene 12");
         switch (instance)
         {
             case 1:
@@ -810,11 +797,12 @@ public class Exposition_Manager : MonoBehaviour
                         // Set next Level //
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.37f);
                         yield return new WaitForSeconds(3.0f);
-                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(10, 0, 0), 2.0f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(80, 0, 0), 1.0f);
+                        yield return new WaitForSeconds(2.0f);
                         StartCoroutine(NewDialogue(12, 1));
                         break;
-                    case 9:
-                        Vector3 spawnPos = new Vector3(speaker06.transform.position.x, speaker06.transform.position.y + 90, 0);
+                    case 10:
+                        Vector3 spawnPos = new Vector3(speaker06.transform.position.x + 20, speaker06.transform.position.y + 120, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         MusicManager.GetComponent<Music_Controller>().stopAllMusic();
                         break;
@@ -841,21 +829,33 @@ public class Exposition_Manager : MonoBehaviour
                         StartCoroutine(NewDialogue(12, 2));
                         break;
                     case 2:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.5f);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 7);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 0.1f;
                         yield return new WaitForSeconds(2f);
-                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(15, 30, 0), 0.5f);
-                        yield return new WaitForSeconds(2f);
-                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(315, -20, 0), 5.5f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 30, 0), 0.5f);
                         yield return new WaitForSeconds(0.5f);
+                        Vector3 ogPos = speaker06.transform.position;
+                        speaker06.GetComponent<LerpScript>().LerpToPos(ogPos, ogPos + new Vector3(300, -36, 0), 8.5f);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 0.65f;
+                        yield return new WaitForSeconds(0.75f);
+                        ogPos = speaker06.transform.position;
+                        speaker06.GetComponent<LerpScript>().LerpToPos(ogPos, ogPos + new Vector3(31.5f, 0, 0), 2.5f);
+                        yield return new WaitForSeconds(0.75f);
                         sfxManager.GetComponent<SoundFXManager_C>().playSwordIgnite();
-                        
-                        yield return new WaitForSeconds(0.15f);
-                        sfxManager.GetComponent<SoundFXManager_C>().playCriticalHit();
-                        yield return new WaitForSeconds(2.5f);
-                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(-50, -50, 0), 5.0f);
-                        //yield return new WaitForSeconds(0.5f);
-                        sfxManager.GetComponent<SoundFXManager_C>().playSnowCollapse();
+                        yield return new WaitForSeconds(2.25f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playSwordRetract();
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 8);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 1.5f;
+                        yield return new WaitForSeconds(0.35f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(-80, 0, 0), 5.0f);
+                        yield return new WaitForSeconds(0.25f);
+                        speaker06.transform.GetChild(0).GetComponent<Animator>().SetBool("Dead", true);
+                        sfxManager.GetComponent<SoundFXManager_C>().playBodyCollapse();
+                        yield return new WaitForSeconds(0.5f);
                         break;
                     case 5:
+                        yield return new WaitForSeconds(2.0f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), 8.0f);
                         yield return new WaitForSeconds(0.15f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), 8.0f);
@@ -964,8 +964,8 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 8:
                         speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        yield return new WaitForSeconds(0.5f);
-                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(220, 0, 0), 1.7f);
+                        yield return new WaitForSeconds(0.85f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(220, 0, 0), 1.0f);
                         break;
                 }
                 break;
@@ -1162,14 +1162,17 @@ public class Exposition_Manager : MonoBehaviour
                 Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 10, playerMannequin.transform.position.y + 90, 0);
                 GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(1.5f);
+                playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
                 playerMannequin.GetComponent<AnimationController>().FlipFlop();
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(60, 0, 0), 1.0f);
                 yield return new WaitForSeconds(1f);
                 StartCoroutine(NewDialogue(5, 1));
                 speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(100, 0, 0), 1.0f);
+                sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
                 yield return new WaitForSeconds(1f);
                 speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(50, 0, 0));
                 yield return new WaitForSeconds(0.75f);
+                sfxManager.GetComponent<SoundFXManager_C>().playSkitterScreech();
                 playerMannequin.GetComponent<AnimationController>().FlipFlop();
                 break;
             case 2:
@@ -1313,17 +1316,10 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(2.5f);
                 cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2f);
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
                 speaker02.GetComponent<SpriteRenderer>().enabled = true;
                 speaker02.GetComponent<Animator>().enabled = true;
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 1f);
-                yield return new WaitForSeconds(1.5f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
-                yield return new WaitForSeconds(1.5f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 1f);
-                yield return new WaitForSeconds(0.75f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1f);
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 1f);
                 yield return new WaitForSeconds(2f);
                 StartCoroutine(NewDialogue(2,1));
@@ -1333,9 +1329,10 @@ public class Exposition_Manager : MonoBehaviour
                 sfxManager.GetComponent<SoundFXManager_C>().playLaserBombardment(true);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
                 yield return new WaitForSeconds(0.2f);
-                speaker03.GetComponent<ParticleSystem>().Play();
-                speaker04.GetComponent<ParticleSystem>().Play();
-                speaker06.GetComponent<ParticleSystem>().Play();
+                foreach(ParticleSystem child in speaker03.GetComponentsInChildren<ParticleSystem>())
+                {
+                    child.Play();
+                }
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
                 yield return new WaitForSeconds(0.15f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
@@ -1355,34 +1352,7 @@ public class Exposition_Manager : MonoBehaviour
                 blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
                 break;
             case 5:
-                yield return new WaitForSeconds(0.1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.3f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
-                break;
-            case 6:
-                yield return new WaitForSeconds(0.2f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.4f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
-                yield return new WaitForSeconds(0.1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.3f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
-                break;
-            case 7:
-                yield return new WaitForSeconds(0.25f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.2f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.15f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.1f);
-                blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 4f);
-                yield return new WaitForSeconds(0.3f);
-                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0), 1f);
-                break;
-            case 8:
+                yield return new WaitForSeconds(2.5f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 0.35f);
                 yield return new WaitForSeconds(1.5f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(1,1,1,0.8f), Color.red, 0.75f);

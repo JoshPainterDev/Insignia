@@ -39,7 +39,6 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: f174b168fd6d4e74ba03fb855dcf4e7c, type: 3}
-    - {fileID: 2800000, guid: a24e74c379ea7f845ae9bcbad422df1a, type: 3}
     - {fileID: 2800000, guid: e71f588b41a83c3498915827aaa78f14, type: 3}
     - {fileID: 2800000, guid: dfd41566595f2a3439afdb68055b4e7a, type: 3}
     - {fileID: 2800000, guid: 63bec3b3e93b509489a5aa641a831afa, type: 3}
@@ -139,7 +138,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f174b168fd6d4e74ba03fb855dcf4e7c, type: 3}
   - {fileID: 21300000, guid: 3565edf65583e7c48ae06dc493ffbd73, type: 3}
   - {fileID: 21300000, guid: 861823ed2734b06419b42caeefd5b451, type: 3}
-  - {fileID: 21300000, guid: a24e74c379ea7f845ae9bcbad422df1a, type: 3}
   - {fileID: 21300000, guid: 77dd6ee014ee9534787ee46887ff315b, type: 3}
   - {fileID: 21300000, guid: c8db9ea73fb395f4db83fc1aed79c846, type: 3}
   - {fileID: 21300000, guid: c588f2cf2101732439e496ee71a2dfb7, type: 3}
@@ -195,7 +193,6 @@ SpriteAtlas:
   - Enemy_Characters
   - Slade_Still_Combat
   - Ayo_Combat_Stilll
-  - Theron_Image
   - Seamstress_Still_Idle_Happy
   - Solaris_Officer_Sword_Image
   - Ayo_Idle_Still

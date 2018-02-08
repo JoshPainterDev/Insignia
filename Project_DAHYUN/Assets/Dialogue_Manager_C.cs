@@ -322,6 +322,9 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Skitter":
                 iconString = "CloseUps\\Character_CloseUp_Skitter";
                 break;
+            case "King Gerard":
+                iconString = "CloseUps\\Character_CloseUp_KingGerard";
+                break;
             case "PVT Mark":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
                 break;

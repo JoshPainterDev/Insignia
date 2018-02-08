@@ -148,7 +148,9 @@ public class HealthScript : MonoBehaviour
     {
         int i = 0;
 
-        if(playerHealth)
+        combatManager.GetComponent<CombatAudio>().playDamageSound();
+
+        if (playerHealth)
         {
             Color skinC = GameController.controller.getPlayerSkinColor();
             foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())

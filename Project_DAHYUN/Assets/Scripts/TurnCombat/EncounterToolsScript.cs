@@ -39,7 +39,7 @@ public class EncounterToolsScript : MonoBehaviour {
                     encounter.enemyNames[1] = "Skitter";
                     encounter.bossFight[1] = false;
 
-                    encounter.returnOnSuccessScene = "Exposition_Scene05";
+                    encounter.returnOnSuccessScene = "Exposition_Scene06";
 
                     Reward newReward = new Reward();
                     newReward.experience = 22;

@@ -26,6 +26,7 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip swordRing;
     public AudioClip swordDrop;
     public AudioClip finalCut;
+    public AudioClip damage_SFX;
     public AudioClip criticalHit;
     public AudioClip swordHit01;
     public AudioClip swordHit02;
@@ -105,6 +106,11 @@ public class CombatAudio : MonoBehaviour {
     public void playSwordHit()
     {
         audioSource.PlayOneShot(swordHit01, MEDIUM_VOLUME);
+    }
+
+    public void playDamageSound()
+    {
+        audioSource.PlayOneShot(damage_SFX, LOW_VOLUME);
     }
 
     public void playCriticalHit()

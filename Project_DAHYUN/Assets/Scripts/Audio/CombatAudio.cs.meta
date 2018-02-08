@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a8addc0308c4172479f12e0dfa40b115
-timeCreated: 1517869890
+timeCreated: 1518039721
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -30,6 +30,7 @@ MonoImporter:
   - swordRing: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775, type: 3}
   - swordDrop: {fileID: 8300000, guid: b2063882ccd6770419eae5b8b4973a4f, type: 3}
   - finalCut: {fileID: 8300000, guid: d51abb02dddbdd14796faa86c93b0125, type: 3}
+  - damage_SFX: {fileID: 8300000, guid: 3e1df8e99e5dc8740a11fe0e8f3e0c25, type: 3}
   - criticalHit: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   - swordHit01: {fileID: 8300000, guid: 28bcbc23c7e5c864583ab0fe47e44735, type: 3}
   - swordHit02: {fileID: 8300000, guid: 9e0d8861213192e44a8859a9b2ccb3e2, type: 3}
@@ -50,7 +51,7 @@ MonoImporter:
   - swordBlood01: {fileID: 8300000, guid: 070816a64d7127f418fd468465ca7a4c, type: 3}
   - swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
   - bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
-  - plasmaIgnite: {fileID: 8300000, guid: dc7c09114e9f5c2409496dc14b337f5e, type: 3}
+  - plasmaIgnite: {fileID: 8300000, guid: aff2b147c10316c4b94790cdba23e8c9, type: 3}
   - LB_SuperNova_Start: {fileID: 8300000, guid: 7fa4a7692ece60440842a6d7843ae3d4,
       type: 3}
   executionOrder: 0

@@ -98,8 +98,9 @@ public class TutorialManager02_C : MonoBehaviour
     IEnumerator LoadExposition()
     {
         GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(1,0);
+        yield return new WaitForSeconds(2);
         blackSq.GetComponent<FadeScript>().FadeIn();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Exposition_Scene05");
     }
 }
