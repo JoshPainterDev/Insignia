@@ -1,8 +1,9 @@
 fileFormatVersion: 2
 guid: 3d292131bd9bde3499dc4bc79b54dd7d
-timeCreated: 1510871010
+timeCreated: 1518315857
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - Steve_Prefab: {fileID: 1291192845535296, guid: 6e2aff721afcaab4aa3d047a5b27c49e,
@@ -14,6 +15,8 @@ MonoImporter:
   - Slade_Prefab: {fileID: 1919287724249914, guid: c1fca89800cfb4b4688d26e00e0e1818,
       type: 2}
   - Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
+      type: 2}
+  - SolarisKnight_Prefab: {fileID: 1919287724249914, guid: a3b16ffcc07a80d45a7035accf4be91a,
       type: 2}
   - ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
       type: 2}

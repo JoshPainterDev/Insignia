@@ -170,13 +170,14 @@ public class CombatManager : MonoBehaviour {
         if (encounter == null)
         {
             encounter = new EnemyEncounter();
-            encounter.enemyNames = new string[3];
-            encounter.totalEnemies = 1;
-            encounter.enemyNames[0] = "Skitter";
-            //encounter.enemyNames[1] = "Skitter";
-            //encounter.enemyNames[2] = "Shadow Assassin";
-            encounter.encounterNumber = -1;
-            encounter.returnOnSuccessScene = "MainMenu_Scene";
+            encounter = GameController.controller.GetComponent<EncounterToolsScript>().SpecifyEncounter(1,0);
+            //encounter.enemyNames = new string[3];
+            //encounter.totalEnemies = 1;
+            //encounter.enemyNames[0] = "Skitter";
+            ////encounter.enemyNames[1] = "Skitter";
+            ////encounter.enemyNames[2] = "Shadow Assassin";
+            //encounter.encounterNumber = -1;
+            //encounter.returnOnSuccessScene = "MainMenu_Scene";
         }
 
         enemiesRemaining = encounter.totalEnemies;
@@ -189,16 +190,19 @@ public class CombatManager : MonoBehaviour {
         }
 
         //0. pretend the player has save data for ability sake
-        playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel.ToString();
-        playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
+
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
+        playerLevel = 1;// GET RID OF THIS SHITLAWBDWK
+        playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
+        playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
         //print("player def: " + GameController.controller.playerDefense);
         //Max Health = ((base max hp) * player lv) + (9 * player def)
-        playerMaxHealth = (playerMaxHealth * playerLevel) + (9 * GameController.controller.playerDefense);
+        playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
         playerHealth = playerMaxHealth;
-        //print("Player max HP: " + playerHealth);
+        print("Player max HP: " + playerHealth);
+        print("defeense: " + GameController.controller.playerDefense);
 
         if(!hasTutorial)
         {
@@ -386,7 +390,7 @@ public class CombatManager : MonoBehaviour {
 
                     if (CheckForDeath(false))
                         StartCoroutine(PlayPlayerDeathAnim());
-                    else// CUM BACK HERE!!
+                    else
                         StartCoroutine(StartPlayerTurn());
                 }
                 else //if enemy is being attacked
@@ -780,6 +784,7 @@ public class CombatManager : MonoBehaviour {
                     print("Oh jeez Rick, " + (encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]) + " is dead...");
                     --enemiesRemaining;
                     enemyCounter.GetComponent<enemyCounterScript>().EnemyDied();
+                    this.GetComponent<ExperienceScript>().experienceAnimation(GameController.controller.playerEXP, enemyInfo.expReward);
                     return true;
                 }
             }
@@ -814,7 +819,7 @@ public class CombatManager : MonoBehaviour {
     {
         int exectueVar = EvaluateExecution();
         int rand = Random.Range(0, 99);
-        float accuracy = 80 + (3 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
+        float accuracy = 87 + (3 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
 
         DisableMainButtons();
         HideHealthBars();
@@ -941,7 +946,12 @@ public class CombatManager : MonoBehaviour {
         int attack = GameController.controller.playerAttack;
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
+        float levelMod = 1.0f;
 
+        if (playerLevel > enemyInfo.enemyLevel)
+            levelMod = 1.15f;
+        else if (playerLevel < enemyInfo.enemyLevel)
+            levelMod = 0.85f;
         print("REGISTERED AB: " + playerAttackBoost);
 
         //handle attack boost modifier
@@ -961,9 +971,11 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        damageDealt = ((attack * 2) + (randDamageBuffer)) * attBoostMod;
+        damageDealt = ((attack * 2 * playerLevel) + (randDamageBuffer)) * attBoostMod;
 
         damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
+
+        damageDealt *= levelMod;
 
         // critical hit chance
         float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
@@ -1162,6 +1174,12 @@ public class CombatManager : MonoBehaviour {
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
+        float levelMod = 1.0f;
+
+        if(playerLevel > enemyInfo.enemyLevel)
+            levelMod = 0.85f;
+        else if(playerLevel < enemyInfo.enemyLevel)
+            levelMod = 1.15f;
 
         //handle attack boost modifier
         switch (enemyAttackBoost)
@@ -1180,14 +1198,18 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        damageDealt = ((attack * attack) + (randDamageBuffer)) * attBoostMod;
+        //damageDealt = ((attack * 2) + (randDamageBuffer)) * attBoostMod;
+
+        damageDealt = (((attack * 2) * enemyInfo.enemyLevel) + (randDamageBuffer)) * attBoostMod;
 
         damageDealt -= (GameController.controller.playerDefense * playerDefenseBoost);
+
+        damageDealt *= levelMod;
 
         // critical hit chance
         float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
         print(chance);
-        if (chance >= CRITICAL_THRESHOLD)
+        if ((chance - 0.05f) >= CRITICAL_THRESHOLD)
         {
             wasCriticalHit = true;
             damageDealt *= 1.5f;
@@ -1554,13 +1576,9 @@ public class CombatManager : MonoBehaviour {
         {
             lerp.LerpToColor(enemyOrigColor, Color.clear, 1.5f);
         }
-
-        yield return new WaitForSeconds(2f);
-
-        CheckForMoreEnemies();
     }
 
-    private void CheckForMoreEnemies()
+    public void CheckForMoreEnemies()
     {
         print("enemies remaining: " + enemiesRemaining);
         if(enemiesRemaining > 0)

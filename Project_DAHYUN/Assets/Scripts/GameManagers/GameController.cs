@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour {
     public Difficulty difficultyScale;
     public int playerLevel;
     public int playerEXP;
+    public int playerGoldCredits;
     public int playerAttack;
     public int playerDefense;
     public int playerProwess;
@@ -157,6 +158,7 @@ public class GameController : MonoBehaviour {
         data.PlayerSkinColor = playerSkinColor;
         data.Level = playerLevel;
         data.PlayerExperience = playerEXP;
+        data.PlayerGoldCredits = playerGoldCredits;
         data.UnlockedAbilities = unlockedAbilities;
         data.ability1 = playerAbility1;
         data.ability2 = playerAbility2;
@@ -204,6 +206,7 @@ public class GameController : MonoBehaviour {
             playerName = data.PlayerName;
             playerLevel = data.Level;
             playerEXP = data.PlayerExperience;
+            playerGoldCredits = data.PlayerGoldCredits;
             difficultyScale = data.difficulty;
             unlockedAbilities = data.UnlockedAbilities;
             playerAbility1 = data.ability1;
@@ -367,6 +370,7 @@ class PlayerData
     public string StrikeMod;
     public int Level;
     public int PlayerExperience;
+    public int PlayerGoldCredits;
     public Difficulty difficulty;
     public LimitBreakName limitBreakMod;
     public int limitBreakTrack;

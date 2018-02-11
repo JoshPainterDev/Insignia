@@ -389,6 +389,7 @@ public class StruggleManager_C : MonoBehaviour {
         struggleButton_R.transform.localScale = new Vector3(1, 1, 1);
         struggleButton_R.GetComponent<Image>().color = origColor;
         struggle_Counter.transform.position = origCounterPos;
+        struggle_Counter.GetComponent<Text>().color = Color.white;
 
         player.GetComponent<AnimationController>().PlayAttackAnim();
         this.GetComponent<CombatAudio>().playStrikeHit();

@@ -4,15 +4,14 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class ExperienceScript : MonoBehaviour {
-    public GameObject expBar;
-    public GameObject character;
+    public GameObject handle;
+    
     public GameObject playerLevel;
-    public Color fadeColor;
-    public GameObject rewardManager;
-    public GameObject playerMannequin;
+    private GameObject expBar;
+    private GameObject glitter;
 
-    private Color origColor;
-
+    private CombatManager combatManager;
+    private GameObject player;
     private float t = 0f;
     private bool lerping = false;
     public float rate = 1f;
@@ -20,38 +19,60 @@ public class ExperienceScript : MonoBehaviour {
     private float final = 0f;
     private float requiredEXP;
     private bool ding = false;
-    private bool newCheck = true;
+    private int EXPtoAdd = 0;
 
     // Use this for initialization
     void Start()
     {
-        playerMannequin = GameController.controller.playerObject;
+        Invoke("Initialize", 0.5f);
+        //StartCoroutine(BarBlinkAnim());
+    }
 
-        requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel) 
+    private void Initialize()
+    {
+        combatManager = this.GetComponent<CombatManager>();
+        expBar = handle.transform.GetChild(1).gameObject;
+        handle.transform.GetChild(2).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
+        handle.transform.GetChild(3).GetComponent<Text>().text = "Lv " + (GameController.controller.playerLevel + 1);
+        glitter = handle.transform.GetChild(4).gameObject;
+
+        requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
                                      + (GameController.controller.playerLevel * 15);
 
-        origColor = character.GetComponentInChildren<SpriteRenderer>().color;
         playerLevel.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
-        StartCoroutine(BarBlinkAnim());
+
+        float percentToLv = (float)GameController.controller.playerEXP / requiredEXP;
+        expBar.GetComponent<Image>().fillAmount = percentToLv;
+
+        print("MY EXP BOYZ: " + percentToLv);
     }
 
     public bool experienceAnimation(int currentExp, int newExp)
     {
+        EXPtoAdd = newExp;
+        player = GameController.controller.playerObject;
         ding = false;
-        newCheck = true;
 
         if (CheckForDing(currentExp + newExp))
             ding = true;
 
-        float start = currentExp / requiredEXP;
-        float end = newExp / requiredEXP;
+        float start = (float)currentExp / requiredEXP;
+        float end = (float)newExp / requiredEXP;
 
         if (end > 1)
             end = 1;
 
-        LerpEXP(start, end);
+        StartCoroutine(StartLerp(start, end));
 
         return ding;
+    }
+
+    IEnumerator StartLerp(float start, float end)
+    {
+        yield return new WaitForSeconds(2.5f);
+        handle.SetActive(true);
+        yield return new WaitForSeconds(0.85f);
+        LerpEXP(start, end);
     }
 
     public bool CheckForDing(int exp)
@@ -81,6 +102,7 @@ public class ExperienceScript : MonoBehaviour {
 
             float pos = Mathf.Lerp(init, final, t);
             expBar.GetComponent<Image>().fillAmount = pos / 100f;
+            glitter.transform.localPosition = new Vector3(Mathf.Lerp(-185, 185, pos / 100f), 78, 0);
 
             if (t > 1)
             {
@@ -93,69 +115,70 @@ public class ExperienceScript : MonoBehaviour {
                     ++GameController.controller.playerLevel;
                     StartCoroutine(LevelUpAnim());
                     ding = false;
-                    newCheck = false;
                 }
-                else if(newCheck)
-                    rewardManager.GetComponent<RewardManager_C>().checkEquipmentUnlock();
+                else
+                {
+                    StartCoroutine(EndAnim());
+                }
             }
         }
     }
 
-    IEnumerator CharacterBlinkAnim()
-    {
-        yield return new WaitForSeconds(1f);
+    //IEnumerator CharacterBlinkAnim()
+    //{
+    //    yield return new WaitForSeconds(1f);
 
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.color = fadeColor;
-        }
+    //    foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+    //    {
+    //        sprite.color = fadeColor;
+    //    }
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.color = origColor;
-        }
+    //    foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+    //    {
+    //        sprite.color = origColor;
+    //    }
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.color = fadeColor;
-        }
+    //    foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+    //    {
+    //        sprite.color = fadeColor;
+    //    }
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.color = origColor;
-        }
-    }
+    //    foreach (SpriteRenderer sprite in character.GetComponentsInChildren<SpriteRenderer>())
+    //    {
+    //        sprite.color = origColor;
+    //    }
+    //}
 
-    IEnumerator BarBlinkAnim()
-    {
-        expBar.GetComponent<Image>().color = fadeColor;
+    //IEnumerator BarBlinkAnim()
+    //{
+    //    expBar.GetComponent<Image>().color = fadeColor;
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        expBar.GetComponent<Image>().color = origColor;
+    //    expBar.GetComponent<Image>().color = origColor;
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        expBar.GetComponent<Image>().color = fadeColor;
+    //    expBar.GetComponent<Image>().color = fadeColor;
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        expBar.GetComponent<Image>().color = origColor;
+    //    expBar.GetComponent<Image>().color = origColor;
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        expBar.GetComponent<Image>().color = fadeColor;
+    //    expBar.GetComponent<Image>().color = fadeColor;
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        expBar.GetComponent<Image>().color = origColor;
-    }
+    //    expBar.GetComponent<Image>().color = origColor;
+    //}
 
     IEnumerator LevelUpAnim()
     {
@@ -164,7 +187,7 @@ public class ExperienceScript : MonoBehaviour {
         requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
                              + (GameController.controller.playerLevel * 15);
 
-        float newPercent = GameController.controller.playerEXP / requiredEXP;
+        float newPercent = (float)GameController.controller.playerEXP / requiredEXP;
 
         GameController.controller.GetComponent<MenuUIAudio>().playLevelUp();
 
@@ -172,14 +195,23 @@ public class ExperienceScript : MonoBehaviour {
 
         expBar.GetComponent<Image>().fillAmount = 0;
 
-        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
-
         yield return new WaitForSeconds(0.25f);
 
         LerpEXP(0, newPercent);
 
+        StartCoroutine(EndAnim());
+    }
+
+    IEnumerator EndAnim()
+    {
+        GameController.controller.playerEXP += EXPtoAdd;
+
         yield return new WaitForSeconds(2.5f);
 
-        rewardManager.GetComponent<RewardManager_C>().checkAbilityUnlock();
+        handle.SetActive(false);
+
+        yield return new WaitForSeconds(2.5f);
+
+        combatManager.CheckForMoreEnemies();
     }
 }

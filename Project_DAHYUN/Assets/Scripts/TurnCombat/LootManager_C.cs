@@ -39,6 +39,8 @@ public class LootManager_C : MonoBehaviour
         }
         
         player = GameController.controller.playerObject;
+
+        //StartCoroutine(LootSequence());
     }
 
     public void GenerateLoot()
@@ -57,16 +59,16 @@ public class LootManager_C : MonoBehaviour
             print("YOU GOT REWARD!");
         }
 
-        //float rand = 1.0f - Random.Range(0.0f, 1.0f);
-        float rand = 0.1f;
+        float rand = 1.0f - Random.Range(0.0f, 1.0f);
+        //float rand = 0.1f;
 
         //check for equipment drop
         if (rand < EQUIPMENT_DROP_RATE)
         {
             EquipmentInfo equipToUnlock;
             Sprite spriteToUse;
-            //float rand2 = Random.Range(0.0f, 1.0f);
-            float rand2 = 0.9f;
+            float rand2 = Random.Range(0.0f, 1.0f);
+            //float rand2 = 0.9f;
             int i = 0;
             int j = 0;
 
@@ -129,6 +131,13 @@ public class LootManager_C : MonoBehaviour
 
             equipUL.GetComponent<Image>().sprite = spriteToUse;
             equipUL.transform.GetChild(0).GetComponent<Text>().text = equipToUnlock.Name;
+
+            if (GameController.controller.playerEquipmentList[i, j] == true)
+            {
+
+            }
+            else
+                GameController.controller.playerEquipmentList[i, j] = true;
         }
 
         yield return new WaitForSeconds(5.0f);
@@ -138,8 +147,10 @@ public class LootManager_C : MonoBehaviour
         goldCreditsBag.transform.localPosition = Vector3.zero;
         int randCredits = GameController.controller.playerLevel * (GOLD_BASE_DROP + (GameController.controller.currentEncounter.totalEnemies * Random.Range(15, 25)));
         goldCreditsBag.GetComponent<GoldCredits_C>().totalCoins = randCredits;
-        print("Gold Credits Earned: " + randCredits);
-        
+        print("Gold Credits Earned: " + randCredits.ToString("#.#"));
+        GameController.controller.playerGoldCredits += randCredits;
+
+        GameController.controller.Save(GameController.controller.playerName); // dont forget to save
 
         //blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(5.5f);

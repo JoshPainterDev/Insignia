@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour {
     public GameObject craftingButton;
     public GameObject settingsButton;
     public GameObject charSelectButton;
+    public GameObject goldCredits;
     public GameObject background;
 
     public GameObject camera;
@@ -24,6 +25,7 @@ public class MainMenuManager : MonoBehaviour {
     {
         playerMannequin = GameController.controller.playerObject;
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
+        goldCredits.GetComponent<Text>().text = "$" + GameController.controller.playerGoldCredits.ToString("N0");
     }
 
     public void ButtonPressed(int buttonNumber)
