@@ -868,7 +868,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(2.0f);
                         speaker02.SetActive(false);
                         speaker04.SetActive(true);
-                        yield return new WaitForSeconds(0.80f);
+                        yield return new WaitForSeconds(0.30f);
                         speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-250, 0, 0), 4.0f);
                         yield return new WaitForSeconds(2f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 1.0f);

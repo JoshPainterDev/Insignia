@@ -170,7 +170,8 @@ public class CombatManager : MonoBehaviour {
         if (encounter == null)
         {
             encounter = new EnemyEncounter();
-            encounter = GameController.controller.GetComponent<EncounterToolsScript>().SpecifyEncounter(1,0);
+            encounter = GameController.controller.GetComponent<EncounterToolsScript>().SpecifyEncounter(1,2);
+            GameController.controller.currentEncounter = encounter;
             //encounter.enemyNames = new string[3];
             //encounter.totalEnemies = 1;
             //encounter.enemyNames[0] = "Skitter";
@@ -194,7 +195,7 @@ public class CombatManager : MonoBehaviour {
 
         //1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
-        playerLevel = 1;// GET RID OF THIS SHITLAWBDWK
+        playerLevel = 2;// GET RID OF THIS SHITLAWBDWK
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
         //print("player def: " + GameController.controller.playerDefense);
@@ -202,7 +203,7 @@ public class CombatManager : MonoBehaviour {
         playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
         playerHealth = playerMaxHealth;
         print("Player max HP: " + playerHealth);
-        print("defeense: " + GameController.controller.playerDefense);
+        print("defense: " + GameController.controller.playerDefense);
 
         if(!hasTutorial)
         {

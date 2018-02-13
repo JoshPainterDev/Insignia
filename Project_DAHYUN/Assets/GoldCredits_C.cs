@@ -41,7 +41,6 @@ public class GoldCredits_C : MonoBehaviour
             else
             {
                 well += Time.deltaTime * ((float)totalCoins);
-                print("well: " + well);
 
                 if(well >= 0.08f)
                 {

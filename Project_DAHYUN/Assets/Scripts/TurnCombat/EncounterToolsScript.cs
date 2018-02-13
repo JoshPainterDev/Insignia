@@ -65,10 +65,14 @@ public class EncounterToolsScript : MonoBehaviour {
                 {
                     encounter.encounterNumber = 3;
                     encounter.environment = Environment.none;
-                    encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "The Seamstress";
-                    encounter.bossFight[0] = true;
-                    encounter.returnOnSuccessScene = "Exposition_Scene10";
+                    encounter.totalEnemies = 3;
+                    encounter.enemyNames[0] = "Solaris Knight";
+                    encounter.bossFight[0] = false;
+                    encounter.enemyNames[1] = "Solaris Knight";
+                    encounter.bossFight[1] = false;
+                    encounter.enemyNames[2] = "Solaris Knight";
+                    encounter.bossFight[2] = false;
+                    encounter.returnOnSuccessScene = "Exposition_Scene14";
 
                     Reward newReward = new Reward();
                     newReward.experience = 150;

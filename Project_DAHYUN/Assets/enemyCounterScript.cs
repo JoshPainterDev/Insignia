@@ -13,12 +13,12 @@ public class enemyCounterScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        if(GameController.controller.currentEncounter != null)
-        {
-            totalEnemies = GameController.controller.currentEncounter.totalEnemies;
-        }
-        else
-            totalEnemies = 3;
+        Invoke("Initialize", 0.15f);
+    }
+
+    void Initialize()
+    {
+        totalEnemies = GameController.controller.currentEncounter.totalEnemies;
         remainingEnemies = totalEnemies;
         tallies = new GameObject[totalEnemies];
         tallies[0] = this.gameObject;

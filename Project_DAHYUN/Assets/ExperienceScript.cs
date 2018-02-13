@@ -20,6 +20,8 @@ public class ExperienceScript : MonoBehaviour {
     private float requiredEXP;
     private bool ding = false;
     private int EXPtoAdd = 0;
+    private float leftover = 0;
+    private Coroutine finalRoutine;
 
     // Use this for initialization
     void Start()
@@ -30,6 +32,8 @@ public class ExperienceScript : MonoBehaviour {
 
     private void Initialize()
     {
+        GameController.controller.playerLevel = 1;
+        GameController.controller.playerEXP = 0;
         combatManager = this.GetComponent<CombatManager>();
         expBar = handle.transform.GetChild(1).gameObject;
         handle.transform.GetChild(2).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
@@ -52,12 +56,13 @@ public class ExperienceScript : MonoBehaviour {
         EXPtoAdd = newExp;
         player = GameController.controller.playerObject;
         ding = false;
+        finalRoutine = null;
 
         if (CheckForDing(currentExp + newExp))
             ding = true;
 
         float start = (float)currentExp / requiredEXP;
-        float end = (float)newExp / requiredEXP;
+        float end = (float)(currentExp + newExp) / requiredEXP;
 
         if (end > 1)
             end = 1;
@@ -77,10 +82,16 @@ public class ExperienceScript : MonoBehaviour {
 
     public bool CheckForDing(int exp)
     {
+        print("exp: " + exp);
         print("required exp: " + requiredEXP);
 
         if (exp >= requiredEXP)
+        {
+            leftover = exp - requiredEXP;
             return true;
+        }
+
+        leftover = 0;
 
         return false;
     }
@@ -118,7 +129,8 @@ public class ExperienceScript : MonoBehaviour {
                 }
                 else
                 {
-                    StartCoroutine(EndAnim());
+                    if(finalRoutine == null)
+                        finalRoutine = StartCoroutine(EndAnim());
                 }
             }
         }
@@ -182,36 +194,54 @@ public class ExperienceScript : MonoBehaviour {
 
     IEnumerator LevelUpAnim()
     {
-        GameController.controller.playerEXP = 0 + (GameController.controller.playerEXP - (int)requiredEXP);
-
         requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
                              + (GameController.controller.playerLevel * 15);
 
-        float newPercent = (float)GameController.controller.playerEXP / requiredEXP;
+        float newPercent = Mathf.Max(0.0f, leftover / requiredEXP);
 
         GameController.controller.GetComponent<MenuUIAudio>().playLevelUp();
 
         playerLevel.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel.ToString();
 
+        handle.transform.GetChild(2).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
+        handle.transform.GetChild(3).GetComponent<Text>().text = "Lv " + (GameController.controller.playerLevel + 1);
+
         expBar.GetComponent<Image>().fillAmount = 0;
+        glitter.transform.localPosition = new Vector3(-185, 78, 0);
+        
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1.25f);
 
-        LerpEXP(0, newPercent);
+        if (newPercent >= 1.0f)
+        {
+            
+            ding = true;
+            leftover -= requiredEXP;
+            newPercent = 1.0f;
 
-        StartCoroutine(EndAnim());
+            LerpEXP(0, newPercent);
+        }
+        else
+        {
+            ding = false;
+            GameController.controller.playerEXP = (int)leftover;
+
+            print("FINAL PLAYER EXP: " + GameController.controller.playerEXP);
+
+            LerpEXP(0, newPercent);
+
+            if(finalRoutine == null)
+            {
+                finalRoutine = StartCoroutine(EndAnim());
+            }
+        }
     }
 
     IEnumerator EndAnim()
     {
-        GameController.controller.playerEXP += EXPtoAdd;
-
-        yield return new WaitForSeconds(2.5f);
-
+        yield return new WaitForSeconds(1.5f);
         handle.SetActive(false);
-
-        yield return new WaitForSeconds(2.5f);
-
+        yield return new WaitForSeconds(1.5f);
         combatManager.CheckForMoreEnemies();
     }
 }

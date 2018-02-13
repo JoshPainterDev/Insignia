@@ -36,6 +36,7 @@ public class StruggleManager_C : MonoBehaviour {
     private float HARD_MODE_FAIL = 0.11f;
     private float NORMAL_MODE_FAIL = 0.22f;
     private float EASY_MODE_FAIL = 0.35f;
+    private float MIN_TIME = 1.0f;
     private float currentMode;
 
     //player vars
@@ -147,8 +148,6 @@ public class StruggleManager_C : MonoBehaviour {
                 rightButtonPressed();
             }
 
-
-
             currentDamage = (int)(strikeDamage * percentCompleted);
 
             if (percentCompleted >= 0.999f)
@@ -251,7 +250,6 @@ public class StruggleManager_C : MonoBehaviour {
         percHealthRemaining = (float)enemyHP / (float)enemyMaxHP;
         killNum = Mathf.Lerp(-190, 190, (float)enemyHP / (float)(strikeDamage));
         struggleFuseHandle.transform.GetChild(2).localPosition= new Vector3(killNum, 0, 0);
-        print(killNum);
 
         failScale += GameController.controller.playerProwess;
         int rand = Random.Range(1, 5);
@@ -260,11 +258,13 @@ public class StruggleManager_C : MonoBehaviour {
         print("base: " + ((float)BASE_PRESS_COUNT * percHealthRemaining));
         print("percHealthRemaining: " + percHealthRemaining);
         goal -= GameController.controller.playerProwess;
+        goal = Mathf.Max(goal, 5);
         print("goal: " + goal);
         print("prowess: " + GameController.controller.playerProwess);
 
         failTime = (float)goal * currentMode;
-        failTime -= 3 * percHealthRemaining;
+        failTime -= (3 * percHealthRemaining);
+        failTime = Mathf.Max(MIN_TIME, failTime);
         print("first: " + ((float)goal * currentMode));
         print("failTime: " + failTime);
 

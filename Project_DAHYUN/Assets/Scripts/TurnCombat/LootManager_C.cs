@@ -47,6 +47,8 @@ public class LootManager_C : MonoBehaviour
     {
         player.GetComponent<AnimationController>().PlayCheerAnim();
 
+        print("Generating Loot!");
+
         StartCoroutine(LootSequence());
     }
 
