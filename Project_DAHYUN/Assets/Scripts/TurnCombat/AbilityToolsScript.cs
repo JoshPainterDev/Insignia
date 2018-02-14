@@ -77,6 +77,9 @@ public class AbilityToolsScript : MonoBehaviour {
             case 12:
                 AbilityName = "Stangle";
                 break;
+            case 13:
+                AbilityName = "Murder-Stroke";
+                break;
         }
 
         return LookUpAbility(AbilityName);
@@ -251,6 +254,19 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.Magical;
                 ability.Icon = "AbilityIcons\\Strangle_AbilityIcon";
                 ability.AbilityIndex = 10;
+                break;
+            case "Murder-Stroke":
+                ability.Accuracy = 85;
+                ability.BaseDamage = 10;
+                ability.Cooldown = 3;
+                ability.Buffs = false;
+                ability.Description = "A puncturing strike that causes your foe to become vulnerable.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Utility;
+                ability.Icon = "AbilityIcons\\Murder-Stroke_AbilityIcon";
+                ability.AbilityIndex = 11;
                 break;
             default:
                 ability.Name = "";

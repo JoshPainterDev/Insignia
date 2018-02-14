@@ -82,8 +82,9 @@ public class EncounterToolsScript : MonoBehaviour {
                 {
                     encounter.encounterNumber = 4;
                     encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
-                    encounter.bossFight[0] = false;
+                    encounter.enemyNames[0] = "Solaris Officer";
+                    encounter.bossFight[0] = true;
+                    encounter.returnOnSuccessScene = "Exposition_Scene15";
 
                     Reward newReward = new Reward();
                     newReward.experience = 2500;

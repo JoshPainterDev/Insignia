@@ -170,7 +170,7 @@ public class CombatManager : MonoBehaviour {
         if (encounter == null)
         {
             encounter = new EnemyEncounter();
-            encounter = GameController.controller.GetComponent<EncounterToolsScript>().SpecifyEncounter(1,2);
+            encounter = GameController.controller.GetComponent<EncounterToolsScript>().SpecifyEncounter(1,3);
             GameController.controller.currentEncounter = encounter;
             //encounter.enemyNames = new string[3];
             //encounter.totalEnemies = 1;
@@ -194,10 +194,15 @@ public class CombatManager : MonoBehaviour {
 
 
         //1. Load in player and enemy
+        GameController.controller.playerLevel = 4;// GET RID OF THIS SHITLAWBDWK
         playerLevel = GameController.controller.playerLevel;
-        playerLevel = 2;// GET RID OF THIS SHITLAWBDWK
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
+        print("Player Attack: " + GameController.controller.playerAttack);
+        GameController.controller.playerAttack = 17;
+        GameController.controller.playerDefense = 15;
+        GameController.controller.playerProwess = 6;
+        GameController.controller.playerSpeed = 4;
         //print("player def: " + GameController.controller.playerDefense);
         //Max Health = ((base max hp) * player lv) + (9 * player def)
         playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
@@ -208,7 +213,7 @@ public class CombatManager : MonoBehaviour {
         if(!hasTutorial)
         {
             //REMOVE THIS LATER
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Murder-Stroke");
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Hatred");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Strangle");
             GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
@@ -948,12 +953,18 @@ public class CombatManager : MonoBehaviour {
         int defense = GameController.controller.playerDefense;
         int prowess = GameController.controller.playerProwess;
         float levelMod = 1.0f;
+        float vulnerableBonus = 0.0f;
 
         if (playerLevel > enemyInfo.enemyLevel)
             levelMod = 1.15f;
         else if (playerLevel < enemyInfo.enemyLevel)
             levelMod = 0.85f;
-        print("REGISTERED AB: " + playerAttackBoost);
+
+        if(enemyVulnernable)
+        {
+            vulnerableBonus = VULNERABLE_REDUCTION;
+            print("vulnerableBonus active + " + vulnerableBonus);
+        }
 
         //handle attack boost modifier
         switch (playerAttackBoost)
@@ -979,7 +990,7 @@ public class CombatManager : MonoBehaviour {
         damageDealt *= levelMod;
 
         // critical hit chance
-        float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
+        float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f) + vulnerableBonus);
 
         if (chance >= CRITICAL_THRESHOLD)
         {
@@ -1176,11 +1187,18 @@ public class CombatManager : MonoBehaviour {
         int defense = enemyInfo.enemyDefense;
         int prowess = enemyInfo.enemyProwess;
         float levelMod = 1.0f;
+        float vulnerableBonus = 0.0f;
 
-        if(playerLevel > enemyInfo.enemyLevel)
+        if (playerLevel > enemyInfo.enemyLevel)
             levelMod = 0.85f;
         else if(playerLevel < enemyInfo.enemyLevel)
             levelMod = 1.15f;
+
+        if (playerVulnernable)
+        {
+            vulnerableBonus = VULNERABLE_REDUCTION;
+            print("vulnerableBonus active + " + vulnerableBonus);
+        }
 
         //handle attack boost modifier
         switch (enemyAttackBoost)
@@ -1199,8 +1217,6 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        //damageDealt = ((attack * 2) + (randDamageBuffer)) * attBoostMod;
-
         damageDealt = (((attack * 2) * enemyInfo.enemyLevel) + (randDamageBuffer)) * attBoostMod;
 
         damageDealt -= (GameController.controller.playerDefense * playerDefenseBoost);
@@ -1208,7 +1224,7 @@ public class CombatManager : MonoBehaviour {
         damageDealt *= levelMod;
 
         // critical hit chance
-        float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f));
+        float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f) + vulnerableBonus);
         print(chance);
         if ((chance - 0.05f) >= CRITICAL_THRESHOLD)
         {

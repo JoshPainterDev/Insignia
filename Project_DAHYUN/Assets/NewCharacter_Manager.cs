@@ -222,10 +222,10 @@ public class NewCharacter_Manager : MonoBehaviour {
                 GameController.controller.playerBasePrw = 1;
                 GameController.controller.playerBaseSpd = 1;
 
-                GameController.controller.playerAttack = 5 + 5 + 1;
-                GameController.controller.playerDefense = 3 + 6;
-                GameController.controller.playerProwess = 1 + 2;
-                GameController.controller.playerSpeed = 1;
+                GameController.controller.playerAttack = 5 + 5 + 1; // +2
+                GameController.controller.playerDefense = 3 + 6; // +2
+                GameController.controller.playerProwess = 1 + 2; // +1
+                GameController.controller.playerSpeed = 1; // +1
 
                 GameController.controller.playerEquippedIDs[0] = 0;
                 GameController.controller.playerEquippedIDs[1] = 0;

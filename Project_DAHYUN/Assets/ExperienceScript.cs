@@ -32,8 +32,6 @@ public class ExperienceScript : MonoBehaviour {
 
     private void Initialize()
     {
-        GameController.controller.playerLevel = 1;
-        GameController.controller.playerEXP = 0;
         combatManager = this.GetComponent<CombatManager>();
         expBar = handle.transform.GetChild(1).gameObject;
         handle.transform.GetChild(2).GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;

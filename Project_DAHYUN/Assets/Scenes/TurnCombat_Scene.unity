@@ -2471,6 +2471,8 @@ MonoBehaviour:
     type: 2}
   SolarisKnight_Prefab: {fileID: 1919287724249914, guid: a3b16ffcc07a80d45a7035accf4be91a,
     type: 2}
+  SolarisOfficer_Prefab: {fileID: 1919287724249914, guid: 905991ff5af4668409be9019136e6e5f,
+    type: 2}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -8955,6 +8957,7 @@ MonoBehaviour:
     type: 2}
   lightningBigBurst_FX: {fileID: 1156185022251474, guid: eeeeb6a86e840d447bd86e1fd62ed950,
     type: 2}
+  rush_FX: {fileID: 1862190314031148, guid: 9a9a7d418982f9744bb72dd6b5970ff4, type: 2}
   outrage_FX: {fileID: 1862190314031148, guid: adfdd95e327b2d14fbb061cb391d2373, type: 2}
   solarFlare_FX: {fileID: 1862190314031148, guid: a99e0ddf06d49314d8917d2632c0a566,
     type: 2}

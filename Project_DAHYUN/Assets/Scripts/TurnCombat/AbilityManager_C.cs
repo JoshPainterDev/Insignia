@@ -273,6 +273,20 @@ public class AbilityManager_C : MonoBehaviour {
                 damageReturn = combatManager.DamageEnemy_Ability(ability);
                 playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                 break;
+            case "Murder-Stroke":
+                combatManager.enemyVulnernable = true;
+                this.GetComponent<CombatAudio>().playGuardBreakSFX();
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(-40, 0, 0), 2);
+                yield return new WaitForSeconds(0.2f);
+                effectClone = (GameObject)Instantiate(rush_FX, playerMannequin.transform.position + new Vector3(15, 5, 0), transform.rotation);
+                effectClone.transform.SetParent(playerMannequin.transform, true);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos + new Vector3(350, 0, 0), 3);
+                yield return new WaitForSeconds(0.65f);
+                damageReturn = combatManager.DamageEnemy_Ability(ability);
+                effectClone = (GameObject)Instantiate(lightningBlue_FX, initEnemyPos + new Vector3(0, 20, 0), transform.rotation);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
+                yield return new WaitForSeconds(1);
+                break;
             default:
                 break;
         }

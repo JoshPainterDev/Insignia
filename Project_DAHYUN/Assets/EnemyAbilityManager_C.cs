@@ -16,6 +16,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
     public GameObject lightningStatic_FX;
     public GameObject lightningYellowBurst_FX;
     public GameObject lightningBigBurst_FX;
+    public GameObject rush_FX;
 
     public GameObject outrage_FX;
     public GameObject solarFlare_FX;
@@ -104,9 +105,9 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 dieRoll = Random.Range(0, 99);
                 chance = (85f + (combatManager.enemyInfo.enemyProwess - GameController.controller.playerDefense));
                 chance = Mathf.Clamp(chance, 85f, 100f);
-                combatManager.playerVulnernable = true;
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(-40, 0, 0), 2);
                 yield return new WaitForSeconds(0.2f);
+                effectClone = (GameObject)Instantiate(rush_FX, enemyMannequinn.transform.position + new Vector3(-15, 5, 0), transform.rotation);
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(350, 0, 0), 3);
                 damageReturn = this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
                 yield return new WaitForSeconds(0.65f);
@@ -115,6 +116,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 if (chance > dieRoll)
                 {
                     combatManager.currSpecialCase = SpecialCase.StunFoe;
+                    combatManager.playerVulnernable = true;
                     effectClone = (GameObject)Instantiate(lightningBigBurst_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
                 }
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
@@ -136,7 +138,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 yield return new WaitForSeconds(1);
                 break;
             case "Outrage":
-                print("what the actual fucl");
                 spawnPos = initEnemyPos - new Vector3(0, 80, 0);
                 effectClone = (GameObject)Instantiate(outrage_FX, initEnemyPos - new Vector3(250,-50,0), transform.rotation);
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
@@ -202,6 +203,20 @@ public class EnemyAbilityManager_C : MonoBehaviour
                     script.LerpToColor(Color.clear, Color.white, 5);
                 }
                 yield return new WaitForSeconds(0.85f);
+                break;
+            case "Murder-Stroke":
+                combatManager.playerVulnernable = true;
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(-40, 0, 0), 2);
+                yield return new WaitForSeconds(0.2f);
+                effectClone = (GameObject)Instantiate(rush_FX, enemyMannequinn.transform.position + new Vector3(-15, 5, 0), transform.rotation);
+                effectClone.GetComponent<SpriteRenderer>().flipX = true;
+                enemyMannequinn.transform.GetChild(0).GetComponent<EnemyMannequinController>().playAttackAnim();
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos - new Vector3(350, 0, 0), 3);
+                damageReturn = this.GetComponent<CombatManager>().DamagePlayer_Ability(ability);
+                yield return new WaitForSeconds(0.65f);
+                effectClone = (GameObject)Instantiate(lightningBlue_FX, initPlayerPos + new Vector3(0, 10, 0), transform.rotation);
+                enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
+                yield return new WaitForSeconds(1);
                 break;
             default:
                 break;
