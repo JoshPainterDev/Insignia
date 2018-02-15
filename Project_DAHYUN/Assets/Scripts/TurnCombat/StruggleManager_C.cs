@@ -258,7 +258,7 @@ public class StruggleManager_C : MonoBehaviour {
         print("base: " + ((float)BASE_PRESS_COUNT * percHealthRemaining));
         print("percHealthRemaining: " + percHealthRemaining);
         goal -= GameController.controller.playerProwess;
-        goal = Mathf.Max(goal, 5);
+        goal = Mathf.Max(goal, 10);
         print("goal: " + goal);
         print("prowess: " + GameController.controller.playerProwess);
 

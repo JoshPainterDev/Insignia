@@ -13,8 +13,6 @@ public class TutorialManager02_C : MonoBehaviour
     public GameObject gameCamera;
     public GameObject blackSq;
     public GameObject enemyMannequinn;
-    public GameObject Steve;
-    public GameObject shroudParticles;
     public GameObject playerHealth;
     public GameObject enemyHealth;
 
@@ -97,7 +95,6 @@ public class TutorialManager02_C : MonoBehaviour
 
     IEnumerator LoadExposition()
     {
-        GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(1,0);
         yield return new WaitForSeconds(2);
         blackSq.GetComponent<FadeScript>().FadeIn();
         yield return new WaitForSeconds(2);

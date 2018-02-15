@@ -115,8 +115,8 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "none";
 
                 enemyInfo.enemyName = name;
-                enemyInfo.enemyAttack = 6;
-                enemyInfo.enemyDefense = 6;
+                enemyInfo.enemyAttack = 5;
+                enemyInfo.enemyDefense = 5;
                 enemyInfo.enemySpeed = 1;
                 enemyInfo.enemyMaxHealthBase = 60;
                 enemyInfo.specialStrikeAnim = false;

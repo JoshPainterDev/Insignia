@@ -1967,6 +1967,7 @@ GameObject:
   - component: {fileID: 2029248995}
   - component: {fileID: 2029249001}
   - component: {fileID: 2029249002}
+  - component: {fileID: 2029249003}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2232,6 +2233,7 @@ MonoBehaviour:
   difficultyScale: 0
   playerLevel: 0
   playerEXP: 0
+  playerGoldCredits: 0
   playerAttack: 0
   playerDefense: 0
   playerProwess: 0
@@ -2304,13 +2306,27 @@ MonoBehaviour:
     type: 2}
   Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
     type: 2}
-  SolarisKnight_Prefab: {fileID: 0}
+  SolarisKnight_Prefab: {fileID: 1919287724249914, guid: a3b16ffcc07a80d45a7035accf4be91a,
+    type: 2}
+  SolarisOfficer_Prefab: {fileID: 1919287724249914, guid: 905991ff5af4668409be9019136e6e5f,
+    type: 2}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
   DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
     type: 2}
+--- !u!114 &2029249003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029248994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75da49298c3192344a1903b4b4537f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2037268560
 GameObject:
   m_ObjectHideFlags: 0

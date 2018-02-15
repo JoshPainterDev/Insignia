@@ -194,7 +194,7 @@ public class CombatManager : MonoBehaviour {
 
 
         //1. Load in player and enemy
-        GameController.controller.playerLevel = 4;// GET RID OF THIS SHITLAWBDWK
+        //GameController.controller.playerLevel = 4;// GET RID OF THIS SHITLAWBDWK
         playerLevel = GameController.controller.playerLevel;
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;

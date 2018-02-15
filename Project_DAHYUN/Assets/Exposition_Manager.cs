@@ -835,7 +835,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(2f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 1.0f);
                         actionsCompleted = true; //actions are completed
-                        StartCoroutine(LoadNextLv());
+                        StartCoroutine(LoadCombatScene(1, 3));
                         break;
                 }
                 break;
@@ -851,7 +851,6 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        nextLevel = "Exposition_Scene14";
                         // Set next Level //
                         speaker02.transform.GetChild(0).GetComponent<Animator>().SetBool("InCombat", true);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.15f);
@@ -873,7 +872,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(2f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 1.0f);
                         actionsCompleted = true; //actions are completed
-                        StartCoroutine(LoadNextLv());
+                        StartCoroutine(LoadCombatScene(1,2));
                         break;
                 }
                 break;

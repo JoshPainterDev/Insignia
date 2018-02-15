@@ -192,6 +192,8 @@ public class ExperienceScript : MonoBehaviour {
 
     IEnumerator LevelUpAnim()
     {
+        UpdateStats();
+
         requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
                              + (GameController.controller.playerLevel * 15);
 
@@ -241,5 +243,87 @@ public class ExperienceScript : MonoBehaviour {
         handle.SetActive(false);
         yield return new WaitForSeconds(1.5f);
         combatManager.CheckForMoreEnemies();
+    }
+
+    public void UpdateStats()
+    {
+        GameController contr = GameController.controller;
+
+        switch (GameController.controller.charClasses[GameController.controller.playerNumber])
+        {
+            case PlayerClass.Knight:
+                GameController.controller.playerBaseAtk += 2;
+                GameController.controller.playerBaseDef += 2;
+                GameController.controller.playerBasePrw += 1;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+            case PlayerClass.Cutthroat:
+                GameController.controller.playerBaseAtk += 2;
+                GameController.controller.playerBaseDef += 2;
+                GameController.controller.playerBasePrw += 1;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+            case PlayerClass.Guardian:
+                GameController.controller.playerBaseAtk += 2;
+                GameController.controller.playerBaseDef += 2;
+                GameController.controller.playerBasePrw += 1;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+            case PlayerClass.Occultist:
+                GameController.controller.playerBaseAtk += 2;
+                GameController.controller.playerBaseDef += 2;
+                GameController.controller.playerBasePrw += 1;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+        }
+
+        int statTotal;
+        print("Previous ATT: " + GameController.controller.playerAttack);
+        //Attack
+        statTotal = contr.playerBaseAtk;
+        for (int i = 0; i < 8; ++i)
+        {
+            EquipmentInfo info = contr.GetComponent<EquipmentInfoManager>().LookUpEquipment(contr.playerEquippedIDs[i * 2], contr.playerEquippedIDs[(i * 2) + 1]);
+            statTotal += info.AttackStat;
+        }
+
+        GameController.controller.playerAttack = statTotal;
+        print("New ATT: " + GameController.controller.playerAttack);
+
+        print("Previous DEF: " + GameController.controller.playerDefense);
+        //Defense
+        statTotal = GameController.controller.playerBaseDef;
+        for (int i = 0; i < 8; ++i)
+        {
+            EquipmentInfo info = contr.GetComponent<EquipmentInfoManager>().LookUpEquipment(contr.playerEquippedIDs[i * 2], contr.playerEquippedIDs[(i * 2) + 1]);
+            statTotal += info.DefenseStat;
+        }
+
+        GameController.controller.playerDefense = statTotal;
+        print("New DEF: " + GameController.controller.playerDefense);
+
+        print("Previous PRW: " + GameController.controller.playerProwess);
+        //Prowess
+        statTotal = GameController.controller.playerProwess;
+        for (int i = 0; i < 8; ++i)
+        {
+            EquipmentInfo info = contr.GetComponent<EquipmentInfoManager>().LookUpEquipment(contr.playerEquippedIDs[i * 2], contr.playerEquippedIDs[(i * 2) + 1]);
+            statTotal += info.ProwessStat;
+        }
+
+        GameController.controller.playerProwess = statTotal;
+        print("New PRW: " + GameController.controller.playerDefense);
+
+        print("Previous SPD: " + GameController.controller.playerProwess);
+        //Speed
+        statTotal = GameController.controller.playerBaseSpd;
+        for (int i = 0; i < 8; ++i)
+        {
+            EquipmentInfo info = contr.GetComponent<EquipmentInfoManager>().LookUpEquipment(contr.playerEquippedIDs[i * 2], contr.playerEquippedIDs[(i * 2) + 1]);
+            statTotal += info.SpeedStat;
+        }
+
+        GameController.controller.playerSpeed = statTotal;
+        print("New SPD: " + GameController.controller.playerProwess);
     }
 }
