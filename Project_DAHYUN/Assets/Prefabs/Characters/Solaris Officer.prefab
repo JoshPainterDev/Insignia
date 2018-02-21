@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4032794190970180}
   - component: {fileID: 222452200129343688}
   - component: {fileID: 114600050871429070}
-  - component: {fileID: 114941472742789134}
   m_Layer: 10
   m_Name: Solaris Officer
   m_TagString: Enemy
@@ -99,17 +98,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114941472742789134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1634070459156580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c99803e5f785c41aaccac10f0df4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212973701521902120

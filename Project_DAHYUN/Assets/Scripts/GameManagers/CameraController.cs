@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour {
     float rate;
     float shakeDuration;
     Vector3 origPos;
+    Vector3 startPos;
     Vector3 leftOffset;
     Vector3 rightOffset;
     bool doneShaking = true;
@@ -26,11 +27,12 @@ public class CameraController : MonoBehaviour {
     {
         shakeDuration = duration;
         doneShaking = false;
+        startPos = this.transform.position;
 
         if (leftToRight)
         {
-            leftOffset = origPos - new Vector3(2 * intensity, 0, 0);
-            rightOffset = origPos + new Vector3(2 * intensity, 0, 0);
+            leftOffset = startPos - new Vector3(2 * intensity, 0, 0);
+            rightOffset = startPos + new Vector3(2 * intensity, 0, 0);
             StartCoroutine(ShakeLeft(intensity, duration));
         }
     }
@@ -42,7 +44,7 @@ public class CameraController : MonoBehaviour {
         if (!doneShaking)
             StartCoroutine(ShakeRight(intensity, duration));
         else
-            this.GetComponent<LerpScript>().LerpToPos(leftOffset, origPos, intensity);
+            this.GetComponent<LerpScript>().LerpToPos(leftOffset, startPos, intensity);
     }
 
     IEnumerator ShakeRight(int intensity, float duration)
@@ -52,7 +54,7 @@ public class CameraController : MonoBehaviour {
         if (!doneShaking)
             StartCoroutine(ShakeLeft(intensity, duration));
         else
-            this.GetComponent<LerpScript>().LerpToPos(rightOffset, origPos, intensity);
+            this.GetComponent<LerpScript>().LerpToPos(rightOffset, startPos, intensity);
     }
 
     // Update is called once per frame
