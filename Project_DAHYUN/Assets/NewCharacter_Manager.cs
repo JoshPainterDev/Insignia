@@ -37,7 +37,10 @@ public class NewCharacter_Manager : MonoBehaviour {
         playerMannequin = GameController.controller.playerObject;
 
         if (GameController.controller.charClasses.Length == 0)
+        {
             GameController.controller.charClasses = new PlayerClass[6];
+        }
+            
 
         GameController.controller.setPlayerSkinColor(Color.white);
         GameController.controller.setPlayerColorPreference(Color.white);
@@ -148,7 +151,7 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
             GameController.controller.playerEXP = 0;
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
             GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("none");
             GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("none");
             GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("none");
@@ -168,14 +171,14 @@ public class NewCharacter_Manager : MonoBehaviour {
             {
                 for (int j = 0; j < 4; ++j)
                 {
-                    GameController.controller.playerEquipmentList[i, j] = false;
+                    GameController.controller.playerEquipmentList[i, j] = false; // set every armor to not unlocked
                 }
 
-                if((i % 4) == 0)
+                if((i % 4) == 0) //set the default knight armor to be unlocked
                 {
                     GameController.controller.playerEquipmentList[i, 0] = true;
-                    GameController.controller.playerEquipmentList[i, 1] = true;
-                    GameController.controller.playerEquipmentList[i, 2] = true;
+                    //GameController.controller.playerEquipmentList[i, 1] = true;
+                    //GameController.controller.playerEquipmentList[i, 2] = true;
                 }
             }
 

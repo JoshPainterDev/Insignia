@@ -8,7 +8,8 @@ public class GoldCredits_C : MonoBehaviour
     [HideInInspector]
     public int totalCoins = 0;
     private int currentCoins = 0;
-    private bool counting = true;
+    [HideInInspector]
+    public bool counting = false;
     private float well = 0.0f;
 
     private void Awake()

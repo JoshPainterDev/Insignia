@@ -134,12 +134,7 @@ public class LootManager_C : MonoBehaviour
             equipUL.GetComponent<Image>().sprite = spriteToUse;
             equipUL.transform.GetChild(0).GetComponent<Text>().text = equipToUnlock.Name;
 
-            if (GameController.controller.playerEquipmentList[i, j] == true)
-            {
-
-            }
-            else
-                GameController.controller.playerEquipmentList[i, j] = true;
+            GameController.controller.playerEquipmentList[i, j] = true;
         }
 
         yield return new WaitForSeconds(5.0f);
@@ -151,6 +146,7 @@ public class LootManager_C : MonoBehaviour
         goldCreditsBag.GetComponent<GoldCredits_C>().totalCoins = randCredits;
         print("Gold Credits Earned: " + randCredits.ToString("#.#"));
         GameController.controller.playerGoldCredits += randCredits;
+        goldCreditsBag.GetComponent<GoldCredits_C>().counting = true; ;
 
         GameController.controller.Save(GameController.controller.playerName); // dont forget to save
 

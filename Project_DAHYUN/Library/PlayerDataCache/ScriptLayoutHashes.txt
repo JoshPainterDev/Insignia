@@ -29,19 +29,23 @@ Assets/Scenes/Exposition_Scene11.unity
 Assets/Scenes/ArenaSelect_Scene.unity
 Assets/Scenes/Settings_Scene.unity
 Assets/Scenes/Skills_Scene.unity
+Assets/Scenes/Exposition_Scene12.unity
+Assets/Scenes/Exposition_Scene13.unity
+Assets/Scenes/Exposition_Scene14.unity
+Assets/Scenes/Exposition_Scene15.unity
 SceneListEnd?
 1ca1e542a7fd7ee5eca16adafef71492 Assembly-CSharp.dll:.Skills_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pauser
 989997cf805377c83d9ee157e9dd8cf0 Assembly-CSharp.dll:.RandomTPinBounds
-860014d622ef20c0e7615b8979eb10bc Assembly-CSharp.dll:.TutorialManager02_C
+c67c4c01daa88b3577aa133719fe48d2 Assembly-CSharp.dll:.TutorialManager02_C
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.EquipmentButtonScript
 61bf6acf27f68eb1ee57b0b655d224b9 Assembly-CSharp.dll:.enemyCounterScript
 238a2410a96c4466589b9072caa8c283 Assembly-CSharp.dll:.OscillationScript
 c76aabfbf3231b4dc3e7213f044a3362 Assembly-CSharp.dll:.AI_CombatManager_C
-1ff8e9c12e0b8ad6de4f4976367d49e6 Assembly-CSharp.dll:.EnemyToolsScript
+0359ab132941dc406a4a9d480ef3b6ab Assembly-CSharp.dll:.EnemyToolsScript
 487288ddad64150d3b920728d9818d94 Assembly-CSharp.dll:.SkillSelectHandler
 ae7d68b663667ed21d9011ceb65aa783 Assembly-CSharp.dll:.BossAnimationController
-0f6a955cf10ccf6a9741fc005c3d3530 Assembly-CSharp.dll:.EnemyAbilityManager_C
+42459c9f5d21732d0d5c85c43f360433 Assembly-CSharp.dll:.EnemyAbilityManager_C
 ea96975a49a7080c2b3369653166cf5b Assembly-CSharp.dll:.StrangleScript_C
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -111,10 +115,11 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 801b6dcbd43a67338148e87511602e5a Assembly-CSharp.dll:.OverlayScript
 c7daf41b02bd3686039c8389531e7a46 Assembly-CSharp.dll:.ButtonAnimatorScript
 09b7ba76b6328f4c897662f277b0936c Assembly-CSharp.dll:.Music_Controller
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.EquipmentUnlock_C
 58161cdb9cad2904d68b56b3278349b7 Assembly-CSharp.dll:.PlayerController
-2a3a908a7aac4f222389782fcd239f12 Assembly-CSharp.dll:.CombatAudio
+397a92ed0ab1f11f221dc211c5194a79 Assembly-CSharp.dll:.CombatAudio
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TimeController
-9b69386ad54bfc40dc6eb3c6080177b6 Assembly-CSharp.dll:.ExperienceScript
+e8eb5bcdffd49cb714fbba65847ae589 Assembly-CSharp.dll:.ExperienceScript
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -129,6 +134,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+fb5b41e598115bdddb55418c0669c8cd Assembly-CSharp.dll:.GoldCredits_C
 ba204d8616fd566b9d0660ef1c1b3d2e Assembly-CSharp.dll:.TutorialManager01_C
 ea8fa1bcd3de09f8f4d5faacb3e6521f Assembly-CSharp.dll:.StrikeManager_C
 561ab5f8de535277abda1ce3eb171ab6 Assembly-CSharp.dll:.SkipButtonScript
@@ -153,7 +159,7 @@ ae289d5889b6425001e5b425e6e39478 Assembly-CSharp.dll:.Remover
 d85111a515d9a76afbb15619fabda936 Assembly-CSharp.dll:.Dialogue_Manager_C
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraController
 ed3f6bd27701553db1904f1c59b3180a Assembly-CSharp.dll:.BackgroundPropSpawner
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LootManager_C
+a04780bf2ccc7e96bbf6b608c6a35eed Assembly-CSharp.dll:.LootManager_C
 1e6b4488390d5dcd1e175e85bf77d258 Assembly-CSharp.dll:.StatBoost_C
 51df51ce5bc6c5914f837b8dad6925cb Assembly-CSharp.dll:.FollowPlayer
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
@@ -189,8 +195,8 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 58221903b00cba8623c1fbfd569c4c78 Assembly-CSharp.dll:.SpawnPlayerScript_C
-ff093cf473f2d823172a7731d50dc163 Assembly-CSharp.dll:.SoundFXManager_C
-43500b654e425d189f12a1ee40056430 Assembly-CSharp.dll:.GameController
+d314ae3b62cf42e39a5e4068183ec33d Assembly-CSharp.dll:.SoundFXManager_C
+0c91d3513628273f078c2ceda7a167b8 Assembly-CSharp.dll:.GameController
 4e6da964a4e81a2d96988e493c7f841a Assembly-CSharp.dll:.AbilityManager_C
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 96d0fbde9fd209878a0a291f82c9bcdd UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -217,10 +223,10 @@ a0914034be5eea093070338580351d72 Assembly-CSharp.dll:.RetryManager
 2bd8932931e5a6aaccf043d0af1f65f0 Assembly-CSharp.dll:.EnemyCombatScript
 4fb6ffc66135d3aaff5e51dad3248c13 Assembly-CSharp.dll:.SetParticleSortingLayer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StruggleParticle_C
-962b4059129949b9a643d9d8c02ef628 Assembly-CSharp.dll:.EnemyMannequinController
+0cf32b9faeaac27b4ff081a1a63fa738 Assembly-CSharp.dll:.EnemyMannequinController
 d117def24a8a7061cfea22ae4da9e2d0 Assembly-CSharp.dll:.DressRoom_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LimitBreakBehavior
-d697b49d5c3b6f74a6a30d5090dabc7e Assembly-CSharp.dll:.MainMenuManager
+a912d035c93bf2f6219bad8a36534d7c Assembly-CSharp.dll:.MainMenuManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ItemButtonScript
 06fccb9ac0ecfd4fbf2612d9e1d37907 Assembly-CSharp.dll:.DecisionManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.animStateScript

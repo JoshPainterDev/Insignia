@@ -57,22 +57,22 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     private void Awake()
     {
-        GameController.controller.playerEquippedIDs[0] = 0;
-        GameController.controller.playerEquippedIDs[1] = 0;
-        GameController.controller.playerEquippedIDs[2] = 4;
-        GameController.controller.playerEquippedIDs[3] = 0;
-        GameController.controller.playerEquippedIDs[4] = 8;
-        GameController.controller.playerEquippedIDs[5] = 0;
-        GameController.controller.playerEquippedIDs[6] = 12;
-        GameController.controller.playerEquippedIDs[7] = 0;
-        GameController.controller.playerEquippedIDs[8] = 16;
-        GameController.controller.playerEquippedIDs[9] = 0;
-        GameController.controller.playerEquippedIDs[10] = 20;
-        GameController.controller.playerEquippedIDs[11] = 0;
-        GameController.controller.playerEquippedIDs[12] = 24;
-        GameController.controller.playerEquippedIDs[13] = 0;
-        GameController.controller.playerEquippedIDs[14] = 28;
-        GameController.controller.playerEquippedIDs[15] = 0;
+        //GameController.controller.playerEquippedIDs[0] = 0;
+        //GameController.controller.playerEquippedIDs[1] = 0;
+        //GameController.controller.playerEquippedIDs[2] = 4;
+        //GameController.controller.playerEquippedIDs[3] = 0;
+        //GameController.controller.playerEquippedIDs[4] = 8;
+        //GameController.controller.playerEquippedIDs[5] = 0;
+        //GameController.controller.playerEquippedIDs[6] = 12;
+        //GameController.controller.playerEquippedIDs[7] = 0;
+        //GameController.controller.playerEquippedIDs[8] = 16;
+        //GameController.controller.playerEquippedIDs[9] = 0;
+        //GameController.controller.playerEquippedIDs[10] = 20;
+        //GameController.controller.playerEquippedIDs[11] = 0;
+        //GameController.controller.playerEquippedIDs[12] = 24;
+        //GameController.controller.playerEquippedIDs[13] = 0;
+        //GameController.controller.playerEquippedIDs[14] = 28;
+        //GameController.controller.playerEquippedIDs[15] = 0;
 
         GameController.controller.Load(GameController.controller.charNames[1]);
     }
@@ -81,51 +81,36 @@ public class Character_Menu_Manager : MonoBehaviour {
     void Start()
     {
         playerMannequin = GameController.controller.playerObject;
-        //0. pretend the player has save data for ability sake
-        //GameController.controller.playerLevel = 1;
-        //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Final Cut");
-        //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Solar Flare");
-        //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Outrage");
-        //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Illusion");
-        //GameController.controller.strikeModifier = "Serrated Strike";
-        //GameController.controller.playerBaseAtk = 5;
-        //GameController.controller.playerBaseDef = 5;
-        //GameController.controller.playerBasePrw = 1;
-        //GameController.controller.playerBaseSpd = 1;
-        //******************************************//
-
         unlockedEquipment = GameController.controller.playerEquipmentList;
 
         //load in defaults for now : FIX THIS SHIT L8R
-        unlockedEquipment[0, 0] = true;
-        unlockedEquipment[0, 2] = true;
+        //unlockedEquipment[0, 0] = true;
+        //unlockedEquipment[0, 2] = true;
         
-        unlockedEquipment[4, 0] = true;
-        unlockedEquipment[4, 2] = true;
+        //unlockedEquipment[4, 0] = true;
+        //unlockedEquipment[4, 2] = true;
 
-        unlockedEquipment[8, 0] = true;
-        unlockedEquipment[8, 2] = true;
+        //unlockedEquipment[8, 0] = true;
+        //unlockedEquipment[8, 2] = true;
 
-        unlockedEquipment[12, 0] = true;
-        unlockedEquipment[12, 2] = true;
+        //unlockedEquipment[12, 0] = true;
+        //unlockedEquipment[12, 2] = true;
 
-        unlockedEquipment[16, 0] = true;
-        unlockedEquipment[16, 2] = true;
+        //unlockedEquipment[16, 0] = true;
+        //unlockedEquipment[16, 2] = true;
 
-        unlockedEquipment[20, 0] = true;
-        unlockedEquipment[20, 2] = true;
+        //unlockedEquipment[20, 0] = true;
+        //unlockedEquipment[20, 2] = true;
 
-        unlockedEquipment[24, 0] = true;
-        unlockedEquipment[24, 1] = true;
-        unlockedEquipment[24, 2] = true;
-        unlockedEquipment[24, 3] = true;
-        unlockedEquipment[25, 0] = true;
-        unlockedEquipment[25, 1] = true;
+        //unlockedEquipment[24, 0] = true;
+        //unlockedEquipment[24, 1] = true;
+        //unlockedEquipment[24, 2] = true;
+        //unlockedEquipment[24, 3] = true;
+        //unlockedEquipment[25, 0] = true;
+        //unlockedEquipment[25, 1] = true;
 
-        unlockedEquipment[28, 0] = true;
-        unlockedEquipment[28, 2] = true;
-
-
+        //unlockedEquipment[28, 0] = true;
+        //unlockedEquipment[28, 2] = true;
 
         spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Helmet_Spritesheet01");
         spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Torso_Spritesheet01");

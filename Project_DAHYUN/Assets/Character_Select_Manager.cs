@@ -48,8 +48,11 @@ public class Character_Select_Manager : MonoBehaviour
         }
         else
         {
-            selectedChar = -1;
-            LoadDefaultCharacter();
+            print("WE IN IT BOYZS");
+            gridThing.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = newButtonColor;
+            CreateCharacter();
+            //selectedChar = -1;
+            //LoadDefaultCharacter();
         }
             
     }

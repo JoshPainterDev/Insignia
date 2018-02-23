@@ -2243,6 +2243,7 @@ MonoBehaviour:
   difficultyScale: 0
   playerLevel: 0
   playerEXP: 0
+  playerGoldCredits: 0
   playerAttack: 0
   playerDefense: 0
   playerProwess: 0
@@ -2316,6 +2317,7 @@ MonoBehaviour:
   Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
     type: 2}
   SolarisKnight_Prefab: {fileID: 0}
+  SolarisOfficer_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -2376,7 +2378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4, y: -26.4}
+  m_AnchoredPosition: {x: -4.4, y: -20}
   m_SizeDelta: {x: 23.4, y: 12.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2037268562

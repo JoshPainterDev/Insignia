@@ -469,6 +469,7 @@ MonoBehaviour:
     type: 2}
   SolarisKnight_Prefab: {fileID: 1919287724249914, guid: a3b16ffcc07a80d45a7035accf4be91a,
     type: 2}
+  SolarisOfficer_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
@@ -728,6 +729,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1205824061}
+  - {fileID: 1991980002}
   m_Father: {fileID: 889873491}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1158,7 +1160,6 @@ RectTransform:
   - {fileID: 1612517882}
   - {fileID: 2037268561}
   - {fileID: 638239318}
-  - {fileID: 1991980002}
   - {fileID: 488820263}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2343,16 +2344,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1991980001}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 889873491}
-  m_RootOrder: 7
+  m_Father: {fileID: 638239318}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94.33, y: -130.9}
+  m_AnchoredPosition: {x: 94.33, y: 0}
   m_SizeDelta: {x: 304.65, y: 80.002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991980003

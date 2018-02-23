@@ -194,32 +194,30 @@ public class CombatManager : MonoBehaviour {
 
 
         //1. Load in player and enemy
-        //GameController.controller.playerLevel = 4;// GET RID OF THIS SHITLAWBDWK
         playerLevel = GameController.controller.playerLevel;
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
-        print("Player Attack: " + GameController.controller.playerAttack);
+
         GameController.controller.playerAttack = 17;
         GameController.controller.playerDefense = 15;
         GameController.controller.playerProwess = 6;
         GameController.controller.playerSpeed = 4;
-        //print("player def: " + GameController.controller.playerDefense);
-        //Max Health = ((base max hp) * player lv) + (9 * player def)
+
         playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
         playerHealth = playerMaxHealth;
-        print("Player max HP: " + playerHealth);
-        print("defense: " + GameController.controller.playerDefense);
+        //print("Player max HP: " + playerHealth);
+        //print("defense: " + GameController.controller.playerDefense);
 
         if(!hasTutorial)
         {
             //REMOVE THIS LATER
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Murder-Stroke");
-            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Hatred");
-            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Strangle");
-            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
-            GameController.controller.strikeModifier = "Serated Strike";
-            playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
-            //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
+            //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Murder-Stroke");
+            //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Hatred");
+            //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Strangle");
+            //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+            //GameController.controller.strikeModifier = "Serated Strike";
+            //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
+            playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
 
             ResetEnemyValues();
             //strikeMod = GameController.controller.strikeModifier;
@@ -256,8 +254,6 @@ public class CombatManager : MonoBehaviour {
         HideMainButtons();
 
         currSpecialCase = SpecialCase.None;
-
-        //StartCoroutine(changeToCombatStance());
 
         if (!hasTutorial)
         {
