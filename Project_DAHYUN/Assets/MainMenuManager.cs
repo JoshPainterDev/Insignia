@@ -25,7 +25,7 @@ public class MainMenuManager : MonoBehaviour {
     {
         playerMannequin = GameController.controller.playerObject;
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
-        goldCredits.GetComponent<Text>().text = "$" + GameController.controller.playerGoldCredits.ToString("N0");
+        goldCredits.GetComponent<Text>().text = GameController.controller.playerGoldCredits.ToString("N0");
     }
 
     public void ButtonPressed(int buttonNumber)

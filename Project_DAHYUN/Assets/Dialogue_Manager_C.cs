@@ -8,7 +8,6 @@ public class Dialogue_Manager_C : MonoBehaviour
     [HideInInspector]
     public float MEDIUM_VOLUME = 0.7f;
 
-    public GameObject dialogueManager;
     public GameObject dialogueBox;
     public GameObject playerCopy;
     public GameObject rightSpeaker;

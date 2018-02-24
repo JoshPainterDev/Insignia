@@ -57,6 +57,11 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
     - {fileID: 2800000, guid: 09d3b051d1bef8d45adfb35110a2af34, type: 3}
     - {fileID: 2800000, guid: b7bcd057db0d8764a9a07e1296635e60, type: 3}
+    - {fileID: 2800000, guid: 45274b4c25ea6034a8efca1c7ba03e25, type: 3}
+    - {fileID: 2800000, guid: 089e6468bea416b4daba5c9da89066a0, type: 3}
+    - {fileID: 2800000, guid: cf5606f02728f88429af63068054a511, type: 3}
+    - {fileID: 2800000, guid: 993507fcc98e9a14ba94268acd201c63, type: 3}
+    - {fileID: 2800000, guid: a2e4c7431a25a2d49bdc24959474afac, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:

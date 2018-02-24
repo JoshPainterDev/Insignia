@@ -85,7 +85,7 @@ public class TutorialManagerMM_C : MonoBehaviour
         inputEnabled = false;
         Destroy(panel04);
         Destroy(inputPanel);
-        battle.GetComponent<Image>().color = origColor;
+        adventure.GetComponent<Image>().color = origColor;
     }
 
     public void LoadPanel02()
@@ -93,7 +93,7 @@ public class TutorialManagerMM_C : MonoBehaviour
         panel02.GetComponent<Image>().enabled = true;
         panel02.transform.GetChild(0).GetComponent<Text>().enabled = true;
         panel02.transform.GetChild(1).GetComponent<Text>().enabled = true;
-        StartCoroutine(colorFlash(adventure));
+        StartCoroutine(colorFlash(character));
     }
 
     public void LoadPanel03()
@@ -101,8 +101,8 @@ public class TutorialManagerMM_C : MonoBehaviour
         panel03.GetComponent<Image>().enabled = true;
         panel03.transform.GetChild(0).GetComponent<Text>().enabled = true;
         panel03.transform.GetChild(1).GetComponent<Text>().enabled = true;
-        StartCoroutine(colorFlash(character));
-        adventure.GetComponent<Image>().color = origColor;
+        StartCoroutine(colorFlash(battle));
+        character.GetComponent<Image>().color = origColor;
     }
 
     public void LoadPanel04()
@@ -110,8 +110,8 @@ public class TutorialManagerMM_C : MonoBehaviour
         panel04.GetComponent<Image>().enabled = true;
         panel04.transform.GetChild(0).GetComponent<Text>().enabled = true;
         panel04.transform.GetChild(1).GetComponent<Text>().enabled = true;
-        StartCoroutine(colorFlash(battle));
-        character.GetComponent<Image>().color = origColor;
+        StartCoroutine(colorFlash(adventure));
+        battle.GetComponent<Image>().color = origColor;
     }
 
     IEnumerator colorFlash(GameObject target)

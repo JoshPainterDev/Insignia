@@ -271,7 +271,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[0] = "General Vixon";
                         leftspeaker[0] = true;
-                        script[0] = "Welcome back soldier, Any word from Solaris?";
+                        script[0] = "Welcome back soldier, any word from Solaris?";
                         speaker[1] = "Officer";
                         leftspeaker[1] = false;
                         script[1] = "No sir! Still no sign of Tesdin.";
@@ -302,7 +302,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "General Vixon";
                         leftspeaker[0] = true;
-                        script[0] = "Weapons, Ready!";
+                        script[0] = "Weapons ready!";
 
                         speaker[1] = "General Vixon";
                         leftspeaker[1] = true;
@@ -535,23 +535,23 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[2] = false;
                         script[2] = "I am Theron.";
 
-                        speaker[3] = "???";
+                        speaker[3] = "Theron";
                         leftspeaker[3] = false;
                         script[3] = "But that is not important.";
 
-                        speaker[4] = "???";
+                        speaker[4] = "Theron";
                         leftspeaker[4] = false;
                         script[4] = "War stretches across our planet.";
 
-                        speaker[5] = "???";
+                        speaker[5] = "Theron";
                         leftspeaker[5] = false;
                         script[5] = "If sentient kind is to survive this incursion,";
 
-                        speaker[6] = "???";
+                        speaker[6] = "Theron";
                         leftspeaker[6] = false;
                         script[6] = "our forces must be unified...";
 
-                        speaker[7] = "???";
+                        speaker[7] = "Theron";
                         leftspeaker[7] = false;
                         script[7] = "The Kingdom of Light must be taken by force.";
 
@@ -559,7 +559,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[8] = true;
                         script[8] = "What's my place in all of this?";
 
-                        speaker[9] = "???";
+                        speaker[9] = "Theron";
                         leftspeaker[9] = false;
                         script[9] = "You are the key to it all, my small friend.";
 
@@ -567,7 +567,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[10] = false;
                         script[10] = "I have saved you from the icy whisper of death.";
 
-                        speaker[11] = "???";
+                        speaker[11] = "Theron";
                         leftspeaker[11] = false;
                         script[11] = "All I ask of your life debt, is that you aid me in taking Solaris.";
 
@@ -575,23 +575,23 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[12] = true;
                         script[12] = "And if I refuse?";
 
-                        speaker[13] = "???";
+                        speaker[13] = "Theron";
                         leftspeaker[13] = false;
                         script[13] = "Test me, child,";
 
-                        speaker[14] = "???";
+                        speaker[14] = "Theron";
                         leftspeaker[14] = false;
-                        script[14] = "and I will snuf out your life like a fleeting candle flame...";
+                        script[14] = "and I will snuff out your life like a fleeting candle flame...";
 
                         speaker[15] = playerName;
                         leftspeaker[15] = true;
                         script[15] = "Good to know...";
 
-                        speaker[16] = "???";
+                        speaker[16] = "Theron";
                         leftspeaker[16] = false;
                         script[16] = "You will come to understand the severity of the situation, Nova.";
 
-                        speaker[17] = "???";
+                        speaker[17] = "Theron";
                         leftspeaker[17] = false;
                         script[17] = "In time...";
 

@@ -197,7 +197,7 @@ public class Character_Select_Manager : MonoBehaviour
         }
 
         playerMannequin.transform.GetChild(12).GetComponent<SpriteRenderer>().enabled = false;
-        nameplate.GetComponent<Text>().text = "";
+
         playButton.transform.GetChild(1).GetComponent<Text>().text = "";
 
         for (int i = 8; i < 12; ++i)
@@ -249,8 +249,8 @@ public class Character_Select_Manager : MonoBehaviour
         int playerLv = GameController.controller.playerLevel;
         PlayerClass playerClass = GameController.controller.charClasses[selectedChar];
         playButton.transform.GetChild(1).GetComponent<Text>().text = "Lv " + playerLv + " " + playerClass;
-        nameplate.GetComponent<Text>().text = GameController.controller.charNames[selectedChar];
-        nameplate.GetComponent<Text>().color = GameController.controller.getPlayerColorPreference();
+        //nameplate.GetComponent<Text>().text = GameController.controller.charNames[selectedChar];
+        //nameplate.GetComponent<Text>().color = GameController.controller.getPlayerColorPreference();
     }
 
     private void ShowPreview()
