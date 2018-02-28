@@ -58,11 +58,18 @@ public class CombatAudio : MonoBehaviour {
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (GameController.controller.volumeMuted)
+            GameController.controller.volumeScale = 0f;
+
+        HIGH_VOLUME *= GameController.controller.volumeScale;
+        MEDIUM_VOLUME *= GameController.controller.volumeScale;
+        LOW_VOLUME *= GameController.controller.volumeScale;
     }
 
     public void playSoundEffect(AudioClip soundClip, float volume = 0.5f)
     {
-        audioSource.PlayOneShot(soundClip, volume);
+        audioSource.PlayOneShot(soundClip, volume * GameController.controller.volumeScale);
     }
 
     public void playLBSuperNovaStart()
@@ -158,12 +165,12 @@ public class CombatAudio : MonoBehaviour {
 
     public void playStruggleSuccess01()
     {
-        audioSource.PlayOneShot(struggleSuccess01_SFX, 0.8f);
+        audioSource.PlayOneShot(struggleSuccess01_SFX, 0.8f * GameController.controller.volumeScale);
     }
 
     public void playStruggleSuccess02()
     {
-        audioSource.PlayOneShot(struggleSuccess02_SFX, 0.8f);
+        audioSource.PlayOneShot(struggleSuccess02_SFX, 0.8f * GameController.controller.volumeScale);
     }
 
     public void playPlasmaIgnite()
@@ -243,22 +250,22 @@ public class CombatAudio : MonoBehaviour {
         switch(rand)
         {
             case 1:
-                audioSource.PlayOneShot(strugglePress01, 0.2f);
+                audioSource.PlayOneShot(strugglePress01, 0.2f * GameController.controller.volumeScale);
                 break;
             case 2:
-                audioSource.PlayOneShot(strugglePress02, 0.2f);
+                audioSource.PlayOneShot(strugglePress02, 0.2f * GameController.controller.volumeScale);
                 break;
             case 3:
-                audioSource.PlayOneShot(strugglePress03, 0.2f);
+                audioSource.PlayOneShot(strugglePress03, 0.2f * GameController.controller.volumeScale);
                 break;
             case 4:
-                audioSource.PlayOneShot(strugglePress04, 0.2f);
+                audioSource.PlayOneShot(strugglePress04, 0.2f * GameController.controller.volumeScale);
                 break;
             case 5:
-                audioSource.PlayOneShot(strugglePress05, 0.2f);
+                audioSource.PlayOneShot(strugglePress05, 0.2f * GameController.controller.volumeScale);
                 break;
             case 6:
-                audioSource.PlayOneShot(strugglePress06, 0.2f);
+                audioSource.PlayOneShot(strugglePress06, 0.2f * GameController.controller.volumeScale);
                 break;
         }
     }

@@ -329,6 +329,7 @@
     <Compile Include="Assets\NewCharacter_Manager.cs" />
     <Compile Include="Assets\OscillationScript.cs" />
     <Compile Include="Assets\OverlayScript.cs" />
+    <Compile Include="Assets\Panel_C.cs" />
     <Compile Include="Assets\RandomTPinBounds.cs" />
     <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
@@ -390,6 +391,7 @@
     <Compile Include="Assets\StatDescriptionScript.cs" />
     <Compile Include="Assets\StrangleScript_C.cs" />
     <Compile Include="Assets\StruggleParticle_C.cs" />
+    <Compile Include="Assets\TestEventTrigger.cs" />
     <Compile Include="Assets\TimeController.cs" />
     <Compile Include="Assets\TutorialManager01_C.cs" />
     <Compile Include="Assets\TutorialManager02_C.cs" />

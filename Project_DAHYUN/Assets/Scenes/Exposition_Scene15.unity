@@ -236,12 +236,12 @@ Prefab:
     - target: {fileID: 224818941033073082, guid: 384cc99e4637737469439a479dcdcb74,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224818941033073082, guid: 384cc99e4637737469439a479dcdcb74,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -248
+      value: -227
       objectReference: {fileID: 0}
     - target: {fileID: 224818941033073082, guid: 384cc99e4637737469439a479dcdcb74,
         type: 2}
@@ -282,6 +282,21 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224818941033073082, guid: 384cc99e4637737469439a479dcdcb74,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.79298025
+      objectReference: {fileID: 0}
+    - target: {fileID: 224818941033073082, guid: 384cc99e4637737469439a479dcdcb74,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.93291795
+      objectReference: {fileID: 0}
+    - target: {fileID: 224818941033073082, guid: 384cc99e4637737469439a479dcdcb74,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.93291795
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 384cc99e4637737469439a479dcdcb74, type: 2}
@@ -762,6 +777,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &477741378 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1335620475837046, guid: 384cc99e4637737469439a479dcdcb74,
+    type: 2}
+  m_PrefabInternal: {fileID: 44379704}
 --- !u!1001 &538142075
 Prefab:
   m_ObjectHideFlags: 0
@@ -2425,7 +2445,7 @@ MonoBehaviour:
   rightSpeaker: {fileID: 44379710}
   leftSpeaker: {fileID: 44379709}
   rightImage: {fileID: 44379708}
-  leftImage: {fileID: 44379709}
+  leftImage: {fileID: 477741378}
   tap2Continue: {fileID: 44379705}
   typing_SFX: {fileID: 8300000, guid: 3782e5220263b684993c95a900a5bb0a, type: 3}
   typing: 0
@@ -2937,7 +2957,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:

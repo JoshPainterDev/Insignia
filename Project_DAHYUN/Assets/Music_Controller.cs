@@ -24,14 +24,22 @@ public class Music_Controller : MonoBehaviour
     private float init = 0f;
     private float final = 0f;
 
-    void Awake()
+    void Start()
     {
         audioSource = GetComponent<AudioSource>();
         musicLoop = audioSource.clip;
 
+        if (GameController.controller.volumeMuted)
+            GameController.controller.volumeScale = 0f;
+
+        HIGH_VOLUME *= GameController.controller.volumeScale;
+        MEDIUM_VOLUME *= GameController.controller.volumeScale;
+        LOW_VOLUME *= GameController.controller.volumeScale;
+        BACKGROUND_VOLUME *= GameController.controller.volumeScale;
+
         if (FadeOnStart)
         {
-            FadeVolume(0, STARTING_VOLUME, 0.25f);
+            FadeVolume(0, STARTING_VOLUME * GameController.controller.volumeScale, 0.25f);
         }
     }
 
@@ -39,14 +47,14 @@ public class Music_Controller : MonoBehaviour
     {
         audioSource.PlayOneShot(ShadowTheme, BACKGROUND_VOLUME);
         audioSource.loop = true;
-        FadeVolume(0, BACKGROUND_VOLUME);
+        FadeVolume(0, BACKGROUND_VOLUME * GameController.controller.volumeScale);
     }
 
     public void restartMusic()
     {
-        audioSource.PlayOneShot(musicLoop, BACKGROUND_VOLUME);
+        audioSource.PlayOneShot(musicLoop, BACKGROUND_VOLUME * GameController.controller.volumeScale);
         audioSource.loop = true;
-        FadeVolume(0, BACKGROUND_VOLUME);
+        FadeVolume(0, BACKGROUND_VOLUME * GameController.controller.volumeScale);
     }
 
     public void stopAllMusic()

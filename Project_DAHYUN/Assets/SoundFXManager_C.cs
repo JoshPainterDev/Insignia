@@ -30,9 +30,17 @@ public class SoundFXManager_C : MonoBehaviour
     private float final = 0f;
     private bool ambientSound = false;
 
-    void Awake()
+    void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (GameController.controller.volumeMuted)
+            GameController.controller.volumeScale = 0f;
+
+        HIGH_VOLUME *= GameController.controller.volumeScale;
+        MEDIUM_VOLUME *= GameController.controller.volumeScale;
+        LOW_VOLUME *= GameController.controller.volumeScale;
+        BACKGROUND_VOLUME *= GameController.controller.volumeScale;
     }
 
     public void playLaserBombardment(bool loop = false)
@@ -40,52 +48,52 @@ public class SoundFXManager_C : MonoBehaviour
         if(loop)
         {
             audioSource.loop = true;
-            audioSource.volume = MEDIUM_VOLUME;
+            audioSource.volume = MEDIUM_VOLUME * GameController.controller.volumeScale;
             audioSource.clip = laserBombardment_FX;
             audioSource.Play();
         }
         else
         {
-            audioSource.PlayOneShot(laserBombardment_FX, HIGH_VOLUME);
+            audioSource.PlayOneShot(laserBombardment_FX, HIGH_VOLUME * GameController.controller.volumeScale);
         }
 
     }
 
     public void playFootSteps()
     {
-        audioSource.PlayOneShot(footSteps_FX01, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(footSteps_FX01, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playSwordIgnite()
     {
-        audioSource.PlayOneShot(laserSwordIgnite_FX, HIGH_VOLUME);
+        audioSource.PlayOneShot(laserSwordIgnite_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playSwordRetract()
     {
-        audioSource.PlayOneShot(laserSwordRetract_FX, HIGH_VOLUME);
+        audioSource.PlayOneShot(laserSwordRetract_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playBodyCollapse()
     {
-        audioSource.PlayOneShot(bodyCollapse_FX, HIGH_VOLUME);
+        audioSource.PlayOneShot(bodyCollapse_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playCriticalHit()
     {
-        audioSource.PlayOneShot(criticalHit_FX, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(criticalHit_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playSnowCollapse()
     {
-        audioSource.PlayOneShot(snowCollapse_FX, HIGH_VOLUME);
+        audioSource.PlayOneShot(snowCollapse_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
 
     public void playSnowSteps()
     {
-        audioSource.PlayOneShot(snowSteps_FX, MEDIUM_VOLUME);
-        FadeVolume(0, 1, 0.15f);
+        audioSource.PlayOneShot(snowSteps_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
+        FadeVolume(0, GameController.controller.volumeScale, 0.15f);
     }
 
     public void stopAllMusic()
@@ -95,12 +103,12 @@ public class SoundFXManager_C : MonoBehaviour
 
     public void playSkitterScreech()
     {
-        audioSource.PlayOneShot(skitterScreech_FX, HIGH_VOLUME);
+        audioSource.PlayOneShot(skitterScreech_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playExitScene()
     {
-        audioSource.PlayOneShot(exitScene_FX, HIGH_VOLUME);
+        audioSource.PlayOneShot(exitScene_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
     public void FadeVolume(float startPercent, float endPercent, float speed = 1f, bool ambient = false)

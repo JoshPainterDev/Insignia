@@ -22,11 +22,18 @@ public class MenuUIAudio : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (GameController.controller.volumeMuted)
+            GameController.controller.volumeScale = 0f;
+
+        HIGH_VOLUME *= GameController.controller.volumeScale;
+        MEDIUM_VOLUME *= GameController.controller.volumeScale;
+        LOW_VOLUME *= GameController.controller.volumeScale;
     }
 
     public void playSoundClip(AudioClip sound, float volume = 0.5f)
     {
-        audioSource.PlayOneShot(sound, volume);
+        audioSource.PlayOneShot(sound, volume * GameController.controller.volumeScale);
     }
 
     public void playTypingEffect()

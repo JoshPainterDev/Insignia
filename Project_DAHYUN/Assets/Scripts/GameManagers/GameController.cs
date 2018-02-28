@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour {
     public PlayerClass[] charClasses = new PlayerClass[6];
 
     public bool volumeMuted = false;
-    public float musicScale = 1.0f;
+    public float volumeScale = 1.0f;
 
     public int curArenaStage = 0;
 
@@ -95,7 +95,11 @@ public class GameController : MonoBehaviour {
                 charNames[0] = "Skip";
                 numChars = 0;
                 charClasses[0] = PlayerClass.none;
+                volumeScale = 0.80f;
+                volumeMuted = false;
+
                 SaveCharacters();
+                LoadCharacters();
             }
         }
         else if(controller != this)
@@ -117,7 +121,7 @@ public class GameController : MonoBehaviour {
         data.characterClasses = charClasses;
 
         data.VolumeMuted = volumeMuted;
-        data.MusicScale = musicScale;
+        data.VolumeScale = volumeScale;
 
         bf.Serialize(accountInfoFile, data);
         accountInfoFile.Close();
@@ -135,7 +139,7 @@ public class GameController : MonoBehaviour {
             charClasses = data.characterClasses;
 
             volumeMuted = data.VolumeMuted;
-            musicScale = data.MusicScale;
+            volumeScale = data.VolumeScale;
 
             file.Close();
             return true;
@@ -400,5 +404,5 @@ class AccountData
     public int numberOfCharacters = 0;
 
     public bool VolumeMuted = false;
-    public float MusicScale = 1.0f;
+    public float VolumeScale = 0.80f;
 }

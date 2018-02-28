@@ -865,7 +865,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = "Theron";
                         leftspeaker[2] = true;
-                        script[2] = "Legend or not, the warriors of the bulwark lie in graves of snow!";
+                        script[2] = "The warriors of the Bulwark lie in graves of snow!";
 
                         speaker[3] = "Theron";
                         leftspeaker[3] = true;
@@ -877,11 +877,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Solaris Knight";
                         leftspeaker[5] = false;
-                        script[5] = "I thought he was losing his mind...";
+                        script[5] = "I thought he had lost his mind...";
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = true;
-                        script[6] = "Your leaders turned their eye to the horrors that befell your brother.";
+                        script[6] = "Your leaders turned their eye to the horrors that befell your brethren.";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = true;
@@ -915,15 +915,24 @@ public class Exposition_Manager : MonoBehaviour
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0.3f), 0.15f);
                         cameraObj.GetComponent<CameraController>().ShakeCamera(3);
                         yield return new WaitForSeconds(0.80f);
+                        Vector3 spawnPos;
                         foreach (SpriteRenderer child in speaker03.transform.GetComponentsInChildren<SpriteRenderer>())
                         {
+                            spawnPos = new Vector3(child.transform.position.x + 20, child.transform.position.y + (5 * child.transform.localScale.y), 0);
+                            GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                            effectClone.transform.localScale *= child.transform.localScale.y / 10.0f;
                             child.flipX = !child.flipX;
                         }
                         yield return new WaitForSeconds(0.5f);
+                        spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 120, 0);
+                        GameObject effectClone1 = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         playerMannequin.GetComponent<AnimationController>().FlipFlop();
                         yield return new WaitForSeconds(0.35f);
                         foreach (SpriteRenderer child in speaker02.transform.GetComponentsInChildren<SpriteRenderer>())
                         {
+                            spawnPos = new Vector3(child.transform.position.x + 8, child.transform.position.y + 10 + (11 * child.transform.localScale.y), 0);
+                            GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                            effectClone.transform.localScale *= child.transform.localScale.y / 10.0f;
                             child.flipX = !child.flipX;
                         }
                         break;
@@ -934,7 +943,7 @@ public class Exposition_Manager : MonoBehaviour
                 {
                     case 0:
                         StartCoroutine(NewDialogue(14, 2));
-                        yield return new WaitForSeconds(1.50f);
+                        yield return new WaitForSeconds(0.50f);
                         speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
                 }
@@ -945,7 +954,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         StartCoroutine(NewDialogue(14, 3));
                         yield return new WaitForSeconds(1.50f);
-                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(300, 0, 0), 0.25f);
+                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(300, 0, 0), 0.1f);
                         break;
                     case 10:
                         yield return new WaitForSeconds(2f);

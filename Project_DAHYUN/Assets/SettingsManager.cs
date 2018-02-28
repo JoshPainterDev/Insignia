@@ -14,6 +14,7 @@ public class SettingsManager : MonoBehaviour
     public GameObject muteToggle;
 
     public GameObject difficultyText;
+    private AudioSource audioComponent;
 
     private bool changesMade = false;
     private float musicLevel = 1.0f;
@@ -26,9 +27,10 @@ public class SettingsManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        audioComponent = this.GetComponent<AudioSource>();
         changesMade = false;
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
-        musicSlider.GetComponent<Slider>().value = GameController.controller.musicScale;
+        musicSlider.GetComponent<Slider>().value = GameController.controller.volumeScale;
         muteToggle.GetComponent<Toggle>().isOn = GameController.controller.volumeMuted;
 
         switch(GameController.controller.difficultyScale)
@@ -48,17 +50,30 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void PingNewVolumeSound()
+    {
+        audioComponent.volume = GameController.controller.volumeScale;
+        audioComponent.Play();
+    }
+
     public void ToggleVolume()
     {
         changesMade = true;
         GameController.controller.volumeMuted = !GameController.controller.volumeMuted;
+
+        if (GameController.controller.volumeMuted)
+            GameController.controller.volumeScale = 0;
     }
 
     public void ChangeMusicLevel(GameObject slider)
     {
         changesMade = true;
-        GameController.controller.musicScale = slider.GetComponent<Slider>().value;
-        AudioListener.volume = slider.GetComponent<Slider>().value;
+
+        if(!GameController.controller.volumeMuted)
+        {
+            GameController.controller.volumeScale = slider.GetComponent<Slider>().value;
+            AudioListener.volume = slider.GetComponent<Slider>().value;
+        }
     }
 
     public void ApplyChanges()

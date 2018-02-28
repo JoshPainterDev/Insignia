@@ -1590,7 +1590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8308824, g: 0.8308824, b: 0.8308824, a: 1}
+  m_Color: {r: 0.8897059, g: 0.6856871, b: 0.019625884, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1625,11 +1625,11 @@ RectTransform:
   m_Father: {fileID: 889873491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46, y: -1.1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 40, y: 15}
   m_SizeDelta: {x: 40, y: 40}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1447408315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,7 +1854,7 @@ Prefab:
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
@@ -2053,7 +2053,7 @@ Prefab:
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224852309327876418, guid: d99aead9a1d16e2428477cd6044af585,
         type: 2}
@@ -2782,6 +2782,7 @@ MonoBehaviour:
   difficultyScale: 0
   playerLevel: 0
   playerEXP: 0
+  playerGoldCredits: 0
   playerAttack: 0
   playerDefense: 0
   playerProwess: 0
@@ -2805,7 +2806,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:
@@ -2862,6 +2863,7 @@ MonoBehaviour:
   Slade_Prefab: {fileID: 0}
   Dummy_Prefab: {fileID: 0}
   SolarisKnight_Prefab: {fileID: 0}
+  SolarisOfficer_Prefab: {fileID: 0}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,

@@ -13,13 +13,10 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject playerMannequin;
     public GameObject equipmentSelectPopUpPrefab;
     private GameObject equipmentSelectPopUp;
-    public GameObject playerLv_TextObj;
-    public GameObject playerClassIcon;
     public GameObject inputDetector;
     public GameObject personaPanel;
     public GameObject auraColor;
     public GameObject background;
-    public Sprite KnightIcon;
 
     private bool personaPanelActive = false;
     private int actionPresses = 0;
@@ -121,11 +118,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         spriteSheet_Weapon = Resources.LoadAll<Sprite>("IconSpritesheets\\Sword_Spritesheet01");
         spriteSheet_Aura = Resources.LoadAll<Sprite>("IconSpritesheets\\Spritesheet_Icons_Aura");
 
-        playerLv_TextObj.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
-
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
-
-        ChangeClassIcon(GameController.controller.charClasses[GameController.controller.playerNumber]);
 
         LoadPersona();
 
@@ -897,16 +890,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         foreach (GameObject buttton in equipmentOptions)
         {
             buttton.GetComponent<Button>().enabled = false;
-        }
-    }
-
-    private void ChangeClassIcon(PlayerClass pClass)
-    {
-        switch(pClass)
-        {
-            case PlayerClass.Knight:
-                playerClassIcon.GetComponent<Image>().sprite = KnightIcon;
-                break;
         }
     }
 

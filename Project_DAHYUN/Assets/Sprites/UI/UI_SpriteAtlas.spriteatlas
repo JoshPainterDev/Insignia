@@ -65,6 +65,7 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 45274b4c25ea6034a8efca1c7ba03e25, type: 3}
   - {fileID: 21300000, guid: 7b32496d82b19094090098bca0e870f1, type: 3}
   - {fileID: 21300000, guid: 526de376908903c4fb50bbcaee7e4603, type: 3}
   - {fileID: 21300000, guid: 610ba18c433e6764fba45e27d7597d6b, type: 3}
@@ -75,9 +76,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
   - {fileID: 21300000, guid: df5fbf70fa98689438084b1a27605d14, type: 3}
   - {fileID: 21300000, guid: 8f7bacf333cb6714fb788243e0dda913, type: 3}
+  - {fileID: 21300000, guid: cf5606f02728f88429af63068054a511, type: 3}
   - {fileID: 21300000, guid: f878d4ebf9828d942b48ab65cda13e6e, type: 3}
+  - {fileID: 21300000, guid: 089e6468bea416b4daba5c9da89066a0, type: 3}
   - {fileID: 21300000, guid: e530d00198fa05244a268123eb10b613, type: 3}
   - {fileID: 21300000, guid: 4524d7ed92ade3346a26cd1f867ddbe9, type: 3}
+  - {fileID: 21300000, guid: 993507fcc98e9a14ba94268acd201c63, type: 3}
+  - {fileID: 21300000, guid: a2e4c7431a25a2d49bdc24959474afac, type: 3}
   - {fileID: 21300000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
   - {fileID: 21300000, guid: 09d3b051d1bef8d45adfb35110a2af34, type: 3}
   - {fileID: 21300000, guid: 2e9a882b4dec6af4684a6cdb8413a5d0, type: 3}
@@ -85,6 +90,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bc9e28bd94aa4e84f8a5c40d1ee23909, type: 3}
   - {fileID: 21300000, guid: b7bcd057db0d8764a9a07e1296635e60, type: 3}
   m_PackedSpriteNamesToIndex:
+  - padlock
   - home_icon
   - gear-11-icon--free-icons-4
   - sword-512
@@ -95,9 +101,13 @@ SpriteAtlas:
   - HealthBarGreen
   - HealthBarCase
   - AttackBoostIcon
+  - Guardian_ClassIcon
   - SpeedBoostIcon
+  - Cutthroat_ClassIcon
   - ExclamationPoint
   - DefenseBoostIcon
+  - Knight_ClassIcon
+  - Occultist_ClassIcon
   - sword_icon_pixelart
   - Struggle_Button
   - 300px-Button_Icon_White.svg
