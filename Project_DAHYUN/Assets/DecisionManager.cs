@@ -8,10 +8,13 @@ public class DecisionManager : MonoBehaviour
 {
     public GameObject option1Button;
     public GameObject option2Button;
-    public GameObject highlightImage;
+    public GameObject option1Tint;
+    public GameObject option2Tint;
+    public Color selectColor;
+    private Color option1Color;
+    private Color option2Color;
     public GameObject areYouSurePanel;
     public GameObject blackSq;
-    public GameObject blocker;
     public int decisionNumber = 0;
     public int decisionPoints = 100;
 
@@ -20,13 +23,16 @@ public class DecisionManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	}
+        option1Color = option1Button.GetComponent<Outline>().effectColor;
+        option2Color = option2Button.GetComponent<Outline>().effectColor;
+    }
 
     public void OptionSelected(int numSelected)
     {
         optionNumber = numSelected;
-        blocker.SetActive(true);
 
+        option1Button.GetComponent<Button>().enabled = false;
+        option2Button.GetComponent<Button>().enabled = false;       
 
         switch (decisionNumber)
         {
@@ -41,13 +47,6 @@ public class DecisionManager : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    public void Cancel()
-    {
-        blocker.SetActive(false);
-        highlightImage.SetActive(false);
-        areYouSurePanel.SetActive(false);
     }
 
     public void ConfirmSelection()
@@ -70,48 +69,83 @@ public class DecisionManager : MonoBehaviour
 
         if(option1Selected)
         {
-            highlightImage.transform.localPosition = new Vector3(-147,0,0);
+            option1Button.SetActive(false);
+
+            yield return new WaitForSeconds(0.1f);
+            
+            option1Button.SetActive(true);
+
+            yield return new WaitForSeconds(0.1f);
+            
+            option1Button.SetActive(false);
+
+            yield return new WaitForSeconds(0.1f);
+
+            option1Button.SetActive(true);
+
+            areYouSurePanel.GetComponent<Outline>().effectColor = option1Color;
+
+            option2Button.GetComponent<Button>().enabled = true;
+
+            option1Tint.SetActive(false);
+            option2Tint.SetActive(true);
+
+            areYouSurePanel.transform.position = option1Button.transform.position - new Vector3(0, 100, 0);
+
+            areYouSurePanel.SetActive(true);
         }
         else
         {
-            highlightImage.transform.localPosition = new Vector3(147, 0, 0);
+            option2Button.SetActive(false);
+
+            yield return new WaitForSeconds(0.1f);
+
+            option2Button.SetActive(true);
+
+            yield return new WaitForSeconds(0.1f);
+
+            option2Button.SetActive(false);
+
+            yield return new WaitForSeconds(0.1f);
+
+            option2Button.SetActive(true);
+
+            areYouSurePanel.GetComponent<Outline>().effectColor = option2Color;
+
+            option1Button.GetComponent<Button>().enabled = true;
+
+            option2Tint.SetActive(false);
+            option1Tint.SetActive(true);
+
+            areYouSurePanel.transform.position = option2Button.transform.position - new Vector3(0, 100, 0);
+
+            areYouSurePanel.SetActive(true);
         }
-
-        highlightImage.SetActive(true);
-
-        yield return new WaitForSeconds(0.1f);
-
-        highlightImage.SetActive(false);
-
-        yield return new WaitForSeconds(0.1f);
-
-        highlightImage.SetActive(true);
-
-        areYouSurePanel.SetActive(true);
     }
 
     IEnumerator ConfirmAnim()
     {
         if (optionNumber == 1)
         {
+            option2Tint.SetActive(false);
             Color temp = option2Button.GetComponent<Image>().color;
             option2Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             temp = option2Button.transform.GetChild(0).GetComponent<Text>().color;
-            option2Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option2Button.transform.GetChild(1).GetComponent<Text>().color;
-            option2Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //option2Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option2Button.transform.GetChild(1).GetComponent<Text>().color;
+            //option2Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
         }
         else
         {
+            option1Tint.SetActive(false);
             Color temp = option1Button.GetComponent<Image>().color;
             option1Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option1Button.transform.GetChild(0).GetComponent<Text>().color;
-            option1Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option1Button.transform.GetChild(1).GetComponent<Text>().color;
-            option1Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option1Button.transform.GetChild(0).GetComponent<Text>().color;
+            //option1Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option1Button.transform.GetChild(1).GetComponent<Text>().color;
+            //option1Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
         }
 
-        highlightImage.SetActive(false);
         areYouSurePanel.SetActive(false);
 
         yield return new WaitForSeconds(1.5f);
@@ -120,10 +154,10 @@ public class DecisionManager : MonoBehaviour
         {
             Color temp = option2Button.GetComponent<Image>().color;
             option2Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option2Button.transform.GetChild(0).GetComponent<Text>().color;
-            option2Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option2Button.transform.GetChild(1).GetComponent<Text>().color;
-            option2Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option2Button.transform.GetChild(0).GetComponent<Text>().color;
+            //option2Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option2Button.transform.GetChild(1).GetComponent<Text>().color;
+            //option2Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             //ADD POINTS FOR MAKING A DECISION
             GameController.controller.playerGoodPoints += decisionPoints;
         }
@@ -131,16 +165,15 @@ public class DecisionManager : MonoBehaviour
         {
             Color temp = option1Button.GetComponent<Image>().color;
             option1Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option1Button.transform.GetChild(0).GetComponent<Text>().color;
-            option1Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
-            temp = option1Button.transform.GetChild(1).GetComponent<Text>().color;
-            option1Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option1Button.transform.GetChild(0).GetComponent<Text>().color;
+            //option1Button.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
+            //temp = option1Button.transform.GetChild(1).GetComponent<Text>().color;
+            //option1Button.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             //ADD POINTS FOR MAKING A DECISION
             GameController.controller.playerEvilPoints += decisionPoints;
         }
 
         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0.75f, 0.75f, 0.75f, 0.75f), Color.black, 0.5f);
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("MainMenu_Scene");
     }
 }

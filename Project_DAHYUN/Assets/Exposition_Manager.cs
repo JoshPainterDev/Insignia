@@ -166,6 +166,10 @@ public class Exposition_Manager : MonoBehaviour
                 eMaxInstances = 3;
                 StartCoroutine(Cutscene14(actionCounter, instance));
                 break;
+            case 15:
+                eMaxInstances = 3;
+                StartCoroutine(Cutscene15(actionCounter, instance));
+                break;
         }
     }
 
@@ -817,7 +821,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 2:
                         speaker[0] = "Theron";
                         leftspeaker[0] = true;
-                        script[0] = "Your Old Rule is dead!";
+                        script[0] = "Your old rule is dead!";
 
                         speaker[1] = "Theron";
                         leftspeaker[1] = true;
@@ -855,11 +859,11 @@ public class Exposition_Manager : MonoBehaviour
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 3:
-                        speaker[0] = "Solaris Officer";
+                        speaker[0] = "Solaris Captain";
                         leftspeaker[0] = false;
                         script[0] = "You've raided our kingdom,";
 
-                        speaker[1] = "Solaris Officer";
+                        speaker[1] = "Solaris Captain";
                         leftspeaker[1] = false;
                         script[1] = "in fear of 'legends'?";
 
@@ -887,12 +891,209 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[7] = true;
                         script[7] = "I urge all of you to not make the same mistake...";
 
-                        totalLines = 8;
+                        speaker[8] = "Solaris Captain";
+                        leftspeaker[8] = false;
+                        script[8] = "If what you say is true, then we have no choice in the matter.";
+
+                        speaker[9] = "Solaris Captain";
+                        leftspeaker[9] = false;
+                        script[9] = "Soldiers-";
+
+                        speaker[10] = "Solaris Captain";
+                        leftspeaker[10] = false;
+                        script[10] = "stand down...";
+
+                        totalLines = 11;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
+            case 15:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Theron";
+                        leftspeaker[0] = true;
+                        script[0] = "Ah! This is the rat I presume?";
+
+                        speaker[1] = "Cpt. Agyrii";
+                        leftspeaker[1] = false;
+                        script[1] = "Don't give him too much credit...";
+
+                        speaker[2] = "Theron";
+                        leftspeaker[2] = true;
+                        script[2] = "You have impressed me, Captain.";
+
+                        totalLines = 3;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
+                        speaker[0] = "Theron";
+                        leftspeaker[0] = true;
+                        script[0] = "So-";
+
+                        speaker[1] = "Theron";
+                        leftspeaker[1] = true;
+                        script[1] = "This is the ''messenger'' who deserted Bulwark?";
+
+                        speaker[2] = "Theron";
+                        leftspeaker[2] = true;
+                        script[2] = "Corporal Tesdin, was it?";
+
+                        speaker[3] = "Tesdin";
+                        leftspeaker[3] = false;
+                        script[3] = "How can you blame me for abandoning a sinking ship!";
+
+                        speaker[4] = "Theron";
+                        leftspeaker[4] = true;
+                        script[4] = "You forfeited your right to make that decision, soldier!";
+
+                        speaker[5] = "Tesdin";
+                        leftspeaker[5] = false;
+                        script[5] = "Please! Show mercy! I only did what I had-";
+
+                        speaker[6] = "Theron";
+                        leftspeaker[6] = true;
+                        script[6] = "Silence!";
+
+                        speaker[7] = "Theron";
+                        leftspeaker[7] = true;
+                        script[7] = playerName + ", you've more than repaid your debt.";
+
+                        speaker[8] = "Theron";
+                        leftspeaker[8] = true;
+                        script[8] = "As a token of my gratitude,";
+
+                        speaker[9] = "Theron";
+                        leftspeaker[9] = true;
+                        script[9] = "I will grant you his execution.";
+                        
+                        speaker[10] = playerName;
+                        leftspeaker[10] = false;
+                        script[10] = "My Lord! I don't even know this man!";
+
+                        speaker[11] = "Theron";
+                        leftspeaker[11] = true;
+                        script[11] = "He left hundreds to die for a bit of coin.";
+
+                        speaker[12] = "Theron";
+                        leftspeaker[12] = true;
+                        script[12] = "They didn't even know their own kingdom had abandoned them...";
+
+                        speaker[13] = "Theron";
+                        leftspeaker[13] = true;
+                        script[13] = "And as the lone survivor, it is only right that you bring this worm  to justice.";
+
+                        totalLines = 14;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 3:
+                        speaker[0] = "Solaris Captain";
+                        leftspeaker[0] = false;
+                        script[0] = "You've raided our kingdom,";
+
+                        speaker[1] = "Solaris Captain";
+                        leftspeaker[1] = false;
+                        script[1] = "in fear of 'legends'?";
+
+                        speaker[2] = "Theron";
+                        leftspeaker[2] = true;
+                        script[2] = "The warriors of the Bulwark lie in graves of snow!";
+
+                        speaker[3] = "Theron";
+                        leftspeaker[3] = true;
+                        script[3] = "And they were not the first to succumb to the hordes...";
+
+                        speaker[4] = "Solaris Knight";
+                        leftspeaker[4] = false;
+                        script[4] = "My brother wrote to me of demons he had seen while scouting.";
+
+                        speaker[5] = "Solaris Knight";
+                        leftspeaker[5] = false;
+                        script[5] = "I thought he had lost his mind...";
+
+                        speaker[6] = "Theron";
+                        leftspeaker[6] = true;
+                        script[6] = "Your leaders turned their eye to the horrors that befell your brethren.";
+
+                        speaker[7] = "Theron";
+                        leftspeaker[7] = true;
+                        script[7] = "I urge all of you to not make the same mistake...";
+
+                        speaker[8] = "Solaris Captain";
+                        leftspeaker[8] = false;
+                        script[8] = "If what you say is true, then we have no choice in the matter.";
+
+                        speaker[9] = "Solaris Captain";
+                        leftspeaker[9] = false;
+                        script[9] = "Soldiers-";
+
+                        speaker[10] = "Solaris Captain";
+                        leftspeaker[10] = false;
+                        script[10] = "stand down...";
+
+                        totalLines = 11;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
                 break;
         }
+    }
+
+    IEnumerator Cutscene15(int action, int instance = 0)
+    {
+        switch (instance)
+        {
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "Exposition_Scene16";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.15f);
+                        yield return new WaitForSeconds(2.0f);
+                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-80, 0, 0), 0.50f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-80, 0, 0), 0.50f);
+                        yield return new WaitForSeconds(2.4f);
+                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-40, 0, 0), 2.0f);
+                        yield return new WaitForSeconds(1.0f);
+                        StartCoroutine(NewDialogue(15, 1));
+                        break;
+                }
+                break;
+            case 2:
+                switch (action)
+                {
+                    case 0:
+                        StartCoroutine(NewDialogue(15, 2));
+                        break;
+                    case 11:
+                        yield return new WaitForSeconds(0.20f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        break;
+                }
+                break;
+            case 3:
+                switch (action)
+                {
+                    case 0:
+                        StartCoroutine(NewDialogue(14, 3));
+                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(160, 0, 0), 1f);
+                        yield return new WaitForSeconds(2.0f);
+                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(120, 0, 0), 0.2f);
+                        break;
+                    case 12:
+                        yield return new WaitForSeconds(2f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.black, 0.8f);
+                        actionsCompleted = true; //actions are completed
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene14(int action, int instance = 0)
@@ -953,12 +1154,13 @@ public class Exposition_Manager : MonoBehaviour
                 {
                     case 0:
                         StartCoroutine(NewDialogue(14, 3));
+                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(160, 0, 0), 1f);
                         yield return new WaitForSeconds(1.50f);
-                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(300, 0, 0), 0.1f);
+                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(120, 0, 0), 0.2f);
                         break;
-                    case 10:
+                    case 12:
                         yield return new WaitForSeconds(2f);
-                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 1.0f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.black, 0.8f);
                         actionsCompleted = true; //actions are completed
                         StartCoroutine(LoadNextLv());
                         break;
