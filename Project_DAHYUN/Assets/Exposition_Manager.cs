@@ -916,13 +916,13 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[0] = true;
                         script[0] = "Ah! This is the rat I presume?";
 
-                        speaker[1] = "Cpt. Agyrii";
+                        speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = false;
                         script[1] = "Don't give him too much credit...";
 
                         speaker[2] = "Theron";
                         leftspeaker[2] = true;
-                        script[2] = "You have impressed me, Captain.";
+                        script[2] = "You have impressed me, Commander.";
 
                         totalLines = 3;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -934,7 +934,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = "Theron";
                         leftspeaker[1] = true;
-                        script[1] = "This is the ''messenger'' who deserted Bulwark?";
+                        script[1] = "You're the ''messenger'' who deserted Fort Hammerfell?";
 
                         speaker[2] = "Theron";
                         leftspeaker[2] = true;
@@ -942,7 +942,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Tesdin";
                         leftspeaker[3] = false;
-                        script[3] = "How can you blame me for abandoning a sinking ship!";
+                        script[3] = "I abandoned a sinking ship!";
 
                         speaker[4] = "Theron";
                         leftspeaker[4] = true;
@@ -1055,7 +1055,10 @@ public class Exposition_Manager : MonoBehaviour
                         speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-80, 0, 0), 0.50f);
                         speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-80, 0, 0), 0.50f);
                         yield return new WaitForSeconds(2.4f);
-                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-40, 0, 0), 2.0f);
+                        
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-15, 0, 0), 2.50f);
+                        yield return new WaitForSeconds(0.4f);
+                        speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-40, 0, 0), 2.50f);
                         yield return new WaitForSeconds(1.0f);
                         StartCoroutine(NewDialogue(15, 1));
                         break;

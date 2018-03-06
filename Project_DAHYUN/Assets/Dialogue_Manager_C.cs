@@ -318,14 +318,20 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Honor Guard":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
                 break;
+            case "S. Officer":
+                iconString = "CloseUps\\Character_CloseUp_SolarisOfficer";
+                break;
+            case "S. Knight":
+                iconString = "CloseUps\\Character_CloseUp_SolarisKnight";
+                break;
             case "Skitter":
                 iconString = "CloseUps\\Character_CloseUp_Skitter";
                 break;
             case "King Gerard":
                 iconString = "CloseUps\\Character_CloseUp_KingGerard";
                 break;
-            case "PVT Mark":
-                iconString = "CloseUps\\Character_CloseUp_HammerfellKnight";
+            case "Cmd. Agyrii":
+                iconString = "CloseUps\\Character_CloseUp_Agyrii";
                 break;
             default:
                 iconString = "CloseUps\\Character_CloseUp_Unknown";
