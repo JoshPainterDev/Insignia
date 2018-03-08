@@ -17,32 +17,37 @@ public class DecisionManager : MonoBehaviour
     public GameObject blackSq;
     public int decisionNumber = 0;
     public int decisionPoints = 100;
-    private GameObject player;
+    public GameObject expositionManager;
+    public GameObject player;
 
     private int optionNumber;
 
 	// Use this for initialization
 	void Start ()
     {
-        player = GameController.controller.playerObject;
         option1Color = option1Button.GetComponent<Outline>().effectColor;
         option2Color = option2Button.GetComponent<Outline>().effectColor;
     }
 
     public void BeginDecision()
     {
-        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position,
-                        new Vector3(player.transform.position.x, cameraObj.transform.position.y, cameraObj.transform.position.z), 0.2f);
+        print("BEGIN DECISION");
+        //this.transform.position = new Vector3(player.transform.position.x, cameraObj.transform.position.y, 0);
+        //cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position,
+        //                new Vector3(player.transform.position.x, cameraObj.transform.position.y, cameraObj.transform.position.z), 0.2f);
 
-        Invoke("showDecisions", 1.0f);
+        Invoke("showDecisions", 2.0f);
     }
 
     void showDecisions()
     {
-        for(int i = 0; i < this.transform.childCount; ++i )
+        for(int i = 0; i < 2; ++i )
         {
             this.transform.GetChild(i).gameObject.SetActive(true);
         }
+
+        this.transform.GetChild(3).gameObject.SetActive(false);
+        this.transform.GetChild(4).gameObject.SetActive(false);
     }
 
     public void OptionSelected(int numSelected)
@@ -50,12 +55,12 @@ public class DecisionManager : MonoBehaviour
         optionNumber = numSelected;
 
         option1Button.GetComponent<Button>().enabled = false;
-        option2Button.GetComponent<Button>().enabled = false;       
+        option2Button.GetComponent<Button>().enabled = false;
 
         switch (decisionNumber)
         {
             case 0:
-                if(optionNumber == 1)
+                if (optionNumber == 1)
                 {
                     StartCoroutine(Decision0(true));
                 }
@@ -99,6 +104,8 @@ public class DecisionManager : MonoBehaviour
             areYouSurePanel.transform.position = option1Button.transform.position - new Vector3(0, 100, 0);
 
             areYouSurePanel.SetActive(true);
+
+            //expositionManager.GetComponent<Exposition_Manager>().DecisionCutscene(15, true);
         }
         else
         {
@@ -114,6 +121,8 @@ public class DecisionManager : MonoBehaviour
             areYouSurePanel.transform.position = option2Button.transform.position - new Vector3(0, 100, 0);
 
             areYouSurePanel.SetActive(true);
+
+            //
         }
     }
 
@@ -142,6 +151,8 @@ public class DecisionManager : MonoBehaviour
             Color temp = option2Button.GetComponent<Image>().color;
             option2Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             temp = option2Button.transform.GetChild(0).GetComponent<Text>().color;
+
+
         }
         else
         {
@@ -176,6 +187,16 @@ public class DecisionManager : MonoBehaviour
             option2Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             //ADD POINTS FOR MAKING A DECISION
             GameController.controller.playerGoodPoints += decisionPoints;
+
+
+            yield return new WaitForSeconds(1f);
+
+            for (int i = 0; i < this.transform.childCount; ++i)
+            {
+                this.transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            expositionManager.GetComponent<Exposition_Manager>().DecisionCutscene(15, true);
         }
         else
         {
@@ -183,13 +204,15 @@ public class DecisionManager : MonoBehaviour
             option1Button.GetComponent<LerpScript>().LerpToColor(temp, temp - new Color(0, 0, 0, 1), 1.75f);
             //ADD POINTS FOR MAKING A DECISION
             GameController.controller.playerEvilPoints += decisionPoints;
-        }
 
-        yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f);
 
-        for (int i = 0; i < this.transform.childCount; ++i)
-        {
-            this.transform.GetChild(i).gameObject.SetActive(false);
+            for (int i = 0; i < this.transform.childCount; ++i)
+            {
+                this.transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            expositionManager.GetComponent<Exposition_Manager>().DecisionCutscene(15, false);
         }
     }
 }

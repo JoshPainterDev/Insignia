@@ -30,6 +30,8 @@ public class Exposition_Manager : MonoBehaviour
     public GameObject speaker05;
     public GameObject speaker06;
 
+    public GameObject decisionManager;
+
     private Vector3 panelUpPos;
     private Vector3 panelDownPos;
     private Color panelOrigColor;
@@ -167,8 +169,11 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene14(actionCounter, instance));
                 break;
             case 15:
-                eMaxInstances = 3;
+                eMaxInstances = 2;
                 StartCoroutine(Cutscene15(actionCounter, instance));
+                break;
+            case 16:
+                //StartCoroutine(Cutscene16(actionCounter, instance));
                 break;
         }
     }
@@ -249,13 +254,13 @@ public class Exposition_Manager : MonoBehaviour
         sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
     }
 
-    IEnumerator NewDialogue(int cutscene, int instance)
+    IEnumerator NewDialogue(int cutscene, int instance, int decisionNum = 0)
     {
         int totalLines = 0;
         bool usesPlayer = false;
-        string[] speaker = new string[20];
-        bool[] leftspeaker = new bool[20];
-        string[] script = new string[20];
+        string[] speaker = new string[25];
+        bool[] leftspeaker = new bool[25];
+        string[] script = new string[25];
 
         actionCounter = 0;
 
@@ -909,136 +914,334 @@ public class Exposition_Manager : MonoBehaviour
                 }
                 break;
             case 15:
-                switch (instance)
+                if(decisionNum == 0)
                 {
-                    case 1:
-                        speaker[0] = "Theron";
-                        leftspeaker[0] = true;
-                        script[0] = "Ah! This is the rat I presume?";
+                    switch (instance)
+                    {
+                        case 1:
+                            speaker[0] = "Theron";
+                            leftspeaker[0] = true;
+                            script[0] = "Ah! This is the rat I presume?";
 
-                        speaker[1] = "Cmd. Agyrii";
-                        leftspeaker[1] = false;
-                        script[1] = "Don't give him too much credit...";
+                            speaker[1] = "Cmd. Agyrii";
+                            leftspeaker[1] = false;
+                            script[1] = "Don't give him too much credit...";
 
-                        speaker[2] = "Theron";
-                        leftspeaker[2] = true;
-                        script[2] = "You have impressed me, Commander.";
+                            speaker[2] = "Theron";
+                            leftspeaker[2] = true;
+                            script[2] = "You have impressed me, Commander.";
 
-                        totalLines = 3;
-                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
-                        break;
-                    case 2:
-                        speaker[0] = "Theron";
-                        leftspeaker[0] = true;
-                        script[0] = "So-";
+                            totalLines = 3;
+                            this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                            break;
+                        case 2:
+                            speaker[0] = "Theron";
+                            leftspeaker[0] = true;
+                            script[0] = "So-";
 
-                        speaker[1] = "Theron";
-                        leftspeaker[1] = true;
-                        script[1] = "You're the ''messenger'' who deserted Fort Hammerfell?";
+                            speaker[1] = "Theron";
+                            leftspeaker[1] = true;
+                            script[1] = "You're the ''messenger'' who deserted Fort Hammerfell?";
 
-                        speaker[2] = "Theron";
-                        leftspeaker[2] = true;
-                        script[2] = "Corporal Tesdin, was it?";
+                            speaker[2] = "Theron";
+                            leftspeaker[2] = true;
+                            script[2] = "Corporal Tesdin, was it?";
 
-                        speaker[3] = "Tesdin";
-                        leftspeaker[3] = false;
-                        script[3] = "I abandoned a sinking ship!";
+                            speaker[3] = "Tesdin";
+                            leftspeaker[3] = false;
+                            script[3] = "I abandoned a sinking ship!";
 
-                        speaker[4] = "Theron";
-                        leftspeaker[4] = true;
-                        script[4] = "You forfeited your right to make that decision, soldier!";
+                            speaker[4] = "Theron";
+                            leftspeaker[4] = true;
+                            script[4] = "You forfeited your right to make that decision, soldier!";
 
-                        speaker[5] = "Tesdin";
-                        leftspeaker[5] = false;
-                        script[5] = "Please! Show mercy! I only did what I had-";
+                            speaker[5] = "Tesdin";
+                            leftspeaker[5] = false;
+                            script[5] = "Please! Show mercy! I only did what I had-";
 
-                        speaker[6] = "Theron";
-                        leftspeaker[6] = true;
-                        script[6] = "Silence!";
+                            speaker[6] = "Theron";
+                            leftspeaker[6] = true;
+                            script[6] = "Silence!";
 
-                        speaker[7] = "Theron";
-                        leftspeaker[7] = true;
-                        script[7] = playerName + ", you've more than repaid your debt.";
+                            speaker[7] = "Theron";
+                            leftspeaker[7] = true;
+                            script[7] = playerName + ", you've more than repaid your debt.";
 
-                        speaker[8] = "Theron";
-                        leftspeaker[8] = true;
-                        script[8] = "As a token of my gratitude,";
+                            speaker[8] = "Theron";
+                            leftspeaker[8] = true;
+                            script[8] = "As a token of my gratitude,";
 
-                        speaker[9] = "Theron";
-                        leftspeaker[9] = true;
-                        script[9] = "I will grant you his execution.";
-                        
-                        speaker[10] = playerName;
-                        leftspeaker[10] = false;
-                        script[10] = "My Lord! I don't even know this man!";
+                            speaker[9] = "Theron";
+                            leftspeaker[9] = true;
+                            script[9] = "I will grant you his execution.";
 
-                        speaker[11] = "Theron";
-                        leftspeaker[11] = true;
-                        script[11] = "He left hundreds to die for a bit of coin.";
+                            speaker[10] = playerName;
+                            leftspeaker[10] = false;
+                            script[10] = "My Lord! I don't even know this man!";
 
-                        speaker[12] = "Theron";
-                        leftspeaker[12] = true;
-                        script[12] = "They didn't even know their own kingdom had abandoned them...";
+                            speaker[11] = "Theron";
+                            leftspeaker[11] = true;
+                            script[11] = "He left hundreds to die for a bit of coin.";
 
-                        speaker[13] = "Theron";
-                        leftspeaker[13] = true;
-                        script[13] = "And as the lone survivor, it is only right that you bring this worm  to justice.";
+                            speaker[12] = "Theron";
+                            leftspeaker[12] = true;
+                            script[12] = "They didn't even know their own kingdom had abandoned them...";
 
-                        totalLines = 14;
-                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
-                        break;
-                    case 3:
-                        speaker[0] = "Solaris Captain";
-                        leftspeaker[0] = false;
-                        script[0] = "You've raided our kingdom,";
+                            speaker[13] = "Theron";
+                            leftspeaker[13] = true;
+                            script[13] = "And as the lone survivor, it is only right that you bring this worm  to justice.";
 
-                        speaker[1] = "Solaris Captain";
-                        leftspeaker[1] = false;
-                        script[1] = "in fear of 'legends'?";
-
-                        speaker[2] = "Theron";
-                        leftspeaker[2] = true;
-                        script[2] = "The warriors of the Bulwark lie in graves of snow!";
-
-                        speaker[3] = "Theron";
-                        leftspeaker[3] = true;
-                        script[3] = "And they were not the first to succumb to the hordes...";
-
-                        speaker[4] = "Solaris Knight";
-                        leftspeaker[4] = false;
-                        script[4] = "My brother wrote to me of demons he had seen while scouting.";
-
-                        speaker[5] = "Solaris Knight";
-                        leftspeaker[5] = false;
-                        script[5] = "I thought he had lost his mind...";
-
-                        speaker[6] = "Theron";
-                        leftspeaker[6] = true;
-                        script[6] = "Your leaders turned their eye to the horrors that befell your brethren.";
-
-                        speaker[7] = "Theron";
-                        leftspeaker[7] = true;
-                        script[7] = "I urge all of you to not make the same mistake...";
-
-                        speaker[8] = "Solaris Captain";
-                        leftspeaker[8] = false;
-                        script[8] = "If what you say is true, then we have no choice in the matter.";
-
-                        speaker[9] = "Solaris Captain";
-                        leftspeaker[9] = false;
-                        script[9] = "Soldiers-";
-
-                        speaker[10] = "Solaris Captain";
-                        leftspeaker[10] = false;
-                        script[10] = "stand down...";
-
-                        totalLines = 11;
-                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
-                        break;
+                            totalLines = 14;
+                            this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                            break;
+                    }
                 }
+                else if(decisionNum == 1)
+                {
+                    switch (instance)
+                    {
+                        case 1:
+                            speaker[0] = "Tesdin";
+                            leftspeaker[0] = false;
+                            script[0] = "*Incoherent gurgling*";
+
+                            speaker[1] = "Theron";
+                            leftspeaker[1] = true;
+                            script[1] = "Well, Nova.";
+
+                            speaker[2] = "Theron";
+                            leftspeaker[2] = true;
+                            script[2] = "It's been a pleasure, but you are a free spirit now.";
+
+                            speaker[3] = "Theron";
+                            leftspeaker[3] = true;
+                            script[3] = "May your travels stray far from this place of conflict.";
+
+                            speaker[4] = playerName;
+                            leftspeaker[4] = false;
+                            script[4] = "Uhh, my lord...";
+
+                            speaker[5] = playerName;
+                            leftspeaker[5] = false;
+                            script[5] = "I-";
+
+                            speaker[6] = playerName;
+                            leftspeaker[6] = false;
+                            script[6] = "I wish to serve as your apprentice.";
+
+                            speaker[7] = "Theron";
+                            leftspeaker[7] = true;
+                            script[7] = "Hhmm.";
+
+                            speaker[8] = "Theron";
+                            leftspeaker[8] = true;
+                            script[8] = "Quite an ambitious one you are...";
+
+                            speaker[9] = "Theron";
+                            leftspeaker[9] = true;
+                            script[9] = "Why do you run back to your cage?";
+
+                            speaker[10] = "Theron";
+                            leftspeaker[10] = true;
+                            script[10] = "Has the taste of blood stained your thoughts?";
+
+                            speaker[11] = playerName;
+                            leftspeaker[11] = false;
+                            script[11] = "My lord, if I am, as you say, 'the Nova',";
+
+                            speaker[12] = playerName;
+                            leftspeaker[12] = false;
+                            script[12] = "then I must have a place in this fight!";
+
+                            speaker[13] = playerName;
+                            leftspeaker[13] = false;
+                            script[13] = "If I am a weapon, then I wish to be honed to my greatest potential.";
+
+                            speaker[14] = playerName;
+                            leftspeaker[14] = false;
+                            script[14] = "Whatever it takes to save the planet from being burried in ash!";
+
+                            speaker[15] = "Theron";
+                            leftspeaker[15] = true;
+                            script[15] = "I have no power to offer.";
+
+                            speaker[16] = "Theron";
+                            leftspeaker[16] = true;
+                            script[16] = "No wisdom to impart.";
+
+                            speaker[17] = "Theron";
+                            leftspeaker[17] = true;
+                            script[17] = "The purpose you seek is not given.";
+
+                            speaker[18] = "Theron";
+                            leftspeaker[18] = true;
+                            script[18] = "It is taken.";
+
+                            speaker[19] = "Theron";
+                            leftspeaker[19] = true;
+                            script[19] = "...";
+
+                            speaker[20] = "Theron";
+                            leftspeaker[20] = true;
+                            script[20] = "Is this truly what you want?";
+
+                            speaker[21] = playerName;
+                            leftspeaker[21] = false;
+                            script[21] = "Yes, my lord!";
+
+                            speaker[22] = playerName;
+                            leftspeaker[22] = false;
+                            script[22] = "I will seize it by the throat.";
+
+                            totalLines = 23;
+                            this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (instance)
+                    {
+                        case 1:
+                            speaker[0] = "Tesdin";
+                            leftspeaker[0] = false;
+                            script[0] = "Solar Sons above!!";
+
+                            speaker[1] = "Tesdin";
+                            leftspeaker[1] = false;
+                            script[1] = "Please don't let me die here!";
+
+                            speaker[2] = "Tesdin";
+                            leftspeaker[2] = false;
+                            script[2] = "I beg of you!";
+
+                            speaker[3] = "Tesdin";
+                            leftspeaker[3] = false;
+                            script[3] = "Spare me!!";
+
+                            speaker[4] = playerName;
+                            leftspeaker[4] = false;
+                            script[4] = "I won't do it...";
+
+                            speaker[5] = playerName;
+                            leftspeaker[5] = false;
+                            script[5] = "His life is not mine to judge.";
+
+                            speaker[6] = "Theron";
+                            leftspeaker[6] = true;
+                            script[6] = "Very well.";
+
+                            speaker[7] = "Tesdin";
+                            leftspeaker[7] = false;
+                            script[7] = "Oh! bless your soul strang-";
+
+                            speaker[8] = playerName;
+                            leftspeaker[8] = false;
+                            script[8] = "Why would you do that?!";
+
+                            speaker[9] = "Theron";
+                            leftspeaker[9] = false;
+                            script[9] = "His life was a burden, one that I will not force upon my people.";
+
+                            speaker[10] = playerName;
+                            leftspeaker[10] = false;
+                            script[10] = "What happened to needing every sword you could muster?!";
+
+                            speaker[11] = "Theron";
+                            leftspeaker[11] = false;
+                            script[11] = "I did not acheive my power by taking poor bets.";
+
+                            speaker[12] = "Theron";
+                            leftspeaker[12] = true;
+                            script[12] = "If you want to win, you keep the cards you can work with-";
+
+                            speaker[13] = "Theron";
+                            leftspeaker[13] = true;
+                            script[13] = "And burn the rest...";
+
+                            speaker[14] = "Theron";
+                            leftspeaker[14] = true;
+                            script[14] = "You may not see it now, but you are the ace up my sleeve, Nova.";
+
+                            speaker[15] = playerName;
+                            leftspeaker[15] = false;
+                            script[15] = "Show me what is at stake that was so much more important than his life!";
+
+                            speaker[16] = "Theron";
+                            leftspeaker[16] = true;
+                            script[16] = "I can only show you what you are willing to see, child.";
+
+                            speaker[17] = playerName;
+                            leftspeaker[17] = false;
+                            script[17] = "Then show me everything!";
+
+                            speaker[18] = playerName;
+                            leftspeaker[18] = false;
+                            script[18] = "I have nothing left...";
+
+                            speaker[19] = playerName;
+                            leftspeaker[19] = false;
+                            script[19] = "No home. No family. No purpose.";
+
+                            speaker[20] = "Theron";
+                            leftspeaker[20] = true;
+                            script[20] = "Come, child.";
+
+                            speaker[21] = "Theron";
+                            leftspeaker[21] = true;
+                            script[21] = "I will show you your purpose-";
+
+                            speaker[22] = "Theron";
+                            leftspeaker[22] = true;
+                            script[22] = "But it is up to you, to seize it!";
+
+                            totalLines = 23;
+                            this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                            break;
+                    }
+                }
+                break;
+            case 16: //EVIL OPTION :: DECISIONS #1
+
                 break;
         }
     }
+
+    IEnumerator Cutscene15e(int action)
+    {
+        switch (action)
+        {
+            case 0:
+                nextLevel = "Exposition_Scene16";
+                //// Set next Level //
+                //blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.15f);
+                //yield return new WaitForSeconds(2.0f);
+                //speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-80, 0, 0), 0.50f);
+                //speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-80, 0, 0), 0.50f);
+                //yield return new WaitForSeconds(2.4f);
+
+                //speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-15, 0, 0), 2.50f);
+                //yield return new WaitForSeconds(0.4f);
+                //speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-40, 0, 0), 2.50f);
+                yield return new WaitForSeconds(1.0f);
+                StartCoroutine(NewDialogue(15, 1, 1));
+                break;
+        }
+    }
+
+    IEnumerator Cutscene15g(int action)
+    {
+        switch (action)
+        {
+            case 0:
+                nextLevel = "Exposition_Scene16";
+                // Set next Level //
+                yield return new WaitForSeconds(2.0f);
+                StartCoroutine(NewDialogue(15, 1, 2));
+                break;
+        }
+    }
+
 
     IEnumerator Cutscene15(int action, int instance = 0)
     {
@@ -1059,7 +1262,7 @@ public class Exposition_Manager : MonoBehaviour
                         speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-15, 0, 0), 2.50f);
                         yield return new WaitForSeconds(0.4f);
                         speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-40, 0, 0), 2.50f);
-                        yield return new WaitForSeconds(1.0f);
+                        
                         StartCoroutine(NewDialogue(15, 1));
                         break;
                 }
@@ -1076,22 +1279,8 @@ public class Exposition_Manager : MonoBehaviour
                         Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         break;
-                }
-                break;
-            case 3:
-                switch (action)
-                {
-                    case 0:
-                        StartCoroutine(NewDialogue(14, 3));
-                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(160, 0, 0), 1f);
-                        yield return new WaitForSeconds(2.0f);
-                        speaker04.transform.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(120, 0, 0), 0.2f);
-                        break;
-                    case 12:
-                        yield return new WaitForSeconds(2f);
-                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.black, 0.8f);
-                        actionsCompleted = true; //actions are completed
-                        StartCoroutine(LoadNextLv());
+                    case 15:
+                        decisionManager.GetComponent<DecisionManager>().BeginDecision();
                         break;
                 }
                 break;
@@ -1819,6 +2008,20 @@ public class Exposition_Manager : MonoBehaviour
                 sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
                 yield return new WaitForSeconds(3.25f);
                 StartCoroutine(LoadNextLv());
+                break;
+        }
+    }
+
+    public void DecisionCutscene(int cutscene, bool goodDecision)
+    {
+        print("Cutscene: " + cutscene + " Good Decision: " + goodDecision);
+        switch(cutscene)
+        {
+            case 15:
+                if(goodDecision)
+                    StartCoroutine(Cutscene15g(actionCounter));
+                else
+                    StartCoroutine(Cutscene15e(actionCounter));
                 break;
         }
     }
