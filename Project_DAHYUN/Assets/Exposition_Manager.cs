@@ -39,6 +39,8 @@ public class Exposition_Manager : MonoBehaviour
     private Dialogue_Manager_C dialogueManager;
     private int eCurrentCutscene = 0;
     private int eCurrentInstance = 1;
+    [HideInInspector]
+    public int decisionNumber = 0;
     private int eMaxInstances = 1;
     private float eInstanceDelay = 2.0f;
 
@@ -75,7 +77,9 @@ public class Exposition_Manager : MonoBehaviour
             encounter.encounterNumber = 1;  
         }
 
-        BeginCutscene(encounter.encounterNumber);
+        decisionNumber = 1;
+        BeginCutscene(15, 1);
+        //BeginCutscene(encounter.encounterNumber);
     }
 
     //public void Update()
@@ -170,7 +174,19 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 15:
                 eMaxInstances = 2;
-                StartCoroutine(Cutscene15(actionCounter, instance));
+
+                switch(decisionNumber)
+                {
+                    case 0:
+                        StartCoroutine(Cutscene15(actionCounter, instance));
+                        break;
+                    case 1:
+                        StartCoroutine(Cutscene15e(actionCounter));
+                        break;
+                    case 2:
+                        StartCoroutine(Cutscene15g(actionCounter));
+                        break;
+                }
                 break;
             case 16:
                 //StartCoroutine(Cutscene16(actionCounter, instance));
@@ -258,9 +274,9 @@ public class Exposition_Manager : MonoBehaviour
     {
         int totalLines = 0;
         bool usesPlayer = false;
-        string[] speaker = new string[25];
-        bool[] leftspeaker = new bool[25];
-        string[] script = new string[25];
+        string[] speaker = new string[30];
+        bool[] leftspeaker = new bool[30];
+        string[] script = new string[30];
 
         actionCounter = 0;
 
@@ -1007,11 +1023,11 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[1] = "Theron";
                             leftspeaker[1] = true;
-                            script[1] = "Well, Nova.";
+                            script[1] = "Well Nova, it's been a pleasure working together.";
 
                             speaker[2] = "Theron";
                             leftspeaker[2] = true;
-                            script[2] = "It's been a pleasure, but you are a free spirit now.";
+                            script[2] = "You are a free spirit now.";
 
                             speaker[3] = "Theron";
                             leftspeaker[3] = true;
@@ -1027,7 +1043,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[6] = playerName;
                             leftspeaker[6] = false;
-                            script[6] = "I wish to serve as your apprentice.";
+                            script[6] = "I want to stay and fight.";
 
                             speaker[7] = "Theron";
                             leftspeaker[7] = true;
@@ -1035,11 +1051,11 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[8] = "Theron";
                             leftspeaker[8] = true;
-                            script[8] = "Quite an ambitious one you are...";
+                            script[8] = "You are quite the rebel Nova...";
 
                             speaker[9] = "Theron";
                             leftspeaker[9] = true;
-                            script[9] = "Why do you run back to your cage?";
+                            script[9] = "Why would you risk your life in a losing battle?";
 
                             speaker[10] = "Theron";
                             leftspeaker[10] = true;
@@ -1047,7 +1063,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[11] = playerName;
                             leftspeaker[11] = false;
-                            script[11] = "My lord, if I am, as you say, 'the Nova',";
+                            script[11] = "If I truly am 'Nova',";
 
                             speaker[12] = playerName;
                             leftspeaker[12] = false;
@@ -1055,23 +1071,23 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[13] = playerName;
                             leftspeaker[13] = false;
-                            script[13] = "If I am a weapon, then I wish to be honed to my greatest potential.";
+                            script[13] = "I'd gladly risk a fight to end Skorje's conquest!";
 
                             speaker[14] = playerName;
                             leftspeaker[14] = false;
-                            script[14] = "Whatever it takes to save the planet from being burried in ash!";
+                            script[14] = "Whatever it takes to stop the planet from being burried in ash!";
 
                             speaker[15] = "Theron";
                             leftspeaker[15] = true;
-                            script[15] = "I have no power to offer.";
+                            script[15] = "I would call your words selfless,";
 
                             speaker[16] = "Theron";
                             leftspeaker[16] = true;
-                            script[16] = "No wisdom to impart.";
+                            script[16] = "but Skorje surely intends to destroy you along with all sentient life...";
 
                             speaker[17] = "Theron";
                             leftspeaker[17] = true;
-                            script[17] = "The purpose you seek is not given.";
+                            script[17] = "And the life of purpose you seek is not given;";
 
                             speaker[18] = "Theron";
                             leftspeaker[18] = true;
@@ -1079,21 +1095,37 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[19] = "Theron";
                             leftspeaker[19] = true;
-                            script[19] = "...";
+                            script[19] = "While there is much to teach you for the struggle ahead,";
 
                             speaker[20] = "Theron";
                             leftspeaker[20] = true;
-                            script[20] = "Is this truly what you want?";
+                            script[20] = "I can only show you as much as you are willing to give.";
 
                             speaker[21] = playerName;
                             leftspeaker[21] = false;
-                            script[21] = "Yes, my lord!";
+                            script[21] = "The blade is all I have left to offer, my lord...";
 
-                            speaker[22] = playerName;
-                            leftspeaker[22] = false;
-                            script[22] = "I will seize it by the throat.";
+                            speaker[22] = "Theron";
+                            leftspeaker[22] = true;
+                            script[22] = "Then I shall take your blade into my service once more.";
 
-                            totalLines = 23;
+                            speaker[23] = playerName;
+                            leftspeaker[23] = false;
+                            script[23] = "Thank you, my lord!";
+
+                            speaker[24] = playerName;
+                            leftspeaker[24] = false;
+                            script[24] = "I will not fail you!";
+
+                            speaker[25] = "Theron";
+                            leftspeaker[25] = true;
+                            script[25] = "Come my apprentice,";
+
+                            speaker[26] = "Theron";
+                            leftspeaker[26] = true;
+                            script[26] = "We have little time to waste.";
+
+                            totalLines = 27;
                             this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                             break;
                     }
@@ -1105,11 +1137,11 @@ public class Exposition_Manager : MonoBehaviour
                         case 1:
                             speaker[0] = "Tesdin";
                             leftspeaker[0] = false;
-                            script[0] = "Solar Sons above!!";
+                            script[0] = "Solar Sons above!";
 
                             speaker[1] = "Tesdin";
                             leftspeaker[1] = false;
-                            script[1] = "Please don't let me die here!";
+                            script[1] = "Please don't kill me!";
 
                             speaker[2] = "Tesdin";
                             leftspeaker[2] = false;
@@ -1117,7 +1149,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[3] = "Tesdin";
                             leftspeaker[3] = false;
-                            script[3] = "Spare me!!";
+                            script[3] = "Spare my wretched soul!";
 
                             speaker[4] = playerName;
                             leftspeaker[4] = false;
@@ -1135,9 +1167,9 @@ public class Exposition_Manager : MonoBehaviour
                             leftspeaker[7] = false;
                             script[7] = "Oh! bless your soul strang-";
 
-                            speaker[8] = playerName;
+                            speaker[8] = "Tesdin";
                             leftspeaker[8] = false;
-                            script[8] = "Why would you do that?!";
+                            script[8] = "AAHH!!";
 
                             speaker[9] = "Theron";
                             leftspeaker[9] = false;
@@ -1165,7 +1197,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[15] = playerName;
                             leftspeaker[15] = false;
-                            script[15] = "Show me what is at stake that was so much more important than his life!";
+                            script[15] = "What is at stake that was so much more important than his life!";
 
                             speaker[16] = "Theron";
                             leftspeaker[16] = true;
@@ -1189,13 +1221,25 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[21] = "Theron";
                             leftspeaker[21] = true;
-                            script[21] = "I will show you your purpose-";
+                            script[21] = "I will share with you my knowledge,";
 
                             speaker[22] = "Theron";
                             leftspeaker[22] = true;
-                            script[22] = "But it is up to you, to seize it!";
+                            script[22] = "and together we might stand a chance against Skorje.";
 
-                            totalLines = 23;
+                            speaker[23] = playerName;
+                            leftspeaker[23] = false;
+                            script[23] = "If your power can help me save others from sensless salughter,";
+
+                            speaker[24] = playerName;
+                            leftspeaker[24] = false;
+                            script[24] = "then I will do as you command-";
+
+                            speaker[25] = playerName;
+                            leftspeaker[25] = false;
+                            script[25] = "my lord...";
+
+                            totalLines = 26;
                             this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                             break;
                     }
@@ -1207,34 +1251,49 @@ public class Exposition_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator Cutscene15e(int action)
+    IEnumerator Cutscene15e(int action) // EVIL OUTCOME
     {
         switch (action)
         {
             case 0:
-                nextLevel = "Exposition_Scene16";
+                nextLevel = "MainMenu_Tutorial_Scene";
                 //// Set next Level //
                 //blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.15f);
-                //yield return new WaitForSeconds(2.0f);
-                //speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-80, 0, 0), 0.50f);
-                //speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-80, 0, 0), 0.50f);
-                //yield return new WaitForSeconds(2.4f);
-
-                //speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-15, 0, 0), 2.50f);
-                //yield return new WaitForSeconds(0.4f);
-                //speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-40, 0, 0), 2.50f);
-                yield return new WaitForSeconds(1.0f);
+                cameraObj.GetComponent<CameraController>().LerpCameraSize(150, 120, 1.0f);
+                //yield return new WaitForSeconds(0.50f);
+                cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(80,0,0), 1.0f);
+                yield return new WaitForSeconds(2.0f);
+                playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
+                playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+                //playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(20,0,0), 4.0f);
+                yield return new WaitForSeconds(2.0f);
+                playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position - new Vector3(20, 0, 0), 2.0f);
+                cameraObj.GetComponent<CameraController>().LerpCameraSize(120, 150, 2.0f);
+                //yield return new WaitForSeconds(0.50f);
+                cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position - new Vector3(80, 0, 0), 2.0f);
+                yield return new WaitForSeconds(2.0f);
                 StartCoroutine(NewDialogue(15, 1, 1));
+                break;
+            case 4:
+                playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
+                break;
+            case 27:
+                actionsCompleted = true; //actions are completed
+                yield return new WaitForSeconds(3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                StartCoroutine(LoadNextLv());
                 break;
         }
     }
 
-    IEnumerator Cutscene15g(int action)
+    IEnumerator Cutscene15g(int action) //GOOD OUTCOME
     {
         switch (action)
         {
             case 0:
-                nextLevel = "Exposition_Scene16";
+                nextLevel = "MainMenu_Scene";
                 // Set next Level //
                 yield return new WaitForSeconds(2.0f);
                 StartCoroutine(NewDialogue(15, 1, 2));
@@ -1280,6 +1339,7 @@ public class Exposition_Manager : MonoBehaviour
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         break;
                     case 15:
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
                         decisionManager.GetComponent<DecisionManager>().BeginDecision();
                         break;
                 }
@@ -2015,6 +2075,12 @@ public class Exposition_Manager : MonoBehaviour
     public void DecisionCutscene(int cutscene, bool goodDecision)
     {
         print("Cutscene: " + cutscene + " Good Decision: " + goodDecision);
+
+        if (goodDecision)
+            decisionNumber = 2;
+        else
+            decisionNumber = 1;
+
         switch(cutscene)
         {
             case 15:
