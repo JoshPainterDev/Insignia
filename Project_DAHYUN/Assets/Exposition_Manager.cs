@@ -77,7 +77,7 @@ public class Exposition_Manager : MonoBehaviour
             encounter.encounterNumber = 1;  
         }
 
-        decisionNumber = 1;
+        decisionNumber = 2;
         BeginCutscene(15, 1);
         //BeginCutscene(encounter.encounterNumber);
     }
@@ -1141,7 +1141,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[1] = "Tesdin";
                             leftspeaker[1] = false;
-                            script[1] = "Please don't kill me!";
+                            script[1] = "Spare my wretched soul!";
 
                             speaker[2] = "Tesdin";
                             leftspeaker[2] = false;
@@ -1149,7 +1149,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[3] = "Tesdin";
                             leftspeaker[3] = false;
-                            script[3] = "Spare my wretched soul!";
+                            script[3] = "Please don't kill me!";
 
                             speaker[4] = playerName;
                             leftspeaker[4] = false;
@@ -1173,7 +1173,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[9] = "Theron";
                             leftspeaker[9] = false;
-                            script[9] = "His life was a burden, one that I will not force upon my people.";
+                            script[9] = "His life was a burden that I will not force upon my people.";
 
                             speaker[10] = playerName;
                             leftspeaker[10] = false;
@@ -1229,11 +1229,11 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[23] = playerName;
                             leftspeaker[23] = false;
-                            script[23] = "If your power can help me save others from sensless salughter,";
+                            script[23] = "If your power can help me save others from senseless salughter,";
 
                             speaker[24] = playerName;
                             leftspeaker[24] = false;
-                            script[24] = "then I will do as you command-";
+                            script[24] = "then I will do as you ask-";
 
                             speaker[25] = playerName;
                             leftspeaker[25] = false;
@@ -1256,21 +1256,18 @@ public class Exposition_Manager : MonoBehaviour
         switch (action)
         {
             case 0:
-                nextLevel = "MainMenu_Tutorial_Scene";
+                nextLevel = "MainMenu_Scene";
                 //// Set next Level //
-                //blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.15f);
                 cameraObj.GetComponent<CameraController>().LerpCameraSize(150, 120, 1.0f);
                 //yield return new WaitForSeconds(0.50f);
                 cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(80,0,0), 1.0f);
                 yield return new WaitForSeconds(2.0f);
                 playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
                 playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
-                //playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(20,0,0), 4.0f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(20,0,0), 4.0f);
                 yield return new WaitForSeconds(2.0f);
                 playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position - new Vector3(20, 0, 0), 2.0f);
                 cameraObj.GetComponent<CameraController>().LerpCameraSize(120, 150, 2.0f);
-                //yield return new WaitForSeconds(0.50f);
                 cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position - new Vector3(80, 0, 0), 2.0f);
                 yield return new WaitForSeconds(2.0f);
                 StartCoroutine(NewDialogue(15, 1, 1));
@@ -1294,9 +1291,34 @@ public class Exposition_Manager : MonoBehaviour
         {
             case 0:
                 nextLevel = "MainMenu_Scene";
-                // Set next Level //
+                //// Set next Level //
+                cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(80, 0, 0), 0.65f);
                 yield return new WaitForSeconds(2.0f);
                 StartCoroutine(NewDialogue(15, 1, 2));
+                break;
+            case 8:
+                speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
+                yield return new WaitForSeconds(1f);
+                speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(0, 70, 0), 0.5f);
+                speaker04.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, new Color(0.25f, 0.25f, 0.25f, 1.0f), 0.75f);
+                yield return new WaitForSeconds(2f);
+                speaker06.GetComponent<ParticleSystem>().Play();
+                yield return new WaitForSeconds(0.75f);
+                speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(0, 70, 0), 3f);
+                yield return new WaitForSeconds(1f);
+                speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
+                break;
+            case 9:
+                Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
+                GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                yield return new WaitForSeconds(1f);
+                playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                break;
+            case 26:
+                actionsCompleted = true; //actions are completed
+                yield return new WaitForSeconds(3f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                StartCoroutine(LoadNextLv());
                 break;
         }
     }
