@@ -77,7 +77,7 @@ public class Exposition_Manager : MonoBehaviour
             encounter.encounterNumber = 1;  
         }
 
-        decisionNumber = 2;
+        decisionNumber = 0;
         BeginCutscene(15, 1);
         //BeginCutscene(encounter.encounterNumber);
     }
@@ -969,11 +969,11 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[4] = "Theron";
                             leftspeaker[4] = true;
-                            script[4] = "You forfeited your right to make that decision, soldier!";
+                            script[4] = "As your own kin drowned before you.";
 
                             speaker[5] = "Tesdin";
                             leftspeaker[5] = false;
-                            script[5] = "Please! Show mercy! I only did what I had-";
+                            script[5] = "Please! I only did what I had-";
 
                             speaker[6] = "Theron";
                             leftspeaker[6] = true;
@@ -997,15 +997,15 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[11] = "Theron";
                             leftspeaker[11] = true;
-                            script[11] = "He left hundreds to die for a bit of coin.";
+                            script[11] = "Would you prefer he buy you dinner first?";
 
                             speaker[12] = "Theron";
                             leftspeaker[12] = true;
-                            script[12] = "They didn't even know their own kingdom had abandoned them...";
+                            script[12] = "He abandoned you and hundreds of soldiers to be slaughtered...";
 
                             speaker[13] = "Theron";
                             leftspeaker[13] = true;
-                            script[13] = "And as the lone survivor, it is only right that you bring this worm  to justice.";
+                            script[13] = "Death is a mercy to scum like him.";
 
                             totalLines = 14;
                             this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -1023,19 +1023,19 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[1] = "Theron";
                             leftspeaker[1] = true;
-                            script[1] = "Well Nova, it's been a pleasure working together.";
+                            script[1] = "Good riddance.";
 
                             speaker[2] = "Theron";
                             leftspeaker[2] = true;
-                            script[2] = "You are a free spirit now.";
+                            script[2] = "You're a free spirit now Nova.";
 
                             speaker[3] = "Theron";
                             leftspeaker[3] = true;
-                            script[3] = "May your travels stray far from this place of conflict.";
+                            script[3] = "May fortune smile upon your travels.";
 
                             speaker[4] = playerName;
                             leftspeaker[4] = false;
-                            script[4] = "Uhh, my lord...";
+                            script[4] = "My lord...";
 
                             speaker[5] = playerName;
                             leftspeaker[5] = false;
@@ -1264,8 +1264,12 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(2.0f);
                 playerMannequin.GetComponent<AnimationController>().PlayHoldAttackAnim();
                 playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
-                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(20,0,0), 4.0f);
-                yield return new WaitForSeconds(2.0f);
+                playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(60,0,0), 4.0f);
+                speaker04.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 8.0f);
+                yield return new WaitForSeconds(0.2f);
+                blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 8.0f);
+                yield return new WaitForSeconds(1.6f);
                 playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                 cameraObj.GetComponent<CameraController>().LerpCameraSize(120, 150, 2.0f);
                 cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position - new Vector3(80, 0, 0), 2.0f);
@@ -1335,6 +1339,7 @@ public class Exposition_Manager : MonoBehaviour
                         nextLevel = "Exposition_Scene16";
                         // Set next Level //
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.15f);
+                        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(70, 0, 0), 0.40f);
                         yield return new WaitForSeconds(2.0f);
                         speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(-80, 0, 0), 0.50f);
                         speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-80, 0, 0), 0.50f);
@@ -1352,7 +1357,17 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.35f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(140, 0, 0), 0.80f);
                         StartCoroutine(NewDialogue(15, 2));
+                        break;
+                    case 4:
+                        speaker02.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.80f);
+                        speaker02.transform.GetChild(0).GetComponent<LerpScript>().LerpToPos(speaker02.transform.GetChild(0).transform.position, speaker02.transform.GetChild(0).transform.position + new Vector3(300,0,0), 0.5f);
+                        yield return new WaitForSeconds(0.80f);
+                        speaker02.transform.GetChild(1).GetComponent<LerpScript>().LerpToPos(speaker02.transform.GetChild(1).transform.position, speaker02.transform.GetChild(1).transform.position + new Vector3(300, 0, 0), 0.5f);
                         break;
                     case 11:
                         yield return new WaitForSeconds(0.20f);

@@ -28,7 +28,6 @@ public class Dialogue_Manager_C : MonoBehaviour
     private int counter;
     private GameObject playerImage;
 
-    //NEW SHIT
     private int dCurrentLine = 0;
     private int dTotalLines = 0;
     private string[] dScript;
@@ -298,7 +297,7 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "";
                 break;
             case "Tesdin":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_Tesdin";
                 break;
             case "Jes":
                 iconString = "";

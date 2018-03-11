@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 53
+  controlID: 11
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 54
+  controlID: 12
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 55
+  controlID: 13
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -355,9 +355,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 54500000
-    m_LastClickedID: 20564
-    m_ExpandedIDs: 9efbffff00000000f04f0000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 3af6fbffa0f9fbffeef9ffff9efbffff00000000a64f0000f64f0000dad20000e2d2000032d3000096d30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -413,9 +413,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 241.99808, y: -97.15007, z: -1.875}
+    m_Target: {x: 405.90802, y: -97.99371, z: -5}
     speed: 2
-    m_Value: {x: 241.99808, y: -97.15007, z: -1.875}
+    m_Value: {x: 405.90802, y: -97.99371, z: -5}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -443,9 +443,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 480.6247
+    m_Target: 783.38116
     speed: 2
-    m_Value: 480.6247
+    m_Value: 783.38116
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -629,6 +629,7 @@ MonoBehaviour:
     - {fileID: 1107682247809565566, guid: 7b872104391cc47489fb47b74e4fac3b, type: 2}
     - {fileID: 1107410583275928890, guid: 20dc6a6171c67b54f989900ecc3d91e3, type: 2}
     - {fileID: 1107612387560202144, guid: eba6b7afd1131d643b25d1eaa9b0ec91, type: 2}
+    - {fileID: 1107834878856856414, guid: 7be3eba0fe980904e96f9fb0c3265015, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.7823684
       e01: 0
@@ -1254,6 +1255,22 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 0}
   m_BreadCrumbs: []
@@ -1306,19 +1323,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/Characters
+    - Assets/Resources/Animations/NPCs/Tesdin
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Characters
+  - Assets/Resources/Animations/NPCs/Tesdin
   m_LastFoldersGridSize: 16
   m_LastProjectPath: J:\ProjectDAHYUN\Project_DAHYUN
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 367}
-    m_SelectedIDs: b82a0000
-    m_LastClickedID: 10936
-    m_ExpandedIDs: 00000000e8280000b82b0000502c0000662c00008c2c0000f42d0000a62f0000b02f00001c310000b4310000a0320000523300005a3300007e3300009c330000b8330000d2330000dc350000ee3500001a3600008036000006370000e83700001e38000074380000e03800004c3a0000ac3b0000443c0000c23d0000ec3d00009c4000002c420000f4420000184400001e44000082440000a6440000fc4400001e460000d046000004480000c2490000e64c0000224d0000145800001658000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 1362}
+    m_SelectedIDs: e04a0000
+    m_LastClickedID: 19168
+    m_ExpandedIDs: 00000000e8280000b82b0000502c0000662c00008c2c0000f42d0000a62f0000b02f00001c310000b4310000a0320000523300005a3300007e3300009c330000b8330000d2330000dc350000ee3500001a3600008036000006370000e83700001e38000074380000e03800004c3a0000ac3b0000443c0000c23d0000ec3d00009c40000030420000f84200001c4400002244000086440000aa4400000045000022460000d446000008480000c6490000ec4c0000284d00001a5800001c58000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1346,7 +1363,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e8280000b82b0000502c0000662c00008c2c0000f42d0000a62f0000b02f00001c310000b4310000a0320000523300005a3300007e3300009c330000b8330000d2330000dc350000ee3500001a3600008036000006370000e83700001e38000074380000e03800004c3a0000ac3b0000443c0000c23d0000ec3d00009c4000002c420000f4420000184400001e44000082440000a6440000fc4400001e460000d046000004480000c2490000e64c0000224d00001458000016580000
+    m_ExpandedIDs: 00000000e8280000b82b0000502c0000662c00008c2c0000f42d0000a62f0000b02f00001c310000b4310000a0320000523300005a3300007e3300009c330000b8330000d2330000dc350000ee3500001a3600008036000006370000e83700001e38000074380000e03800004c3a0000ac3b0000443c0000c23d0000ec3d00009c40000030420000f84200001c4400002244000086440000aa4400000045000022460000d446000008480000c6490000ec4c0000284d00001a5800001c580000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1374,21 +1391,21 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 62220000cc210000d02100006c24000084240000fe210000dc26000070250000f026000006cd0000f02b00001a3000003a340000722600001248000004340000725300004c5d000052f3f6fffe540000babcffff664a0000b8300000d86b0000b05e00000e3a00006c05000074460000fa3c00006405000076610000c26a0100d20500005e46000034f200000a3b00000c06000040420000144800003a5f0000a876000046450000a694f9ffd650000098540000e40500005a65000016060000f6080000e205000002840000e00500001666000030640000c45600005e8b00008831000038380000f6560000d66900007470000000000000ba400000280600000a4b0000344b0000
+    m_ExpandedInstanceIDs: 62220000cc210000d02100006c24000084240000fe210000dc26000070250000f026000006cd0000f02b00001a3000003a340000722600001248000004340000725300004c5d000052f3f6fffe540000babcffff664a0000b8300000d86b0000b05e00000e3a00006c05000074460000fa3c00006405000076610000c26a0100d20500005e46000034f200000a3b00000c06000040420000144800003a5f0000a876000046450000a694f9ffd650000098540000e40500005a65000016060000f6080000e205000002840000e00500001666000030640000c45600005e8b00008831000038380000f6560000d66900007470000000000000ba400000280600000a4b0000344b00005a580000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Tesdin
-      m_OriginalName: Tesdin
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 22576
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
@@ -1398,7 +1415,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 36}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_DirectoriesAreaWidth: 224
 --- !u!114 &20

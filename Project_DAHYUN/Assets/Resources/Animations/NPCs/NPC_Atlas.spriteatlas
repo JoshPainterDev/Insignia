@@ -90,9 +90,11 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 195fd6323b347e841b87465ef6d8626d, type: 3}
     - {fileID: 2800000, guid: 861823ed2734b06419b42caeefd5b451, type: 3}
     - {fileID: 2800000, guid: c588f2cf2101732439e496ee71a2dfb7, type: 3}
-    - {fileID: 2800000, guid: 5c687e3e40a2eef4b85010d4e278ee56, type: 3}
     - {fileID: 2800000, guid: c3da99be6ec92b04da4d74013c77e4f8, type: 3}
     - {fileID: 2800000, guid: 9096865a97c2e5a4da88fe42251c29d1, type: 3}
+    - {fileID: 2800000, guid: 010e7cf48ffa3014cae19d5723dc4d72, type: 3}
+    - {fileID: 2800000, guid: 1a43c5ae27f07c94381516bb37eaa230, type: 3}
+    - {fileID: 2800000, guid: ab61a2731a5d54642a282c60bcbe3a95, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -100,7 +102,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 14f0198945ecdb6429c24bc6db92dc36, type: 3}
   - {fileID: 21300000, guid: cfb26ca8f4b2e03429b72870c15d578b, type: 3}
   - {fileID: 21300000, guid: 6340ce25f0c7578419bba6083841f926, type: 3}
-  - {fileID: 21300000, guid: 5c687e3e40a2eef4b85010d4e278ee56, type: 3}
+  - {fileID: 21300000, guid: 9096865a97c2e5a4da88fe42251c29d1, type: 3}
   - {fileID: 21300000, guid: 0e34d86315f613746b9b03a8c2a98368, type: 3}
   - {fileID: 21300000, guid: 6e222fc14e4d04546ae48983ae41bb5e, type: 3}
   - {fileID: 21300000, guid: 4fdc6da496aa7f04091ab633de76282c, type: 3}
@@ -142,6 +144,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 77dd6ee014ee9534787ee46887ff315b, type: 3}
   - {fileID: 21300000, guid: c8db9ea73fb395f4db83fc1aed79c846, type: 3}
   - {fileID: 21300000, guid: c588f2cf2101732439e496ee71a2dfb7, type: 3}
+  - {fileID: 21300000, guid: 010e7cf48ffa3014cae19d5723dc4d72, type: 3}
   - {fileID: 21300000, guid: 56cbe5598328049458b57cc4dcd97674, type: 3}
   - {fileID: 21300000, guid: e71f588b41a83c3498915827aaa78f14, type: 3}
   - {fileID: 21300000, guid: 63bec3b3e93b509489a5aa641a831afa, type: 3}
@@ -149,13 +152,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ceddc1a88a68da64ea12ecb177ed7b12, type: 3}
   - {fileID: 21300000, guid: 950a946cd3cd7784781365339887ab91, type: 3}
   - {fileID: 21300000, guid: a372edbf3f1ba69499c5ee0770c55e74, type: 3}
+  - {fileID: 21300000, guid: ab61a2731a5d54642a282c60bcbe3a95, type: 3}
+  - {fileID: 21300000, guid: 1a43c5ae27f07c94381516bb37eaa230, type: 3}
   - {fileID: 21300000, guid: 1b7bfaa0cabbdc54cb0f2fea6d86223a, type: 3}
   m_PackedSpriteNamesToIndex:
   - Ayo_NoHat_Swords_Image
   - HammerfellKnight_Image
   - Solaris_Officer_NoWeapon_Image
   - Seamstress_Still_Idle_Mad_Hood
-  - Ayo_NoHat_Image
+  - Tesdin_Bound
   - Seamstress_Still_Idle_Happy_Hood
   - Slade_Still_Sheathed
   - Ayo_Combat_BlueGlow_Stilll
@@ -197,6 +202,7 @@ SpriteAtlas:
   - Seamstress_Still_Idle_Happy
   - Solaris_Officer_Sword_Image
   - Ayo_Idle_Still
+  - Tesdin_Bound 1
   - Slade_BladeIgniteAnim04
   - Theron_Image_Cloaked
   - Slade_BladeIgniteAnim01
@@ -204,6 +210,8 @@ SpriteAtlas:
   - Seamstress_Still_CombatCloak
   - Slade_BladeIgniteAnim03
   - Seamstress_CombatIdle02
+  - Tesdin_Dead02
+  - Tesdin_Dead01
   - Seamstress_CombatIdle01
   m_Tag: NPC_Atlas
   m_IsVariant: 0
