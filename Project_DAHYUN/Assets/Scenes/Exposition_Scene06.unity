@@ -594,7 +594,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -13.6
+      value: -26.4
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1613,6 +1613,8 @@ MonoBehaviour:
   speaker04: {fileID: 1686351092}
   speaker05: {fileID: 0}
   speaker06: {fileID: 0}
+  decisionManager: {fileID: 0}
+  decisionNumber: 0
   actionsCompleted: 0
   actionCounter: 0
 --- !u!114 &1616549428
@@ -2020,7 +2022,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:

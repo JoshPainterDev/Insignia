@@ -12,6 +12,11 @@ public class PlayerCamera_C : MonoBehaviour
     public Vector3 playerPoint;
     public GameObject playerSpawnPoint;
 
+    //private void Start()
+    //{
+    //    Invoke("TakeSnapshot", 1.0f);
+    //}
+
     public void TakeSnapshot()
     {
         player = GameController.controller.playerObject;
@@ -26,7 +31,7 @@ public class PlayerCamera_C : MonoBehaviour
             File.WriteAllBytes(FilePath, bytes);
         player.GetComponent<AnimationController>().FlipFlop();
         player.transform.position = playerSpawnPoint.transform.position;
-        //Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.85f), 100)
+        //test.GetComponent<SpriteRenderer>().sprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f), 100);
         //Invoke("LoadNewSprite", 0.25f);
     }
 

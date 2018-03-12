@@ -350,19 +350,19 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "General Vixon";
+                        speaker[0] = "Cmd. Vixon";
                         leftspeaker[0] = true;
-                        script[0] = "Soldier!";
+                        script[0] = "Listen up soldier!";
 
-                        speaker[1] = "General Vixon";
+                        speaker[1] = "Cmd. Vixon";
                         leftspeaker[1] = true;
-                        script[1] = "Listen, I know you're new to the Bulwark,";
+                        script[1] = "I know you're new to the Bulwark,";
 
-                        speaker[2] = "General Vixon";
+                        speaker[2] = "Cmd. Vixon";
                         leftspeaker[2] = true;
                         script[2] = "but we've got an apocalypse on our hands!";
 
-                        speaker[3] = "General Vixon";
+                        speaker[3] = "Cmd. Vixon";
                         leftspeaker[3] = true;
                         script[3] = "I'm counting on you-";
 
@@ -370,23 +370,23 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[4] = false;
                         script[4] = "Me?!";
 
-                        speaker[5] = "General Vixon";
+                        speaker[5] = "Cmd. Vixon";
                         leftspeaker[5] = true;
-                        script[5] = "to hold this choke with your life!";
+                        script[5] = "to hold this bridge with your life!";
 
-                        speaker[6] = "General Vixon";
+                        speaker[6] = "Cmd. Vixon";
                         leftspeaker[6] = true;
-                        script[6] = "Nothing gets past that bridge! Got it?!";
+                        script[6] = "Nothing gets past that choke! Got it?!";
 
                         speaker[7] = playerName;
                         leftspeaker[7] = false;
                         script[7] = "Sir, yes, sir!";
 
-                        speaker[8] = "General Vixon";
+                        speaker[8] = "Cmd. Vixon";
                         leftspeaker[8] = true;
                         script[8] = "I knew I could count on you-";
 
-                        speaker[9] = "General Vixon";
+                        speaker[9] = "Cmd. Vixon";
                         leftspeaker[9] = true;
                         script[9] = "Uhh-";
 
@@ -394,15 +394,15 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[10] = false;
                         script[10] = "Private " + playerName + ", sir...";
 
-                        speaker[11] = "General Vixon";
+                        speaker[11] = "Cmd. Vixon";
                         leftspeaker[11] = true;
-                        script[11] = "Right! Ummm...";
+                        script[11] = "Sure thing...";
 
-                        speaker[12] = "General Vixon";
+                        speaker[12] = "Cmd. Vixon";
                         leftspeaker[12] = true;
-                        script[12] = "I'm sure you'll do fine out there, kid!";
+                        script[12] = "Remember your training and you'll do just fine!";
 
-                        speaker[13] = "General Vixon";
+                        speaker[13] = "Cmd. Vixon";
                         leftspeaker[13] = true;
                         script[13] = "Now get your dainty look'n underside out of my sight!";
 
@@ -417,17 +417,17 @@ public class Exposition_Manager : MonoBehaviour
                     case 2:
                         speaker[0] = "Officer";
                         leftspeaker[0] = true;
-                        script[0] = "General!!";
+                        script[0] = "Commander!!";
 
                         speaker[1] = "Officer";
                         leftspeaker[1] = true;
                         script[1] = "We're losing bodies too qui-";
 
-                        speaker[2] = "General Vixon";
+                        speaker[2] = "Cmd. Vixon";
                         leftspeaker[2] = true;
-                        script[2] = "Rally your men back to the inner wall and ready the Flogger!";
+                        script[2] = "Rally your men back to the inner wall and barricade the door!";
 
-                        speaker[3] = "General Vixon";
+                        speaker[3] = "Cmd. Vixon";
                         leftspeaker[3] = true;
                         script[3] = "I've got a buckethead cover'n our retreat!";
 
@@ -512,7 +512,7 @@ public class Exposition_Manager : MonoBehaviour
                 {
                     case 1:
                         speaker[0] = playerName;
-                        leftspeaker[0] = false;
+                        leftspeaker[0] = true;
                         script[0] = "Not-";
 
                         speaker[1] = playerName;

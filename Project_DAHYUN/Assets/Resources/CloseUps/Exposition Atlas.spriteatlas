@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Exposition Atlas
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: f1c00faec2f6b0f40aa9a0a5b2357a58, type: 3}
+    - {fileID: 2800000, guid: 8f1df2f5930e52d4f867cc4ec87f2508, type: 3}
+    - {fileID: 2800000, guid: d74156142ef1f2f4089bccbbace944c0, type: 3}
+    - {fileID: 2800000, guid: a299568cf0478b944bafe510ee31fe28, type: 3}
+    - {fileID: 2800000, guid: ed9c3e7f013e5f246a5d8c00b53e4791, type: 3}
+    - {fileID: 2800000, guid: 5ca3d81163ab2e940abc7604cc7a93bb, type: 3}
+    - {fileID: 2800000, guid: e88de4433c172804a85b560bdc11a86d, type: 3}
+    - {fileID: 2800000, guid: bc74165a459f79b448e0905e1eef109d, type: 3}
+    - {fileID: 2800000, guid: d35d561bb3c956744b0d3331765de391, type: 3}
+    - {fileID: 2800000, guid: e8dc8e29c9ac7fe44bb19cde87c00dbc, type: 3}
+    - {fileID: 2800000, guid: 5c15830e8fbc74f4fb59a77b45fd7815, type: 3}
+    - {fileID: 2800000, guid: 2597d5bbd7b2e5c4aa2fb2a448e2db84, type: 3}
+    - {fileID: 2800000, guid: 0484e855d47d5a74e90ecf6d90edbd0f, type: 3}
+    - {fileID: 2800000, guid: 6507b5082bb70ba479c8ca824eb295d2, type: 3}
+    - {fileID: 2800000, guid: 8a7c9feaa68fcd34bb594a3f2be34398, type: 3}
+    - {fileID: 2800000, guid: c21a43f418585f44e909c8831a2c0141, type: 3}
+    - {fileID: 2800000, guid: 5d062cf73e2312c47957bb8193fbd31f, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ed9c3e7f013e5f246a5d8c00b53e4791, type: 3}
+  - {fileID: 21300000, guid: e88de4433c172804a85b560bdc11a86d, type: 3}
+  - {fileID: 21300000, guid: 5c15830e8fbc74f4fb59a77b45fd7815, type: 3}
+  - {fileID: 21300000, guid: 5d062cf73e2312c47957bb8193fbd31f, type: 3}
+  - {fileID: 21300000, guid: 8a7c9feaa68fcd34bb594a3f2be34398, type: 3}
+  - {fileID: 21300000, guid: 5ca3d81163ab2e940abc7604cc7a93bb, type: 3}
+  - {fileID: 21300000, guid: d35d561bb3c956744b0d3331765de391, type: 3}
+  - {fileID: 21300000, guid: 8f1df2f5930e52d4f867cc4ec87f2508, type: 3}
+  - {fileID: 21300000, guid: f1c00faec2f6b0f40aa9a0a5b2357a58, type: 3}
+  - {fileID: 21300000, guid: a299568cf0478b944bafe510ee31fe28, type: 3}
+  - {fileID: 21300000, guid: bc74165a459f79b448e0905e1eef109d, type: 3}
+  - {fileID: 21300000, guid: 0484e855d47d5a74e90ecf6d90edbd0f, type: 3}
+  - {fileID: 21300000, guid: 2597d5bbd7b2e5c4aa2fb2a448e2db84, type: 3}
+  - {fileID: 21300000, guid: e8dc8e29c9ac7fe44bb19cde87c00dbc, type: 3}
+  - {fileID: 21300000, guid: d74156142ef1f2f4089bccbbace944c0, type: 3}
+  - {fileID: 21300000, guid: c21a43f418585f44e909c8831a2c0141, type: 3}
+  - {fileID: 21300000, guid: 6507b5082bb70ba479c8ca824eb295d2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Character_CloseUp_KingGerard
+  - Character_CloseUp_Seamstress
+  - Character_CloseUp_SolarisOfficer
+  - CloseUp_Frame
+  - Character_CloseUp_Unknown
+  - Character_CloseUp_Player
+  - Character_CloseUp_Slade
+  - Character_CloseUp_GeneralVixon
+  - Character_CloseUp_Agyrii
+  - Character_CloseUp_HammerfellOfficer
+  - Character_CloseUp_Skitter
+  - Character_CloseUp_Tesdin
+  - Character_CloseUp_Steve
+  - Character_CloseUp_SolarisKnight
+  - Character_CloseUp_HammerfellKnight
+  - CloseUp_BackDrop
+  - Character_CloseUp_Theron
+  m_Tag: Exposition Atlas
+  m_IsVariant: 0
