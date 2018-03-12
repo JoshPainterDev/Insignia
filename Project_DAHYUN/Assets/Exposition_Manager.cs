@@ -456,7 +456,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[2] = true;
                         script[2] = "You are one big rat!";
 
-                        speaker[3] = "Skritter";
+                        speaker[3] = "Skitter";
                         leftspeaker[3] = false;
                         script[3] = "Hhhhhhssssssss...";
 
@@ -464,7 +464,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[4] = true;
                         script[4] = "Easy now friend...";
 
-                        speaker[5] = "Skritter";
+                        speaker[5] = "Skitter";
                         leftspeaker[5] = false;
                         script[5] = "Skhrrreeeeeeh!!";
 
@@ -477,7 +477,7 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Skritter";
+                        speaker[0] = "Skitter";
                         leftspeaker[0] = true;
                         script[0] = "Hhhhhhssssssss!!";
 

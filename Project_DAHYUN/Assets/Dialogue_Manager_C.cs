@@ -41,10 +41,12 @@ public class Dialogue_Manager_C : MonoBehaviour
     private int prevLineNum = -1;
     [HideInInspector]
     public bool dDialogueCompleted = true;
+    private string playername;
 
     // Use this for initialization
     void Start()
     {
+        playername = GameController.controller.playerName;
         expositionManager = this.GetComponent<Exposition_Manager>();
     }
 
@@ -267,10 +269,13 @@ public class Dialogue_Manager_C : MonoBehaviour
     {
         string iconString = "";
 
+        if (speaker == playername)
+            speaker = "Player";
+
         switch(speaker)
         {
             case "Player":
-                iconString = "";
+                iconString = "CloseUps\\Character_CloseUp_Player";
                 break;
             case "???":
                 iconString = "CloseUps\\Character_CloseUp_Unknown";

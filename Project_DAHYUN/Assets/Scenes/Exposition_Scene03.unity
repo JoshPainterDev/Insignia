@@ -8636,7 +8636,6 @@ GameObject:
   - component: {fileID: 1616549426}
   - component: {fileID: 1616549427}
   - component: {fileID: 1616549428}
-  - component: {fileID: 1616549425}
   - component: {fileID: 1616549429}
   m_Layer: 0
   m_Name: Exposition_Manager
@@ -8645,25 +8644,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1616549425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1616549424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d2266e4c7dc9b428f311fb13b702be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  option1Button: {fileID: 0}
-  option2Button: {fileID: 0}
-  highlightImage: {fileID: 0}
-  areYouSurePanel: {fileID: 0}
-  blackSq: {fileID: 538142076}
-  blocker: {fileID: 0}
-  decisionNumber: 0
-  decisionPoints: 100
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0
@@ -8707,6 +8687,8 @@ MonoBehaviour:
   speaker04: {fileID: 0}
   speaker05: {fileID: 0}
   speaker06: {fileID: 0}
+  decisionManager: {fileID: 0}
+  decisionNumber: 0
   actionsCompleted: 0
   actionCounter: 0
 --- !u!114 &1616549428
@@ -12848,7 +12830,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:

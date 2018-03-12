@@ -330,6 +330,7 @@
     <Compile Include="Assets\OscillationScript.cs" />
     <Compile Include="Assets\OverlayScript.cs" />
     <Compile Include="Assets\Panel_C.cs" />
+    <Compile Include="Assets\PlayerCamera_C.cs" />
     <Compile Include="Assets\RandomTPinBounds.cs" />
     <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />

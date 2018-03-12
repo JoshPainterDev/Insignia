@@ -17,6 +17,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject personaPanel;
     public GameObject auraColor;
     public GameObject background;
+    public GameObject snapshotAnchor;
 
     private bool personaPanelActive = false;
     private int actionPresses = 0;
@@ -864,7 +865,9 @@ public class Character_Menu_Manager : MonoBehaviour {
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, mmCameraPos, 1f);
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
+        snapshotAnchor.GetComponent<PlayerCamera_C>().TakeSnapshot();
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("MainMenu_Scene");
     }
 
