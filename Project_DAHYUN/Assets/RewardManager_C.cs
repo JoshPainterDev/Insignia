@@ -21,9 +21,15 @@ public class RewardManager_C : MonoBehaviour
     void Start()
     {
         playerMannequin = GameController.controller.playerObject;
+        print(playerMannequin.name);
 
         reward = GameController.controller.currentEncounter.reward;
+    }
+
+    public void AddEXP(int experienceGains)
+    {
         int currentXP = GameController.controller.playerEXP;
+        print("Player current EXP: " + currentXP);
 
         if (GameController.controller.playerName == "")
         {
@@ -33,13 +39,12 @@ public class RewardManager_C : MonoBehaviour
         }
         else
         {
-            GameController.controller.playerEXP += reward.experience;
-            print("Player exp: " + GameController.controller.playerEXP);
+            GameController.controller.playerEXP += experienceGains;
+            print("New Player EXP: " + GameController.controller.playerEXP);
         }
-            
 
-        if (experienceHandle.GetComponent<ExperienceScript>().experienceAnimation(currentXP, reward.experience))
-            levelUp = true;
+        //if (experienceHandle.GetComponent<ExperienceScript>().experienceAnimation(currentXP, experienceGains))
+        //    levelUp = true;
     }
 
     public void checkAbilityUnlock()

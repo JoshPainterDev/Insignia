@@ -2271,7 +2271,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &651132269
 Transform:

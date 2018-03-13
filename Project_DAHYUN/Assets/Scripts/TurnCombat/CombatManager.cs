@@ -782,11 +782,10 @@ public class CombatManager : MonoBehaviour {
                 else //enemy is now dead
                 {
                     enemyHealth = 0;
-                    RewardToolsScript.tools.AddEXP(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
                     print("Oh jeez Rick, " + (encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]) + " is dead...");
                     --enemiesRemaining;
                     enemyCounter.GetComponent<enemyCounterScript>().EnemyDied();
-                    this.GetComponent<ExperienceScript>().experienceAnimation(GameController.controller.playerEXP, enemyInfo.expReward);
+                    this.GetComponent<ExperienceScript>().AddEXP(enemyInfo.expReward);
                     return true;
                 }
             }

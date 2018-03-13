@@ -17,10 +17,10 @@ public class ExperienceScript : MonoBehaviour {
     public float rate = 1f;
     private float init = 0f;
     private float final = 0f;
-    private float requiredEXP;
+    private int requiredEXP;
     private bool ding = false;
     private int EXPtoAdd = 0;
-    private float leftover = 0;
+    private int leftover = 0;
     private Coroutine finalRoutine;
 
     // Use this for initialization
@@ -42,6 +42,7 @@ public class ExperienceScript : MonoBehaviour {
                                      + (GameController.controller.playerLevel * 15);
 
         playerLevel.GetComponent<Text>().text = "Lv " + GameController.controller.playerLevel;
+        print("Observed Player Lv: " + GameController.controller.playerLevel);
 
         float percentToLv = (float)GameController.controller.playerEXP / requiredEXP;
         expBar.GetComponent<Image>().fillAmount = percentToLv;
@@ -49,12 +50,16 @@ public class ExperienceScript : MonoBehaviour {
         print("MY EXP BOYZ: " + percentToLv);
     }
 
-    public bool experienceAnimation(int currentExp, int newExp)
+    public void AddEXP(int newExp)
     {
+        int currentExp = GameController.controller.playerEXP;
         EXPtoAdd = newExp;
         player = GameController.controller.playerObject;
         ding = false;
         finalRoutine = null;
+
+        print("-experience anim-");
+        print("current EXP: " + currentExp + ", " + "EXP gains: " + newExp);
 
         if (CheckForDing(currentExp + newExp))
             ding = true;
@@ -65,13 +70,19 @@ public class ExperienceScript : MonoBehaviour {
         if (end > 1)
             end = 1;
 
+        GameController.controller.playerEXP += newExp; //exp gains
+
         StartCoroutine(StartLerp(start, end));
 
-        return ding;
+        if (ding)
+        {
+
+        }
     }
 
     IEnumerator StartLerp(float start, float end)
     {
+        print("Start percent: " + start + ", " + "end percent: " + end);
         yield return new WaitForSeconds(2.5f);
         handle.SetActive(true);
         yield return new WaitForSeconds(0.85f);
@@ -86,10 +97,13 @@ public class ExperienceScript : MonoBehaviour {
         if (exp >= requiredEXP)
         {
             leftover = exp - requiredEXP;
+            print("DING!!");
+            print("leftover EXP: " + leftover);
             return true;
         }
 
         leftover = 0;
+
 
         return false;
     }
@@ -197,7 +211,9 @@ public class ExperienceScript : MonoBehaviour {
         requiredEXP = (GameController.controller.playerLevel * GameController.controller.playerLevel)
                              + (GameController.controller.playerLevel * 15);
 
-        float newPercent = Mathf.Max(0.0f, leftover / requiredEXP);
+
+        float newPercent = Mathf.Max(0.0f, (float)leftover / (float)requiredEXP);
+        print("New Percent: " + newPercent);
 
         GameController.controller.GetComponent<MenuUIAudio>().playLevelUp();
 
@@ -224,7 +240,6 @@ public class ExperienceScript : MonoBehaviour {
         else
         {
             ding = false;
-            GameController.controller.playerEXP = (int)leftover;
 
             print("FINAL PLAYER EXP: " + GameController.controller.playerEXP);
 
@@ -235,6 +250,8 @@ public class ExperienceScript : MonoBehaviour {
                 finalRoutine = StartCoroutine(EndAnim());
             }
         }
+
+        GameController.controller.playerEXP = leftover;
     }
 
     IEnumerator EndAnim()
