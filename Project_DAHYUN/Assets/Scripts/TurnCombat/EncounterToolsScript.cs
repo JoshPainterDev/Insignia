@@ -26,7 +26,7 @@ public class EncounterToolsScript : MonoBehaviour {
 
         switch (stageToLoad)
         {
-            case 1: // 5 total stages, last stage is a small boss fight
+            case 1: // BULWARK
                 if (levelsCompleted == 0)
                 {
                     encounter.encounterNumber = 1;
@@ -45,7 +45,9 @@ public class EncounterToolsScript : MonoBehaviour {
                     newReward.experience = 22;
                     encounter.reward = newReward;
                 }
-                else if (levelsCompleted == 1)
+                break;
+            case 2:
+                if (levelsCompleted == 0)
                 {
                     encounter.encounterNumber = 2;
                     //load first stage
@@ -61,7 +63,7 @@ public class EncounterToolsScript : MonoBehaviour {
                     newReward.experience = 47;
                     encounter.reward = newReward;
                 }
-                else if (levelsCompleted == 2)
+                else if (levelsCompleted == 1)
                 {
                     encounter.encounterNumber = 3;
                     encounter.environment = Environment.none;
@@ -78,7 +80,7 @@ public class EncounterToolsScript : MonoBehaviour {
                     newReward.experience = 150;
                     encounter.reward = newReward;
                 }
-                else if (levelsCompleted == 3)
+                else if (levelsCompleted == 2)
                 {
                     encounter.encounterNumber = 4;
                     encounter.totalEnemies = 1;
@@ -90,13 +92,42 @@ public class EncounterToolsScript : MonoBehaviour {
                     newReward.experience = 2500;
                     encounter.reward = newReward;
                 }
-                else if (levelsCompleted == 4)
+                break;
+            case 3:
+                if (levelsCompleted == 0)
                 {
                     encounter.encounterNumber = 5;
-                    // boss fight
+                    //load first stage
+                    encounter.environment = Environment.none;
                     encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Shadow Assassin";
+                    encounter.enemyNames[0] = "Shino-Bot";
+                    encounter.bossFight[0] = false;
+                    encounter.returnOnSuccessScene = "Exposition_Scene18";
+                }
+                else if (levelsCompleted == 1)
+                {
+                    encounter.encounterNumber = 6;
+                    encounter.environment = Environment.none;
+                    encounter.totalEnemies = 3;
+                    encounter.enemyNames[0] = "Solaris Knight";
+                    encounter.bossFight[0] = false;
+                    encounter.enemyNames[1] = "Solaris Knight";
+                    encounter.bossFight[1] = false;
+                    encounter.enemyNames[2] = "Solaris Knight";
+                    encounter.bossFight[2] = false;
+                    encounter.returnOnSuccessScene = "Exposition_Scene14";
+
+                    Reward newReward = new Reward();
+                    newReward.experience = 150;
+                    encounter.reward = newReward;
+                }
+                else if (levelsCompleted == 2)
+                {
+                    encounter.encounterNumber = 4;
+                    encounter.totalEnemies = 1;
+                    encounter.enemyNames[0] = "Solaris Officer";
                     encounter.bossFight[0] = true;
+                    encounter.returnOnSuccessScene = "Exposition_Scene15";
 
                     Reward newReward = new Reward();
                     newReward.experience = 2500;

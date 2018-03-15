@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Exposition_Scene05.unity
+- path: Assets/Scenes/Retry_Scene.unity
   isLoaded: 1
   isActive: 1

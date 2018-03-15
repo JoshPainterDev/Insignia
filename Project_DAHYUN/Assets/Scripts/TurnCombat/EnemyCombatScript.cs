@@ -231,6 +231,19 @@ public class EnemyCombatScript : MonoBehaviour {
                     yield return new WaitForSeconds(0.25f);
                     combatManager.EndEnemyTurn(damageDealt, originalPlayerHP);
                     break;
+                case "Soul Stealer":
+                    enemyMannequin.GetComponent<LerpScript>().LerpToPos(origPosition, strikePosition, 3f);
+                    this.GetComponent<CombatAudio>().playRandomSwordMiss();
+                    yield return new WaitForSeconds(0.1f);
+                    this.GetComponent<CombatAudio>().playRandomSwordHit();
+                    enemyMannequin.transform.GetChild(0).GetComponent<EnemyMannequinController>().playAttackAnim();
+                    GameObject effectCloneSS = (GameObject)Instantiate(standardStrikeHit_FX, playerOrigPos, transform.rotation);
+                    yield return new WaitForSeconds(0.6f);
+                    damageDealt = combatManager.DamagePlayer_Strike();
+                    enemyMannequin.GetComponent<LerpScript>().LerpToPos(strikePosition, origPosition, 3.5f);
+                    yield return new WaitForSeconds(0.25f);
+                    combatManager.EndEnemyTurn(damageDealt, originalPlayerHP);
+                    break;
             }
         }
         else

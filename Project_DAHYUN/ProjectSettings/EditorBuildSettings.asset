@@ -104,3 +104,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exposition_Scene15.unity
     guid: ad66ec592dd03124a9436036c627d502
+  - enabled: 1
+    path: Assets/Scenes/Exposition_Scene16.unity
+    guid: 1b2148bd4b147a74cbf3746470b1f951
+  - enabled: 1
+    path: Assets/Scenes/Exposition_Scene17.unity
+    guid: 0597d3d2418f0dc4c83f19f9d160cf6c

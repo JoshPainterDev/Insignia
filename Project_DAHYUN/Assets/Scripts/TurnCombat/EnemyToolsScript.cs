@@ -19,7 +19,7 @@ public class EnemyToolsScript : MonoBehaviour {
     public GameObject SolarisOfficer_Prefab;
     public GameObject ShadowAssassin_Prefab;
     public GameObject Skitter_Prefab;
-    public GameObject DragonLord_Prefab;
+    public GameObject Shino_Bot_Prefab;
 
     // Use this for initialization
     void Awake()
@@ -121,21 +121,20 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyMaxHealthBase = 60;
                 enemyInfo.specialStrikeAnim = false;
                 break;
-            case "Dragon Lord":
-                enemyInfo.enemyImageSource = "Animations\\NPCs\\dragonLord_0004_dragonlord-3";
-                enemyInfo.enemyPrefab = DragonLord_Prefab;
+            case "Shino-Bot":
+                enemyInfo.enemyPrefab = Shino_Bot_Prefab;
                 enemyInfo.enemyLevel = 5;
                 enemyInfo.expReward = THICC_EXP;
                 enemyInfo.ability_1 = "Solar Flare";
-                enemyInfo.ability_2 = "Shadow Clone";
+                enemyInfo.ability_2 = "Guard Break";
                 enemyInfo.ability_3 = "Final Cut";
                 enemyInfo.ability_4 = "Reap";
 
                 enemyInfo.enemyName = name;
-                enemyInfo.enemyAttack = 3;
-                enemyInfo.enemyDefense = 3;
-                enemyInfo.enemySpeed = 1;
-                enemyInfo.enemyMaxHealthBase = 110;
+                enemyInfo.enemyAttack = 6;
+                enemyInfo.enemyDefense = 6;
+                enemyInfo.enemySpeed = 2;
+                enemyInfo.enemyMaxHealthBase = 80;
                 enemyInfo.specialStrikeAnim = false;
                 break;
             case "The Seamstress":
