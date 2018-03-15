@@ -1358,9 +1358,6 @@ public class Exposition_Manager : MonoBehaviour
                     case 3:
                         Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
-                        yield return new WaitForSeconds(1.0f);
-                        //dialoguePanel.GetComponent<LerpScript>().LerpToPos(dialoguePanel.transform.position, dialoguePanel.transform.position + new Vector3(200, 0, 0), 0.70f);
-
                         break;
                 }
                 break;
