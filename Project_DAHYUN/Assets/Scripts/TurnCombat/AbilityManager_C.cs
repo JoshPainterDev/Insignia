@@ -23,7 +23,7 @@ public class AbilityManager_C : MonoBehaviour {
     public GameObject outrage_FX;
     public GameObject solarFlare_FX;
     public GameObject illusion_FX;
-    public GameObject finalCut_FX;
+    public GameObject bladeStorm_FX;
     public GameObject blackRain_FX;
     public GameObject strangle_FX;
 
@@ -204,7 +204,7 @@ public class AbilityManager_C : MonoBehaviour {
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, initPlayerPos, 3);
                 yield return new WaitForSeconds(0.85f);
                 break;
-            case "Final Cut":
+            case "Blade Storm":
                 combatManager.currSpecialCase = SpecialCase.Execute;
                 combatManager.GetComponent<CombatAudio>().playSwordRing();
                 yield return new WaitForSeconds(0.2f);
@@ -231,7 +231,7 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.5f);
                 combatManager.GetComponent<CombatAudio>().playFinalCut();
                 spawnPos = initPlayerPos + new Vector3(200, 20, 0);
-                effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
+                effectClone = (GameObject)Instantiate(bladeStorm_FX, spawnPos, transform.rotation);
                 effectClone.transform.position = enemyMannequin.transform.position - new Vector3(60,0,0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
                 yield return new WaitForSeconds(1.25f);

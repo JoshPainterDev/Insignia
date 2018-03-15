@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BladeStorm_Atlas
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - m_BuildTarget: Android
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 523c1cd06931f7b41a2d738b4597f189, type: 3}
+    - {fileID: 2800000, guid: b9e27af0a16e6c742a2de0dfaf5ab6de, type: 3}
+    - {fileID: 2800000, guid: cf23401fd9e1830478f5dff6ca2a5702, type: 3}
+    - {fileID: 2800000, guid: bdc0c8dd5b0615246ab6707e52da180d, type: 3}
+    - {fileID: 2800000, guid: 44604fb60727aaf41bf428dbba9e5a9e, type: 3}
+    - {fileID: 2800000, guid: 1b090f2fc77c8af4c897a1daca7f3f45, type: 3}
+    - {fileID: 2800000, guid: 5639f0e3d3ada084894f682b909f7342, type: 3}
+    - {fileID: 2800000, guid: bc7e21f38be312c41a36660b2f85630e, type: 3}
+    - {fileID: 2800000, guid: 1aa6712b9e312334ba69249afa11d3ea, type: 3}
+    - {fileID: 2800000, guid: b24d5f4e18b0efd4ab4196ab9f924cbf, type: 3}
+    - {fileID: 2800000, guid: 5d4dc8bb567514943a33b6f484cf02c2, type: 3}
+    - {fileID: 2800000, guid: 2876caaf975e4a240990b30b25d79291, type: 3}
+    - {fileID: 2800000, guid: 6c5d218eb0cd95141bf1649b6a72637e, type: 3}
+    - {fileID: 2800000, guid: 7bf3d255565db8e49897aa526f806e3a, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 5639f0e3d3ada084894f682b909f7342, type: 3}
+  - {fileID: 21300000, guid: 523c1cd06931f7b41a2d738b4597f189, type: 3}
+  - {fileID: 21300000, guid: 1aa6712b9e312334ba69249afa11d3ea, type: 3}
+  - {fileID: 21300000, guid: bdc0c8dd5b0615246ab6707e52da180d, type: 3}
+  - {fileID: 21300000, guid: 44604fb60727aaf41bf428dbba9e5a9e, type: 3}
+  - {fileID: 21300000, guid: b24d5f4e18b0efd4ab4196ab9f924cbf, type: 3}
+  - {fileID: 21300000, guid: bc7e21f38be312c41a36660b2f85630e, type: 3}
+  - {fileID: 21300000, guid: 7bf3d255565db8e49897aa526f806e3a, type: 3}
+  - {fileID: 21300000, guid: 5d4dc8bb567514943a33b6f484cf02c2, type: 3}
+  - {fileID: 21300000, guid: 2876caaf975e4a240990b30b25d79291, type: 3}
+  - {fileID: 21300000, guid: b9e27af0a16e6c742a2de0dfaf5ab6de, type: 3}
+  - {fileID: 21300000, guid: 6c5d218eb0cd95141bf1649b6a72637e, type: 3}
+  - {fileID: 21300000, guid: cf23401fd9e1830478f5dff6ca2a5702, type: 3}
+  - {fileID: 21300000, guid: 1b090f2fc77c8af4c897a1daca7f3f45, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Edge_Lord_BladeStorm_7_WotW
+  - Edge_Lord_BladeStorm_1_WotW
+  - Edge_Lord_BladeStorm_9_WotW
+  - Edge_Lord_BladeStorm_4_WotW
+  - Edge_Lord_BladeStorm_5_WotW
+  - Edge_Lord_BladeStorm_10_WotW
+  - Edge_Lord_BladeStorm_8_WotW
+  - Edge_Lord_BladeStorm_14_WotW
+  - Edge_Lord_BladeStorm_11_WotW
+  - Edge_Lord_BladeStorm_12_WotW
+  - Edge_Lord_BladeStorm_2_WotW
+  - Edge_Lord_BladeStorm_13_WotW
+  - Edge_Lord_BladeStorm_3_WotW
+  - Edge_Lord_BladeStorm_6_WotW
+  m_Tag: BladeStorm_Atlas
+  m_IsVariant: 0

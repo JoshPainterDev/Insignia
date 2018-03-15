@@ -1358,6 +1358,8 @@ public class Exposition_Manager : MonoBehaviour
                     case 3:
                         Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        yield return new WaitForSeconds(1.50f);
+                        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(200, 0, 0), 0.70f);
                         break;
                 }
                 break;
@@ -1365,16 +1367,21 @@ public class Exposition_Manager : MonoBehaviour
                 switch(action)
                 {
                     case 0:
-                        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(200, 0, 0), 0.70f);
+                        
                         dialoguePanel.transform.position = dialoguePanel.transform.position + new Vector3(200, 0, 0);
                         yield return new WaitForSeconds(1.4f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
                         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                         StartCoroutine(NewDialogue(17, 2));
                         break;
+                    case 12:
+                        
+                        break;
                     case 13:
                         actionsCompleted = true; //actions are completed
                         yield return new WaitForSeconds(1.0f);
+                        speaker02.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
+                        yield return new WaitForSeconds(4.50f);
                         cameraObj.GetComponent<CameraController>().LerpCameraSize(225, 200, 0.40f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
                         yield return new WaitForSeconds(1.50f);

@@ -55,6 +55,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8a7c9feaa68fcd34bb594a3f2be34398, type: 3}
     - {fileID: 2800000, guid: c21a43f418585f44e909c8831a2c0141, type: 3}
     - {fileID: 2800000, guid: 5d062cf73e2312c47957bb8193fbd31f, type: 3}
+    - {fileID: 2800000, guid: dae927a89ae02e34bb6a97587c4567d3, type: 3}
+    - {fileID: 2800000, guid: 891743b7128912348b856f202d8bb2a1, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -73,8 +75,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2597d5bbd7b2e5c4aa2fb2a448e2db84, type: 3}
   - {fileID: 21300000, guid: e8dc8e29c9ac7fe44bb19cde87c00dbc, type: 3}
   - {fileID: 21300000, guid: d74156142ef1f2f4089bccbbace944c0, type: 3}
+  - {fileID: 21300000, guid: dae927a89ae02e34bb6a97587c4567d3, type: 3}
   - {fileID: 21300000, guid: c21a43f418585f44e909c8831a2c0141, type: 3}
   - {fileID: 21300000, guid: 6507b5082bb70ba479c8ca824eb295d2, type: 3}
+  - {fileID: 21300000, guid: 891743b7128912348b856f202d8bb2a1, type: 3}
   m_PackedSpriteNamesToIndex:
   - Character_CloseUp_KingGerard
   - Character_CloseUp_Seamstress
@@ -91,7 +95,9 @@ SpriteAtlas:
   - Character_CloseUp_Steve
   - Character_CloseUp_SolarisKnight
   - Character_CloseUp_HammerfellKnight
+  - Character_CloseUp_ShinoBot
   - CloseUp_BackDrop
   - Character_CloseUp_Theron
+  - Character_CloseUp_Ayo
   m_Tag: Exposition Atlas
   m_IsVariant: 0

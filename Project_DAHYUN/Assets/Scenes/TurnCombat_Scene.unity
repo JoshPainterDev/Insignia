@@ -8665,8 +8665,7 @@ MonoBehaviour:
     type: 2}
   illusion_FX: {fileID: 1862190314031148, guid: fb89edad07c49fc478eff5decc304d6c,
     type: 2}
-  finalCut_FX: {fileID: 1862190314031148, guid: e7a40193cf8683c469f6500d1fcb67c2,
-    type: 2}
+  bladeStorm_FX: {fileID: 0}
   blackRain_FX: {fileID: 1862190314031148, guid: e7ff796e0be32e14a958015907a0d1d0,
     type: 2}
   strangle_FX: {fileID: 1135585054300726, guid: 295e5ca3c20d41c4ab8335381678fa10,

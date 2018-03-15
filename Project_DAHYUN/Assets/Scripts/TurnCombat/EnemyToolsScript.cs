@@ -77,7 +77,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyPrefab = Skitter_Prefab;
                 enemyInfo.enemyLevel = 1;
                 enemyInfo.expReward = TRASH_EXP;
-                enemyInfo.ability_1 = "Reap";
+                enemyInfo.ability_1 = "none";
                 enemyInfo.ability_2 = "none";
                 enemyInfo.ability_3 = "none";
                 enemyInfo.ability_4 = "none";
@@ -128,7 +128,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_1 = "Solar Flare";
                 enemyInfo.ability_2 = "Guard Break";
                 enemyInfo.ability_3 = "Final Cut";
-                enemyInfo.ability_4 = "Reap";
+                enemyInfo.ability_4 = "none";
 
                 enemyInfo.enemyName = name;
                 enemyInfo.enemyAttack = 6;

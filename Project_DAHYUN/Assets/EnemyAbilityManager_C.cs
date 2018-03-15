@@ -184,7 +184,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 enemyMannequinn.GetComponent<LerpScript>().LerpToPos(enemyMannequinn.transform.position, initEnemyPos, 3);
                 yield return new WaitForSeconds(0.85f);
                 break;
-            case "Final Cut":
+            case "Blade Storm":
                 foreach (LerpScript script in enemyMannequinn.GetComponentsInChildren<LerpScript>())
                 {
                     script.LerpToColor(Color.white, Color.clear, 5);

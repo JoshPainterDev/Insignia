@@ -293,13 +293,13 @@ public class Dialogue_Manager_C : MonoBehaviour
                 iconString = "CloseUps\\Character_CloseUp_Seamstress";
                 break;
             case "Ayo":
-                iconString = "CloseUps\\Character_CloseUp_Steve";
+                iconString = "CloseUps\\Character_CloseUp_Ayo";
                 break;
-            case "Skorge":
+            case "Skorje":
                 iconString = "";
                 break;
-            case "Myra":
-                iconString = "";
+            case "Shino-Bot":
+                iconString = "CloseUps\\Character_CloseUp_ShinoBot";
                 break;
             case "Tesdin":
                 iconString = "CloseUps\\Character_CloseUp_Tesdin";
@@ -336,9 +336,6 @@ public class Dialogue_Manager_C : MonoBehaviour
                 break;
             case "Cmd. Agyrii":
                 iconString = "CloseUps\\Character_CloseUp_Agyrii";
-                break;
-            case "Shino-Bot":
-                iconString = "CloseUps\\Character_CloseUp_Shino-Bot";
                 break;
             default:
                 iconString = "CloseUps\\Character_CloseUp_Unknown";

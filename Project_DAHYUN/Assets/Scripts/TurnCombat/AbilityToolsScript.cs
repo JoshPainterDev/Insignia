@@ -42,7 +42,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 AbilityName = "none";
                 break;
             case 1:
-                AbilityName = "Final Cut";
+                AbilityName = "Blade Storm";
                 break;
             case 2:
                 AbilityName = "Deceive";
@@ -103,12 +103,12 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Icon = "AbilityIcons\\none_AbilityIcon";
                 ability.AbilityIndex = 0;
                 break;
-            case "Final Cut":
+            case "Blade Storm":
                 ability.Accuracy = 85;
                 ability.BaseDamage = 2;
                 ability.Cooldown = 3;
                 ability.Buffs = false;
-                ability.Description = "Strike from the shadows to deliver a fatal blow.";
+                ability.Description = "Rush your opponent with a flurry of shadow strikes.";
                 ability.Name = name;
                 ability.specialCase = SpecialCase.Execute;
                 ability.SpecialValue = 7;

@@ -908,6 +908,11 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &954050154 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1291192845535296, guid: e9c91ea038b492c45a915d1062c6d8c1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1636542033}
 --- !u!1 &1082181825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,7 +1496,7 @@ MonoBehaviour:
     type: 2}
   CombatStartup: {fileID: 8300000, guid: c29544d7584145c4db980bdf76f6ada7, type: 3}
   speaker01: {fileID: 2000515586}
-  speaker02: {fileID: 0}
+  speaker02: {fileID: 954050154}
   speaker03: {fileID: 0}
   speaker04: {fileID: 1265674539}
   speaker05: {fileID: 0}
@@ -1536,11 +1541,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: e9c91ea038b492c45a915d1062c6d8c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 59.7
+      value: 60.2
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: e9c91ea038b492c45a915d1062c6d8c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: e9c91ea038b492c45a915d1062c6d8c1, type: 2}
       propertyPath: m_LocalPosition.z
