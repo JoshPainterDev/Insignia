@@ -36,6 +36,8 @@ public class BattleSelectManager : MonoBehaviour
         {
             ready4Input = false;
             StartCoroutine(HideButtons());
+            StartCoroutine(LoadArenaLevel());
+            
         }
     }
 
@@ -61,6 +63,14 @@ public class BattleSelectManager : MonoBehaviour
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("MainMenu_Scene");
+    }
+
+    public IEnumerator LoadArenaLevel()
+    {
+        yield return new WaitForSeconds(0.25f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("ArenaSelect_Scene");
     }
 
 }

@@ -241,4 +241,21 @@ public class ArenaSelectManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ready4Input = true;
     }
+
+    public void GoBack()
+    {
+        if (ready4Input)
+        {
+            ready4Input = false;
+            StartCoroutine(GoToMainMenu());
+        }
+    }
+
+    public IEnumerator GoToMainMenu()
+    {
+        yield return new WaitForSeconds(0.25f);
+        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("MainMenu_Scene");
+    }
 }

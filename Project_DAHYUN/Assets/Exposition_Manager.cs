@@ -295,24 +295,30 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         usesPlayer = false;
 
-                        speaker[0] = "General Vixon";
+                        speaker[0] = "Cmd. Vixon";
                         leftspeaker[0] = true;
                         script[0] = "Welcome back soldier, any word from Solaris?";
+
                         speaker[1] = "Officer";
                         leftspeaker[1] = false;
                         script[1] = "No sir! Still no sign of Tesdin.";
-                        speaker[2] = "General Vixon";
+
+                        speaker[2] = "Cmd. Vixon";
                         leftspeaker[2] = true;
                         script[2] = "It's only been a week. I'm sure he'll turn up!";
+
                         speaker[3] = "Officer";
                         leftspeaker[3] = false;
                         script[3] = "Sir, he only packed enough food for three days in the mountains...";
-                        speaker[4] = "General Vixon";
+
+                        speaker[4] = "Cmd. Vixon";
                         leftspeaker[4] = true;
                         script[4] = "Excellent point, Officer! He's probably frozen derph-fodder by now.";
-                        speaker[5] = "General Vixon";
+
+                        speaker[5] = "Cmd. Vixon";
                         leftspeaker[5] = true;
                         script[5] = "Rally the others! We have to be ready for anything!";
+
                         speaker[6] = "Officer";
                         leftspeaker[6] = false;
                         script[6] = "Right away sir!";
@@ -326,19 +332,19 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "General Vixon";
+                        speaker[0] = "Cmd. Vixon";
                         leftspeaker[0] = true;
                         script[0] = "Weapons ready!";
 
-                        speaker[1] = "General Vixon";
+                        speaker[1] = "Cmd. Vixon";
                         leftspeaker[1] = true;
                         script[1] = "Steady now!";
 
-                        speaker[2] = "General Vixon";
+                        speaker[2] = "Cmd. Vixon";
                         leftspeaker[2] = true;
                         script[2] = "...";
 
-                        speaker[3] = "General Vixon";
+                        speaker[3] = "Cmd. Vixon";
                         leftspeaker[3] = true;
                         script[3] = "Give 'em hell boys!";
 
