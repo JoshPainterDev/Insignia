@@ -271,6 +271,15 @@ public class NewCharacter_Manager : MonoBehaviour {
         SceneManager.LoadScene("Exposition_Scene01");
     }
 
+    IEnumerator TakeSnapshot()
+    {
+        //camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, mmCameraPos, 1f);
+        yield return new WaitForSeconds(0.25f);
+        //blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
+        //yield return new WaitForSeconds(1.0f);
+        //snapshotAnchor.transform.GetChild(2).GetComponent<PlayerCamera_C>().TakeSnapshot();
+    }
+
     private bool nameChecksOut(string charName)
     {
         if (charName == "")

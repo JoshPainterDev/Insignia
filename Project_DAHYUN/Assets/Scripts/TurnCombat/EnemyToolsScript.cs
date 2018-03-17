@@ -20,6 +20,7 @@ public class EnemyToolsScript : MonoBehaviour {
     public GameObject ShadowAssassin_Prefab;
     public GameObject Skitter_Prefab;
     public GameObject Shino_Bot_Prefab;
+    public GameObject Oathsworn_Prefab;
 
     // Use this for initialization
     void Awake()
@@ -135,6 +136,22 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyDefense = 6;
                 enemyInfo.enemySpeed = 2;
                 enemyInfo.enemyMaxHealthBase = 80;
+                enemyInfo.specialStrikeAnim = false;
+                break;
+            case "Oathsworn":
+                enemyInfo.enemyPrefab = Oathsworn_Prefab;
+                enemyInfo.enemyLevel = 2;
+                enemyInfo.expReward = MODERATE_EXP;
+                enemyInfo.ability_1 = "Guard Break";
+                enemyInfo.ability_2 = "none";
+                enemyInfo.ability_3 = "none";
+                enemyInfo.ability_4 = "none";
+
+                enemyInfo.enemyName = name;
+                enemyInfo.enemyAttack = 5;
+                enemyInfo.enemyDefense = 4;
+                enemyInfo.enemySpeed = 1;
+                enemyInfo.enemyMaxHealthBase = 40;
                 enemyInfo.specialStrikeAnim = false;
                 break;
             case "The Seamstress":

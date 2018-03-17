@@ -39,6 +39,7 @@ public class AbilitySelectManager : MonoBehaviour
         totalAbiliyUnlocks = GameController.controller.totalAbilities;
         totalAbiliyUnlocks = 15;
         maxAbilities = GameController.controller.TOTAL_ABILITIES;
+        print("maxAbilities: " + maxAbilities);
 
         for(int f = 0; f < 19; ++f)
             GameController.controller.unlockedAbilities[f] = true;

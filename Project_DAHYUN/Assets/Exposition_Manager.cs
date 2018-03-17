@@ -1966,9 +1966,10 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         yield return new WaitForSeconds(4f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.white, new Color(1, 1, 1, 0.5f), 0.6f);
-                        yield return new WaitForSeconds(2.5f);
-                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(140, 0, 0), 0.25f);
+                        yield return new WaitForSeconds(1.4f);
                         sfxManager.GetComponent<SoundFXManager_C>().playSnowSteps();
+                        yield return new WaitForSeconds(1.25f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(140, 0, 0), 0.25f);
                         yield return new WaitForSeconds(2.5f);
                         StartCoroutine(NewDialogue(eCurrentCutscene, instance));
                         break;

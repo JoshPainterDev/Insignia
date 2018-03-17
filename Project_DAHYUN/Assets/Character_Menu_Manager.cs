@@ -866,7 +866,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
         blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
         yield return new WaitForSeconds(1.0f);
-        snapshotAnchor.GetComponent<PlayerCamera_C>().TakeSnapshot();
+        snapshotAnchor.transform.GetChild(2).GetComponent<PlayerCamera_C>().TakeSnapshot();
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("MainMenu_Scene");
     }
