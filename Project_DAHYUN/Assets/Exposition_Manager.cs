@@ -299,7 +299,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[0] = true;
                         script[0] = "Welcome back soldier, any word from Solaris?";
 
-                        speaker[1] = "Officer";
+                        speaker[1] = "H. Officer";
                         leftspeaker[1] = false;
                         script[1] = "No sir! Still no sign of Tesdin.";
 
@@ -307,7 +307,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[2] = true;
                         script[2] = "It's only been a week. I'm sure he'll turn up!";
 
-                        speaker[3] = "Officer";
+                        speaker[3] = "H. Officer";
                         leftspeaker[3] = false;
                         script[3] = "Sir, he only packed enough food for three days in the mountains...";
 
@@ -319,7 +319,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[5] = true;
                         script[5] = "Rally the others! We have to be ready for anything!";
 
-                        speaker[6] = "Officer";
+                        speaker[6] = "H. Officer";
                         leftspeaker[6] = false;
                         script[6] = "Right away sir!";
 
@@ -422,11 +422,11 @@ public class Exposition_Manager : MonoBehaviour
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 2:
-                        speaker[0] = "Officer";
+                        speaker[0] = "H. Officer";
                         leftspeaker[0] = true;
                         script[0] = "Commander!!";
 
-                        speaker[1] = "Officer";
+                        speaker[1] = "H. Officer";
                         leftspeaker[1] = true;
                         script[1] = "We're losing bodies too qui-";
 
@@ -438,7 +438,7 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[3] = true;
                         script[3] = "I've got a buckethead cover'n our retreat!";
 
-                        speaker[4] = "Officer";
+                        speaker[4] = "H. Officer";
                         leftspeaker[4] = true;
                         script[4] = "Of course, sir! Right away, sir!";
 
@@ -708,15 +708,15 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "Officer";
+                        speaker[0] = "S. Officer";
                         leftspeaker[0] = true;
                         script[0] = "Hold it!";
 
-                        speaker[1] = "Officer";
+                        speaker[1] = "S. Officer";
                         leftspeaker[1] = true;
                         script[1] = "...";
 
-                        speaker[2] = "Officer";
+                        speaker[2] = "S. Officer";
                         leftspeaker[2] = true;
                         script[2] = "I hope you've got a good show planned for us.";
 
@@ -736,15 +736,15 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[6] = false;
                         script[6] = "breathless...";
 
-                        speaker[7] = "Officer";
+                        speaker[7] = "S. Officer";
                         leftspeaker[7] = true;
                         script[7] = "By Jourjh!";
 
-                        speaker[8] = "Officer";
+                        speaker[8] = "S. Officer";
                         leftspeaker[8] = true;
                         script[8] = "I wish you could see the excitement on my face right now!";
 
-                        speaker[9] = "Officer";
+                        speaker[9] = "S. Officer";
                         leftspeaker[9] = true;
                         script[9] = "Carry on then!";
 
@@ -887,11 +887,11 @@ public class Exposition_Manager : MonoBehaviour
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 3:
-                        speaker[0] = "Solaris Captain";
+                        speaker[0] = "Cmd. Agyrii";
                         leftspeaker[0] = false;
                         script[0] = "You've raided our kingdom,";
 
-                        speaker[1] = "Solaris Captain";
+                        speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = false;
                         script[1] = "in fear of 'legends'?";
 
@@ -903,11 +903,11 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[3] = true;
                         script[3] = "And they were not the first to succumb to the hordes...";
 
-                        speaker[4] = "Solaris Knight";
+                        speaker[4] = "S. Officer";
                         leftspeaker[4] = false;
                         script[4] = "My brother wrote to me of demons he had seen while scouting.";
 
-                        speaker[5] = "Solaris Knight";
+                        speaker[5] = "S. Officer";
                         leftspeaker[5] = false;
                         script[5] = "I thought he had lost his mind...";
 
@@ -919,15 +919,15 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[7] = true;
                         script[7] = "I urge all of you to not make the same mistake...";
 
-                        speaker[8] = "Solaris Captain";
+                        speaker[8] = "Cmd. Agyrii";
                         leftspeaker[8] = false;
                         script[8] = "If what you say is true, then we have no choice in the matter.";
 
-                        speaker[9] = "Solaris Captain";
+                        speaker[9] = "Cmd. Agyrii";
                         leftspeaker[9] = false;
                         script[9] = "Soldiers-";
 
-                        speaker[10] = "Solaris Captain";
+                        speaker[10] = "Cmd. Agyrii";
                         leftspeaker[10] = false;
                         script[10] = "stand down...";
 
@@ -1159,11 +1159,11 @@ public class Exposition_Manager : MonoBehaviour
                             script[3] = "Please don't kill me!";
 
                             speaker[4] = playerName;
-                            leftspeaker[4] = false;
+                            leftspeaker[4] = true;
                             script[4] = "I won't do it...";
 
                             speaker[5] = playerName;
-                            leftspeaker[5] = false;
+                            leftspeaker[5] = true;
                             script[5] = "His life is not mine to judge.";
 
                             speaker[6] = "Theron";
@@ -1208,7 +1208,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[16] = "Theron";
                             leftspeaker[16] = true;
-                            script[16] = "I can only show you what you are willing to see, child.";
+                            script[16] = "I can only show you what you are willing to see.";
 
                             speaker[17] = playerName;
                             leftspeaker[17] = false;
@@ -1481,23 +1481,27 @@ public class Exposition_Manager : MonoBehaviour
             case 0:
                 nextLevel = "MainMenu_Scene";
                 //// Set next Level //
+                dialoguePanel.transform.position = dialoguePanel.transform.position + new Vector3(80,0,0);
                 cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(80, 0, 0), 0.65f);
                 yield return new WaitForSeconds(2.0f);
                 StartCoroutine(NewDialogue(15, 1, 2));
                 break;
-            case 8:
+            case 9:
                 speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
                 yield return new WaitForSeconds(1f);
+                cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
                 speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position + new Vector3(0, 70, 0), 0.5f);
                 speaker04.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, new Color(0.25f, 0.25f, 0.25f, 1.0f), 0.75f);
                 yield return new WaitForSeconds(2f);
+                speaker04.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
+                yield return new WaitForSeconds(0.2f);
+                cameraObj.GetComponent<CameraController>().ShakeCamera(2, true, 0.80f);
                 speaker06.GetComponent<ParticleSystem>().Play();
                 yield return new WaitForSeconds(0.75f);
-                speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(0, 70, 0), 3f);
+                speaker04.GetComponent<LerpScript>().LerpToPos(speaker04.transform.position, speaker04.transform.position - new Vector3(0, 70, 0), 6f);
                 yield return new WaitForSeconds(1f);
                 speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
-                break;
-            case 9:
+                yield return new WaitForSeconds(0.45f);
                 Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
                 GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                 yield return new WaitForSeconds(1f);
@@ -1523,6 +1527,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         nextLevel = "MainMenu_Scene";
                         // Set next Level //
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.15f);
                         cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(70, 0, 0), 0.40f);
                         yield return new WaitForSeconds(2.0f);
@@ -1785,7 +1790,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         nextLevel = "Exposition_Scene12";
                         // Set next Level //
-                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.15f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), 0.35f);
                         speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(70, 0, 0), 0.5f);
                         speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position - new Vector3(70, 0, 0), 0.5f);
                         speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(70, 0, 0), 0.5f);
@@ -1796,7 +1801,7 @@ public class Exposition_Manager : MonoBehaviour
                         StartCoroutine(NewDialogue(11, 1));
                         break;
                     case 11:
-                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 5, 0), 2.0f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(5, 5, 0), 2.0f);
                         speaker06.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
                         yield return new WaitForSeconds(0.50f);
                         speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position - new Vector3(500, 0, 0), 0.1f);
@@ -2155,8 +2160,6 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 15:
                         yield return new WaitForSeconds(1.5f);
-                        dialoguePanel.GetComponent<LerpScript>().LerpToPos(dialoguePanel.transform.position, dialoguePanel.transform.position - panelOffset, 3f);
-                        dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 3f);
                         playerMannequin.GetComponent<AnimationController>().FlipFlop();
                         yield return new WaitForSeconds(0.2f);
                         playerMannequin.GetComponent<LerpScript>().LerpToPos(playerInitPos, playerInitPos + new Vector3(60, 0, 0), 2f);
@@ -2171,8 +2174,8 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         yield return new WaitForSeconds(0.5f);
                         speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(100, 0, 0), 1.0f);
-                        yield return new WaitForSeconds(1f);
-                        StartCoroutine(NewDialogue(eCurrentCutscene, instance));
+                        yield return new WaitForSeconds(2f);
+                        StartCoroutine(NewDialogue(3, 2));
                         break;
                     case 1:
                         yield return new WaitForSeconds(1f);

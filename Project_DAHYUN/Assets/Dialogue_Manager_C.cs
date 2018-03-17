@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.IO;
 
 public class Dialogue_Manager_C : MonoBehaviour
 {
@@ -43,11 +44,26 @@ public class Dialogue_Manager_C : MonoBehaviour
     public bool dDialogueCompleted = true;
     private string playername;
 
+    Sprite playerSprite;
+
     // Use this for initialization
     void Start()
     {
         playername = GameController.controller.playerName;
         expositionManager = this.GetComponent<Exposition_Manager>();
+        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player_" + GameController.controller.playerName + ".png";
+
+        if (File.Exists(FilePath))
+        {
+            print(FilePath);
+            byte[] fileData = File.ReadAllBytes(FilePath);
+            Texture2D tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+            tex.filterMode = FilterMode.Point;
+            tex.Apply();
+            playerSprite = Sprite.Create(tex, new Rect(0.0F, 0.0F, tex.width, tex.height), new Vector2(0.5F, 0.5F), 100);
+        }
+        
     }
 
     public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer)
@@ -245,11 +261,20 @@ public class Dialogue_Manager_C : MonoBehaviour
         string speaker = dSpeaker[lineNum];
         string imgSource = LookUpSpeakerIcon(speaker);
 
+        
+
+
         if (visibile)
         {
             isLeftVisibile = true;
             leftImage.GetComponent<Image>().enabled = true;
-            leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+
+            if (speaker == playername)
+            {
+                leftImage.GetComponent<Image>().sprite = playerSprite;
+            }
+            else
+                leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
             leftImage.transform.localScale = new Vector3(-1, 1, 0);
             leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
             leftSpeaker.GetComponent<Text>().text = speaker;
@@ -275,7 +300,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         switch(speaker)
         {
             case "Player":
-                iconString = "CloseUps\\Character_CloseUp_Player";
+                iconString = "CloseUps\\Character_CloseUp_Player_" + playername;
                 break;
             case "???":
                 iconString = "CloseUps\\Character_CloseUp_Unknown";
@@ -316,7 +341,7 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Cmd. Vixon":
                 iconString = "CloseUps\\Character_CloseUp_GeneralVixon";
                 break;
-            case "Officer":
+            case "H. Officer":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellOfficer";
                 break;
             case "Honor Guard":

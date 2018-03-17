@@ -23,7 +23,9 @@ public class SpawnPlayerScript_C : MonoBehaviour
         
         playerObj.GetComponent<AnimationController>().PlayIdleAnim();
 
-        if (!faceRight)
+        if (faceRight && !playerObj.GetComponent<AnimationController>().facingRight)
+            playerObj.GetComponent<AnimationController>().FlipFlop();
+        else if(!faceRight && playerObj.GetComponent<AnimationController>().facingRight)
             playerObj.GetComponent<AnimationController>().FlipFlop();
     }
 }

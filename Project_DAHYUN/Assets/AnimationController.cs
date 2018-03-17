@@ -9,9 +9,16 @@ public class AnimationController : MonoBehaviour
     public bool showAura = false;
     [HideInInspector]
     public bool InCombat = false;
+    [HideInInspector]
+    public bool facingRight = true;
 
     private bool[] hiddenContainer = new bool[20];
-    
+
+    public void Awake()
+    {
+        facingRight = true;
+    }
+
     public void Start()
     {
         if (GameController.controller.playerObject == null)
@@ -41,6 +48,7 @@ public class AnimationController : MonoBehaviour
         foreach (SpriteRenderer sprite in this.GetComponentsInChildren<SpriteRenderer>())
         {
             sprite.flipX = !sprite.flipX;
+            facingRight = !facingRight;
         }
     }
 

@@ -7,8 +7,6 @@ public class PlayerCamera_C : MonoBehaviour
 {
     public GameObject test;
     GameObject player;
-    public float xBuffer = 0.0f;
-    public float yBuffer = 0.0f;
     public Vector3 playerPoint;
     public GameObject playerSpawnPoint;
 
@@ -24,14 +22,19 @@ public class PlayerCamera_C : MonoBehaviour
         player.transform.position = playerPoint;
         Texture2D snapshot = RTImage(this.GetComponent<Camera>());
         Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
+        snapshot.filterMode = FilterMode.Point;
+        snapshot.Apply();
         //encode to png
         byte[] bytes = snapshot.EncodeToPNG();
-        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player.png";
-        if (File.Exists(FilePath))
-            File.WriteAllBytes(FilePath, bytes);
+        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player_" + GameController.controller.playerName + ".png";
+//        if (!File.Exists(FilePath))
+        File.WriteAllBytes(FilePath, bytes);
+
         player.GetComponent<AnimationController>().FlipFlop();
         player.transform.position = playerSpawnPoint.transform.position;
-        //test.GetComponent<SpriteRenderer>().sprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f), 100);
+
+        
+        //Sprite newSprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f), 100);
         //Invoke("LoadNewSprite", 0.25f);
     }
 
@@ -45,7 +48,7 @@ public class PlayerCamera_C : MonoBehaviour
         RenderTexture currentRT = RenderTexture.active;
         RenderTexture.active = cam.targetTexture;
         cam.Render();
-        Texture2D image = new Texture2D(cam.targetTexture.width, cam.targetTexture.height);
+        Texture2D image = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGBA32, false);
         image.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
         image.Apply();
         RenderTexture.active = currentRT;

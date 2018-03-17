@@ -15,6 +15,8 @@ public class NewCharacter_Manager : MonoBehaviour {
     public GameObject classIcon;
     public GameObject classPanel;
     public GameObject namePanel;
+    public GameObject confirmButton;
+    public GameObject snapshotAnchor;
 
     public int maxNameLength = 16;
 
@@ -30,6 +32,7 @@ public class NewCharacter_Manager : MonoBehaviour {
     private PlayerClass currentClass = PlayerClass.Knight;
     private bool skinColorActive = false;
     private bool auraColorActive = false;
+    private Color startColor;
 
     // Use this for initialization
     void Start ()
@@ -44,6 +47,7 @@ public class NewCharacter_Manager : MonoBehaviour {
 
         GameController.controller.setPlayerSkinColor(Color.white);
         GameController.controller.setPlayerColorPreference(Color.white);
+        startColor = confirmButton.GetComponent<Image>().color;
 
         UseDefaultArmor(1);
         Invoke("setKnightFirst", 0.25f);
@@ -202,11 +206,9 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.charNames[GameController.controller.numChars] = charName;
             GameController.controller.charClasses[GameController.controller.numChars] = currentClass;
             GameController.controller.SaveCharacters();//DONT FORGET TO SAVE :3
-            
-
-            blackSq.GetComponent<FadeScript>().FadeIn(3.0f);
             //DONT FORGET TO LOAD EITHER!
             GameController.controller.Load(charName);
+
             StartCoroutine(LoadNewGame());
         }
         else
@@ -266,7 +268,9 @@ public class NewCharacter_Manager : MonoBehaviour {
 
     IEnumerator LoadNewGame()
     {
-        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1,1,1,0), Color.white, 1.0f);
+        blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), Color.white, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        snapshotAnchor.transform.GetChild(2).GetComponent<PlayerCamera_C>().TakeSnapshot();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Exposition_Scene01");
     }
@@ -317,6 +321,8 @@ public class NewCharacter_Manager : MonoBehaviour {
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
 
+                confirmButton.GetComponent<Image>().color = startColor;
+
                 classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Knight";
                 classPanel.transform.GetChild(1).GetComponent<Text>().text =
                     "Knights are sturdy and lethal warriors of old, " +
@@ -329,6 +335,8 @@ public class NewCharacter_Manager : MonoBehaviour {
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
+
+                confirmButton.GetComponent<Image>().color = Color.grey;
 
                 classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Guardian";
                 classPanel.transform.GetChild(1).GetComponent<Text>().text =
@@ -344,6 +352,9 @@ public class NewCharacter_Manager : MonoBehaviour {
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class4.GetComponent<ButtonAnimatorScript>().RevertColor();
+
+                confirmButton.GetComponent<Image>().color = Color.grey;
+
                 classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Occultist";
                 classPanel.transform.GetChild(1).GetComponent<Text>().text =
                     "The Occultist is defined by attunement and knowledge of all things arcana." +
@@ -358,6 +369,9 @@ public class NewCharacter_Manager : MonoBehaviour {
                 class1.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class2.GetComponent<ButtonAnimatorScript>().RevertColor();
                 class3.GetComponent<ButtonAnimatorScript>().RevertColor();
+
+                confirmButton.GetComponent<Image>().color = Color.grey;
+
                 classPanel.transform.GetChild(0).GetComponent<Text>().text = "Class: Cutthroat";
                 classPanel.transform.GetChild(1).GetComponent<Text>().text =
                     "Cutthroats are wild mercenaries that live and die by the blade." +
