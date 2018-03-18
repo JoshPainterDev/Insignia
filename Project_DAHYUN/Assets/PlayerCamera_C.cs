@@ -22,8 +22,8 @@ public class PlayerCamera_C : MonoBehaviour
         player.transform.position = playerPoint;
         Texture2D snapshot = RTImage(this.GetComponent<Camera>());
         Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
-        snapshot.filterMode = FilterMode.Point;
-        snapshot.Apply();
+        //snapshot.filterMode = FilterMode.Point;
+        //snapshot.Apply();
         //encode to png
         byte[] bytes = snapshot.EncodeToPNG();
         string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player_" + GameController.controller.playerName + ".png";
@@ -35,7 +35,7 @@ public class PlayerCamera_C : MonoBehaviour
 
         
         //Sprite newSprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f), 100);
-        //Invoke("LoadNewSprite", 0.25f);
+        Invoke("LoadNewSprite", 0.25f);
     }
 
     void LoadNewSprite()
@@ -48,8 +48,9 @@ public class PlayerCamera_C : MonoBehaviour
         RenderTexture currentRT = RenderTexture.active;
         RenderTexture.active = cam.targetTexture;
         cam.Render();
-        Texture2D image = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGBA32, false);
+        Texture2D image = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.ARGB32, false);
         image.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
+        image.filterMode = FilterMode.Point;
         image.Apply();
         RenderTexture.active = currentRT;
         return image;

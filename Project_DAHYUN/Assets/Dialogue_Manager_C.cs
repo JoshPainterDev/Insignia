@@ -55,13 +55,14 @@ public class Dialogue_Manager_C : MonoBehaviour
 
         if (File.Exists(FilePath))
         {
-            print(FilePath);
             byte[] fileData = File.ReadAllBytes(FilePath);
             Texture2D tex = new Texture2D(2, 2);
+            tex.filterMode = FilterMode.Point;
+            tex.Apply();
             tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
             tex.filterMode = FilterMode.Point;
             tex.Apply();
-            playerSprite = Sprite.Create(tex, new Rect(0.0F, 0.0F, tex.width, tex.height), new Vector2(0.5F, 0.5F), 100);
+            playerSprite = Sprite.Create(tex, new Rect(0.0F, 0.0F, tex.width, tex.height), new Vector2(0.5F, 0.5F), 52);
         }
         
     }
@@ -241,7 +242,14 @@ public class Dialogue_Manager_C : MonoBehaviour
         {
             isRightVisibile = true;
             rightImage.GetComponent<Image>().enabled = true;
-            rightImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+
+            if (speaker == playername)
+            {
+                rightImage.GetComponent<Image>().sprite = playerSprite;
+            }
+            else
+                rightImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+
             rightImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
             rightSpeaker.GetComponent<Text>().text = speaker;
             rightSpeaker.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
@@ -261,9 +269,6 @@ public class Dialogue_Manager_C : MonoBehaviour
         string speaker = dSpeaker[lineNum];
         string imgSource = LookUpSpeakerIcon(speaker);
 
-        
-
-
         if (visibile)
         {
             isLeftVisibile = true;
@@ -275,6 +280,7 @@ public class Dialogue_Manager_C : MonoBehaviour
             }
             else
                 leftImage.GetComponent<Image>().sprite = Resources.Load(imgSource, typeof(Sprite)) as Sprite;
+
             leftImage.transform.localScale = new Vector3(-1, 1, 0);
             leftImage.GetComponent<LerpScript>().LerpToColor(new Color(1, 1, 1, 0), Color.white, fadeSpeed);
             leftSpeaker.GetComponent<Text>().text = speaker;

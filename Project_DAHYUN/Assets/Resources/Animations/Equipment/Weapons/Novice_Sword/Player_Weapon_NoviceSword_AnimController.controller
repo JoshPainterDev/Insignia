@@ -602,7 +602,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player_Weapon_SlayerSword_Walk
+  m_Name: Player_Weapon_NoviceSword_Walk
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions: []
@@ -615,7 +615,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cd57e626832e04d4791d8aebd0107376, type: 2}
+  m_Motion: {fileID: 7400000, guid: a63e1f1f3d2f9f541867136cd407c4f9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

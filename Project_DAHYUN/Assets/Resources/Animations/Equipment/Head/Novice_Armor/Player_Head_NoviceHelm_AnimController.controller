@@ -656,7 +656,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player_Head_SlayerHead_Walk
+  m_Name: Player_Head_NoviceHelm_Walk
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions: []
@@ -669,7 +669,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e1ec8528477dbd54db57a63526b98db5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 377dd44434856d54ea142a2b3f77ef50, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
