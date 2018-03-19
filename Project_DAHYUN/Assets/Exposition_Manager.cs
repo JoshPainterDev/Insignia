@@ -192,6 +192,10 @@ public class Exposition_Manager : MonoBehaviour
                 eMaxInstances = 2;
                 StartCoroutine(Cutscene17(actionCounter, instance));
                 break;
+            case 18:
+                eMaxInstances = 2;
+                StartCoroutine(Cutscene17(actionCounter, instance));
+                break;
         }
     }
 
@@ -1387,7 +1391,10 @@ public class Exposition_Manager : MonoBehaviour
                         actionsCompleted = true; //actions are completed
                         yield return new WaitForSeconds(1.0f);
                         speaker02.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
-                        yield return new WaitForSeconds(4.50f);
+                        yield return new WaitForSeconds(1.25f);
+                        speaker04.transform.GetChild(2).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, new Color(0,1,1,1), 1.0f);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, new Color(1,0.5f,0,1), 1.0f);
+                        yield return new WaitForSeconds(3.25f);
                         cameraObj.GetComponent<CameraController>().LerpCameraSize(225, 200, 0.40f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
                         yield return new WaitForSeconds(1.50f);
