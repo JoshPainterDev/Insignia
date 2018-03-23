@@ -59,6 +59,11 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 4954b6079041ad641b2a06504e33b850, type: 3}
     - {fileID: 2800000, guid: 69aca9a8d658a1e4695278cb2b549202, type: 3}
     - {fileID: 2800000, guid: 2b741ddde316c284abb34e3bac426089, type: 3}
+    - {fileID: 2800000, guid: f555f1b69b64786488c057aa3d8a375b, type: 3}
+    - {fileID: 2800000, guid: 0257c57ec3450534898831ba8d0a828d, type: 3}
+    - {fileID: 2800000, guid: 81e9930744299464284d903f71faca47, type: 3}
+    - {fileID: 2800000, guid: 588289b95e7b75b45aa88501863ed952, type: 3}
+    - {fileID: 2800000, guid: 7595e91974a86344b822f97580ddfe54, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -68,9 +73,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 69aca9a8d658a1e4695278cb2b549202, type: 3}
   - {fileID: 21300000, guid: d58bd3e29b0f52847b2dd10564d68e2c, type: 3}
   - {fileID: 21300000, guid: 3b03774fa33a76f419810b8263c0f920, type: 3}
+  - {fileID: 21300000, guid: 81e9930744299464284d903f71faca47, type: 3}
   - {fileID: 21300000, guid: a378437442e4c454d8f36e57a6e0cc31, type: 3}
+  - {fileID: 21300000, guid: 7595e91974a86344b822f97580ddfe54, type: 3}
   - {fileID: 21300000, guid: 70d5c4c4f91ebd545ab9165f18cd0c71, type: 3}
   - {fileID: 21300000, guid: 4954b6079041ad641b2a06504e33b850, type: 3}
+  - {fileID: 21300000, guid: 588289b95e7b75b45aa88501863ed952, type: 3}
+  - {fileID: 21300000, guid: f555f1b69b64786488c057aa3d8a375b, type: 3}
+  - {fileID: 21300000, guid: 0257c57ec3450534898831ba8d0a828d, type: 3}
   - {fileID: 21300000, guid: 0b370427fff591e4cb14e17c3accaa48, type: 3}
   - {fileID: 21300000, guid: e33ff53c7caa21d4994f96d498a66a24, type: 3}
   - {fileID: 21300000, guid: b8786c7ae036dd44aa47574fad2848f2, type: 3}
@@ -90,9 +100,14 @@ SpriteAtlas:
   - Titan_PowerUp3_WotW
   - Titan_Idle6_WotW
   - Titan_Attack1_6_WotW
+  - Titan_IdleOverheat1_WotW
   - Titan_OverheatStart2_WotW
+  - Titan_IdleOverheat3_WotW
   - Titan_Idle8_WotW
   - Titan_PowerUp2_WotW
+  - Titan_IdleOverheat2_WotW
+  - Orange_ShinoBot
+  - Cyan_ShinoBot
   - Titan_PowerUp1_WotW
   - Titan_Idle5_WotW
   - Titan_Idle4_WotW

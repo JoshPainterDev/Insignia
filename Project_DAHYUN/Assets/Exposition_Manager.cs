@@ -193,8 +193,8 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene17(actionCounter, instance));
                 break;
             case 18:
-                eMaxInstances = 2;
-                StartCoroutine(Cutscene17(actionCounter, instance));
+                eMaxInstances = 4;
+                StartCoroutine(Cutscene18(actionCounter, instance));
                 break;
         }
     }
@@ -1315,7 +1315,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[6] = "Shino-Bot";
                         leftspeaker[6] = false;
-                        script[6] = "*Condescension* - And I am not familiar with a Ji-Jak bearing a nobleman's weapons.";
+                        script[6] = "*Condescension* - And I am not familiar with a Ji-Jak bearing a Noble's blades.";
 
                         speaker[7] = "Shino-Bot";
                         leftspeaker[7] = false;
@@ -1342,6 +1342,182 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                 }
                 break;
+            case 18:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = playerName;
+                        leftspeaker[0] = true;
+                        script[0] = "Were those friends of yours?";
+
+                        speaker[1] = "Ayo";
+                        leftspeaker[1] = false;
+                        script[1] = "I was going to ask you the same thing.";
+
+                        speaker[2] = playerName;
+                        leftspeaker[2] = true;
+                        script[2] = "I hope their master won't be too upset about this.";
+
+                        totalLines = 3;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
+                        speaker[0] = "Cmd. Agyrii";
+                        leftspeaker[0] = false;
+                        script[0] = "Oh, it's you.";
+
+                        speaker[1] = "Cmd. Agyrii";
+                        leftspeaker[1] = false;
+                        script[1] = "I thought something interesting had happened...";
+
+                        speaker[2] = playerName;
+                        leftspeaker[2] = true;
+                        script[2] = "Oh, no!";
+
+                        speaker[3] = playerName;
+                        leftspeaker[3] = true;
+                        script[3] = "Not us. Definitely not us.";
+
+                        speaker[4] = "Ayo";
+                        leftspeaker[4] = true;
+                        script[4] = "Let us make way to your camp.";
+
+                        speaker[5] = "Ayo";
+                        leftspeaker[5] = true;
+                        script[5] = "I'm sure you have much to tell us.";
+
+                        totalLines = 6;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 3:
+                        speaker[0] = playerName;
+                        leftspeaker[0] = true;
+                        script[0] = "...";
+
+                        speaker[1] = playerName;
+                        leftspeaker[1] = true;
+                        script[1] = "Is someone there?";
+
+                        totalLines = 2;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 4:
+                        speaker[0] = playerName;
+                        leftspeaker[0] = true;
+                        script[0] = "Hmmm...";
+
+                        totalLines = 1;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
+        }
+    }
+
+    IEnumerator Cutscene18(int action, int instance = 0)
+    {
+        switch (instance)
+        {
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "Exposition_Scene19";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.25f);
+                        speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+                        yield return new WaitForSeconds(1.0f);
+                        speaker02.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 3.0f);
+                        yield return new WaitForSeconds(0.10f);
+                        speaker01.transform.GetChild(1).gameObject.SetActive(true);
+                        speaker03.SetActive(true);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 3f);
+                        yield return new WaitForSeconds(1.0f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 3f);
+                        speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 2);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(400, 0,0), 7.0f);
+                        yield return new WaitForSeconds(1.20f);
+                        speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
+                        //ayo slash!
+                        speaker04.transform.GetChild(2).GetChild(1).gameObject.SetActive(true);
+                        speaker04.transform.GetChild(3).GetChild(1).gameObject.SetActive(true);
+                        yield return new WaitForSeconds(1.0f);
+                        speaker04.transform.GetChild(2).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 3.0f);
+                        speaker04.transform.GetChild(2).GetChild(1).gameObject.SetActive(true);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, Color.clear, 3.0f);
+                        speaker04.transform.GetChild(3).GetChild(1).gameObject.SetActive(true);
+                        yield return new WaitForSeconds(1.0f);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
+                        playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.50f);
+                        speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(0.50f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(-200, 0, 0), 2.0f);
+                        yield return new WaitForSeconds(2.50f);
+                        StartCoroutine(NewDialogue(18, 1));
+                        break;
+                }
+                break;
+            case 2:
+                switch (action)
+                {
+                    case 0:
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-100, 0, 0), 4.0f);
+                        speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(NewDialogue(18, 2));
+                        break;
+                    case 7:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.5f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(200, 0, 0), 2.0f);
+                        yield return new WaitForSeconds(0.35f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(320, 0, 0), 2.0f);
+                        yield return new WaitForSeconds(0.75f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300, 0, 0), 2.0f);
+                        playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
+                        yield return new WaitForSeconds(0.5f);
+                        playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
+                        break;
+                }
+                break;
+            case 3:
+                switch (action)
+                {
+                    case 0:
+                        Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(NewDialogue(18, 3));
+                        break;
+                }
+                break;
+            case 4:
+                switch (action)
+                {
+                    case 0:
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.75f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(NewDialogue(18, 4));
+                        break;
+                    case 2:
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.75f);
+                        playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300, 0, 0), 1.0f);
+                        yield return new WaitForSeconds(1f);
+                        actionsCompleted = true; //actions are completed
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
         }
     }
 
@@ -1358,7 +1534,7 @@ public class Exposition_Manager : MonoBehaviour
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.25f);
                         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
                         yield return new WaitForSeconds(1.0f);
-                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(350, 0, 0), 0.75f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(400, 0, 0), 0.75f);
                         yield return new WaitForSeconds(1.5f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
                         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
@@ -1369,7 +1545,7 @@ public class Exposition_Manager : MonoBehaviour
                         Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         yield return new WaitForSeconds(1.50f);
-                        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(200, 0, 0), 0.70f);
+                        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(280, 0, 0), 0.70f);
                         break;
                 }
                 break;
@@ -1378,26 +1554,26 @@ public class Exposition_Manager : MonoBehaviour
                 {
                     case 0:
                         
-                        dialoguePanel.transform.position = dialoguePanel.transform.position + new Vector3(200, 0, 0);
+                        dialoguePanel.transform.position = dialoguePanel.transform.position + new Vector3(280, 0, 0);
                         yield return new WaitForSeconds(1.4f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
                         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                         StartCoroutine(NewDialogue(17, 2));
                         break;
-                    case 12:
-                        
+                    case 9:
+                        speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
                         break;
                     case 13:
                         actionsCompleted = true; //actions are completed
+                        yield return new WaitForSeconds(0.85f);
+                        speaker04.transform.GetChild(2).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
                         yield return new WaitForSeconds(1.0f);
                         speaker02.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
-                        yield return new WaitForSeconds(1.25f);
-                        speaker04.transform.GetChild(2).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, new Color(0,1,1,1), 1.0f);
-                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, new Color(1,0.5f,0,1), 1.0f);
-                        yield return new WaitForSeconds(3.25f);
+                        yield return new WaitForSeconds(3.5f);
                         cameraObj.GetComponent<CameraController>().LerpCameraSize(225, 200, 0.40f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 1f);
-                        yield return new WaitForSeconds(1.50f);
+                        yield return new WaitForSeconds(2.0f);
                         StartCoroutine(LoadCombatScene(3, 0, false));
                         break;
                 }
