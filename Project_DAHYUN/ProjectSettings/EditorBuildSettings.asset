@@ -113,3 +113,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleSelect_Scene.unity
     guid: b0fb483606650f94f81828785c7abaa0
+  - enabled: 1
+    path: Assets/Scenes/Exposition_Scene19.unity
+    guid: 57ebbfd28a340644b8aa354af7280cda

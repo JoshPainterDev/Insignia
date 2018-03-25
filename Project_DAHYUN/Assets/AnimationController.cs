@@ -48,8 +48,8 @@ public class AnimationController : MonoBehaviour
         foreach (SpriteRenderer sprite in this.GetComponentsInChildren<SpriteRenderer>())
         {
             sprite.flipX = !sprite.flipX;
-            facingRight = !facingRight;
         }
+        facingRight = !facingRight;
     }
 
     public void HidePlayer()
