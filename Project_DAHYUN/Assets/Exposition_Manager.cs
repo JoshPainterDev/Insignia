@@ -1524,11 +1524,12 @@ public class Exposition_Manager : MonoBehaviour
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.5f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
                         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
+                        speaker01.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
                         yield return new WaitForSeconds(1.5f);
                         StartCoroutine(NewDialogue(20, 1));
                         break;
                     case 4:
-                        speaker03.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.black, 5.0f);
                         yield return new WaitForSeconds(1f);
                         Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
@@ -1566,6 +1567,7 @@ public class Exposition_Manager : MonoBehaviour
         }
         //////////////////
     }
+
 
     IEnumerator Cutscene19(int action, int instance = 0)
     {
