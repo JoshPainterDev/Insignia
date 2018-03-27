@@ -75,8 +75,8 @@ public class Exposition_Manager : MonoBehaviour
         }
 
         decisionNumber = 0;
-        BeginCutscene(15, 1);
-        //BeginCutscene(encounter.encounterNumber);
+        //BeginCutscene(15, 1);
+        BeginCutscene(encounter.encounterNumber);
     }
 
     //public void Update()
@@ -198,6 +198,9 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 19:
                 StartCoroutine(Cutscene19(actionCounter, instance));
+                break;
+            case 20:
+                StartCoroutine(Cutscene20(actionCounter, instance));
                 break;
         }
     }
@@ -1460,7 +1463,108 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                 }
                 break;
+            case 20:
+                switch (instance)
+                {
+                    case 1:
+                        speaker[0] = "Ayo";
+                        leftspeaker[0] = true;
+                        script[0] = "How is this possible?!";
+
+                        speaker[1] = "Cmd. Agyrii";
+                        leftspeaker[1] = true;
+                        script[1] = "Less questioning, more fighting!";
+
+                        speaker[2] = "Ayo";
+                        leftspeaker[2] = false;
+                        script[2] = "Your plan is sound... but-";
+
+                        speaker[3] = "Ayo";
+                        leftspeaker[3] = false;
+                        script[3] = "How do we get into the Raven's crypt?";
+
+                        speaker[4] = playerName;
+                        leftspeaker[4] = false;
+                        script[4] = "Uhhh, guys?";
+
+                        speaker[5] = "Cmd. Agyrii";
+                        leftspeaker[5] = true;
+                        script[5] = "There's got to be an entrance somewhere, right?";
+
+                        speaker[6] = "Shino-Bot";
+                        leftspeaker[6] = true;
+                        script[6] = "*Interjection* - It appears my master underestimated your abilities.";
+
+                        speaker[7] = "Shino-Bot";
+                        leftspeaker[7] = true;
+                        script[7] = "However, my corrective algorithms have taken this into account.";
+
+                        speaker[8] = "Shino-Bot";
+                        leftspeaker[8] = true;
+                        script[8] = "*Proclamation* - Now prepare for detainment, flesh-sacks!";
+
+                        totalLines = 9;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
         }
+    }
+
+    IEnumerator Cutscene20(int action, int instance = 0)
+    {
+        switch (instance)
+        {
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "TurnCombat_Scene";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.5f);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+                        playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(NewDialogue(20, 1));
+                        break;
+                    case 4:
+                        speaker03.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        yield return new WaitForSeconds(1f);
+                        Vector3 spawnPos = new Vector3(playerMannequin.transform.position.x + 20, playerMannequin.transform.position.y + 90, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        yield return new WaitForSeconds(0.5f);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+                        break;
+                    case 7:
+                        speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        Vector3 spawnPos1 = new Vector3(-61.0f, 13.0f, 0);
+                        GameObject effectClone1 = (GameObject)Instantiate(ExclamationPoint, Vector3.zero, transform.rotation);
+                        effectClone1.transform.SetParent(speaker02.transform);
+                        effectClone1.transform.localPosition = spawnPos1;
+                        effectClone1.transform.localScale = new Vector3(3, 3, 1);
+                        break;
+                    case 8:
+                        speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        break;
+                    case 9:
+                        speaker03.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        speaker03.transform.GetChild(2).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        speaker03.transform.GetChild(1).GetComponent<LerpScript>().LerpToPos(speaker03.transform.GetChild(1).transform.position, speaker03.transform.GetChild(1).transform.position + new Vector3(35, 25, 0), 1.0f);
+                        speaker03.transform.GetChild(2).GetComponent<LerpScript>().LerpToPos(speaker03.transform.GetChild(2).transform.position, speaker03.transform.GetChild(2).transform.position + new Vector3(-35, -25, 0), 1.0f);
+                        break;
+                    case 10:
+                        speaker04.transform.GetChild(5).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                        actionsCompleted = true; //actions are completed
+                        yield return new WaitForSeconds(1f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(LoadCombatScene(3, 1, true));
+                        break;
+                }
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene19(int action, int instance = 0)

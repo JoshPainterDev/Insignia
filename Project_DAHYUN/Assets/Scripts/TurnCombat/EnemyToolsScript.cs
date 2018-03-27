@@ -138,6 +138,22 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.enemyMaxHealthBase = 80;
                 enemyInfo.specialStrikeAnim = false;
                 break;
+            case "Shino-Bot v2":
+                enemyInfo.enemyPrefab = Shino_Bot_Prefab;
+                enemyInfo.enemyLevel = 5;
+                enemyInfo.expReward = THICC_EXP;
+                enemyInfo.ability_1 = "Solar Flare";
+                enemyInfo.ability_2 = "Guard Break";
+                enemyInfo.ability_3 = "Final Cut";
+                enemyInfo.ability_4 = "none";
+
+                enemyInfo.enemyName = name;
+                enemyInfo.enemyAttack = 5;
+                enemyInfo.enemyDefense = 5;
+                enemyInfo.enemySpeed = 2;
+                enemyInfo.enemyMaxHealthBase = 75;
+                enemyInfo.specialStrikeAnim = false;
+                break;
             case "Oathsworn":
                 enemyInfo.enemyPrefab = Oathsworn_Prefab;
                 enemyInfo.enemyLevel = 2;

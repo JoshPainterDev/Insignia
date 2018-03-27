@@ -108,18 +108,12 @@ public class EncounterToolsScript : MonoBehaviour {
                 {
                     encounter.encounterNumber = 6;
                     encounter.environment = Environment.none;
-                    encounter.totalEnemies = 3;
-                    encounter.enemyNames[0] = "Solaris Knight";
+                    encounter.totalEnemies = 2;
+                    encounter.enemyNames[0] = "Shino-Bot v2";
                     encounter.bossFight[0] = false;
-                    encounter.enemyNames[1] = "Solaris Knight";
+                    encounter.enemyNames[1] = "Shino-Bot v2";
                     encounter.bossFight[1] = false;
-                    encounter.enemyNames[2] = "Solaris Knight";
-                    encounter.bossFight[2] = false;
-                    encounter.returnOnSuccessScene = "Exposition_Scene14";
-
-                    Reward newReward = new Reward();
-                    newReward.experience = 150;
-                    encounter.reward = newReward;
+                    encounter.returnOnSuccessScene = "Exposition_Scene20";
                 }
                 else if (levelsCompleted == 2)
                 {
