@@ -329,6 +329,12 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Skorje":
                 iconString = "";
                 break;
+            case "Cmd. Agyrii":
+                iconString = "CloseUps\\Character_CloseUp_Agyrii";
+                break;
+            case "Ikilik":
+                iconString = "CloseUps\\Character_CloseUp_Ikilik";
+                break;
             case "Shino-Bot":
                 iconString = "CloseUps\\Character_CloseUp_ShinoBot";
                 break;
@@ -364,9 +370,6 @@ public class Dialogue_Manager_C : MonoBehaviour
                 break;
             case "King Gerard":
                 iconString = "CloseUps\\Character_CloseUp_KingGerard";
-                break;
-            case "Cmd. Agyrii":
-                iconString = "CloseUps\\Character_CloseUp_Agyrii";
                 break;
             default:
                 iconString = "CloseUps\\Character_CloseUp_Unknown";

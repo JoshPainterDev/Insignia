@@ -1500,7 +1500,75 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[3] = false;
                         script[3] = "Who are you, mysterious warrior?";
 
-                        totalLines = 4;
+                        speaker[4] = "???";
+                        leftspeaker[4] = true;
+                        script[4] = "Name?! Naaame? Yes!";
+
+                        speaker[5] = "???";
+                        leftspeaker[5] = true;
+                        script[5] = "Our name! It was taken! Stolen!";
+
+                        speaker[6] = "Ikilik";
+                        leftspeaker[6] = true;
+                        script[6] = "This creature calls itself 'Ikilik'...";
+
+                        speaker[7] = playerName;
+                        leftspeaker[7] = false;
+                        script[7] = "Uumm, are you feeling well?";
+
+                        speaker[8] = "Ikilik";
+                        leftspeaker[8] = true;
+                        script[8] = "I can only control speech for so long, but I am Sir Zadrig of the 64th brigade.";
+
+                        speaker[9] = "Cmd. Agyrii";
+                        leftspeaker[9] = true;
+                        script[9] = "64th brigade? Like the 64th brigade that was retired decades ago?";
+
+                        speaker[10] = "Ikilik";
+                        leftspeaker[10] = true;
+                        script[10] = "I'm surprised you know of it, but I'm not here to tell my story-";
+
+                        speaker[11] = "Ikilik";
+                        leftspeaker[11] = true;
+                        script[11] = "I want to help you enter the crypt.";
+
+                        speaker[12] = "Ayo";
+                        leftspeaker[12] = false;
+                        script[12] = "Your assistance is appreciated, but how are we to trust you?";
+
+                        speaker[13] = "Ikilik";
+                        leftspeaker[13] = true;
+                        script[13] = "I am a Lord, a knight, a nobleman! Or at least I was...";
+
+                        speaker[14] = "Ikilik";
+                        leftspeaker[14] = true;
+                        script[14] = "I haven't an ounce of dishonor in my body!";
+
+                        speaker[15] = "Ikilik";
+                        leftspeaker[15] = true;
+                        script[15] = "Because your body is not yours no more! No one trust you!";
+
+                        speaker[16] = "Ikilik";
+                        leftspeaker[16] = true;
+                        script[16] = "Insolence! Hear me now adventurers-";
+
+                        speaker[17] = "Ikilik";
+                        leftspeaker[17] = true;
+                        script[17] = "The only way to return to my rightful body is in that crypt!";
+
+                        speaker[18] = playerName;
+                        leftspeaker[18] = false;
+                        script[18] = "So you need our help to fetch something?";
+
+                        speaker[19] = "Ikilik";
+                        leftspeaker[19] = true;
+                        script[19] = "I will explain what I can, but this beast will resist me soon!";
+
+                        speaker[20] = "Ayo";
+                        leftspeaker[20] = false;
+                        script[20] = "I am listening...";
+
+                        totalLines = 21;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -1516,7 +1584,7 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        nextLevel = "TurnCombat_Scene";
+                        nextLevel = "Exposition_Scene21";
                         // Set next Level //
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.5f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
@@ -1536,12 +1604,12 @@ public class Exposition_Manager : MonoBehaviour
                         speaker06.transform.GetChild(0).gameObject.SetActive(true);
                         speaker04.transform.GetChild(5).gameObject.SetActive(false);
                         speaker05.transform.position -= new Vector3(400, -50, 0);
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(0.35f);
                         speaker05.transform.GetChild(3).gameObject.SetActive(true);
                         yield return new WaitForSeconds(0.3f);
                         speaker05.transform.GetChild(3).gameObject.SetActive(false);
                         speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.black, 4.0f);
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(0.5f);
                         speaker05.transform.GetChild(2).gameObject.SetActive(true);
                         speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.black, Color.clear, 4.0f);
                         speaker06.transform.GetChild(0).gameObject.SetActive(true);
@@ -1557,7 +1625,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         speaker04.transform.GetChild(0).GetComponent<LerpScript>().LerpToPos(speaker04.transform.GetChild(0).transform.position, speaker04.transform.GetChild(0).transform.position + new Vector3(50, 0, 0), 4.0f);
                         speaker04.transform.GetChild(1).GetComponent<LerpScript>().LerpToPos(speaker04.transform.GetChild(1).transform.position, speaker04.transform.GetChild(1).transform.position - new Vector3(50, 0, 0), 4.0f);
-                        yield return new WaitForSeconds(0.25f);
+                        //yield return new WaitForSeconds(0.25f);
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 8f);
                         yield return new WaitForSeconds(0.5f);
                         speaker04.transform.GetChild(2).gameObject.SetActive(false);
@@ -1569,7 +1637,7 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        yield return new WaitForSeconds(5f);
+                        yield return new WaitForSeconds(3f);
                         speaker05.transform.position -= new Vector3(40, 50, 0);
                         speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 4.0f);
                         StartCoroutine(NewDialogue(20, 2));
@@ -1578,32 +1646,26 @@ public class Exposition_Manager : MonoBehaviour
                         speaker04.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         yield return new WaitForSeconds(0.15f);
                         speaker04.transform.GetChild(1).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.15f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.15f);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
                         break;
                     case 7:
-                        speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        Vector3 spawnPos1 = new Vector3(-61.0f, 13.0f, 0);
-                        GameObject effectClone1 = (GameObject)Instantiate(ExclamationPoint, Vector3.zero, transform.rotation);
-                        effectClone1.transform.SetParent(speaker02.transform);
-                        effectClone1.transform.localPosition = spawnPos1;
-                        effectClone1.transform.localScale = new Vector3(3, 3, 1);
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
-                    case 8:
-                        speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
-                        speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
+                    case 16:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                         break;
-                    case 9:
-                        speaker03.transform.GetChild(1).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
-                        speaker03.transform.GetChild(2).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
-                        speaker03.transform.GetChild(1).GetComponent<LerpScript>().LerpToPos(speaker03.transform.GetChild(1).transform.position, speaker03.transform.GetChild(1).transform.position + new Vector3(35, 25, 0), 1.0f);
-                        speaker03.transform.GetChild(2).GetComponent<LerpScript>().LerpToPos(speaker03.transform.GetChild(2).transform.position, speaker03.transform.GetChild(2).transform.position + new Vector3(-35, -25, 0), 1.0f);
+                    case 17:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
-                    case 10:
+                    case 21:
                         speaker04.transform.GetChild(5).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 1.0f);
                         actionsCompleted = true; //actions are completed
-                        yield return new WaitForSeconds(1f);
-                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                        yield return new WaitForSeconds(0.75f);
-                        StartCoroutine(LoadCombatScene(3, 1, true));
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(LoadNextLv());
                         break;
                 }
                 break;
