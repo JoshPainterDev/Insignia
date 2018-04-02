@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class DecisionManager : MonoBehaviour
 {
+    public bool DecisionActive = false;
     public GameObject option1Button;
     public GameObject option2Button;
     public GameObject option1Tint;
@@ -25,8 +26,11 @@ public class DecisionManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        option1Color = option1Button.GetComponent<Outline>().effectColor;
-        option2Color = option2Button.GetComponent<Outline>().effectColor;
+        if(DecisionActive)
+        {
+            option1Color = option1Button.GetComponent<Outline>().effectColor;
+            option2Color = option2Button.GetComponent<Outline>().effectColor;
+        }
     }
 
     public void BeginDecision()

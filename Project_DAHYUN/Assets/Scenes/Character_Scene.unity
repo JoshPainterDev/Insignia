@@ -7946,7 +7946,7 @@ MonoBehaviour:
   canvas: {fileID: 889873487}
   camera: {fileID: 1317330911}
   blackSq: {fileID: 1814897235}
-  mmCameraPos: {x: 225, y: -120, z: -10}
+  mmCameraPos: {x: 300, y: -92, z: -10}
   slider1: {fileID: 537768959}
   slider2: {fileID: 411969899}
   slider3: {fileID: 925045789}

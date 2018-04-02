@@ -23,9 +23,9 @@ public class MainMenuManager : MonoBehaviour {
     public void Start()
     {
         playerMannequin = GameController.controller.playerObject;
+        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
         playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
-        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
     public void ButtonPressed(int buttonNumber)

@@ -35,7 +35,7 @@ public class PlayerCamera_C : MonoBehaviour
 
         
         //Sprite newSprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f), 100);
-        Invoke("LoadNewSprite", 0.25f);
+        //Invoke("LoadNewSprite", 0.25f);
     }
 
     void LoadNewSprite()

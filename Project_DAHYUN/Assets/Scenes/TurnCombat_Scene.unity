@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 102414132}
   - component: {fileID: 102414131}
   - component: {fileID: 102414130}
+  - component: {fileID: 102414129}
   m_Layer: 5
   m_Name: PlayerName
   m_TagString: Untagged
@@ -453,16 +454,30 @@ RectTransform:
   m_GameObject: {fileID: 102414127}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 0.49999136, y: 0.49999136, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 597438597}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.6500702, y: 21.34999}
+  m_AnchoredPosition: {x: 0.6500702, y: 23}
   m_SizeDelta: {x: 292.7, y: 42.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &102414129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102414127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.647}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &102414130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1953,6 +1968,7 @@ GameObject:
   - component: {fileID: 604624907}
   - component: {fileID: 604624906}
   - component: {fileID: 604624905}
+  - component: {fileID: 604624904}
   m_Layer: 5
   m_Name: EnemyName
   m_TagString: Untagged
@@ -1968,7 +1984,7 @@ RectTransform:
   m_GameObject: {fileID: 604624902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 0.49999747, y: 0.49999747, z: 1.0000025}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 96530581}
   m_RootOrder: 4
@@ -1978,6 +1994,20 @@ RectTransform:
   m_AnchoredPosition: {x: -0.12508, y: 23.7}
   m_SizeDelta: {x: 292.7, y: 42.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &604624904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604624902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.647}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &604624905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,6 +2508,8 @@ MonoBehaviour:
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
   Shino_Bot_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
+    type: 2}
+  Oathsworn_Prefab: {fileID: 1310977109344280, guid: 86f55f29e5f9bf546a5f98bae0738d52,
     type: 2}
 --- !u!114 &651132277
 MonoBehaviour:
@@ -7973,6 +8005,7 @@ GameObject:
   - component: {fileID: 1419865491}
   - component: {fileID: 1419865490}
   - component: {fileID: 1419865492}
+  - component: {fileID: 1419865493}
   m_Layer: 5
   m_Name: PlayerLevel
   m_TagString: Untagged
@@ -8048,6 +8081,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1419865493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419865488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.647}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1430210197
 GameObject:
   m_ObjectHideFlags: 0
@@ -13211,6 +13258,7 @@ GameObject:
   - component: {fileID: 1789068149}
   - component: {fileID: 1789068148}
   - component: {fileID: 1789068150}
+  - component: {fileID: 1789068151}
   m_Layer: 5
   m_Name: EnemyLevel
   m_TagString: Untagged
@@ -13286,6 +13334,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71215ef57769d6459bd693d095d695d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1789068151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1789068146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.647}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1797351037
 GameObject:
   m_ObjectHideFlags: 0

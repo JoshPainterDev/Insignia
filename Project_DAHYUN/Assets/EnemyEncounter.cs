@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Environment {Castel_Hall, none};
+public enum Environment {Throne_Room, Forest_Light, Castle_Hall, none};
 
 public class EnemyEncounter
 {

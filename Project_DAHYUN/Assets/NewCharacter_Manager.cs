@@ -152,6 +152,15 @@ public class NewCharacter_Manager : MonoBehaviour {
 
             GameController.controller.GetComponent<MenuUIAudio>().playButtonClick();
 
+            string c = charName[0].ToString();
+            string temp = c.ToUpper();
+            for(int i = 1; i < charName.Length; ++i)
+            {
+                temp += charName[i].ToString();
+            }
+
+            charName = temp;
+
             GameController.controller.playerName = charName;
             GameController.controller.playerLevel = 1;
             GameController.controller.playerEXP = 0;

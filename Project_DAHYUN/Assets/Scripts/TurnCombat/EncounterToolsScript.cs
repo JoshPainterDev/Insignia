@@ -31,7 +31,7 @@ public class EncounterToolsScript : MonoBehaviour {
                 {
                     encounter.encounterNumber = 1;
                     //load first stage
-                    encounter.environment = Environment.Castel_Hall;
+                    encounter.environment = Environment.Castle_Hall;
                     encounter.totalEnemies = 2;
                     encounter.enemyNames[0] = "Skitter";
                     encounter.bossFight[0] = false;
@@ -51,7 +51,7 @@ public class EncounterToolsScript : MonoBehaviour {
                 {
                     encounter.encounterNumber = 2;
                     //load first stage
-                    encounter.environment = Environment.none;
+                    encounter.environment = Environment.Throne_Room;
                     encounter.totalEnemies = 2;
                     encounter.enemyNames[0] = "Solaris Knight";
                     encounter.bossFight[0] = false;
@@ -66,7 +66,7 @@ public class EncounterToolsScript : MonoBehaviour {
                 else if (levelsCompleted == 1)
                 {
                     encounter.encounterNumber = 3;
-                    encounter.environment = Environment.none;
+                    encounter.environment = Environment.Throne_Room;
                     encounter.totalEnemies = 3;
                     encounter.enemyNames[0] = "Solaris Knight";
                     encounter.bossFight[0] = false;
@@ -83,6 +83,7 @@ public class EncounterToolsScript : MonoBehaviour {
                 else if (levelsCompleted == 2)
                 {
                     encounter.encounterNumber = 4;
+                    encounter.environment = Environment.Throne_Room;
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Solaris Officer";
                     encounter.bossFight[0] = true;
@@ -98,7 +99,7 @@ public class EncounterToolsScript : MonoBehaviour {
                 {
                     encounter.encounterNumber = 5;
                     //load first stage
-                    encounter.environment = Environment.none;
+                    encounter.environment = Environment.Forest_Light;
                     encounter.totalEnemies = 1;
                     encounter.enemyNames[0] = "Shino-Bot";
                     encounter.bossFight[0] = false;
@@ -107,7 +108,7 @@ public class EncounterToolsScript : MonoBehaviour {
                 else if (levelsCompleted == 1)
                 {
                     encounter.encounterNumber = 6;
-                    encounter.environment = Environment.none;
+                    encounter.environment = Environment.Forest_Light;
                     encounter.totalEnemies = 2;
                     encounter.enemyNames[0] = "Shino-Bot v2";
                     encounter.bossFight[0] = false;

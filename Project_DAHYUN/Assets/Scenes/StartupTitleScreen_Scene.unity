@@ -800,6 +800,8 @@ MonoBehaviour:
     type: 2}
   Shino_Bot_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
     type: 2}
+  Oathsworn_Prefab: {fileID: 1310977109344280, guid: 86f55f29e5f9bf546a5f98bae0738d52,
+    type: 2}
 --- !u!114 &944876053
 MonoBehaviour:
   m_ObjectHideFlags: 0
