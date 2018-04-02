@@ -14,6 +14,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     public Vector3 mmCameraPos;
     public GameObject selectPrefab;
     public GameObject background;
+    public GameObject gridThing;
 
     public GameObject BackButton;
     public Vector3 adventureCameraPos;
@@ -25,14 +26,45 @@ public class AdventureSelect_Manager : MonoBehaviour
     {
         playerMannequin = GameController.controller.playerObject;
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
+
+        for(int i = 0; i < gridThing.transform.childCount; ++i)
+        {
+            if(i <= (GameController.controller.stagesCompleted + 1))
+            {
+                UnlockLevel(i);
+            }
+        }
     }
 
-    public void Update()
+    //public void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha9))
+    //    {
+    //        GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(0, 1);
+    //        SceneManager.LoadScene("TurnCombat_Scene");
+    //    }
+    //}
+
+    public void UnlockLevel(int levelNum)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+        switch(levelNum)
         {
-            GameController.controller.currentEncounter = EncounterToolsScript.tools.SpecifyEncounter(0, 1);
-            SceneManager.LoadScene("TurnCombat_Scene");
+            case 0:
+                gridThing.transform.GetChild(levelNum).GetChild(0).GetChild(0).GetComponent<Text>().text = "THE BULWARK";
+                gridThing.transform.GetChild(levelNum).GetChild(1).gameObject.SetActive(false);
+                break;
+            case 1:
+                gridThing.transform.GetChild(levelNum).GetChild(0).GetChild(0).GetComponent<Text>().text = "KINGDOM OF LIGHT";
+                gridThing.transform.GetChild(levelNum).GetChild(1).gameObject.SetActive(false);
+                break;
+            case 2:
+                gridThing.transform.GetChild(levelNum).GetChild(0).GetChild(0).GetComponent<Text>().text = "THE DARK FOREST";
+                gridThing.transform.GetChild(levelNum).GetChild(1).gameObject.SetActive(false);
+                break;
+            case 3:
+                gridThing.transform.GetChild(levelNum).GetChild(0).GetChild(0).GetComponent<Text>().text = "RAVEN'S CRYPT";
+                gridThing.transform.GetChild(levelNum).GetChild(1).gameObject.SetActive(false);
+                break;
         }
     }
 
