@@ -113,6 +113,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.specialCase = SpecialCase.Execute;
                 ability.SpecialValue = 7;
                 ability.Type = AbilityType.Physical;
+                ability.Icon = "AbilityIcons\\BladeStorm_AbilityIcon";
                 ability.AbilityIndex = 1;
                 break;
             case "Deceive":

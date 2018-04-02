@@ -39,7 +39,6 @@ public class AbilitySelectManager : MonoBehaviour
         totalAbiliyUnlocks = GameController.controller.totalAbilities;
         //totalAbiliyUnlocks = 15;
         maxAbilities = GameController.controller.TOTAL_ABILITIES;
-        print("maxAbilities: " + maxAbilities);
 
         //REMOVE THIS SHIT
         //for(int f = 0; f < 8; ++f)
@@ -77,7 +76,6 @@ public class AbilitySelectManager : MonoBehaviour
                 {
                     if (GameController.controller.unlockedAbilities[j] == true)
                     {
-                        print(GameController.controller.unlockedAbilities[j] + ", " + j);
                         Ability curAbility = AbilityToolsScript.tools.IndexToAbilityLookUp(j);
                         GameObject selectClone = (GameObject)Instantiate(ASprefab, Vector3.zero, transform.rotation);
                         selectClone.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { AbilityOptionSelected(selectClone); });
@@ -123,8 +121,6 @@ public class AbilitySelectManager : MonoBehaviour
 
     public void ConfirmAbilitySelect()
     {
-        print(ASslot);
-
         switch(ASslot)
         {
             case 1:
