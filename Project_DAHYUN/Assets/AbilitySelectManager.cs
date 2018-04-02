@@ -37,12 +37,14 @@ public class AbilitySelectManager : MonoBehaviour
     void Start ()
     {
         totalAbiliyUnlocks = GameController.controller.totalAbilities;
-        totalAbiliyUnlocks = 15;
+        //totalAbiliyUnlocks = 15;
         maxAbilities = GameController.controller.TOTAL_ABILITIES;
         print("maxAbilities: " + maxAbilities);
 
-        for(int f = 0; f < 19; ++f)
-            GameController.controller.unlockedAbilities[f] = true;
+        //REMOVE THIS SHIT
+        //for(int f = 0; f < 8; ++f)
+        //    GameController.controller.unlockedAbilities[f] = true;
+        //REMOVE THIS LATER
 
         //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("none");
         //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("none");
@@ -75,6 +77,7 @@ public class AbilitySelectManager : MonoBehaviour
                 {
                     if (GameController.controller.unlockedAbilities[j] == true)
                     {
+                        print(GameController.controller.unlockedAbilities[j] + ", " + j);
                         Ability curAbility = AbilityToolsScript.tools.IndexToAbilityLookUp(j);
                         GameObject selectClone = (GameObject)Instantiate(ASprefab, Vector3.zero, transform.rotation);
                         selectClone.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { AbilityOptionSelected(selectClone); });
@@ -120,18 +123,84 @@ public class AbilitySelectManager : MonoBehaviour
 
     public void ConfirmAbilitySelect()
     {
+        print(ASslot);
+
         switch(ASslot)
         {
             case 1:
+                if (currentAbility.Name == GameController.controller.playerAbility2.Name) // 1==2
+                {
+                    GameController.controller.playerAbility2 = GameController.controller.playerAbility1;
+                    setIcon(2);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility3.Name) // 1==3
+                {
+                    GameController.controller.playerAbility3 = GameController.controller.playerAbility1;
+                    setIcon(3);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility4.Name) // 1==4
+                {
+                    GameController.controller.playerAbility4 = GameController.controller.playerAbility1;
+                    setIcon(4);
+                }
+
                 GameController.controller.playerAbility1 = currentAbility;
                 break;
             case 2:
+                if (currentAbility.Name == GameController.controller.playerAbility1.Name) // 2==1
+                {
+                    GameController.controller.playerAbility1 = GameController.controller.playerAbility2;
+                    setIcon(1);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility3.Name) // 2==3
+                {
+                    GameController.controller.playerAbility3 = GameController.controller.playerAbility2;
+                    setIcon(3);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility4.Name) // 2==4
+                {
+                    GameController.controller.playerAbility4 = GameController.controller.playerAbility2;
+                    setIcon(4);
+                }
+
                 GameController.controller.playerAbility2 = currentAbility;
                 break;
             case 3:
+                if (currentAbility.Name == GameController.controller.playerAbility1.Name) // 3==1
+                {
+                    GameController.controller.playerAbility1 = GameController.controller.playerAbility3;
+                    setIcon(1);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility2.Name) // 3==2
+                {
+                    GameController.controller.playerAbility2 = GameController.controller.playerAbility3;
+                    setIcon(2);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility4.Name) // 3==4
+                {
+                    GameController.controller.playerAbility4 = GameController.controller.playerAbility3;
+                    setIcon(4);
+                }
+
                 GameController.controller.playerAbility3 = currentAbility;
                 break;
             case 4:
+                if (currentAbility.Name == GameController.controller.playerAbility1.Name) // 4==1
+                {
+                    GameController.controller.playerAbility1 = GameController.controller.playerAbility4;
+                    setIcon(1);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility2.Name) // 4==2
+                {
+                    GameController.controller.playerAbility2 = GameController.controller.playerAbility4;
+                    setIcon(2);
+                }
+                else if (currentAbility.Name == GameController.controller.playerAbility3.Name) // 4==3
+                {
+                    GameController.controller.playerAbility3 = GameController.controller.playerAbility4;
+                    setIcon(3);
+                }
+
                 GameController.controller.playerAbility4 = currentAbility;
                 break;
         }

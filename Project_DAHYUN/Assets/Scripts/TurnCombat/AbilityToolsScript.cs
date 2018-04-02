@@ -60,7 +60,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 AbilityName = "Outrage";
                 break;
             case 7:
-                AbilityName = "Shadow Clone";
+                AbilityName = "Living Shadows";
                 break;
             case 8:
                 AbilityName = "Thunder Charge";
@@ -178,7 +178,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.Magical;
                 ability.AbilityIndex = 6;
                 break;
-            case "Shadow Clone":
+            case "Living Shadows":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 0;
                 ability.Description = "Summon 2 servents of shadow to fight by your side.";
@@ -242,7 +242,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Icon = "AbilityIcons\\DivineShield_AbilityIcon";
                 ability.AbilityIndex = 10;
                 break;
-            case "Strangle":
+            case "Stranglehold":
                 ability.Accuracy = 100;
                 ability.BaseDamage = 15;
                 ability.Cooldown = 3;
