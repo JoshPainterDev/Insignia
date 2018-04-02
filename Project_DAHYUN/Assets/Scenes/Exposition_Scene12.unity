@@ -220,7 +220,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032794190970180, guid: a07696e841a870245800fe8c33766aed, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -55
+      value: -94
       objectReference: {fileID: 0}
     - target: {fileID: 4032794190970180, guid: a07696e841a870245800fe8c33766aed, type: 2}
       propertyPath: m_LocalPosition.z
@@ -304,11 +304,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 935
+      value: 932
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 53
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2134,11 +2134,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 391
+      value: 235
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 53
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2208,6 +2208,18 @@ Prefab:
     - target: {fileID: 1291192845535296, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
       propertyPath: m_Name
       value: Solaris Knight (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 8.391574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 8.391574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.8391574
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114941735551644548, guid: 64bf2cbbcbd398d43afdb3393ab0de47, type: 2}
@@ -2749,6 +2761,8 @@ MonoBehaviour:
   speaker04: {fileID: 1265674539}
   speaker05: {fileID: 704264988}
   speaker06: {fileID: 2005174668}
+  decisionManager: {fileID: 0}
+  decisionNumber: 0
   actionsCompleted: 0
   actionCounter: 0
 --- !u!114 &1616549428
@@ -3380,7 +3394,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:
@@ -3436,8 +3450,8 @@ MonoBehaviour:
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
-  DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
-    type: 2}
+  Shino_Bot_Prefab: {fileID: 0}
+  Oathsworn_Prefab: {fileID: 0}
 --- !u!114 &2029249003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3485,14 +3499,14 @@ RectTransform:
   m_GameObject: {fileID: 2037268560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalScale: {x: 48.459003, y: 48.458996, z: 0.96918}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 95, y: -6.3}
+  m_AnchoredPosition: {x: 84, y: 23}
   m_SizeDelta: {x: 21.1, y: 12.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2037268562
@@ -3529,7 +3543,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -15
-  m_Sprite: {fileID: 21300000, guid: 04cffcc74bc175e4ea7c3509ec09c158, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c57bbae21ea1507409bf5b2bc20d5d43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

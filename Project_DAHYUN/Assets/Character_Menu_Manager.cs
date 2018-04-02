@@ -28,6 +28,8 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject blackSq;
     public Vector3 mmCameraPos;
 
+    public GameObject slider1, slider2, slider3;
+
     //Spritesheets
     private Sprite[] spriteSheet_Head, spriteSheet_Torso, spriteSheet_Legs, spriteSheet_Back, spriteSheet_Gloves, spriteSheet_Shoes, spriteSheet_Weapon, spriteSheet_Aura;
     public Sprite lockedIcon;
@@ -213,6 +215,20 @@ public class Character_Menu_Manager : MonoBehaviour {
                 break;
         }
         
+        auraColor.GetComponent<Image>().color = color;
+        GameController.controller.setPlayerColorPreference(color);
+        playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
+        background.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void ButtonAuraColor(GameObject button)
+    {
+        Color color = button.GetComponent<Image>().color;
+
+        slider1.GetComponent<Slider>().value = color.r;
+        slider2.GetComponent<Slider>().value = color.g;
+        slider3.GetComponent<Slider>().value = color.b;
+
         auraColor.GetComponent<Image>().color = color;
         GameController.controller.setPlayerColorPreference(color);
         playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);

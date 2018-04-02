@@ -23,6 +23,8 @@ public class MainMenuManager : MonoBehaviour {
     public void Start()
     {
         playerMannequin = GameController.controller.playerObject;
+        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
+        playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
     }
 
