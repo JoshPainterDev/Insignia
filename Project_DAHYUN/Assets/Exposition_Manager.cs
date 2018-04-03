@@ -103,7 +103,7 @@ public class Exposition_Manager : MonoBehaviour
         else
         {
             dialogueManager.DialogueHandler();
-            yield return new WaitForSeconds(1.15f);
+            yield return new WaitForSeconds(0.35f);
             ready4Input = true;
         }
     }
@@ -237,7 +237,8 @@ public class Exposition_Manager : MonoBehaviour
 
     public void EndDialogue()
     {
-        StopCoroutine(enableInputHandler);
+        if(enableInputHandler != null)
+            StopCoroutine(enableInputHandler);
         ready4Input = false;
         actionsCompleted = false;
         actionCounter = 0;

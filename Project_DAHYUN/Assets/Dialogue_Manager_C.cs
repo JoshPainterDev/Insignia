@@ -146,7 +146,9 @@ public class Dialogue_Manager_C : MonoBehaviour
             StartCoroutine(typeRoutine);
         }
         else
+        {
             StartCoroutine(FastForward(line));
+        }
     }
 
     IEnumerator FastForward(string line)

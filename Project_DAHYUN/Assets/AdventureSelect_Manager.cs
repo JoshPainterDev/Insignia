@@ -19,7 +19,13 @@ public class AdventureSelect_Manager : MonoBehaviour
     public GameObject BackButton;
     public Vector3 adventureCameraPos;
 
+    public Color highlight_C;
+    public Color unselected_C;
+    public GameObject selectButton;
+
     private string levelToLoad;
+    private int currentLevel;
+    private int prevLevel = 0;
 
     // Use this for initialization
     void Start ()
@@ -29,11 +35,13 @@ public class AdventureSelect_Manager : MonoBehaviour
 
         for(int i = 0; i < gridThing.transform.childCount; ++i)
         {
-            if(i <= (GameController.controller.stagesCompleted + 1))
+            if(i <= (GameController.controller.stagesCompleted))
             {
                 UnlockLevel(i);
             }
         }
+
+        HighlightLevel(GameController.controller.stagesCompleted + 1);
     }
 
     //public void Update()
@@ -68,30 +76,48 @@ public class AdventureSelect_Manager : MonoBehaviour
         }
     }
 
-    public void SelectAdventure(int adventureNum)
+    public void HighlightLevel(int levelNum)
     {
-        if (adventureNum > (GameController.controller.stagesCompleted + 1))
+        currentLevel = levelNum;
+
+        gridThing.transform.GetChild(currentLevel - 1).GetChild(0).GetComponent<Image>().color = highlight_C;
+
+        if (prevLevel > 0)
         {
-            print((GameController.controller.stagesCompleted + 1));
-            print(adventureNum);
+            gridThing.transform.GetChild(prevLevel - 1).GetChild(0).GetComponent<Image>().color = unselected_C;
+        }
+
+        prevLevel = currentLevel;
+
+        if (currentLevel > (GameController.controller.stagesCompleted + 1))
+        {
+            //print("Stages completed: " + (GameController.controller.stagesCompleted + 1));
             // play a "you havnt unlocked this level" sound
             GameController.controller.GetComponent<MenuUIAudio>().playNope();
+            selectButton.SetActive(false);
             return;
         }
 
-        switch(adventureNum)
+        selectButton.SetActive(true);
+    }
+
+    public void SelectAdventure()
+    {
+        selectButton.GetComponent<Button>().enabled = false;
+
+        switch (currentLevel)
         {
             case 1:
                 levelToLoad = "Exposition_Scene01";
-                StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
+                StartCoroutine(LoadEncounter(currentLevel, GameController.controller.levelsCompleted));
                 break;
             case 2:
                 levelToLoad = "Exposition_Scene09";
-                StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
+                StartCoroutine(LoadEncounter(currentLevel, GameController.controller.levelsCompleted));
                 break;
             case 3:
-                levelToLoad = "Exposition_Scene01";
-                StartCoroutine(LoadEncounter(adventureNum, GameController.controller.levelsCompleted));
+                levelToLoad = "Exposition_Scene16";
+                StartCoroutine(LoadEncounter(currentLevel, GameController.controller.levelsCompleted));
                 break;
             default:
                 StartCoroutine(LoadCombatScreen());
@@ -104,6 +130,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         GameController.controller.currentEncounter =  EncounterToolsScript.tools.SpecifyEncounter(stageToLoad, levelsCompleted);
 
         yield return new WaitForSeconds(0.35f);
+        selectButton.SetActive(false);
         //DO SOME CUTE ANIMATION WITH THE MANNEQUIN!
         Destroy(selectPrefab);
         Destroy(BackButton);
