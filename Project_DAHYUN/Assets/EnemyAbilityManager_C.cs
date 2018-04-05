@@ -193,6 +193,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 combatManager.GetComponent<CombatAudio>().playFinalCut();
                 spawnPos = initPlayerPos + new Vector3(0, 0, 0);
                 effectClone = (GameObject)Instantiate(finalCut_FX, spawnPos, transform.rotation);
+                effectClone.transform.localScale = new Vector3(200, 200, 0);
                 effectClone.transform.position = playerMannequin.transform.position + new Vector3(30, 30, 0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = false;
                 yield return new WaitForSeconds(0.35f);
@@ -202,6 +203,9 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 {
                     script.LerpToColor(Color.clear, Color.white, 5);
                 }
+                yield return new WaitForSeconds(0.85f);
+                if (damageReturn != 0)
+                    combatManager.UseMultiHit(false, ability);
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Murder-Stroke":

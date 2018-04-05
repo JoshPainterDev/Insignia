@@ -205,7 +205,6 @@ public class AbilityManager_C : MonoBehaviour {
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Blade Storm":
-                combatManager.currSpecialCase = SpecialCase.Execute;
                 combatManager.GetComponent<CombatAudio>().playSwordRing();
                 yield return new WaitForSeconds(0.2f);
                 combatManager.GetComponent<CombatAudio>().playShadowVanish();
@@ -232,6 +231,7 @@ public class AbilityManager_C : MonoBehaviour {
                 combatManager.GetComponent<CombatAudio>().playFinalCut();
                 spawnPos = initPlayerPos + new Vector3(200, 20, 0);
                 effectClone = (GameObject)Instantiate(bladeStorm_FX, spawnPos, transform.rotation);
+                effectClone.transform.localScale = new Vector3(200, 200,0);
                 effectClone.transform.position = enemyMannequin.transform.position - new Vector3(60,0,0);
                 effectClone.GetComponent<SpriteRenderer>().flipX = true;
                 yield return new WaitForSeconds(1.25f);
@@ -251,6 +251,8 @@ public class AbilityManager_C : MonoBehaviour {
                 }
                 yield return new WaitForSeconds(0.25f);
                 damageReturn = combatManager.DamageEnemy_Ability(ability);
+                if(damageReturn != 0)
+                    combatManager.UseMultiHit(true, ability);
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Divine Barrier":
@@ -261,7 +263,7 @@ public class AbilityManager_C : MonoBehaviour {
                 StartCoroutine(DefenseBoostAnim(ability.DefenseBoost, ability.DefBoostDuration));
                 yield return new WaitForSeconds(2f);
                 break;
-            case "Strangle":
+            case "Stranglehold":
                 spawnPos = new Vector3(0, 0, 0);
                 effectClone = (GameObject)Instantiate(strangle_FX, spawnPos, transform.rotation);
                 effectClone.transform.SetParent(playerMannequin.transform, false);

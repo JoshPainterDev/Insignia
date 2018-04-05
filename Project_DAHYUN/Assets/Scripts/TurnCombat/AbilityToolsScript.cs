@@ -107,10 +107,10 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Accuracy = 85;
                 ability.BaseDamage = 2;
                 ability.Cooldown = 3;
+                ability.Ticks = 3;
                 ability.Buffs = false;
                 ability.Description = "Rush your opponent with a flurry of shadow strikes.";
                 ability.Name = name;
-                ability.specialCase = SpecialCase.Execute;
                 ability.SpecialValue = 7;
                 ability.Type = AbilityType.Physical;
                 ability.Icon = "AbilityIcons\\BladeStorm_AbilityIcon";

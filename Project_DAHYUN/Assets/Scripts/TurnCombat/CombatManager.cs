@@ -172,13 +172,13 @@ public class CombatManager : MonoBehaviour {
             encounter = new EnemyEncounter();
             encounter = GameController.controller.GetComponent<EncounterToolsScript>().SpecifyEncounter(1,3);
             GameController.controller.currentEncounter = encounter;
-            //encounter.enemyNames = new string[3];
-            //encounter.totalEnemies = 1;
-            //encounter.enemyNames[0] = "Skitter";
-            ////encounter.enemyNames[1] = "Skitter";
-            ////encounter.enemyNames[2] = "Shadow Assassin";
-            //encounter.encounterNumber = -1;
-            //encounter.returnOnSuccessScene = "MainMenu_Scene";
+            encounter.enemyNames = new string[3];
+            encounter.totalEnemies = 1;
+            encounter.enemyNames[0] = "Skitter";
+            //encounter.enemyNames[1] = "Skitter";
+            //encounter.enemyNames[2] = "Shadow Assassin";
+            encounter.encounterNumber = -1;
+            encounter.returnOnSuccessScene = "MainMenu_Scene";
         }
 
         enemiesRemaining = encounter.totalEnemies;
@@ -211,10 +211,10 @@ public class CombatManager : MonoBehaviour {
         if(!hasTutorial)
         {
             //REMOVE THIS LATER
-            //GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Murder-Stroke");
-            //GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Hatred");
-            //GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Strangle");
-            //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Blade Storm");
+            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Stranglehold");
+            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
             //GameController.controller.strikeModifier = "Serated Strike";
             //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
             playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
@@ -1420,6 +1420,61 @@ public class CombatManager : MonoBehaviour {
         playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, 1f);
         print("orig HP: " + var1);
         print("new health: " + var2);
+    }
+
+    public void UseMultiHit(bool playerTurn, Ability abilityUsed)
+    {
+        StartCoroutine(MultiHit(playerTurn, abilityUsed.Ticks, abilityUsed.SpecialValue));
+    }
+
+    IEnumerator MultiHit(bool playerTurn, int numHits, int baseDamage)
+    {
+        float var1, var2;
+        int chance = 100;
+        int random = 0;
+
+        random = Random.Range(0, 100);
+
+        if(chance >= random)
+        {
+            if (playerTurn && (enemyHealth > 0))
+            {
+                for (int i = 0; i < numHits; ++i)
+                {
+                    int damage = (int)(baseDamage + GameController.controller.playerAttack * 0.2f);
+                    damage += Random.Range(1, 10);
+                    print("multihit damage: " + damage);
+
+                    var1 = (float)(enemyHealth / enemyMaxHealth);
+                    var2 = (float)(enemyHealth - damage) / enemyMaxHealth;
+                    yield return new WaitForSeconds(0.45f);
+                    enemyHealth -= damage;
+                    enemyHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, 1f);
+                    print("orig HP: " + var1);
+                    print("new health: " + var2);
+                }
+            }
+            else if(!playerTurn && (playerHealth > 0))
+            {
+                for (int i = 0; i < numHits; ++i)
+                {
+                    int damage = (int)(baseDamage * enemyInfo.enemyAttack * 0.2f);
+                    damage += Random.Range(1, 10);
+                    print("multihit damage: " + damage);
+
+                    var1 = (float)(playerHealth / playerMaxHealth);
+                    var2 = (float)(playerHealth - damage) / playerMaxHealth;
+                    yield return new WaitForSeconds(0.45f);
+                    playerHealth -= damage;
+                    playerHealthBar.GetComponent<HealthScript>().LerpHealth(var1, var2, 1f);
+                    print("orig HP: " + var1);
+                    print("new health: " + var2);
+                }
+            }
+
+            chance -= 35;
+            random = Random.Range(0, 100);
+        }
     }
 
     bool ResolveSpecialCase(bool playerTurn)
