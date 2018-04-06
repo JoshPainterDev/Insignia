@@ -2205,6 +2205,8 @@ MonoBehaviour:
   speaker04: {fileID: 506042798}
   speaker05: {fileID: 1546226408}
   speaker06: {fileID: 5054894}
+  decisionManager: {fileID: 0}
+  decisionNumber: 0
   actionsCompleted: 0
   actionCounter: 0
 --- !u!114 &1616549428
@@ -2602,7 +2604,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:
@@ -2651,13 +2653,17 @@ MonoBehaviour:
     type: 2}
   Dummy_Prefab: {fileID: 1291192845535296, guid: 385af6b67342a004d88c4dad7b05f0cb,
     type: 2}
-  SolarisKnight_Prefab: {fileID: 0}
-  SolarisOfficer_Prefab: {fileID: 0}
+  SolarisKnight_Prefab: {fileID: 1919287724249914, guid: a3b16ffcc07a80d45a7035accf4be91a,
+    type: 2}
+  SolarisOfficer_Prefab: {fileID: 1919287724249914, guid: 905991ff5af4668409be9019136e6e5f,
+    type: 2}
   ShadowAssassin_Prefab: {fileID: 1919287724249914, guid: 0fb79b3741cb1074b9d64585018a18fb,
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
-  DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
+  Shino_Bot_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
+    type: 2}
+  Oathsworn_Prefab: {fileID: 1310977109344280, guid: 86f55f29e5f9bf546a5f98bae0738d52,
     type: 2}
 --- !u!114 &2029249003
 MonoBehaviour:
@@ -2706,14 +2712,14 @@ RectTransform:
   m_GameObject: {fileID: 2037268560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 34, y: 34, z: 1}
+  m_LocalScale: {x: 56.6877, y: 56.687687, z: 1.6672848}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4, y: -20}
+  m_AnchoredPosition: {x: -4.4, y: 105}
   m_SizeDelta: {x: 23.4, y: 12.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2037268562
@@ -2750,7 +2756,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -15
-  m_Sprite: {fileID: 21300000, guid: 04cffcc74bc175e4ea7c3509ec09c158, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b089b48a88b5ee546b530a538f84a12f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

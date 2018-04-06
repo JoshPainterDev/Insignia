@@ -40,6 +40,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject BackButton;
     public GameObject AbilitiesButton;
     public GameObject PersonaButton;
+    public GameObject SkillsButton;
 
     private string bodyHeadIdle = "Player_BodyHead_DefaultWhite_Idle";
     private string bodyTorsoIdle = "Player_BodyTorso_DefaultWhite_Idle";
@@ -128,6 +129,64 @@ public class Character_Menu_Manager : MonoBehaviour {
         LoadEquipmentIcons();
     }
 
+    public void HideOtherTabs(string tab)
+    {
+        AbilitiesButton.GetComponent<Button>().enabled = false;
+        PersonaButton.GetComponent<Button>().enabled = false;
+        SkillsButton.GetComponent<Button>().enabled = false;
+
+        //switch (tab)
+        //{
+        //    case "Abilities":
+        //        //AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(20, 0, 0), 2.0f);
+        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        break;
+        //    case "Skills":
+        //        //SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(20, 0, 0), 2.0f);
+        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        break;
+        //    case "Persona":
+        //        //PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(10, 0, 0), 2.0f);
+        //        //auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(10, 0, 0), 2.0f);
+        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        break;
+        //}
+    }
+
+    public void ShowAllTabs()
+    {
+        AbilitiesButton.GetComponent<Button>().enabled = true;
+        PersonaButton.GetComponent<Button>().enabled = true;
+        SkillsButton.GetComponent<Button>().enabled = true;
+
+        //switch (tab)
+        //{
+        //    case "Abilities":
+        //        //AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(20, 0, 0), 2.0f);
+        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        break;
+        //    case "Skills":
+        //        //SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(20, 0, 0), 2.0f);
+        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        break;
+        //    case "Persona":
+        //        //PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(10, 0, 0), 2.0f);
+        //        //auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(10, 0, 0), 2.0f);
+        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
+        //        break;
+        //}
+    }
+
     public void disablePersonaPanel()
     {
         personaPanelActive = false;
@@ -178,7 +237,7 @@ public class Character_Menu_Manager : MonoBehaviour {
                 }
                 else
                 {
-                    playerMannequin.GetComponent<AnimationController>().PlayForcePushAnim();
+                    playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
                 }
                 break;
             case 2:

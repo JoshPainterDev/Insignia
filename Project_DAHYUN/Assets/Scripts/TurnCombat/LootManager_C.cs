@@ -79,49 +79,49 @@ public class LootManager_C : MonoBehaviour
                 
                 spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Helmet_Spritesheet01");
                 i = 0;
-                j = Random.Range(0, MAX_HEAD_EQUIPMENT);
+                j = Random.Range(1, MAX_HEAD_EQUIPMENT);
                 spriteToUse = spriteSheet_Head[j];
             }
             else if(rand2 > 0.715f) // torso drop
             {
                 spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Torso_Spritesheet01");
                 i = 4;
-                j = Random.Range(0, MAX_TORSO_EQUIPMENT);
+                j = Random.Range(1, MAX_TORSO_EQUIPMENT);
                 spriteToUse = spriteSheet_Torso[j];
             }
             else if (rand2 > 0.572f) // leg drop
             {
                 spriteSheet_Legs = Resources.LoadAll<Sprite>("IconSpritesheets\\Legs_Spritesheet01");
                 i = 8;
-                j = Random.Range(0, MAX_LEGS_EQUIPMENT);
+                j = Random.Range(1, MAX_LEGS_EQUIPMENT);
                 spriteToUse = spriteSheet_Legs[j];
             }
             else if (rand2 > 0.429f) // back drop
             {
                 spriteSheet_Back = Resources.LoadAll<Sprite>("IconSpritesheets\\Back_Spritesheet01");
                 i = 12;
-                j = Random.Range(0, MAX_BACK_EQUIPMENT);
+                j = Random.Range(1, MAX_BACK_EQUIPMENT);
                 spriteToUse = spriteSheet_Back[j];
             }
             else if (rand2 > 0.286f) // gloves drop
             {
                 spriteSheet_Gloves = Resources.LoadAll<Sprite>("IconSpritesheets\\Gloves_Spritesheet01");
                 i = 16;
-                j = Random.Range(0, MAX_GLOVES_EQUIPMENT);
+                j = Random.Range(1, MAX_GLOVES_EQUIPMENT);
                 spriteToUse = spriteSheet_Gloves[j];
             }
             else if (rand2 > 0.143f) // shoe drop
             {
                 spriteSheet_Shoes = Resources.LoadAll<Sprite>("IconSpritesheets\\Shoes_Spritesheet01");
                 i = 20;
-                j = Random.Range(0, MAX_SHOES_EQUIPMENT);
+                j = Random.Range(1, MAX_SHOES_EQUIPMENT);
                 spriteToUse = spriteSheet_Shoes[j];
             }
             else // weapon drop
             {
                 spriteSheet_Weapon = Resources.LoadAll<Sprite>("IconSpritesheets\\Sword_Spritesheet01");
                 i = 24;
-                j = Random.Range(0, MAX_SWORD_WEAPONS);
+                j = Random.Range(1, MAX_SWORD_WEAPONS);
                 spriteToUse = spriteSheet_Weapon[j];
             }
 

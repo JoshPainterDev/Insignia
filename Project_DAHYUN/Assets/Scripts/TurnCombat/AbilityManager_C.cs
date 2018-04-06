@@ -251,8 +251,8 @@ public class AbilityManager_C : MonoBehaviour {
                 }
                 yield return new WaitForSeconds(0.25f);
                 damageReturn = combatManager.DamageEnemy_Ability(ability);
-                if(damageReturn != 0)
-                    combatManager.UseMultiHit(true, ability);
+                //if(damageReturn != 0)
+                //    combatManager.UseMultiHit(true, ability);
                 yield return new WaitForSeconds(0.85f);
                 break;
             case "Divine Barrier":

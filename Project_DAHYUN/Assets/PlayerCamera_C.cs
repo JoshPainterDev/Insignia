@@ -22,8 +22,6 @@ public class PlayerCamera_C : MonoBehaviour
         player.transform.position = playerPoint;
         Texture2D snapshot = RTImage(this.GetComponent<Camera>());
         Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
-        //snapshot.filterMode = FilterMode.Point;
-        //snapshot.Apply();
         //encode to png
         byte[] bytes = snapshot.EncodeToPNG();
         string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player_" + GameController.controller.playerName + ".png";

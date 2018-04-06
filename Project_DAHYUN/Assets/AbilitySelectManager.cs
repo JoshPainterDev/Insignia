@@ -25,6 +25,7 @@ public class AbilitySelectManager : MonoBehaviour
     public Color utilityColor;
     public GameObject blackSq;
     public GameObject backButton;
+    public GameObject AbilityTab;
 
     private int ASslot = 0;
     private int currentASnum = 0;
@@ -51,6 +52,16 @@ public class AbilitySelectManager : MonoBehaviour
         //GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("none");
 
         LoadInitialIcons();
+    }
+
+    public void OpenAbilityTab()
+    {
+        AbilityTab.SetActive(true);
+    }
+
+    public void CloseAbilityTab()
+    {
+        AbilityTab.SetActive(false);
     }
 
     public void LoadAbilitiesPanel(int ASnum)
