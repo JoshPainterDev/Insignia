@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Skills_Manager : MonoBehaviour
+public class Trait_Manager : MonoBehaviour
 {
     public Color c_Good;
     public Color c_Evil;
@@ -12,12 +12,12 @@ public class Skills_Manager : MonoBehaviour
     public Color c_EvilDisabled;
     public Color c_GoodActive;
     public Color c_GoodDisabled;
+    public GameObject background;
+    public GameObject traitTab;
 
     public int[] unlockRequirements;
 
     public GameObject content;
-    public GameObject background;
-    public GameObject blackSq;
 
     private int p_EvilPoints;
     private int p_GoodPoints;
@@ -73,38 +73,24 @@ public class Skills_Manager : MonoBehaviour
 
         if(c < 150)
         {
-            background.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+            background.GetComponent<Image>().color = new Color(1,1,1,1);
         }
         else if (p_EvilPoints > p_GoodPoints)
         {
             Color tempC = c_Evil;
             tempC.a = (float)(p_EvilPoints - p_GoodPoints) / 1500.0f;
-            background.GetComponent<SpriteRenderer>().color = tempC;
+            background.GetComponent<Image>().color = tempC;
         }
         else
         {
             Color tempC = c_Good;
             tempC.a = (float)(p_GoodPoints - p_EvilPoints) / 1000.0f;
-            background.GetComponent<SpriteRenderer>().color = tempC;
+            background.GetComponent<Image>().color = tempC;
         }
     }
 
-    public void BackToCharMenu()
+    public void CloseTab()
     {
-        GameController.controller.Save(GameController.controller.playerName);
-        StartCoroutine(LoadCharMenu());
-    }
-
-    IEnumerator LoadCharMenu()
-    {
-        //print("SKILL TREE: ");
-        //for(int i = 0; i < 5; ++i)
-        //{
-        //    print(i + ": " + GameController.controller.skillTree[i]);
-        //}
-
-        blackSq.GetComponent<FadeScript>().FadeIn(2);
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Character_Scene");
+        traitTab.SetActive(false);
     }
 }

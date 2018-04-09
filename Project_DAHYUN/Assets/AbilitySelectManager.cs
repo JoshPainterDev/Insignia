@@ -23,9 +23,8 @@ public class AbilitySelectManager : MonoBehaviour
     public Color physicalColor;
     public Color magicalColor;
     public Color utilityColor;
-    public GameObject blackSq;
-    public GameObject backButton;
     public GameObject AbilityTab;
+    public GameObject abilityTabText;
 
     private int ASslot = 0;
     private int currentASnum = 0;
@@ -100,6 +99,22 @@ public class AbilitySelectManager : MonoBehaviour
                 }
             }
             popUps = 0;
+        }
+
+        switch(ASnum)
+        {
+            case 1:
+                abilityTabText.GetComponent<Text>().text = "Select Ability 1";
+                break;
+            case 2:
+                abilityTabText.GetComponent<Text>().text = "Select Ability 2";
+                break;
+            case 3:
+                abilityTabText.GetComponent<Text>().text = "Select Ability 3";
+                break;
+            case 4:
+                abilityTabText.GetComponent<Text>().text = "Select Ability 4";
+                break;
         }
         
         AbilitySelectPref.SetActive(true);
@@ -258,19 +273,5 @@ public class AbilitySelectManager : MonoBehaviour
     {
         for (int i = 1; i < 5; ++i)
             setIcon(i);
-    }
-
-    public void BackToMM()
-    {
-        backButton.GetComponent<Button>().enabled = false;
-        GameController.controller.Save(GameController.controller.playerName);
-        StartCoroutine(LoadMM());
-    }
-
-    IEnumerator LoadMM()
-    {
-        blackSq.GetComponent<FadeScript>().FadeIn(2);
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Character_Scene");
     }
 }

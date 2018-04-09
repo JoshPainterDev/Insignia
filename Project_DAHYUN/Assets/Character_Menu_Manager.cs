@@ -18,6 +18,9 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject auraColor;
     public GameObject background;
     public GameObject snapshotAnchor;
+    public GameObject abilitySelectTab;
+    public GameObject abilitySelecPrfb;
+    public GameObject traitSelectTab;
 
     private bool personaPanelActive = false;
     private int actionPresses = 0;
@@ -42,12 +45,18 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject PersonaButton;
     public GameObject SkillsButton;
 
+    private Vector3 skillStart;
+    private Vector3 abilityStart;
+    private Vector3 personaStart;
+    private Vector3 auraStart;
+
     private string bodyHeadIdle = "Player_BodyHead_DefaultWhite_Idle";
     private string bodyTorsoIdle = "Player_BodyTorso_DefaultWhite_Idle";
     private string bodyArmsIdle = "Player_BodyArms_DefaultWhite_Idle";
     private string bodyGlovesIdle = "Player_BodyArms_DefaultWhite_Idle";
 
     private bool refreshing = false;
+    private string currentTab = "";
 
     private int[] atk = new int[8];
     private int[] def = new int[8];
@@ -83,6 +92,11 @@ public class Character_Menu_Manager : MonoBehaviour {
     {
         playerMannequin = GameController.controller.playerObject;
         unlockedEquipment = GameController.controller.playerEquipmentList;
+
+        abilityStart = AbilitiesButton.transform.position;
+        skillStart = SkillsButton.transform.position;
+        personaStart = PersonaButton.transform.position;
+        auraStart =  auraColor.transform.position;
 
         //load in defaults for now : FIX THIS SHIT L8R
         //unlockedEquipment[0, 0] = true;
@@ -131,60 +145,55 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void HideOtherTabs(string tab)
     {
-        AbilitiesButton.GetComponent<Button>().enabled = false;
-        PersonaButton.GetComponent<Button>().enabled = false;
-        SkillsButton.GetComponent<Button>().enabled = false;
+        if(tab != currentTab)
+        {
+            float speed = 5.0f;
+            currentTab = tab;
 
-        //switch (tab)
-        //{
-        //    case "Abilities":
-        //        //AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(20, 0, 0), 2.0f);
-        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        break;
-        //    case "Skills":
-        //        //SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(20, 0, 0), 2.0f);
-        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        break;
-        //    case "Persona":
-        //        //PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(10, 0, 0), 2.0f);
-        //        //auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(10, 0, 0), 2.0f);
-        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        break;
-        //}
+            switch (tab)
+            {
+                case "Abilities":
+                    personaPanel.SetActive(false);
+                    personaPanelActive = false;
+                    traitSelectTab.SetActive(false);
+                    AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, abilityStart, speed);
+
+                    auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraStart + new Vector3(10, 0, 0), speed);
+                    PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, personaStart + new Vector3(10, 0, 0), speed);
+                    SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, skillStart + new Vector3(10, 0, 0), speed);
+                    break;
+                case "Traits":
+                    abilitySelectTab.SetActive(false);
+                    abilitySelecPrfb.SetActive(false);
+                    personaPanel.SetActive(false);
+                    personaPanelActive = false;
+                    SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, skillStart, speed);
+
+                    PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, personaStart + new Vector3(10, 0, 0), speed);
+                    auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraStart + new Vector3(10, 0, 0), speed);
+                    AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, abilityStart + new Vector3(10, 0, 0), speed);
+                    break;
+                case "Persona":
+                    abilitySelectTab.SetActive(false);
+                    abilitySelecPrfb.SetActive(false);
+                    traitSelectTab.SetActive(false);
+                    PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, personaStart, speed);
+                    auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraStart, speed);
+
+                    SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, skillStart + new Vector3(10, 0, 0), speed);
+                    AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, abilityStart + new Vector3(10, 0, 0), speed);
+                    break;
+            }
+        }
     }
 
     public void ShowAllTabs()
     {
-        AbilitiesButton.GetComponent<Button>().enabled = true;
-        PersonaButton.GetComponent<Button>().enabled = true;
-        SkillsButton.GetComponent<Button>().enabled = true;
-
-        //switch (tab)
-        //{
-        //    case "Abilities":
-        //        //AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(20, 0, 0), 2.0f);
-        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        break;
-        //    case "Skills":
-        //        //SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(20, 0, 0), 2.0f);
-        //        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        break;
-        //    case "Persona":
-        //        //PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, PersonaButton.transform.position + new Vector3(10, 0, 0), 2.0f);
-        //        //auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraColor.transform.position + new Vector3(10, 0, 0), 2.0f);
-        //        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, SkillsButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, AbilitiesButton.transform.position + new Vector3(80, 0, 0), 2.0f);
-        //        break;
-        //}
+        float speed = 5.0f;
+        AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, abilityStart, speed);
+        SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, skillStart, speed);
+        PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, personaStart, speed);
+        auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraStart, speed);
     }
 
     public void disablePersonaPanel()
@@ -208,6 +217,11 @@ public class Character_Menu_Manager : MonoBehaviour {
             personaPanel.gameObject.SetActive(true);
             //inputDetector.gameObject.SetActive(true);
         }
+    }
+
+    public void enableTraitsTab()
+    {
+        traitSelectTab.SetActive(true);
     }
 
     public void ActionPress()
@@ -313,18 +327,6 @@ public class Character_Menu_Manager : MonoBehaviour {
         blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("AbilitySelect_Scene");
-    }
-
-    public void LoadSkillsScene()
-    {
-        StartCoroutine(GoToSkillsScreen());
-    }
-
-    IEnumerator GoToSkillsScreen()
-    {
-        blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Skills_Scene");
     }
 
     public void UpdateStats()
@@ -609,7 +611,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4
@@ -647,7 +649,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4
@@ -685,7 +687,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4
@@ -723,7 +725,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4
@@ -761,14 +763,14 @@ public class Character_Menu_Manager : MonoBehaviour {
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4
             for (int j = 0; j < 4; ++j)
             {
                 GameObject button = rowObject.transform.GetChild(j).gameObject;
-                button.name = "EquipmentSelect_Button_Torso" + (16 + i) + j;
+                button.name = "EquipmentSelect_Button_Gloves" + (16 + i) + j;
 
                 if (unlockedEquipment[i + 16, j])
                 {
@@ -799,7 +801,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4
@@ -838,7 +840,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
 
         // outer loop should match the key above
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             GameObject rowObject = grid.transform.GetChild(i).gameObject;
             //inner loop is always 4

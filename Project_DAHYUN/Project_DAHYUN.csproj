@@ -380,7 +380,6 @@
     <Compile Include="Assets\Scripts\TurnCombat\StruggleManager_C.cs" />
     <Compile Include="Assets\Scripts\TurnCombat\Trait.cs" />
     <Compile Include="Assets\SettingsManager.cs" />
-    <Compile Include="Assets\Skills_Manager.cs" />
     <Compile Include="Assets\SkillSelectHandler.cs" />
     <Compile Include="Assets\SkipButtonScript.cs" />
     <Compile Include="Assets\SoundFXManager_C.cs" />
@@ -394,6 +393,7 @@
     <Compile Include="Assets\StruggleParticle_C.cs" />
     <Compile Include="Assets\TestEventTrigger.cs" />
     <Compile Include="Assets\TimeController.cs" />
+    <Compile Include="Assets\Trait_Manager.cs" />
     <Compile Include="Assets\TutorialManager01_C.cs" />
     <Compile Include="Assets\TutorialManager02_C.cs" />
     <Compile Include="Assets\TutorialManagerMM_C.cs" />
