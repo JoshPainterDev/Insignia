@@ -239,6 +239,7 @@ public class Exposition_Manager : MonoBehaviour
     {
         if(enableInputHandler != null)
             StopCoroutine(enableInputHandler);
+
         ready4Input = false;
         actionsCompleted = false;
         actionCounter = 0;
