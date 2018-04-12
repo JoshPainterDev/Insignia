@@ -688,7 +688,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 2:
                         speaker[0] = "Slade";
                         leftspeaker[0] = false;
-                        script[0] = "I hope you're ready, lackie.";
+                        script[0] = "I hope you're ready, lackey.";
 
                         speaker[1] = "Hyun";
                         leftspeaker[1] = true;
@@ -805,7 +805,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[8] = "Theron";
                         leftspeaker[8] = false;
-                        script[8] = "No, I beleive you're the only one I've ever met.";
+                        script[8] = "No, I believe you're the only one I've ever met.";
 
                         speaker[9] = "King Gerard";
                         leftspeaker[9] = true;
@@ -2398,7 +2398,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(0.75f);
                         StartCoroutine(NewDialogue(eCurrentCutscene, instance));
                         break;
-                    case 5:
+                    case 6:
                         yield return new WaitForSeconds(2f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
                         actionsCompleted = true; //actions are completed

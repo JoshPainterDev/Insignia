@@ -475,6 +475,7 @@ MonoBehaviour:
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
   Shino_Bot_Prefab: {fileID: 0}
+  Oathsworn_Prefab: {fileID: 0}
 --- !u!1 &313029557
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +735,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 100.6}
+  m_SizeDelta: {x: 280, y: 100.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670707158
 MonoBehaviour:
@@ -768,9 +769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Adventure
-
-'
+  m_Text: Continue
 --- !u!222 &670707159
 CanvasRenderer:
   m_ObjectHideFlags: 0
