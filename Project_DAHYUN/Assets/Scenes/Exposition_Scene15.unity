@@ -2195,6 +2195,9 @@ MonoBehaviour:
   laserSwordRetract_FX: {fileID: 0}
   criticalHit_FX: {fileID: 0}
   bodyCollapse_FX: {fileID: 0}
+  darkRumbling_FX: {fileID: 0}
+  darkRumbling_short_FX: {fileID: 0}
+  wetSquish_FX: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -2901,12 +2904,12 @@ Prefab:
     - target: {fileID: 224792066883299812, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 12
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224792066883299812, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -134
       objectReference: {fileID: 0}
     - target: {fileID: 224792066883299812, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
         type: 2}
@@ -2980,6 +2983,43 @@ Prefab:
         type: 2}
       propertyPath: DecisionActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114264468984823230, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
+        type: 2}
+      propertyPath: m_Text
+      value: Kill Tesdin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890467368172482, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130398462516202, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087300293772652, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224905186751234072, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.7874859
+      objectReference: {fileID: 0}
+    - target: {fileID: 224905186751234072, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.7874859
+      objectReference: {fileID: 0}
+    - target: {fileID: 224905186751234072, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.7874859
+      objectReference: {fileID: 0}
+    - target: {fileID: 224905186751234072, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e2b7a6e20717b545bef5a0a3e2b2dc6, type: 2}

@@ -105,7 +105,7 @@ public class DecisionManager : MonoBehaviour
             option1Tint.SetActive(false);
             option2Tint.SetActive(true);
 
-            areYouSurePanel.transform.position = option1Button.transform.position - new Vector3(0, 100, 0);
+            areYouSurePanel.transform.position = option1Button.transform.position - new Vector3(0, 50, 0);
 
             areYouSurePanel.SetActive(true);
 
@@ -122,7 +122,7 @@ public class DecisionManager : MonoBehaviour
             option2Tint.SetActive(false);
             option1Tint.SetActive(true);
 
-            areYouSurePanel.transform.position = option2Button.transform.position - new Vector3(0, 100, 0);
+            areYouSurePanel.transform.position = option2Button.transform.position - new Vector3(0, 50, 0);
 
             areYouSurePanel.SetActive(true);
 

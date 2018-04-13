@@ -57,6 +57,7 @@ public class StrangleScript_C : MonoBehaviour
         Enemy.GetComponent<LerpScript>().LerpToPos(enemyStartPos, enemyStartPos + new Vector3(0, 50, 0), 0.50f);
         yield return new WaitForSeconds(1.7f);
         this.GetComponent<Animator>().SetBool("Squish", true);
+        this.transform.parent.GetComponent<AudioSource>().Play();
         shaking = false;
         StopCoroutine(shakeRoutine);
         yield return new WaitForSeconds(0.4f);

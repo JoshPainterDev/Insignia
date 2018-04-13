@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 451727e9ac3b6d346871fdf0f3c4d600
-timeCreated: 1518039164
+timeCreated: 1523589324
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -19,6 +19,9 @@ MonoImporter:
       type: 3}
   - criticalHit_FX: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   - bodyCollapse_FX: {fileID: 8300000, guid: 4fc1c0a018f1d124496a334bb1d34d65, type: 3}
+  - darkRumbling_FX: {fileID: 8300000, guid: b731346d74832a244b18d33a51592d9e, type: 3}
+  - darkRumbling_short_FX: {fileID: 8300000, guid: 7ee05be6a4a0d6f459e80cc901a4bbb5,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

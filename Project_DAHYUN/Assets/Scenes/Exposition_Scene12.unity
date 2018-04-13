@@ -1547,6 +1547,9 @@ MonoBehaviour:
     type: 3}
   criticalHit_FX: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   bodyCollapse_FX: {fileID: 8300000, guid: 4fc1c0a018f1d124496a334bb1d34d65, type: 3}
+  darkRumbling_FX: {fileID: 8300000, guid: b731346d74832a244b18d33a51592d9e, type: 3}
+  darkRumbling_short_FX: {fileID: 8300000, guid: 5b4abfee20a5835489dcac977b56e033,
+    type: 3}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5

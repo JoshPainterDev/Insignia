@@ -15,6 +15,9 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip laserSwordRetract_FX;
     public AudioClip criticalHit_FX;
     public AudioClip bodyCollapse_FX;
+    public AudioClip darkRumbling_FX;
+    public AudioClip darkRumbling_short_FX;
+    public AudioClip wetSquish_FX;
 
     AudioSource audioSource;
 
@@ -57,6 +60,21 @@ public class SoundFXManager_C : MonoBehaviour
             audioSource.PlayOneShot(laserBombardment_FX, HIGH_VOLUME * GameController.controller.volumeScale);
         }
 
+    }
+
+    public void playwetSquish()
+    {
+        audioSource.PlayOneShot(wetSquish_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
+    }
+
+    public void playDarkRumbling()
+    {
+        audioSource.PlayOneShot(darkRumbling_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
+    }
+
+    public void playDarkRumblingShort()
+    {
+        audioSource.PlayOneShot(darkRumbling_short_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playFootSteps()

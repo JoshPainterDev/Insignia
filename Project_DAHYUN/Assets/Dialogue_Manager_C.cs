@@ -35,6 +35,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     private string[] dSpeaker;
     private bool[] dIsLeftSpeaker;
     private Coroutine showTTC;
+    private Coroutine dialogueFinished;
     private bool TTCisRunning = false;
     [HideInInspector]
     public bool typing = false;
@@ -76,6 +77,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         dSpeaker = speaker;
         dIsLeftSpeaker = isLeftSpeaker;
         prevLineNum = -1;
+        dialogueFinished = null;
 
         previousSpeaker = "";
         dialogueBox.GetComponent<Text>().text = "";
@@ -218,7 +220,10 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     public void StopDialogue()
     {
-        StartCoroutine(DialogueFinished());
+        if(dialogueFinished == null)
+        {
+            dialogueFinished = StartCoroutine(DialogueFinished());
+        }
     }
 
     IEnumerator DialogueFinished()

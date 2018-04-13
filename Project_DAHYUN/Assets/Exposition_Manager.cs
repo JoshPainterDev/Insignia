@@ -98,6 +98,7 @@ public class Exposition_Manager : MonoBehaviour
 
     IEnumerator handleInput()
     {
+        print(dialogueManager.dDialogueCompleted);
         if (dialogueManager.dDialogueCompleted)
             dialogueManager.StopDialogue();
         else
@@ -204,6 +205,8 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene20(actionCounter, instance));
                 break;
         }
+
+        ready4Input = true;
     }
 
     public IEnumerator LoadCombatScene(int level, int encounterNum, bool useBlink = true)
@@ -2243,6 +2246,7 @@ public class Exposition_Manager : MonoBehaviour
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.5f);
                         speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 7);
                         speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 0.1f;
+                        sfxManager.GetComponent<SoundFXManager_C>().playDarkRumblingShort();
                         yield return new WaitForSeconds(1f);
                         speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, new Color(0.4f, 0.4f, 0.4f, 1.0f), 1.5f);
                         yield return new WaitForSeconds(1f);
@@ -2811,8 +2815,6 @@ public class Exposition_Manager : MonoBehaviour
 
     public void DecisionCutscene(int cutscene, bool goodDecision)
     {
-        print("Cutscene: " + cutscene + " Good Decision: " + goodDecision);
-
         if (goodDecision)
             decisionNumber = 2;
         else
