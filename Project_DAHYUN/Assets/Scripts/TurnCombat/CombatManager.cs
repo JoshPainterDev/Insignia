@@ -785,7 +785,8 @@ public class CombatManager : MonoBehaviour {
                     print("Oh jeez Rick, " + (encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]) + " is dead...");
                     --enemiesRemaining;
                     enemyCounter.GetComponent<enemyCounterScript>().EnemyDied();
-                    this.GetComponent<ExperienceScript>().AddEXP(enemyInfo.expReward);
+                    if(this.GetComponent<ExperienceScript>())
+                        this.GetComponent<ExperienceScript>().AddEXP(enemyInfo.expReward);
                     return true;
                 }
             }

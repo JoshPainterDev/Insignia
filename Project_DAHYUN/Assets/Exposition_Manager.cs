@@ -98,7 +98,6 @@ public class Exposition_Manager : MonoBehaviour
 
     IEnumerator handleInput()
     {
-        print(dialogueManager.dDialogueCompleted);
         if (dialogueManager.dDialogueCompleted)
             dialogueManager.StopDialogue();
         else

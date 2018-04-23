@@ -10,10 +10,10 @@ public class PlayerCamera_C : MonoBehaviour
     public Vector3 playerPoint;
     public GameObject playerSpawnPoint;
 
-    //private void Start()
-    //{
-    //    Invoke("TakeSnapshot", 1.0f);
-    //}
+    private void Start()
+    {
+        //Invoke("TakeSnapshot", 1.0f);
+    }
 
     public void TakeSnapshot()
     {
@@ -24,8 +24,13 @@ public class PlayerCamera_C : MonoBehaviour
         Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
         //encode to png
         byte[] bytes = snapshot.EncodeToPNG();
-        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player_" + GameController.controller.playerName + ".png";
-//        if (!File.Exists(FilePath))
+        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player" + GameController.controller.playerNumber + ".png";
+        //print(FilePath);
+        if (!File.Exists(FilePath))
+        {
+            print("file did not exist... creating file");
+            var sr = File.CreateText(FilePath);
+        }
         File.WriteAllBytes(FilePath, bytes);
 
         player.GetComponent<AnimationController>().FlipFlop();

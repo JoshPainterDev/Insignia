@@ -43,7 +43,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: d74156142ef1f2f4089bccbbace944c0, type: 3}
     - {fileID: 2800000, guid: a299568cf0478b944bafe510ee31fe28, type: 3}
     - {fileID: 2800000, guid: ed9c3e7f013e5f246a5d8c00b53e4791, type: 3}
-    - {fileID: 2800000, guid: 5ca3d81163ab2e940abc7604cc7a93bb, type: 3}
     - {fileID: 2800000, guid: e88de4433c172804a85b560bdc11a86d, type: 3}
     - {fileID: 2800000, guid: bc74165a459f79b448e0905e1eef109d, type: 3}
     - {fileID: 2800000, guid: d35d561bb3c956744b0d3331765de391, type: 3}
@@ -67,7 +66,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5c15830e8fbc74f4fb59a77b45fd7815, type: 3}
   - {fileID: 21300000, guid: 5d062cf73e2312c47957bb8193fbd31f, type: 3}
   - {fileID: 21300000, guid: 8a7c9feaa68fcd34bb594a3f2be34398, type: 3}
-  - {fileID: 21300000, guid: 5ca3d81163ab2e940abc7604cc7a93bb, type: 3}
   - {fileID: 21300000, guid: d35d561bb3c956744b0d3331765de391, type: 3}
   - {fileID: 21300000, guid: 8f1df2f5930e52d4f867cc4ec87f2508, type: 3}
   - {fileID: 21300000, guid: f1c00faec2f6b0f40aa9a0a5b2357a58, type: 3}
@@ -88,7 +86,6 @@ SpriteAtlas:
   - Character_CloseUp_SolarisOfficer
   - CloseUp_Frame
   - Character_CloseUp_Unknown
-  - Character_CloseUp_Player
   - Character_CloseUp_Slade
   - Character_CloseUp_GeneralVixon
   - Character_CloseUp_Agyrii

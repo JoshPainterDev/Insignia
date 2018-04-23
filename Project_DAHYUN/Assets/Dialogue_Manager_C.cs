@@ -44,6 +44,7 @@ public class Dialogue_Manager_C : MonoBehaviour
     [HideInInspector]
     public bool dDialogueCompleted = true;
     private string playername;
+    private int playerNumber = 0;
 
     Sprite playerSprite;
 
@@ -52,8 +53,8 @@ public class Dialogue_Manager_C : MonoBehaviour
     {
         playername = GameController.controller.playerName;
         expositionManager = this.GetComponent<Exposition_Manager>();
-        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player_" + GameController.controller.playerName + ".png";
-
+        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player" + GameController.controller.playerNumber + ".png";
+        //print(FilePath);
         if (File.Exists(FilePath))
         {
             byte[] fileData = File.ReadAllBytes(FilePath);
@@ -65,7 +66,8 @@ public class Dialogue_Manager_C : MonoBehaviour
             tex.Apply();
             playerSprite = Sprite.Create(tex, new Rect(0.0F, 0.0F, tex.width, tex.height), new Vector2(0.5F, 0.5F), 52);
         }
-        
+
+        playerNumber = GameController.controller.playerNumber;
     }
 
     public void NewDialogue(int totalLines, string[] script, string[] speaker, bool[] isLeftSpeaker, string[] image, bool usesPlayer)
@@ -313,7 +315,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         switch(speaker)
         {
             case "Player":
-                iconString = "CloseUps\\Character_CloseUp_Player_" + playername;
+                iconString = "CloseUps\\Character_CloseUp_Player" + playerNumber;
                 break;
             case "???":
                 iconString = "CloseUps\\Character_CloseUp_Unknown";
