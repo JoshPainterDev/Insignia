@@ -65,6 +65,9 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     EquipmentInfo info;
 
+    public GameObject equipmentHandle;
+    public GameObject mirrorCamera;
+
     private void Awake()
     {
         //GameController.controller.playerEquippedIDs[0] = 0;
@@ -141,6 +144,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         LoadPersona();
 
         LoadEquipmentIcons();
+
+        UnhighlightEquipment();
     }
 
     public void HideOtherTabs(string tab)
@@ -604,9 +609,14 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [3][0]... [3][3]
     public void ShowHeadEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(0);
+        
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -642,6 +652,9 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [7][0]... [7][3]
     public void ShowTorsoEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(1);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
@@ -680,9 +693,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [11][0]... [11][3]
     public void ShowLegsEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(2);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(1).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -718,9 +735,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [15][0]... [15][3]
     public void ShowBackEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(3);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -756,9 +777,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [19][0]... [19][3]
     public void ShowGlovesEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(4);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -794,9 +819,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [23][0]... [23][3]
     public void ShowShoesEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(5);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -832,9 +861,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [27][0]... [27][3]
     public void ShowWeaponEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(6);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -872,9 +905,13 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [29][0]... [29][3]
     public void ShowAuraEquipment()
     {
+        Destroy(equipmentSelectPopUp);
+        UnhighlightEquipment();
+        HilightEquipment(7);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -1004,5 +1041,19 @@ public class Character_Menu_Manager : MonoBehaviour {
         sheetIndex = (4 * (GameController.controller.playerEquippedIDs[12] % 4)) + GameController.controller.playerEquippedIDs[13];
         menuButton = GameObject.Find("Aura_Button");
         menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Aura[sheetIndex];
+    }
+
+    private void UnhighlightEquipment()
+    {
+        for (int i = 0; i < 8; ++i)
+        {
+            equipmentHandle.transform.GetChild(i).GetComponent<Image>().color = Color.grey;
+        }
+    }
+
+    private void HilightEquipment(int number)
+    {
+        equipmentHandle.transform.GetChild(number).GetComponent<Image>().color = new Color(0.8f, 1.0f, 0.0f, 1.0f);
+
     }
 }

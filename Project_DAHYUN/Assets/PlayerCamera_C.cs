@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 
 public class PlayerCamera_C : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerCamera_C : MonoBehaviour
     GameObject player;
     public Vector3 playerPoint;
     public GameObject playerSpawnPoint;
+    public bool isMirrorCamera = false;
+    public GameObject mirror;
 
     private void Start()
     {
@@ -57,5 +60,23 @@ public class PlayerCamera_C : MonoBehaviour
         image.Apply();
         RenderTexture.active = currentRT;
         return image;
+    }
+
+    public void Update()
+    {
+        if(isMirrorCamera && mirror != null)
+        {
+            MirrorPlayer();
+        }
+    }
+
+    public void MirrorPlayer()
+    {
+        player = GameController.controller.playerObject;
+        //player.GetComponent<AnimationController>().FlipFlop();
+        //player.transform.position = playerPoint;
+        Texture2D snapshot = RTImage(this.GetComponent<Camera>());
+        Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
+        mirror.GetComponent<Image>().sprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f));
     }
 }
