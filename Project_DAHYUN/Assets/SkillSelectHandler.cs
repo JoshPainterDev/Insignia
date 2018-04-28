@@ -28,14 +28,14 @@ public class SkillSelectHandler : MonoBehaviour
     {
         this.transform.GetChild(1).GetComponent<Button>().enabled = false;
         this.transform.GetChild(1).GetComponent<Image>().color = lockColor;
-        this.transform.GetChild(3).GetComponent<Image>().color = Color.white;
+        //this.transform.GetChild(3).GetComponent<Image>().color = Color.white;
     }
 
     public void LockGoodSkill()
     {
         this.transform.GetChild(2).GetComponent<Button>().enabled = false;
         this.transform.GetChild(2).GetComponent<Image>().color = lockColor;
-        this.transform.GetChild(3).GetComponent<Image>().color = Color.white;
+        //this.transform.GetChild(3).GetComponent<Image>().color = Color.white;
     }
 
     public void SelectGoodSkill()

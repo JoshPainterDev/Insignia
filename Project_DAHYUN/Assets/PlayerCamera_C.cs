@@ -20,24 +20,24 @@ public class PlayerCamera_C : MonoBehaviour
 
     public void TakeSnapshot()
     {
-        player = GameController.controller.playerObject;
-        player.GetComponent<AnimationController>().FlipFlop();
-        player.transform.position = playerPoint;
-        Texture2D snapshot = RTImage(this.GetComponent<Camera>());
-        Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
-        //encode to png
-        byte[] bytes = snapshot.EncodeToPNG();
-        string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player" + GameController.controller.playerNumber + ".png";
-        //print(FilePath);
-        if (!File.Exists(FilePath))
-        {
-            print("file did not exist... creating file");
-            var sr = File.CreateText(FilePath);
-        }
-        File.WriteAllBytes(FilePath, bytes);
+        //player = GameController.controller.playerObject;
+        //player.GetComponent<AnimationController>().FlipFlop();
+        //player.transform.position = playerPoint;
+        //Texture2D snapshot = RTImage(this.GetComponent<Camera>());
+        //Rect rec = new Rect(0, 0, snapshot.width, snapshot.height);
+        ////encode to png
+        //byte[] bytes = snapshot.EncodeToPNG();
+        //string FilePath = Application.dataPath + "/Resources/CloseUps/Character_CloseUp_Player" + GameController.controller.playerNumber + ".png";
+        ////print(FilePath);
+        //if (!File.Exists(FilePath))
+        //{
+        //    print("file did not exist... creating file");
+        //    var sr = File.CreateText(FilePath);
+        //}
+        //File.WriteAllBytes(FilePath, bytes);
 
-        player.GetComponent<AnimationController>().FlipFlop();
-        player.transform.position = playerSpawnPoint.transform.position;
+        //player.GetComponent<AnimationController>().FlipFlop();
+        //player.transform.position = playerSpawnPoint.transform.position;
 
         
         //Sprite newSprite = Sprite.Create(snapshot, rec, new Vector2(0.5f, 0.5f), 100);
@@ -62,13 +62,13 @@ public class PlayerCamera_C : MonoBehaviour
         return image;
     }
 
-    public void Update()
-    {
-        if(isMirrorCamera && mirror != null)
-        {
-            MirrorPlayer();
-        }
-    }
+    //public void Update()
+    //{
+    //    if(isMirrorCamera && mirror != null)
+    //    {
+    //        MirrorPlayer();
+    //    }
+    //}
 
     public void MirrorPlayer()
     {

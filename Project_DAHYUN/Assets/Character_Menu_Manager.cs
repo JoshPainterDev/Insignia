@@ -87,7 +87,12 @@ public class Character_Menu_Manager : MonoBehaviour {
         //GameController.controller.playerEquippedIDs[14] = 28;
         //GameController.controller.playerEquippedIDs[15] = 0;
 
-        GameController.controller.Load(GameController.controller.charNames[1]);
+        if(GameController.controller.playerNumber != 0)
+        {
+            GameController.controller.Load(GameController.controller.charNames[GameController.controller.playerNumber]);
+        }
+        else
+            GameController.controller.Load(GameController.controller.charNames[1]);
     }
 
     // Use this for initialization
@@ -102,33 +107,33 @@ public class Character_Menu_Manager : MonoBehaviour {
         auraStart =  auraColor.transform.position;
 
         //load in defaults for now : FIX THIS SHIT L8R
-        //unlockedEquipment[0, 0] = true;
-        //unlockedEquipment[0, 2] = true;
-        
-        //unlockedEquipment[4, 0] = true;
-        //unlockedEquipment[4, 2] = true;
+        unlockedEquipment[0, 0] = true;
+        unlockedEquipment[0, 2] = true;
 
-        //unlockedEquipment[8, 0] = true;
-        //unlockedEquipment[8, 2] = true;
+        unlockedEquipment[4, 0] = true;
+        unlockedEquipment[4, 2] = true;
 
-        //unlockedEquipment[12, 0] = true;
-        //unlockedEquipment[12, 2] = true;
+        unlockedEquipment[8, 0] = true;
+        unlockedEquipment[8, 2] = true;
 
-        //unlockedEquipment[16, 0] = true;
-        //unlockedEquipment[16, 2] = true;
+        unlockedEquipment[12, 0] = true;
+        unlockedEquipment[12, 2] = true;
 
-        //unlockedEquipment[20, 0] = true;
-        //unlockedEquipment[20, 2] = true;
+        unlockedEquipment[16, 0] = true;
+        unlockedEquipment[16, 2] = true;
 
-        //unlockedEquipment[24, 0] = true;
-        //unlockedEquipment[24, 1] = true;
-        //unlockedEquipment[24, 2] = true;
-        //unlockedEquipment[24, 3] = true;
-        //unlockedEquipment[25, 0] = true;
-        //unlockedEquipment[25, 1] = true;
+        unlockedEquipment[20, 0] = true;
+        unlockedEquipment[20, 2] = true;
 
-        //unlockedEquipment[28, 0] = true;
-        //unlockedEquipment[28, 2] = true;
+        unlockedEquipment[24, 0] = true;
+        unlockedEquipment[24, 1] = true;
+        unlockedEquipment[24, 2] = true;
+        unlockedEquipment[24, 3] = true;
+        unlockedEquipment[25, 0] = true;
+        unlockedEquipment[25, 1] = true;
+
+        unlockedEquipment[28, 0] = true;
+        unlockedEquipment[28, 2] = true;
 
         spriteSheet_Head = Resources.LoadAll<Sprite>("IconSpritesheets\\Helmet_Spritesheet01");
         spriteSheet_Torso = Resources.LoadAll<Sprite>("IconSpritesheets\\Torso_Spritesheet01");
@@ -940,11 +945,11 @@ public class Character_Menu_Manager : MonoBehaviour {
             }
         }
 
-        for (int i = 2; i < 4; ++i)
-        {
-            GameObject rowObject = grid.transform.GetChild(i).gameObject;
-            Destroy(rowObject);
-        }
+        //for (int i = 2; i < 4; ++i)
+        //{
+        //    GameObject rowObject = grid.transform.GetChild(i).gameObject;
+        //    Destroy(rowObject);
+        //}
     }
 
     public void ShowEquipmentOptions()
@@ -1033,12 +1038,16 @@ public class Character_Menu_Manager : MonoBehaviour {
         sheetIndex = (4 * (GameController.controller.playerEquippedIDs[8] % 4)) + GameController.controller.playerEquippedIDs[9];
         menuButton = GameObject.Find("Gloves_Button");
         menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Gloves[sheetIndex];
-        //weapon
+        //shoes 
         sheetIndex = (4 * (GameController.controller.playerEquippedIDs[10] % 4)) + GameController.controller.playerEquippedIDs[11];
+        menuButton = GameObject.Find("Shoes_Button");
+        menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Shoes[sheetIndex];
+        //weapon
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[12] % 4)) + GameController.controller.playerEquippedIDs[13];
         menuButton = GameObject.Find("Weapon_Button");
         menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Weapon[sheetIndex];
         //aura
-        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[12] % 4)) + GameController.controller.playerEquippedIDs[13];
+        sheetIndex = (4 * (GameController.controller.playerEquippedIDs[14] % 4)) + GameController.controller.playerEquippedIDs[15];
         menuButton = GameObject.Find("Aura_Button");
         menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Aura[sheetIndex];
     }

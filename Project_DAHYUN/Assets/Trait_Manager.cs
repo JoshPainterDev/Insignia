@@ -33,8 +33,8 @@ public class Trait_Manager : MonoBehaviour
         p_GoodPoints = GameController.controller.playerGoodPoints;
         skills = GameController.controller.skillTree;
 
-        setBackground();
-        Invoke("lockSkills", 0.1f);
+        //setBackground();
+        //Invoke("lockSkills", 0.1f);
 	}
 
     public void lockSkills()

@@ -394,6 +394,7 @@
     <Compile Include="Assets\TestEventTrigger.cs" />
     <Compile Include="Assets\TimeController.cs" />
     <Compile Include="Assets\Trait_Manager.cs" />
+    <Compile Include="Assets\TraitManager_C.cs" />
     <Compile Include="Assets\TutorialManager01_C.cs" />
     <Compile Include="Assets\TutorialManager02_C.cs" />
     <Compile Include="Assets\TutorialManagerMM_C.cs" />
