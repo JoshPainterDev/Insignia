@@ -80,6 +80,9 @@ public class AbilityToolsScript : MonoBehaviour {
             case 13:
                 AbilityName = "Murder-Stroke";
                 break;
+            case 14:
+                AbilityName = "Meditate";
+                break;
         }
 
         return LookUpAbility(AbilityName);
@@ -147,7 +150,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Name = name;
                 ability.specialCase = SpecialCase.Blind;
                 ability.Ticks = 1;
-                ability.Type = AbilityType.Magical;
+                ability.Type = AbilityType.Physical;
                 ability.Icon = "AbilityIcons\\SolarFlare_AbilityIcon";
                 ability.AbilityIndex = 4;
                 break;
@@ -241,7 +244,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
                 ability.Icon = "AbilityIcons\\DivineShield_AbilityIcon";
-                ability.AbilityIndex = 10;
+                ability.AbilityIndex = 11;
                 break;
             case "Stranglehold":
                 ability.Accuracy = 100;
@@ -254,7 +257,7 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Magical;
                 ability.Icon = "AbilityIcons\\Strangle_AbilityIcon";
-                ability.AbilityIndex = 10;
+                ability.AbilityIndex = 12;
                 break;
             case "Murder-Stroke":
                 ability.Accuracy = 85;
@@ -267,7 +270,24 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Ticks = 0;
                 ability.Type = AbilityType.Utility;
                 ability.Icon = "AbilityIcons\\Murder-Stroke_AbilityIcon";
-                ability.AbilityIndex = 11;
+                ability.AbilityIndex = 13;
+                break;
+            case "Meditate":
+                ability.Accuracy = 100;
+                ability.BaseDamage = 0;
+                ability.Cooldown = 3;
+                ability.Buffs = true;
+                ability.DefenseBoost = 1;
+                ability.DefBoostDuration = 3;
+                ability.Heals = true;
+                ability.HealAmount = WEAK_HEAL;
+                ability.Description = "Channel your disciplined focus into a stream of great physical energy.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.None;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Utility;
+                ability.Icon = "AbilityIcons\\Meditate_AbilityIcon";
+                ability.AbilityIndex = 14;
                 break;
             default:
                 ability.Name = "";

@@ -65,6 +65,7 @@ public class AbilitySelectManager : MonoBehaviour
 
     public void LoadAbilitiesPanel(int ASnum)
     {
+        print("HERE!");
         if (ASslot != ASnum)
         {
             if(ASslot != 0)

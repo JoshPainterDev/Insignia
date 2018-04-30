@@ -23,7 +23,16 @@ public class Trait_Manager : MonoBehaviour
     private int p_GoodPoints;
     private int MAX_UNLOCKS;
     private int[] skills;
-    
+
+    public GameObject sampleImage;
+    public GameObject powerText;
+    public GameObject descriptionPanel;
+    public GameObject cooldownText;
+    public GameObject typeText;
+    private Ability currentAbility;
+    public Color physicalColor;
+    public Color magicalColor;
+    public Color utilityColor;
 
     // Use this for initialization
     void Start ()
@@ -36,6 +45,37 @@ public class Trait_Manager : MonoBehaviour
         //setBackground();
         //Invoke("lockSkills", 0.1f);
 	}
+
+    public void AbilityOptionSelected(GameObject button)
+    {
+        int index = button.transform.GetSiblingIndex();
+
+        currentAbility = AbilityToolsScript.tools.LookUpAbility(button.transform.GetChild(0).GetComponent<Text>().text);
+        sampleImage.GetComponent<Image>().sprite = button.GetComponent<Image>().sprite;
+        powerText.GetComponent<Text>().text = currentAbility.BaseDamage.ToString();
+        descriptionPanel.GetComponent<Text>().text = currentAbility.Description;
+        cooldownText.GetComponent<Text>().text = currentAbility.Cooldown.ToString();
+        setType(currentAbility.Type);
+    }
+
+    public void setType(AbilityType type)
+    {
+        switch (type)
+        {
+            case AbilityType.Physical:
+                typeText.GetComponent<Text>().color = physicalColor;
+                typeText.GetComponent<Text>().text = "Physical";
+                break;
+            case AbilityType.Magical:
+                typeText.GetComponent<Text>().color = magicalColor;
+                typeText.GetComponent<Text>().text = "Magical";
+                break;
+            case AbilityType.Utility:
+                typeText.GetComponent<Text>().color = utilityColor;
+                typeText.GetComponent<Text>().text = "Utility";
+                break;
+        }
+    }
 
     public void lockSkills()
     {
