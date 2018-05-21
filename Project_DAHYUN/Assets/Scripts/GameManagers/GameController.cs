@@ -171,10 +171,14 @@ public class GameController : MonoBehaviour {
         data.StrikeMod = strikeModifier;
         data.limitBreakMod = limitBreakModifier;
         data.limitBreakTrack = limitBreakTracker;
-        data.attack = playerAttack;
-        data.defense = playerDefense;
-        data.prowess = playerProwess;
-        data.speed = playerSpeed;
+        data.Attack = playerAttack;
+        data.Defense = playerDefense;
+        data.Prowess = playerProwess;
+        data.Speed = playerSpeed;
+        data.BaseAttack = playerBaseAtk;
+        data.BaseDefense = playerBaseDef;
+        data.BaseProwess = playerBasePrw;
+        data.BaseSpeed = playerBaseSpd;
         data.PlayerColor = playerColorPreference;
         data.DecisionsMade = decisionsMade;
         data.PlayerDecisions = playerDecisions;
@@ -222,10 +226,14 @@ public class GameController : MonoBehaviour {
             limitBreakTracker = data.limitBreakTrack;
             playerSkinColor = data.PlayerSkinColor;
             playerColorPreference = data.PlayerColor;
-            playerAttack = data.attack;
-            playerDefense = data.defense;
-            playerProwess = data.prowess;
-            playerSpeed = data.speed;
+            playerAttack = data.Attack;
+            playerDefense = data.Defense;
+            playerProwess = data.Prowess;
+            playerSpeed = data.Speed;
+            playerBaseAtk = data.BaseAttack;
+            playerBaseDef = data.BaseDefense;
+            playerBasePrw = data.BaseProwess;
+            playerBaseSpd = data.BaseSpeed;
             decisionsMade = data.DecisionsMade;
             playerDecisions = data.PlayerDecisions;
             playerEvilPoints = data.EvilPoints;
@@ -381,7 +389,8 @@ class PlayerData
     public string [] InventoryList;
     public int [] InventoryQuantities;
     public bool [,] EquipmentList;
-    public int attack, defense, prowess, speed;
+    public int Attack, Defense, Prowess, Speed;
+    public int BaseAttack, BaseDefense, BaseProwess, BaseSpeed;
     public int [] EquippedIDs; // [0,1] = head, [2,3] = torso, [4,5] = legs, [6,7] = back, [8,9] = gloves, [10,11] = shoes, [12,13] = weapon, [14,15] = aura
     public float[] PlayerColor;
     public int LevelsCompleted;

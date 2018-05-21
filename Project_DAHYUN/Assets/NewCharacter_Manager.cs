@@ -177,6 +177,8 @@ public class NewCharacter_Manager : MonoBehaviour {
             GameController.controller.playerEquipmentList = new bool[30, 4];
             GameController.controller.arenaCompleted = new bool[6];
 
+
+
             for (int i = 0; i < 6; ++i)
                 GameController.controller.arenaCompleted[i] = false;
 
@@ -236,10 +238,10 @@ public class NewCharacter_Manager : MonoBehaviour {
                 GameController.controller.playerBasePrw = 1;
                 GameController.controller.playerBaseSpd = 1;
 
-                GameController.controller.playerAttack = 5 + 5 + 1; // +2
-                GameController.controller.playerDefense = 3 + 6; // +2
-                GameController.controller.playerProwess = 1 + 2; // +1
-                GameController.controller.playerSpeed = 1; // +1
+                GameController.controller.playerAttack = 5 + 2 + 1 + 1 + 1 + 5 + GameController.controller.playerBaseAtk; // 15atk + 5
+                GameController.controller.playerDefense = 3 + 2 + 3 + 2 + 1 + 1 + 1 + GameController.controller.playerBaseDef; // 13def + 3
+                GameController.controller.playerProwess = 1 + 1 + 2 + GameController.controller.playerBasePrw; // 4prs + 1
+                GameController.controller.playerSpeed = 1 + 1 + 1 + GameController.controller.playerBaseSpd; // 3spd + 1
 
                 GameController.controller.playerEquippedIDs[0] = 0;
                 GameController.controller.playerEquippedIDs[1] = 0;

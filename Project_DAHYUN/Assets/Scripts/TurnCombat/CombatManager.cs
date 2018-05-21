@@ -174,7 +174,7 @@ public class CombatManager : MonoBehaviour {
             GameController.controller.currentEncounter = encounter;
             encounter.enemyNames = new string[3];
             encounter.totalEnemies = 1;
-            encounter.enemyNames[0] = "Shino-Bot";
+            encounter.enemyNames[0] = "Dummy";
             //encounter.enemyNames[1] = "Skitter";
             //encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
@@ -198,18 +198,20 @@ public class CombatManager : MonoBehaviour {
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
 
-        GameController.controller.playerLevel = 5;
-        GameController.controller.playerAttack = 17;
-        GameController.controller.playerDefense = 25;
-        GameController.controller.playerProwess = 6;
-        GameController.controller.playerSpeed = 4;
+        //GameController.controller.playerLevel = 5;
+        //GameController.controller.playerAttack = 17;
+        //GameController.controller.playerDefense = 25;
+        //GameController.controller.playerProwess = 6;
+        //GameController.controller.playerSpeed = 4;
 
         playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
         playerHealth = playerMaxHealth;
-        //print("Player max HP: " + playerHealth);
-        //print("defense: " + GameController.controller.playerDefense);
+        print("Player max HP: " + playerHealth);
+        //print("base def: " + GameController.controller.playerBaseDef);
+        //print("total defense: " + GameController.controller.playerDefense);
+        print("base spd: " + GameController.controller.playerSpeed);
 
-        if(!hasTutorial)
+        if (!hasTutorial)
         {
             //REMOVE THIS LATER
             GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
@@ -220,7 +222,6 @@ public class CombatManager : MonoBehaviour {
             //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
             playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
 
-            ResetEnemyValues();
             //strikeMod = GameController.controller.strikeModifier;
 
             ability1 = GameController.controller.playerAbility1;
@@ -259,12 +260,12 @@ public class CombatManager : MonoBehaviour {
         if (!hasTutorial)
         {
             //3. Load in initial enemy
-            //enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[0]);
-            StartCoroutine(LoadNextEnemy(true));
+            LoadNextEnemyInfo(true);
             LoadCharacterLevels(enemyInfo);
 
-            if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed )
+            if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
             {
+                print("enemy speed: " + enemyInfo.enemySpeed);
                 StartCoroutine(ShowStartingButtons());
             }
             else
@@ -1682,12 +1683,17 @@ public class CombatManager : MonoBehaviour {
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Enemy loading
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// 
+    void LoadNextEnemyInfo(bool initialEnemy = false)
+    {
+        enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
+        StartCoroutine(LoadNextEnemy(initialEnemy));
+    }
+
     IEnumerator LoadNextEnemy(bool initialEnemy = false)
     {
         if(enemyPrfb)
             Destroy(enemyPrfb);
-
-        enemyInfo = EnemyToolsScript.tools.LookUpEnemy(encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]);
         enemyPrfb = Instantiate(enemyInfo.enemyPrefab, enemyMannequin.transform.position, Quaternion.identity) as GameObject;
         enemyPrfb.transform.SetParent(enemyMannequin.transform);
         enemyPrfb.transform.localScale = Vector3.one;
@@ -1714,7 +1720,7 @@ public class CombatManager : MonoBehaviour {
 
                 yield return new WaitForSeconds(1.15f);
 
-                //print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
+                print("My spd: " + GameController.controller.playerSpeed + " Enemy spd: " + enemyInfo.enemySpeed);
                 if ((GameController.controller.playerSpeed + playerSpeedBoost) >= enemyInfo.enemySpeed)
                     StartCoroutine(StartPlayerTurn());
                 else
@@ -1742,7 +1748,7 @@ public class CombatManager : MonoBehaviour {
         tempInfo.enemyAttack = tempInfo.enemyAttack * tempInfo.enemyLevel;
         tempInfo.enemyDefense = tempInfo.enemyDefense * tempInfo.enemyLevel;
         tempInfo.enemyProwess = tempInfo.enemyProwess * tempInfo.enemyLevel;
-        tempInfo.enemySpeed = (tempInfo.enemySpeed * tempInfo.enemyLevel) / 2;
+        tempInfo.enemySpeed = tempInfo.enemySpeed * tempInfo.enemyLevel;
         enemyInfo = tempInfo;
 
         enemyCanLB = enemyInfo.canLimitBreak;

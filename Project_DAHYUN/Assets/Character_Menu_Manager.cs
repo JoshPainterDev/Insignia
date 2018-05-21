@@ -341,6 +341,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void UpdateStats()
     {
+        print("Updating stats..");
         int statTotal;
         //Attack
         statTotal = GameController.controller.playerBaseAtk;
@@ -944,12 +945,6 @@ public class Character_Menu_Manager : MonoBehaviour {
                 }
             }
         }
-
-        //for (int i = 2; i < 4; ++i)
-        //{
-        //    GameObject rowObject = grid.transform.GetChild(i).gameObject;
-        //    Destroy(rowObject);
-        //}
     }
 
     public void ShowEquipmentOptions()

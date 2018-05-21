@@ -135,7 +135,7 @@ public class ExperienceScript : MonoBehaviour {
                 if (ding)
                 {
                     //player leveled up
-                    ++GameController.controller.playerLevel;
+                    playerLevelUpHelper();
                     StartCoroutine(LevelUpAnim());
                     ding = false;
                 }
@@ -146,6 +146,41 @@ public class ExperienceScript : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void playerLevelUpHelper()
+    {
+        ++GameController.controller.playerLevel;
+
+        switch(GameController.controller.charClasses[GameController.controller.playerNumber])
+        {
+            case PlayerClass.Cutthroat:
+                GameController.controller.playerBaseAtk += 1;
+                GameController.controller.playerBaseDef += 1;
+                GameController.controller.playerBasePrw += 2;
+                GameController.controller.playerBaseSpd += 2;
+                break;
+            case PlayerClass.Guardian:
+                GameController.controller.playerBaseAtk += 1;
+                GameController.controller.playerBaseDef += 2;
+                GameController.controller.playerBasePrw += 2;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+            case PlayerClass.Knight:
+                GameController.controller.playerBaseAtk += 2;
+                GameController.controller.playerBaseDef += 2;
+                GameController.controller.playerBasePrw += 1;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+            case PlayerClass.Occultist:
+                GameController.controller.playerBaseAtk += 2;
+                GameController.controller.playerBaseDef += 1;
+                GameController.controller.playerBasePrw += 2;
+                GameController.controller.playerBaseSpd += 1;
+                break;
+        }
+
+        GameController.controller.Save(GameController.controller.playerName);
     }
 
     //IEnumerator CharacterBlinkAnim()
@@ -224,7 +259,6 @@ public class ExperienceScript : MonoBehaviour {
 
         expBar.GetComponent<Image>().fillAmount = 0;
         glitter.transform.localPosition = new Vector3(-185, 78, 0);
-        
 
         yield return new WaitForSeconds(1.25f);
 
@@ -266,6 +300,11 @@ public class ExperienceScript : MonoBehaviour {
     {
         GameController contr = GameController.controller;
 
+        print("Previous ATT: " + GameController.controller.playerAttack);
+        print("Previous DEF: " + GameController.controller.playerDefense);
+        print("Previous PRW: " + GameController.controller.playerProwess);
+        print("Previous SPD: " + GameController.controller.playerProwess);
+
         switch (GameController.controller.charClasses[GameController.controller.playerNumber])
         {
             case PlayerClass.Knight:
@@ -295,7 +334,7 @@ public class ExperienceScript : MonoBehaviour {
         }
 
         int statTotal;
-        print("Previous ATT: " + GameController.controller.playerAttack);
+        
         //Attack
         statTotal = contr.playerBaseAtk;
         for (int i = 0; i < 8; ++i)
@@ -307,7 +346,7 @@ public class ExperienceScript : MonoBehaviour {
         GameController.controller.playerAttack = statTotal;
         print("New ATT: " + GameController.controller.playerAttack);
 
-        print("Previous DEF: " + GameController.controller.playerDefense);
+        
         //Defense
         statTotal = GameController.controller.playerBaseDef;
         for (int i = 0; i < 8; ++i)
@@ -319,7 +358,7 @@ public class ExperienceScript : MonoBehaviour {
         GameController.controller.playerDefense = statTotal;
         print("New DEF: " + GameController.controller.playerDefense);
 
-        print("Previous PRW: " + GameController.controller.playerProwess);
+        
         //Prowess
         statTotal = GameController.controller.playerProwess;
         for (int i = 0; i < 8; ++i)
@@ -331,7 +370,7 @@ public class ExperienceScript : MonoBehaviour {
         GameController.controller.playerProwess = statTotal;
         print("New PRW: " + GameController.controller.playerDefense);
 
-        print("Previous SPD: " + GameController.controller.playerProwess);
+        
         //Speed
         statTotal = GameController.controller.playerBaseSpd;
         for (int i = 0; i < 8; ++i)

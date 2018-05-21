@@ -141,8 +141,9 @@ public class EnemyCombatScript : MonoBehaviour {
         {
             int randomAbility = Random.Range(0, 4);
 
+            print("Ability Selected: " + randomAbility);
             ++abilityAttempts;
-            randomAbility = 3;
+            
             switch (randomAbility)
             {
                 case 0:
@@ -178,7 +179,6 @@ public class EnemyCombatScript : MonoBehaviour {
                 case 3:
                     if ((ability4.Name != "-") && (cooldownA4 == 0))
                     {
-                        print("wtf");
                         cooldownA4 = ability4.Cooldown + 1;
                         combatManager.HideHealthBars();
                         this.GetComponent<EnemyAbilityManager_C>().AbilityToUse(ability4, combatManager.getPlayerHealth());

@@ -54,9 +54,9 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Novice Helmet";
-                            equipInfo.AttackStat = 0;
-                            equipInfo.DefenseStat = 1;
-                            equipInfo.ProwessStat = 0;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 2;
+                            equipInfo.ProwessStat = 1;
                             equipInfo.SpeedStat = 0;
                             equipInfo.hideUnderLayer = false;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
@@ -215,8 +215,8 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Novice Chestplate";
-                            equipInfo.AttackStat = 0;
-                            equipInfo.DefenseStat = 1;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 3;
                             equipInfo.ProwessStat = 0;
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
@@ -374,10 +374,10 @@ public class EquipmentInfoManager : MonoBehaviour{
                     {
                         case 0:
                             equipInfo.Name = "Novice Leg Guards";
-                            equipInfo.AttackStat = 0;
-                            equipInfo.DefenseStat = 1;
+                            equipInfo.AttackStat = 1;
+                            equipInfo.DefenseStat = 2;
                             equipInfo.ProwessStat = 0;
-                            equipInfo.SpeedStat = 0;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Legs;
                             equipInfo.imgSourceName = prefixLegs + "\\Novice_Armor\\Player_Legs_NoviceLegs_AnimController";
                             break;
@@ -534,7 +534,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.Name = "Squire's Shield";
                             equipInfo.AttackStat = 0;
                             equipInfo.DefenseStat = 1;
-                            equipInfo.ProwessStat = 0;
+                            equipInfo.ProwessStat = 1;
                             equipInfo.SpeedStat = 0;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Back;
                             equipInfo.imgSourceName = prefixBack + "\\Novice_Armor\\Player_Back_BackShield_AnimController";
@@ -851,7 +851,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.AttackStat = 0;
                             equipInfo.DefenseStat = 1;
                             equipInfo.ProwessStat = 0;
-                            equipInfo.SpeedStat = 0;
+                            equipInfo.SpeedStat = 1;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Shoes;
                             equipInfo.imgSourceName = prefixShoes + "\\Novice_Armor\\Player_Shoes_NoviceBoots_AnimController";
                             break;
