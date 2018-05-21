@@ -174,7 +174,7 @@ public class CombatManager : MonoBehaviour {
             GameController.controller.currentEncounter = encounter;
             encounter.enemyNames = new string[3];
             encounter.totalEnemies = 1;
-            encounter.enemyNames[0] = "Skitter";
+            encounter.enemyNames[0] = "Shino-Bot";
             //encounter.enemyNames[1] = "Skitter";
             //encounter.enemyNames[2] = "Shadow Assassin";
             encounter.encounterNumber = -1;
@@ -198,8 +198,9 @@ public class CombatManager : MonoBehaviour {
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
 
+        GameController.controller.playerLevel = 5;
         GameController.controller.playerAttack = 17;
-        GameController.controller.playerDefense = 15;
+        GameController.controller.playerDefense = 25;
         GameController.controller.playerProwess = 6;
         GameController.controller.playerSpeed = 4;
 
@@ -1178,6 +1179,7 @@ public class CombatManager : MonoBehaviour {
         int randDamageBuffer = Random.Range(0, 9);
         float critRand = Random.Range(0.0f, 1.0f);
         float attBoostMod = 1;
+        float defBoostMod = 1;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
@@ -1213,9 +1215,27 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
+        //handle attack boost modifier
+        switch (enemyDefenseBoost)
+        {
+            case 1:
+                defBoostMod = 1.35f;
+                break;
+            case 2:
+                defBoostMod = 1.75f;
+                break;
+            case 3:
+                defBoostMod = 2.15f;
+                break;
+            default:
+                defBoostMod = 1;
+                break;
+        }
+
         damageDealt = (((attack * 2) * enemyInfo.enemyLevel) + (randDamageBuffer)) * attBoostMod;
 
-        damageDealt -= (GameController.controller.playerDefense * playerDefenseBoost);
+        damageDealt -= (GameController.controller.playerDefense * defBoostMod * 2.0f);
+        print(attBoostMod);
 
         damageDealt *= levelMod;
 
@@ -1248,7 +1268,7 @@ public class CombatManager : MonoBehaviour {
         int rand = Random.Range(0, 100);
         int randDamageBuffer = Random.Range(0, 9);
         float accuracy = abilityUsed.Accuracy;
-        float attBoostMod = 1;
+        float attBoostMod = 0;
         float damageDealt = 0;
         int attack = enemyInfo.enemyAttack;
         int defense = enemyInfo.enemyDefense;
