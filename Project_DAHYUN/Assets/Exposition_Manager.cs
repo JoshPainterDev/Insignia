@@ -147,6 +147,8 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 8:
                 StartCoroutine(Cutscene8(actionCounter, instance));
+                if(GameController.controller.stagesCompleted == 1)
+                    GameController.controller.stagesCompleted++;
                 break;
             case 9:
                 eMaxInstances = 2;
@@ -172,7 +174,10 @@ public class Exposition_Manager : MonoBehaviour
             case 15:
                 eMaxInstances = 2;
 
-                switch(decisionNumber)
+                if (GameController.controller.stagesCompleted == 2)
+                    GameController.controller.stagesCompleted++;
+
+                switch (decisionNumber)
                 {
                     case 0:
                         StartCoroutine(Cutscene15(actionCounter, instance));
@@ -201,10 +206,13 @@ public class Exposition_Manager : MonoBehaviour
                 break;
             case 20:
                 eMaxInstances = 2;
+                if (GameController.controller.stagesCompleted == 3)
+                    GameController.controller.stagesCompleted++;
                 StartCoroutine(Cutscene20(actionCounter, instance));
                 break;
         }
 
+        GameController.controller.Save(GameController.controller.playerName);
         ready4Input = true;
     }
 

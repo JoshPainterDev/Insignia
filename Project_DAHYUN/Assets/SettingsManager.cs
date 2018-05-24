@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {
+    public GameObject popup;
+
     public GameObject background;
     public GameObject blackSq;
     public GameObject confirmationPanel;
@@ -19,17 +21,12 @@ public class SettingsManager : MonoBehaviour
     private bool changesMade = false;
     private float musicLevel = 1.0f;
 
-    private void Awake()
-    {
-        GameController.controller.Load(GameController.controller.charNames[1]);
-    }
-
     // Use this for initialization
     void Start ()
     {
         audioComponent = this.GetComponent<AudioSource>();
         changesMade = false;
-        background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
+        //background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
         musicSlider.GetComponent<Slider>().value = GameController.controller.volumeScale;
         muteToggle.GetComponent<Toggle>().isOn = GameController.controller.volumeMuted;
 
@@ -48,6 +45,22 @@ public class SettingsManager : MonoBehaviour
                 difficultyText.GetComponent<Text>().text = "Challenge";
                 break;
         }
+    }
+
+    public void ResetPosition()
+    {
+        StartCoroutine(ResetPosRoutine());
+    }
+
+    IEnumerator ResetPosRoutine()
+    {
+        Vector3 endPos = new Vector3(225, -92, 0);
+        Vector3 startPos = endPos + new Vector3(0, 300, 0);
+        popup.GetComponent<LerpScript>().LerpToPos(startPos, endPos - new Vector3(0, 20, 0), 3.0f);
+        yield return new WaitForSeconds(0.05f);
+        popup.GetComponent<Canvas>().enabled = true;
+        yield return new WaitForSeconds(0.25f);
+        popup.GetComponent<LerpScript>().LerpToPos(endPos - new Vector3(0, 20, 0), endPos, 3.0f);
     }
 
     public void PingNewVolumeSound()
@@ -116,14 +129,19 @@ public class SettingsManager : MonoBehaviour
             confirmationPanel.SetActive(true);
         }
         else
-            StartCoroutine(LoadMM());
+            StartCoroutine(ExitSettings());
     }
 
-    IEnumerator LoadMM()
+    IEnumerator ExitSettings()
     {
-        blackSq.GetComponent<FadeScript>().FadeIn(2);
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("MainMenu_Scene");
+        Vector3 startPos = popup.transform.position;
+        yield return new WaitForSeconds(0.1f);
+        popup.GetComponent<LerpScript>().LerpToPos(startPos, startPos - new Vector3(0, 20, 0), 2.0f);
+        yield return new WaitForSeconds(0.15f);
+        popup.GetComponent<LerpScript>().LerpToPos(startPos - new Vector3(0, 20, 0), startPos + new Vector3(0, 500, 0), 2.0f);
+        yield return new WaitForSeconds(0.35f);
+        popup.GetComponent<Canvas>().enabled = false;
+        popup.SetActive(false);
     }
 
     public void ApplyAndLeave()
@@ -131,11 +149,11 @@ public class SettingsManager : MonoBehaviour
         confirmationPanel.SetActive(false);
         GameController.controller.SaveCharacters();
         GameController.controller.Save(GameController.controller.playerName);
-        StartCoroutine(LoadMM());
+        StartCoroutine(ExitSettings());
     }
 
     public void DiscardChanges()
     {
-        StartCoroutine(LoadMM());
+        StartCoroutine(ExitSettings());
     }
 }

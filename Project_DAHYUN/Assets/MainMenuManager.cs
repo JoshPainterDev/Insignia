@@ -13,6 +13,8 @@ public class MainMenuManager : MonoBehaviour {
     public GameObject settingsButton;
     public GameObject charSelectButton;
     public GameObject background;
+    public GameObject settingsPopup;
+    public GameObject settingsManager;
 
     public GameObject camera;
     public GameObject blackSq;
@@ -55,36 +57,36 @@ public class MainMenuManager : MonoBehaviour {
 
     IEnumerator LoadCharacterScreen()
     {
-        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, characterCameraPos, 1f);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, characterCameraPos, 1.5f);
         yield return new WaitForSeconds(0.25f);
-        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
-        yield return new WaitForSeconds(1.5f);
+        blackSq.GetComponent<FadeScript>().FadeIn(2.5f);
+        yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene("Character_Scene");
     }
 
     IEnumerator LoadAdventureScreen()
     {
-        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 1f);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, adventureCameraPos, 1.5f);
         yield return new WaitForSeconds(0.25f);
-        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
-        yield return new WaitForSeconds(1.5f);
+        blackSq.GetComponent<FadeScript>().FadeIn(2.5f);
+        yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
     IEnumerator LoadArenaScreen()
     {
-        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, arenaCameraPos, 1f);
+        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, arenaCameraPos, 1.5f);
         yield return new WaitForSeconds(0.25f);
-        blackSq.GetComponent<FadeScript>().FadeIn(2f);
-        yield return new WaitForSeconds(1.5f);
+        blackSq.GetComponent<FadeScript>().FadeIn(2.5f);
+        yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene("BattleSelect_Scene");
     }
 
     IEnumerator LoadSettingsScreen()
     {
-        blackSq.GetComponent<FadeScript>().FadeIn(2f);
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Settings_Scene");
+        yield return new WaitForSeconds(0.15f);
+        settingsPopup.SetActive(true);
+        settingsManager.GetComponent<SettingsManager>().ResetPosition();
     }
 
     IEnumerator LoadCharSelectScene()

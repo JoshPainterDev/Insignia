@@ -335,7 +335,7 @@ public class Character_Menu_Manager : MonoBehaviour {
     IEnumerator GoToAbilityScreen()
     {
         blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene("AbilitySelect_Scene");
     }
 
@@ -978,10 +978,10 @@ public class Character_Menu_Manager : MonoBehaviour {
         //SAVE THE PREFAB
         camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, mmCameraPos, 1f);
         yield return new WaitForSeconds(0.25f);
-        blackSq.GetComponent<FadeScript>().FadeIn(1.5f);
-        yield return new WaitForSeconds(1.0f);
+        blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
+        yield return new WaitForSeconds(0.65f);
         snapshotAnchor.transform.GetChild(2).GetComponent<PlayerCamera_C>().TakeSnapshot();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene("MainMenu_Scene");
     }
 

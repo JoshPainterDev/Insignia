@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AdventureSelect_Manager : MonoBehaviour
 {
+    public int MAX_LEVELS = 5;
     public GameObject playerMannequin;
 
     public GameObject canvas;
@@ -22,6 +23,7 @@ public class AdventureSelect_Manager : MonoBehaviour
     public Color highlight_C;
     public Color unselected_C;
     public GameObject selectButton;
+    public GameObject scrollbar;
 
     private string levelToLoad;
     private int currentLevel;
@@ -33,15 +35,17 @@ public class AdventureSelect_Manager : MonoBehaviour
         playerMannequin = GameController.controller.playerObject;
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
 
+        //GameController.controller.stagesCompleted = 5;
+        print("Stages completed: " + GameController.controller.stagesCompleted);
         for(int i = 0; i < gridThing.transform.childCount; ++i)
         {
-            if(i <= (GameController.controller.stagesCompleted))
+            if(i <= (GameController.controller.stagesCompleted + 1))
             {
                 UnlockLevel(i);
             }
         }
 
-        HighlightLevel(GameController.controller.stagesCompleted + 1);
+        HighlightLevel(Mathf.Min(GameController.controller.stagesCompleted, MAX_LEVELS));
     }
 
     //public void Update()
@@ -73,14 +77,25 @@ public class AdventureSelect_Manager : MonoBehaviour
                 gridThing.transform.GetChild(levelNum).GetChild(0).GetChild(0).GetComponent<Text>().text = "RAVEN'S CRYPT";
                 gridThing.transform.GetChild(levelNum).GetChild(1).gameObject.SetActive(false);
                 break;
+            case 4:
+                gridThing.transform.GetChild(levelNum).GetChild(0).GetChild(0).GetComponent<Text>().text = "SANCTUM SOLORAI";
+                gridThing.transform.GetChild(levelNum).GetChild(1).gameObject.SetActive(false);
+                break;
         }
     }
 
     public void HighlightLevel(int levelNum)
     {
+        print(levelNum);
+        if (levelNum == prevLevel)
+            return;
+
         currentLevel = levelNum;
 
         gridThing.transform.GetChild(currentLevel - 1).GetChild(0).GetComponent<Image>().color = highlight_C;
+
+        float scrollVal = currentLevel < 3 ? 1 : (1.0f - (float)(currentLevel) / (float)MAX_LEVELS);
+        scrollbar.GetComponent<Scrollbar>().value = scrollVal;
 
         if (prevLevel > 0)
         {
@@ -91,7 +106,6 @@ public class AdventureSelect_Manager : MonoBehaviour
 
         if (currentLevel > (GameController.controller.stagesCompleted + 1))
         {
-            //print("Stages completed: " + (GameController.controller.stagesCompleted + 1));
             // play a "you havnt unlocked this level" sound
             GameController.controller.GetComponent<MenuUIAudio>().playNope();
             selectButton.SetActive(false);
