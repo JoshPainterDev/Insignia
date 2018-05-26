@@ -14,6 +14,7 @@ public class SettingsManager : MonoBehaviour
     public GameObject musicSlider;
     public GameObject difficultySlider;
     public GameObject muteToggle;
+    public GameObject menuManager;
 
     public GameObject difficultyText;
     private AudioSource audioComponent;
@@ -25,12 +26,16 @@ public class SettingsManager : MonoBehaviour
     void Start ()
     {
         audioComponent = this.GetComponent<AudioSource>();
+    }
+
+    public void ResetPosition()
+    {
         changesMade = false;
         //background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
         musicSlider.GetComponent<Slider>().value = GameController.controller.volumeScale;
         muteToggle.GetComponent<Toggle>().isOn = GameController.controller.volumeMuted;
 
-        switch(GameController.controller.difficultyScale)
+        switch (GameController.controller.difficultyScale)
         {
             case Difficulty.Chill:
                 difficultySlider.GetComponent<Slider>().value = 0;
@@ -45,10 +50,6 @@ public class SettingsManager : MonoBehaviour
                 difficultyText.GetComponent<Text>().text = "Challenge";
                 break;
         }
-    }
-
-    public void ResetPosition()
-    {
         StartCoroutine(ResetPosRoutine());
     }
 
@@ -72,7 +73,7 @@ public class SettingsManager : MonoBehaviour
     public void ToggleVolume()
     {
         changesMade = true;
-        GameController.controller.volumeMuted = !GameController.controller.volumeMuted;
+        GameController.controller.volumeMuted = muteToggle.GetComponent<Toggle>().isOn;
 
         if (GameController.controller.volumeMuted)
             GameController.controller.volumeScale = 0;
@@ -141,6 +142,8 @@ public class SettingsManager : MonoBehaviour
         popup.GetComponent<LerpScript>().LerpToPos(startPos - new Vector3(0, 20, 0), startPos + new Vector3(0, 500, 0), 2.0f);
         yield return new WaitForSeconds(0.35f);
         popup.GetComponent<Canvas>().enabled = false;
+        confirmationPanel.SetActive(false);
+        menuManager.GetComponent<MainMenuManager>().EnableButtons();
         popup.SetActive(false);
     }
 

@@ -36,7 +36,7 @@ public class AdventureSelect_Manager : MonoBehaviour
         background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
 
         //GameController.controller.stagesCompleted = 5;
-        print("Stages completed: " + GameController.controller.stagesCompleted);
+        //print("Stages completed: " + GameController.controller.stagesCompleted);
         for(int i = 0; i < gridThing.transform.childCount; ++i)
         {
             if(i <= (GameController.controller.stagesCompleted + 1))
@@ -86,7 +86,6 @@ public class AdventureSelect_Manager : MonoBehaviour
 
     public void HighlightLevel(int levelNum)
     {
-        print(levelNum);
         if (levelNum == prevLevel)
             return;
 

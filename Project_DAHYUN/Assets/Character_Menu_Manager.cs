@@ -620,6 +620,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         HilightEquipment(0);
         
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
@@ -662,6 +663,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(1);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
 
@@ -703,6 +705,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(2);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(1).gameObject;
@@ -745,6 +748,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(3);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
@@ -787,6 +791,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(4);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
@@ -829,6 +834,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(5);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
@@ -871,6 +877,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(6);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
@@ -915,6 +922,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         UnhighlightEquipment();
         HilightEquipment(7);
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
+        equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
         equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
         mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
@@ -1047,7 +1055,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Aura[sheetIndex];
     }
 
-    private void UnhighlightEquipment()
+    public void UnhighlightEquipment()
     {
         for (int i = 0; i < 8; ++i)
         {
@@ -1055,9 +1063,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         }
     }
 
-    private void HilightEquipment(int number)
+    public void HilightEquipment(int number)
     {
         equipmentHandle.transform.GetChild(number).GetComponent<Image>().color = new Color(0.8f, 1.0f, 0.0f, 1.0f);
-
     }
 }

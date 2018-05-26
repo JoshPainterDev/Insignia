@@ -105,4 +105,13 @@ public class MainMenuManager : MonoBehaviour {
         settingsButton.GetComponent<Button>().enabled = false;
         charSelectButton.GetComponent<Button>().enabled = false;
     }
+
+    public void EnableButtons()
+    {
+        characterButton.GetComponent<Button>().enabled = true;
+        adventureButton.GetComponent<Button>().enabled = true;
+        craftingButton.GetComponent<Button>().enabled = true;
+        settingsButton.GetComponent<Button>().enabled = true;
+        charSelectButton.GetComponent<Button>().enabled = true;
+    }
 }

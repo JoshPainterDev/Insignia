@@ -132,6 +132,7 @@ public class AbilitySelectManager : MonoBehaviour
         int index = button.transform.GetSiblingIndex();
         currentASnum = index;
 
+        print("previous ability: " + prevHighlightIndex);
 
         if (prevHighlightIndex != -1)
             AbilityGrid.transform.GetChild(prevHighlightIndex).GetChild(0).GetComponent<Image>().color = normalColor;
