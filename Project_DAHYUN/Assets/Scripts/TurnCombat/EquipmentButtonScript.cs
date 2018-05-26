@@ -30,7 +30,8 @@ public class EquipmentButtonScript : MonoBehaviour {
         indexJ = val % 10;
         indexI = val / 10;
 
-        Destroy(button.transform.parent.parent.parent.parent.gameObject);
-        menuManager.GetComponent<Character_Menu_Manager>().LoadSelectedImage(indexI, indexJ);
+        //Destroy(button.transform.parent.parent.parent.parent.gameObject);
+        menuManager.GetComponent<Character_Menu_Manager>().SetCurrentIndex(indexI, indexJ);
+        menuManager.GetComponent<Character_Menu_Manager>().HighlightEpqButton(this.gameObject);
     }
 }

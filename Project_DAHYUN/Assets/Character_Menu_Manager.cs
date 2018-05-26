@@ -68,6 +68,15 @@ public class Character_Menu_Manager : MonoBehaviour {
     public GameObject equipmentHandle;
     public GameObject mirrorCamera;
 
+    private int index_i, index_j;
+
+    public Color equipActive, equipInactive;
+
+    public GameObject atk_text;
+    public GameObject odef_text;
+    public GameObject prs_text;
+    public GameObject spd_text;
+
     private void Awake()
     {
         //GameController.controller.playerEquippedIDs[0] = 0;
@@ -394,7 +403,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         personaPanel.transform.GetChild(4).GetComponent<Slider>().value = colorPref.b;
     }
 
-    public void LoadSelectedImage(int i, int j)
+    public void HighlightEpqButton(GameObject button, int i, int j)
     {
         GameObject menuButton;
         int indexI = i;
@@ -403,6 +412,31 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i, j);
         string imageName = info.imgSourceName;
+        GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
+
+        for (int k = 0; k < 2; ++k)
+        {
+            GameObject rowObject = grid.transform.GetChild(k).gameObject;
+
+            //inner loop is always 4
+            for (int l = 0; l < 4; ++l)
+            {
+                GameObject child = rowObject.transform.GetChild(l).gameObject;
+
+                if(child == button)
+                {
+                    //EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 16, j);
+                    child.transform.GetComponent<Image>().color = equipActive;
+                }
+                else
+                {
+                    child.transform.GetComponent<Image>().color = equipInactive;
+                }
+            }
+        }
+
+        index_i = i;
+        index_j = j;
 
         //head
         if (indexI < 4)
