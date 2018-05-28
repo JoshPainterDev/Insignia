@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EquipmentButtonScript : MonoBehaviour {
     private GameObject menuManager;
+    private Button myButton;
 
     private void Awake()
     {
@@ -30,8 +31,19 @@ public class EquipmentButtonScript : MonoBehaviour {
         indexJ = val % 10;
         indexI = val / 10;
 
-        //Destroy(button.transform.parent.parent.parent.parent.gameObject);
-        menuManager.GetComponent<Character_Menu_Manager>().SetCurrentIndex(indexI, indexJ);
-        menuManager.GetComponent<Character_Menu_Manager>().HighlightEpqButton(this.gameObject);
+        //
+        menuManager.GetComponent<Character_Menu_Manager>().HighlightEpqButton(this.gameObject, indexI, indexJ);
+    }
+
+    public void OnConfirmation(Button button)
+    {
+        myButton = button;
+        menuManager.GetComponent<Character_Menu_Manager>().ConfirmSelection();
+        Invoke("DestroyPanel", 0.2f);
+    }
+
+    private void DestroyPanel()
+    {
+        Destroy(myButton.transform.parent.parent.parent.parent.gameObject);
     }
 }

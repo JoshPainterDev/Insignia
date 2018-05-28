@@ -72,10 +72,10 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public Color equipActive, equipInactive;
 
-    public GameObject atk_text;
-    public GameObject odef_text;
-    public GameObject prs_text;
-    public GameObject spd_text;
+    private GameObject atk_text;
+    private GameObject def_text;
+    private GameObject prs_text;
+    private GameObject spd_text;
 
     private void Awake()
     {
@@ -346,6 +346,12 @@ public class Character_Menu_Manager : MonoBehaviour {
         blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
         yield return new WaitForSeconds(0.75f);
         SceneManager.LoadScene("AbilitySelect_Scene");
+    }
+
+    public void ConfirmSelection()
+    {
+        UpdateStats();
+        UnhighlightEquipment();
     }
 
     public void UpdateStats()
@@ -630,14 +636,24 @@ public class Character_Menu_Manager : MonoBehaviour {
             spd[7] = info.SpeedStat;
         }
 
+        atk_text.GetComponent<Text>().text = "ATK  " + info.AttackStat.ToString();
+        def_text.GetComponent<Text>().text = "DEF  " + info.DefenseStat.ToString();
+        spd_text.GetComponent<Text>().text = "PRS  " + info.SpeedStat.ToString();
+        prs_text.GetComponent<Text>().text = "SPD  " + info.ProwessStat.ToString();
 
         RefreshAnimations();
-        UpdateStats();
     }
 
     public void RefreshAnimations()
     {
-        playerMannequin.GetComponent<AnimationController>().PlayAttackAnim();
+        //playerMannequin.GetComponent<AnimationController>().HidePlayer();
+        playerMannequin.GetComponent<AnimationController>().Refresh();
+        //Invoke("refreshHelper", 0.575f);
+    }
+
+    private void refreshHelper()
+    {
+        playerMannequin.GetComponent<AnimationController>().ShowPlayer();
     }
 
     //*4 items per row*
@@ -656,8 +672,12 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        //mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -699,7 +719,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -741,8 +765,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(1).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -784,8 +811,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -827,8 +857,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -870,8 +903,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -913,8 +949,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
@@ -958,8 +997,11 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 20, 0);
-        mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
+        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
+        def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
+        spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
+        prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
         //get the iner most grid child to reference later
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;

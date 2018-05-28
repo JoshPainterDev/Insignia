@@ -332,6 +332,7 @@
     <Compile Include="Assets\Panel_C.cs" />
     <Compile Include="Assets\PlayerCamera_C.cs" />
     <Compile Include="Assets\RandomTPinBounds.cs" />
+    <Compile Include="Assets\RefreshPlayerAnimState.cs" />
     <Compile Include="Assets\RewardManager_C.cs" />
     <Compile Include="Assets\Scripts\Audio\CombatAudio.cs" />
     <Compile Include="Assets\Scripts\Audio\MenuUIAudio.cs" />
