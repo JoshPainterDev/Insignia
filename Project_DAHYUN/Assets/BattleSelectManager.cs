@@ -8,6 +8,7 @@ public class BattleSelectManager : MonoBehaviour
 {
     public GameObject quickButton;
     public GameObject arenaButton;
+    public GameObject popUp;
 
     public GameObject blackSq;
 
@@ -21,12 +22,17 @@ public class BattleSelectManager : MonoBehaviour
 		
 	}
 
+    public void ClosePopUp()
+    {
+        popUp.SetActive(false);
+    }
+
     public void QuickBattle()
     {
         if (ready4Input)
         {
             ready4Input = false;
-            StartCoroutine(HideButtons());
+            StartCoroutine(LoadBattle(true));
         }
     }
 
@@ -35,42 +41,24 @@ public class BattleSelectManager : MonoBehaviour
         if (ready4Input)
         {
             ready4Input = false;
-            StartCoroutine(HideButtons());
-            StartCoroutine(LoadArenaLevel());
-            
+            StartCoroutine(LoadBattle(false));
         }
     }
 
-    IEnumerator HideButtons()
+    IEnumerator LoadBattle(bool quickBattle)
     {
-        quickButton.GetComponent<LerpScript>().LerpToPos(quickOrigPos, quickOrigPos - new Vector3(50,0,0));
-        arenaButton.GetComponent<LerpScript>().LerpToPos(arenaOrigPos, arenaOrigPos + new Vector3(50, 0, 0));
-        yield return new WaitForSeconds(1f);
-    }
+        blackSq.SetActive(true);
+        blackSq.GetComponent<FadeScript>().FadeTo(Color.black, 3.0f);
 
-    public void GoBack()
-    {
-        if(ready4Input)
+        yield return new WaitForSeconds(0.35f);
+
+        if(quickBattle)
         {
-            ready4Input = false;
-            StartCoroutine(GoToMainMenu());
+            SceneManager.LoadScene("TurnCombat_Scene");
+        }
+        else
+        {
+            SceneManager.LoadScene("ArenaSelect_Scene");
         }
     }
-
-    public IEnumerator GoToMainMenu()
-    {
-        yield return new WaitForSeconds(0.1f);
-        blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
-        yield return new WaitForSeconds(0.75f);
-        SceneManager.LoadScene("MainMenu_Scene");
-    }
-
-    public IEnumerator LoadArenaLevel()
-    {
-        yield return new WaitForSeconds(0.1f);
-        blackSq.GetComponent<FadeScript>().FadeIn(2.0f);
-        yield return new WaitForSeconds(0.75f);
-        SceneManager.LoadScene("ArenaSelect_Scene");
-    }
-
 }

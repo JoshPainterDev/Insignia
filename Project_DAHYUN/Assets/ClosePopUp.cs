@@ -16,7 +16,6 @@ public class ClosePopUp : MonoBehaviour {
     {
         if(externalCallObj != "")
         {
-            print(externalCallObj);
             CloseEquipmentPopup();
         }
 
@@ -27,5 +26,6 @@ public class ClosePopUp : MonoBehaviour {
     {
         GameObject externalObj = GameObject.Find(externalCallObj);
         externalObj.GetComponent<Character_Menu_Manager>().UnhighlightEquipment();
+        externalObj.GetComponent<Character_Menu_Manager>().RevertToPreviousEquip();
     }
 }

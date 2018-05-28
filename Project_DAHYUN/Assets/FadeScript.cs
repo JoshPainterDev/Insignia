@@ -6,6 +6,7 @@ using UnityEngine;
 public class FadeScript : MonoBehaviour {
 
     public bool FadeOnStart = true;
+    public float FadeStartSpeed = 1.0f;
     private Color initColor;
     private Color finalColor;
     private bool lerpingColor = false;
@@ -18,7 +19,7 @@ public class FadeScript : MonoBehaviour {
         if(FadeOnStart)
         {
             this.GetComponent<Image>().enabled = true;
-            FadeOut();
+            FadeOut(FadeStartSpeed);
         }
         else
         {

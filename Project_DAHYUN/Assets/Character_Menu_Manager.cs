@@ -77,6 +77,8 @@ public class Character_Menu_Manager : MonoBehaviour {
     private GameObject prs_text;
     private GameObject spd_text;
 
+    private int prevID_i, prevID_j;
+
     private void Awake()
     {
         //GameController.controller.playerEquippedIDs[0] = 0;
@@ -348,6 +350,12 @@ public class Character_Menu_Manager : MonoBehaviour {
         SceneManager.LoadScene("AbilitySelect_Scene");
     }
 
+    public void RevertToPreviousEquip()
+    {
+        GameObject fakeBtn = null;
+        HighlightEpqButton(fakeBtn, prevID_i, prevID_j);
+    }
+
     public void ConfirmSelection()
     {
         UpdateStats();
@@ -356,7 +364,6 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void UpdateStats()
     {
-        print("Updating stats..");
         int statTotal;
         //Attack
         statTotal = GameController.controller.playerBaseAtk;
@@ -646,14 +653,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void RefreshAnimations()
     {
-        //playerMannequin.GetComponent<AnimationController>().HidePlayer();
         playerMannequin.GetComponent<AnimationController>().Refresh();
-        //Invoke("refreshHelper", 0.575f);
-    }
-
-    private void refreshHelper()
-    {
-        playerMannequin.GetComponent<AnimationController>().ShowPlayer();
     }
 
     //*4 items per row*
@@ -665,6 +665,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [3][0]... [3][3]
     public void ShowHeadEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[0];
+        int equippedJ = GameController.controller.playerEquippedIDs[1];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(0);
@@ -679,7 +685,7 @@ public class Character_Menu_Manager : MonoBehaviour {
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
         prs_text = equipmentSelectPopUp.transform.GetChild(8).gameObject;
 
-        //get the iner most grid child to reference later
+        //get the iner most grid child to reference updatest
         GameObject grid = equipmentSelectPopUp.transform.GetChild(1).GetChild(0).gameObject;
         // outer loop should match the key above
         for (int i = 0; i < 2; ++i)
@@ -696,6 +702,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i,j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Head[(4 * i) + j];
+
+                    if(i == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i, j);
+                    }
                 }
                 else
                 {
@@ -713,6 +725,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [7][0]... [7][3]
     public void ShowTorsoEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[2];
+        int equippedJ = GameController.controller.playerEquippedIDs[3];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(1);
@@ -742,6 +760,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 4, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Torso[(4 * i) + j];
+
+                    if ((i + 4) == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 4, j);
+                    }
                 }
                 else
                 {
@@ -759,6 +783,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [11][0]... [11][3]
     public void ShowLegsEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[4];
+        int equippedJ = GameController.controller.playerEquippedIDs[5];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(2);
@@ -788,6 +818,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 8, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Legs[(4 * i) + j];
+
+                    if ((i + 8) == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 8, j);
+                    }
                 }
                 else
                 {
@@ -805,6 +841,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [15][0]... [15][3]
     public void ShowBackEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[6];
+        int equippedJ = GameController.controller.playerEquippedIDs[7];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(3);
@@ -834,6 +876,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 12, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Back[(4 * i) + j];
+
+                    if ((i + 12) == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 12, j);
+                    }
                 }
                 else
                 {
@@ -851,6 +899,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [19][0]... [19][3]
     public void ShowGlovesEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[8];
+        int equippedJ = GameController.controller.playerEquippedIDs[9];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(4);
@@ -880,6 +934,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 16, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Gloves[(i) + j];
+
+                    if ((i + 16) == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 16, j);
+                    }
                 }
                 else
                 {
@@ -897,6 +957,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [23][0]... [23][3]
     public void ShowShoesEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[10];
+        int equippedJ = GameController.controller.playerEquippedIDs[11];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(5);
@@ -926,6 +992,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 20, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Shoes[(4 * i) + j];
+
+                    if ((i + 20) == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 20, j);
+                    }
                 }
                 else
                 {
@@ -943,6 +1015,12 @@ public class Character_Menu_Manager : MonoBehaviour {
     // [27][0]... [27][3]
     public void ShowWeaponEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[12];
+        int equippedJ = GameController.controller.playerEquippedIDs[13];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(6);
@@ -972,8 +1050,13 @@ public class Character_Menu_Manager : MonoBehaviour {
                 {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 24, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
-                    //print((4 * i) + j);
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Weapon[(4 * i) + j];
+
+                    if ((i + 24) == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 24, j);
+                    }
                 }
                 else
                 {
@@ -983,14 +1066,18 @@ public class Character_Menu_Manager : MonoBehaviour {
                 }
             }
         }
-
-        UpdateStats();
     }
     // AURA UNLOCKS
     // [28][0]... [28][3]
     // [29][0]... [29][3]
     public void ShowAuraEquipment()
     {
+        int equippedI = GameController.controller.playerEquippedIDs[14];
+        int equippedJ = GameController.controller.playerEquippedIDs[15];
+
+        prevID_i = equippedI;
+        prevID_j = equippedJ;
+
         Destroy(equipmentSelectPopUp);
         UnhighlightEquipment();
         HilightEquipment(7);
@@ -1020,6 +1107,12 @@ public class Character_Menu_Manager : MonoBehaviour {
                     EquipmentInfo info = EquipmentInfoManager.equipmentInfoTool.LookUpEquipment(i + 28, j);
                     button.transform.GetChild(0).GetComponent<Text>().text = info.Name;
                     button.transform.GetChild(1).GetComponent<Image>().sprite = spriteSheet_Aura[(4 * i) + j];
+
+                    if (i == equippedI && j == equippedJ)
+                    {
+                        //highlight current equipment
+                        HighlightEpqButton(button, i + 28, j);
+                    }
                 }
                 else
                 {

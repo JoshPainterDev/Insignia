@@ -15,6 +15,7 @@ public class MainMenuManager : MonoBehaviour {
     public GameObject background;
     public GameObject settingsPopup;
     public GameObject settingsManager;
+    public GameObject battlePopUp;
 
     public GameObject camera;
     public GameObject blackSq;
@@ -41,7 +42,7 @@ public class MainMenuManager : MonoBehaviour {
                 StartCoroutine(LoadAdventureScreen());
                 break;
             case 3: // Battle
-                StartCoroutine(LoadArenaScreen());
+                StartCoroutine(LoadBattlePopUp());
                 return;
             case 4: // Settings
                 StartCoroutine(LoadSettingsScreen());
@@ -73,13 +74,14 @@ public class MainMenuManager : MonoBehaviour {
         SceneManager.LoadScene("AdventureSelect_Scene");
     }
 
-    IEnumerator LoadArenaScreen()
+    IEnumerator LoadBattlePopUp()
     {
-        camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, arenaCameraPos, 1.5f);
-        yield return new WaitForSeconds(0.25f);
-        blackSq.GetComponent<FadeScript>().FadeIn(2.5f);
-        yield return new WaitForSeconds(0.75f);
-        SceneManager.LoadScene("BattleSelect_Scene");
+        yield return new WaitForSeconds(0.15f);
+        battlePopUp.SetActive(true);
+        //camera.GetComponent<LerpScript>().LerpToPos(camera.transform.position, arenaCameraPos, 1.5f);
+        //yield return new WaitForSeconds(0.25f);
+        //blackSq.GetComponent<FadeScript>().FadeIn(2.5f);
+        //yield return new WaitForSeconds(0.75f);
     }
 
     IEnumerator LoadSettingsScreen()
