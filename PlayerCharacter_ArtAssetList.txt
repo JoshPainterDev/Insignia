@@ -1,0 +1,14 @@
+Animations for character:
+- Idle
+- Run/walk
+- Jump
+- Double Jump
+- falling/floating
+- interact (console/panel/switch)
+- Gauntlet slam / ground punch
+- gauntlet charge up ()
+
+
+
+
+* = potentially desired but not set in stone-

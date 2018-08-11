@@ -568,7 +568,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "destiny finally calls.";
+                        script[3] = "Fate graces me yet again with her presence.";
 
                         totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -581,7 +581,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "???";
                         leftspeaker[0] = false;
-                        script[0] = "Nova!";
+                        script[0] = "Nova,";
 
                         speaker[1] = "???";
                         leftspeaker[1] = false;
@@ -589,11 +589,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = "???";
                         leftspeaker[2] = false;
-                        script[2] = "I am Theron.";
+                        script[2] = "Though I've had many titles,";
 
-                        speaker[3] = "Theron";
+                        speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "But that is not important.";
+                        script[3] = "you may call me Theron.";
 
                         speaker[4] = "Theron";
                         leftspeaker[4] = false;
@@ -601,15 +601,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Theron";
                         leftspeaker[5] = false;
-                        script[5] = "If sentient kind is to survive this incursion,";
+                        script[5] = "If we are to survive this incursion,";
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = false;
-                        script[6] = "our forces must be unified...";
+                        script[6] = "sentient forces from all over must be unified...";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = false;
-                        script[7] = "The Kingdom of Light must be taken by force.";
+                        script[7] = "The Kingdom of Light is the key, and we will take it by force.";
 
                         speaker[8] = playerName;
                         leftspeaker[8] = true;
@@ -617,15 +617,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[9] = "Theron";
                         leftspeaker[9] = false;
-                        script[9] = "You are the key to it all, my small friend.";
+                        script[9] = "You are the Will of sentient life, my small friend.";
 
                         speaker[10] = "???";
                         leftspeaker[10] = false;
-                        script[10] = "I have saved you from the icy whisper of death.";
+                        script[10] = "And I have saved you from the icy whisper of death.";
 
                         speaker[11] = "Theron";
                         leftspeaker[11] = false;
-                        script[11] = "All I ask of your life debt, is that you aid me in taking Solaris.";
+                        script[11] = "All I ask of your life debt, is that you aid me in taking control of the kingdom.";
 
                         speaker[12] = playerName;
                         leftspeaker[12] = true;
@@ -633,23 +633,23 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[13] = "Theron";
                         leftspeaker[13] = false;
-                        script[13] = "Fate would have you die frozen and alone where no one will ever find you;";
+                        script[13] = "Lady Fate would have you die a slow and painful death, frozen and alone;";
 
                         speaker[14] = "Theron";
                         leftspeaker[14] = false;
-                        script[14] = "Should you resist, I will ensure that fate takes its course...";
+                        script[14] = "Should you resist, I will ensure that Fate takes its course...";
 
                         speaker[15] = playerName;
                         leftspeaker[15] = true;
-                        script[15] = "I don't have much of a choice it seems.";
+                        script[15] = "I don't have much of a choice it seems...";
 
                         speaker[16] = "Theron";
                         leftspeaker[16] = false;
-                        script[16] = "You must choose to be born again, " + playerName + ".";
+                        script[16] = "There is always a choice, " + playerName + ".";
 
                         speaker[17] = "Theron";
                         leftspeaker[17] = false;
-                        script[17] = "Only then can I show you what you are meant to become...";
+                        script[17] = "But some choices are easier to make than others...";
 
                         totalLines = 18;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -1498,11 +1498,12 @@ public class Exposition_Manager : MonoBehaviour
                     case 2:
                         speaker[0] = "???";
                         leftspeaker[0] = true;
-                        script[0] = "Inferior pestilence!! Damn thee!";
+                        script[0] = "Back into your holes, worms!";
 
                         speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = true;
-                        script[1] = "Good gods!";
+                        script[1] = "Good " +
+                            "gods!";
 
                         speaker[2] = "Cmd. Agyrii";
                         leftspeaker[2] = true;
@@ -1518,15 +1519,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "???";
                         leftspeaker[5] = true;
-                        script[5] = "Our name! It was taken! Stolen!";
+                        script[5] = "Our name! It was taken! Thieved it!";
 
-                        speaker[6] = "Ikilik";
+                        speaker[6] = "???";
                         leftspeaker[6] = true;
-                        script[6] = "This creature calls itself 'Ikilik'...";
+                        script[6] = "This creature seems to have once called itself 'Ikilik'...";
 
                         speaker[7] = playerName;
                         leftspeaker[7] = false;
-                        script[7] = "Uumm, are you feeling well?";
+                        script[7] = "Uuhhh, how many of you are in there?";
 
                         speaker[8] = "Ikilik";
                         leftspeaker[8] = true;
@@ -1534,51 +1535,51 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[9] = "Cmd. Agyrii";
                         leftspeaker[9] = true;
-                        script[9] = "64th brigade? Like the 64th brigade that was retired decades ago?";
+                        script[9] = "64th?! My grandfather fought in the 64th .";
 
-                        speaker[10] = "Ikilik";
+                        speaker[10] = "Sir Zadrig";
                         leftspeaker[10] = true;
-                        script[10] = "I'm surprised you know of it, but I'm not here to tell my story-";
+                        script[10] = "I'm afraid all good things must come to an end, commander...";
 
-                        speaker[11] = "Ikilik";
+                        speaker[11] = "Sir Zadrig";
                         leftspeaker[11] = true;
-                        script[11] = "I want to help you enter the crypt.";
+                        script[11] = "Listen here adventurers, I wish to help you enter the crypt.";
 
                         speaker[12] = "Ayo";
                         leftspeaker[12] = false;
-                        script[12] = "Your assistance is appreciated, but how are we to trust you?";
+                        script[12] = "We've only just met you; how are we to trust your aid?";
 
-                        speaker[13] = "Ikilik";
+                        speaker[13] = "Sir Zadrig";
                         leftspeaker[13] = true;
-                        script[13] = "I am a Lord, a knight, a nobleman! Or at least I was...";
+                        script[13] = "I am a knight, a peacekeeper, a nobleman! Or at least...";
 
-                        speaker[14] = "Ikilik";
+                        speaker[14] = "Sir Zadrig";
                         leftspeaker[14] = true;
-                        script[14] = "I haven't an ounce of dishonor in my body!";
+                        script[14] = "I was...";
 
-                        speaker[15] = "Ikilik";
+                        speaker[15] = "Sir Zadrig";
                         leftspeaker[15] = true;
-                        script[15] = "Because your body is not yours no more! No one trust you!";
+                        script[15] = "I haven't an ounce of indignity in my body!";
 
                         speaker[16] = "Ikilik";
                         leftspeaker[16] = true;
-                        script[16] = "Insolence! Hear me now adventurers-";
+                        script[16] = "Because body is not yours no more!";
 
-                        speaker[17] = "Ikilik";
+                        speaker[17] = "Sir Zadrig";
                         leftspeaker[17] = true;
-                        script[17] = "The only way to return to my rightful body is in that crypt!";
+                        script[17] = "Quiet beast!";
 
-                        speaker[18] = playerName;
+                        speaker[18] = "Cmd. Agyrii";
                         leftspeaker[18] = false;
-                        script[18] = "So you need our help to fetch a corpse?";
+                        script[18] = "What is this overgrown zabuhma-fu on about?";
 
-                        speaker[19] = "Ikilik";
+                        speaker[19] = "Sir Zadrig";
                         leftspeaker[19] = true;
-                        script[19] = "I will explain what I can, but this beast will resist me soon!";
+                        script[19] = "We all share a common goal, and I beleive it's in our best interest to cooperate.";
 
                         speaker[20] = "Ayo";
                         leftspeaker[20] = false;
-                        script[20] = "I am listening...";
+                        script[20] = "We promise you nothing, but will hear your plea...";
 
                         totalLines = 21;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
