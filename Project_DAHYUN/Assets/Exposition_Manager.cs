@@ -427,15 +427,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[11] = "Cmd. Vixon";
                         leftspeaker[11] = true;
-                        script[11] = "Sure thing...";
+                        script[11] = "That's great kid, listen here...";
 
                         speaker[12] = "Cmd. Vixon";
                         leftspeaker[12] = true;
-                        script[12] = "Remember your training and you'll do just fine!";
+                        script[12] = "That bridge is more important than your life!";
 
                         speaker[13] = "Cmd. Vixon";
                         leftspeaker[13] = true;
-                        script[13] = "Now get your dainty look'n underside out of my sight!";
+                        script[13] = "Now I need you to correct your effeminate look'n posture and defend it!";
 
                         speaker[14] = playerName;
                         leftspeaker[14] = false;
@@ -521,17 +521,17 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = playerName;
+                        speaker[0] = "H. Officer";
                         leftspeaker[0] = true;
-                        script[0] = "*I'm pinned from both sides,*";
+                        script[0] = "Over here soldier! Quick!";
 
-                        speaker[1] = playerName;
+                        speaker[1] = "H. Officer";
                         leftspeaker[1] = true;
-                        script[1] = "*and there seems to be no end...*";
+                        script[1] = "*They're gonna seal the-*";
 
                         speaker[2] = playerName;
-                        leftspeaker[2] = true;
-                        script[2] = "Ah! I'm too young to be eaten alive!";
+                        leftspeaker[2] = false;
+                        script[2] = "Oh! No no no no n-";
 
                         totalLines = 3;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -544,33 +544,53 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = playerName;
                         leftspeaker[0] = true;
-                        script[0] = "Not-";
+                        script[0] = "It was! No, that's n-n-not right...";
 
                         speaker[1] = playerName;
                         leftspeaker[1] = true;
-                        script[1] = "Not like this...";
+                        script[1] = "Or w-w-was it? No!";
 
-                        totalLines = 2;
+                        speaker[2] = playerName;
+                        leftspeaker[2] = true;
+                        script[2] = "It was d-definitely P-p-porker's";
+
+                        speaker[3] = playerName;
+                        leftspeaker[3] = true;
+                        script[3] = "I-I had.. l-latrine-";
+
+                        speaker[4] = playerName;
+                        leftspeaker[4] = true;
+                        script[4] = "Latrine duty w-was l-l-last...";
+
+                        speaker[5] = playerName;
+                        leftspeaker[5] = true;
+                        script[5] = "week...";
+
+                        totalLines = 6;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                     case 2:
                         speaker[0] = "???";
                         leftspeaker[0] = false;
-                        script[0] = "...";
+                        script[0] = "Well then...";
 
                         speaker[1] = "???";
                         leftspeaker[1] = false;
-                        script[1] = "Nova.";
+                        script[1] = "Not the least bit of what I was expecting.";
 
                         speaker[2] = "???";
                         leftspeaker[2] = false;
-                        script[2] = "After a century,";
+                        script[2] = "And yet-";
 
                         speaker[3] = "???";
                         leftspeaker[3] = false;
-                        script[3] = "Fate graces me yet again with her presence.";
+                        script[3] = "...";
 
-                        totalLines = 4;
+                        speaker[4] = "???";
+                        leftspeaker[4] = false;
+                        script[4] = "It burns nonetheless...";
+
+                        totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -585,73 +605,81 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = "???";
                         leftspeaker[1] = false;
-                        script[1] = "Spawn of Sun and Void.";
+                        script[1] = "Spawn of Star and Void.";
 
                         speaker[2] = "???";
                         leftspeaker[2] = false;
-                        script[2] = "Though I've had many titles,";
+                        script[2] = "You may call me Theron.";
 
-                        speaker[3] = "???";
+                        speaker[3] = "Theron";
                         leftspeaker[3] = false;
-                        script[3] = "you may call me Theron.";
+                        script[3] = "Things are not so clear right now, yes.";
 
                         speaker[4] = "Theron";
                         leftspeaker[4] = false;
-                        script[4] = "War stretches across our planet.";
+                        script[4] = "But war is on our doorstep, youngling.";
 
                         speaker[5] = "Theron";
                         leftspeaker[5] = false;
-                        script[5] = "If we are to survive this incursion,";
+                        script[5] = "If you are to survive this incursion,";
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = false;
-                        script[6] = "sentient forces from all over must be unified...";
+                        script[6] = "You will join me in unifying sentianity...";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = false;
-                        script[7] = "The Kingdom of Light is the key, and we will take it by force.";
+                        script[7] = "The Kingdom of Light is a beacon for sentient beings of the post-world.";
 
                         speaker[8] = playerName;
                         leftspeaker[8] = true;
-                        script[8] = "What's my place in all of this?";
+                        script[8] = "And how exactly does this involve me?";
 
                         speaker[9] = "Theron";
                         leftspeaker[9] = false;
-                        script[9] = "You are the Will of sentient life, my small friend.";
+                        script[9] = "You are sentience incarnate, my small friend.";
 
                         speaker[10] = "???";
                         leftspeaker[10] = false;
-                        script[10] = "And I have saved you from the icy whisper of death.";
+                        script[10] = "I have dispelled the icy whisper of death that ensnares you.";
 
                         speaker[11] = "Theron";
                         leftspeaker[11] = false;
-                        script[11] = "All I ask of your life debt, is that you aid me in taking control of the kingdom.";
+                        script[11] = "And all I ask, is that you promise me your sword in taking the kingdom.";
 
                         speaker[12] = playerName;
                         leftspeaker[12] = true;
-                        script[12] = "And if I refuse?";
+                        script[12] = "I swore oath to the guard... I'd be branded a traitor!";
 
                         speaker[13] = "Theron";
                         leftspeaker[13] = false;
-                        script[13] = "Lady Fate would have you die a slow and painful death, frozen and alone;";
+                        script[13] = "Only a traitor would watch idley as his people are swallowed by war.";
 
                         speaker[14] = "Theron";
                         leftspeaker[14] = false;
-                        script[14] = "Should you resist, I will ensure that Fate takes its course...";
+                        script[14] = "Besides that...";
 
-                        speaker[15] = playerName;
-                        leftspeaker[15] = true;
-                        script[15] = "I don't have much of a choice it seems...";
+                        speaker[15] = "Theron";
+                        leftspeaker[15] = false;
+                        script[15] = "Lady Fate would have you die here in the snow, broken and forgotten;";
 
                         speaker[16] = "Theron";
                         leftspeaker[16] = false;
-                        script[16] = "There is always a choice, " + playerName + ".";
+                        script[16] = "Should you refuse my offer, I will ensure that Fate takes its course...";
 
-                        speaker[17] = "Theron";
-                        leftspeaker[17] = false;
-                        script[17] = "But some choices are easier to make than others...";
+                        speaker[17] = playerName;
+                        leftspeaker[17] = true;
+                        script[17] = "I don't have much of a choice it seems...";
 
-                        totalLines = 18;
+                        speaker[18] = "Theron";
+                        leftspeaker[18] = false;
+                        script[18] = "There is always a choice, " + playerName + ".";
+
+                        speaker[19] = "Theron";
+                        leftspeaker[19] = false;
+                        script[19] = "But some choices are easier to make than others...";
+
+                        totalLines = 20;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
