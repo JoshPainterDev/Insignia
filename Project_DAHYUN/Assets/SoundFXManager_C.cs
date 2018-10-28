@@ -18,6 +18,7 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip darkRumbling_FX;
     public AudioClip darkRumbling_short_FX;
     public AudioClip wetSquish_FX;
+    public AudioClip swordClash_FX;
 
     AudioSource audioSource;
 
@@ -62,9 +63,14 @@ public class SoundFXManager_C : MonoBehaviour
 
     }
 
+    public void playSwordClash()
+    {
+        audioSource.PlayOneShot(swordClash_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
+    }
+
     public void playwetSquish()
     {
-        audioSource.PlayOneShot(wetSquish_FX, MEDIUM_VOLUME * GameController.controller.volumeScale);
+        audioSource.PlayOneShot(wetSquish_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playDarkRumbling()

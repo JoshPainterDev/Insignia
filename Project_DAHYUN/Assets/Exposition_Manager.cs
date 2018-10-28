@@ -210,6 +210,10 @@ public class Exposition_Manager : MonoBehaviour
                     GameController.controller.stagesCompleted++;
                 StartCoroutine(Cutscene20(actionCounter, instance));
                 break;
+            case 21:
+                eMaxInstances = 2;
+                StartCoroutine(Cutscene21(actionCounter, instance));
+                break;
         }
 
         GameController.controller.Save(GameController.controller.playerName);
@@ -1530,8 +1534,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = true;
-                        script[1] = "Good " +
-                            "gods!";
+                        script[1] = "Good gods!";
 
                         speaker[2] = "Cmd. Agyrii";
                         leftspeaker[2] = true;
@@ -1557,17 +1560,17 @@ public class Exposition_Manager : MonoBehaviour
                         leftspeaker[7] = false;
                         script[7] = "Uuhhh, how many of you are in there?";
 
-                        speaker[8] = "Ikilik";
+                        speaker[8] = "???";
                         leftspeaker[8] = true;
                         script[8] = "I can only control speech for so long, but I am Sir Zadrig of the 64th brigade.";
 
                         speaker[9] = "Cmd. Agyrii";
                         leftspeaker[9] = true;
-                        script[9] = "64th?! My grandfather fought in the 64th .";
+                        script[9] = "64th? You're no soldier! Besides, they're all dead...";
 
                         speaker[10] = "Sir Zadrig";
                         leftspeaker[10] = true;
-                        script[10] = "I'm afraid all good things must come to an end, commander...";
+                        script[10] = "Not all of them I'm afraid...";
 
                         speaker[11] = "Sir Zadrig";
                         leftspeaker[11] = true;
@@ -1575,7 +1578,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[12] = "Ayo";
                         leftspeaker[12] = false;
-                        script[12] = "We've only just met you; how are we to trust your aid?";
+                        script[12] = "We've only just met you. How are we to trust your aid?";
 
                         speaker[13] = "Sir Zadrig";
                         leftspeaker[13] = true;
@@ -1595,26 +1598,136 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[17] = "Sir Zadrig";
                         leftspeaker[17] = true;
-                        script[17] = "Quiet beast!";
+                        script[17] = "I'll have your head, beast!";
 
                         speaker[18] = "Cmd. Agyrii";
-                        leftspeaker[18] = false;
-                        script[18] = "What is this overgrown zabuhma-fu on about?";
+                        leftspeaker[18] = true;
+                        script[18] = "There must be something valuable in that crypt.";
 
                         speaker[19] = "Sir Zadrig";
                         leftspeaker[19] = true;
-                        script[19] = "We all share a common goal, and I beleive it's in our best interest to cooperate.";
+                        script[19] = "Valuable to me of course, and I beleive it's in our best interest to cooperate.";
 
                         speaker[20] = "Ayo";
                         leftspeaker[20] = false;
-                        script[20] = "We promise you nothing, but will hear your plea...";
+                        script[20] = "Well let us make haste then...";
 
                         totalLines = 21;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
                 break;
+            case 21:
+                switch(instance)
+                {
+                    case 1:
+                        speaker[0] = "Ikilik";
+                        leftspeaker[0] = true;
+                        script[0] = "Hurry now! It's just this way!";
+
+                        totalLines = 1;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 2:
+                        speaker[0] = "Ikilik";
+                        leftspeaker[0] = true;
+                        script[0] = "Hurry now! It's just this way!";
+
+                        speaker[1] = "Cmd. Agyrii";
+                        leftspeaker[1] = true;
+                        script[1] = "Less talking, more fighting!";
+
+                        speaker[2] = playerName;
+                        leftspeaker[2] = false;
+                        script[2] = "A little help over here!";
+                        totalLines = 2;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                }
+                break;
         }
+    }
+
+
+    IEnumerator Cutscene21(int action, int instance = 0)
+    {
+        switch (instance)
+        {
+            case 1:
+                switch (action)
+                {
+                    case 0:
+                        nextLevel = "Exposition_Scene22";
+                        // Set next Level //
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.5f);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
+                        playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
+                        yield return new WaitForSeconds(0.75f);
+                        StartCoroutine(NewDialogue(21, 1));
+                        break;
+                    case 2:
+                        yield return new WaitForSeconds(0.5f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(500, 0, 0), 0.50f);
+                        yield return new WaitForSeconds(0.70f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(420, 0, 0), 0.50f);
+                        yield return new WaitForSeconds(0.5f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(490, 0, 0), 0.50f);
+                        yield return new WaitForSeconds(0.35f);
+                        playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
+                        yield return new WaitForSeconds(0.85f);
+                        cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(250,0,0), 0.5f);
+                        break;
+                }
+            break;  
+            case 2:
+                switch (action)
+                {
+                    case 0:
+                        yield return new WaitForSeconds(3f);
+                        speaker05.transform.position -= new Vector3(40, 50, 0);
+                        speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 4.0f);
+                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
+
+                        Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 130, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        Vector3 spawnPos2 = new Vector3(speaker04.transform.GetChild(1).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(1).GetChild(0).transform.position.y + 130, 0);
+                        GameObject effectClone2 = (GameObject)Instantiate(ExclamationPoint, spawnPos2, transform.rotation);
+                        StartCoroutine(NewDialogue(20, 2));
+                        break;
+                    case 1:
+                        speaker04.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(0.15f);
+                        speaker04.transform.GetChild(1).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.15f);
+                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
+                        yield return new WaitForSeconds(0.15f);
+                        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
+                        break;
+                    case 7:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                    case 10:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        break;
+                    case 12:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                    case 17:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        break;
+                    case 18:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                    case 22:
+                        actionsCompleted = true; //actions are completed
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
+        }
+        //////////////////
     }
 
     IEnumerator Cutscene20(int action, int instance = 0)
@@ -1683,6 +1796,11 @@ public class Exposition_Manager : MonoBehaviour
                         speaker05.transform.position -= new Vector3(40, 50, 0);
                         speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 4.0f);
                         speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
+
+                        Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 130, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        Vector3 spawnPos2 = new Vector3(speaker04.transform.GetChild(1).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(1).GetChild(0).transform.position.y + 130, 0);
+                        GameObject effectClone2 = (GameObject)Instantiate(ExclamationPoint, spawnPos2, transform.rotation);
                         StartCoroutine(NewDialogue(20, 2));
                         break;
                     case 1:
@@ -1697,10 +1815,16 @@ public class Exposition_Manager : MonoBehaviour
                     case 7:
                         speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
-                    case 16:
+                    case 10:
                         speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                         break;
+                    case 12:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        break;
                     case 17:
+                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        break;
+                    case 18:
                         speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
                     case 22:

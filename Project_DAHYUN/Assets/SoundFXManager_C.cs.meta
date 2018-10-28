@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 451727e9ac3b6d346871fdf0f3c4d600
-timeCreated: 1523589324
+timeCreated: 1540609708
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -22,6 +22,8 @@ MonoImporter:
   - darkRumbling_FX: {fileID: 8300000, guid: b731346d74832a244b18d33a51592d9e, type: 3}
   - darkRumbling_short_FX: {fileID: 8300000, guid: 7ee05be6a4a0d6f459e80cc901a4bbb5,
       type: 3}
+  - wetSquish_FX: {instanceID: 0}
+  - swordClash_FX: {fileID: 8300000, guid: 4f747afc073b22e4f98e89503267ee77, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
