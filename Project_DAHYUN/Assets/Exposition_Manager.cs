@@ -32,7 +32,7 @@ public class Exposition_Manager : MonoBehaviour
 
     public GameObject decisionManager;
 
-    private Vector3 panelOffset = new Vector3(0, 100, 0);
+    public Vector3 panelOffset = new Vector3(0, 100, 0);
     private Color panelOrigColor;
     private string nextLevel;
     private Dialogue_Manager_C dialogueManager;
@@ -1594,11 +1594,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[16] = "Ikilik";
                         leftspeaker[16] = true;
-                        script[16] = "Because body is not yours no more!";
+                        script[16] = "Because body not yours no more!";
 
                         speaker[17] = "Sir Zadrig";
                         leftspeaker[17] = true;
-                        script[17] = "I'll have your head, beast!";
+                        script[17] = "I'll have your tongue, beast!";
 
                         speaker[18] = "Cmd. Agyrii";
                         leftspeaker[18] = true;
@@ -1606,13 +1606,17 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[19] = "Sir Zadrig";
                         leftspeaker[19] = true;
-                        script[19] = "Valuable to me of course, and I beleive it's in our best interest to cooperate.";
+                        script[19] = "Very valuable. And I know of a hidden passage!";
 
                         speaker[20] = "Ayo";
                         leftspeaker[20] = false;
-                        script[20] = "Well let us make haste then...";
+                        script[20] = "Well, let us make haste then.";
 
-                        totalLines = 21;
+                        speaker[21] = "Ikilik";
+                        leftspeaker[21] = false;
+                        script[21] = "Yes, Shiny! Good! Good! Go home! Yes!";
+
+                        totalLines = 22;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -1621,8 +1625,8 @@ public class Exposition_Manager : MonoBehaviour
                 switch(instance)
                 {
                     case 1:
-                        speaker[0] = "Ikilik";
-                        leftspeaker[0] = true;
+                        speaker[0] = "Sir Zadrig";
+                        leftspeaker[0] = false;
                         script[0] = "Hurry now! It's just this way!";
 
                         totalLines = 1;
@@ -1630,17 +1634,50 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 2:
                         speaker[0] = "Ikilik";
-                        leftspeaker[0] = true;
-                        script[0] = "Hurry now! It's just this way!";
+                        leftspeaker[0] = false;
+                        script[0] = "Yes! Friends! Crypt, here! Yes!";
 
                         speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = true;
-                        script[1] = "Less talking, more fighting!";
+                        script[1] = "'Hidden passage' huh?";
+
+                        speaker[2] = playerName;
+                        leftspeaker[2] = true;
+                        script[2] = "Open sesame!";
+
+                        totalLines = 3;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 3:
+                        speaker[0] = "Ikilik";
+                        leftspeaker[0] = false;
+                        script[0] = "Se- sa- me?";
+
+                        speaker[1] = playerName;
+                        leftspeaker[1] = false;
+                        script[1] = "Uummm...";
 
                         speaker[2] = playerName;
                         leftspeaker[2] = false;
-                        script[2] = "A little help over here!";
-                        totalLines = 2;
+                        script[3] = "How are we supposed to open this?";
+
+                        speaker[4] = "Ikilik";
+                        leftspeaker[4] = false;
+                        script[4] = "We search high in the clouds, and deep in the soil!";
+
+                        speaker[5] = "Ikilik";
+                        leftspeaker[5] = false;
+                        script[5] = "She reject us all the same...";
+
+                        speaker[6] = "Ayo";
+                        leftspeaker[6] = true;
+                        script[6] = "We are wasting time!";
+
+                        speaker[7] = "Sir Zadrig";
+                        leftspeaker[7] = false;
+                        script[7] = "Give me one moment lads...";
+
+                        totalLines = 8;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
@@ -1684,45 +1721,7 @@ public class Exposition_Manager : MonoBehaviour
                 {
                     case 0:
                         yield return new WaitForSeconds(3f);
-                        speaker05.transform.position -= new Vector3(40, 50, 0);
-                        speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 4.0f);
-                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
-
-                        Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 130, 0);
-                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
-                        Vector3 spawnPos2 = new Vector3(speaker04.transform.GetChild(1).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(1).GetChild(0).transform.position.y + 130, 0);
-                        GameObject effectClone2 = (GameObject)Instantiate(ExclamationPoint, spawnPos2, transform.rotation);
-                        StartCoroutine(NewDialogue(20, 2));
-                        break;
-                    case 1:
-                        speaker04.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        yield return new WaitForSeconds(0.15f);
-                        speaker04.transform.GetChild(1).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        yield return new WaitForSeconds(0.15f);
-                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                        yield return new WaitForSeconds(0.15f);
-                        playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
-                        break;
-                    case 7:
-                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        break;
-                    case 10:
-                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        break;
-                    case 12:
-                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        break;
-                    case 17:
-                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        break;
-                    case 18:
-                        speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        break;
-                    case 22:
-                        actionsCompleted = true; //actions are completed
-                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
-                        yield return new WaitForSeconds(1.5f);
-                        StartCoroutine(LoadNextLv());
+                        StartCoroutine(NewDialogue(21, 2));
                         break;
                 }
                 break;
