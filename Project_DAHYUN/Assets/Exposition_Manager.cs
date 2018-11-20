@@ -211,7 +211,7 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene20(actionCounter, instance));
                 break;
             case 21:
-                eMaxInstances = 2;
+                eMaxInstances = 3;
                 StartCoroutine(Cutscene21(actionCounter, instance));
                 break;
         }
@@ -1654,37 +1654,68 @@ public class Exposition_Manager : MonoBehaviour
                         script[0] = "Se- sa- me?";
 
                         speaker[1] = playerName;
-                        leftspeaker[1] = false;
+                        leftspeaker[1] = true;
                         script[1] = "Uummm...";
 
                         speaker[2] = playerName;
-                        leftspeaker[2] = false;
-                        script[3] = "How are we supposed to open this?";
+                        leftspeaker[2] = true;
+                        script[2] = "How are we supposed to open this?";
+
+                        speaker[3] = "Ikilik";
+                        leftspeaker[3] = false;
+                        script[3] = "We search high in the clouds, and deep in the soil!";
 
                         speaker[4] = "Ikilik";
                         leftspeaker[4] = false;
-                        script[4] = "We search high in the clouds, and deep in the soil!";
+                        script[4] = "She reject us all the same...";
 
-                        speaker[5] = "Ikilik";
-                        leftspeaker[5] = false;
-                        script[5] = "She reject us all the same...";
+                        speaker[5] = "Ayo";
+                        leftspeaker[5] = true;
+                        script[5] = "We are wasting time!";
 
-                        speaker[6] = "Ayo";
-                        leftspeaker[6] = true;
-                        script[6] = "We are wasting time!";
+                        speaker[6] = "Sir Zadrig";
+                        leftspeaker[6] = false;
+                        script[6] = "Give me one moment lads...";
 
-                        speaker[7] = "Sir Zadrig";
-                        leftspeaker[7] = false;
-                        script[7] = "Give me one moment lads...";
+                        totalLines = 7;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
+                    case 4:
+                        speaker[0] = "Sir Zadrig";
+                        leftspeaker[0] = false;
+                        script[0] = "Thy keep is kept!";
 
-                        totalLines = 8;
+                        speaker[1] = "Sir Zadrig";
+                        leftspeaker[1] = false;
+                        script[1] = "Thy will is done!";
+
+                        speaker[2] = "Sir Zadrig";
+                        leftspeaker[2] = false;
+                        script[2] = "The restless await-";
+
+                        speaker[3] = "Sir Zadrig";
+                        leftspeaker[3] = false;
+                        script[3] = "the eternal sun!";
+
+                        speaker[4] = "Ikilik";
+                        leftspeaker[4] = false;
+                        script[4] = "She reject us all the same...";
+
+                        speaker[5] = "Ayo";
+                        leftspeaker[5] = true;
+                        script[5] = "We are wasting time!";
+
+                        speaker[6] = "Sir Zadrig";
+                        leftspeaker[6] = false;
+                        script[6] = "Give me one moment lads...";
+
+                        totalLines = 7;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
                 break;
         }
     }
-
 
     IEnumerator Cutscene21(int action, int instance = 0)
     {
@@ -1715,13 +1746,33 @@ public class Exposition_Manager : MonoBehaviour
                         cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(250,0,0), 0.5f);
                         break;
                 }
-            break;  
+                break;  
             case 2:
                 switch (action)
                 {
                     case 0:
                         yield return new WaitForSeconds(3f);
                         StartCoroutine(NewDialogue(21, 2));
+                        break;
+                }
+                break;
+            case 3:
+                switch (action)
+                {
+                    case 0:
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(1f);
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.2f);
+                        speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(30, 0, 0), 1.50f);
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(NewDialogue(21, 3));
+                        break;
+                    case 8:
+                        actionsCompleted = true; //actions are completed
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(LoadNextLv());
                         break;
                 }
                 break;
