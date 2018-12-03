@@ -1683,38 +1683,43 @@ public class Exposition_Manager : MonoBehaviour
                     case 4:
                         speaker[0] = "Sir Zadrig";
                         leftspeaker[0] = false;
-                        script[0] = "Thy keep is kept!";
+                        script[0] = "Ket'threi tul'gar!"; //Thy keep is kept!
 
                         speaker[1] = "Sir Zadrig";
                         leftspeaker[1] = false;
-                        script[1] = "Thy will is done!";
+                        script[1] = "Ket'il tul'desh!"; //Thy will is done!
 
-                        speaker[2] = "Sir Zadrig";
-                        leftspeaker[2] = false;
-                        script[2] = "The restless await-";
+                        speaker[2] = "Ayo";
+                        leftspeaker[2] = true;
+                        script[2] = "Nothing good ever comes from utterances of Shadow-tongue!";
 
-                        speaker[3] = "Sir Zadrig";
-                        leftspeaker[3] = false;
-                        script[3] = "the eternal sun!";
+                        speaker[3] = playerName;
+                        leftspeaker[3] = true;
+                        script[3] = "Shadow-tongue?";
 
-                        speaker[4] = "Ikilik";
-                        leftspeaker[4] = false;
-                        script[4] = "She reject us all the same...";
+                        speaker[4] = "Cmd. Agyrii";
+                        leftspeaker[4] = true;
+                        script[4] = "C'mon, let's indulge him...";
 
-                        speaker[5] = "Ayo";
-                        leftspeaker[5] = true;
-                        script[5] = "We are wasting time!";
+                        speaker[5] = "Sir Zadrig";
+                        leftspeaker[5] = false;
+                        script[5] = "Et koshgraw 'dhuul-"; //The restless await-
 
                         speaker[6] = "Sir Zadrig";
                         leftspeaker[6] = false;
-                        script[6] = "Give me one moment lads...";
+                        script[6] = "et sagas sohl!"; //the eternal sun!
 
-                        totalLines = 7;
+                        speaker[7] = "Ikilik";
+                        leftspeaker[7] = true;
+                        script[7] = "GYYYYAAAAHHH-HH-AHH-AAAAAAHHHH!!!";
+
+                        totalLines = 8;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
                 }
                 break;
         }
+        // End of exposition dlg
     }
 
     IEnumerator Cutscene21(int action, int instance = 0)
@@ -1751,7 +1756,7 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        yield return new WaitForSeconds(3f);
+                        yield return new WaitForSeconds(2f);
                         StartCoroutine(NewDialogue(21, 2));
                         break;
                 }
@@ -1769,8 +1774,38 @@ public class Exposition_Manager : MonoBehaviour
                         StartCoroutine(NewDialogue(21, 3));
                         break;
                     case 8:
+                        yield return new WaitForSeconds(0.5f);
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(NewDialogue(21, 4));
+                        break;
+                }
+                break;
+            case 4:
+                switch (action)
+                {
+                    case 0:
+                        yield return new WaitForSeconds(1.0f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
+                        StartCoroutine(NewDialogue(21, 5));
+                        break;
+                    case 2:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
+                        break;
+                    case 3:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
+                        break;
+                    case 6:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        break;
+                    case 8:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);;
+                        break;
+                    case 9:
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
+                        yield return new WaitForSeconds(1.5f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
                         actionsCompleted = true; //actions are completed
-                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
                         yield return new WaitForSeconds(1.5f);
                         StartCoroutine(LoadNextLv());
                         break;

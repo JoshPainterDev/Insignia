@@ -18,12 +18,27 @@ public class FadeScript : MonoBehaviour {
     {
         if(FadeOnStart)
         {
-            this.GetComponent<Image>().enabled = true;
+            try
+            {
+                this.GetComponent<Image>().enabled = true;
+            }
+            catch
+            {
+                this.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            
             FadeOut(FadeStartSpeed);
         }
         else
         {
-            this.GetComponent<Image>().enabled = true;
+            try
+            {
+                this.GetComponent<Image>().enabled = true;
+            }   
+            catch
+            {
+                this.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
 	}
 	

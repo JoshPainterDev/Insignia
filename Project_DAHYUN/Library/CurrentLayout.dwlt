@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -42,10 +42,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 681, y: 492}
+  m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 128
+  controlID: 109
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 55
+  controlID: 29
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 56
+  controlID: 30
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -768,7 +768,7 @@ MonoBehaviour:
     height: 450
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
-    m_NameFilter: van
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -779,19 +779,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/FX/Abilities
+    - Assets/Prefabs/FX/Particle Effects
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/FX/Abilities
+  - Assets/Prefabs/FX/Particle Effects
   m_LastFoldersGridSize: -1
   m_LastProjectPath: J:\ProjectDAHYUN\Project_DAHYUN
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 627}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fe280000f02b0000122c0000b22c0000ca2c0000f02c0000662e0000303000003a300000b03100005632000056330000123400001a34000042340000803400009a340000d0360000e6360000123700001a38000008390000a2390000a43b0000143d0000ae3d00004c3f0000763f0000e6430000ae440000e4450000524600007a46000000480000b0480000ea490000a24b0000be4b0000884f0000e2590000e459000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 479}
+    m_SelectedIDs: 022c0000
+    m_LastClickedID: 11266
+    m_ExpandedIDs: 00000000fe280000022c0000242c0000c42c0000dc2c0000022d00007c2e00004630000050300000c83100007432000074330000323400003a34000062340000a0340000ba340000f036000006370000323700003a38000028390000c4390000ca3b00003a3d0000d43d0000723f00009c3f00001c440000e44400001a46000088460000b0460000044700003a480000ee480000284a0000ea4b0000084c0000e24f00003a5a00003c5a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -819,7 +819,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fe280000f02b0000122c0000b22c0000ca2c0000f02c0000662e0000303000003a300000b03100005632000056330000123400001a3400004234000064340000803400009a340000d0360000e6360000123700001a38000008390000a2390000a43b0000143d0000ae3d00004c3f0000763f000042420000e6430000ae440000e4450000ea450000524600007a46000000480000b0480000ea490000a24b0000be4b00001c4e0000484f0000884f0000e2590000e4590000
+    m_ExpandedIDs: 00000000fe280000022c0000242c0000c42c0000dc2c0000022d00007c2e00004630000050300000c83100007432000074330000323400003a34000062340000a0340000ba340000f036000006370000323700003a38000028390000c4390000ca3b00003a3d0000d43d0000723f00009c3f00001c440000e44400001a46000088460000b04600003a480000ee480000284a0000ea4b0000084c0000e24f00003a5a00003c5a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -937,23 +937,23 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 46faffff
-    m_LastClickedID: -1466
-    m_ExpandedIDs: 9efbffff00000000665200009c520000
+    m_SelectedIDs: 56e0ffffdabaffff
+    m_LastClickedID: -17702
+    m_ExpandedIDs: 3e206dff9efbffff000000009e520000ba5200000c530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Fire_Particle (1)
+      m_OriginalName: Fire_Particle (1)
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -8581066
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -990,14 +990,14 @@ MonoBehaviour:
     height: 455
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 5304.0352991793425
+  lastFramingTime: 25626.711815391882
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 452.11603, y: -105.023125, z: -6.75}
+    m_Target: {x: 621.447, y: 10.681854, z: -4.3848968}
     speed: 2
-    m_Value: {x: 452.11603, y: -105.023125, z: -6.75}
+    m_Value: {x: 621.447, y: 10.681854, z: -4.3848968}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -1025,9 +1025,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 676.5436
+    m_Target: 461.9253
     speed: 2
-    m_Value: 676.5436
+    m_Value: 461.9253
   m_Ortho:
     m_Target: 1
     speed: 2
