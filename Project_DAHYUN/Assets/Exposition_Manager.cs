@@ -42,6 +42,7 @@ public class Exposition_Manager : MonoBehaviour
     public int decisionNumber = 0;
     private int eMaxInstances = 1;
     private float eInstanceDelay = 2.0f;
+    private Color clear = new Color(1, 1, 1, 0);
 
     [HideInInspector]
     public bool actionsCompleted = false;
@@ -211,7 +212,7 @@ public class Exposition_Manager : MonoBehaviour
                 StartCoroutine(Cutscene20(actionCounter, instance));
                 break;
             case 21:
-                eMaxInstances = 3;
+                eMaxInstances = 5;
                 StartCoroutine(Cutscene21(actionCounter, instance));
                 break;
         }
@@ -1784,9 +1785,7 @@ public class Exposition_Manager : MonoBehaviour
             case 4:
                 switch (action)
                 {
-                    case 0:
-                        yield return new WaitForSeconds(1.0f);
-                        blackSq.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
+                    case 0:                        yield return new WaitForSeconds(1.0f);
                         StartCoroutine(NewDialogue(21, 5));
                         break;
                     case 2:
@@ -1797,14 +1796,59 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 6:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 3.0f);
+                        break;
+                    case 7:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
                         break;
                     case 8:
-                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);;
+                        yield return new WaitForSeconds(1.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 3.0f);
+                        yield return new WaitForSeconds(1.0f);
+
                         break;
                     case 9:
-                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
+                        //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
+                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
                         yield return new WaitForSeconds(1.5f);
-                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
+                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
+                        actionsCompleted = true; //actions are completed
+                        yield return new WaitForSeconds(1.5f);
+                        StartCoroutine(LoadNextLv());
+                        break;
+                }
+                break;
+            case 5:
+                switch (action)
+                {
+                    case 0:
+                        yield return new WaitForSeconds(1.0f);
+                        StartCoroutine(NewDialogue(21, 5));
+                        break;
+                    case 2:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
+                        break;
+                    case 3:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
+                        break;
+                    case 6:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 3.0f);
+                        break;
+                    case 7:
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        break;
+                    case 8:
+                        yield return new WaitForSeconds(1.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 3.0f);
+                        yield return new WaitForSeconds(1.0f);
+
+                        break;
+                    case 9:
+                        //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
+                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
+                        yield return new WaitForSeconds(1.5f);
+                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
                         actionsCompleted = true; //actions are completed
                         yield return new WaitForSeconds(1.5f);
                         StartCoroutine(LoadNextLv());
