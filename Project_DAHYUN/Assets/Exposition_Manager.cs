@@ -630,21 +630,21 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = false;
-                        script[6] = "You will join me in unifying sentianity...";
+                        script[6] = "You will join me in unifying Sentianity...";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = false;
-                        script[7] = "The Kingdom of Light is a beacon for sentient beings of the post-world.";
+                        script[7] = "The Kingdom of Light is a beacon for all living beings of this post-world.";
 
                         speaker[8] = playerName;
                         leftspeaker[8] = true;
-                        script[8] = "And how exactly does this involve me?";
+                        script[8] = "'Sentianity'? How exactly does this involve me?";
 
                         speaker[9] = "Theron";
                         leftspeaker[9] = false;
-                        script[9] = "You are sentience incarnate, my small friend.";
+                        script[9] = "Your Aura is a shimmer of hope in dark times.";
 
-                        speaker[10] = "???";
+                        speaker[10] = "Theron";
                         leftspeaker[10] = false;
                         script[10] = "I have dispelled the icy whisper of death that ensnares you.";
 
@@ -654,11 +654,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[12] = playerName;
                         leftspeaker[12] = true;
-                        script[12] = "I swore oath to the guard... I'd be branded a traitor!";
+                        script[12] = "I swore oath to the guard. I can't turn my back on my brothers and sisters...";
 
                         speaker[13] = "Theron";
                         leftspeaker[13] = false;
-                        script[13] = "Only a traitor would watch idley as his people are swallowed by war.";
+                        script[13] = "Your 'kin', would sooner toss you to the wargs than honor an oath.";
 
                         speaker[14] = "Theron";
                         leftspeaker[14] = false;
@@ -666,11 +666,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[15] = "Theron";
                         leftspeaker[15] = false;
-                        script[15] = "Lady Fate would have you die here in the snow, broken and forgotten;";
+                        script[15] = "Lady Fate led you here to die in the snow, broken and forgotten.";
 
                         speaker[16] = "Theron";
                         leftspeaker[16] = false;
-                        script[16] = "Should you refuse my offer, I will ensure that Fate takes its course...";
+                        script[16] = "Should you refuse my offer, I will return you to her cold embrace...";
 
                         speaker[17] = playerName;
                         leftspeaker[17] = true;
@@ -1692,7 +1692,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = "Ayo";
                         leftspeaker[2] = true;
-                        script[2] = "Nothing good ever comes from utterances of Shadow-tongue!";
+                        script[2] = "Shadow-tongue! Here?! You fool!";
 
                         speaker[3] = playerName;
                         leftspeaker[3] = true;
@@ -1700,7 +1700,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[4] = "Cmd. Agyrii";
                         leftspeaker[4] = true;
-                        script[4] = "C'mon, let's indulge him...";
+                        script[4] = "Let's hope the spirits have grown hard of hearing...";
 
                         speaker[5] = "Sir Zadrig";
                         leftspeaker[5] = false;
@@ -1774,6 +1774,12 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(1.5f);
                         StartCoroutine(NewDialogue(21, 3));
                         break;
+                    case 4:
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                    case 6:
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        break;
                     case 8:
                         yield return new WaitForSeconds(0.5f);
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
@@ -1785,7 +1791,8 @@ public class Exposition_Manager : MonoBehaviour
             case 4:
                 switch (action)
                 {
-                    case 0:                        yield return new WaitForSeconds(1.0f);
+                    case 0:
+                        yield return new WaitForSeconds(1.0f);
                         StartCoroutine(NewDialogue(21, 5));
                         break;
                     case 2:
@@ -1796,21 +1803,21 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 6:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
-                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 3.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 1.0f);
                         break;
                     case 7:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        // open the crypt doors!
+                        speaker05.SetActive(true);
                         break;
                     case 8:
-                        yield return new WaitForSeconds(1.0f);
-                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 3.0f);
-                        yield return new WaitForSeconds(1.0f);
-
                         break;
                     case 9:
                         //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
                         //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 0.75f);
+                        yield return new WaitForSeconds(1.0f);
                         //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
                         actionsCompleted = true; //actions are completed
                         yield return new WaitForSeconds(1.5f);
@@ -2716,7 +2723,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(3f);
                 StartCoroutine(NewDialogue(8, 1));
                 break;
-            case 19:
+            case 21:
                 yield return new WaitForSeconds(2f);
                 blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
                 actionsCompleted = true; //actions are completed
