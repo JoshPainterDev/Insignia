@@ -1803,12 +1803,19 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 6:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        speaker05.transform.GetChild(0).gameObject.SetActive(false);
+                        speaker05.transform.GetChild(1).gameObject.SetActive(false);
+                        yield return new WaitForSeconds(1.0f);
                         speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 1.0f);
                         break;
                     case 7:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
                         // open the crypt doors!
-                        speaker05.SetActive(true);
+                        for(int i = 2; i < 5; ++i)
+                        {
+                            speaker05.transform.GetChild(i).gameObject.SetActive(true);
+                        }
+                        
                         break;
                     case 8:
                         break;
@@ -1838,16 +1845,16 @@ public class Exposition_Manager : MonoBehaviour
                     case 3:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
                         break;
-                    case 6:
+                    case 5:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
-                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 3.0f);
+                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 1.0f);
                         break;
                     case 7:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
                         break;
                     case 8:
                         yield return new WaitForSeconds(1.0f);
-                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 3.0f);
+                        //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 3.0f);
                         yield return new WaitForSeconds(1.0f);
 
                         break;
