@@ -1717,6 +1717,26 @@ public class Exposition_Manager : MonoBehaviour
                         totalLines = 8;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
                         break;
+                    case 5:
+                        speaker[0] = "Sir Zadrig";
+                        leftspeaker[0] = false;
+                        script[0] = "Right this way, chaps!"; 
+
+                        speaker[1] = "Ayo";
+                        leftspeaker[1] = true;
+                        script[1] = "I have a very bad feeling about this.";
+
+                        speaker[2] = "???";
+                        leftspeaker[2] = false;
+                        script[2] = "As you should...";
+
+                        speaker[3] = "Cmd. Agyrii";
+                        leftspeaker[3] = true;
+                        script[3] = "Oathsworn! Look alive!!";
+
+                        totalLines = 4;
+                        this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
+                        break;
                 }
                 break;
         }
@@ -1815,35 +1835,29 @@ public class Exposition_Manager : MonoBehaviour
                         {
                             speaker05.transform.GetChild(i).gameObject.SetActive(true);
                         }
-                        
-                        break;
-                    case 8:
                         break;
                     case 9:
-                        //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
-                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
-                        yield return new WaitForSeconds(1.0f);
-                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 0.75f);
-                        yield return new WaitForSeconds(1.0f);
-                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
-                        actionsCompleted = true; //actions are completed
+                        speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 1.0f);
                         yield return new WaitForSeconds(1.5f);
-                        StartCoroutine(LoadNextLv());
+                        StartCoroutine(NewDialogue(21, 5));
                         break;
                 }
                 break;
             case 5:
                 switch (action)
                 {
-                    case 0:
-                        yield return new WaitForSeconds(1.0f);
-                        StartCoroutine(NewDialogue(21, 5));
-                        break;
-                    case 2:
-                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
-                        break;
                     case 3:
-                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 3.0f);
+                        // Fade in ghostly Oathsworn
+                        speaker04.transform.GetChild(3).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1,1,1, 0.35f));
+                        yield return new WaitForSeconds(0.35f);
+                        speaker04.transform.GetChild(4).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.35f));
+                        yield return new WaitForSeconds(1.35f);
+                        speaker04.transform.GetChild(2).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.35f));
+                        yield return new WaitForSeconds(0.75f);
+                        speaker04.transform.GetChild(5).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.35f));
+
+                        cameraObj.GetComponent<CameraController>().ShakeCamera(2, true, 2.0f);
                         break;
                     case 5:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
