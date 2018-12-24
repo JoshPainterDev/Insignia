@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cb6f6bfa6021740a0c45ae0086438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOnStart: 0
+  FadeOnStart: 1
   FadeStartSpeed: 1
 --- !u!222 &222830196854077152
 CanvasRenderer:

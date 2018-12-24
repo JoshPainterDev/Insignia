@@ -225,7 +225,7 @@ RectTransform:
   m_GameObject: {fileID: 401920074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 120, y: 120, z: 1}
+  m_LocalScale: {x: 135.89116, y: 135.89119, z: 1.1324266}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 0
@@ -8261,7 +8261,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -341532015
+  randomSeed: -1363598307
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11752,7 +11752,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1153480431
+  randomSeed: -1473581912
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15365,6 +15365,10 @@ MonoBehaviour:
   laserSwordRetract_FX: {fileID: 0}
   criticalHit_FX: {fileID: 0}
   bodyCollapse_FX: {fileID: 0}
+  darkRumbling_FX: {fileID: 0}
+  darkRumbling_short_FX: {fileID: 0}
+  wetSquish_FX: {fileID: 0}
+  swordClash_FX: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -15625,7 +15629,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 279278837
+  randomSeed: 987165546
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19226,7 +19230,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1748849429
+  randomSeed: 742130975
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22606,14 +22610,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d2266e4c7dc9b428f311fb13b702be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DecisionActive: 0
   option1Button: {fileID: 0}
   option2Button: {fileID: 0}
-  highlightImage: {fileID: 0}
+  option1Tint: {fileID: 0}
+  option2Tint: {fileID: 0}
+  cameraObj: {fileID: 0}
   areYouSurePanel: {fileID: 0}
   blackSq: {fileID: 538142076}
-  blocker: {fileID: 0}
   decisionNumber: 0
   decisionPoints: 100
+  expositionManager: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1616549426
 Transform:
   m_ObjectHideFlags: 0
@@ -22657,6 +22665,9 @@ MonoBehaviour:
   speaker04: {fileID: 1903308759}
   speaker05: {fileID: 1414266374}
   speaker06: {fileID: 1173773331}
+  decisionManager: {fileID: 0}
+  panelOffset: {x: 0, y: 100, z: 0}
+  decisionNumber: 0
   actionsCompleted: 0
   actionCounter: 0
 --- !u!114 &1616549428
@@ -22972,7 +22983,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1655236837
+  randomSeed: -1097120897
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -26298,7 +26309,7 @@ RectTransform:
   m_GameObject: {fileID: 1800020993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.408456, y: 1.4084561, z: 1.4084561}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 11
@@ -26502,7 +26513,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1026711345
+  randomSeed: -2065691058
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -30168,7 +30179,7 @@ MonoBehaviour:
   numChars: 0
   charClasses: 000000000000000000000000000000000000000000000000
   volumeMuted: 0
-  musicScale: 1
+  volumeScale: 1
   curArenaStage: 0
 --- !u!4 &2029249000
 Transform:
@@ -30223,8 +30234,8 @@ MonoBehaviour:
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
-  DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
-    type: 2}
+  Shino_Bot_Prefab: {fileID: 0}
+  Oathsworn_Prefab: {fileID: 0}
 --- !u!114 &2029249003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30261,14 +30272,14 @@ RectTransform:
   m_GameObject: {fileID: 2037268560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 1}
+  m_LocalScale: {x: 42, y: 35, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210, y: -101}
+  m_AnchoredPosition: {x: 203, y: -101}
   m_SizeDelta: {x: 21, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2037268562
@@ -30302,8 +30313,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -964833023
-  m_SortingLayer: 3
+  m_SortingLayerID: 1360087119
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e102c7c28a91c9c41b544c6184d1ed52, type: 3}
   m_Color: {r: 0.029411793, g: 0.029411793, b: 0.029411793, a: 1}
@@ -30587,7 +30598,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1535243777
+  randomSeed: -808145796
   InitialModule:
     serializedVersion: 3
     enabled: 1

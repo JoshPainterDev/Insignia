@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class FadeScript : MonoBehaviour {
-
+public class FadeScript : MonoBehaviour
+{
     public bool FadeOnStart = true;
     public float FadeStartSpeed = 1.0f;
     private Color initColor;
@@ -16,7 +16,7 @@ public class FadeScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        if(FadeOnStart)
+        if (FadeOnStart)
         {
             try
             {

@@ -1509,6 +1509,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114674956026531620, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+        type: 2}
+      propertyPath: FadeOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
   m_IsPrefabParent: 0
@@ -3987,6 +3992,7 @@ MonoBehaviour:
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
   Shino_Bot_Prefab: {fileID: 0}
+  Oathsworn_Prefab: {fileID: 0}
 --- !u!1 &949855388
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,11 +38,14 @@ Assets/Scenes/Exposition_Scene17.unity
 Assets/Scenes/BattleSelect_Scene.unity
 Assets/Scenes/Exposition_Scene19.unity
 Assets/Scenes/Exposition_Scene20.unity
+Assets/Scenes/Exposition_Scene18.unity
+Assets/Scenes/Exposition_Scene21.unity
 SceneListEnd?
-6967aafa00e3af517227b2079fab7980 Assembly-CSharp.dll:.Trait_Manager
+b48b676be56e2730a69668baaa858f61 Assembly-CSharp.dll:.Trait_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pauser
 24514296307ea3e9b1ccc8fb65368cec Assembly-CSharp.dll:.PlayerCamera_C
 989997cf805377c83d9ee157e9dd8cf0 Assembly-CSharp.dll:.RandomTPinBounds
+ffa2775f5eb490c4f68a3152d598d24d Assembly-CSharp.dll:.TraitManager_C
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -182,7 +185,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 b13dba0d6e5b6ff965027a9da1ae9d6f Assembly-CSharp.dll:.RewardManager_C
 7c6fb094f5246b8f18656fe8bd7cfc58 Assembly-CSharp.dll:.Score
 752191f1c68b9d81c10eb4f3cec09e39 Assembly-CSharp.dll:.GhostSprites
-f0f9f791e74b0402adb1312c99e3c700 Assembly-CSharp.dll:.AdventureSelect_Manager
+89c469b24881e6acec717cb2d4738ec1 Assembly-CSharp.dll:.AdventureSelect_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraController_TurnCombat
 16d60082a3d90a0a00d731fbf9946b8b Assembly-CSharp.dll:.CraftingManager
 ae289d5889b6425001e5b425e6e39478 Assembly-CSharp.dll:.Remover
@@ -194,6 +197,7 @@ ed3f6bd27701553db1904f1c59b3180a Assembly-CSharp.dll:.BackgroundPropSpawner
 a04780bf2ccc7e96bbf6b608c6a35eed Assembly-CSharp.dll:.LootManager_C
 1e6b4488390d5dcd1e175e85bf77d258 Assembly-CSharp.dll:.StatBoost_C
 51df51ce5bc6c5914f837b8dad6925cb Assembly-CSharp.dll:.FollowPlayer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RefreshPlayerAnimState
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 14250e7324e644def684df613007ad01 Assembly-CSharp.dll:.MenuUIAudio
@@ -206,12 +210,12 @@ c91aa856a765918f9302408d97e08494 Assembly-CSharp.dll:.ArenaSelectManager
 7ab3cde0841b2d7eac9277e05ccf0be8 Assembly-CSharp.dll:.SpriteMaskAnimator
 e020e9d8b9e59a0a4ea271b753174541 Assembly-CSharp.dll:.StartupManager_C
 db770077c896e1f60e5af926e0be459b Assembly-CSharp.dll:.LimitBreakManager_C
-84aa22e1f9516cc7a3fbaa7131d58d4e Assembly-CSharp.dll:.Exposition_Manager
+29f74d1ce1ff4485f5d839f7d2264e1d Assembly-CSharp.dll:.Exposition_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.EncounterToolsScript
-e491abe34527548ce5dd904654c8e1f1 Assembly-CSharp.dll:.BattleSelectManager
+a6bf850f1bbe186c4e251fb773277bee Assembly-CSharp.dll:.BattleSelectManager
 03f3e601f95bee0d53597156a72169b8 Assembly-CSharp.dll:.EquipmentInfoManager
 931f4b269aea9146a4d0b6e43ec891d9 Assembly-CSharp.dll:.PlayerCombatAnimator
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ClosePopUp
+5fc68a981131878f3975241852cbdaae Assembly-CSharp.dll:.ClosePopUp
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -227,7 +231,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 58221903b00cba8623c1fbfd569c4c78 Assembly-CSharp.dll:.SpawnPlayerScript_C
-d5a1740d3e8300ad6ccaa27ab2f47f07 Assembly-CSharp.dll:.SoundFXManager_C
+4c4133f624097304ca1fe7fd6e600c0c Assembly-CSharp.dll:.SoundFXManager_C
 96e5fbb838a41813bdd28be6e1476ee5 Assembly-CSharp.dll:.GameController
 0ae2b1d60b1df3e6ad3f6e7f906fede4 Assembly-CSharp.dll:.AbilityManager_C
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
@@ -238,8 +242,8 @@ d5a1740d3e8300ad6ccaa27ab2f47f07 Assembly-CSharp.dll:.SoundFXManager_C
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 71425b3bf0e1efb4f99da80d2eefed58 Assembly-CSharp.dll:.EnvironmentManager_C
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
-76237f3a99416286918a7a8650cb88c2 Assembly-CSharp.dll:.SettingsManager
-cbde5a2dfa0342884d33f8bb21c171df Assembly-CSharp.dll:.FadeScript
+c514233c514c54c53a8e619f695211ea Assembly-CSharp.dll:.SettingsManager
+4c7d5a64b3c17f49406eb495cafdda42 Assembly-CSharp.dll:.FadeScript
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StatDescriptionScript
 aa664606ba5fa16ff575df6463157de9 Assembly-CSharp.dll:.Spawner
 a8fc664ecda2626479bcb488b3f22051 Assembly-CSharp.dll:.AnalyticsController
@@ -248,7 +252,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-f97e04096563f08cc825f71f86ecc32a Assembly-CSharp.dll:.Character_Menu_Manager
+0ad3033789be4371e77c8d5f4842115c Assembly-CSharp.dll:.Character_Menu_Manager
 be9d046294a4a818f9f3ea88f915c64e Assembly-CSharp.dll:.StruggleManager_C
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 c77c469a6b241b2e5d07c266fa5370c5 Assembly-CSharp.dll:.DamageVisualizer_C
@@ -261,7 +265,7 @@ a0914034be5eea093070338580351d72 Assembly-CSharp.dll:.RetryManager
 0cf32b9faeaac27b4ff081a1a63fa738 Assembly-CSharp.dll:.EnemyMannequinController
 d117def24a8a7061cfea22ae4da9e2d0 Assembly-CSharp.dll:.DressRoom_Manager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LimitBreakBehavior
-d697b49d5c3b6f74a6a30d5090dabc7e Assembly-CSharp.dll:.MainMenuManager
+569201de5caef468a602f74467327de7 Assembly-CSharp.dll:.MainMenuManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ItemButtonScript
 ffbabedee5de0266fd3b1c8c3054b8ae Assembly-CSharp.dll:.DecisionManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.animStateScript
