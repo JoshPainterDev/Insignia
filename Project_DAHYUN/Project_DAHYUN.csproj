@@ -325,6 +325,7 @@
     <Compile Include="Assets\GoldCredits_C.cs" />
     <Compile Include="Assets\LimitBreakBehavior.cs" />
     <Compile Include="Assets\MainMenuManager.cs" />
+    <Compile Include="Assets\MaskUpdate.cs" />
     <Compile Include="Assets\Music_Controller.cs" />
     <Compile Include="Assets\NewCharacter_Manager.cs" />
     <Compile Include="Assets\OscillationScript.cs" />

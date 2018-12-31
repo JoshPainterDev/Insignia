@@ -40,7 +40,6 @@ public class AbilityManager_C : MonoBehaviour {
 
     private Vector3 initPlayerPos;
     private Vector3 initEnemyPos;
-    private Ability ability;
 
     private int origEnemyHP, damageReturn;
 
@@ -63,37 +62,24 @@ public class AbilityManager_C : MonoBehaviour {
     //6. play animation
     //7. deal damage
     //8. end turn
-
-
-    public void AbilityToUse(Ability abilityUsed, int enemyHP)
+    public void SetupSelectedAbility(Ability abilityUsed, int enemyHP) // AbilityToUse
     {
-        ability = abilityUsed;
         origEnemyHP = enemyHP;
         combatManager.currSpecialCase = SpecialCase.None;
         damageReturn = 0;
 
-        GameController.controller.playerEvilPoints += ability.EvilPoints;
-        GameController.controller.playerGoodPoints += ability.GoodPoints;
+        GameController.controller.playerEvilPoints += abilityUsed.EvilPoints;
+        GameController.controller.playerGoodPoints += abilityUsed.GoodPoints;
 
-        StartCoroutine(AnimateAbility(ability.Name));
-
-        switch (ability.Name)
-        {
-            case "Shadow Strike":
-                break;
-            case "Illusion":
-                break;
-            default:
-                break;
-        }
+        StartCoroutine(AnimateAbility(abilityUsed));
     }
 
-    IEnumerator AnimateAbility(string abilityName)
+    IEnumerator AnimateAbility(Ability ability)
     {
         GameObject effectClone;
         Vector3 spawnPos = Vector3.zero;
 
-        switch (abilityName)
+        switch (ability.Name)
         {
             case "Hatred":
                 spawnPos = initPlayerPos + new Vector3(0, 80, 0);

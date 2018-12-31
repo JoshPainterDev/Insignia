@@ -16,12 +16,6 @@ public class BattleSelectManager : MonoBehaviour
     private Vector3 arenaOrigPos;
     private bool ready4Input = true;
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-
     public void ClosePopUp()
     {
         popUp.SetActive(false);

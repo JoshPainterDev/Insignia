@@ -202,7 +202,7 @@ a04780bf2ccc7e96bbf6b608c6a35eed Assembly-CSharp.dll:.LootManager_C
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 14250e7324e644def684df613007ad01 Assembly-CSharp.dll:.MenuUIAudio
 953ea307e717cdb0abb64edeb1fb8420 Assembly-CSharp.dll:.AnimationController
-381076ef76cdbb899f6949e2aefd09cb Assembly-CSharp.dll:.CombatManager
+ae2fc9587c9482ba457e23b4b7a356eb Assembly-CSharp.dll:.CombatManager
 1d8ac537b0362eb419a59921b3d2e61f Assembly-CSharp.dll:.HealthScript
 55d46e4fc3e0a5a4e10d3c142eb63d50 Assembly-CSharp.dll:.BackgroundParallax
 c91aa856a765918f9302408d97e08494 Assembly-CSharp.dll:.ArenaSelectManager

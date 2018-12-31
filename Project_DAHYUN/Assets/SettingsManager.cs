@@ -83,11 +83,15 @@ public class SettingsManager : MonoBehaviour
     {
         changesMade = true;
 
-        if(!GameController.controller.volumeMuted)
+        GameController.controller.volumeScale = slider.GetComponent<Slider>().value;
+        AudioListener.volume = slider.GetComponent<Slider>().value;
+
+        if (GameController.controller.volumeMuted)
         {
-            GameController.controller.volumeScale = slider.GetComponent<Slider>().value;
-            AudioListener.volume = slider.GetComponent<Slider>().value;
+            GameController.controller.volumeMuted = false;
+            muteToggle.GetComponent<Toggle>().isOn = false;
         }
+            
     }
 
     public void ApplyChanges()

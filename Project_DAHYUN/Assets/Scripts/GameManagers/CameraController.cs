@@ -15,12 +15,47 @@ public class CameraController : MonoBehaviour {
     Vector3 leftOffset;
     Vector3 rightOffset;
     bool doneShaking = true;
+    public GameObject player = null;
+    private string[] cont = { "WeaponMask" };
+    public List<GameObject> maskObjects;
 
     // Use this for initialization
-    void Start ()
+    public void Start ()
     {
         origPos = this.transform.position;
+        maskObjects = new List<GameObject>();
+
+        foreach (string mask in cont)
+        {
+            try
+            {
+                maskObjects.Add(GameObject.Find(mask));
+            }
+            catch
+            {
+                print("Could not find mask: " + mask);
+            }
+        }
+        //print(this.GetComponent<Camera>().aspect);
+        //if(this.GetComponent<Camera>().aspect > 1.9)
+        //{
+        //    Screen.SetResolution(1920, 1080, true);
+        //}
         
+    }
+
+    public void OnPreCull()
+    {
+        foreach (GameObject mask in maskObjects)
+        {
+            if (mask != null)
+                mask.GetComponent<SpriteMaskAnimator>().UpdateMasks();
+        }
+    }
+
+    public List<GameObject> GetMaskObjects()
+    {
+        return maskObjects;
     }
 
     public void ShakeCamera(int intensity = 1, bool leftToRight = true, float duration = 1.0f)

@@ -27,7 +27,6 @@ public class EnemyAbilityManager_C : MonoBehaviour
 
     private Vector3 initEnemyPos;
     private Vector3 initPlayerPos;
-    private Ability ability;
 
     private int origPlayerHP, damageReturn;
 
@@ -51,21 +50,20 @@ public class EnemyAbilityManager_C : MonoBehaviour
     //8. end turn
 
 
-    public void AbilityToUse(Ability abilityUsed, int playerHP)
+    public void SetupSelectedAbility(Ability abilityUsed, int playerHP)
     {
-        ability = abilityUsed;
         origPlayerHP = playerHP;
         damageReturn = 0;
 
-        StartCoroutine(AnimateAbility(ability.Name));
+        StartCoroutine(AnimateAbility(abilityUsed));
     }
 
-    IEnumerator AnimateAbility(string abilityName)
+    IEnumerator AnimateAbility(Ability ability)
     {
+        string abilityName = ability.Name;
         GameObject effectClone;
         Vector3 spawnPos = Vector3.zero;
-        Ability info = AbilityToolsScript.tools.LookUpAbility(abilityName);
-
+        print(abilityName + " was used");
         switch (abilityName)
         {
             case "Hatred":
@@ -73,7 +71,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
                 effectClone = (GameObject)Instantiate(outrage_FX, spawnPos, transform.rotation);
                 this.GetComponent<CombatAudio>().playOutrageSFX();
                 yield return new WaitForSeconds(0.25f);
-                StartCoroutine(AttackBoostAnim(info.AttackBoost, info.AttBoostDuration));
+                StartCoroutine(AttackBoostAnim(ability.AttackBoost, ability.AttBoostDuration));
                 yield return new WaitForSeconds(2f);
                 break;
             case "Thunder Charge":
@@ -227,7 +225,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.25f);
-        EndTurn();
+        FinishAbility(ability);
     }
 
     //Attack Boost
@@ -270,7 +268,7 @@ public class EnemyAbilityManager_C : MonoBehaviour
     }
 
 
-    void EndTurn()
+    void FinishAbility(Ability ability)
     {
         switch (ability.Name)
         {

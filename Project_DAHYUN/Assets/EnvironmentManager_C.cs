@@ -17,8 +17,8 @@ public class EnvironmentManager_C : MonoBehaviour
 
                 case Environment.Throne_Room:
                     Background.GetComponent<SpriteRenderer>().sprite = Resources.Load("Environments\\Solaris_ThroneRoom", typeof(Sprite)) as Sprite;
-                    Background.transform.position = new Vector3(-610, 179, 0);
-                    Background.transform.localScale = new Vector3(48, 48, 0);
+                    Background.transform.position = new Vector3(-644.3f, 165, 0);
+                    Background.transform.localScale = new Vector3(56.2f, 56.2f, 0);
                     break;
                 case Environment.Forest_Light:
                     Background.GetComponent<SpriteRenderer>().sprite = Resources.Load("Environments\\DarkForest_Background", typeof(Sprite)) as Sprite;

@@ -6,12 +6,13 @@ using System.Collections;
 public class CombatManager : MonoBehaviour {
 
     // DEFINES
-    public float LIMIT_BREAK_THRESH = 0.2f;
-    public float VULNERABLE_REDUCTION = 0.2f;
-    public float BLINDED_REDUCTION = 66.6f;
-    public int BLIND_DURATION = 2;
-    public float CRITICAL_THRESHOLD = 0.8f;
-    public int STAT_LIMIT = 50;
+    public const float LIMIT_BREAK_THRESH = 0.2f;
+    public const float VULNERABLE_REDUCTION = 0.2f;
+    public const float BLINDED_REDUCTION = 66.6f;
+    public const int BLIND_DURATION = 2;
+    public const float CRITICAL_THRESHOLD = 0.8f;
+    public const int STAT_LIMIT = 50;
+    public const int PLAYER_HEALTH_SCALE = 70;
 
     enum State { MainMenu, Retreat, Abilities, Back, Done };
 
@@ -163,9 +164,12 @@ public class CombatManager : MonoBehaviour {
     void Start ()
     {
         playerMannequin = GameController.controller.playerObject;
-
         encounter = GameController.controller.currentEncounter;
 
+        initPlayerPos = playerMannequin.transform.position;
+        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
+
+        // DEFINE A DEFAULT DUMMY TO FIGHT
         //REMOVE THIS LATER
         if (encounter == null)
         {
@@ -190,72 +194,38 @@ public class CombatManager : MonoBehaviour {
             print(GameController.controller.charNames[1]);
         }
 
-        //0. pretend the player has save data for ability sake
-
-
-        //1. Load in player and enemy
+        // 1. Load in player and enemy
         playerLevel = GameController.controller.playerLevel;
         playerHealthBar.transform.GetChild(3).GetComponent<Text>().text = "Lv " + playerLevel.ToString();
         playerHealthBar.transform.GetChild(4).GetComponent<Text>().text = GameController.controller.playerName;
-
         //GameController.controller.playerLevel = 5;
         //GameController.controller.playerAttack = 17;
         //GameController.controller.playerDefense = 25;
         //GameController.controller.playerProwess = 6;
         //GameController.controller.playerSpeed = 4;
 
-        playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
+        playerMaxHealth = (PLAYER_HEALTH_SCALE * playerLevel) + (9 * GameController.controller.playerDefense);
         playerHealth = playerMaxHealth;
+        currSpecialCase = SpecialCase.None;
         print("Player max HP: " + playerHealth);
         //print("base def: " + GameController.controller.playerBaseDef);
         //print("total defense: " + GameController.controller.playerDefense);
-        print("base spd: " + GameController.controller.playerSpeed);
+        //print("base spd: " + GameController.controller.playerSpeed);
 
         if (!hasTutorial)
         {
-            //REMOVE THIS LATER
-            GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
-            GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Blade Storm");
-            GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Stranglehold");
-            GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
-            //GameController.controller.strikeModifier = "Serated Strike";
-            //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
-            playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
-
-            //strikeMod = GameController.controller.strikeModifier;
-
-            ability1 = GameController.controller.playerAbility1;
-            ability2 = GameController.controller.playerAbility2;
-            ability3 = GameController.controller.playerAbility3;
-            ability4 = GameController.controller.playerAbility4;
-
-            ability1CD = 0;
-            ability2CD = 0;
-            ability3CD = 0;
-            ability4CD = 0;
-
-            abilityButton1.transform.GetChild(0).GetComponent<Text>().text = ability1.Name;
-            abilityButton2.transform.GetChild(0).GetComponent<Text>().text = ability2.Name;
-            abilityButton3.transform.GetChild(0).GetComponent<Text>().text = ability3.Name;
-            abilityButton4.transform.GetChild(0).GetComponent<Text>().text = ability4.Name;
-
+            setAbilityVariables();
             setAbilityButtons();    
 
             if (GameController.controller.limitBreakTracker == 0)
                 canLimitBreak = true;
         }
 
-        initPlayerPos = playerMannequin.transform.position;
-
-        playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
-
         //2. Display buttons: STRIKE, ITEMS, ABILITIES
         HideAbilityButtons();
         HideAbilityButtons();
         HideBackButton();
         HideMainButtons();
-
-        currSpecialCase = SpecialCase.None;
 
         if (!hasTutorial)
         {
@@ -265,16 +235,45 @@ public class CombatManager : MonoBehaviour {
 
             if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
             {
-                print("enemy speed: " + enemyInfo.enemySpeed);
+                //print("enemy speed: " + enemyInfo.enemySpeed);
                 StartCoroutine(ShowStartingButtons());
             }
             else
                 StartCoroutine(EnemyStarts());        
         }
-        else
+        else // Tutorial buttons
         {
             StartCoroutine(ShowStartingButtons());
         }
+    }
+
+    void setAbilityVariables()
+    {
+        //REMOVE THIS LATER
+        GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
+        GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Blade Storm");
+        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Stranglehold");
+        GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
+        //GameController.controller.strikeModifier = "Serated Strike";
+        //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
+        playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(GameController.controller.limitBreakModifier);
+
+        //strikeMod = GameController.controller.strikeModifier;
+
+        ability1 = GameController.controller.playerAbility1;
+        ability2 = GameController.controller.playerAbility2;
+        ability3 = GameController.controller.playerAbility3;
+        ability4 = GameController.controller.playerAbility4;
+
+        ability1CD = 0;
+        ability2CD = 0;
+        ability3CD = 0;
+        ability4CD = 0;
+
+        abilityButton1.transform.GetChild(0).GetComponent<Text>().text = ability1.Name;
+        abilityButton2.transform.GetChild(0).GetComponent<Text>().text = ability2.Name;
+        abilityButton3.transform.GetChild(0).GetComponent<Text>().text = ability3.Name;
+        abilityButton4.transform.GetChild(0).GetComponent<Text>().text = ability4.Name;
     }
 
     IEnumerator changeToCombatStance()
@@ -289,6 +288,7 @@ public class CombatManager : MonoBehaviour {
         StartCoroutine(StartEnemyTurn());
     }
 
+    // This is called when an ability button is selected
     public void AbilitySelected(int selectedOption = 0)
     {
         switch(selectedOption)
@@ -353,37 +353,35 @@ public class CombatManager : MonoBehaviour {
     {
         print("PLAYER TURN IS OVER");
         print("Current SC: " + currSpecialCase);
-        AbilityCooldownTick(true);
+        PlayerAbilityCooldownTick();
         BoostTick(true);
-        StartCoroutine(CheckForDamage(damageDealt, false, originalHP, wasCriticalHit));
+        StartCoroutine(ResolveAttack(damageDealt, false, originalHP, wasCriticalHit));
         wasCriticalHit = false;
     }
 
     public void EndEnemyTurn(int damageDealt, int originalHP = 0)
     {
         print("ENEMY TURN IS OVER");
-        AbilityCooldownTick(false);
+        this.GetComponent<EnemyCombatScript>().TickCooldowns();
         BoostTick(false);
-        StartCoroutine(CheckForDamage(damageDealt, true, originalHP, wasCriticalHit));
+        StartCoroutine(ResolveAttack(damageDealt, true, originalHP, wasCriticalHit));
         wasCriticalHit = false;
     }
 
-    IEnumerator CheckForDamage(int damage, bool player, int origHP, bool critical)
+    IEnumerator ResolveAttack(int damage, bool targetIsPlayer, int origHP, bool critical = false)
     {
         ShowHealthBars();
 
-        if(player)
+        if(targetIsPlayer)
             print("CHECKING DAMAGE AGAINST PLAYER");
         else
             print("CHECKING DAMAGE AGAINST ENEMY");
 
-        if (ResolveSpecialCase(!player))
+        if (ResolveSpecialCase(!targetIsPlayer))
         {
-            //yield return new WaitForSeconds(0.5f);
-
             if (damage > 0)
             {
-                if (player)//is being attacked
+                if (targetIsPlayer)//is being attacked
                 {
                     float var1 = ((float)origHP / (float)playerMaxHealth);
                     float var2 = ((float)playerHealth / (float)playerMaxHealth);
@@ -413,13 +411,13 @@ public class CombatManager : MonoBehaviour {
 
                     if (CheckForDeath(true))
                         StartCoroutine(PlayEnemyDeathAnim());
-                    else// CUM BACK HERE!!
+                    else
                         StartCoroutine(StartEnemyTurn());      
                 }
             }
             else
             {
-                if (player)//is being attacked
+                if (targetIsPlayer)//is being attacked
                     StartCoroutine(StartPlayerTurn());
                 else//enemy is being attacked
                     StartCoroutine(StartEnemyTurn());
@@ -439,7 +437,7 @@ public class CombatManager : MonoBehaviour {
         HideBackButton();
         //enable main buttons?
 
-        StartCoroutine(CheckForDamage(damageDealt, true, originalHP, false));
+        StartCoroutine(ResolveAttack(damageDealt, true, originalHP, false));
     }
 
     IEnumerator StartPlayerTurn()
@@ -491,31 +489,31 @@ public class CombatManager : MonoBehaviour {
         ShowMainButtons();
         EnableMainButtons();
 
-        if(chaosPlayerAI)
-        {
-            int rand = Random.Range(0, 4);
+        //if(chaosPlayerAI)
+        //{
+        //    int rand = Random.Range(0, 4);
 
-            switch(rand)
-            {
-                case 0:
-                    AbilitySelected(0);
-                    break;
-                case 1:
-                    AbilitySelected(1);
-                    break;
-                case 2:
-                    AbilitySelected(2);
-                    break;
-                case 3:
-                    currentState = State.Done;
-                    AbilitySelected(3);
-                    break;
-                case 4:
-                    currentState = State.Done;
-                    StartCoroutine(UseStrike());
-                    break;
-            }
-        }
+        //    switch(rand)
+        //    {
+        //        case 0:
+        //            AbilitySelected(0);
+        //            break;
+        //        case 1:
+        //            AbilitySelected(1);
+        //            break;
+        //        case 2:
+        //            AbilitySelected(2);
+        //            break;
+        //        case 3:
+        //            currentState = State.Done;
+        //            AbilitySelected(3);
+        //            break;
+        //        case 4:
+        //            currentState = State.Done;
+        //            StartCoroutine(UseStrike());
+        //            break;
+        //    }
+        //}
     }
 
     IEnumerator ShowMainMenuOptions()
@@ -619,70 +617,64 @@ public class CombatManager : MonoBehaviour {
         button.GetComponent<Image>().color = (Color.grey - new Color(0,0,0,0.15f));
         button.transform.position = origPos;
 
-        this.GetComponent<AbilityManager_C>().AbilityToUse(abilityUsed, enemyHealth);
+        // Ability selected and sent to manager
+        this.GetComponent<AbilityManager_C>().SetupSelectedAbility(abilityUsed, enemyHealth);
     }
 
     // Combat Functions
     ////////////////////////////////////////////
-    public void AbilityCooldownTick(bool player)
+    public void PlayerAbilityCooldownTick()
     {
-        if(player)
+        if(ability1CD > 0)
         {
-            if(ability1CD > 0)
+            --ability1CD;
+            abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1CD.ToString();
+
+            if (ability1CD == 0)
             {
-                --ability1CD;
-                abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1CD.ToString();
-
-                if (ability1CD == 0)
-                {
-                    abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
-                    abilityButton1.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
-                    abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
-                }
-            }
-
-            if (ability2CD > 0)
-            {
-                --ability2CD;
-                abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2CD.ToString();
-
-                if (ability2CD == 0)
-                {
-                    abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
-                    abilityButton2.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
-                    abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
-                }
-            }
-
-            if (ability3CD > 0)
-            {
-                --ability3CD;
-                abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3CD.ToString();
-
-                if (ability3CD == 0)
-                {
-                    abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
-                    abilityButton3.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
-                    abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
-                }
-            }
-            
-            if (ability4CD > 0)
-            {
-                --ability4CD;
-                abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4CD.ToString();
-
-                if (ability4CD == 0)
-                {
-                    abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
-                    abilityButton4.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
-                    abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
-                }
+                abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
+                abilityButton1.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
+                abilityButton1.GetComponent<Image>().color = getAbilityTypeColor(ability1);
             }
         }
-        else
+
+        if (ability2CD > 0)
         {
-            this.GetComponent<EnemyCombatScript>().TickCooldowns();
+            --ability2CD;
+            abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2CD.ToString();
+
+            if (ability2CD == 0)
+            {
+                abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
+                abilityButton2.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
+                abilityButton2.GetComponent<Image>().color = getAbilityTypeColor(ability2);
+            }
+        }
+
+        if (ability3CD > 0)
+        {
+            --ability3CD;
+            abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3CD.ToString();
+
+            if (ability3CD == 0)
+            {
+                abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
+                abilityButton3.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
+                abilityButton3.GetComponent<Image>().color = getAbilityTypeColor(ability3);
+            }
+        }
+            
+        if (ability4CD > 0)
+        {
+            --ability4CD;
+            abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4CD.ToString();
+
+            if (ability4CD == 0)
+            {
+                abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
+                abilityButton4.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
+                abilityButton4.GetComponent<Image>().color = getAbilityTypeColor(ability4);
+            }
         }
     }
 

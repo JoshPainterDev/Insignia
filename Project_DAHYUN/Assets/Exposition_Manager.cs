@@ -408,7 +408,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Cmd. Vixon";
                         leftspeaker[5] = true;
-                        script[5] = "to hold this bridge with your life!";
+                        script[5] = "to hold this bridge with everything you've got!";
 
                         speaker[6] = "Cmd. Vixon";
                         leftspeaker[6] = true;

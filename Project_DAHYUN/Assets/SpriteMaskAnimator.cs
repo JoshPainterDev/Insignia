@@ -10,6 +10,7 @@ public class SpriteMaskAnimator : MonoBehaviour
     private SpriteMask spriteMask;
 
     private bool animating = false;
+    private string prevSprite;
 
 	// Use this for initialization
 	void Start ()
@@ -19,7 +20,7 @@ public class SpriteMaskAnimator : MonoBehaviour
 
         spriteMask.sprite = spriteRenderer.sprite;
 
-        if(startOnAwake)
+        if (startOnAwake)
         {
             setActive(true);
         }
@@ -30,12 +31,12 @@ public class SpriteMaskAnimator : MonoBehaviour
         animating = active;
     }
 
-	// Update is called once per frame
-	void Update ()
+    public void UpdateMasks()
     {
-		if(animating)
+        if (animating && (prevSprite != spriteRenderer.sprite.name))
         {
-            spriteMask.sprite = spriteRenderer.sprite;
+            prevSprite = spriteRenderer.sprite.name;
+            spriteMask.sprite = spriteRenderer.sprite; 
         }
-	}
+    }
 }

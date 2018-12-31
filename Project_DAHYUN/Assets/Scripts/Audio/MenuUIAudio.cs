@@ -38,37 +38,37 @@ public class MenuUIAudio : MonoBehaviour
 
     public void playTypingEffect()
     {
-        audioSource.PlayOneShot(typingEffect, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(typingEffect, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playError()
     {
-        audioSource.PlayOneShot(error, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(error, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playButtonClick()
     {
-        audioSource.PlayOneShot(buttonClick, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(buttonClick, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playLevelUp()
     {
-        audioSource.PlayOneShot(levelUp, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(levelUp, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playNope()
     {
-        audioSource.PlayOneShot(nope, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(nope, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playBack()
     {
-        audioSource.PlayOneShot(back, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(back, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playHeartbeat()
     {
-        audioSource.PlayOneShot(heartbeat, MEDIUM_VOLUME);
+        audioSource.PlayOneShot(heartbeat, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void stopAllAudio()

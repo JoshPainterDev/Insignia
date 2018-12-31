@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Character_Menu_Manager : MonoBehaviour {
 
+    //[HideInInspector]
+    private Vector3 EQP_TAB_OFFSET = new Vector3(-83, 35, 0);
+
     // Holds all of the unlocked equipment information from the players saved file
     [HideInInspector]
     public bool[,] unlockedEquipment = new bool[32, 4];
@@ -67,8 +70,6 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public GameObject equipmentHandle;
     public GameObject mirrorCamera;
-
-    private int index_i, index_j;
 
     public Color equipActive, equipInactive;
 
@@ -178,7 +179,6 @@ public class Character_Menu_Manager : MonoBehaviour {
                     personaPanelActive = false;
                     traitSelectTab.SetActive(false);
                     AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, abilityStart, speed);
-
                     auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraStart + new Vector3(10, 0, 0), speed);
                     PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, personaStart + new Vector3(10, 0, 0), speed);
                     SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, skillStart + new Vector3(10, 0, 0), speed);
@@ -210,11 +210,12 @@ public class Character_Menu_Manager : MonoBehaviour {
 
     public void ShowAllTabs()
     {
-        float speed = 5.0f;
+        float speed = 20.0f;
         AbilitiesButton.GetComponent<LerpScript>().LerpToPos(AbilitiesButton.transform.position, abilityStart, speed);
         SkillsButton.GetComponent<LerpScript>().LerpToPos(SkillsButton.transform.position, skillStart, speed);
         PersonaButton.GetComponent<LerpScript>().LerpToPos(PersonaButton.transform.position, personaStart, speed);
         auraColor.GetComponent<LerpScript>().LerpToPos(auraColor.transform.position, auraStart, speed);
+        currentTab = "None";
     }
 
     public void disablePersonaPanel()
@@ -313,6 +314,52 @@ public class Character_Menu_Manager : MonoBehaviour {
         GameController.controller.setPlayerColorPreference(color);
         playerMannequin.GetComponent<AnimationController>().seteAuraColor(color);
         background.GetComponent<SpriteRenderer>().color = color;
+        RefreshMaskColor();
+    }
+
+    public void RefreshMaskColor()
+    {
+        Color playerPref = GameController.controller.getPlayerColorPreference();
+        foreach (GameObject mask in camera.GetComponent<CameraController>().GetMaskObjects())
+        {
+            mask.GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 0.6f);
+            mask.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 1.0f);
+        }
+    }
+
+    // TODO: fix this for any other masks we want to add to the player
+    public void UpdateMask(bool updateAll, string maskName = "weapon")
+    {
+        Color playerPref = GameController.controller.getPlayerColorPreference();
+        if (updateAll)
+        {
+            //foreach(GameObject mask in camera.GetComponent<CameraController>().GetMaskObjects())
+            //{
+            //    mask.GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.maskSpriteName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+            //    mask.GetComponent<SpriteRenderer>().enabled = true;
+            //    mask.GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 0.6f);
+            //    mask.GetComponent<SpriteMask>().enabled = true;
+            //    mask.GetComponent<SpriteMaskAnimator>().setActive(true);
+            //    mask.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
+            //    mask.transform.GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
+            //}
+        }
+        else
+        {
+            switch(maskName)
+            {
+                case "weapon":
+                    GameObject weaponMask = playerMannequin.transform.GetChild(6).GetChild(0).gameObject;
+                    weaponMask.GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.maskSpriteName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+                    weaponMask.GetComponent<SpriteRenderer>().enabled = true;
+                    weaponMask.GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 0.6f);
+                    weaponMask.GetComponent<SpriteMask>().enabled = true;
+                    weaponMask.GetComponent<SpriteMaskAnimator>().setActive(true);
+                    weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
+                    weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
+                    break;
+            }
+        }
     }
 
     public void ButtonAuraColor(GameObject button)
@@ -411,9 +458,9 @@ public class Character_Menu_Manager : MonoBehaviour {
 
         auraColor.GetComponent<Image>().color = GameController.controller.getPlayerColorPreference();
 
-        personaPanel.transform.GetChild(2).GetComponent<Slider>().value = colorPref.r;
-        personaPanel.transform.GetChild(3).GetComponent<Slider>().value = colorPref.g;
-        personaPanel.transform.GetChild(4).GetComponent<Slider>().value = colorPref.b;
+        personaPanel.transform.GetChild(3).GetComponent<Slider>().value = colorPref.r;
+        personaPanel.transform.GetChild(4).GetComponent<Slider>().value = colorPref.g;
+        personaPanel.transform.GetChild(5).GetComponent<Slider>().value = colorPref.b;
     }
 
     public void HighlightEpqButton(GameObject button, int i, int j)
@@ -447,9 +494,6 @@ public class Character_Menu_Manager : MonoBehaviour {
                 }
             }
         }
-
-        index_i = i;
-        index_j = j;
 
         //head
         if (indexI < 4)
@@ -600,17 +644,10 @@ public class Character_Menu_Manager : MonoBehaviour {
             menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Weapon[sheetIndex];
             playerMannequin.transform.GetChild(6).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
 
+            // Activate Weapon Mask
             if (info.useMaskTexture)
             {
-                Color playerPref = GameController.controller.getPlayerColorPreference();
-                GameObject weaponMask = playerMannequin.transform.GetChild(6).GetChild(0).gameObject;
-                weaponMask.GetComponent<Animator>().runtimeAnimatorController = Resources.Load(info.maskSpriteName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-                weaponMask.GetComponent<SpriteRenderer>().enabled = true;
-                weaponMask.GetComponent<SpriteRenderer>().color = new Color(playerPref.r, playerPref.g, playerPref.b, 0.6f);
-                weaponMask.GetComponent<SpriteMask>().enabled = true;
-                weaponMask.GetComponent<SpriteMaskAnimator>().setActive(true);
-                weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = info.maskTexture;
-                weaponMask.transform.GetChild(0).GetComponent<SpriteRenderer>().color = info.equipmentColor;
+                UpdateMask(false, "weapon");
             }
             else
             {
@@ -678,7 +715,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         //mirrorCamera.GetComponent<PlayerCamera_C>().mirror = equipmentSelectPopUp.transform.GetChild(2).gameObject;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
@@ -737,7 +775,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
@@ -795,7 +834,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
@@ -853,7 +893,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
@@ -911,7 +952,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
@@ -969,7 +1011,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
@@ -1027,7 +1070,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;
@@ -1084,7 +1128,8 @@ public class Character_Menu_Manager : MonoBehaviour {
         equipmentSelectPopUp = (GameObject)Instantiate(equipmentSelectPopUpPrefab, Vector3.zero, transform.rotation);
         equipmentSelectPopUp.transform.GetChild(4).GetComponent<ClosePopUp>().externalCallObj = "CharacterMenuManager";
         equipmentSelectPopUp.transform.SetParent(canvas.transform);
-        equipmentSelectPopUp.transform.localPosition = new Vector3(0, 0, 0);
+        equipmentSelectPopUp.transform.localScale = Vector3.one;
+        equipmentSelectPopUp.transform.localPosition = EQP_TAB_OFFSET;
         atk_text = equipmentSelectPopUp.transform.GetChild(5).gameObject;
         def_text = equipmentSelectPopUp.transform.GetChild(6).gameObject;
         spd_text = equipmentSelectPopUp.transform.GetChild(7).gameObject;

@@ -75,13 +75,16 @@ public class AbilityToolsScript : MonoBehaviour {
                 AbilityName = "Divine Shield";
                 break;
             case 12:
-                AbilityName = "Stangle";
+                AbilityName = "Strangle";
                 break;
             case 13:
                 AbilityName = "Murder-Stroke";
                 break;
             case 14:
                 AbilityName = "Meditate";
+                break;
+            case 15:
+                AbilityName = "Reap";
                 break;
         }
 
@@ -288,6 +291,22 @@ public class AbilityToolsScript : MonoBehaviour {
                 ability.Type = AbilityType.Utility;
                 ability.Icon = "AbilityIcons\\Meditate_AbilityIcon";
                 ability.AbilityIndex = 14;
+                break;
+            case "Reap":
+                ability.Accuracy = 75;
+                ability.BaseDamage = 5;
+                ability.Cooldown = 2;
+                ability.Buffs = true;
+                ability.DefenseBoost = 1;
+                ability.DefBoostDuration = 3;
+                ability.Heals = false;
+                ability.Description = "Cleave through your foe with aura magic that claims their boons.";
+                ability.Name = name;
+                ability.specialCase = SpecialCase.BoonSteal;
+                ability.Ticks = 0;
+                ability.Type = AbilityType.Utility;
+                ability.Icon = "AbilityIcons\\Reap_AbilityIcon";
+                ability.AbilityIndex = 15;
                 break;
             default:
                 ability.Name = "";
