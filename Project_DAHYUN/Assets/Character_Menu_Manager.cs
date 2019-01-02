@@ -121,28 +121,34 @@ public class Character_Menu_Manager : MonoBehaviour {
         //load in defaults for now : FIX THIS SHIT L8R
         unlockedEquipment[0, 0] = true;
         unlockedEquipment[0, 2] = true;
+        unlockedEquipment[0, 3] = true;
 
         unlockedEquipment[4, 0] = true;
         unlockedEquipment[4, 2] = true;
+        unlockedEquipment[4, 3] = true;
 
         unlockedEquipment[8, 0] = true;
         unlockedEquipment[8, 2] = true;
+        unlockedEquipment[8, 3] = true;
 
         unlockedEquipment[12, 0] = true;
         unlockedEquipment[12, 2] = true;
+        unlockedEquipment[12, 3] = true;
 
         unlockedEquipment[16, 0] = true;
         unlockedEquipment[16, 2] = true;
+        unlockedEquipment[16, 3] = true;
 
         unlockedEquipment[20, 0] = true;
         unlockedEquipment[20, 2] = true;
+        unlockedEquipment[20, 3] = true;
 
         unlockedEquipment[24, 0] = true;
         unlockedEquipment[24, 1] = true;
         unlockedEquipment[24, 2] = true;
         unlockedEquipment[24, 3] = true;
         unlockedEquipment[25, 0] = true;
-        unlockedEquipment[25, 1] = true;
+        unlockedEquipment[25, 1] = false;
 
         unlockedEquipment[28, 0] = true;
         unlockedEquipment[28, 2] = true;
@@ -502,7 +508,7 @@ public class Character_Menu_Manager : MonoBehaviour {
             menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Head[(4 * indexI) + indexJ];
 
             playerMannequin.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-
+            print("HEAD IMAGE NAME = " + imageName);
             GameController.controller.playerEquippedIDs[0] = i;
             GameController.controller.playerEquippedIDs[1] = j;
 
@@ -522,7 +528,7 @@ public class Character_Menu_Manager : MonoBehaviour {
             menuButton = GameObject.Find("Torso_Button");
             menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Torso[sheetIndex];
             playerMannequin.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-
+            print("TORSO IMAGE NAME = " + imageName);
             GameController.controller.playerEquippedIDs[2] = i;
             GameController.controller.playerEquippedIDs[3] = j;
 
@@ -551,7 +557,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
                 ++tracker;
             }
-
+            print("ARMS IMAGE NAME = " + newStr);
             playerMannequin.transform.GetChild(7).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(newStr, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
 
             if (!info.hideUnderLayer)

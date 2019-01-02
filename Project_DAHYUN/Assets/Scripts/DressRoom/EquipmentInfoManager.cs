@@ -83,12 +83,14 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.hideUnderLayer = false;
                             break;
                         case 3:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
+                            equipInfo.Name = "Wraith Hood";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 9;
+                            equipInfo.ProwessStat = 9;
+                            equipInfo.SpeedStat = 9;
                             equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.imgSourceName = prefixHead + "\\Wraith_Outfit\\Player_Head_WraithHelm_AnimController";
+                            equipInfo.hideUnderLayer = true;
                             break;
                     }
                     break;
@@ -242,12 +244,14 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixTorso + "\\Slayer_Outfit\\Player_Torso_SlayerTorso_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.Name = "Wraith Tunic";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 9;
+                            equipInfo.ProwessStat = 9;
+                            equipInfo.SpeedStat = 9;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Torso;
+                            equipInfo.imgSourceName = prefixTorso + "\\Wraith_Outfit\\Player_Torso_WraithTorso_AnimController";
+                            equipInfo.hideUnderLayer = true;
                             break;
                     }
                     break;
@@ -400,12 +404,14 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixLegs + "\\Slayer_Outfit\\Player_Legs_SlayerLegs_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.Name = "Wraith Legs";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 9;
+                            equipInfo.ProwessStat = 9;
+                            equipInfo.SpeedStat = 9;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Legs;
+                            equipInfo.imgSourceName = prefixLegs + "\\Wraith_Outfit\\Player_Legs_WraithLegs_AnimController";
+                            equipInfo.hideUnderLayer = true;
                             break;
                     }
                     break;
@@ -558,12 +564,14 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixBack + "\\Slayer_Outfit\\Player_Back_SlayerCape_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.Name = "Wraith Cloak";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 9;
+                            equipInfo.ProwessStat = 9;
+                            equipInfo.SpeedStat = 9;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Back;
+                            equipInfo.imgSourceName = prefixBack + "\\Wraith_Outfit\\Player_Back_WraithBack_AnimController";
+                            equipInfo.hideUnderLayer = true;
                             break;
                     }
                     break;
@@ -716,12 +724,14 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixGloves + "\\Slayer_Outfit\\Player_Gloves_SlayerGloves_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.Name = "Wraith Wraps";
+                            equipInfo.AttackStat = 9;
+                            equipInfo.DefenseStat = 9;
+                            equipInfo.ProwessStat = 9;
+                            equipInfo.SpeedStat = 9;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Gloves;
+                            equipInfo.imgSourceName = prefixGloves + "\\Wraith_Outfit\\Player_Gloves_WraithGloves_AnimController";
+                            equipInfo.hideUnderLayer = true;
                             break;
                     }
                     break;
@@ -874,12 +884,14 @@ public class EquipmentInfoManager : MonoBehaviour{
                             equipInfo.imgSourceName = prefixShoes + "\\Slayer_Outfit\\Player_Shoes_SlayerShoes_AnimController";
                             break;
                         case 3:
-                            equipInfo.Name = "Test Helmet";
-                            equipInfo.AttackStat = 69;
-                            equipInfo.DefenseStat = 69;
-                            equipInfo.ProwessStat = 69;
-                            equipInfo.SpeedStat = 69;
-                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Head;
+                            equipInfo.Name = "Wraith Boots";
+                            equipInfo.AttackStat = 6;
+                            equipInfo.DefenseStat = 6;
+                            equipInfo.ProwessStat = 6;
+                            equipInfo.SpeedStat = 6;
+                            equipInfo.EquipType = EquipmentInfo.EquipmentType.Shoes;
+                            equipInfo.imgSourceName = prefixShoes + "\\Wraith_Outfit\\Player_Shoes_WraithShoes_AnimController";
+                            equipInfo.hideUnderLayer = false;
                             break;
                     }
                     break;
@@ -1048,7 +1060,7 @@ public class EquipmentInfoManager : MonoBehaviour{
                     switch (j)
                     {
                         case 0:
-                            equipInfo.Name = "Wraith Blade";
+                            equipInfo.Name = "Vorpal Blade";
                             equipInfo.AttackStat = 21;
                             equipInfo.DefenseStat = 21;
                             equipInfo.ProwessStat = 21;

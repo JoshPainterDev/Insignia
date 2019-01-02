@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3fdbe4887765d5f40bb2c092321086a0
-timeCreated: 1515831889
+guid: 78c18f8e5c4042e4393229e7c5ed58ef
+timeCreated: 1546403504
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,7 +10,6 @@ TextureImporter:
     21300006: Sword_Spritesheet01_3
     21300008: Sword_Spritesheet01_4
     21300010: Sword_Spritesheet01_5
-    21300012: Sword_Spritesheet01_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -53,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -94,9 +93,9 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 56
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -182,20 +181,6 @@ TextureImporter:
         serializedVersion: 2
         x: 256
         y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Sword_Spritesheet01_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
         width: 128
         height: 128
       alignment: 0
