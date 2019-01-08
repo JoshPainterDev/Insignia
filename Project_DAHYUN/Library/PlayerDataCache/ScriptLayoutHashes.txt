@@ -191,7 +191,7 @@ b13dba0d6e5b6ff965027a9da1ae9d6f Assembly-CSharp.dll:.RewardManager_C
 ae289d5889b6425001e5b425e6e39478 Assembly-CSharp.dll:.Remover
 7ed675ea893f8dd3551d5ec992b2873b Assembly-CSharp.dll:.Gun
 5ea8c63824e802b82139db3746bd8193 Assembly-CSharp.dll:.Dialogue_Manager_C
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraController
+3757031d6f233126549b14bb595b7973 Assembly-CSharp.dll:.CameraController
 60c9557bccfdbd492b40ba21ea876260 Assembly-CSharp.dll:.TestEventTrigger
 ed3f6bd27701553db1904f1c59b3180a Assembly-CSharp.dll:.BackgroundPropSpawner
 a04780bf2ccc7e96bbf6b608c6a35eed Assembly-CSharp.dll:.LootManager_C
@@ -271,6 +271,7 @@ ffbabedee5de0266fd3b1c8c3054b8ae Assembly-CSharp.dll:.DecisionManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.animStateScript
 b1287a14b2366d3f2449703d5d61c939 Assembly-CSharp.dll:.Panel_C
 de93bf722f88b07cf85d1b6bb286dd9e Assembly-CSharp.dll:.AbilityToolsScript
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MaskUpdate
 5a0cfcdac8963398ab88e7af47fe6659 Assembly-CSharp.dll:.ScoreShadow
 36aa17a55b637f6da325833d25e8d086 Assembly-CSharp.dll:.TutorialManagerMM_C
 9c4d5c8ec8a190483dc7d452819ad5bd Assembly-CSharp.dll:.ExclamationAnimator

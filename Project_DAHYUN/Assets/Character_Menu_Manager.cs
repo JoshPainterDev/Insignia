@@ -528,7 +528,7 @@ public class Character_Menu_Manager : MonoBehaviour {
             menuButton = GameObject.Find("Torso_Button");
             menuButton.transform.GetChild(0).GetComponent<Image>().sprite = spriteSheet_Torso[sheetIndex];
             playerMannequin.transform.GetChild(1).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(imageName, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-            print("TORSO IMAGE NAME = " + imageName);
+
             GameController.controller.playerEquippedIDs[2] = i;
             GameController.controller.playerEquippedIDs[3] = j;
 
@@ -557,7 +557,7 @@ public class Character_Menu_Manager : MonoBehaviour {
 
                 ++tracker;
             }
-            print("ARMS IMAGE NAME = " + newStr);
+
             playerMannequin.transform.GetChild(7).GetComponent<Animator>().runtimeAnimatorController = Resources.Load(newStr, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
 
             if (!info.hideUnderLayer)

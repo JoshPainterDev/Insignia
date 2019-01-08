@@ -590,11 +590,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 316.4
+      value: 301.52
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -26.4
+      value: -27.24
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -633,6 +633,18 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 9.700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 9.700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.97
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
@@ -765,11 +777,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 215.1
+      value: 195.26
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.5
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -803,6 +815,18 @@ Prefab:
         type: 2}
       propertyPath: m_FlipX
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 9.599999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 9.599999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
@@ -1103,6 +1127,10 @@ MonoBehaviour:
   laserSwordRetract_FX: {fileID: 0}
   criticalHit_FX: {fileID: 0}
   bodyCollapse_FX: {fileID: 0}
+  darkRumbling_FX: {fileID: 0}
+  darkRumbling_short_FX: {fileID: 0}
+  wetSquish_FX: {fileID: 0}
+  swordClash_FX: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -1401,6 +1429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a179d6763555c3e46b813c0c7ab864be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  maskObjects: []
 --- !u!1 &1418532219 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1039828592798500, guid: e233626e2faea0e4ebbf3257e9802986,
@@ -1415,11 +1445,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 236
+      value: 271.5
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -43.7
+      value: -49.4
       objectReference: {fileID: 0}
     - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1458,6 +1488,18 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 12.030057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 12.030057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599385326125762, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.2030057
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9a5383b9952a0a458eba587bd92da1a, type: 2}
@@ -1614,6 +1656,7 @@ MonoBehaviour:
   speaker05: {fileID: 0}
   speaker06: {fileID: 0}
   decisionManager: {fileID: 0}
+  panelOffset: {x: 0, y: 100, z: 0}
   decisionNumber: 0
   actionsCompleted: 0
   actionCounter: 0
@@ -2077,8 +2120,8 @@ MonoBehaviour:
     type: 2}
   Skitter_Prefab: {fileID: 1026831381954980, guid: e01d6b25110c6b146942b81c9bb58f64,
     type: 2}
-  DragonLord_Prefab: {fileID: 1310977109344280, guid: ae03021317ad8f84d97d432df95a390e,
-    type: 2}
+  Shino_Bot_Prefab: {fileID: 0}
+  Oathsworn_Prefab: {fileID: 0}
 --- !u!114 &2029249003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,16 +2167,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2037268560}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 34, y: 34, z: 1}
+  m_LocalScale: {x: 37.10502, y: 37.105015, z: 1.091324}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4, y: -26.4}
+  m_AnchoredPosition: {x: -0.4, y: -14.7}
   m_SizeDelta: {x: 23.4, y: 12.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2037268562

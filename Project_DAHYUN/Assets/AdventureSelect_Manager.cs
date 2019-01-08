@@ -39,7 +39,8 @@ public class AdventureSelect_Manager : MonoBehaviour
         //print("Stages completed: " + GameController.controller.stagesCompleted);
         for(int i = 0; i < gridThing.transform.childCount; ++i)
         {
-            if(i <= (GameController.controller.stagesCompleted + 1))
+            print(GameController.controller.stagesCompleted);
+            if(i < (GameController.controller.stagesCompleted + 1))
             {
                 UnlockLevel(i);
             }
@@ -103,6 +104,8 @@ public class AdventureSelect_Manager : MonoBehaviour
 
         prevLevel = currentLevel;
 
+        print("Current Level: " + currentLevel);
+        print("completed Levels: " + GameController.controller.stagesCompleted);
         if (currentLevel > (GameController.controller.stagesCompleted + 1))
         {
             // play a "you havnt unlocked this level" sound

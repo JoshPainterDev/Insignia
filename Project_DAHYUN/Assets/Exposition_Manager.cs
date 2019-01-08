@@ -326,17 +326,17 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[0] = "Cmd. Vixon";
                         leftspeaker[0] = true;
-                        script[0] = "Welcome back soldier, any word from Solaris?";
+                        script[0] = "Welcome back Miles, any word from Solaris?";
 
-                        speaker[1] = "H. Officer";
+                        speaker[1] = "Officer Miles";
                         leftspeaker[1] = false;
-                        script[1] = "No sir! Still no sign of Tesdin.";
+                        script[1] = "No, sir! Still no sign of Tesdin...";
 
                         speaker[2] = "Cmd. Vixon";
                         leftspeaker[2] = true;
                         script[2] = "It's only been a week. I'm sure he'll turn up!";
 
-                        speaker[3] = "H. Officer";
+                        speaker[3] = "Officer Miles";
                         leftspeaker[3] = false;
                         script[3] = "Sir, he only packed enough food for three days in the mountains...";
 
@@ -346,11 +346,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Cmd. Vixon";
                         leftspeaker[5] = true;
-                        script[5] = "Rally the others! We have to be ready for anything!";
+                        script[5] = "Ready the ballistae. We need to be prepared for anything!";
 
-                        speaker[6] = "H. Officer";
+                        speaker[6] = "Officer Miles";
                         leftspeaker[6] = false;
-                        script[6] = "Right away sir!";
+                        script[6] = "Of course, sir! Right away, sir!";
 
                         totalLines = 7;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -363,7 +363,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Cmd. Vixon";
                         leftspeaker[0] = true;
-                        script[0] = "Weapons ready!";
+                        script[0] = "Weapons at the ready!";
 
                         speaker[1] = "Cmd. Vixon";
                         leftspeaker[1] = true;
@@ -375,7 +375,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Cmd. Vixon";
                         leftspeaker[3] = true;
-                        script[3] = "Give 'em hell boys!";
+                        script[3] = "Steady!!";
 
                         totalLines = 4;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);

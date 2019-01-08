@@ -27,8 +27,8 @@ public class EnvironmentManager_C : MonoBehaviour
                     break;
                 case Environment.Castle_Hall:
                     Background.GetComponent<SpriteRenderer>().sprite = Resources.Load("Environments\\CastleWalls_InnerBridge", typeof(Sprite)) as Sprite;
-                    Background.transform.position = new Vector3(-463, 183, 0);
-                    Background.transform.localScale = new Vector3(34, 34, 0);
+                    Background.transform.position = new Vector3(-465, 182, 0);
+                    Background.transform.localScale = new Vector3(38.8f, 38.8f, 1);
                     break;
                 case Environment.none:
                     Background.GetComponent<SpriteRenderer>().sprite = Resources.Load("Environments\\Horizon_Background", typeof(Sprite)) as Sprite;

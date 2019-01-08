@@ -1428,6 +1428,11 @@ Prefab:
       propertyPath: FadeOnStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114315015676046356, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c03170e9d19a8b49a373e6aea8cfb51, type: 2}
   m_IsPrefabParent: 0
@@ -3189,6 +3194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a179d6763555c3e46b813c0c7ab864be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  maskObjects: []
 --- !u!114 &1317330913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,7 +4950,7 @@ RectTransform:
   m_GameObject: {fileID: 2037268560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 32.010002, y: 32.010002, z: 1.067}
   m_Children: []
   m_Father: {fileID: 889873491}
   m_RootOrder: 4

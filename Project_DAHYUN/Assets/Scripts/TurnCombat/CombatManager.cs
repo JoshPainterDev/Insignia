@@ -779,7 +779,7 @@ public class CombatManager : MonoBehaviour {
                     print("Oh jeez Rick, " + (encounter.enemyNames[encounter.totalEnemies - enemiesRemaining]) + " is dead...");
                     --enemiesRemaining;
                     enemyCounter.GetComponent<enemyCounterScript>().EnemyDied();
-                    if(this.GetComponent<ExperienceScript>())
+                    if(this.GetComponent<ExperienceScript>().isActiveAndEnabled)
                         this.GetComponent<ExperienceScript>().AddEXP(enemyInfo.expReward);
                     return true;
                 }
@@ -1225,11 +1225,16 @@ public class CombatManager : MonoBehaviour {
                 break;
         }
 
-        damageDealt = (((attack * 2) * enemyInfo.enemyLevel) + (randDamageBuffer)) * attBoostMod;
+        print("attack: " + attack);
+        print("enemyInfo.enemyLevel: " + enemyInfo.enemyLevel);
+        damageDealt = (((attack * 2) * enemyInfo.enemyLevel)) * attBoostMod;
 
-        damageDealt -= (GameController.controller.playerDefense * defBoostMod * 2.0f);
-        print(attBoostMod);
+        damageDealt -= (GameController.controller.playerDefense * defBoostMod);
+        print("Player Def: " + GameController.controller.playerDefense);
+        print("Damage dealt: " + damageDealt);
+        print("AttBoostMod: " + attBoostMod);
 
+        damageDealt += randDamageBuffer;
         damageDealt *= levelMod;
 
         // critical hit chance
@@ -1237,6 +1242,7 @@ public class CombatManager : MonoBehaviour {
         print(chance);
         if ((chance - 0.05f) >= CRITICAL_THRESHOLD)
         {
+            print("Critical Hit!");
             wasCriticalHit = true;
             damageDealt *= 1.5f;
         }

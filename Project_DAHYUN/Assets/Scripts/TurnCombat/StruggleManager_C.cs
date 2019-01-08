@@ -37,6 +37,7 @@ public class StruggleManager_C : MonoBehaviour {
     private float NORMAL_MODE_FAIL = 0.22f;
     private float EASY_MODE_FAIL = 0.35f;
     private float MIN_TIME = 1.0f;
+    private float MAX_TIME = 1.0f;
     private float currentMode;
 
     //player vars
@@ -191,7 +192,7 @@ public class StruggleManager_C : MonoBehaviour {
 
     public void RandomlyMoveCharacters()
     {
-        offsetVec = new Vector3(randomVar * 35, 0, 0);
+        offsetVec = new Vector3(randomVar * (10.0f) + (120.0f * percentCompleted), 0, 0);
         player.GetComponent<LerpScript>().LerpToPos(playerCenter, playerCenter + offsetVec, Mathf.Abs(randomVar));
         enemy.GetComponent<LerpScript>().LerpToPos(enemyCenter, enemyCenter + offsetVec, Mathf.Abs(randomVar));
     }
