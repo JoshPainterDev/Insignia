@@ -58,7 +58,12 @@ public class AnimationController : MonoBehaviour
     {
         foreach (SpriteRenderer sprite in this.GetComponentsInChildren<SpriteRenderer>())
         {
-            sprite.flipX = !sprite.flipX;
+            if(sprite.name == "WeaponMask")
+            {
+                sprite.transform.localScale = new Vector3(sprite.transform.localScale.x * -1, sprite.transform.localScale.y, sprite.transform.localScale.z);
+            }
+            else
+                sprite.flipX = !sprite.flipX;
         }
         facingRight = !facingRight;
     }

@@ -20,7 +20,7 @@ public class SpriteMaskAnimator : MonoBehaviour
 
         spriteMask.sprite = spriteRenderer.sprite;
 
-        if (startOnAwake)
+        if (this.GetComponent<SpriteMask>().enabled)
         {
             setActive(true);
         }

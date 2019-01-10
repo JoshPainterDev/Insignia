@@ -412,7 +412,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[6] = "Cmd. Vixon";
                         leftspeaker[6] = true;
-                        script[6] = "Nothing gets past that choke! Got it?!";
+                        script[6] = "Nothing gets through that choke! Got it?!";
 
                         speaker[7] = playerName;
                         leftspeaker[7] = false;
@@ -549,27 +549,27 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = playerName;
                         leftspeaker[0] = true;
-                        script[0] = "It was! No, that's n-n-not right...";
+                        script[0] = "What about the scouts...";
 
                         speaker[1] = playerName;
                         leftspeaker[1] = true;
-                        script[1] = "Or w-w-was it? No!";
+                        script[1] = "Th-th-they must have seen them! Th-th-the scouts!";
 
                         speaker[2] = playerName;
                         leftspeaker[2] = true;
-                        script[2] = "It was d-definitely P-p-porker's";
+                        script[2] = "The S-s-stars above tried to w-w-warn us.";
 
                         speaker[3] = playerName;
                         leftspeaker[3] = true;
-                        script[3] = "I-I had.. l-latrine-";
+                        script[3] = "The eclipse.. of-f-f course..";
 
                         speaker[4] = playerName;
                         leftspeaker[4] = true;
-                        script[4] = "Latrine duty w-was l-l-last...";
+                        script[4] = "I-, I... I didn't think i-it.. w-w-would end..";
 
                         speaker[5] = playerName;
                         leftspeaker[5] = true;
-                        script[5] = "week...";
+                        script[5] = "l-l-like this...";
 
                         totalLines = 6;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -593,7 +593,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[4] = "???";
                         leftspeaker[4] = false;
-                        script[4] = "It burns nonetheless...";
+                        script[4] = "It burns just as bright...";
 
                         totalLines = 5;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -618,11 +618,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Theron";
                         leftspeaker[3] = false;
-                        script[3] = "Things are not so clear right now, yes.";
+                        script[3] = "I understand your delusional state.";
 
                         speaker[4] = "Theron";
                         leftspeaker[4] = false;
-                        script[4] = "But war is on our doorstep, youngling.";
+                        script[4] = "But war is on our doorstep.";
 
                         speaker[5] = "Theron";
                         leftspeaker[5] = false;
@@ -638,11 +638,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[8] = playerName;
                         leftspeaker[8] = true;
-                        script[8] = "'Sentianity'? How exactly does this involve me?";
+                        script[8] = "Why on Atkus would the fate of 'Sentianity' involve me?";
 
                         speaker[9] = "Theron";
                         leftspeaker[9] = false;
-                        script[9] = "Your Aura is a shimmer of hope in dark times.";
+                        script[9] = "Your Aura is a shimmer of hope in dark times to those who fight on.";
 
                         speaker[10] = "Theron";
                         leftspeaker[10] = false;
@@ -658,7 +658,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[13] = "Theron";
                         leftspeaker[13] = false;
-                        script[13] = "Your 'kin', would sooner toss you to the wargs than honor an oath.";
+                        script[13] = "Your 'kin', would sooner toss you to the wargs than honor meaningless recitation.";
 
                         speaker[14] = "Theron";
                         leftspeaker[14] = false;
@@ -723,7 +723,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = false;
-                        script[7] = "Ready your men. We march on the kingdom at dusk...";
+                        script[7] = "Prepare yourselves. We march on the kingdom in the hour...";
 
                         totalLines = 8;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -731,7 +731,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 2:
                         speaker[0] = "Slade";
                         leftspeaker[0] = false;
-                        script[0] = "I hope you're ready, lackey.";
+                        script[0] = "I hope you're ready, lackey...";
 
                         speaker[1] = "Hyun";
                         leftspeaker[1] = true;
@@ -739,7 +739,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = "Hyun";
                         leftspeaker[2] = true;
-                        script[2] = playerName + " knows better than you just how important this mission is.";
+                        script[2] = playerName + " knows far better than you just how important this mission is.";
 
                         speaker[3] = "Slade";
                         leftspeaker[3] = false;
@@ -832,7 +832,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[4] = "Theron";
                         leftspeaker[4] = false;
-                        script[4] = "I don't seem to rememeber it at all.";
+                        script[4] = "I don't seem to rememeber that event at all.";
 
                         speaker[5] = "King Gerard";
                         leftspeaker[5] = true;
@@ -840,7 +840,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[6] = "King Gerard";
                         leftspeaker[6] = true;
-                        script[6] = "Surely you recall the sword swallowing Blumfark fellow!";
+                        script[6] = "Surely you recall the Ghadra dancers! Or that sword swallowing Blumfark fellow!";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = false;
@@ -926,11 +926,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Theron";
                         leftspeaker[5] = true;
-                        script[5] = "I must have the fighting spirits of each and every one of you!";
+                        script[5] = "I must have the unified spirits of each and every one of you!";
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = true;
-                        script[6] = "Forget the oaths made with monarch corpses!";
+                        script[6] = "Forget your oaths made with monarch-corpses!";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = true;
@@ -938,7 +938,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[8] = "Theron";
                         leftspeaker[8] = true;
-                        script[8] = "And let us unite in the coming apocalypse!";
+                        script[8] = "And let us unite under the banner of war to come!";
 
                         totalLines = 9;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -954,11 +954,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = "Theron";
                         leftspeaker[2] = true;
-                        script[2] = "The warriors at the Bulwark lie in graves of snow!";
+                        script[2] = "The graves of snow at the Bulwark were not dug by legend!";
 
                         speaker[3] = "Theron";
                         leftspeaker[3] = true;
-                        script[3] = "And they were not the first to succumb to the hordes...";
+                        script[3] = "They were not the first to succumb to the hordes either...";
 
                         speaker[4] = "S. Officer";
                         leftspeaker[4] = false;
@@ -970,7 +970,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[6] = "Theron";
                         leftspeaker[6] = true;
-                        script[6] = "Your leaders turned their eye to the horrors that befell your brethren.";
+                        script[6] = "Your kings have turned a blind-eye to these wretched horrors!";
 
                         speaker[7] = "Theron";
                         leftspeaker[7] = true;
@@ -978,15 +978,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[8] = "Cmd. Agyrii";
                         leftspeaker[8] = false;
-                        script[8] = "If what you say is true, then we have no choice in the matter.";
+                        script[8] = "If what you say is true, then what choice do we have?";
 
                         speaker[9] = "Cmd. Agyrii";
                         leftspeaker[9] = false;
-                        script[9] = "Soldiers!";
+                        script[9] = "Hear me now Royal Guard! Stand down!";
 
                         speaker[10] = "Cmd. Agyrii";
                         leftspeaker[10] = false;
-                        script[10] = "Stand down...";
+                        script[10] = "I won't have more troops slaughtered if we can come to an agreement...";
 
                         totalLines = 11;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -1021,7 +1021,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[1] = "Theron";
                             leftspeaker[1] = true;
-                            script[1] = "You're the ''messenger'' who deserted Fort Hammerfell?";
+                            script[1] = "You're the \"messenger\" who deserted Fort Hammerfell?";
 
                             speaker[2] = "Theron";
                             leftspeaker[2] = true;
@@ -1057,19 +1057,19 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[10] = playerName;
                             leftspeaker[10] = false;
-                            script[10] = "My Lord! I don't even know this man!";
+                            script[10] = "M'lord! I don't even know this man!";
 
                             speaker[11] = "Theron";
                             leftspeaker[11] = true;
-                            script[11] = "Would you prefer he buy you dinner first?";
+                            script[11] = "Would you prefer he make you supper first?";
 
                             speaker[12] = "Theron";
                             leftspeaker[12] = true;
-                            script[12] = "He abandoned you and hundreds of soldiers to be slaughtered...";
+                            script[12] = "This coward abandoned you, and hundreds of your bretheren, to be slaughtered...";
 
                             speaker[13] = "Theron";
                             leftspeaker[13] = true;
-                            script[13] = "Death is a mercy to scum like him.";
+                            script[13] = "Death is a mercy to this scum.";
 
                             totalLines = 14;
                             this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -1131,11 +1131,11 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[12] = playerName;
                             leftspeaker[12] = false;
-                            script[12] = "then I must have a place in this fight!";
+                            script[12] = "then I must have a place in this fight.";
 
                             speaker[13] = playerName;
                             leftspeaker[13] = false;
-                            script[13] = "I'd gladly risk a fight to end Skorje's conquest!";
+                            script[13] = "I won't risk any opposition to winning the coming war.";
 
                             speaker[14] = playerName;
                             leftspeaker[14] = false;
@@ -1147,11 +1147,11 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[16] = "Theron";
                             leftspeaker[16] = true;
-                            script[16] = "but Skorje surely intends to destroy you along with all sentient life...";
+                            script[16] = "but I fear that a great evil intends to destroy you before pursuing total conquest...";
 
                             speaker[17] = "Theron";
                             leftspeaker[17] = true;
-                            script[17] = "And the life of purpose you seek is not given;";
+                            script[17] = "Know that this life of purpose you seek is not given;";
 
                             speaker[18] = "Theron";
                             leftspeaker[18] = true;
@@ -1159,19 +1159,19 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[19] = "Theron";
                             leftspeaker[19] = true;
-                            script[19] = "While there is much to teach you for the struggle ahead,";
+                            script[19] = "While there is much to prepare you for the struggle ahead,";
 
                             speaker[20] = "Theron";
                             leftspeaker[20] = true;
-                            script[20] = "I can only show you as much as you are willing to give.";
+                            script[20] = "I can only show you as much as you are willing to see.";
 
                             speaker[21] = playerName;
                             leftspeaker[21] = false;
-                            script[21] = "The blade is all I have left to offer, my lord...";
+                            script[21] = "The blade is all I have left to offer, m'lord...";
 
                             speaker[22] = "Theron";
                             leftspeaker[22] = true;
-                            script[22] = "Then I shall take your blade into my service once more.";
+                            script[22] = "Then I shall take your blade into my service once more, " + playerName + ".";
 
                             speaker[23] = playerName;
                             leftspeaker[23] = false;
@@ -1183,7 +1183,7 @@ public class Exposition_Manager : MonoBehaviour
 
                             speaker[25] = "Theron";
                             leftspeaker[25] = true;
-                            script[25] = "Come my apprentice,";
+                            script[25] = "Come, my apprentice,";
 
                             speaker[26] = "Theron";
                             leftspeaker[26] = true;
@@ -2701,7 +2701,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(2.0f);
                         StartCoroutine(NewDialogue(9, 1));
                         break;
-                    case 8:
+                    case 9:
                         speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         yield return new WaitForSeconds(0.85f);
                         speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(220, 0, 0), 1.0f);
@@ -2713,14 +2713,17 @@ public class Exposition_Manager : MonoBehaviour
                 {
                     case 0:
                         yield return new WaitForSeconds(0.5f);
-                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(190, 0, 0), 1.0f);
-                        yield return new WaitForSeconds(2.5f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(190, 0, 0), 0.80f);
+                        yield return new WaitForSeconds(2.0f);
                         speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         yield return new WaitForSeconds(0.75f);
                         StartCoroutine(NewDialogue(eCurrentCutscene, instance));
                         break;
                     case 6:
-                        yield return new WaitForSeconds(2f);
+                        speaker02.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        yield return new WaitForSeconds(0.5f);
+                        speaker02.GetComponent<LerpScript>().LerpToPos(speaker02.transform.position, speaker02.transform.position + new Vector3(220, 0, 0), 0.50f);
+                        yield return new WaitForSeconds(0.35f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1), 0.75f);
                         actionsCompleted = true; //actions are completed
                         StartCoroutine(LoadNextLv());
@@ -2791,7 +2794,7 @@ public class Exposition_Manager : MonoBehaviour
                         sfxManager.GetComponent<SoundFXManager_C>().playSnowCollapse();
                         break;
                     case 3:
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(2.5f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
                         break;
                 }
@@ -2809,7 +2812,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(2.5f);
                         StartCoroutine(NewDialogue(eCurrentCutscene, instance));
                         break;
-                    case 5:
+                    case 6:
                         actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0.5f), Color.white, 0.6f);
                         sfxManager.GetComponent<SoundFXManager_C>().FadeVolume(1, 0, 0.7f, true);
@@ -2853,6 +2856,7 @@ public class Exposition_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.15f);
                 speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position + new Vector3(75, 0, 0), 2);
                 yield return new WaitForSeconds(0.15f);
+                playerMannequin.GetComponent<AnimationController>().FlipFlop();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(50, 0, 0), 1f);
                 yield return new WaitForSeconds(0.5f);
                 playerMannequin.GetComponent<AnimationController>().FlipFlop();
@@ -2860,7 +2864,8 @@ public class Exposition_Manager : MonoBehaviour
                 playerMannequin.GetComponent<AnimationController>().FlipFlop();
                 yield return new WaitForSeconds(1.5f);
                 playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.25f);
+                playerMannequin.GetComponent<AnimationController>().FlipFlop();
                 playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
                 playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(250,0,0), 1.2f);
                 yield return new WaitForSeconds(1f);
