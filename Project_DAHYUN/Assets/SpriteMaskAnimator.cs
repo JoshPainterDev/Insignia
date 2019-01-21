@@ -10,7 +10,7 @@ public class SpriteMaskAnimator : MonoBehaviour
     private SpriteMask spriteMask;
 
     private bool animating = false;
-    private string prevSprite;
+    private string prevSprite = "";
 
 	// Use this for initialization
 	void Start ()
@@ -33,10 +33,14 @@ public class SpriteMaskAnimator : MonoBehaviour
 
     public void UpdateMasks()
     {
-        if (animating && (prevSprite != spriteRenderer.sprite.name))
+        if(spriteRenderer.sprite != null)
         {
-            prevSprite = spriteRenderer.sprite.name;
-            spriteMask.sprite = spriteRenderer.sprite; 
+            print(spriteRenderer.name);
+            if (animating && (prevSprite != spriteRenderer.sprite.name))
+            {
+                prevSprite = spriteRenderer.sprite.name;
+                spriteMask.sprite = spriteRenderer.sprite;
+            }
         }
     }
 }

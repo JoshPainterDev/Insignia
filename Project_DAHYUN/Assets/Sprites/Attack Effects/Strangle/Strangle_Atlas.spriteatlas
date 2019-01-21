@@ -3,10 +3,12 @@
 --- !u!687078895 &4343727234628468602
 SpriteAtlas:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Strangle_Atlas
   m_EditorData:
+    serializedVersion: 2
     textureSettings:
       serializedVersion: 2
       anisoLevel: 1
@@ -19,7 +21,19 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - m_BuildTarget: Android
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    - serializedVersion: 2
+      m_BuildTarget: Android
       m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: 4
@@ -29,7 +43,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
-    packingParameters:
+    packingSettings:
       serializedVersion: 2
       padding: 8
       blockOffset: 1
@@ -64,61 +78,62 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8ace1669829c0a448ad09d04d948ee8a, type: 3}
     - {fileID: 2800000, guid: 9679b24612cf1e74f9eaced5d2b35558, type: 3}
     - {fileID: 2800000, guid: 753a146dd2647ee408bcc1bdac2617f8, type: 3}
+    totalSpriteSurfaceArea: 6153472
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 96b60424350206846bb67d370a4f6dd9, type: 3}
-  - {fileID: 21300000, guid: 3ae675ff9ae51034b949abe4e37ac65e, type: 3}
-  - {fileID: 21300000, guid: a13415ce933a72c4f80cf8a170f43390, type: 3}
-  - {fileID: 21300000, guid: 1cd74f8e917501f4fbc3a02b6ade8a4b, type: 3}
-  - {fileID: 21300000, guid: 8f5af2a22b792be40a9adc557e0a2146, type: 3}
-  - {fileID: 21300000, guid: abf0a08905c25664699d15e8cba62fc0, type: 3}
-  - {fileID: 21300000, guid: 922f0159d26514143a1a6d229a2e0453, type: 3}
-  - {fileID: 21300000, guid: 456814f4c934da24692e7cdb2b51c9ff, type: 3}
   - {fileID: 21300000, guid: 7d5702816ca84874bad5738c79a69697, type: 3}
-  - {fileID: 21300000, guid: 5ef0d7cddf812164eafa3f22cb66497e, type: 3}
-  - {fileID: 21300000, guid: 4b0ecd8e9f5f50844955bf18b15966a0, type: 3}
-  - {fileID: 21300000, guid: 61979aee8a4fb984ea72e454d08e31e6, type: 3}
-  - {fileID: 21300000, guid: af72dcabfb0922f4894a6c23f1d97222, type: 3}
-  - {fileID: 21300000, guid: ff0ecd68deeb3834f96fee329d27184b, type: 3}
   - {fileID: 21300000, guid: fd96f1b12ea6c4845905bf5c5ac76787, type: 3}
   - {fileID: 21300000, guid: 3fe30e72e75bff548be0ebbc54a69542, type: 3}
-  - {fileID: 21300000, guid: 920e01e755e7f054293c6fdc696ee9a1, type: 3}
-  - {fileID: 21300000, guid: 5f0e5debc054bb342a1c51d1267a383a, type: 3}
-  - {fileID: 21300000, guid: 7b0dfb4f4eda79248990a2139001907b, type: 3}
-  - {fileID: 21300000, guid: 8ace1669829c0a448ad09d04d948ee8a, type: 3}
+  - {fileID: 21300000, guid: 8f5af2a22b792be40a9adc557e0a2146, type: 3}
+  - {fileID: 21300000, guid: 96b60424350206846bb67d370a4f6dd9, type: 3}
+  - {fileID: 21300000, guid: 456814f4c934da24692e7cdb2b51c9ff, type: 3}
   - {fileID: 21300000, guid: 9679b24612cf1e74f9eaced5d2b35558, type: 3}
-  - {fileID: 21300000, guid: 753a146dd2647ee408bcc1bdac2617f8, type: 3}
-  - {fileID: 21300000, guid: 5072b1cfd31f4594a98bc4da45f0b6da, type: 3}
-  - {fileID: 21300000, guid: 906aa40fb2d64614196327b3821c2e06, type: 3}
+  - {fileID: 21300000, guid: 920e01e755e7f054293c6fdc696ee9a1, type: 3}
+  - {fileID: 21300000, guid: ff0ecd68deeb3834f96fee329d27184b, type: 3}
+  - {fileID: 21300000, guid: 922f0159d26514143a1a6d229a2e0453, type: 3}
+  - {fileID: 21300000, guid: 8ace1669829c0a448ad09d04d948ee8a, type: 3}
   - {fileID: 21300000, guid: 0fac31794adf60644b177a8f81dc23fb, type: 3}
+  - {fileID: 21300000, guid: abf0a08905c25664699d15e8cba62fc0, type: 3}
+  - {fileID: 21300000, guid: af72dcabfb0922f4894a6c23f1d97222, type: 3}
+  - {fileID: 21300000, guid: 5f0e5debc054bb342a1c51d1267a383a, type: 3}
+  - {fileID: 21300000, guid: 753a146dd2647ee408bcc1bdac2617f8, type: 3}
+  - {fileID: 21300000, guid: 5ef0d7cddf812164eafa3f22cb66497e, type: 3}
+  - {fileID: 21300000, guid: 4b0ecd8e9f5f50844955bf18b15966a0, type: 3}
+  - {fileID: 21300000, guid: 1cd74f8e917501f4fbc3a02b6ade8a4b, type: 3}
+  - {fileID: 21300000, guid: a13415ce933a72c4f80cf8a170f43390, type: 3}
   - {fileID: 21300000, guid: ec8761ee2708c9c44a0044b91e21067b, type: 3}
+  - {fileID: 21300000, guid: 61979aee8a4fb984ea72e454d08e31e6, type: 3}
+  - {fileID: 21300000, guid: 906aa40fb2d64614196327b3821c2e06, type: 3}
+  - {fileID: 21300000, guid: 7b0dfb4f4eda79248990a2139001907b, type: 3}
+  - {fileID: 21300000, guid: 5072b1cfd31f4594a98bc4da45f0b6da, type: 3}
+  - {fileID: 21300000, guid: 3ae675ff9ae51034b949abe4e37ac65e, type: 3}
   m_PackedSpriteNamesToIndex:
-  - DeathGrip_VFX02
-  - DeathGrip_VFX03
-  - DeathGrip_VFX01
-  - DeathGrip_VFX15
-  - DeathGrip_VFX06
-  - DeathGrip_VFX14
-  - DeathGrip_VFX07
-  - DeathGrip_VFX17
   - DeathGrip_VFX04
-  - DeathGrip_VFX16
-  - DeathGrip_VFX05
-  - DeathGrip_VFX11
-  - DeathGrip_VFX10
-  - DeathGrip_VFX13
   - DeathGrip_VFX08
   - DeathGrip_VFX12
-  - DeathGrip_VFX09
-  - DeathGrip_VFX19
-  - DeathGrip_VFX18
-  - DeathGrip_VFX24
+  - DeathGrip_VFX06
+  - DeathGrip_VFX02
+  - DeathGrip_VFX17
   - DeathGrip_VFX25
-  - DeathGrip_VFX26
-  - DeathGrip_VFX20
-  - DeathGrip_VFX21
+  - DeathGrip_VFX09
+  - DeathGrip_VFX13
+  - DeathGrip_VFX07
+  - DeathGrip_VFX24
   - DeathGrip_VFX22
+  - DeathGrip_VFX14
+  - DeathGrip_VFX10
+  - DeathGrip_VFX19
+  - DeathGrip_VFX26
+  - DeathGrip_VFX16
+  - DeathGrip_VFX05
+  - DeathGrip_VFX15
+  - DeathGrip_VFX01
   - DeathGrip_VFX23
+  - DeathGrip_VFX11
+  - DeathGrip_VFX21
+  - DeathGrip_VFX18
+  - DeathGrip_VFX20
+  - DeathGrip_VFX03
   m_Tag: Strangle_Atlas
   m_IsVariant: 0

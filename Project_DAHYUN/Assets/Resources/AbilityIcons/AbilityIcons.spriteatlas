@@ -3,10 +3,12 @@
 --- !u!687078895 &4343727234628468602
 SpriteAtlas:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: AbilityIcons
   m_EditorData:
+    serializedVersion: 2
     textureSettings:
       serializedVersion: 2
       anisoLevel: 1
@@ -19,7 +21,19 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - m_BuildTarget: Android
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    - serializedVersion: 2
+      m_BuildTarget: Android
       m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: 4
@@ -29,7 +43,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
-    packingParameters:
+    packingSettings:
       serializedVersion: 2
       padding: 4
       blockOffset: 1
@@ -48,29 +62,30 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8e6f2467a0fccc44f8a76e39cad9050f, type: 3}
     - {fileID: 2800000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
     - {fileID: 2800000, guid: b83f95e6d51bcb94c9d02a2ce646dea7, type: 3}
+    totalSpriteSurfaceArea: 163840
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: fcf2588fc25afad46a967e2425b60a19, type: 3}
-  - {fileID: 21300000, guid: 8e6f2467a0fccc44f8a76e39cad9050f, type: 3}
-  - {fileID: 21300000, guid: 1d9c7e3ee1b886b44a0eb186606777ea, type: 3}
-  - {fileID: 21300000, guid: 92684de3179a1be43858e218f9855ea7, type: 3}
-  - {fileID: 21300000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
   - {fileID: 21300000, guid: c560bdb0e108018498e97669389ad954, type: 3}
+  - {fileID: 21300000, guid: 92684de3179a1be43858e218f9855ea7, type: 3}
   - {fileID: 21300000, guid: b83f95e6d51bcb94c9d02a2ce646dea7, type: 3}
+  - {fileID: 21300000, guid: 8e6f2467a0fccc44f8a76e39cad9050f, type: 3}
+  - {fileID: 21300000, guid: ce7602a7fa6d78548adefc91f56a247e, type: 3}
   - {fileID: 21300000, guid: f22280197d2b40840b7b124060358007, type: 3}
   - {fileID: 21300000, guid: 4e9df07927db2d949acecf7d06f2bdf9, type: 3}
-  - {fileID: 21300000, guid: ce7602a7fa6d78548adefc91f56a247e, type: 3}
+  - {fileID: 21300000, guid: 76e7c01b8ec3d74449982e3c44c55287, type: 3}
+  - {fileID: 21300000, guid: 1d9c7e3ee1b886b44a0eb186606777ea, type: 3}
+  - {fileID: 21300000, guid: fcf2588fc25afad46a967e2425b60a19, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Outrage_AbilityIcon
-  - SolarFlare_AbilityIcon
-  - BlackRain_AbilityIcon
-  - Hatred_AbilityIcon
-  - Strangle_AbilityIcon
   - BladeStorm_AbilityIcon
+  - Hatred_AbilityIcon
   - ThunderCharge_AbilityIcon
+  - SolarFlare_AbilityIcon
+  - Meditate_AbilityIcon
   - none_AbilityIcon
   - GuardBreak_AbilityIcon
-  - Meditate_AbilityIcon
+  - Strangle_AbilityIcon
+  - BlackRain_AbilityIcon
+  - Outrage_AbilityIcon
   m_Tag: AbilityIcons
   m_IsVariant: 0

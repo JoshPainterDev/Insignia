@@ -277,3 +277,6 @@ de93bf722f88b07cf85d1b6bb286dd9e Assembly-CSharp.dll:.AbilityToolsScript
 9c4d5c8ec8a190483dc7d452819ad5bd Assembly-CSharp.dll:.ExclamationAnimator
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LerpScript
 307d9f491fea791345eb6aa66e84c179 Assembly-CSharp.dll:.CameraFollow
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ScreenSafe_C
+32b490cfdb887f7e9a2960878dc0ddb9 Assembly-CSharp.dll:Crystal.SafeAreaDemo
+8f2c34e217d303192e17f5a1064ae9df Assembly-CSharp.dll:Crystal.SafeArea

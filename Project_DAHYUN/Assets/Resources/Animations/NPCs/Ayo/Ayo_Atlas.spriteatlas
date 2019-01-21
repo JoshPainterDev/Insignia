@@ -3,10 +3,12 @@
 --- !u!687078895 &4343727234628468602
 SpriteAtlas:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Ayo_Atlas
   m_EditorData:
+    serializedVersion: 2
     textureSettings:
       serializedVersion: 2
       anisoLevel: 1
@@ -19,7 +21,19 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - m_BuildTarget: Android
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    - serializedVersion: 2
+      m_BuildTarget: Android
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: 4
@@ -29,7 +43,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
-    packingParameters:
+    packingSettings:
       serializedVersion: 2
       padding: 4
       blockOffset: 1
@@ -47,27 +61,28 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 5c687e3e40a2eef4b85010d4e278ee56, type: 3}
     - {fileID: 2800000, guid: c3da99be6ec92b04da4d74013c77e4f8, type: 3}
     - {fileID: 2800000, guid: 446dfe55f8b80364aaa5d7fcfde0899e, type: 3}
+    totalSpriteSurfaceArea: 1065024
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: c3da99be6ec92b04da4d74013c77e4f8, type: 3}
-  - {fileID: 21300000, guid: 5c687e3e40a2eef4b85010d4e278ee56, type: 3}
-  - {fileID: 21300000, guid: 4fdc6da496aa7f04091ab633de76282c, type: 3}
-  - {fileID: 21300000, guid: 195fd6323b347e841b87465ef6d8626d, type: 3}
-  - {fileID: 21300000, guid: 446dfe55f8b80364aaa5d7fcfde0899e, type: 3}
-  - {fileID: 21300000, guid: 6c790fedd9148cd4783e71f9b17d06d5, type: 3}
-  - {fileID: 21300000, guid: 861823ed2734b06419b42caeefd5b451, type: 3}
-  - {fileID: 21300000, guid: c588f2cf2101732439e496ee71a2dfb7, type: 3}
   - {fileID: 21300000, guid: db33f5a08daf6534da38f1fbf4a21e78, type: 3}
+  - {fileID: 21300000, guid: 195fd6323b347e841b87465ef6d8626d, type: 3}
+  - {fileID: 21300000, guid: 4fdc6da496aa7f04091ab633de76282c, type: 3}
+  - {fileID: 21300000, guid: 446dfe55f8b80364aaa5d7fcfde0899e, type: 3}
+  - {fileID: 21300000, guid: 861823ed2734b06419b42caeefd5b451, type: 3}
+  - {fileID: 21300000, guid: 6c790fedd9148cd4783e71f9b17d06d5, type: 3}
+  - {fileID: 21300000, guid: 5c687e3e40a2eef4b85010d4e278ee56, type: 3}
+  - {fileID: 21300000, guid: c3da99be6ec92b04da4d74013c77e4f8, type: 3}
+  - {fileID: 21300000, guid: c588f2cf2101732439e496ee71a2dfb7, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Ayo_NoHat_Swords_Image
-  - Ayo_NoHat_Image
-  - Ayo_Combat_BlueGlow_Stilll
-  - Ayo_Combat_Glow_Stilll
-  - Ayo_Idle_SwordSlash
-  - Ayo_Idle_SwordGrab
-  - Ayo_Combat_Stilll
-  - Ayo_Idle_Still
   - Ayo_Idle02
+  - Ayo_Combat_Glow_Stilll
+  - Ayo_Combat_BlueGlow_Stilll
+  - Ayo_Idle_SwordSlash
+  - Ayo_Combat_Stilll
+  - Ayo_Idle_SwordGrab
+  - Ayo_NoHat_Image
+  - Ayo_NoHat_Swords_Image
+  - Ayo_Idle_Still
   m_Tag: Ayo_Atlas
   m_IsVariant: 0

@@ -3,10 +3,12 @@
 --- !u!687078895 &4343727234628468602
 SpriteAtlas:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: UI_SpriteAtlas
   m_EditorData:
+    serializedVersion: 2
     textureSettings:
       serializedVersion: 2
       anisoLevel: 1
@@ -19,7 +21,19 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - m_BuildTarget: Android
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    - serializedVersion: 2
+      m_BuildTarget: Android
       m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: 4
@@ -29,7 +43,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
-    packingParameters:
+    packingSettings:
       serializedVersion: 2
       padding: 8
       blockOffset: 1
@@ -62,57 +76,58 @@ SpriteAtlas:
     - {fileID: 2800000, guid: cf5606f02728f88429af63068054a511, type: 3}
     - {fileID: 2800000, guid: 993507fcc98e9a14ba94268acd201c63, type: 3}
     - {fileID: 2800000, guid: a2e4c7431a25a2d49bdc24959474afac, type: 3}
+    totalSpriteSurfaceArea: 4507425
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 45274b4c25ea6034a8efca1c7ba03e25, type: 3}
-  - {fileID: 21300000, guid: 7b32496d82b19094090098bca0e870f1, type: 3}
-  - {fileID: 21300000, guid: 526de376908903c4fb50bbcaee7e4603, type: 3}
-  - {fileID: 21300000, guid: 610ba18c433e6764fba45e27d7597d6b, type: 3}
-  - {fileID: 21300000, guid: f6bb7f6a672b86840bd8fc9dcef5fa39, type: 3}
-  - {fileID: 21300000, guid: 93ea1a1d268476047a8a0649cd5a9acf, type: 3}
-  - {fileID: 21300000, guid: e867a5b5daaac5946bed1a6d5c0ba65d, type: 3}
-  - {fileID: 21300000, guid: 8420c4cb154e3df45a00220038ce2b24, type: 3}
-  - {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
   - {fileID: 21300000, guid: df5fbf70fa98689438084b1a27605d14, type: 3}
-  - {fileID: 21300000, guid: 8f7bacf333cb6714fb788243e0dda913, type: 3}
   - {fileID: 21300000, guid: cf5606f02728f88429af63068054a511, type: 3}
-  - {fileID: 21300000, guid: f878d4ebf9828d942b48ab65cda13e6e, type: 3}
-  - {fileID: 21300000, guid: 089e6468bea416b4daba5c9da89066a0, type: 3}
   - {fileID: 21300000, guid: e530d00198fa05244a268123eb10b613, type: 3}
-  - {fileID: 21300000, guid: 4524d7ed92ade3346a26cd1f867ddbe9, type: 3}
-  - {fileID: 21300000, guid: 993507fcc98e9a14ba94268acd201c63, type: 3}
-  - {fileID: 21300000, guid: a2e4c7431a25a2d49bdc24959474afac, type: 3}
-  - {fileID: 21300000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
   - {fileID: 21300000, guid: 09d3b051d1bef8d45adfb35110a2af34, type: 3}
-  - {fileID: 21300000, guid: 2e9a882b4dec6af4684a6cdb8413a5d0, type: 3}
   - {fileID: 21300000, guid: eaf8710350f16844d97ba359003c5d9b, type: 3}
-  - {fileID: 21300000, guid: bc9e28bd94aa4e84f8a5c40d1ee23909, type: 3}
+  - {fileID: 21300000, guid: a2e4c7431a25a2d49bdc24959474afac, type: 3}
+  - {fileID: 21300000, guid: 8f7bacf333cb6714fb788243e0dda913, type: 3}
+  - {fileID: 21300000, guid: e867a5b5daaac5946bed1a6d5c0ba65d, type: 3}
+  - {fileID: 21300000, guid: 526de376908903c4fb50bbcaee7e4603, type: 3}
+  - {fileID: 21300000, guid: 9dcd0f0704e2a0b4a9d08ac42c9cbb89, type: 3}
   - {fileID: 21300000, guid: b7bcd057db0d8764a9a07e1296635e60, type: 3}
+  - {fileID: 21300000, guid: 089e6468bea416b4daba5c9da89066a0, type: 3}
+  - {fileID: 21300000, guid: f6bb7f6a672b86840bd8fc9dcef5fa39, type: 3}
+  - {fileID: 21300000, guid: 2e9a882b4dec6af4684a6cdb8413a5d0, type: 3}
+  - {fileID: 21300000, guid: 8420c4cb154e3df45a00220038ce2b24, type: 3}
+  - {fileID: 21300000, guid: f878d4ebf9828d942b48ab65cda13e6e, type: 3}
+  - {fileID: 21300000, guid: 62d5a92c637399a4fb3f11eaad0c2ab8, type: 3}
+  - {fileID: 21300000, guid: 45274b4c25ea6034a8efca1c7ba03e25, type: 3}
+  - {fileID: 21300000, guid: 610ba18c433e6764fba45e27d7597d6b, type: 3}
+  - {fileID: 21300000, guid: 993507fcc98e9a14ba94268acd201c63, type: 3}
+  - {fileID: 21300000, guid: 93ea1a1d268476047a8a0649cd5a9acf, type: 3}
+  - {fileID: 21300000, guid: 7b32496d82b19094090098bca0e870f1, type: 3}
+  - {fileID: 21300000, guid: bc9e28bd94aa4e84f8a5c40d1ee23909, type: 3}
+  - {fileID: 21300000, guid: 4524d7ed92ade3346a26cd1f867ddbe9, type: 3}
   m_PackedSpriteNamesToIndex:
-  - padlock
-  - home_icon
-  - gear-11-icon--free-icons-4
-  - sword-512
-  - close-button-png-24
-  - HealthBarYellow
-  - HealthBarRed
-  - HealthBarMask
-  - HealthBarGreen
   - HealthBarCase
-  - AttackBoostIcon
   - Guardian_ClassIcon
-  - SpeedBoostIcon
-  - Cutthroat_ClassIcon
   - ExclamationPoint
-  - DefenseBoostIcon
-  - Knight_ClassIcon
-  - Occultist_ClassIcon
-  - sword_icon_pixelart
   - Struggle_Button
-  - 300px-Button_Icon_White.svg
   - shield_icon_pixelart
-  - social
+  - Occultist_ClassIcon
+  - AttackBoostIcon
+  - HealthBarRed
+  - gear-11-icon--free-icons-4
+  - sword_icon_pixelart
   - Gold_Credit
+  - Cutthroat_ClassIcon
+  - close-button-png-24
+  - 300px-Button_Icon_White.svg
+  - HealthBarMask
+  - SpeedBoostIcon
+  - HealthBarGreen
+  - padlock
+  - sword-512
+  - Knight_ClassIcon
+  - HealthBarYellow
+  - home_icon
+  - social
+  - DefenseBoostIcon
   m_Tag: UI_SpriteAtlas
   m_IsVariant: 0

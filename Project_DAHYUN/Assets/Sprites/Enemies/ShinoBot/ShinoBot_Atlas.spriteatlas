@@ -3,10 +3,12 @@
 --- !u!687078895 &4343727234628468602
 SpriteAtlas:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: ShinoBot_Atlas
   m_EditorData:
+    serializedVersion: 2
     textureSettings:
       serializedVersion: 2
       anisoLevel: 1
@@ -19,7 +21,19 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - m_BuildTarget: Android
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    - serializedVersion: 2
+      m_BuildTarget: Android
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: 4
@@ -29,7 +43,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
-    packingParameters:
+    packingSettings:
       serializedVersion: 2
       padding: 4
       blockOffset: 1
@@ -64,61 +78,62 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 81e9930744299464284d903f71faca47, type: 3}
     - {fileID: 2800000, guid: 588289b95e7b75b45aa88501863ed952, type: 3}
     - {fileID: 2800000, guid: 7595e91974a86344b822f97580ddfe54, type: 3}
+    totalSpriteSurfaceArea: 1497600
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 8d7e432b349020a4b8d02cea2688d0fe, type: 3}
-  - {fileID: 21300000, guid: a59a4f99e61c50841b78db918f0586a1, type: 3}
-  - {fileID: 21300000, guid: 95e05cd789abcbc4d97145e8301b7e12, type: 3}
-  - {fileID: 21300000, guid: 69aca9a8d658a1e4695278cb2b549202, type: 3}
+  - {fileID: 21300000, guid: aa3124f0678a3b84da7882b810930406, type: 3}
   - {fileID: 21300000, guid: d58bd3e29b0f52847b2dd10564d68e2c, type: 3}
-  - {fileID: 21300000, guid: 3b03774fa33a76f419810b8263c0f920, type: 3}
-  - {fileID: 21300000, guid: 81e9930744299464284d903f71faca47, type: 3}
   - {fileID: 21300000, guid: a378437442e4c454d8f36e57a6e0cc31, type: 3}
-  - {fileID: 21300000, guid: 7595e91974a86344b822f97580ddfe54, type: 3}
   - {fileID: 21300000, guid: 70d5c4c4f91ebd545ab9165f18cd0c71, type: 3}
-  - {fileID: 21300000, guid: 4954b6079041ad641b2a06504e33b850, type: 3}
-  - {fileID: 21300000, guid: 588289b95e7b75b45aa88501863ed952, type: 3}
+  - {fileID: 21300000, guid: 547cd4f47f0b333479ec29b67de1e577, type: 3}
+  - {fileID: 21300000, guid: a1f54206cdd815e4b8c82fa6e4855c1f, type: 3}
   - {fileID: 21300000, guid: f555f1b69b64786488c057aa3d8a375b, type: 3}
-  - {fileID: 21300000, guid: 0257c57ec3450534898831ba8d0a828d, type: 3}
+  - {fileID: 21300000, guid: 81e9930744299464284d903f71faca47, type: 3}
+  - {fileID: 21300000, guid: 4954b6079041ad641b2a06504e33b850, type: 3}
   - {fileID: 21300000, guid: 0b370427fff591e4cb14e17c3accaa48, type: 3}
-  - {fileID: 21300000, guid: e33ff53c7caa21d4994f96d498a66a24, type: 3}
+  - {fileID: 21300000, guid: 95e05cd789abcbc4d97145e8301b7e12, type: 3}
+  - {fileID: 21300000, guid: bfca3c68496fc0e4b81ea56716989417, type: 3}
+  - {fileID: 21300000, guid: 69aca9a8d658a1e4695278cb2b549202, type: 3}
+  - {fileID: 21300000, guid: 7595e91974a86344b822f97580ddfe54, type: 3}
+  - {fileID: 21300000, guid: a59a4f99e61c50841b78db918f0586a1, type: 3}
+  - {fileID: 21300000, guid: 588289b95e7b75b45aa88501863ed952, type: 3}
   - {fileID: 21300000, guid: b8786c7ae036dd44aa47574fad2848f2, type: 3}
+  - {fileID: 21300000, guid: 2a6a420b60f36ca4284bd4d517910efb, type: 3}
+  - {fileID: 21300000, guid: 8d7e432b349020a4b8d02cea2688d0fe, type: 3}
+  - {fileID: 21300000, guid: e33ff53c7caa21d4994f96d498a66a24, type: 3}
   - {fileID: 21300000, guid: 6f21fd3c39c13cf46b3449964268f4fc, type: 3}
   - {fileID: 21300000, guid: 2b741ddde316c284abb34e3bac426089, type: 3}
-  - {fileID: 21300000, guid: bfca3c68496fc0e4b81ea56716989417, type: 3}
-  - {fileID: 21300000, guid: 7efb241f46f105548bdb54760931ecf6, type: 3}
-  - {fileID: 21300000, guid: a1f54206cdd815e4b8c82fa6e4855c1f, type: 3}
-  - {fileID: 21300000, guid: 547cd4f47f0b333479ec29b67de1e577, type: 3}
-  - {fileID: 21300000, guid: aa3124f0678a3b84da7882b810930406, type: 3}
   - {fileID: 21300000, guid: e7857d1eb3bb6e040ad2822c4fc9bbe8, type: 3}
-  - {fileID: 21300000, guid: 2a6a420b60f36ca4284bd4d517910efb, type: 3}
+  - {fileID: 21300000, guid: 0257c57ec3450534898831ba8d0a828d, type: 3}
+  - {fileID: 21300000, guid: 7efb241f46f105548bdb54760931ecf6, type: 3}
+  - {fileID: 21300000, guid: 3b03774fa33a76f419810b8263c0f920, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Titan_Idle2_WotW
-  - Titan_OverheatStart1_WotW
-  - Titan_Idle7_WotW
-  - Titan_PowerUp3_WotW
+  - Titan_Attack1_2_WotW
   - Titan_Idle6_WotW
-  - Titan_Attack1_6_WotW
-  - Titan_IdleOverheat1_WotW
   - Titan_OverheatStart2_WotW
-  - Titan_IdleOverheat3_WotW
   - Titan_Idle8_WotW
-  - Titan_PowerUp2_WotW
-  - Titan_IdleOverheat2_WotW
+  - Titan_Attack1_4_WotW
+  - Titan_Attack1_5_WotW
   - Orange_ShinoBot
-  - Cyan_ShinoBot
+  - Titan_IdleOverheat1_WotW
+  - Titan_PowerUp2_WotW
   - Titan_PowerUp1_WotW
-  - Titan_Idle5_WotW
+  - Titan_Idle7_WotW
+  - Titan_OverheatStart3_WotW
+  - Titan_PowerUp3_WotW
+  - Titan_IdleOverheat3_WotW
+  - Titan_OverheatStart1_WotW
+  - Titan_IdleOverheat2_WotW
   - Titan_Idle4_WotW
+  - Titan_Idle1_WotW
+  - Titan_Idle2_WotW
+  - Titan_Idle5_WotW
   - Titan_Attack1_1_WotW
   - Titan_PowerUp4_WotW
-  - Titan_OverheatStart3_WotW
-  - Titan_Attack1_3_WotW
-  - Titan_Attack1_5_WotW
-  - Titan_Attack1_4_WotW
-  - Titan_Attack1_2_WotW
   - Titan_Idle3_WotW
-  - Titan_Idle1_WotW
+  - Cyan_ShinoBot
+  - Titan_Attack1_3_WotW
+  - Titan_Attack1_6_WotW
   m_Tag: ShinoBot_Atlas
   m_IsVariant: 0

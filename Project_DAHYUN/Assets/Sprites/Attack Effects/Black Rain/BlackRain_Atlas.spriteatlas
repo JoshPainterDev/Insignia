@@ -3,10 +3,12 @@
 --- !u!687078895 &4343727234628468602
 SpriteAtlas:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: BlackRain_Atlas
   m_EditorData:
+    serializedVersion: 2
     textureSettings:
       serializedVersion: 2
       anisoLevel: 1
@@ -19,7 +21,19 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - m_BuildTarget: Android
+    - serializedVersion: 2
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    - serializedVersion: 2
+      m_BuildTarget: Android
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: 4
@@ -29,7 +43,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
-    packingParameters:
+    packingSettings:
       serializedVersion: 2
       padding: 8
       blockOffset: 1
@@ -56,45 +70,46 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 56b4ebb0ca4b84b4bb7be78076b3afff, type: 3}
     - {fileID: 2800000, guid: 04bdfdc564aff8c4dba301a693ca3e21, type: 3}
     - {fileID: 2800000, guid: ec986d54a915fd542b2d8d1aba4bd29a, type: 3}
+    totalSpriteSurfaceArea: 4260096
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 56b4ebb0ca4b84b4bb7be78076b3afff, type: 3}
+  - {fileID: 21300000, guid: ec986d54a915fd542b2d8d1aba4bd29a, type: 3}
+  - {fileID: 21300000, guid: 85c343a47104e984c92f51cbc562ad97, type: 3}
   - {fileID: 21300000, guid: f47a0a35d5591804eb69058e0d61e98f, type: 3}
+  - {fileID: 21300000, guid: 9c71285546955374da03f835ef4f1de3, type: 3}
+  - {fileID: 21300000, guid: 04bdfdc564aff8c4dba301a693ca3e21, type: 3}
+  - {fileID: 21300000, guid: afbe3b064a907a54d9ed65a17e845293, type: 3}
   - {fileID: 21300000, guid: 2ba30036fd01de245a1d6f5851c39c3e, type: 3}
   - {fileID: 21300000, guid: 6c064527ccde3b54fbb572dff3b790f3, type: 3}
-  - {fileID: 21300000, guid: afbe3b064a907a54d9ed65a17e845293, type: 3}
-  - {fileID: 21300000, guid: 048c312f318492e4c9d089d0c2300cbc, type: 3}
-  - {fileID: 21300000, guid: 81116e1e3d7828c4aa5cc8a984015e76, type: 3}
-  - {fileID: 21300000, guid: 7a84432fee66f614caff8b305cd3f9a6, type: 3}
+  - {fileID: 21300000, guid: bb5111c7ea187cb4aa782fa97e589ee0, type: 3}
   - {fileID: 21300000, guid: fcc3ad88d2d2ba343be51b2e47c0c559, type: 3}
   - {fileID: 21300000, guid: a4f73699628c6154991ee2f52fa0154a, type: 3}
   - {fileID: 21300000, guid: ed10954c00337684ba545a8f25fe2622, type: 3}
   - {fileID: 21300000, guid: c3697d7c11b479243a2c3c4ad5ebf8a1, type: 3}
-  - {fileID: 21300000, guid: 04bdfdc564aff8c4dba301a693ca3e21, type: 3}
   - {fileID: 21300000, guid: 510100bc290957e4880a8edaa900ee71, type: 3}
-  - {fileID: 21300000, guid: 56b4ebb0ca4b84b4bb7be78076b3afff, type: 3}
-  - {fileID: 21300000, guid: bb5111c7ea187cb4aa782fa97e589ee0, type: 3}
-  - {fileID: 21300000, guid: 9c71285546955374da03f835ef4f1de3, type: 3}
-  - {fileID: 21300000, guid: 85c343a47104e984c92f51cbc562ad97, type: 3}
-  - {fileID: 21300000, guid: ec986d54a915fd542b2d8d1aba4bd29a, type: 3}
+  - {fileID: 21300000, guid: 81116e1e3d7828c4aa5cc8a984015e76, type: 3}
+  - {fileID: 21300000, guid: 048c312f318492e4c9d089d0c2300cbc, type: 3}
+  - {fileID: 21300000, guid: 7a84432fee66f614caff8b305cd3f9a6, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Black_Bolts_VFX16
+  - Black_Bolts_VFX18
+  - Black_Bolts_VFX14
   - Black_Bolts_VFX01
+  - Black_Bolts_VFX15
+  - Black_Bolts_VFX17
+  - Black_Bolts_VFX13
   - Black_Bolts_VFX02
   - Black_Bolts_VFX03
-  - Black_Bolts_VFX13
-  - Black_Bolts_VFX04
-  - Black_Bolts_VFX12
-  - Black_Bolts_VFX05
+  - Black_Bolts_VFX09
   - Black_Bolts_VFX11
   - Black_Bolts_VFX06
   - Black_Bolts_VFX10
   - Black_Bolts_VFX07
-  - Black_Bolts_VFX17
   - Black_Bolts_VFX08
-  - Black_Bolts_VFX16
-  - Black_Bolts_VFX09
-  - Black_Bolts_VFX15
-  - Black_Bolts_VFX14
-  - Black_Bolts_VFX18
+  - Black_Bolts_VFX12
+  - Black_Bolts_VFX04
+  - Black_Bolts_VFX05
   m_Tag: BlackRain_Atlas
   m_IsVariant: 0
