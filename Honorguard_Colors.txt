@@ -1,0 +1,3 @@
+Honorguard Colors:
+- Blue: 00f6ff
+- Yellow: ffde00
