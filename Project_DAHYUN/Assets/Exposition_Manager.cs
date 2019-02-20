@@ -526,13 +526,17 @@ public class Exposition_Manager : MonoBehaviour
                 switch (instance)
                 {
                     case 1:
-                        speaker[0] = "H. Officer";
+                        speaker[0] = "Officer Steve";
                         leftspeaker[0] = true;
                         script[0] = "Over here soldier! Quick!";
 
-                        speaker[1] = "H. Officer";
+                        speaker[1] = "Officer Steve";
                         leftspeaker[1] = true;
-                        script[1] = "*They're gonna seal the-*";
+                        script[1] = "They're gonna seal the-";
+
+                        speaker[1] = "Officer Steve";
+                        leftspeaker[1] = true;
+                        script[1] = "GGGAAAHHH!!";
 
                         speaker[2] = playerName;
                         leftspeaker[2] = false;
@@ -1830,13 +1834,15 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 7:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        yield return new WaitForSeconds(1.0f);
                         // open the crypt doors!
-                        for(int i = 2; i < 5; ++i)
+                        for (int i = 0; i < 4; ++i)
                         {
                             speaker05.transform.GetChild(i).gameObject.SetActive(true);
                         }
                         break;
                     case 9:
+                        yield return new WaitForSeconds(0.50f);
                         speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 1.0f);
                         yield return new WaitForSeconds(1.5f);
                         StartCoroutine(NewDialogue(21, 5));
@@ -1849,13 +1855,13 @@ public class Exposition_Manager : MonoBehaviour
                     case 3:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 3.0f);
                         // Fade in ghostly Oathsworn
-                        speaker04.transform.GetChild(3).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1,1,1, 0.35f));
+                        speaker04.transform.GetChild(3).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1,1,1, 0.45f));
                         yield return new WaitForSeconds(0.35f);
-                        speaker04.transform.GetChild(4).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.35f));
+                        speaker04.transform.GetChild(4).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
                         yield return new WaitForSeconds(1.35f);
-                        speaker04.transform.GetChild(2).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.35f));
+                        speaker04.transform.GetChild(6).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
                         yield return new WaitForSeconds(0.75f);
-                        speaker04.transform.GetChild(5).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.35f));
+                        speaker04.transform.GetChild(5).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
 
                         cameraObj.GetComponent<CameraController>().ShakeCamera(2, true, 2.0f);
                         break;

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Exposition_Scene01.unity
+- path: Assets/Scenes/Exposition_Scene21.unity
   isLoaded: 1
   isActive: 1

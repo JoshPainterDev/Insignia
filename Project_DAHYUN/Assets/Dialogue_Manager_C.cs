@@ -77,6 +77,7 @@ public class Dialogue_Manager_C : MonoBehaviour
         dTotalLines = totalLines;
         dScript = script;
         dSpeaker = speaker;
+        //print("THE SPEAKER IS: " + dSpeaker[0]);
         dIsLeftSpeaker = isLeftSpeaker;
         prevLineNum = -1;
         dialogueFinished = null;
@@ -362,7 +363,7 @@ public class Dialogue_Manager_C : MonoBehaviour
             case "Cmd. Vixon":
                 iconString = "CloseUps\\Character_CloseUp_GeneralVixon";
                 break;
-            case "H. Officer":
+            case "Officer Steve":
                 iconString = "CloseUps\\Character_CloseUp_HammerfellOfficer";
                 break;
             case "Officer Miles":
