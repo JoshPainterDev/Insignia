@@ -19,6 +19,7 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip darkRumbling_short_FX;
     public AudioClip wetSquish_FX;
     public AudioClip swordClash_FX;
+    public AudioClip ghastlyEntrance_FX;
 
     AudioSource audioSource;
 
@@ -45,6 +46,8 @@ public class SoundFXManager_C : MonoBehaviour
         MEDIUM_VOLUME *= GameController.controller.volumeScale;
         LOW_VOLUME *= GameController.controller.volumeScale;
         BACKGROUND_VOLUME *= GameController.controller.volumeScale;
+
+        playCriticalHit();
     }
 
     public void playLaserBombardment(bool loop = false)
@@ -111,6 +114,11 @@ public class SoundFXManager_C : MonoBehaviour
     public void playSnowCollapse()
     {
         audioSource.PlayOneShot(snowCollapse_FX, HIGH_VOLUME * GameController.controller.volumeScale);
+    }
+
+    public void playGhastlyEntrance()
+    {
+        audioSource.PlayOneShot(ghastlyEntrance_FX, HIGH_VOLUME * GameController.controller.volumeScale);
     }
 
 

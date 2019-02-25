@@ -118,11 +118,12 @@ public class EncounterToolsScript : MonoBehaviour {
                 }
                 else if (levelsCompleted == 2)
                 {
-                    encounter.encounterNumber = 4;
+                    encounter.environment = Environment.Forest_Light;
+                    encounter.encounterNumber = 6;
                     encounter.totalEnemies = 1;
-                    encounter.enemyNames[0] = "Solaris Officer";
+                    encounter.enemyNames[0] = "Oathsworn";
                     encounter.bossFight[0] = true;
-                    encounter.returnOnSuccessScene = "Exposition_Scene15";
+                    encounter.returnOnSuccessScene = "Exposition_Scene22";
 
                     Reward newReward = new Reward();
                     newReward.experience = 2500;

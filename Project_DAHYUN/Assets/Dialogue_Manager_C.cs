@@ -7,7 +7,7 @@ using System.IO;
 public class Dialogue_Manager_C : MonoBehaviour
 {
     [HideInInspector]
-    public float MEDIUM_VOLUME = 0.7f;
+    public float MEDIUM_VOLUME = 0.5f;
 
     public GameObject dialogueBox;
     public GameObject playerCopy;
@@ -399,6 +399,27 @@ public class Dialogue_Manager_C : MonoBehaviour
 
     private void stopTypingEffect()
     {
-        this.GetComponent<AudioSource>().Stop();
+        StartCoroutine(VolumeFade(this.GetComponent<AudioSource>(), 0.0f, 0.05f));
+    }
+
+    IEnumerator VolumeFade(AudioSource _AudioSource, float _EndVolume, float _FadeLength)
+    {
+
+        float _StartVolume = _AudioSource.volume;
+
+        float _StartTime = Time.time;
+
+        while (Time.time < _StartTime + _FadeLength)
+        {
+
+            _AudioSource.volume = _StartVolume + ((_EndVolume - _StartVolume) * ((Time.time - _StartTime) / _FadeLength));
+
+            yield return null;
+
+        }
+
+        if (_EndVolume == 0) { _AudioSource.Stop(); }
+
+        _AudioSource.volume = _StartVolume; // return volume to initial level
     }
 }

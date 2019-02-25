@@ -20,6 +20,7 @@ public class Exposition_Manager : MonoBehaviour
     public GameObject MusicManager;
 
     public GameObject ExclamationPoint;
+    public GameObject QuestionMark;
 
     public AudioClip CombatStartup;
 
@@ -247,6 +248,7 @@ public class Exposition_Manager : MonoBehaviour
         }
 
         playerMannequin.SetActive(true);
+        print("LOADING TURN COMBAT");
         SceneManager.LoadScene("TurnCombat_Scene");
     }
 
@@ -1757,6 +1759,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         nextLevel = "Exposition_Scene22";
                         // Set next Level //
+                        //StartCoroutine(LoadCombatScene(3, 2, true));
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.black, new Color(0, 0, 0, 0), 0.5f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(false);
                         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
@@ -1795,19 +1798,26 @@ public class Exposition_Manager : MonoBehaviour
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                         yield return new WaitForSeconds(0.2f);
                         speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position - new Vector3(30, 0, 0), 1.50f);
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.0f);
                         StartCoroutine(NewDialogue(21, 3));
+                        yield return new WaitForSeconds(0.35f);
+                        Vector3 spawnPos = new Vector3(speaker03.transform.GetChild(0).transform.position.x + 10, speaker03.transform.GetChild(0).transform.position.y + 85, 0);
+                        GameObject effectClone = (GameObject)Instantiate(QuestionMark, spawnPos, transform.rotation);
                         break;
                     case 4:
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
                     case 6:
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 110, 0);
+                        effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         break;
                     case 8:
                         yield return new WaitForSeconds(0.5f);
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        yield return new WaitForSeconds(1.5f);
+                        //yield return new WaitForSeconds(0.2f);
+                        speaker03.GetComponent<LerpScript>().LerpToPos(speaker03.transform.position, speaker03.transform.position + new Vector3(10, 20, 0), 1.0f);
+                        yield return new WaitForSeconds(1.5f); //1.5
                         StartCoroutine(NewDialogue(21, 4));
                         break;
                 }
@@ -1816,8 +1826,10 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        yield return new WaitForSeconds(1.0f);
-                        StartCoroutine(NewDialogue(21, 5));
+                        yield return new WaitForSeconds(0.5f);
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        //Vector3 spawnPos = new Vector3(speaker03.transform.GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 80, 0);
+                        //GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         break;
                     case 2:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
@@ -1845,47 +1857,54 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(0.50f);
                         speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 1.0f);
                         yield return new WaitForSeconds(1.5f);
-                        StartCoroutine(NewDialogue(21, 5));
+                        //StartCoroutine(NewDialogue(21, 5));
                         break;
                 }
                 break;
             case 5:
                 switch (action)
                 {
+                    case 0:
+                        //yield return new WaitForSeconds(0.35f);
+                        speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+                        print("IM GONNA CUM!");
+                        break;
                     case 3:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 3.0f);
                         // Fade in ghostly Oathsworn
+                        sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
+                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
                         speaker04.transform.GetChild(3).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1,1,1, 0.45f));
                         yield return new WaitForSeconds(0.35f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
+                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
                         speaker04.transform.GetChild(4).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
                         yield return new WaitForSeconds(1.35f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
+                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
                         speaker04.transform.GetChild(6).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
                         yield return new WaitForSeconds(0.75f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
+                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
                         speaker04.transform.GetChild(5).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
-
                         cameraObj.GetComponent<CameraController>().ShakeCamera(2, true, 2.0f);
+                        // Ayo
+                        Vector3 spawnPos1 = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 100, 0);
+                        GameObject effectClone1 = (GameObject)Instantiate(ExclamationPoint, spawnPos1, transform.rotation);
+                        // Agyri
+                        Vector3 spawnPos2 = new Vector3(speaker04.transform.GetChild(1).GetChild(0).transform.position.x + 10, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 130, 0);
+                        GameObject effectClone2 = (GameObject)Instantiate(ExclamationPoint, spawnPos2, transform.rotation);
+                        // Player
+                        Vector3 spawnPos3 = new Vector3(playerMannequin.transform.position.x + 5, playerMannequin.transform.position.y + 70, 0);
+                        GameObject effectClone3 = (GameObject)Instantiate(ExclamationPoint, spawnPos3, transform.rotation);
                         break;
                     case 5:
-                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
-                        speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 1.0f);
-                        break;
-                    case 7:
-                        cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
-                        break;
-                    case 8:
-                        yield return new WaitForSeconds(1.0f);
-                        //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 3.0f);
-                        yield return new WaitForSeconds(1.0f);
-
-                        break;
-                    case 9:
-                        //speaker06.GetComponent<FadeScript>().FadeColored(Color.black, Color.clear, 0.8f);
-                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 4.0f);
-                        yield return new WaitForSeconds(1.5f);
-                        //blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 2.8f);
+                        //cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
+                        //speaker06.GetComponent<FadeScript>().FadeColored(clear, Color.black, 1.0f);
+                        //cameraObj.GetComponent<CameraController>().ShakeCamera(5, true, 4.0f);
                         actionsCompleted = true; //actions are completed
                         yield return new WaitForSeconds(1.5f);
-                        StartCoroutine(LoadNextLv());
+                        StartCoroutine(LoadCombatScene(3, 2, true));
                         break;
                 }
                 break;

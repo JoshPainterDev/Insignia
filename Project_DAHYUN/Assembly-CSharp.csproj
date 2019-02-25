@@ -101,6 +101,7 @@
     <Compile Include="Assets\OverlayScript.cs" />
     <Compile Include="Assets\Panel_C.cs" />
     <Compile Include="Assets\PlayerCamera_C.cs" />
+    <Compile Include="Assets\QuestionAnimator.cs" />
     <Compile Include="Assets\RandomizeIdleAnim_C.cs" />
     <Compile Include="Assets\RandomTPinBounds.cs" />
     <Compile Include="Assets\RefreshPlayerAnimState.cs" />
