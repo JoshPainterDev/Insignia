@@ -42,12 +42,11 @@ public class SoundFXManager_C : MonoBehaviour
         if (GameController.controller.volumeMuted)
             GameController.controller.volumeScale = 0f;
 
+
         HIGH_VOLUME *= GameController.controller.volumeScale;
         MEDIUM_VOLUME *= GameController.controller.volumeScale;
         LOW_VOLUME *= GameController.controller.volumeScale;
         BACKGROUND_VOLUME *= GameController.controller.volumeScale;
-
-        playCriticalHit();
     }
 
     public void playLaserBombardment(bool loop = false)

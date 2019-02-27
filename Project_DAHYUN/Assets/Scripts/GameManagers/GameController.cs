@@ -142,6 +142,7 @@ public class GameController : MonoBehaviour {
             volumeScale = data.VolumeScale;
 
             file.Close();
+            //print("Characters Loaded!");
             return true;
         }
 

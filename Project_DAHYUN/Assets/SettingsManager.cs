@@ -34,6 +34,7 @@ public class SettingsManager : MonoBehaviour
         //background.GetComponent<SpriteRenderer>().color = GameController.controller.getPlayerColorPreference();
         musicSlider.GetComponent<Slider>().value = GameController.controller.volumeScale;
         muteToggle.GetComponent<Toggle>().isOn = GameController.controller.volumeMuted;
+        print(GameController.controller.volumeScale);
 
         switch (GameController.controller.difficultyScale)
         {

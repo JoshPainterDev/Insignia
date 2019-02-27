@@ -77,6 +77,7 @@ public class Exposition_Manager : MonoBehaviour
         }
 
         decisionNumber = 0;
+
         //BeginCutscene(15, 1);
         BeginCutscene(encounter.encounterNumber);
     }
@@ -1809,8 +1810,6 @@ public class Exposition_Manager : MonoBehaviour
                         break;
                     case 6:
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 110, 0);
-                        effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         break;
                     case 8:
                         yield return new WaitForSeconds(0.5f);
@@ -1828,11 +1827,13 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         yield return new WaitForSeconds(0.5f);
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        //Vector3 spawnPos = new Vector3(speaker03.transform.GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 80, 0);
-                        //GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         break;
                     case 2:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
+                        Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 110, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        yield return new WaitForSeconds(0.35f);
+                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
                         break;
                     case 3:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 2.0f);
@@ -1856,8 +1857,6 @@ public class Exposition_Manager : MonoBehaviour
                     case 9:
                         yield return new WaitForSeconds(0.50f);
                         speaker06.GetComponent<FadeScript>().FadeColored(Color.black, clear, 1.0f);
-                        yield return new WaitForSeconds(1.5f);
-                        //StartCoroutine(NewDialogue(21, 5));
                         break;
                 }
                 break;
@@ -1865,27 +1864,24 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        //yield return new WaitForSeconds(0.35f);
                         speaker03.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        print("IM GONNA CUM!");
+                        yield return new WaitForSeconds(0.35f);
+                        StartCoroutine(NewDialogue(21, 5));
                         break;
                     case 3:
                         cameraObj.GetComponent<CameraController>().ShakeCamera(1, true, 3.0f);
                         // Fade in ghostly Oathsworn
                         sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
-                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
-                        speaker04.transform.GetChild(3).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1,1,1, 0.45f));
+                        speaker04.transform.GetChild(3).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1,1,1, 0.85f));
                         yield return new WaitForSeconds(0.35f);
                         sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
-                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
-                        speaker04.transform.GetChild(4).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
+                        speaker04.transform.GetChild(4).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.85f));
                         yield return new WaitForSeconds(1.35f);
                         sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
-                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
-                        speaker04.transform.GetChild(6).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
+                        speaker04.transform.GetChild(6).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.85f));
                         yield return new WaitForSeconds(0.75f);
                         sfxManager.GetComponent<SoundFXManager_C>().playGhastlyEntrance();
-                        sfxManager.GetComponent<SoundFXManager_C>().playExitScene();
+
                         speaker04.transform.GetChild(5).gameObject.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(clear, new Color(1, 1, 1, 0.45f));
                         cameraObj.GetComponent<CameraController>().ShakeCamera(2, true, 2.0f);
                         // Ayo
