@@ -21,6 +21,18 @@ public class LerpScript : MonoBehaviour {
     private float rate = 1f;
     private bool localPosLerp;
     private bool posSLerp = false;
+    private bool particleEffect = false;
+    private ParticleSystem ps;
+
+    private void Awake()
+    {
+        // were using a particle system for color
+        if(this.GetComponent<ParticleSystem>() != null)
+        {
+            particleEffect = true;
+            ps = this.GetComponent<ParticleSystem>();
+        }
+    }
 
     public void LerpToPos(Vector3 startPos, Vector3 endPos, float speed = 1f, bool local = false)
     {
@@ -120,6 +132,12 @@ public class LerpScript : MonoBehaviour {
                     this.GetComponent<SpriteRenderer>().color = c;
                 if(this.GetComponent<Text>())
                     this.GetComponent<Text>().color = c;
+                if (particleEffect)
+                {
+                    var pm = ps.main;
+                    pm.startColor = c;
+                }
+                    
                     
                 if (t_C > 1)
                 {

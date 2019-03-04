@@ -87,7 +87,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ArenaSelect_Scene.unity
     guid: 9b7d4b8db9dc0f247b21272d34ab5697
   - enabled: 1
-    path: Assets/Scenes/Settings_Scene.unity
+    path: 
     guid: 026c1d1fbb7e7504e8228573c10172c0
   - enabled: 1
     path: Assets/Scenes/Skills_Scene.unity
@@ -123,5 +123,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Exposition_Scene18.unity
     guid: 487389ee0e6699b4091c1e7cf6966afe
   - enabled: 1
-    path: Assets/Scenes/Exposition_Scene21.unity
+    path: 
     guid: adc977ff7435e6f4994eddd2a3d8e49e
+  - enabled: 1
+    path: Assets/Scenes/Exposition_Scene22.unity
+    guid: 96a3f033661061740953e566a71a9c7a
+  m_configObjects: {}
