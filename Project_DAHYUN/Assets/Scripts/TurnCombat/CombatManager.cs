@@ -14,7 +14,8 @@ public class CombatManager : MonoBehaviour {
     public const int STAT_LIMIT = 50;
     public const int PLAYER_HEALTH_SCALE = 70;
 
-    enum State { MainMenu, Retreat, Abilities, Back, Done };
+    enum State { MainMenu, Stance, Abilities, Back, Done };
+    enum Stance { Aggressive, Defensive, Focused, none };
 
     public GameObject cameraObj;
     public bool hasTutorial = false;
@@ -27,8 +28,9 @@ public class CombatManager : MonoBehaviour {
     private GameObject enemyPrfb;
 
     //MAIN BUTTON VARIABLES
-    public GameObject topButton, leftButton, rightButton, backButton;
-    public Color strike_C, retreat_C, abilities_C, back_C;
+    public GameObject middleButton, leftButton, rightButton, backButton;
+    public GameObject agressiveStance_B, defensiveStance_B, focusedStance_B;
+    public Color strike_C, stance_C, abilities_C, back_C;
     public GameObject blackSq;
     private State currentState = State.MainMenu;
     public GameObject Music_Manager;
@@ -42,6 +44,7 @@ public class CombatManager : MonoBehaviour {
     private int playerHealth = 0;
     [HideInInspector]
     private int playerMaxHealth = 100;
+    private Stance playerStance = Stance.none;
     [HideInInspector]
     public int playerAttackBoost = 0;
     private int playerAttBoostDur = 0;
@@ -221,11 +224,15 @@ public class CombatManager : MonoBehaviour {
                 canLimitBreak = true;
         }
 
-        //2. Display buttons: STRIKE, ITEMS, ABILITIES
-        HideAbilityButtons();
+        //2. Display buttons: STRIKE, STANCE, ABILITIES
+        HideStanceButtons();
         HideAbilityButtons();
         HideBackButton();
         HideMainButtons();
+
+        DisableAbilityButtons();
+        DisableStanceButtons();
+        DisableMainButtons();
 
         if (!hasTutorial)
         {
@@ -233,13 +240,15 @@ public class CombatManager : MonoBehaviour {
             LoadNextEnemyInfo(true);
             LoadCharacterLevels(enemyInfo);
 
-            if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
-            {
-                //print("enemy speed: " + enemyInfo.enemySpeed);
-                StartCoroutine(ShowStartingButtons());
-            }
-            else
-                StartCoroutine(EnemyStarts());        
+            StartCoroutine(InitialStanceSelect());
+
+            //if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
+            //{
+            //    //print("enemy speed: " + enemyInfo.enemySpeed);
+            //    StartCoroutine(ShowStartingButtons());
+            //}
+            //else
+            //    StartCoroutine(EnemyStarts());        
         }
         else // Tutorial buttons
         {
@@ -477,6 +486,20 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
+    IEnumerator InitialStanceSelect()
+    {
+        DisableMainButtons();
+        HideMainButtons();
+        yield return new WaitForSeconds(2);
+        ShowButton("middle");
+        yield return new WaitForSeconds(0.1f);
+        HideButton("middle");
+        yield return new WaitForSeconds(0.1f);
+        ShowButton("middle");
+        ShowStanceButtons();
+        EnableStanceButtons();
+    }
+
     IEnumerator ShowStartingButtons()
     {
         DisableMainButtons();
@@ -488,42 +511,21 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         ShowMainButtons();
         EnableMainButtons();
-
-        //if(chaosPlayerAI)
-        //{
-        //    int rand = Random.Range(0, 4);
-
-        //    switch(rand)
-        //    {
-        //        case 0:
-        //            AbilitySelected(0);
-        //            break;
-        //        case 1:
-        //            AbilitySelected(1);
-        //            break;
-        //        case 2:
-        //            AbilitySelected(2);
-        //            break;
-        //        case 3:
-        //            currentState = State.Done;
-        //            AbilitySelected(3);
-        //            break;
-        //        case 4:
-        //            currentState = State.Done;
-        //            StartCoroutine(UseStrike());
-        //            break;
-        //    }
-        //}
     }
 
     IEnumerator ShowMainMenuOptions()
     {
         currentState = State.MainMenu;
-        DisableAbilityButtons();
-        HideBackButton();
         DisableMainButtons();
-        HideAbilityButtons();
         HideMainButtons();
+
+        DisableAbilityButtons();
+        HideAbilityButtons();
+
+        DisableStanceButtons();
+        HideStanceButtons();
+
+        HideBackButton();
 
         yield return new WaitForSeconds(0.15f);
 
@@ -544,12 +546,12 @@ public class CombatManager : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
 
-        topButton.GetComponentInChildren<Text>().text = "STRIKE";
-        topButton.GetComponent<Image>().color = strike_C;
-        leftButton.GetComponentInChildren<Text>().text = "ITEMS";
-        leftButton.GetComponent<Image>().color = back_C;
-        rightButton.GetComponentInChildren<Text>().text = "ABILITIES";
-        rightButton.GetComponent<Image>().color = abilities_C;
+        middleButton.GetComponentInChildren<Text>().text = "STANCE";
+        middleButton.GetComponent<Image>().color = stance_C;
+        leftButton.GetComponentInChildren<Text>().text = "ABILITIES";
+        leftButton.GetComponent<Image>().color = abilities_C;
+        rightButton.GetComponentInChildren<Text>().text = "STRIKE";
+        rightButton.GetComponent<Image>().color = strike_C;
 
         yield return new WaitForSeconds(0.5f);
 
@@ -819,13 +821,13 @@ public class CombatManager : MonoBehaviour {
 
         DisableMainButtons();
         HideHealthBars();
-        HideButton("top");
+        HideButton("right");
         yield return new WaitForSeconds(0.1f);
-        ShowButton("top");
+        ShowButton("right");
         yield return new WaitForSeconds(0.1f);
-        HideButton("top");
+        HideButton("right");
         yield return new WaitForSeconds(0.1f);
-        ShowButton("top");
+        ShowButton("right");
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
         yield return new WaitForSeconds(0.25f);
@@ -1442,6 +1444,23 @@ public class CombatManager : MonoBehaviour {
         print("new health: " + var2);
     }
 
+    IEnumerator StanceChangeOptions()
+    {
+        DisableMainButtons();
+        HideButton("middle");
+        yield return new WaitForSeconds(0.1f);
+        ShowButton("middle");
+        yield return new WaitForSeconds(0.1f);
+        HideButton("middle");
+        yield return new WaitForSeconds(0.1f);
+        ShowButton("middle");
+        yield return new WaitForSeconds(0.1f);
+        HideMainButtons();
+        yield return new WaitForSeconds(0.25f);
+        ShowStanceButtons();
+        EnableStanceButtons();
+    }
+
     public void UseMultiHit(bool playerTurn, Ability abilityUsed)
     {
         StartCoroutine(MultiHit(playerTurn, abilityUsed.Ticks, abilityUsed.SpecialValue));
@@ -1783,7 +1802,9 @@ public class CombatManager : MonoBehaviour {
         SceneManager.LoadScene("Retry_Scene");
     }
 
-    public void TopSelected()
+    // --------------------    BUTTON SELECTION CODE --------------------- //
+
+    public void RightSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
 
@@ -1796,7 +1817,7 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void RightSelected()
+    public void LeftSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
 
@@ -1813,17 +1834,19 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    public void RetreatSelected()
+    public void MiddleSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
 
         switch (currentState)
         {
             case State.MainMenu:
-                currentState = State.Retreat;
+                currentState = State.Stance;
                 DisableMainButtons();
                 ShowBackButton();
-                SpawnItemsUI();
+                ShowStanceButtons();
+                EnableStanceButtons();
+                StartCoroutine(StanceChangeOptions());
                 break;
         }
     }
@@ -1837,147 +1860,106 @@ public class CombatManager : MonoBehaviour {
             case State.Abilities:
                 StartCoroutine(ShowMainMenuOptions());
                 break;
-            case State.Retreat:
+            case State.Stance:
                 StartCoroutine(ShowMainMenuOptions());
                 break;
         }
     }
 
+    // --------------------    BUTTON SELECTION CODE --------------------- //
+
+
+    // --------------------    BUTTON VISIBILITY CODE --------------------- //
+
     public void HideMainButtons()
     {
-        topButton.GetComponent<Image>().enabled = false;
+        middleButton.GetComponent<Image>().enabled = false;
         leftButton.GetComponent<Image>().enabled = false;
         rightButton.GetComponent<Image>().enabled = false;
 
-        topButton.GetComponentInChildren<Text>().enabled = false;
+        middleButton.GetComponentInChildren<Text>().enabled = false;
         leftButton.GetComponentInChildren<Text>().enabled = false;
         rightButton.GetComponentInChildren<Text>().enabled = false;
     }
 
     public void ShowMainButtons()
     {
-        topButton.GetComponent<Image>().enabled = true;
+        middleButton.GetComponent<Image>().enabled = true;
         leftButton.GetComponent<Image>().enabled = true;
         rightButton.GetComponent<Image>().enabled = true;
 
-        topButton.GetComponentInChildren<Text>().enabled = true;
+        middleButton.GetComponentInChildren<Text>().enabled = true;
         leftButton.GetComponentInChildren<Text>().enabled = true;
         rightButton.GetComponentInChildren<Text>().enabled = true;
     }
 
     void HideButton(string buttonName)
     {
-        switch (buttonName)
-        {
-            case "top":
-                topButton.GetComponent<Image>().enabled = false;
-                topButton.GetComponentInChildren<Text>().enabled = false;
-                break;
-            case "left":
-                leftButton.GetComponent<Image>().enabled = false;
-                leftButton.GetComponentInChildren<Text>().enabled = false;
-                break;
-            case "right":
-                rightButton.GetComponent<Image>().enabled = false;
-                rightButton.GetComponentInChildren<Text>().enabled = true;
-                break;
-            case "TLA1_Button":
-                abilityButton1.SetActive(false);
-                break;
-            case "TLA2_Button":
-                abilityButton2.SetActive(false);
-                break;
-            case "TLA3_Button":
-                abilityButton3.SetActive(false);
-                break;
-            case "TLA4_Button":
-                abilityButton4.SetActive(false);
-                break;
-            case "back":
-                backButton.SetActive(false);
-                break;
-            default:
-                break;
-        }
+        ChangeButtonStatus(buttonName, false);
     }
 
     void ShowButton(string buttonName)
     {
+        ChangeButtonStatus(buttonName, true);
+    }
+
+    void ChangeButtonStatus(string buttonName, bool status)
+    {
         switch (buttonName)
         {
-            case "top":
-                topButton.GetComponent<Image>().enabled = true;
-                topButton.GetComponentInChildren<Text>().enabled = true;
+            case "middle":
+                middleButton.GetComponent<Image>().enabled = status;
+                middleButton.GetComponentInChildren<Text>().enabled = status;
                 break;
             case "left":
-                leftButton.GetComponent<Image>().enabled = true;
-                leftButton.GetComponentInChildren<Text>().enabled = true;
+                leftButton.GetComponent<Image>().enabled = status;
+                leftButton.GetComponentInChildren<Text>().enabled = status;
                 break;
             case "right":
-                rightButton.GetComponent<Image>().enabled = true;
-                rightButton.GetComponentInChildren<Text>().enabled = true;
+                rightButton.GetComponent<Image>().enabled = status;
+                rightButton.GetComponentInChildren<Text>().enabled = status;
                 break;
             case "TLA1_Button":
-                abilityButton1.SetActive(true);
+                abilityButton1.SetActive(status);
                 break;
             case "TLA2_Button":
-                abilityButton2.SetActive(true);
+                abilityButton2.SetActive(status);
                 break;
             case "TLA3_Button":
-                abilityButton3.SetActive(true);
+                abilityButton3.SetActive(status);
                 break;
             case "TLA4_Button":
-                abilityButton4.SetActive(true);
+                abilityButton4.SetActive(status);
                 break;
             case "back":
-                backButton.SetActive(true);
+                backButton.SetActive(status);
+                break;
+            case "agressive":
+                agressiveStance_B.SetActive(status);
+                break;
+            case "defensive":
+                defensiveStance_B.SetActive(status);
+                break;
+            case "focused":
+                focusedStance_B.SetActive(status);
                 break;
             default:
                 break;
         }
     }
 
-    public void EnableMainButtons()
+    public void ShowStanceButtons()
     {
-        topButton.GetComponentInChildren<Button>().enabled = true;
-        leftButton.GetComponentInChildren<Button>().enabled = true;
-        rightButton.GetComponentInChildren<Button>().enabled = true;
+        agressiveStance_B.SetActive(true);
+        defensiveStance_B.SetActive(true);
+        focusedStance_B.SetActive(true);
     }
 
-    public void DisableMainButtons()
+    public void HideStanceButtons()
     {
-        topButton.GetComponentInChildren<Button>().enabled = false;
-        leftButton.GetComponentInChildren<Button>().enabled = false;
-        rightButton.GetComponentInChildren<Button>().enabled = false;
-    }
-
-    public void ShowBackButton()
-    {
-        backButton.SetActive(true);
-    }
-
-    public void HideBackButton()
-    {
-        backButton.SetActive(false);
-        //backButton.GetComponent<Image>().enabled = false;
-        //backButton.GetComponent<Button>().enabled = false;
-        //backButton.GetComponentInChildren<Text>().enabled = false;
-    }
-
-    public void EnableAbilityButtons()
-    {
-        abilityButton1.GetComponent<Button>().enabled = true;
-        abilityButton2.GetComponent<Button>().enabled = true;
-        abilityButton3.GetComponent<Button>().enabled = true;
-        abilityButton4.GetComponent<Button>().enabled = true;
-    }
-
-    public void DisableAbilityButtons()
-    {
-        abilityButton1.GetComponent<Button>().enabled = false;
-        abilityButton2.GetComponent<Button>().enabled = false;
-        abilityButton3.GetComponent<Button>().enabled = false;
-        abilityButton4.GetComponent<Button>().enabled = false;
+        agressiveStance_B.SetActive(false);
+        defensiveStance_B.SetActive(false);
+        focusedStance_B.SetActive(false);
     }
 
     public void ShowAbilityButtons()
@@ -2041,28 +2023,88 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-    void SpawnItemsUI()
+    public void ShowBackButton()
     {
-        GameController.controller.playerInventory = new string[3];
-        GameController.controller.playerInventoryQuantity = new int[3];
-
-        GameController.controller.playerInventory[0] = "woa";
-        GameController.controller.playerInventory[1] = "Premium Quality cheese";
-        GameController.controller.playerInventory[2] = "a shoe";
-
-        GameController.controller.playerInventoryQuantity[0] = 1;
-        GameController.controller.playerInventoryQuantity[1] = 69;
-        GameController.controller.playerInventoryQuantity[2] = 1;
-
-        for (int buttonNum = 0; buttonNum < GameController.controller.playerInventory.Length; ++buttonNum)
-        {
-            Vector2 newpos = new Vector2(200 * buttonNum, 0);
-            GameObject testB = Instantiate(abilityButtonPrefab, newpos, Quaternion.identity) as GameObject;
-            testB.transform.SetParent(canvas.transform);
-            testB.name = "ItemButton" + buttonNum + "_" + GameController.controller.playerInventory[buttonNum];
-            testB.GetComponentInChildren<Text>().text = GameController.controller.playerInventory[buttonNum];
-        }
+        backButton.SetActive(true);
     }
+
+    public void HideBackButton()
+    {
+        backButton.SetActive(false);
+    }
+
+    // --------------------    BUTTON VISIBILITY CODE --------------------- //
+
+
+    // --------------------    BUTTON ENABLED CODE --------------------- //
+    public void EnableMainButtons()
+    {
+        middleButton.GetComponentInChildren<Button>().enabled = true;
+        leftButton.GetComponentInChildren<Button>().enabled = true;
+        rightButton.GetComponentInChildren<Button>().enabled = true;
+    }
+
+    public void DisableMainButtons()
+    {
+        middleButton.GetComponentInChildren<Button>().enabled = false;
+        leftButton.GetComponentInChildren<Button>().enabled = false;
+        rightButton.GetComponentInChildren<Button>().enabled = false;
+    }
+
+    public void EnableStanceButtons()
+    {
+        agressiveStance_B.GetComponent<Button>().enabled = true;
+        defensiveStance_B.GetComponent<Button>().enabled = true;
+        focusedStance_B.GetComponent<Button>().enabled = true;
+    }
+
+    public void DisableStanceButtons()
+    {
+        agressiveStance_B.GetComponent<Button>().enabled = false;
+        defensiveStance_B.GetComponent<Button>().enabled = false;
+        focusedStance_B.GetComponent<Button>().enabled = false;
+    }
+
+    public void EnableAbilityButtons()
+    {
+        abilityButton1.GetComponent<Button>().enabled = true;
+        abilityButton2.GetComponent<Button>().enabled = true;
+        abilityButton3.GetComponent<Button>().enabled = true;
+        abilityButton4.GetComponent<Button>().enabled = true;
+    }
+
+    public void DisableAbilityButtons()
+    {
+        abilityButton1.GetComponent<Button>().enabled = false;
+        abilityButton2.GetComponent<Button>().enabled = false;
+        abilityButton3.GetComponent<Button>().enabled = false;
+        abilityButton4.GetComponent<Button>().enabled = false;
+    }
+
+    // --------------------    BUTTON ENABLED CODE --------------------- //
+
+    //void SpawnItemsUI()
+    //{
+    //    GameController.controller.playerInventory = new string[3];
+    //    GameController.controller.playerInventoryQuantity = new int[3];
+
+    //    GameController.controller.playerInventory[0] = "woa";
+    //    GameController.controller.playerInventory[1] = "Premium Quality cheese";
+    //    GameController.controller.playerInventory[2] = "a shoe";
+
+    //    GameController.controller.playerInventoryQuantity[0] = 1;
+    //    GameController.controller.playerInventoryQuantity[1] = 69;
+    //    GameController.controller.playerInventoryQuantity[2] = 1;
+
+    //    for (int buttonNum = 0; buttonNum < GameController.controller.playerInventory.Length; ++buttonNum)
+    //    {
+    //        Vector2 newpos = new Vector2(200 * buttonNum, 0);
+    //        GameObject testB = Instantiate(abilityButtonPrefab, newpos, Quaternion.identity) as GameObject;
+    //        testB.transform.SetParent(canvas.transform);
+    //        testB.name = "ItemButton" + buttonNum + "_" + GameController.controller.playerInventory[buttonNum];
+    //        testB.GetComponentInChildren<Text>().text = GameController.controller.playerInventory[buttonNum];
+    //    }
+    //}
 
     public void LoadCharacterLevels(EnemyInfo enemyInfo)
     {

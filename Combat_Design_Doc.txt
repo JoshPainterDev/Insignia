@@ -11,3 +11,25 @@ Guardian: +1 ATK / +2 DEF / +2 PRS / +1 SPD
 
 A player's max health is based on defense and level:
 playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefense);
+
+- Stance System-
+Stances:
+- Aggresive (Attack) - physical attack bonus: 1.5x, increased chance to critically hit: +15%, dodge chance base: 15%
+- Defensive (Defense) - physical defense bonus: 1.25x, block chance: 50% (blocks negate a part of damage depending on attack vs defense stat) parry chance?: 
+- Focused (Magic) - magical attack bonus: 1.5x, abilities cooldown 1 turn sooner, decreased dodge chance: 8%
+
+Aura Bonus:
+- an aura bonus is a special buff or sideffect that a player activates automatically
+ when catching an opponent in a stance change
+
+Rock, Paper, Scissors: Defense loses to magic, magic loses to attack, and attack loses to defense
+- when a player swaps stances, this takes their turn.
+- if a player is swapping stances their is a dynamic that depends on the choice of the oppoenent:
+- if a opponent swaps to losing stance (i.e. player attacks when the opponent swaps to a magic stance):
+ + the winner of the RPS dynamic receives an Aura bonus
+ + Aura Bonuses are the same no matter what you win with
+ + the bonus is dependant on the type of aura your character has
+ 
+ 
+ 
+ 

@@ -1,0 +1,4 @@
+Stances:
+- Aggresive (Attack)
+- Defensive (Defense)
+- Poised (Magic)

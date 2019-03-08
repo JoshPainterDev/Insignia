@@ -267,7 +267,10 @@ public class Exposition_Manager : MonoBehaviour
         actionsCompleted = false;
         actionCounter = 0;
         eInstanceDelay = 2.0f;
-        dialoguePanel.GetComponent<LerpScript>().LerpToPos(dialoguePanel.transform.position, dialoguePanel.transform.position - panelOffset, 2f);
+        Vector3 offset = panelOffset * cameraObj.GetComponent<CameraController>().getSizeScaleOffset();
+        offset = new Vector3(offset.x, offset.y, 0);
+        print("PANEL OFFSET: " + offset);
+        dialoguePanel.GetComponent<LerpScript>().LerpToPos(dialoguePanel.transform.position, dialoguePanel.transform.position - offset, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(panelOrigColor, Color.clear, 2f);
 
         ++eCurrentInstance;
@@ -317,8 +320,12 @@ public class Exposition_Manager : MonoBehaviour
         string[] script = new string[30];
 
         actionCounter = 0;
-       
-        dialoguePanel.GetComponent<LerpScript>().LerpToPos(dialoguePanel.transform.position, dialoguePanel.transform.position + panelOffset, 2f);
+
+        Vector3 offset = panelOffset * cameraObj.GetComponent<CameraController>().getSizeScaleOffset();
+        print(cameraObj.GetComponent<CameraController>().getSizeScaleOffset());
+        print(offset);
+        offset = new Vector3(offset.x, offset.y, 0);
+        dialoguePanel.GetComponent<LerpScript>().LerpToPos(dialoguePanel.transform.position, dialoguePanel.transform.position + offset, 2f);
         dialoguePanel.GetComponent<LerpScript>().LerpToColor(Color.clear, panelOrigColor, 2f);
         dialoguePanel.transform.GetChild(0).GetComponent<Text>().text = "";
 
@@ -1866,6 +1873,7 @@ public class Exposition_Manager : MonoBehaviour
                         // set up the crew after combat
                         cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(100, 115, 0), 0.5f);
                         cameraObj.GetComponent<CameraController>().LerpCameraSize(175, 225, 1.0f);
+                        //cameraObj.GetComponent<CameraController>().LerpCameraSize(175, 225, 1.0f);
                         playerMannequin.GetComponent<AnimationController>().SetCombatState(true);
                         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();
                         speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);

@@ -18,6 +18,14 @@ public class CameraController : MonoBehaviour {
     public GameObject player = null;
     private string[] cont = { "WeaponMask" };
     public List<GameObject> maskObjects;
+    private GameObject canvas;
+    private float baseScale;
+
+    private void Awake()
+    {
+        canvas = FindObjectOfType<Canvas>().transform.gameObject;
+        baseScale = this.GetComponent<Camera>().orthographicSize;
+    }
 
     // Use this for initialization
     public void Start ()
@@ -56,6 +64,11 @@ public class CameraController : MonoBehaviour {
     public List<GameObject> GetMaskObjects()
     {
         return maskObjects;
+    }
+
+    public float getSizeScaleOffset()
+    {
+        return this.GetComponent<Camera>().orthographicSize / baseScale;
     }
 
     public void ShakeCamera(int intensity = 1, bool leftToRight = true, float duration = 1.0f)
@@ -100,11 +113,23 @@ public class CameraController : MonoBehaviour {
             t_S += Time.deltaTime * rate;
 
             this.GetComponent<Camera>().orthographicSize = initSize + (t_S * (finalSize - initSize));
+            
+            for(int i = 0; i < canvas.transform.childCount; ++i)
+            {
+                Vector3 og = canvas.transform.GetChild(i).transform.position;
+                canvas.transform.GetChild(i).transform.position =  new Vector3(og.x, og.y, 0);
+            }
 
             if (t_S > 1)
             {
                 t_S = 0;
                 lerpingSize = false;
+
+                for (int i = 0; i < canvas.transform.childCount; ++i)
+                {
+                    Vector3 og = canvas.transform.GetChild(i).transform.position;
+                    canvas.transform.GetChild(i).transform.position = new Vector3(og.x, og.y, 0);
+                }
             }
         }
 
