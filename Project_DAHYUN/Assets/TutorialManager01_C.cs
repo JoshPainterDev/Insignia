@@ -24,7 +24,6 @@ public class TutorialManager01_C : MonoBehaviour
     private GameObject textBox;
     private CombatManager combatController;
     private int tutorialState = 0;
-    private int inputNumber = 0;
     // Use this for initialization
 
     public void Awake()

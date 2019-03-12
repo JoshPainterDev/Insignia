@@ -308,6 +308,7 @@ public class AbilityManager_C : MonoBehaviour {
         effectClone.GetComponent<StatBoost_C>().boostType = BoostType.Attack;
         effectClone.GetComponent<StatBoost_C>().player = 1;
         yield return new WaitForSeconds(2.25f);
+        boostHandle.transform.GetChild(0).gameObject.SetActive(true);
         boostHandle.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 2.5f);
     } 
 

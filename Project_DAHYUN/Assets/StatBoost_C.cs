@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum BoostType {Attack, Defense, Speed, none};
+public enum BoostType {Attack, Defense, Speed, Agressive, Defensive, Focused, none};
 
 
 

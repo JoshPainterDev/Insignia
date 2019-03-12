@@ -47,6 +47,7 @@ public class CombatAudio : MonoBehaviour {
     public AudioClip swordBlood02;
     public AudioClip bloodSplatter01;
     public AudioClip plasmaIgnite;
+    public AudioClip agressive_stance_fx, defensive_stance_fx, focused_stance_fx;
 
     public AudioClip LB_SuperNova_Start;
     AudioSource audioSource;
@@ -108,6 +109,11 @@ public class CombatAudio : MonoBehaviour {
                 audioSource.PlayOneShot(swordHit08, LOW_VOLUME);
                 break;
         }
+    }
+
+    public void playStanceSelect()
+    {
+        audioSource.PlayOneShot(abilitySelect_UI, MEDIUM_VOLUME);
     }
 
     public void playSwordHit()

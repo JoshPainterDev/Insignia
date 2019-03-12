@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ab0de2f87b5dc0a4d8c13581535191f5
+timeCreated: 1515139224
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - attSprite: {fileID: 21300000, guid: 8f7bacf333cb6714fb788243e0dda913, type: 3}
+  - defSprite: {fileID: 21300000, guid: 4524d7ed92ade3346a26cd1f867ddbe9, type: 3}
+  - spdSprite: {fileID: 21300000, guid: f878d4ebf9828d942b48ab65cda13e6e, type: 3}
+  - attSFX: {fileID: 8300000, guid: 1a2a3abc70e581a4d9d91b3c7b439cae, type: 3}
+  - defSFX: {fileID: 8300000, guid: 3cd7d55785d6b244e9f0486358a379ee, type: 3}
+  - spdSFX: {fileID: 8300000, guid: 22ef261ea8e976b44b1da503f11deffe, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

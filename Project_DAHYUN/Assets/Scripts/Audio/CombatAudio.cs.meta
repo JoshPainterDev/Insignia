@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: a8addc0308c4172479f12e0dfa40b115
-timeCreated: 1518039721
-licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -52,6 +50,11 @@ MonoImporter:
   - swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
   - bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
   - plasmaIgnite: {fileID: 8300000, guid: aff2b147c10316c4b94790cdba23e8c9, type: 3}
+  - agressive_stance_fx: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775,
+      type: 3}
+  - defensive_stance_fx: {fileID: 8300000, guid: 07fcc279b6902e64c803204ad9aa3f70,
+      type: 3}
+  - focused_stance_fx: {fileID: 8300000, guid: 4df1882038210c646be76396ce8d0229, type: 3}
   - LB_SuperNova_Start: {fileID: 8300000, guid: 7fa4a7692ece60440842a6d7843ae3d4,
       type: 3}
   executionOrder: 0

@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+public enum Stance { Aggressive, Defensive, Focused, none };
+public enum RPS { StrikeUsed, StanceUsed, AbilityUsed, none };
+
 public class CombatManager : MonoBehaviour {
 
     // DEFINES
@@ -15,7 +18,6 @@ public class CombatManager : MonoBehaviour {
     public const int PLAYER_HEALTH_SCALE = 70;
 
     enum State { MainMenu, Stance, Abilities, Back, Done };
-    enum Stance { Aggressive, Defensive, Focused, none };
 
     public GameObject cameraObj;
     public bool hasTutorial = false;
@@ -31,9 +33,11 @@ public class CombatManager : MonoBehaviour {
     public GameObject middleButton, leftButton, rightButton, backButton;
     public GameObject agressiveStance_B, defensiveStance_B, focusedStance_B;
     public Color strike_C, stance_C, abilities_C, back_C;
+    public Color agressive_stance_C, defensive_stance_C, focused_stance_C;
     public GameObject blackSq;
     private State currentState = State.MainMenu;
     public GameObject Music_Manager;
+    private bool initialStanceSelected = false;
 
     //COMBAT VARIABLES
     [HideInInspector]
@@ -45,6 +49,7 @@ public class CombatManager : MonoBehaviour {
     [HideInInspector]
     private int playerMaxHealth = 100;
     private Stance playerStance = Stance.none;
+    private Stance enemyStance = Stance.none;
     [HideInInspector]
     public int playerAttackBoost = 0;
     private int playerAttBoostDur = 0;
@@ -63,6 +68,7 @@ public class CombatManager : MonoBehaviour {
     [HideInInspector]
     public int ability1CD, ability2CD, ability3CD, ability4CD;
     public Color abilityReadyColor, abilityUsedColor;
+    public bool guaranteedCrit = false;
 
     // LIMIT BREAK VARIABLES
     [HideInInspector]
@@ -117,11 +123,19 @@ public class CombatManager : MonoBehaviour {
     public Ability ability1, ability2, ability3, ability4;
     public Color abilityTextColor;
     public Color abilitySelectColor;
+    public Color stanceSelectColor;
     public Color physicalColor;
     public Color magicalColor;
     public Color utilityColor;
     public int playerBlindedDur = 0;
     public int enemyBlindedDur = 0;
+
+    //STANCE VARIABLES
+    [HideInInspector]
+    public RPS playerStanceRPS = RPS.none;
+    [HideInInspector]
+    public RPS enemyStanceRPS = RPS.none;
+    public GameObject StanceBoostPrfb;
 
     //ENCOUNTER VARIABLES
     [HideInInspector]
@@ -241,14 +255,6 @@ public class CombatManager : MonoBehaviour {
             LoadCharacterLevels(enemyInfo);
 
             StartCoroutine(InitialStanceSelect());
-
-            //if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
-            //{
-            //    //print("enemy speed: " + enemyInfo.enemySpeed);
-            //    StartCoroutine(ShowStartingButtons());
-            //}
-            //else
-            //    StartCoroutine(EnemyStarts());        
         }
         else // Tutorial buttons
         {
@@ -261,7 +267,7 @@ public class CombatManager : MonoBehaviour {
         //REMOVE THIS LATER
         GameController.controller.playerAbility1 = AbilityToolsScript.tools.LookUpAbility("Guard Break");
         GameController.controller.playerAbility2 = AbilityToolsScript.tools.LookUpAbility("Blade Storm");
-        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Stranglehold");
+        GameController.controller.playerAbility3 = AbilityToolsScript.tools.LookUpAbility("Hatred"); //Stranglehold
         GameController.controller.playerAbility4 = AbilityToolsScript.tools.LookUpAbility("Thunder Charge");
         //GameController.controller.strikeModifier = "Serated Strike";
         //playerLimitBreak = this.GetComponent<LimitBreakManager_C>().LookUpLimitBreak(LimitBreakName.Super_Nova);
@@ -297,9 +303,82 @@ public class CombatManager : MonoBehaviour {
         StartCoroutine(StartEnemyTurn());
     }
 
+    // This is called when a stance change is selected
+    public void StanceSelected(int selectedOption = 0)
+    {
+        if(selectedOption == 1 && playerStance == Stance.Aggressive)
+        {
+            this.GetComponent<CombatAudio>().playUINope();
+            return;
+        }
+        else if(selectedOption == 2 && playerStance == Stance.Defensive)
+        {
+            this.GetComponent<CombatAudio>().playUINope();
+            return;
+        }
+        else if (selectedOption == 3 && playerStance == Stance.Focused)
+        {
+            this.GetComponent<CombatAudio>().playUINope();
+            return;
+        }
+
+        agressiveStance_B.transform.GetChild(1).gameObject.GetComponent<Text>().text = "";
+        defensiveStance_B.transform.GetChild(1).gameObject.GetComponent<Text>().text = "";
+        focusedStance_B.transform.GetChild(1).gameObject.GetComponent<Text>().text = "";
+        playerStanceRPS = RPS.StanceUsed;
+
+        switch (selectedOption)
+        {
+            case 1:
+                playerStance = Stance.Aggressive;
+                
+                stance_C = agressive_stance_C;
+                DisableStanceButtons();
+                StartCoroutine(StanceSelectAnim(agressiveStance_B, playerStance));
+                break;
+            case 2:
+                playerStance = Stance.Defensive;
+                stance_C = defensive_stance_C;
+                DisableStanceButtons();
+                StartCoroutine(StanceSelectAnim(defensiveStance_B, playerStance));
+                break;
+            case 3:
+                playerStance = Stance.Focused;
+                stance_C = focused_stance_C;
+                DisableStanceButtons();
+                StartCoroutine(StanceSelectAnim(focusedStance_B, playerStance));
+                break;
+        }
+    }
+
+    public void ChangeStanceIcon(Sprite newSprite, bool playerStance)
+    {
+        if (playerStance) // Player Stance
+        {
+            GameObject boostHandle = this.GetComponent<AbilityManager_C>().boostHandle;
+            if(boostHandle)
+            {
+                GameObject stance = boostHandle.transform.GetChild(3).gameObject;
+                stance.GetComponent<Image>().sprite = newSprite;
+                stance.SetActive(true);
+            }
+        }
+        else // Enemy Stance
+        {
+            GameObject boostHandle = this.GetComponent<EnemyAbilityManager_C>().boostHandle;
+            if (boostHandle)
+            {
+                GameObject stance = boostHandle.transform.GetChild(3).gameObject;
+                stance.GetComponent<Image>().sprite = newSprite;
+                stance.SetActive(true);
+            }
+        }
+    }
+
     // This is called when an ability button is selected
     public void AbilitySelected(int selectedOption = 0)
     {
+        playerStanceRPS = RPS.AbilityUsed;
         switch(selectedOption)
         {
             case 1:
@@ -559,6 +638,92 @@ public class CombatManager : MonoBehaviour {
         EnableMainButtons();
     }
 
+    IEnumerator StanceSelectAnim(GameObject button, Stance stanceSelected)
+    {
+        Vector3 origPos = button.transform.position;
+        Color origColor = button.GetComponent<Image>().color;
+        Vector3 centerPos = Vector3.zero;
+        Vector3 ascend = Vector3.zero;
+
+        DisableStanceButtons();
+        HideButton("back");
+        ShowButton(button.name);
+
+        this.GetComponent<CombatAudio>().playStanceSelect();
+
+        if (button.name == "Stance_Agressive_Button")
+        {
+            defensiveStance_B.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.85f);
+            focusedStance_B.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.85f);
+            stanceSelectColor = agressive_stance_C;
+        }
+        else if (button.name == "Stance_Defensive_Button")
+        {
+            agressiveStance_B.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.85f);
+            focusedStance_B.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.85f);
+            stanceSelectColor = defensive_stance_C;
+        }
+        else if (button.name == "Stance_Focused_Button")
+        {
+            agressiveStance_B.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.85f);
+            defensiveStance_B.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.85f);
+            stanceSelectColor = focused_stance_C;
+        }
+
+        middleButton.GetComponent<Image>().color = stanceSelectColor;
+        yield return new WaitForSeconds(0.15f);
+        // Change the new stance to "Active"
+        button.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Active";
+
+        ShowButton(button.name);
+        yield return new WaitForSeconds(0.15f);
+        HideButton(button.name);
+        yield return new WaitForSeconds(0.15f);
+        ShowButton(button.name);
+
+        GameObject stanceBonusObj = Instantiate(StanceBoostPrfb, playerMannequin.transform.position, Quaternion.identity) as GameObject;
+
+        switch(stanceSelected)
+        {
+            case Stance.Aggressive:
+                stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Agressive;
+                break;
+            case Stance.Defensive:
+                stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Defensive;
+                break;
+            case Stance.Focused:
+                stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Focused;
+                break;
+        }
+
+        yield return new WaitForSeconds(0.75f);
+        HideStanceButtons();
+
+        if (!initialStanceSelected)
+        {
+            initialStanceSelected = true;
+
+            // Handle Stat / Boost changes
+
+
+            //print("enemy speed: " + enemyInfo.enemySpeed);
+            if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
+            {
+                StartCoroutine(ShowStartingButtons());
+            }
+            else
+                StartCoroutine(EnemyStarts());
+        }
+        else
+        {
+            // Handle Stat / Boost changes
+
+            // End Player Turn Here
+            EndPlayerTurn(0, enemyHealth);
+        }
+    }
+
+
     IEnumerator AbilitySelectAnim(GameObject button, Ability abilityUsed)
     {
         Vector3 origPos = button.transform.position;
@@ -694,7 +859,7 @@ public class CombatManager : MonoBehaviour {
             if (playerAttBoostDur == 0)
             {
                 playerAttackBoost = 0;
-                trans.GetChild(0).GetComponent<Image>().enabled = false;
+                trans.GetChild(0).gameObject.SetActive(false);
             }
             else
                 --playerAttBoostDur;
@@ -702,7 +867,7 @@ public class CombatManager : MonoBehaviour {
             if (playerDefBoostDur == 0)
             {
                 playerDefenseBoost = 0;
-                trans.GetChild(1).GetComponent<Image>().enabled = false;
+                trans.GetChild(1).gameObject.SetActive(false);
             }
             else
                 --playerDefBoostDur;
@@ -710,7 +875,7 @@ public class CombatManager : MonoBehaviour {
             if (playerSpdBoostDur == 0)
             {
                 playerSpeedBoost = 0;
-                trans.GetChild(2).GetComponent<Image>().enabled = false;
+                trans.GetChild(2).gameObject.SetActive(false);
             }
             else
                 --playerSpdBoostDur;
@@ -727,9 +892,12 @@ public class CombatManager : MonoBehaviour {
         }
         else
         {
+            trans = this.GetComponent<EnemyAbilityManager_C>().boostHandle.transform;
+
             if (enemyAttBoostDur == 0)
             {
                 enemyAttackBoost = 0;
+                trans.GetChild(0).gameObject.SetActive(false);
             }
             else
                 --enemyAttBoostDur;
@@ -737,6 +905,7 @@ public class CombatManager : MonoBehaviour {
             if (enemyDefBoostDur == 0)
             {
                 enemyDefenseBoost = 0;
+                trans.GetChild(1).gameObject.SetActive(false);
             }
             else
                 --enemyDefBoostDur;
@@ -744,6 +913,7 @@ public class CombatManager : MonoBehaviour {
             if (enemySpdBoostDur == 0)
             {
                 enemySpeedBoost = 0;
+                trans.GetChild(2).gameObject.SetActive(false);
             }
             else
                 --enemySpdBoostDur;
@@ -815,6 +985,21 @@ public class CombatManager : MonoBehaviour {
 
     IEnumerator UseStrike()
     {
+        playerStanceRPS = RPS.StrikeUsed;
+
+        // Check RPS event
+        if (checkForStanceRPS())
+        {
+            // Agressive stance win grants a gauranteed critical Strike and priority 
+            // (Strike will land before the opponent gets a defense boost)
+            if (playerStance == Stance.Aggressive)
+            {
+                guaranteedCrit = true;
+                StartCoroutine(RPSwinAnim(Stance.Aggressive));
+                yield return new WaitForSeconds(5.0f);
+            }
+        }
+
         int exectueVar = EvaluateExecution();
         int rand = Random.Range(0, 99);
         float accuracy = 87 + (3 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
@@ -846,6 +1031,17 @@ public class CombatManager : MonoBehaviour {
             // accuracy check the attack
             if (accuracy >= rand)
             {
+                // Check RPS event
+                if (checkForStanceRPS())
+                {
+                    // Agressive stance win grants a gauranteed critical Strike and priority 
+                    // (Strike will land before the opponent gets a defense boost)
+                    if (playerStance == Stance.Aggressive)
+                    {
+                        guaranteedCrit = true;
+                    }
+                }
+
                 this.GetComponent<StrikeManager_C>().StrikeUsed(strikeMod, enemyHealth);
             }
             else
@@ -984,8 +1180,9 @@ public class CombatManager : MonoBehaviour {
         // critical hit chance
         float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f) + vulnerableBonus);
 
-        if (chance >= CRITICAL_THRESHOLD)
+        if (chance >= CRITICAL_THRESHOLD || guaranteedCrit)
         {
+            guaranteedCrit = false;
             wasCriticalHit = true;
             damageDealt *= 1.5f;
         }
@@ -1406,6 +1603,31 @@ public class CombatManager : MonoBehaviour {
     /// END OF DAMAGE FUNCTIONS
     /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    IEnumerator RPSwinAnim(Stance stance)
+    {
+        print("WE GOT TO RPSwinAnim");
+        GameObject stanceBonusObj;
+        HideHealthBars();
+        playerMannequin.GetComponent<AnimationController>().PlayCheerAnim(); // TODO: Change this to PlayPowerUp()
+        yield return new WaitForSeconds(0.50f);
+
+        switch (stance)
+        {
+            case Stance.Aggressive:
+                stanceBonusObj = Instantiate(StanceBoostPrfb, playerMannequin.transform.position, Quaternion.identity) as GameObject;
+                stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Agressive;
+                break;
+            case Stance.Defensive:
+                stanceBonusObj = Instantiate(StanceBoostPrfb, playerMannequin.transform.position, Quaternion.identity) as GameObject;
+                stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Defensive;
+                break;
+            case Stance.Focused:
+                stanceBonusObj = Instantiate(StanceBoostPrfb, playerMannequin.transform.position, Quaternion.identity) as GameObject;
+                stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Focused;
+                break;
+        }
+    }
+
     public void StruggleFailed(int damage)
     {
         print("Struggle failed");
@@ -1456,6 +1678,7 @@ public class CombatManager : MonoBehaviour {
         ShowButton("middle");
         yield return new WaitForSeconds(0.1f);
         HideMainButtons();
+        ShowButton("middle");
         yield return new WaitForSeconds(0.25f);
         ShowStanceButtons();
         EnableStanceButtons();
@@ -1837,11 +2060,14 @@ public class CombatManager : MonoBehaviour {
     public void MiddleSelected()
     {
         this.GetComponent<CombatAudio>().playUISelect();
-
+        print(currentState);
         switch (currentState)
         {
             case State.MainMenu:
                 currentState = State.Stance;
+                agressiveStance_B.GetComponent<Image>().color = agressive_stance_C;
+                defensiveStance_B.GetComponent<Image>().color = defensive_stance_C;
+                focusedStance_B.GetComponent<Image>().color = focused_stance_C;
                 DisableMainButtons();
                 ShowBackButton();
                 ShowStanceButtons();
@@ -1934,14 +2160,20 @@ public class CombatManager : MonoBehaviour {
             case "back":
                 backButton.SetActive(status);
                 break;
-            case "agressive":
+            case "Stance_Agressive_Button":
                 agressiveStance_B.SetActive(status);
+                agressiveStance_B.transform.GetChild(0).gameObject.SetActive(status);
+                agressiveStance_B.transform.GetChild(1).gameObject.SetActive(status);
                 break;
-            case "defensive":
+            case "Stance_Defensive_Button":
                 defensiveStance_B.SetActive(status);
+                defensiveStance_B.transform.GetChild(0).gameObject.SetActive(status);
+                defensiveStance_B.transform.GetChild(1).gameObject.SetActive(status);
                 break;
-            case "focused":
+            case "Stance_Focused_Button":
                 focusedStance_B.SetActive(status);
+                focusedStance_B.transform.GetChild(0).gameObject.SetActive(status);
+                focusedStance_B.transform.GetChild(1).gameObject.SetActive(status);
                 break;
             default:
                 break;
@@ -1950,9 +2182,9 @@ public class CombatManager : MonoBehaviour {
 
     public void ShowStanceButtons()
     {
-        agressiveStance_B.SetActive(true);
-        defensiveStance_B.SetActive(true);
-        focusedStance_B.SetActive(true);
+        ShowButton("Stance_Agressive_Button");
+        ShowButton("Stance_Defensive_Button");
+        ShowButton("Stance_Focused_Button");
     }
 
     public void HideStanceButtons()
@@ -2083,28 +2315,24 @@ public class CombatManager : MonoBehaviour {
 
     // --------------------    BUTTON ENABLED CODE --------------------- //
 
-    //void SpawnItemsUI()
-    //{
-    //    GameController.controller.playerInventory = new string[3];
-    //    GameController.controller.playerInventoryQuantity = new int[3];
+    // Checks if the player won an RPS matchup
+    // Returns true if there was an RPS and the player won, else: false 
+    public bool checkForStanceRPS()
+    {
+        if(playerStanceRPS == RPS.StanceUsed && enemyStanceRPS == RPS.StanceUsed)
+        {
+            if (playerStance == Stance.Aggressive && enemyStance == Stance.Focused)
+                return true;
 
-    //    GameController.controller.playerInventory[0] = "woa";
-    //    GameController.controller.playerInventory[1] = "Premium Quality cheese";
-    //    GameController.controller.playerInventory[2] = "a shoe";
+            if (playerStance == Stance.Defensive && enemyStance == Stance.Aggressive)
+                return true;
 
-    //    GameController.controller.playerInventoryQuantity[0] = 1;
-    //    GameController.controller.playerInventoryQuantity[1] = 69;
-    //    GameController.controller.playerInventoryQuantity[2] = 1;
+            if (playerStance == Stance.Focused && enemyStance == Stance.Defensive)
+                return true;
+        }
 
-    //    for (int buttonNum = 0; buttonNum < GameController.controller.playerInventory.Length; ++buttonNum)
-    //    {
-    //        Vector2 newpos = new Vector2(200 * buttonNum, 0);
-    //        GameObject testB = Instantiate(abilityButtonPrefab, newpos, Quaternion.identity) as GameObject;
-    //        testB.transform.SetParent(canvas.transform);
-    //        testB.name = "ItemButton" + buttonNum + "_" + GameController.controller.playerInventory[buttonNum];
-    //        testB.GetComponentInChildren<Text>().text = GameController.controller.playerInventory[buttonNum];
-    //    }
-    //}
+        return false;
+    }
 
     public void LoadCharacterLevels(EnemyInfo enemyInfo)
     {
