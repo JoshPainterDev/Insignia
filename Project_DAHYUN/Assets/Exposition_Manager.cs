@@ -1904,8 +1904,6 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                    //    cameraObj.GetComponent<LerpScript>().LerpToPos(cameraObj.transform.position, cameraObj.transform.position + new Vector3(100, 115, 0), 0.5f);
-                    //    cameraObj.GetComponent<CameraController>().LerpCameraSize(175, 225, 1.0f);
                         speaker04.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         yield return new WaitForSeconds(1.0f);
                         speaker04.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
@@ -1916,24 +1914,40 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(0.7f);
                         playerMannequin.GetComponent<AnimationController>().FlipFlop();
                         yield return new WaitForSeconds(0.5f);
-                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(0, 80, 0), 1.0f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(0, 100, 0), 1.0f);
                         yield return new WaitForSeconds(1.75f);
                         StartCoroutine(ExitScene(playerMannequin));
-                        //yield return new WaitForSeconds(2f);
-                        // change torch colors
-                        //GameController.controller.setPlayerColorPreference(Color.red);
-                        //GameController.controller.Save(GameController.controller.playerName);
                         yield return new WaitForSeconds(0.5f);
                         var leftTorch = speaker07.transform.GetChild(0).gameObject;
                         var rightTorch = speaker07.transform.GetChild(1).gameObject;
-                        var pml = leftTorch.transform.GetChild(0).GetComponent<ParticleSystem>().main;
-                        var pmr = rightTorch.transform.GetChild(0).GetComponent<ParticleSystem>().main;
+                        var leftTorch2 = speaker07.transform.GetChild(2).gameObject;
+                        var rightTorch2 = speaker07.transform.GetChild(3).gameObject;
                         var playerC = GameController.controller.getPlayerColorPreference() - new Color(0, 0, 0, 0.5f);
                         leftTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+                        leftTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+
                         rightTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-                        yield return new WaitForSeconds(2.0f);
+                        rightTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+
+                        leftTorch2.transform.GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+                        leftTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+
+                        rightTorch2.transform.GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+                        rightTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
+
+                        yield return new WaitForSeconds(3.0f);
+
                         leftTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+                        leftTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+
                         rightTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+                        rightTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+
+                        leftTorch2.transform.GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+                        leftTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+
+                        rightTorch2.transform.GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
+                        rightTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
                         yield return new WaitForSeconds(1.75f);
                         // astonishment at color change
                         Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 110, 0);

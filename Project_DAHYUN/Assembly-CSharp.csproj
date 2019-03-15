@@ -176,15 +176,6 @@
     <None Include="Assets\Sprites\2D_FX\READ_ME.txt" />
     <None Include="Assets\GhostSprites2D\README.txt" />
     <None Include="Assets\CrystalFramework\Utility\Demos\SafeAreaDemo.txt" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>J:/ProjectDAHYUN/Project_DAHYUN/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>J:/ProjectDAHYUN/Project_DAHYUN/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>J:/ProjectDAHYUN/Project_DAHYUN/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>J:/ProjectDAHYUN/Project_DAHYUN/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
