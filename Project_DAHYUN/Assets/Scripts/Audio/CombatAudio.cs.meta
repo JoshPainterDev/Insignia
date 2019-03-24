@@ -50,6 +50,8 @@ MonoImporter:
   - swordBlood02: {fileID: 8300000, guid: 0df2537167649e440ac10528e647332d, type: 3}
   - bloodSplatter01: {fileID: 8300000, guid: da970dbd808d46a4581d3059a2845a8c, type: 3}
   - plasmaIgnite: {fileID: 8300000, guid: aff2b147c10316c4b94790cdba23e8c9, type: 3}
+  - claymoreIgnite: {fileID: 8300000, guid: 6a149fcb98fe5ac40b24be491f479b6b, type: 3}
+  - claymoreRetract: {fileID: 8300000, guid: 2e85bf69aa8a7aa4690b141d279fa8e9, type: 3}
   - agressive_stance_fx: {fileID: 8300000, guid: c5cfad25f28b9174998778a5118c8775,
       type: 3}
   - defensive_stance_fx: {fileID: 8300000, guid: 07fcc279b6902e64c803204ad9aa3f70,

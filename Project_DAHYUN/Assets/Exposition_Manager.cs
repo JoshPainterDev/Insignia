@@ -3022,29 +3022,17 @@ public class Exposition_Manager : MonoBehaviour
                         ogPos = speaker06.transform.position;
                         speaker06.GetComponent<LerpScript>().LerpToPos(ogPos, ogPos + new Vector3(31.5f, 0, 0), 2.5f);
                         yield return new WaitForSeconds(0.75f);
-                        sfxManager.GetComponent<SoundFXManager_C>().playSwordIgnite();
+                        sfxManager.GetComponent<SoundFXManager_C>().playClaymoreIgnite();
                         yield return new WaitForSeconds(0.2f);
                         for (int i = 0; i < 4; ++i)
                         {
                             speaker07.transform.GetChild(i).gameObject.SetActive(true);
-
                         }
                         yield return new WaitForSeconds(0.4f);
-                        for (int i = 0; i < 4; ++i)
+                        for (int i = 0; i < 2; ++i)
                         {
                             speaker07.transform.GetChild(i).gameObject.SetActive(false);
-
                         }
-                        yield return new WaitForSeconds(2.25f);
-                        sfxManager.GetComponent<SoundFXManager_C>().playSwordRetract();
-                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 8);
-                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 1.5f;
-                        yield return new WaitForSeconds(0.35f);
-                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(-80, 0, 0), 5.0f);
-                        //yield return new WaitForSeconds(0.15f);
-                        speaker06.transform.GetChild(0).GetComponent<Animator>().SetBool("Dead", true);
-                        speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(new Color(0.4f, 0.4f, 0.4f, 1.0f), new Color(0.8f, 0.8f, 0.8f, 1.0f), 1.5f);
-                        sfxManager.GetComponent<SoundFXManager_C>().playBodyCollapse();
                         break;
                 }
                 break;
@@ -3056,6 +3044,21 @@ public class Exposition_Manager : MonoBehaviour
                         StartCoroutine(NewDialogue(12, 3));
                         break;
                     case 2:
+                        sfxManager.GetComponent<SoundFXManager_C>().playClaymoreRetract();
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 8);
+                        speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 1.5f;
+                        for (int i = 2; i < 4; ++i)
+                        {
+                            speaker07.transform.GetChild(i).gameObject.SetActive(false);
+                        }
+                        yield return new WaitForSeconds(0.35f);
+                        speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(-80, 0, 0), 5.0f);
+                        //yield return new WaitForSeconds(0.15f);
+                        speaker06.transform.GetChild(0).GetComponent<Animator>().SetBool("Dead", true);
+                        speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(new Color(0.4f, 0.4f, 0.4f, 1.0f), new Color(0.8f, 0.8f, 0.8f, 1.0f), 1.5f);
+                        sfxManager.GetComponent<SoundFXManager_C>().playBodyCollapse();
+                        break;
+                    case 3:
                         yield return new WaitForSeconds(2.5f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), 0.6f);
                         yield return new WaitForSeconds(2.5f);

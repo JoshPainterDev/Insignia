@@ -13,6 +13,7 @@ public class SoundFXManager_C : MonoBehaviour
     public AudioClip laserBombardment_FX;
     public AudioClip laserSwordIgnite_FX;
     public AudioClip laserSwordRetract_FX;
+    public AudioClip claymoreIgniteFX, claymoreRetractFX;
     public AudioClip criticalHit_FX;
     public AudioClip bodyCollapse_FX;
     public AudioClip darkRumbling_FX;
@@ -63,6 +64,16 @@ public class SoundFXManager_C : MonoBehaviour
             audioSource.PlayOneShot(laserBombardment_FX, HIGH_VOLUME * GameController.controller.volumeScale);
         }
 
+    }
+
+    public void playClaymoreIgnite()
+    {
+        audioSource.PlayOneShot(claymoreIgniteFX, MEDIUM_VOLUME * GameController.controller.volumeScale);
+    }
+
+    public void playClaymoreRetract()
+    {
+        audioSource.PlayOneShot(claymoreRetractFX, MEDIUM_VOLUME * GameController.controller.volumeScale);
     }
 
     public void playSwordClash()

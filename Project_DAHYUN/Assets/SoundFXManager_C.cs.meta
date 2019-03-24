@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 451727e9ac3b6d346871fdf0f3c4d600
-timeCreated: 1540609708
-licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -17,13 +15,17 @@ MonoImporter:
       type: 3}
   - laserSwordRetract_FX: {fileID: 8300000, guid: ae34cbcfd79e783479359c7c32104288,
       type: 3}
+  - claymoreIgniteFX: {fileID: 8300000, guid: 6a149fcb98fe5ac40b24be491f479b6b, type: 3}
+  - claymoreRetractFX: {fileID: 8300000, guid: 2e85bf69aa8a7aa4690b141d279fa8e9, type: 3}
   - criticalHit_FX: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   - bodyCollapse_FX: {fileID: 8300000, guid: 4fc1c0a018f1d124496a334bb1d34d65, type: 3}
   - darkRumbling_FX: {fileID: 8300000, guid: b731346d74832a244b18d33a51592d9e, type: 3}
   - darkRumbling_short_FX: {fileID: 8300000, guid: 7ee05be6a4a0d6f459e80cc901a4bbb5,
       type: 3}
-  - wetSquish_FX: {instanceID: 0}
+  - wetSquish_FX: {fileID: 8300000, guid: fb3ca44a6c0b5cf448d63707699f3f2e, type: 3}
   - swordClash_FX: {fileID: 8300000, guid: 4f747afc073b22e4f98e89503267ee77, type: 3}
+  - ghastlyEntrance_FX: {fileID: 8300000, guid: 6d8a23d8f1cf39d4eb26fd8d6cf4a8cb,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
