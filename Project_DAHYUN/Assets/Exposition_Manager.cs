@@ -2979,8 +2979,8 @@ public class Exposition_Manager : MonoBehaviour
                         StartCoroutine(NewDialogue(12, 1));
                         break;
                     case 10:
-                        Vector3 spawnPos = new Vector3(speaker06.transform.position.x + 20, speaker06.transform.position.y + 120, 0);
-                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                        Vector3 spawnPos = new Vector3(speaker06.transform.position.x + 0, speaker06.transform.position.y + 120, 0);
+                        GameObject effectClone = (GameObject)Instantiate(QuestionMark, spawnPos, transform.rotation);
                         MusicManager.GetComponent<Music_Controller>().stopAllMusic();
                         break;
                     case 12:
@@ -3003,6 +3003,8 @@ public class Exposition_Manager : MonoBehaviour
                         speaker04.transform.GetChild(2).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", -1);
                         sfxManager.GetComponent<SoundFXManager_C>().playSwordIgnite();
                         yield return new WaitForSeconds(1.5f);
+                        Vector3 spawnPos = new Vector3(speaker06.transform.position.x + 10, speaker06.transform.position.y + 120, 0);
+                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
                         StartCoroutine(NewDialogue(12, 2));
                         break;
                     case 2:
@@ -3011,7 +3013,10 @@ public class Exposition_Manager : MonoBehaviour
                         speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 0.1f;
                         sfxManager.GetComponent<SoundFXManager_C>().playDarkRumblingShort();
                         yield return new WaitForSeconds(1f);
+                        //TODO add fade to black here for dark emphasis
                         speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, new Color(0.4f, 0.4f, 0.4f, 1.0f), 1.5f);
+                        // play hum effect
+                        speaker07.GetComponent<AudioSource>().Play();
                         yield return new WaitForSeconds(1f);
                         speaker06.GetComponent<LerpScript>().LerpToPos(speaker06.transform.position, speaker06.transform.position + new Vector3(0, 30, 0), 0.5f);
                         yield return new WaitForSeconds(0.5f);
@@ -3033,6 +3038,20 @@ public class Exposition_Manager : MonoBehaviour
                         {
                             speaker07.transform.GetChild(i).gameObject.SetActive(false);
                         }
+
+                        yield return new WaitForSeconds(0.6f);
+
+                        for (int i = 0; i < speaker02.transform.childCount; ++i)
+                        {
+                            Transform child = speaker02.transform.GetChild(i);
+                            yield return new WaitForSeconds(Random.Range(0.15f, 0.25f));
+                            spawnPos = child.transform.position + new Vector3(0, 0, 0);
+                            GameObject effectClones = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
+                            effectClones.transform.SetParent(child);
+                            Vector3 knightScale = child.GetChild(0).transform.localScale;
+                            effectClones.transform.localScale =  new Vector3(0.228f * knightScale.x, 0.228f * knightScale.y, 1);
+                            effectClones.transform.localPosition += new Vector3(1.0f, knightScale.y + (3.0f / knightScale.y), 0);
+                        }
                         break;
                 }
                 break;
@@ -3044,6 +3063,7 @@ public class Exposition_Manager : MonoBehaviour
                         StartCoroutine(NewDialogue(12, 3));
                         break;
                     case 2:
+                        speaker07.GetComponent<AudioSource>().Stop();
                         sfxManager.GetComponent<SoundFXManager_C>().playClaymoreRetract();
                         speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 8);
                         speaker04.transform.GetChild(3).GetChild(0).GetComponent<Animator>().speed = 1.5f;
@@ -3057,7 +3077,13 @@ public class Exposition_Manager : MonoBehaviour
                         speaker06.transform.GetChild(0).GetComponent<Animator>().SetBool("Dead", true);
                         speaker06.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(new Color(0.4f, 0.4f, 0.4f, 1.0f), new Color(0.8f, 0.8f, 0.8f, 1.0f), 1.5f);
                         sfxManager.GetComponent<SoundFXManager_C>().playBodyCollapse();
-                        break;
+                        yield return new WaitForSeconds(0.35f);
+                        for (int i = 0; i < speaker02.transform.childCount; ++i)
+                        {
+                            Transform child = speaker02.transform.GetChild(i);
+                            child.gameObject.GetComponent<Animator>().SetInteger("AnimState", 1);
+                        }
+                       break;
                     case 3:
                         yield return new WaitForSeconds(2.5f);
                         blackSq.GetComponent<FadeScript>().FadeColored(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), 0.6f);

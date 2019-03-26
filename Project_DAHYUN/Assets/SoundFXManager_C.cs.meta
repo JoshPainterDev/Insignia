@@ -17,6 +17,7 @@ MonoImporter:
       type: 3}
   - claymoreIgniteFX: {fileID: 8300000, guid: 6a149fcb98fe5ac40b24be491f479b6b, type: 3}
   - claymoreRetractFX: {fileID: 8300000, guid: 2e85bf69aa8a7aa4690b141d279fa8e9, type: 3}
+  - claymoreHumFX: {fileID: 8300000, guid: ec110fd9a3ee0da4c8446025e807ec71, type: 3}
   - criticalHit_FX: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   - bodyCollapse_FX: {fileID: 8300000, guid: 4fc1c0a018f1d124496a334bb1d34d65, type: 3}
   - darkRumbling_FX: {fileID: 8300000, guid: b731346d74832a244b18d33a51592d9e, type: 3}
