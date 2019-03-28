@@ -189,7 +189,7 @@ public class EnemyToolsScript : MonoBehaviour {
                 break;
             case "Dummy":
                 enemyInfo.enemyPrefab = Dummy_Prefab;
-                enemyInfo.enemyLevel = 4;
+                enemyInfo.enemyLevel = 7;
                 enemyInfo.expReward = MODERATE_EXP;
                 enemyInfo.ability_1 = "none";
                 enemyInfo.ability_2 = "none";
@@ -197,11 +197,11 @@ public class EnemyToolsScript : MonoBehaviour {
                 enemyInfo.ability_4 = "none";
 
                 enemyInfo.enemyName = "Dummy";
-                enemyInfo.enemyAttack = 5;
-                enemyInfo.enemyDefense = 5;
-                enemyInfo.enemyProwess = 1;
-                enemyInfo.enemySpeed = 3;
-                enemyInfo.enemyMaxHealthBase = 60;
+                enemyInfo.enemyAttack = 6;
+                enemyInfo.enemyDefense = 6;
+                enemyInfo.enemyProwess = 6;
+                enemyInfo.enemySpeed = 5;
+                enemyInfo.enemyMaxHealthBase = 100;
                 enemyInfo.specialStrikeAnim = false;
                 break;
             default:

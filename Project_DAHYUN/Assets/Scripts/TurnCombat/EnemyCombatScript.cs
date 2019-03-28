@@ -10,7 +10,8 @@ public class EnemyCombatScript : MonoBehaviour {
 
     public GameObject seamstress_StrikeFX;
 
-    public int MAX_ATTEMPTS = 5;
+    public const int MAX_ATTEMPTS = 5;
+    public const int EnemyStikeMissChance = 29;
 
     [HideInInspector]
     private Vector3 origPosition;
@@ -50,18 +51,22 @@ public class EnemyCombatScript : MonoBehaviour {
 
     public void TickCooldowns()
     {
+        int subVal = 1;
+        // check for stance 
+        if (combatManager.enemyStance == Stance.Focused)
+            subVal = 2;
 
         if (cooldownA1 > 0)
-            --cooldownA1;
+            cooldownA1 -= subVal;
 
         if (cooldownA2 > 0)
-            --cooldownA2;
+            cooldownA2 -= subVal;
 
         if (cooldownA3 > 0)
-            --cooldownA3;
+            cooldownA3 -= subVal;
 
         if (cooldownA4 > 0)
-            --cooldownA4;
+            cooldownA4 -= subVal;
     }
 
     public void ResetEnemy(EnemyInfo info)
@@ -98,8 +103,15 @@ public class EnemyCombatScript : MonoBehaviour {
     {
         //first evaluate random chance to strike
         //regardless of abilities
-        int chanceToStrike = Random.Range(0, 1);
-        
+        int chanceToStrike = Random.Range(0, 100);
+
+        if (combatManager.playerStance == Stance.Defensive)
+        {
+            chanceToStrike -= (int)(chanceToStrike * CombatManager.D_DodgeBonus);
+        }
+
+        print("Chance to strike: " + chanceToStrike);
+
         int rand = 0;
 
         if (abilityAttempts >= MAX_ATTEMPTS)
@@ -108,7 +120,7 @@ public class EnemyCombatScript : MonoBehaviour {
             chanceToStrike = 100;
         }
 
-        if (chanceToStrike > 29)
+        if (chanceToStrike > EnemyStikeMissChance)
         {
             float accuracy = 0;
             rand = Random.Range(0, 100);
@@ -147,7 +159,7 @@ public class EnemyCombatScript : MonoBehaviour {
             switch (randomAbility)
             {
                 case 0:
-                    if ((ability1.Name != "-") && (cooldownA1 == 0))
+                    if ((ability1.Name != "-") && (cooldownA1 <= 0))
                     {
                         cooldownA1 = ability1.Cooldown + 1;
                         combatManager.HideHealthBars();
@@ -157,7 +169,7 @@ public class EnemyCombatScript : MonoBehaviour {
                         EasyEnemyAI();
                     break;
                 case 1:
-                    if ((ability2.Name != "-") && (cooldownA2 == 0))
+                    if ((ability2.Name != "-") && (cooldownA2 <= 0))
                     {
                         cooldownA2 = ability2.Cooldown + 1;
                         combatManager.HideHealthBars();
@@ -167,7 +179,7 @@ public class EnemyCombatScript : MonoBehaviour {
                         EasyEnemyAI();
                     break;
                 case 2:
-                    if ((ability3.Name != "-") && (cooldownA3 == 0))
+                    if ((ability3.Name != "-") && (cooldownA3 <= 0))
                     {
                         cooldownA3 = ability3.Cooldown + 1;
                         combatManager.HideHealthBars();
@@ -177,7 +189,7 @@ public class EnemyCombatScript : MonoBehaviour {
                         EasyEnemyAI();
                     break;
                 case 3:
-                    if ((ability4.Name != "-") && (cooldownA4 == 0))
+                    if ((ability4.Name != "-") && (cooldownA4 <= 0))
                     {
                         cooldownA4 = ability4.Cooldown + 1;
                         combatManager.HideHealthBars();

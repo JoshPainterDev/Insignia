@@ -14,9 +14,9 @@ playerMaxHealth = (70 * playerLevel) + (9 * GameController.controller.playerDefe
 
 - Stance System-
 Stances:
-- Aggresive (Attack) - physical attack bonus: 1.5x, increased chance to critically hit: +15%, dodge chance base: 15%
-- Defensive (Defense) - physical defense bonus: 1.25x, block chance: 50% (blocks negate a part of damage depending on attack vs defense stat) parry chance?: 
-- Focused (Magic) - magical attack bonus: 1.5x, abilities cooldown 1 turn sooner, decreased dodge chance: 8%
+- Aggresive (Attack) - physical attack bonus: 1.5x, increased chance to critically hit: +15%,  $
+- Defensive (Defense) - physical defense bonus: 1.25x, Dodge Chance: +10%
+- Focused (Magic) - magical attack bonus: 1.5x, abilities cooldown 1 turn sooner, decreased dodge chance: 15%
 
 Aura Bonus:
 - an aura bonus is a special buff or sideffect that a player activates automatically

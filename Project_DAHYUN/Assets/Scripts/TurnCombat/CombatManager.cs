@@ -17,6 +17,13 @@ public class CombatManager : MonoBehaviour {
     public const int STAT_LIMIT = 50;
     public const int PLAYER_HEALTH_SCALE = 70;
 
+    public const float A_AtkBonus = 1.5f;
+    public const float A_PrwBonus = 0.15f;
+    public const float D_DefBonus = 1.25f;
+    public const float D_DodgeBonus = 0.10f;
+    public const float F_MgkBonus = 1.5f;
+    public const float F_DodgePenalty = 0.15f;
+
     enum State { MainMenu, Stance, Abilities, Back, Done };
 
     public GameObject cameraObj;
@@ -48,8 +55,10 @@ public class CombatManager : MonoBehaviour {
     private int playerHealth = 0;
     [HideInInspector]
     private int playerMaxHealth = 100;
-    private Stance playerStance = Stance.none;
-    private Stance enemyStance = Stance.none;
+    [HideInInspector]
+    public Stance playerStance = Stance.none;
+    [HideInInspector]
+    public Stance enemyStance = Stance.none;
     [HideInInspector]
     public int playerAttackBoost = 0;
     private int playerAttBoostDur = 0;
@@ -683,7 +692,8 @@ public class CombatManager : MonoBehaviour {
 
         GameObject stanceBonusObj = Instantiate(StanceBoostPrfb, playerMannequin.transform.position, Quaternion.identity) as GameObject;
 
-        switch(stanceSelected)
+        // Handle Stat / Boost changes
+        switch (stanceSelected)
         {
             case Stance.Aggressive:
                 stanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Agressive;
@@ -703,9 +713,30 @@ public class CombatManager : MonoBehaviour {
         {
             initialStanceSelected = true;
 
+            yield return new WaitForSeconds(0.75f);
+            // enemy selects stance
+            GameObject eStanceBonusObj = Instantiate(StanceBoostPrfb, enemyMannequin.transform.position, Quaternion.identity) as GameObject;
+            eStanceBonusObj.GetComponent<StanceBoost_C>().player = -1;
+            float rand = Random.Range(0, 100);
+            // TODO: REMOVE THIS
+            rand = 39;
             // Handle Stat / Boost changes
-
-
+            if (rand > 66)
+            {
+                enemyStance = Stance.Aggressive;
+                eStanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Agressive;
+            }
+            else if(rand > 33)
+            {
+                enemyStance = Stance.Defensive;
+                eStanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Defensive;
+            }
+            else
+            {
+                enemyStance = Stance.Focused;
+                eStanceBonusObj.GetComponent<StanceBoost_C>().boostType = BoostType.Focused;
+            }
+            
             //print("enemy speed: " + enemyInfo.enemySpeed);
             if (GameController.controller.playerSpeed >= enemyInfo.enemySpeed)
             {
@@ -794,10 +825,17 @@ public class CombatManager : MonoBehaviour {
     {
         if(ability1CD > 0)
         {
-            --ability1CD;
+            // check for stance 
+            if (playerStance == Stance.Focused)
+            {
+                ability1CD -= 2;
+                print(ability1CD);
+            }
+            else
+                --ability1CD;
             abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1CD.ToString();
 
-            if (ability1CD == 0)
+            if (ability1CD <= 0)
             {
                 abilityButton1.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
                 abilityButton1.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
@@ -807,10 +845,14 @@ public class CombatManager : MonoBehaviour {
 
         if (ability2CD > 0)
         {
-            --ability2CD;
+            // check for stance 
+            if (playerStance == Stance.Focused)
+                ability2CD -= 2;
+            else
+                --ability2CD;
             abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability2CD.ToString();
 
-            if (ability2CD == 0)
+            if (ability2CD <= 0)
             {
                 abilityButton2.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
                 abilityButton2.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
@@ -820,10 +862,14 @@ public class CombatManager : MonoBehaviour {
 
         if (ability3CD > 0)
         {
-            --ability3CD;
+            // check for stance 
+            if (playerStance == Stance.Focused)
+                ability3CD -= 2;
+            else
+                --ability3CD;
             abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability3CD.ToString();
 
-            if (ability3CD == 0)
+            if (ability3CD <= 0)
             {
                 abilityButton3.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
                 abilityButton3.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
@@ -833,10 +879,14 @@ public class CombatManager : MonoBehaviour {
             
         if (ability4CD > 0)
         {
-            --ability4CD;
+            // check for stance 
+            if (playerStance == Stance.Focused)
+                ability4CD -= 2;
+            else
+                --ability4CD;
             abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability4CD.ToString();
 
-            if (ability4CD == 0)
+            if (ability4CD <= 0)
             {
                 abilityButton4.transform.GetChild(1).GetComponent<Text>().text = ability1.Cooldown.ToString();
                 abilityButton4.transform.GetChild(1).GetComponent<Text>().color = abilityReadyColor;
@@ -1003,6 +1053,13 @@ public class CombatManager : MonoBehaviour {
         int exectueVar = EvaluateExecution();
         int rand = Random.Range(0, 99);
         float accuracy = 87 + (3 * ((GameController.controller.playerSpeed + playerSpeedBoost) - (enemyInfo.enemySpeed + enemySpeedBoost)));
+
+        if (enemyStance == Stance.Defensive)
+            accuracy -= accuracy * D_DodgeBonus;
+        else if(enemyStance == Stance.Focused)
+            accuracy -= accuracy * F_DodgePenalty;
+
+        print("Player Accuracy: " + accuracy);
 
         DisableMainButtons();
         HideHealthBars();
@@ -1173,12 +1230,24 @@ public class CombatManager : MonoBehaviour {
 
         damageDealt = ((attack * 2 * playerLevel) + (randDamageBuffer)) * attBoostMod;
 
-        damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost);
+        // check for stance multiplier
+        if (playerStance == Stance.Aggressive)
+            damageDealt *= A_AtkBonus;
+
+        // check for stance multiplier
+        float stanceBonus = 1.0f;
+        if (enemyStance == Stance.Defensive)
+            stanceBonus = D_DefBonus;
+
+        damageDealt -= (enemyInfo.enemyDefense * enemyDefenseBoost * stanceBonus);
 
         damageDealt *= levelMod;
 
         // critical hit chance
         float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f) + vulnerableBonus);
+        // check for stance multiplier
+        if (playerStance == Stance.Aggressive)
+            chance += A_PrwBonus;
 
         if (chance >= CRITICAL_THRESHOLD || guaranteedCrit)
         {
@@ -1256,6 +1325,10 @@ public class CombatManager : MonoBehaviour {
                 }
                 
                 damageDealt = ((attack + playerLevel) + (abilityUsed.BaseDamage + (abilityUsed.BaseDamage * playerLevel / 2))) * attBoostMod;
+
+                // check for stance multiplier
+                if (playerStance == Stance.Focused)
+                    damageDealt *= F_MgkBonus;
 
                 damageDealt -= (enemyInfo.enemyDefense * (enemyDefenseBoost * enemyDefenseBoost)) / 1.5f;
 
@@ -1427,8 +1500,16 @@ public class CombatManager : MonoBehaviour {
         print("attack: " + attack);
         print("enemyInfo.enemyLevel: " + enemyInfo.enemyLevel);
         damageDealt = (((attack * 2) * enemyInfo.enemyLevel)) * attBoostMod;
+        // check for stance bonus
+        if (enemyStance == Stance.Aggressive)
+            damageDealt *= A_AtkBonus;
 
-        damageDealt -= (GameController.controller.playerDefense * defBoostMod);
+        float stanceBonus = 1.0f;
+
+        if (enemyStance == Stance.Defensive)
+            stanceBonus = D_DefBonus; ;
+
+        damageDealt -= (GameController.controller.playerDefense * defBoostMod * stanceBonus);
         print("Player Def: " + GameController.controller.playerDefense);
         print("Damage dealt: " + damageDealt);
         print("AttBoostMod: " + attBoostMod);
@@ -1438,7 +1519,11 @@ public class CombatManager : MonoBehaviour {
 
         // critical hit chance
         float chance = (critRand + ((prowess / STAT_LIMIT) * 0.3f) + vulnerableBonus);
-        print(chance);
+        // check for stance bonus
+        if (enemyStance == Stance.Aggressive)
+            chance += A_PrwBonus;
+        print("Crit Chance: " + chance);
+
         if ((chance - 0.05f) >= CRITICAL_THRESHOLD)
         {
             print("Critical Hit!");
