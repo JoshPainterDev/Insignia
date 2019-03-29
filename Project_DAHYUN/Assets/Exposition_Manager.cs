@@ -1448,7 +1448,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[2] = playerName;
                         leftspeaker[2] = true;
-                        script[2] = "Oh, no!";
+                        script[2] = "Interesting? Oh, no!";
 
                         speaker[3] = playerName;
                         leftspeaker[3] = true;
@@ -1493,19 +1493,19 @@ public class Exposition_Manager : MonoBehaviour
                     case 1:
                         speaker[0] = "Cmd. Agyrii";
                         leftspeaker[0] = true;
-                        script[0] = "Then they'll realize what kind of threat Skorje really is,";
+                        script[0] = "...and after all that they named it the King's Eternal Crypt.";
 
                         speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = true;
-                        script[1] = "and we can win over my troops without fighting 'em.";
+                        script[1] = "So if the old man is right about the shard, it's somewhere in that crypt!";
 
                         speaker[2] = "Ayo";
                         leftspeaker[2] = false;
-                        script[2] = "Your plan is sound... but-";
+                        script[2] = "You've clearly done your research, but-";
 
                         speaker[3] = "Ayo";
                         leftspeaker[3] = false;
-                        script[3] = "How do we get into the Raven's crypt?";
+                        script[3] = "Have you found a way into the crypt?";
 
                         speaker[4] = playerName;
                         leftspeaker[4] = false;
@@ -1513,7 +1513,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[5] = "Cmd. Agyrii";
                         leftspeaker[5] = true;
-                        script[5] = "There's got to be an entrance somewhere, right?";
+                        script[5] = "Not yet. But there's got to be an entrance somewhere, right?";
 
                         speaker[6] = "Shino-Bot";
                         leftspeaker[6] = true;
@@ -1525,7 +1525,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[8] = "Shino-Bot";
                         leftspeaker[8] = true;
-                        script[8] = "*Proclamation* - Now prepare for detainment, flesh-sacks!";
+                        script[8] = "* Request* - Now prepare for detainment, flesh-sacks!";
 
                         totalLines = 9;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -1554,11 +1554,11 @@ public class Exposition_Manager : MonoBehaviour
                     case 2:
                         speaker[0] = "???";
                         leftspeaker[0] = true;
-                        script[0] = "Back into your holes, worms!";
+                        script[0] = "Back in your hole, worms!";
 
                         speaker[1] = "Cmd. Agyrii";
                         leftspeaker[1] = true;
-                        script[1] = "Good gods!";
+                        script[1] = "Great Starlight!";
 
                         speaker[2] = "Cmd. Agyrii";
                         leftspeaker[2] = true;
@@ -1566,7 +1566,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Ayo";
                         leftspeaker[3] = false;
-                        script[3] = "Who are you, mysterious warrior?";
+                        script[3] = "What is your name, mysterious warrior?";
 
                         speaker[4] = "???";
                         leftspeaker[4] = true;
@@ -1582,7 +1582,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[7] = playerName;
                         leftspeaker[7] = false;
-                        script[7] = "Uuhhh, how many of you are in there?";
+                        script[7] = "Uuhhh, hi there Ikilik?";
 
                         speaker[8] = "???";
                         leftspeaker[8] = true;
@@ -1590,11 +1590,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[9] = "Cmd. Agyrii";
                         leftspeaker[9] = true;
-                        script[9] = "64th? You're no soldier! Besides, they're all dead...";
+                        script[9] = "64th? You're no soldier! Besides, they're all dust and bones, Stars preserve 'em.";
 
                         speaker[10] = "Sir Zadrig";
                         leftspeaker[10] = true;
-                        script[10] = "Not all of them I'm afraid...";
+                        script[10] = "Not all of us, I'm afraid...";
 
                         speaker[11] = "Sir Zadrig";
                         leftspeaker[11] = true;
@@ -1602,7 +1602,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[12] = "Ayo";
                         leftspeaker[12] = false;
-                        script[12] = "We've only just met you. How are we to trust your aid?";
+                        script[12] = "We're you spying on us? How are we to trust your aid?";
 
                         speaker[13] = "Sir Zadrig";
                         leftspeaker[13] = true;
@@ -1630,15 +1630,15 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[19] = "Sir Zadrig";
                         leftspeaker[19] = true;
-                        script[19] = "Very valuable. And I know of a hidden passage!";
+                        script[19] = "Very valuable. And I know of a hidden entrance!";
 
                         speaker[20] = "Ayo";
                         leftspeaker[20] = false;
-                        script[20] = "Well, let us make haste then.";
+                        script[20] = "Fine. Show us this passage.";
 
                         speaker[21] = "Ikilik";
                         leftspeaker[21] = false;
-                        script[21] = "Yes, Shiny! Good! Good! Go home! Yes!";
+                        script[21] = "Yes, Shiny! Good! Good! Leave us! Yes!";
 
                         totalLines = 22;
                         this.GetComponent<Dialogue_Manager_C>().NewDialogue(totalLines, script, speaker, leftspeaker, script, usesPlayer);
@@ -1820,11 +1820,11 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[3] = "Cmd. Agyrii";
                         leftspeaker[3] = true;
-                        script[3] = "If the tales are true; and our previous encounter advocates that they are...";
+                        script[3] = "If the tales are true, we should report back with the location.";
 
                         speaker[4] = "Cmd. Agyrii";
                         leftspeaker[4] = true;
-                        script[4] = "Our spirits will be the next to keep this unholy graveyard.";
+                        script[4] = "Guarding this unholy graveyard for the rest of eternity doesn't sound so great...";
 
                         speaker[5] = playerName;
                         leftspeaker[5] = false;
@@ -1832,7 +1832,7 @@ public class Exposition_Manager : MonoBehaviour
 
                         speaker[6] = playerName;
                         leftspeaker[6] = false;
-                        script[6] = "Theron needs it to stop the Ashen! And-";
+                        script[6] = "Theron is counting on us! And-";
 
                         speaker[7] = playerName;
                         leftspeaker[7] = false;
@@ -2166,6 +2166,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(1.5f);
                         actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
+                        print("got here familia@!");
                         yield return new WaitForSeconds(1.5f);
                         StartCoroutine(LoadNextLv());
                         break;
@@ -2398,7 +2399,7 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(3f);
                         speaker05.transform.position -= new Vector3(40, 50, 0);
                         speaker05.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.clear, Color.white, 4.0f);
-                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 0);
+                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 1);
 
                         Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 20, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 130, 0);
                         GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
@@ -2430,7 +2431,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 18:
                         speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
                         break;
-                    case 22:
+                    case 23:
                         actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
                         yield return new WaitForSeconds(1.5f);
@@ -2549,7 +2550,7 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 0:
-                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-100, 0, 0), 4.0f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(-200, 0, 0), 4.0f);
                         speaker01.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                         yield return new WaitForSeconds(0.75f);
                         StartCoroutine(NewDialogue(18, 2));
@@ -2557,11 +2558,11 @@ public class Exposition_Manager : MonoBehaviour
                     case 7:
                         speaker05.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
                         yield return new WaitForSeconds(0.5f);
-                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(200, 0, 0), 2.0f);
+                        speaker05.GetComponent<LerpScript>().LerpToPos(speaker05.transform.position, speaker05.transform.position + new Vector3(300, 0, 0), 2.0f);
                         yield return new WaitForSeconds(0.35f);
-                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(320, 0, 0), 2.0f);
+                        speaker01.GetComponent<LerpScript>().LerpToPos(speaker01.transform.position, speaker01.transform.position + new Vector3(420, 0, 0), 2.0f);
                         yield return new WaitForSeconds(0.75f);
-                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(300, 0, 0), 2.0f);
+                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(400, 0, 0), 1.25f);
                         playerMannequin.GetComponent<AnimationController>().PlayWalkAnim();
                         yield return new WaitForSeconds(0.5f);
                         playerMannequin.GetComponent<AnimationController>().PlayIdleAnim();

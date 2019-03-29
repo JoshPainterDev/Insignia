@@ -699,7 +699,7 @@ PrefabInstance:
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224837515199144370, guid: 4c03170e9d19a8b49a373e6aea8cfb51,
         type: 3}
@@ -900,14 +900,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1041958924746770, guid: e233626e2faea0e4ebbf3257e9802986, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 212377065276952278, guid: e233626e2faea0e4ebbf3257e9802986,
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1041958924746770, guid: e233626e2faea0e4ebbf3257e9802986, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e233626e2faea0e4ebbf3257e9802986, type: 3}
@@ -1074,7 +1074,7 @@ RectTransform:
   m_LocalScale: {x: 2.219564, y: 2.219563, z: 2.219563}
   m_Children: []
   m_Father: {fileID: 889873491}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1667,11 +1667,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1545870186}
   - {fileID: 2033158784}
+  - {fileID: 1545870186}
   - {fileID: 1265674540}
-  - {fileID: 1849906676}
   - {fileID: 617437405}
+  - {fileID: 1849906676}
   - {fileID: 2024994486}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -2002,12 +2002,16 @@ MonoBehaviour:
   laserSwordIgnite_FX: {fileID: 8300000, guid: aff2b147c10316c4b94790cdba23e8c9, type: 3}
   laserSwordRetract_FX: {fileID: 8300000, guid: ae34cbcfd79e783479359c7c32104288,
     type: 3}
+  claymoreIgniteFX: {fileID: 0}
+  claymoreRetractFX: {fileID: 0}
+  claymoreHumFX: {fileID: 0}
   criticalHit_FX: {fileID: 8300000, guid: 092034916c8e42048ab9f721a653f41d, type: 3}
   bodyCollapse_FX: {fileID: 8300000, guid: 4fc1c0a018f1d124496a334bb1d34d65, type: 3}
   darkRumbling_FX: {fileID: 0}
   darkRumbling_short_FX: {fileID: 0}
   wetSquish_FX: {fileID: 0}
   swordClash_FX: {fileID: 0}
+  ghastlyEntrance_FX: {fileID: 0}
   HIGH_VOLUME: 1
   MEDIUM_VOLUME: 0.7
   LOW_VOLUME: 0.5
@@ -2740,7 +2744,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 308
+      value: 305
       objectReference: {fileID: 0}
     - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2769,6 +2773,19 @@ PrefabInstance:
     - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 198965408389452858, guid: e3f7115cdc4b05944b939f0314bf588b,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
@@ -3123,6 +3140,7 @@ MonoBehaviour:
   MusicManager: {fileID: 422027582}
   ExclamationPoint: {fileID: 1315987750725008, guid: 94baea5df18e686488e8612090389203,
     type: 3}
+  QuestionMark: {fileID: 0}
   CombatStartup: {fileID: 8300000, guid: c29544d7584145c4db980bdf76f6ada7, type: 3}
   speaker01: {fileID: 2000515586}
   speaker02: {fileID: 330163314}
@@ -3130,6 +3148,7 @@ MonoBehaviour:
   speaker04: {fileID: 1265674539}
   speaker05: {fileID: 1882184313}
   speaker06: {fileID: 2033158783}
+  speaker07: {fileID: 0}
   decisionManager: {fileID: 0}
   panelOffset: {x: 0, y: 100, z: 0}
   decisionNumber: 0
@@ -3594,6 +3613,14 @@ PrefabInstance:
     - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382879305822908, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3f7115cdc4b05944b939f0314bf588b, type: 3}
@@ -4221,7 +4248,7 @@ RectTransform:
   - {fileID: 571757152}
   - {fileID: 693527535}
   m_Father: {fileID: 889873491}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
