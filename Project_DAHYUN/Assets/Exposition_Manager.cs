@@ -1970,7 +1970,7 @@ public class Exposition_Manager : MonoBehaviour
                     case 0:
                         Color ogC = lighting.GetComponent<SpriteRenderer>().color;
                         lighting.GetComponent<LerpScript>().LerpToColor(ogC, new Color(ogC.r, ogC.g, ogC.b, 0.95f), 1.0f);
-                        for(int i = 0; i < speaker02.transform.GetChildCount(); ++i)
+                        for(int i = 0; i < speaker02.transform.childCount; ++i)
                         {
                             speaker02.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
                         }
@@ -1984,66 +1984,17 @@ public class Exposition_Manager : MonoBehaviour
 
                         yield return new WaitForSeconds(0.15f);
                         lighting.GetComponent<LerpScript>().LerpToColor(new Color(ogC.r, ogC.g, ogC.b, 0.95f), new Color(0, 0.0122f, 0.0122f, 0.75f), 1.5f);
+                        yield return new WaitForSeconds(0.15f);
+                        lighting.GetComponent<LightingFX_C>().startFlickering(new Color(0, 0.0122f, 0.0122f, 0.788f),
+                                                                              new Color(0, 0.0122f, 0.0122f, 0.75f),
+                                                                              2.0f, 0.1f);
                         yield return new WaitForSeconds(2.15f);
                         StartCoroutine(NewDialogue(23, 3));
                         break;
-                    case 9:
-                        yield return new WaitForSeconds(0.7f);
-                        playerMannequin.GetComponent<AnimationController>().FlipFlop();
-                        yield return new WaitForSeconds(0.5f);
-                        playerMannequin.GetComponent<LerpScript>().LerpToPos(playerMannequin.transform.position, playerMannequin.transform.position + new Vector3(0, 100, 0), 1.0f);
-                        yield return new WaitForSeconds(1.75f);
-                        StartCoroutine(ExitScene(playerMannequin));
-                        yield return new WaitForSeconds(0.5f);
-                        var leftTorch = speaker07.transform.GetChild(0).gameObject;
-                        var rightTorch = speaker07.transform.GetChild(1).gameObject;
-                        var leftTorch2 = speaker07.transform.GetChild(2).gameObject;
-                        var rightTorch2 = speaker07.transform.GetChild(3).gameObject;
-                        var playerC = GameController.controller.getPlayerColorPreference() - new Color(0, 0, 0, 0.5f);
-                        leftTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-                        leftTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-
-                        rightTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-                        rightTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-
-                        leftTorch2.transform.GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-                        leftTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-
-                        rightTorch2.transform.GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-                        rightTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(Color.white, playerC, 1.0f);
-
-                        yield return new WaitForSeconds(3.0f);
-
-                        leftTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-                        leftTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-
-                        rightTorch.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-                        rightTorch.transform.GetChild(0).GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-
-                        leftTorch2.transform.GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-                        leftTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-
-                        rightTorch2.transform.GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-                        rightTorch2.transform.GetChild(0).GetComponent<LerpScript>().LerpToColor(playerC, Color.white, 1.0f);
-                        yield return new WaitForSeconds(1.75f);
-                        // astonishment at color change
-                        Vector3 spawnPos = new Vector3(speaker04.transform.GetChild(0).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(0).GetChild(0).transform.position.y + 110, 0);
-                        GameObject effectClone = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
-                        spawnPos = new Vector3(speaker04.transform.GetChild(1).GetChild(0).transform.position.x + 5, speaker04.transform.GetChild(1).GetChild(0).transform.position.y + 110, 0);
-                        GameObject effectClone2 = (GameObject)Instantiate(ExclamationPoint, spawnPos, transform.rotation);
-                        yield return new WaitForSeconds(0.75f);
-                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-                        yield return new WaitForSeconds(1.5f);
-                        StartCoroutine(NewDialogue(22, 4));
-                        break;
-                }
-                break;
-            case 4:
-                switch (action)
-                {
-                    case 4:
-                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        yield return new WaitForSeconds(1.5f);
+                    case 1:
+                        yield return new WaitForSeconds(1.15f);
+                        jadus.transform.GetChild(0).GetComponent<Animator>().SetBool("InCombat", true);
+                        yield return new WaitForSeconds(3.5f);
                         actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
                         yield return new WaitForSeconds(1.5f);
