@@ -1995,6 +1995,20 @@ public class Exposition_Manager : MonoBehaviour
                         yield return new WaitForSeconds(1.15f);
                         jadus.transform.GetChild(0).GetComponent<Animator>().SetBool("InCombat", true);
                         yield return new WaitForSeconds(3.5f);
+                        ayo.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 2);
+                        ayo.GetComponent<LerpScript>().LerpToPos(ayo.transform.position, ayo.transform.position + new Vector3(800, 0, 0), 2.50f);
+                        yield return new WaitForSeconds(0.1f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.white, 3.0f);
+                        yield return new WaitForSeconds(0.65f);
+                        jadus.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 3);
+                        ayo.transform.GetChild(0).GetComponent<Animator>().SetInteger("AnimState", 4);
+                        ayo = speaker04.transform.GetChild(0).gameObject;
+                        ayo.transform.position = ayo.transform.position + new Vector3(100, 0, 0);
+                        yield return new WaitForSeconds(0.25f);
+                        blackSq.GetComponent<FadeScript>().FadeColored(Color.white, Color.clear, 5.0f);
+
+                        yield return new WaitForSeconds(3.5f);
+                        
                         actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
                         yield return new WaitForSeconds(1.5f);
@@ -2113,8 +2127,6 @@ public class Exposition_Manager : MonoBehaviour
                 switch (action)
                 {
                     case 4:
-                        speaker04.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
-                        yield return new WaitForSeconds(1.5f);
                         actionsCompleted = true; //actions are completed
                         blackSq.GetComponent<FadeScript>().FadeColored(Color.clear, Color.black, 0.8f);
                         print("got here familia@!");
